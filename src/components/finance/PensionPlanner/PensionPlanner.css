@@ -1,0 +1,706 @@
+/* src/components/finance/PensionPlanner/PensionPlanner.css */
+
+.pension-planner {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 800px;
+  color: #e2e8f0;
+}
+
+/* Header */
+.pension-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pension-header-icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.pension-header-text h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.25rem 0;
+}
+
+.pension-header-text p {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Body */
+.pension-body {
+  padding: 2rem;
+}
+
+/* Alert */
+.pension-alert {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.pension-alert svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.pension-alert strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.pension-alert p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.pension-alert-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.pension-alert-warning svg {
+  color: #f59e0b;
+}
+
+.pension-alert-warning strong {
+  color: #fbbf24;
+}
+
+/* Sections */
+.pension-section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pension-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #a78bfa;
+  margin: 0 0 1rem 0;
+}
+
+.pension-section-desc {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+}
+
+/* Input Groups */
+.pension-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pension-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pension-input-group label {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.pension-input-hint {
+  display: block;
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+}
+
+.pension-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.pension-input-wrapper:focus-within {
+  border-color: #8b5cf6;
+}
+
+.pension-input-prefix,
+.pension-input-suffix {
+  padding: 0 0.75rem;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.pension-input-wrapper input {
+  flex: 1;
+  padding: 0.875rem 0.5rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+}
+
+.pension-input-wrapper input:focus {
+  outline: none;
+}
+
+.pension-input-currency input {
+  text-align: left;
+  padding-left: 0;
+}
+
+.pension-input-wrapper input::-webkit-inner-spin-button,
+.pension-input-wrapper input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Years Display */
+.pension-years-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 10px;
+  margin-top: 1rem;
+  color: #a78bfa;
+  font-size: 1rem;
+}
+
+/* Scenarios */
+.pension-scenarios {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+}
+
+.pension-scenario-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1rem 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pension-scenario-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.pension-scenario-btn.active {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: #8b5cf6;
+}
+
+.pension-scenario-percent {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #a78bfa;
+}
+
+.pension-scenario-cost {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.pension-scenario-pot {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 0.25rem;
+}
+
+.pension-scenario-income {
+  font-size: 0.7rem;
+  color: #10b981;
+}
+
+/* Results */
+.pension-results {
+  background: rgba(139, 92, 246, 0.05);
+  border: 2px solid rgba(139, 92, 246, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pension-results-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pension-results-header svg {
+  color: #a78bfa;
+}
+
+.pension-results-header h3 {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin: 0;
+  font-weight: 500;
+}
+
+.pension-results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.pension-result-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.pension-result-main {
+  grid-column: span 2;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.pension-result-total {
+  grid-column: span 2;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.pension-result-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.pension-result-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #a78bfa;
+  line-height: 1.2;
+}
+
+.pension-result-main .pension-result-value {
+  font-size: 2.5rem;
+}
+
+.pension-result-income {
+  color: #fff;
+}
+
+.pension-result-state {
+  color: #60a5fa;
+}
+
+.pension-result-total .pension-result-value {
+  color: #10b981;
+}
+
+.pension-result-note {
+  display: block;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 0.35rem;
+}
+
+/* Tax Relief */
+.pension-tax-relief {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.pension-tax-relief svg {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.pension-tax-relief strong {
+  display: block;
+  color: #10b981;
+  margin-bottom: 0.35rem;
+}
+
+.pension-tax-relief p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* Comparison */
+.pension-comparison {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pension-comparison h4 {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.pension-comparison-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.pension-comparison-item {
+  flex: 1;
+  max-width: 200px;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.pension-comparison-bad {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.pension-comparison-good {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.pension-comparison-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.pension-comparison-value {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.pension-comparison-bad .pension-comparison-value {
+  color: #f87171;
+}
+
+.pension-comparison-good .pension-comparison-value {
+  color: #10b981;
+}
+
+.pension-comparison-income {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.pension-comparison-arrow {
+  font-size: 1.5rem;
+  color: #64748b;
+}
+
+.pension-comparison-diff {
+  text-align: center;
+  margin: 1rem 0 0 0;
+  font-size: 0.95rem;
+  color: #10b981;
+}
+
+/* Advanced Toggle */
+.pension-advanced-toggle,
+.pension-projections-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 1rem;
+}
+
+.pension-advanced-toggle:hover,
+.pension-projections-toggle:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+/* Advanced Section */
+.pension-advanced {
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.pension-growth-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.pension-growth-note svg {
+  color: #60a5fa;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+/* Projections */
+.pension-projections {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.pension-projections-table {
+  width: 100%;
+}
+
+.pension-projections-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #64748b;
+}
+
+.pension-projections-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.95rem;
+}
+
+.pension-projections-row:last-child {
+  border-bottom: none;
+  background: rgba(139, 92, 246, 0.1);
+  font-weight: 600;
+}
+
+.pension-projections-row span:last-child {
+  color: #a78bfa;
+  font-weight: 600;
+}
+
+/* Actions */
+.pension-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.pension-action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pension-action-primary {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: #fff;
+  border: none;
+}
+
+.pension-action-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+}
+
+.pension-action-secondary {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pension-action-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+/* Tips */
+.pension-tips {
+  background: rgba(251, 191, 36, 0.05);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.pension-tips h4 {
+  font-size: 1rem;
+  color: #fbbf24;
+  margin: 0 0 1rem 0;
+}
+
+.pension-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pension-tips li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.pension-tips li svg {
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+/* Disclaimer */
+.pension-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.6;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.pension-disclaimer svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: #94a3b8;
+}
+
+.pension-disclaimer p {
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .pension-body {
+    padding: 1.5rem;
+  }
+
+  .pension-input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .pension-scenarios {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pension-scenario-btn {
+    padding: 0.75rem 0.25rem;
+  }
+
+  .pension-scenario-percent {
+    font-size: 1rem;
+  }
+
+  .pension-scenario-pot,
+  .pension-scenario-income {
+    font-size: 0.65rem;
+  }
+
+  .pension-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pension-result-main,
+  .pension-result-total {
+    grid-column: span 1;
+  }
+
+  .pension-result-main .pension-result-value {
+    font-size: 2rem;
+  }
+
+  .pension-comparison-row {
+    flex-direction: column;
+  }
+
+  .pension-comparison-item {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .pension-comparison-arrow {
+    transform: rotate(90deg);
+  }
+
+  .pension-actions {
+    flex-direction: column;
+  }
+}

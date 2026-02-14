@@ -1,0 +1,362 @@
+.easy-street-page {
+  --es-primary: #1a1a2e;
+  --es-accent: #e94560;
+  --es-gold: #f5a623;
+  --es-light: #f8f9fa;
+  --es-text: #2d2d2d;
+}
+
+/* Hero */
+.easy-street-hero {
+  background: linear-gradient(135deg, var(--es-primary) 0%, #16213e 100%);
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.programme-badge {
+  display: inline-block;
+  background: var(--es-accent);
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.easy-street-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.hero-tagline {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  margin: 0 0 1.5rem 0;
+  font-style: italic;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Section defaults */
+.easy-street-page section {
+  padding: 4rem 2rem;
+}
+
+.section-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-content h2 {
+  font-size: 2rem;
+  color: var(--es-primary);
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+
+.section-content p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--es-text);
+}
+
+/* What We're Building */
+.what-were-building {
+  background: var(--es-light);
+}
+
+.what-were-building p {
+  text-align: center;
+}
+
+/* Benefits List */
+.what-youll-get {
+  background: white;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefits-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.benefits-list li:last-child {
+  border-bottom: none;
+}
+
+.benefit-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.benefit-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.benefit-text strong {
+  font-size: 1.125rem;
+  color: var(--es-primary);
+}
+
+.benefit-text span {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* What You'll Bring */
+.what-youll-bring {
+  background: var(--es-primary);
+  color: white;
+}
+
+.what-youll-bring h2 {
+  color: white;
+}
+
+.bring-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.bring-item {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.bring-item h3 {
+  color: var(--es-gold);
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.bring-item p {
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* You Don't Need */
+.you-dont-need {
+  background: var(--es-light);
+}
+
+.dont-need-list {
+  text-align: center;
+}
+
+.dont-need-list p {
+  font-size: 1.125rem;
+  margin: 0.75rem 0;
+}
+
+/* Timeline */
+.the-six-weeks {
+  background: white;
+}
+
+.weeks-timeline {
+  margin-top: 2rem;
+}
+
+.week-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.week-item:last-child {
+  border-bottom: none;
+}
+
+.week-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: var(--es-accent);
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.week-content h3 {
+  margin: 0 0 0.25rem 0;
+  color: var(--es-primary);
+  font-size: 1.125rem;
+}
+
+.week-content p {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Who's This For */
+.whos-this-for {
+  background: var(--es-light);
+}
+
+.whos-this-for p {
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+/* Apply Section */
+.apply-section {
+  background: var(--es-gold);
+  text-align: center;
+}
+
+.apply-section h2 {
+  color: var(--es-primary);
+}
+
+.apply-section a {
+  color: var(--es-primary);
+  font-weight: 600;
+}
+
+.no-formal {
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.deadline-box {
+  display: inline-flex;
+  flex-direction: column;
+  background: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.deadline-label {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #666;
+}
+
+.deadline-date {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--es-primary);
+}
+
+.questions {
+  font-size: 1rem;
+}
+
+/* Connected Programmes */
+.connected-programmes {
+  background: white;
+}
+
+.programme-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.programme-card {
+  display: block;
+  padding: 1.5rem;
+  background: var(--es-light);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.programme-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.programme-card h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--es-primary);
+  font-size: 1.125rem;
+}
+
+.programme-card p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Footer CTA */
+.footer-cta {
+  background: var(--es-primary);
+  text-align: center;
+}
+
+.cta-text {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--es-accent);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: background 0.2s;
+}
+
+.cta-button:hover {
+  background: #d63d56;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .easy-street-hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-tagline {
+    font-size: 1.25rem;
+  }
+  
+  .bring-grid,
+  .programme-links {
+    grid-template-columns: 1fr;
+  }
+  
+  .week-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

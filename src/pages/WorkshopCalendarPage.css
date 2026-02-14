@@ -1,0 +1,721 @@
+/* src/pages/WorkshopCalendarPage.css */
+/* Content-specific styles only - PageTemplate handles layout */
+
+/* Main Content Container */
+.workshop-calendar-content {
+  max-width: 100%;
+}
+
+/* Overview Statistics */
+.calendar-overview {
+  margin: 2rem 0 3rem 0;
+  padding: 2rem;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.15);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #06b6d4;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Filter Panel */
+.filter-panel {
+  display: flex;
+  gap: 2rem;
+  align-items: end;
+  padding: 2rem;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 12px;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 150px;
+}
+
+.filter-section label {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.filter-section select,
+.filter-section input {
+  padding: 0.75rem;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  color: #f8fafc;
+  font-size: 0.9rem;
+}
+
+.filter-section select:focus,
+.filter-section input:focus {
+  outline: none;
+  border-color: #06b6d4;
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+}
+
+.view-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.view-controls button {
+  padding: 0.75rem 1.5rem;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.view-controls button:hover {
+  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(6, 182, 212, 0.4);
+  color: #06b6d4;
+}
+
+.view-controls button.active {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  border-color: #06b6d4;
+  color: white;
+}
+
+/* Workshop Grid */
+.workshops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+/* Workshop Card Styles */
+.workshop-card {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-left: 4px solid #06b6d4;
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(20px);
+}
+
+.workshop-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.workshop-card-header {
+  margin-bottom: 1.5rem;
+}
+
+.workshop-title-section h3 {
+  color: #f8fafc;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.workshop-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.framework-badge,
+.status-badge,
+.type-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.type-badge {
+  background: rgba(148, 163, 184, 0.2);
+  color: #94a3b8;
+}
+
+.workshop-description {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.workshop-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 8px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.detail-item svg {
+  color: #94a3b8;
+}
+
+.workshop-capacity {
+  margin-bottom: 1.5rem;
+}
+
+.capacity-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.capacity-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.capacity-text {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.workshop-outputs,
+.workshop-shop {
+  margin-bottom: 1.5rem;
+}
+
+.workshop-outputs h4,
+.workshop-shop h4 {
+  color: #06b6d4;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.output-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.output-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.output-tag.raydyo {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.output-tag.joystick {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.output-tag.portfolio {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.output-tag.showcase {
+  background: rgba(139, 92, 246, 0.2);
+  color: #8b5cf6;
+}
+
+.workshop-shop p {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.workshop-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.next-session {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.workshop-book-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #06b6d4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.workshop-book-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3);
+}
+
+.workshop-book-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* List View */
+.workshops-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.workshop-list-item {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.workshop-list-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 8px 20px rgba(6, 182, 212, 0.15);
+}
+
+.workshop-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.workshop-list-header h3 {
+  color: #f8fafc;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.workshop-list-details {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.workshop-list-details span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.workshop-list-outputs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Calendar View */
+.calendar-view {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.calendar-header button {
+  padding: 0.75rem 1.5rem;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 8px;
+  color: #06b6d4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.calendar-header button:hover {
+  background: rgba(6, 182, 212, 0.2);
+  transform: translateY(-2px);
+}
+
+.calendar-header h3 {
+  color: #f8fafc;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.calendar-placeholder {
+  text-align: center;
+  color: #cbd5e1;
+  padding: 3rem;
+}
+
+.workshop-sessions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.calendar-workshop-item {
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: left;
+}
+
+.calendar-workshop-item strong {
+  color: #f8fafc;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.calendar-workshop-item span {
+  display: block;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.framework-indicator {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+.framework-indicator.connect {
+  background: rgba(6, 182, 212, 0.2);
+  color: #06b6d4;
+}
+
+.framework-indicator.create {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.framework-indicator.cultivate {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.framework-indicator.compete {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.framework-indicator.celebrate {
+  background: rgba(139, 92, 246, 0.2);
+  color: #8b5cf6;
+}
+
+/* Staffing Section */
+.staffing-needs {
+  margin: 4rem 0;
+}
+
+.staffing-needs h2 {
+  text-align: center;
+  color: #06b6d4;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.staffing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.staffing-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-left: 4px solid #f59e0b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.staffing-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15);
+}
+
+.staffing-card h4 {
+  color: #f8fafc;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.staff-needs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.staff-need-tag {
+  padding: 0.25rem 0.75rem;
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Shop Integration */
+.shop-integration {
+  margin: 4rem 0;
+}
+
+.shop-integration h2 {
+  text-align: center;
+  color: #06b6d4;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.shop-opportunities {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.shop-opportunity {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-left: 4px solid #10b981;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.shop-opportunity:hover {
+  transform: translateY(-3px);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
+}
+
+.shop-opportunity h4 {
+  color: #f8fafc;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.shop-opportunity p {
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.framework-connection {
+  padding: 0.25rem 0.75rem;
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Content Pipeline */
+.content-pipeline {
+  margin: 4rem 0;
+}
+
+.content-pipeline h2 {
+  text-align: center;
+  color: #06b6d4;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.pipeline-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.pipeline-column {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.pipeline-column h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #06b6d4;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.pipeline-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pipeline-column li {
+  color: #cbd5e1;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.pipeline-column li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .filter-panel {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .view-controls {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .workshops-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .overview-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .workshop-actions {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .workshop-book-btn {
+    justify-content: center;
+  }
+  
+  .workshop-list-details {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .calendar-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .pipeline-overview,
+  .staffing-grid,
+  .shop-opportunities {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .workshop-card,
+  .staffing-card,
+  .shop-opportunity {
+    padding: 1.25rem;
+  }
+  
+  .calendar-overview,
+  .filter-panel {
+    padding: 1.5rem;
+  }
+  
+  .overview-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .workshop-badges,
+  .output-tags,
+  .staff-needs {
+    gap: 0.25rem;
+  }
+}

@@ -1,0 +1,415 @@
+/* src/pages/member/governance/CommunityGovernance.css */
+
+.community-governance {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 48px 32px;
+  margin: 24px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.governance-header {
+  text-align: center;
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 3px solid #2c3e50;
+}
+
+.governance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+}
+
+.governance-icon {
+  font-size: 20px;
+}
+
+.governance-header h1 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #2c3e50;
+  margin: 0 0 16px 0;
+}
+
+.governance-description {
+  font-size: 16px;
+  color: #7f8c8d;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.governance-metrics {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 32px;
+}
+
+.metrics-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.metric-card {
+  background: #ffffff;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.metric-number {
+  font-size: 32px;
+  font-weight: 800;
+  color: #2c3e50;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.governance-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.governance-section {
+  background: #ffffff;
+  border: 2px solid #ecf0f1;
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.governance-section:hover {
+  border-color: #2c3e50;
+  box-shadow: 0 8px 25px rgba(44, 62, 80, 0.1);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.section-icon {
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.section-description {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.proposals-list, .meetings-list, .committees-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.proposal-item, .meeting-item, .committee-item {
+  background: #f8f9fa;
+  border-left: 4px solid #2c3e50;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.proposal-item:hover, .meeting-item:hover, .committee-item:hover {
+  background: #ecf0f1;
+  transform: translateX(4px);
+}
+
+.item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 4px 0;
+}
+
+.item-details {
+  font-size: 12px;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+.voting-status {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.voting-status.active {
+  background: #27ae60;
+  color: white;
+}
+
+.voting-status.pending {
+  background: #f39c12;
+  color: white;
+}
+
+.voting-status.closed {
+  background: #95a5a6;
+  color: white;
+}
+
+.section-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.primary-btn {
+  background: #2c3e50;
+  color: white;
+}
+
+.primary-btn:hover {
+  background: #34495e;
+  transform: translateY(-1px);
+}
+
+.secondary-btn {
+  background: #ecf0f1;
+  color: #34495e;
+  border: 1px solid #bdc3c7;
+}
+
+.secondary-btn:hover {
+  background: #d5dbdb;
+  border-color: #95a5a6;
+}
+
+.participation-guide {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.guide-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+}
+
+.guide-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  opacity: 0.95;
+}
+
+.participation-levels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.level-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.level-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.level-description {
+  font-size: 12px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.get-involved-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.get-involved-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.transparency-dashboard {
+  background: #ffffff;
+  border: 2px solid #27ae60;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.transparency-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.transparency-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+.transparency-item {
+  text-align: center;
+  padding: 12px;
+  background: rgba(39, 174, 96, 0.05);
+  border-radius: 8px;
+}
+
+.transparency-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #27ae60;
+  display: block;
+}
+
+.transparency-label {
+  font-size: 11px;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* CIC Compliance Indicators */
+.cic-compliance {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 25px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+  z-index: 1000;
+}
+
+.compliance-icon {
+  margin-right: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .community-governance {
+    padding: 32px 20px;
+    margin: 16px 0;
+  }
+  
+  .governance-header h1 {
+    font-size: 28px;
+  }
+  
+  .governance-sections {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .participation-levels {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .transparency-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .section-actions {
+    flex-direction: column;
+  }
+  
+  .cic-compliance {
+    position: static;
+    margin-top: 24px;
+    text-align: center;
+  }
+}

@@ -1,0 +1,271 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Header from "../components/layout/Header";
+import MayaChat from '../components/MayaChat';
+import './MembershipPage.css';
+
+interface MemberProgress {
+  currentTier: 'applicant' | 'connector' | 'curator' | 'champion';
+  assessmentPeriodStart?: Date;
+  completedActivities: string[];
+  safeguardingStatus: 'pending' | 'cleared' | 'requires_review';
+  progressScore: number;
+  lastInteraction: Date;
+}
+
+const MembershipPage: React.FC = () => {
+  const [memberProgress, setMemberProgress] = useState<MemberProgress>({
+    currentTier: 'applicant',
+    completedActivities: [],
+    safeguardingStatus: 'pending',
+    progressScore: 0,
+    lastInteraction: new Date()
+  });
+
+  // Load member progress from localStorage or API
+  useEffect(() => {
+    const savedProgress = localStorage.getItem('memberProgress');
+    if (savedProgress) {
+      const progress = JSON.parse(savedProgress);
+      setMemberProgress({
+        ...progress,
+        lastInteraction: new Date(progress.lastInteraction),
+        assessmentPeriodStart: progress.assessmentPeriodStart ? new Date(progress.assessmentPeriodStart) : undefined
+      });
+    }
+  }, []);
+
+  const handleProgressUpdate = (updatedProgress: MemberProgress) => {
+    setMemberProgress(updatedProgress);
+    localStorage.setItem('memberProgress', JSON.stringify(updatedProgress));
+  };
+
+  return (
+    <div className="membership-page">
+      <Header />
+      <div className="membership-header">
+        <div className="membership-badge">
+          <span>🏡</span>
+          <span>Professional Community Platform</span>
+        </div>
+        <h1 className="membership-title">Membership Tiers</h1>
+        <p className="membership-subtitle">
+          A comprehensive community development platform that transforms Wembley residents into local leaders through professional development, democratic participation, career advancement, and community leadership opportunities.
+        </p>
+      </div>
+
+      <div className="membership-content">
+        {/* Progression Pathway */}
+        <section className="pathway-section">
+          <h2 className="section-title">Professional Development Pathway</h2>
+          <div className="pathway-description">
+            <p>Our three-tier membership system provides structured progression from community participation to executive leadership, comparable to Lions Club and Toastmasters but with a focus on digital innovation and democratic governance.</p>
+          </div>
+          
+          <div className="pathway-visual">
+            <div className="pathway-step">
+              <div className="step-number">1</div>
+              <h3>Connector Tier</h3>
+              <p>Compulsory entry level with 12-month assessment period</p>
+              <div className="step-benefits">
+                <span>Community Learning</span>
+                <span>Skills Development</span>
+                <span>Safeguarding Training</span>
+              </div>
+            </div>
+            
+            <div className="pathway-arrow">→</div>
+            
+            <div className="pathway-step">
+              <div className="step-number">2</div>
+              <h3>Curator Tier</h3>
+              <p>Active leadership with project management authority</p>
+              <div className="step-benefits">
+                <span>£50K Budget Authority</span>
+                <span>Youth Program Leadership</span>
+                <span>Democratic Participation</span>
+              </div>
+            </div>
+            
+            <div className="pathway-arrow">→</div>
+            
+            <div className="pathway-step">
+              <div className="step-number">3</div>
+              <h3>Champion Tier</h3>
+              <p>Executive governance and strategic authority</p>
+              <div className="step-benefits">
+                <span>£250K+ Budget Authority</span>
+                <span>Strategic Planning</span>
+                <span>Partnership Development</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Membership Tiers Grid */}
+        <section className="tiers-section">
+          <h2 className="section-title">Choose Your Level of Engagement</h2>
+          
+          <div className="tiers-grid">
+            {/* Connector Tier */}
+            <div className="tier-card">
+              <div className="tier-header">
+                <div className="tier-icon">🔗</div>
+                <h3 className="tier-name">Connector</h3>
+                <div className="tier-level">Entry Level</div>
+              </div>
+              
+              <div className="tier-description">
+                <p>Like a provisional driving licence - your essential first step into community leadership with comprehensive assessment and skills development.</p>
+              </div>
+              
+              <div className="tier-features">
+                <div className="feature-item">
+                  <span className="feature-icon">⏱️</span>
+                  <span>12-month assessment period</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">🛡️</span>
+                  <span>Enhanced safeguarding training</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">📚</span>
+                  <span>Skills development workshops</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">🤝</span>
+                  <span>Community project participation</span>
+                </div>
+              </div>
+              
+              <div className="tier-commitment">
+                <strong>Commitment:</strong> 4-6 hours per month
+              </div>
+              
+              <Link to="/connector" className="tier-button">
+                Learn More
+              </Link>
+            </div>
+
+            {/* Curator Tier */}
+            <div className="tier-card featured">
+              <div className="tier-badge">Most Popular</div>
+              <div className="tier-header">
+                <div className="tier-icon">🎯</div>
+                <h3 className="tier-name">Curator</h3>
+                <div className="tier-level">Active Leadership</div>
+              </div>
+              
+              <div className="tier-description">
+                <p>Lead community initiatives, manage youth programs, and exercise real budget authority while developing executive-level skills.</p>
+              </div>
+              
+              <div className="tier-features">
+                <div className="feature-item">
+                  <span className="feature-icon">💰</span>
+                  <span>£50,000 budget authority</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">👥</span>
+                  <span>Youth program leadership</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">🗳️</span>
+                  <span>Democratic governance participation</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">🚀</span>
+                  <span>Crowdfunding campaign management</span>
+                </div>
+              </div>
+              
+              <div className="tier-commitment">
+                <strong>Commitment:</strong> 8-12 hours per month
+              </div>
+              
+              <Link to="/curator" className="tier-button">
+                Learn More
+              </Link>
+            </div>
+
+            {/* Champion Tier */}
+            <div className="tier-card">
+              <div className="tier-header">
+                <div className="tier-icon">👑</div>
+                <h3 className="tier-name">Champion</h3>
+                <div className="tier-level">Executive Leadership</div>
+              </div>
+              
+              <div className="tier-description">
+                <p>Exercise executive authority over strategic community development with significant budget responsibility and governance leadership.</p>
+              </div>
+              
+              <div className="tier-features">
+                <div className="feature-item">
+                  <span className="feature-icon">💎</span>
+                  <span>£250,000+ budget authority</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">🏛️</span>
+                  <span>Strategic governance leadership</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">🤝</span>
+                  <span>Partnership negotiation authority</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">📊</span>
+                  <span>Organizational oversight responsibility</span>
+                </div>
+              </div>
+              
+              <div className="tier-commitment">
+                <strong>Commitment:</strong> 15+ hours per month
+              </div>
+              
+              <Link to="/champion" className="tier-button">
+                Learn More
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Application Process */}
+        <section className="application-section">
+          <h2 className="application-title">Ready to Begin Your Leadership Journey?</h2>
+          <p className="application-text">
+            All members start with Connector tier to ensure community standards and safeguarding requirements are met. The application process includes background checks and professional references.
+          </p>
+          
+          <div className="application-buttons">
+            <Link to="/apply" className="btn btn-primary">
+              <span>Apply for Membership</span>
+              <span>→</span>
+            </Link>
+            <a href="/rulebook.pdf" className="btn btn-secondary" download>
+              <span>Download Rule Book</span>
+              <span>📋</span>
+            </a>
+          </div>
+
+          <div className="safeguarding-notice">
+            <div className="notice-icon">🛡️</div>
+            <div className="notice-content">
+              <h4>Safeguarding Commitment</h4>
+              <p>All members undergo enhanced background checks and agree to strict safeguarding protocols. We maintain the highest standards of conduct to protect our community and the young people we serve.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* Maya Chat Integration */}
+      <MayaChat 
+        membershipTier="membership"
+        memberProgress={memberProgress}
+        onProgressUpdate={handleProgressUpdate}
+      />
+    </div>
+  );
+};
+
+export default MembershipPage;

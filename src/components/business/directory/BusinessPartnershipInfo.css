@@ -1,0 +1,293 @@
+.business-partnership-info {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: white;
+}
+
+.partnership-intro {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.partnership-intro h2 {
+  font-size: 2.5rem;
+  color: #8b5cf6;
+  margin-bottom: 1rem;
+}
+
+.partnership-description {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.partnership-philosophy {
+  text-align: left;
+  margin: 2rem 0;
+}
+
+.partnership-philosophy h3 {
+  color: #8b5cf6;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.philosophy-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.philosophy-point {
+  background: rgba(30, 41, 59, 0.8);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.philosophy-point h4 {
+  color: #c4b5fd;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.philosophy-point p {
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.partnership-tiers {
+  margin: 3rem 0;
+}
+
+.partnership-tiers h3 {
+  color: #8b5cf6;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.tier-card {
+  background: rgba(30, 41, 59, 0.9);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tier-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--tier-color);
+}
+
+.tier-card.bronze {
+  --tier-color: #CD7F32;
+}
+
+.tier-card.silver {
+  --tier-color: #C0C0C0;
+}
+
+.tier-card.gold {
+  --tier-color: #FFD700;
+}
+
+.tier-card.platinum {
+  --tier-color: #E5E4E2;
+}
+
+.tier-card:hover {
+  border-color: var(--tier-color);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.tier-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.tier-header h4 {
+  color: var(--tier-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.tier-price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.tier-benefits {
+  list-style: none;
+  padding: 0;
+}
+
+.tier-benefits li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #cbd5e1;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.tier-benefits li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--tier-color);
+  font-weight: bold;
+}
+
+.partnership-expectations,
+.partnership-outcomes {
+  margin: 3rem 0;
+}
+
+.partnership-expectations h3,
+.partnership-outcomes h3 {
+  color: #8b5cf6;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.expectations-grid,
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.expectation {
+  background: rgba(30, 41, 59, 0.8);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.expectation h4 {
+  color: #c4b5fd;
+  margin-bottom: 0.75rem;
+}
+
+.expectation p {
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.outcome {
+  background: rgba(30, 41, 59, 0.8);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  text-align: center;
+}
+
+.outcome-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.outcome h4 {
+  color: #c4b5fd;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.outcome ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.outcome li {
+  padding: 0.5rem 0;
+  color: #94a3b8;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.outcome li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #8b5cf6;
+}
+
+.partnership-cta {
+  text-align: center;
+  margin: 3rem 0;
+  padding: 2rem;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.partnership-cta h3 {
+  color: #8b5cf6;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.partnership-cta p {
+  color: #cbd5e1;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.signup-button {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.signup-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .business-partnership-info {
+    padding: 1rem;
+  }
+
+  .tiers-grid,
+  .expectations-grid,
+  .outcomes-grid,
+  .philosophy-points {
+    grid-template-columns: 1fr;
+  }
+
+  .partnership-intro h2 {
+    font-size: 2rem;
+  }
+
+  .tier-price {
+    font-size: 1.5rem;
+  }
+}

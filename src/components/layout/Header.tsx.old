@@ -1,0 +1,436 @@
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useMayaStore } from '../../stores/mayaStore';
+import './Header.css';
+
+const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const location = useLocation();
+  const { isVisitorGuideActive, toggleVisitorGuide } = useMayaStore();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleDropdown = (dropdown: string) => {
+    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
+
+  return (
+    <header>
+      <div className="header-container">
+        {/* Brand */}
+        <div className="header-brand">
+          <Link to="/" className="brand-link" onClick={closeMenu}>
+            <span className="brand-icon">🏆</span>
+            <span className="brand-text">Wembley Wonders</span>
+          </Link>
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className="desktop-nav">
+          <ul className="nav-list">
+            {/* Join Us Dropdown */}
+            <li 
+              className="nav-dropdown"
+              onMouseEnter={() => setActiveDropdown('join-us')}
+              onMouseLeave={() => setActiveDropdown(null)}
+              style={{ position: 'relative' }}
+            >
+              <button 
+                className="nav-link"
+                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+              >
+                Join Us ▼
+              </button>
+              
+              {activeDropdown === 'join-us' && (
+                <div style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: '0',
+                  background: 'rgba(15, 23, 42, 0.98)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(148, 163, 184, 0.2)',
+                  borderRadius: '8px',
+                  minWidth: '200px',
+                  padding: '0.5rem 0',
+                  zIndex: 1001
+                }}>
+                  <div style={{ padding: '0.5rem 1rem', borderBottom: '1px solid rgba(148, 163, 184, 0.1)' }}>
+                    <h4 style={{ color: '#06b6d4', margin: '0 0 0.25rem 0', fontSize: '0.85rem' }}>How We Operate</h4>
+                    <p style={{ color: '#94a3b8', margin: '0', fontSize: '0.75rem' }}>Learn about our community</p>
+                  </div>
+                  
+                  <Link 
+                    to="/about" 
+                    className={`nav-link ${isActive('/about') ? 'active' : ''}`}
+                    onClick={closeMenu}
+                    style={{ display: 'block', padding: '0.5rem 1rem', borderRadius: '0' }}
+                  >
+                    🏛️ About Us
+                  </Link>
+                  
+                  <Link 
+                    to="/membership" 
+                    className={`nav-link ${isActive('/membership') ? 'active' : ''}`}
+                    onClick={closeMenu}
+                    style={{ display: 'block', padding: '0.5rem 1rem', borderRadius: '0' }}
+                  >
+                    ⭐ Members Bonus
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Join In Dropdown */}
+            <li 
+              className="nav-dropdown"
+              onMouseEnter={() => setActiveDropdown('join-in')}
+              onMouseLeave={() => setActiveDropdown(null)}
+              style={{ position: 'relative' }}
+            >
+              <button 
+                className="nav-link"
+                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+              >
+                Join In ▼
+              </button>
+              
+              {activeDropdown === 'join-in' && (
+                <div style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: '0',
+                  background: 'rgba(15, 23, 42, 0.98)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(148, 163, 184, 0.2)',
+                  borderRadius: '8px',
+                  minWidth: '220px',
+                  padding: '0.5rem 0',
+                  zIndex: 1001
+                }}>
+                  <div style={{ padding: '0.5rem 1rem', borderBottom: '1px solid rgba(148, 163, 184, 0.1)' }}>
+                    <h4 style={{ color: '#06b6d4', margin: '0 0 0.25rem 0', fontSize: '0.85rem' }}>What We Offer</h4>
+                    <p style={{ color: '#94a3b8', margin: '0', fontSize: '0.75rem' }}>Participate in our activities</p>
+                  </div>
+                  
+                  <Link 
+                    to="/maya" 
+                    className={`nav-link ${isActive('/maya') ? 'active' : ''}`}
+                    onClick={closeMenu}
+                    style={{ display: 'block', padding: '0.5rem 1rem', borderRadius: '0' }}
+                  >
+                    ✨ Your Guide (Maya)
+                  </Link>
+                  
+                  <Link 
+                    to="/calendar" 
+                    className={`nav-link ${isActive('/calendar') ? 'active' : ''}`}
+                    onClick={closeMenu}
+                    style={{ display: 'block', padding: '0.5rem 1rem', borderRadius: '0' }}
+                  >
+                    📅 Community Calendar
+                  </Link>
+                  
+                  <Link 
+                    to="/programmes" 
+                    className={`nav-link ${isActive('/programmes') ? 'active' : ''}`}
+                    onClick={closeMenu}
+                    style={{ display: 'block', padding: '0.5rem 1rem', borderRadius: '0' }}
+                  >
+                    🎓 Programmes
+                  </Link>
+                  
+                  <Link 
+                    to="/workshops" 
+                    className={`nav-link ${isActive('/workshops') ? 'active' : ''}`}
+                    onClick={closeMenu}
+                    style={{ display: 'block', padding: '0.5rem 1rem', borderRadius: '0' }}
+                  >
+                    🔨 Workshops
+                  </Link>
+                  
+                  <Link 
+                    to="/shop" 
+                    className={`shop-link ${isActive('/shop') ? 'active' : ''}`}
+                    onClick={closeMenu}
+                    style={{ display: 'block', padding: '0.5rem 1rem', borderRadius: '0' }}
+                  >
+                    <span className="shop-icon">🛍️</span>Shop
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Get Started Button */}
+            <li>
+              <Link 
+                to="/get-started" 
+                className={`nav-link ${isActive('/get-started') ? 'active' : ''}`}
+                style={{
+                  background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
+                  color: 'white',
+                  fontWeight: '600'
+                }}
+              >
+                Get Started
+              </Link>
+            </li>
+
+            {/* Maya Toggle */}
+            <li>
+              <button 
+                onClick={toggleVisitorGuide}
+                className={`maya-header-toggle ${isVisitorGuideActive ? 'active' : ''}`}
+              >
+                <span className="maya-icon">🤖</span>
+                Maya
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="mobile-menu-toggle"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      {/* Mobile Navigation */}
+      <div className={`mobile-nav ${isMenuOpen ? 'open' : ''}`}>
+        <ul className="mobile-nav-list">
+          <li>
+            <Link 
+              to="/get-started" 
+              className="nav-link"
+              onClick={closeMenu}
+              style={{
+                background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
+                color: 'white',
+                fontWeight: '600'
+              }}
+            >
+              🚀 Get Started
+            </Link>
+          </li>
+
+          <li>
+            <button 
+              onClick={() => {
+                toggleVisitorGuide();
+                closeMenu();
+              }}
+              className={`maya-header-toggle ${isVisitorGuideActive ? 'active' : ''}`}
+            >
+              <span className="maya-icon">🤖</span>
+              Maya Guide {isVisitorGuideActive ? '(Active)' : ''}
+            </button>
+          </li>
+
+          {/* Account Mobile Section */}
+          <li>
+            <div 
+              className="nav-link"
+              onClick={() => handleDropdown('mobile-account')}
+              style={{ cursor: 'pointer', borderBottom: '1px solid rgba(148, 163, 184, 0.1)' }}
+            >
+              {false ? '👤 Account ▼' : '👤 Login ▼'} {/* TODO: Replace with actual auth state */}
+            </div>
+            
+            {activeDropdown === 'mobile-account' && (
+              <div style={{ paddingLeft: '1rem' }}>
+                {false ? ( // When logged in
+                  <>
+                    <Link 
+                      to="/dashboard" 
+                      className="nav-link"
+                      onClick={closeMenu}
+                      style={{ fontSize: '0.9rem' }}
+                    >
+                      📊 Dashboard
+                    </Link>
+                    
+                    <Link 
+                      to="/profile" 
+                      className="nav-link"
+                      onClick={closeMenu}
+                      style={{ fontSize: '0.9rem' }}
+                    >
+                      👤 Profile
+                    </Link>
+                    
+                    <Link 
+                      to="/settings" 
+                      className="nav-link"
+                      onClick={closeMenu}
+                      style={{ fontSize: '0.9rem' }}
+                    >
+                      ⚙️ Settings
+                    </Link>
+                    
+                    <button 
+                      onClick={() => {
+                        // TODO: Implement logout
+                        console.log('Logout clicked');
+                        closeMenu();
+                      }}
+                      className="nav-link"
+                      style={{ 
+                        fontSize: '0.9rem',
+                        background: 'none',
+                        border: 'none',
+                        width: '100%',
+                        textAlign: 'left',
+                        cursor: 'pointer',
+                        color: '#ef4444'
+                      }}
+                    >
+                      🚪 Logout
+                    </button>
+                  </>
+                ) : ( // When logged out
+                  <>
+                    <Link 
+                      to="/login" 
+                      className="nav-link"
+                      onClick={closeMenu}
+                      style={{ fontSize: '0.9rem' }}
+                    >
+                      🔑 Login
+                    </Link>
+                    
+                    <Link 
+                      to="/signup" 
+                      className="nav-link"
+                      onClick={closeMenu}
+                      style={{ 
+                        fontSize: '0.9rem',
+                        background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
+                        color: 'white',
+                        fontWeight: '600'
+                      }}
+                    >
+                      ✨ Sign Up
+                    </Link>
+                  </>
+                )}
+              </div>
+            )}
+          </li>
+
+          {/* Join Us Mobile Section */}
+          <li>
+            <div 
+              className="nav-link"
+              onClick={() => handleDropdown('mobile-join-us')}
+              style={{ cursor: 'pointer', borderBottom: '1px solid rgba(148, 163, 184, 0.1)' }}
+            >
+              Join Us - How We Operate ▼
+            </div>
+            
+            {activeDropdown === 'mobile-join-us' && (
+              <div style={{ paddingLeft: '1rem' }}>
+                <Link 
+                  to="/about" 
+                  className="nav-link"
+                  onClick={closeMenu}
+                  style={{ fontSize: '0.9rem' }}
+                >
+                  🏛️ About Us
+                </Link>
+                
+                <Link 
+                  to="/membership" 
+                  className="nav-link"
+                  onClick={closeMenu}
+                  style={{ fontSize: '0.9rem' }}
+                >
+                  ⭐ Members Bonus
+                </Link>
+              </div>
+            )}
+          </li>
+
+          {/* Join In Mobile Section */}
+          <li>
+            <div 
+              className="nav-link"
+              onClick={() => handleDropdown('mobile-join-in')}
+              style={{ cursor: 'pointer', borderBottom: '1px solid rgba(148, 163, 184, 0.1)' }}
+            >
+              Join In - What We Offer ▼
+            </div>
+            
+            {activeDropdown === 'mobile-join-in' && (
+              <div style={{ paddingLeft: '1rem' }}>
+                <Link 
+                  to="/maya" 
+                  className="nav-link"
+                  onClick={closeMenu}
+                  style={{ fontSize: '0.9rem' }}
+                >
+                  ✨ Your Guide (Maya)
+                </Link>
+                
+                <Link 
+                  to="/calendar" 
+                  className="nav-link"
+                  onClick={closeMenu}
+                  style={{ fontSize: '0.9rem' }}
+                >
+                  📅 Community Calendar
+                </Link>
+                
+                <Link 
+                  to="/programmes" 
+                  className="nav-link"
+                  onClick={closeMenu}
+                  style={{ fontSize: '0.9rem' }}
+                >
+                  🎓 Programmes
+                </Link>
+                
+                <Link 
+                  to="/workshops" 
+                  className="nav-link"
+                  onClick={closeMenu}
+                  style={{ fontSize: '0.9rem' }}
+                >
+                  🔨 Workshops
+                </Link>
+                
+                <Link 
+                  to="/shop" 
+                  className="shop-link"
+                  onClick={closeMenu}
+                  style={{ fontSize: '0.9rem' }}
+                >
+                  <span className="shop-icon">🛍️</span>Shop
+                </Link>
+              </div>
+            )}
+          </li>
+        </ul>
+      </div>
+    </header>
+  );
+};
+
+export default Header;

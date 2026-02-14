@@ -1,0 +1,513 @@
+/**
+ * SKILLS & EMPLOYMENT PATHWAYS
+ * 
+ * Partnership page connecting our community to employment opportunities.
+ * 
+ * The Forgotten 60% face barriers to traditional employment:
+ * - No formal qualifications
+ * - Gaps in CV
+ * - No network/connections
+ * - Discrimination
+ * - Location/transport barriers
+ * 
+ * We bridge the gap between creative skills and sustainable careers.
+ * 
+ * @copyright 2024-2026 Wembley Wonders CIC
+ * Company No. 12960817
+ */
+
+/* Example CSS for SkillsEmploymentPathways component */
+
+.skills-employment {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #f8f9fa;
+  color: #222;
+  padding: 0;
+  margin: 0;
+}
+
+.skills-employment__header {
+  background: #fff;
+  padding: 2rem 1rem 1rem 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+}
+
+.skills-employment__header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.skills-employment__header p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.skills-employment__stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2d7bff;
+}
+
+.stat-label {
+  display: block;
+  font-size: 1rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.skills-employment__nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.skills-employment__nav button {
+  background: #e5e5e5;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.skills-employment__nav button.active,
+.skills-employment__nav button:hover {
+  background: #2d7bff;
+  color: #fff;
+}
+
+.skills-employment__pathways {
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  padding: 0 1rem;
+}
+
+.pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.pathway-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  position: relative;
+}
+
+.pathway-card:hover {
+  box-shadow: 0 4px 16px rgba(45,123,255,0.12);
+}
+
+.pathway-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.pathway-meta {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #666;
+  display: flex;
+  gap: 1rem;
+}
+
+.pathway-outcomes {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.outcome {
+  background: #e5f0ff;
+  color: #2d7bff;
+  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.95rem;
+}
+
+.view-pathway {
+  margin-top: 1rem;
+  background: #2d7bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.pathway-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.pathway-modal__content {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+}
+
+.pathway-detail .icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.pathway-detail h2 {
+  margin-bottom: 0.5rem;
+}
+
+.pathway-detail .description {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.pathway-timeline {
+  margin-bottom: 1.5rem;
+}
+
+.stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stage-marker {
+  background: #2d7bff;
+  color: #fff;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.stage-content h4 {
+  margin: 0 0 0.25rem 0;
+}
+
+.stage-duration {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.pathway-outcomes-full ul {
+  padding-left: 1.2rem;
+}
+
+.pathway-programmes {
+  margin-top: 1rem;
+}
+
+.programme-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.programme-tag {
+  background: #e5f0ff;
+  color: #2d7bff;
+  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.95rem;
+}
+
+.start-pathway {
+  margin-top: 1.5rem;
+  background: #2d7bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.skills-employment__partners {
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  padding: 0 1rem;
+}
+
+.partner-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-label {
+  font-weight: bold;
+  color: #555;
+}
+
+.filter-btn {
+  background: #e5e5e5;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: #2d7bff;
+  color: #fff;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.partner-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.partner-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  background: #e5f0ff;
+  color: #2d7bff;
+  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.95rem;
+}
+
+.badge--local {
+  background: #ffe5e5;
+  color: #d7263d;
+}
+
+.badge--recommended {
+  background: #e5ffe5;
+  color: #2dbf2d;
+}
+
+.partner-opportunities h4 {
+  margin-bottom: 0.25rem;
+}
+
+.partner-opportunities ul {
+  padding-left: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.partner-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #2d7bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.partner-link:hover {
+  text-decoration: underline;
+}
+
+.skills-employment__opportunities {
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  padding: 0 1rem;
+}
+
+.opportunities-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.opportunity-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.opportunity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.opportunity-info h3 {
+  margin: 0;
+}
+
+.opportunity-meta {
+  display: flex;
+  gap: 1rem;
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.opportunity-requirements h4 {
+  margin-bottom: 0.25rem;
+}
+
+.opportunity-requirements ul {
+  padding-left: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.apply-btn {
+  margin-top: 1rem;
+  background: #2d7bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.opportunities-note {
+  margin-top: 2rem;
+  background: #e5f0ff;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #2d7bff;
+}
+
+.skills-employment__support {
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  padding: 0 1rem;
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.support-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.support-card .icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.skills-employment__cta {
+  background: #2d7bff;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cta-primary,
+.cta-secondary {
+  background: #fff;
+  color: #2d7bff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+}
+
+.cta-primary:hover,
+.cta-secondary:hover {
+  background: #e5f0ff;
+  color: #1a4fa0;
+}
+
+.skills-employment__footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem 1rem 1rem;
+  margin-top: 2rem;
+  border-radius: 10px 10px 0 0;
+}
+
+.company-info {
+  color: #bbb;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}

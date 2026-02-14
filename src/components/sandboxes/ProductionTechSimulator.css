@@ -1,0 +1,355 @@
+.production-tech-simulator {
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+.simulator-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.simulator-header h3 {
+  font-size: 1.5rem;
+  color: #c084fc;
+  margin-bottom: 0.5rem;
+}
+
+.simulator-header p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.simulator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.simulator-section {
+  background: rgba(30, 41, 59, 0.5);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.simulator-section.full-width {
+  grid-column: 1 / -1;
+}
+
+.simulator-section h4 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin-bottom: 1rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.type-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem;
+  background: rgba(51, 65, 85, 0.5);
+  border: 2px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  color: #cbd5e1;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.type-button:hover {
+  background: rgba(51, 65, 85, 0.8);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.type-button.active {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  border-color: #8b5cf6;
+  color: white;
+}
+
+.slider-control label {
+  display: block;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.slider {
+  width: 100%;
+  height: 6px;
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #c084fc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #c084fc;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.mic-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-mic-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 6px;
+  color: #10b981;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-mic-button:hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.mic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.empty-state {
+  color: #64748b;
+  font-style: italic;
+  text-align: center;
+  padding: 2rem;
+}
+
+.mic-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 6px;
+}
+
+.mic-item svg {
+  color: #06b6d4;
+  flex-shrink: 0;
+}
+
+.mic-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mic-details strong {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+}
+
+.mic-details span {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.remove-button {
+  padding: 0.25rem 0.5rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 4px;
+  color: #ef4444;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remove-button:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  color: #cbd5e1;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.simulator-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.calculate-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.calculate-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+.simulator-results {
+  background: rgba(30, 41, 59, 0.5);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  margin-bottom: 2rem;
+}
+
+.simulator-results h4 {
+  font-size: 1.3rem;
+  color: #c084fc;
+  margin-bottom: 1.5rem;
+}
+
+.recommendations {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.recommendation {
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid;
+}
+
+.recommendation.success {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.recommendation.warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.recommendation.error {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.recommendation svg {
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.tech-specs {
+  padding: 1.5rem;
+  background: rgba(6, 182, 212, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.tech-specs h5 {
+  color: #06b6d4;
+  margin-bottom: 1rem;
+}
+
+.tech-specs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tech-specs li {
+  color: #cbd5e1;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.tech-specs li:last-child {
+  border-bottom: none;
+}
+
+.simulator-tips {
+  background: rgba(6, 182, 212, 0.1);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.simulator-tips strong {
+  color: #06b6d4;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.simulator-tips ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #94a3b8;
+}
+
+.simulator-tips li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .simulator-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+}

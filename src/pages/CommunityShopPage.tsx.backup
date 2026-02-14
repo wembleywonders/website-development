@@ -1,0 +1,458 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Footer from '../components/layout/Footer';
+import MayaChat from '../components/MayaChat';
+import { useMayaStore, useMayaCommunityGuidance } from '../stores/mayaStore';
+import { shopifyService } from "../services/shopifyService";
+import './CommunityShopPage.css';
+
+// Enhanced interfaces for e-commerce
+interface EventTicket {
+  id: string;
+  name: string;
+  programme: string;
+  price: number;
+  date: string;
+  available: number;
+  description: string;
+  shopifyProductId: string;
+  featured: boolean;
+}
+
+interface CreatorProduct {
+  id: string;
+  title: string;
+  creator: string;
+  programme: 'stemgeneer' | 'techpreneur';
+  price: number;
+  image: string;
+  description: string;
+  shopifyProductId: string;
+  featured: boolean;
+  category: 'hardware' | 'software' | 'course' | 'service';
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+}
+
+interface MerchItem {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  category: 'apparel' | 'accessories' | 'stationery' | 'tech';
+  shopifyProductId: string;
+  inStock: boolean;
+  description: string;
+}
+
+const CommunityShopPage: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState<'featured' | 'tickets' | 'creator' | 'merch'>('featured');
+  const [cartItems, setCartItems] = useState<number>(0);
+  
+  // Maya store integration
+  const {
+    userContext,
+    executeCommand,
+    addMessage,
+    engagement
+  } = useMayaStore();
+  
+  const { getProgrammeRecommendations } = useMayaCommunityGuidance();
+
+  // Sample data with proper date formatting
+  const eventTickets: EventTicket[] = [
+    {
+      id: 'spring-celebration-2025',
+      name: 'Trubble n Bass Spring Celebration',
+      programme: 'spring',
+      price: 5.00,
+      date: '2025-04-26T19:00:00',
+      available: 47,
+      description: 'Live music showcase featuring programme participants, Rayd-yo podcast recordings, and community networking.',
+      shopifyProductId: 'gid://shopify/Product/123456',
+      featured: true
+    },
+    {
+      id: 'tech-showcase-2025',
+      name: 'Bright Sparks Tech Showcase',
+      programme: 'autumn',
+      price: 8.00,
+      date: '2025-11-15T18:30:00',
+      available: 32,
+      description: 'Innovation demos from STEMgineers and Tech-preneurs, prototype exhibitions, and startup pitches.',
+      shopifyProductId: 'gid://shopify/Product/123457',
+      featured: false
+    },
+    {
+      id: 'drama-showcase-2025',
+      name: 'Kaywana\'s Court Drama Showcase',
+      programme: 'summer',
+      price: 6.00,
+      date: '2025-07-19T19:30:00',
+      available: 28,
+      description: 'Community theatre presentations, LARP demonstrations, and creative arts exhibitions.',
+      shopifyProductId: 'gid://shopify/Product/123458',
+      featured: false
+    }
+  ];
+
+  const creatorProducts: CreatorProduct[] = [
+    {
+      id: 'arduino-weather-kit',
+      title: 'Community Weather Station Kit',
+      creator: 'Sarah M.',
+      programme: 'stemgeneer',
+      price: 45.00,
+      image: '/images/weather-kit.jpg',
+      description: 'Complete Arduino-based weather monitoring system with sensors, housing, and mobile app integration. Designed and tested by our STEM programme participants.',
+      shopifyProductId: 'gid://shopify/Product/234567',
+      featured: true,
+      category: 'hardware',
+      difficulty: 'intermediate'
+    },
+    {
+      id: 'wembley-local-guide',
+      title: 'Wembley Local Business Guide App',
+      creator: 'Marcus T.',
+      programme: 'techpreneur',
+      price: 2.99,
+      image: '/images/local-app.jpg',
+      description: 'Mobile app featuring local businesses, community events, and resident recommendations. Built using modern web technologies.',
+      shopifyProductId: 'gid://shopify/Product/234568',
+      featured: true,
+      category: 'software',
+      difficulty: 'beginner'
+    }
+  ];
+
+  const merchItems: MerchItem[] = [
+    {
+      id: 'ww-tshirt-navy',
+      name: 'Wembley Wonders T-Shirt (Navy)',
+      price: 18.00,
+      image: '/images/ww-tshirt-navy.jpg',
+      category: 'apparel',
+      shopifyProductId: 'gid://shopify/Product/345678',
+      inStock: true,
+      description: 'High-quality cotton t-shirt with embroidered logo. Proceeds support community programmes.'
+    }
+  ];
+
+  // Maya integration
+  useEffect(() => {
+    executeCommand('page_visit:shop');
+    
+    if (activeCategory === 'creator') {
+      executeCommand('shop_interest:creator_products');
+    }
+  }, [activeCategory, executeCommand]);
+
+  // Shopify integration functions
+  const addToCart = async (productId: string, productName: string, price: number) => {
+    try {
+      executeCommand('shop_action:add_to_cart', { productId, productName, price });
+      setCartItems(prev => prev + 1);
+      
+      addMessage({
+        text: `Added "${productName}" to cart! Maya here - I can help you find similar products or answer questions about how proceeds support our community programmes.`,
+        sender: 'maya',
+        timestamp: new Date(),
+        type: 'celebration'
+      });
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    }
+  };
+
+  // Format date properly
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-GB', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
+  // Get featured items across all categories
+  const getFeaturedItems = () => {
+    const featured = [];
+    featured.push(...eventTickets.filter(ticket => ticket.featured));
+    featured.push(...creatorProducts.filter(product => product.featured));
+    return featured.slice(0, 6);
+  };
+
+  return (
+    <div className="community-shop-page">
+      
+      {/* Hero Section */}
+      <section className="shop-hero">
+        <div className="hero-content">
+          <h1>Support Creators, Fund Programmes</h1>
+          <p>
+            Every purchase supports community creators and helps fund our programmes. 
+            From event tickets to innovative products built by our participants.
+          </p>
+          
+          {cartItems > 0 && (
+            <div className="cart-indicator">
+              <span>🛒 {cartItems} items in cart</span>
+              <button className="product-button">View Cart</button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <main className="shop-content">
+        {/* Category Navigation */}
+        <nav className="category-nav">
+          <ul>
+            <li>
+              <a 
+                href="#"
+                className={activeCategory === 'featured' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); setActiveCategory('featured'); }}
+              >
+                ⭐ Featured
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#"
+                className={activeCategory === 'tickets' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); setActiveCategory('tickets'); }}
+              >
+                🎫 Event Tickets
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#"
+                className={activeCategory === 'creator' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); setActiveCategory('creator'); }}
+              >
+                🔧 Creator Products
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#"
+                className={activeCategory === 'merch' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); setActiveCategory('merch'); }}
+              >
+                👕 Community Merch
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Featured Items */}
+        {activeCategory === 'featured' && (
+          <section className="featured-section">
+            <h2>Featured Items</h2>
+            <p>Handpicked products and experiences from our community</p>
+            
+            <div className="products-grid">
+              {getFeaturedItems().map((item: any) => (
+                <div key={item.id} className="product-card">
+                  {'programme' in item ? (
+                    // Event ticket
+                    <>
+                      <div className="product-image">
+                        🎫
+                        <div className="product-badge">Event</div>
+                      </div>
+                      <div className="product-info">
+                        <div className="product-type">Event</div>
+                        <h3>{item.name}</h3>
+                        <p>{item.description}</p>
+                        <div className="product-footer">
+                          <div>
+                            <div className="product-price">£{item.price.toFixed(2)}</div>
+                            <div className="product-meta">
+                              {formatDate(item.date)}<br/>
+                              {item.available} available
+                            </div>
+                          </div>
+                        </div>
+                        <button 
+                          className="product-button"
+                          onClick={() => addToCart(item.shopifyProductId, item.name, item.price)}
+                        >
+                          Get Ticket
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    // Creator product
+                    <>
+                      <div className="product-image">
+                        🔧
+                        <div className="product-badge">
+                          {item.programme === 'stemgeneer' ? 'STEMgineer' : 'Tech-preneur'}
+                        </div>
+                      </div>
+                      <div className="product-info">
+                        <div className="product-type">{item.category}</div>
+                        <h3>{item.title}</h3>
+                        <p>{item.description}</p>
+                        <div className="product-footer">
+                          <div className="product-price">£{item.price.toFixed(2)}</div>
+                          <div className="product-meta">by {item.creator}</div>
+                        </div>
+                        <button 
+                          className="product-button"
+                          onClick={() => addToCart(item.shopifyProductId, item.title, item.price)}
+                        >
+                          Buy Now
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Event Tickets */}
+        {activeCategory === 'tickets' && (
+          <section className="category-section">
+            <h2>Event Tickets</h2>
+            <p>Support our community celebrations and programme showcases</p>
+            
+            <div className="products-grid">
+              {eventTickets.map(ticket => (
+                <div key={ticket.id} className="product-card">
+                  <div className="product-image">
+                    🎫
+                    <div className="product-badge">Event</div>
+                  </div>
+                  <div className="product-info">
+                    <div className="product-type">Event</div>
+                    <h3>{ticket.name}</h3>
+                    <p>{ticket.description}</p>
+                    <div className="product-footer">
+                      <div>
+                        <div className="product-price">£{ticket.price.toFixed(2)}</div>
+                        <div className="product-meta">
+                          {formatDate(ticket.date)}<br/>
+                          {ticket.available} available
+                        </div>
+                      </div>
+                    </div>
+                    <button 
+                      className="product-button"
+                      onClick={() => addToCart(ticket.shopifyProductId, ticket.name, ticket.price)}
+                    >
+                      Get Ticket
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Creator Products */}
+        {activeCategory === 'creator' && (
+          <section className="category-section">
+            <h2>Creator Products</h2>
+            <p>Innovative solutions designed and built by our STEMgineers and Tech-preneurs</p>
+            
+            <div className="products-grid">
+              {creatorProducts.map(product => (
+                <div key={product.id} className="product-card">
+                  <div className="product-image">
+                    🔧
+                    <div className="product-badge">
+                      {product.programme === 'stemgeneer' ? 'STEMgineer' : 'Tech-preneur'}
+                    </div>
+                  </div>
+                  <div className="product-info">
+                    <div className="product-type">{product.category}</div>
+                    <h3>{product.title}</h3>
+                    <p>{product.description}</p>
+                    <div className="product-footer">
+                      <div className="product-price">£{product.price.toFixed(2)}</div>
+                      <div className="product-meta">by {product.creator}</div>
+                    </div>
+                    <button 
+                      className="product-button"
+                      onClick={() => addToCart(product.shopifyProductId, product.title, product.price)}
+                    >
+                      Buy Now
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Community Merch */}
+        {activeCategory === 'merch' && (
+          <section className="category-section">
+            <h2>Community Merchandise</h2>
+            <p>Show your community pride while supporting our programmes</p>
+            
+            <div className="products-grid">
+              {merchItems.map(item => (
+                <div key={item.id} className="product-card">
+                  <div className="product-image">
+                    👕
+                  </div>
+                  <div className="product-info">
+                    <div className="product-type">{item.category}</div>
+                    <h3>{item.name}</h3>
+                    <p>{item.description}</p>
+                    <div className="product-footer">
+                      <div className="product-price">£{item.price.toFixed(2)}</div>
+                    </div>
+                    <button 
+                      className={`product-button ${item.inStock ? '' : 'disabled'}`}
+                      onClick={() => item.inStock && addToCart(item.shopifyProductId, item.name, item.price)}
+                      disabled={!item.inStock}
+                    >
+                      {item.inStock ? 'Add to Cart' : 'Out of Stock'}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Impact Statement - FIXED REVENUE SPLIT */}
+        <section className="community-impact">
+          <h2>Your Purchase Makes a Difference</h2>
+          <div className="impact-stats">
+            <div className="impact-stat">
+              <span className="stat-icon">💰</span>
+              <h3>Creator Revenue Sharing</h3>
+              <p>60% of creator product sales go directly to the creators, supporting their continued innovation.</p>
+            </div>
+            <div className="impact-stat">
+              <span className="stat-icon">🎓</span>
+              <h3>Programme Funding</h3>
+              <p>All merch and ticket proceeds fund our free community programmes and equipment.</p>
+            </div>
+            <div className="impact-stat">
+              <span className="stat-icon">🌱</span>
+              <h3>Community Growth</h3>
+              <p>Every purchase helps us expand programmes and reach more Wembley residents.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <MayaChat 
+        membershipTier={userContext.isLoggedIn ? 'membership' : 'visitor'} 
+        userId={userContext.isLoggedIn ? 'current-user' : undefined}
+      />
+      <Footer />
+    </div>
+  );
+};
+
+export default CommunityShopPage;

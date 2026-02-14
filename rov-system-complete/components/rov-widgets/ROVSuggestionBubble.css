@@ -1,0 +1,206 @@
+/* src/components/rov-widgets/ROVSuggestionBubble.css */
+
+.rov-suggestion-bubble {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  max-width: 320px;
+}
+
+.rov-suggestion-bubble.position-fixed {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+}
+
+.rov-suggestion-bubble.position-inline {
+  position: relative;
+}
+
+.bubble-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #f0fdf4 0%, #f9fafb 100%);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.bubble-header:hover {
+  background: linear-gradient(135deg, #dcfce7 0%, #f3f4f6 100%);
+}
+
+.bubble-avatar {
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bubble-rov {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.bubble-count {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-left: auto;
+}
+
+.bubble-toggle {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #6b7280;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.bubble-content {
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.suggestion-card {
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 10px;
+  border-left: 3px solid #e5e7eb;
+}
+
+.suggestion-card.priority-high {
+  border-left-color: #10b981;
+  background: linear-gradient(135deg, #f0fdf4 0%, #f9fafb 100%);
+}
+
+.suggestion-card.priority-medium {
+  border-left-color: #3b82f6;
+}
+
+.suggestion-card.priority-low {
+  border-left-color: #9ca3af;
+}
+
+.suggestion-text {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.suggestion-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-accept {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: white;
+  background: #10b981;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-accept:hover {
+  background: #059669;
+}
+
+.btn-dismiss {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #6b7280;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-dismiss:hover {
+  background: #f3f4f6;
+}
+
+.suggestion-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.nav-btn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #6b7280;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nav-indicator {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.btn-dismiss-all {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.btn-dismiss-all:hover {
+  color: #6b7280;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .rov-suggestion-bubble.position-fixed {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: none;
+  }
+}

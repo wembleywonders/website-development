@@ -1,0 +1,145 @@
+/* src/components/creators-journal/StageProgress.css */
+
+.stage-progress {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.stage-overview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.current-stage-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.current-emoji {
+  font-size: 1.5rem;
+}
+
+.current-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.total-entries {
+  background: #f5f5f5;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* Timeline */
+.stage-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stage-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.stage-item:hover {
+  background: #f9f9f9;
+}
+
+.stage-item.selected {
+  background: color-mix(in srgb, var(--stage-color) 10%, white);
+  border-color: var(--stage-color);
+}
+
+.stage-item.inactive {
+  opacity: 0.5;
+}
+
+.stage-item.active .stage-emoji {
+  transform: scale(1.1);
+}
+
+/* Icon and connector */
+.stage-icon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stage-emoji {
+  font-size: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.stage-connector {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 1.5rem;
+  background: #e0e0e0;
+}
+
+.stage-connector.filled {
+  background: linear-gradient(to bottom, var(--stage-color), #e0e0e0);
+}
+
+/* Info */
+.stage-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.stage-count {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Legend */
+.stage-legend {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.stage-legend p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #999;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stage-overview {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}

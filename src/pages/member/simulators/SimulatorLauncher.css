@@ -1,0 +1,364 @@
+/* src/pages/member/simulators/SimulatorLauncher.css */
+
+.simulator-launcher {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   INFO BANNER
+   ============================================ */
+.launcher-info {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.launcher-info .info-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.launcher-info .info-content h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  color: #1e40af;
+}
+
+.launcher-info .info-content p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* ============================================
+   FILTERS
+   ============================================ */
+.launcher-filters {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
+}
+
+.filter-section {
+  margin-bottom: 1rem;
+}
+
+.filter-section:last-child {
+  margin-bottom: 0;
+}
+
+.filter-section label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #4b5563;
+}
+
+.filter-btn:hover {
+  background: #e5e7eb;
+}
+
+.filter-btn.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.launcher-results {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+/* ============================================
+   SIMULATOR GRID
+   ============================================ */
+.simulator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.simulator-card {
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.simulator-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.simulator-card.locked {
+  opacity: 0.7;
+}
+
+.simulator-card.locked:hover {
+  transform: none;
+}
+
+.new-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #10b981;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.locked-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #6b7280;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.simulator-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.simulator-emoji {
+  font-size: 2.5rem;
+}
+
+.simulator-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.category-tag {
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+}
+
+.difficulty-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.simulator-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #1f2937;
+}
+
+.simulator-description {
+  margin: 0 0 1rem 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.simulator-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.simulator-details .detail {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.simulator-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.skill-tag {
+  padding: 0.25rem 0.5rem;
+  background: #f3f4f6;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #4b5563;
+}
+
+.simulator-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: #f0fdf4;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: #166534;
+}
+
+.simulator-progress .last-attempt {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.simulator-actions {
+  margin-top: auto;
+}
+
+.btn-launch {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-launch:hover {
+  background: #2563eb;
+}
+
+.btn-locked {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background: #e5e7eb;
+  color: #9ca3af;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   NO RESULTS
+   ============================================ */
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.no-results-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.no-results h3 {
+  margin: 0 0 0.5rem 0;
+  color: #1f2937;
+}
+
+.no-results p {
+  margin: 0 0 1rem 0;
+  color: #6b7280;
+}
+
+.no-results button {
+  padding: 0.5rem 1.5rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.launcher-footer {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 12px;
+}
+
+.launcher-footer h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+  color: #92400e;
+}
+
+.launcher-footer p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #78350f;
+  line-height: 1.5;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .launcher-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .simulator-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-buttons {
+    flex-direction: column;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

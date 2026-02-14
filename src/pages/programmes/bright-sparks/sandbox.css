@@ -1,0 +1,908 @@
+/* src/pages/programmes/bright-sparks/sandbox.css */
+
+/* ============================================
+   BASE SANDBOX PAGE
+   ============================================ */
+
+.sandbox-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.sandbox-header {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border-bottom: 2px solid rgba(251, 191, 36, 0.3);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.sandbox-breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.sandbox-breadcrumb a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sandbox-breadcrumb a:hover {
+  color: #fbbf24;
+}
+
+.sandbox-breadcrumb .separator {
+  color: #475569;
+}
+
+.sandbox-breadcrumb .current {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.sandbox-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fbbf24;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  line-height: 1.2;
+}
+
+.sandbox-icon {
+  font-size: 3.5rem;
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.sandbox-subtitle {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+.sandbox-progress {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.sandbox-progress-inner {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.progress-header span {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+}
+
+.reset-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.reset-btn:hover {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.progress-track {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  border-radius: 5px;
+  transition: width 0.5s ease;
+}
+
+.progress-label {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.progress-ready {
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* ============================================
+   TOOL CONTAINER
+   ============================================ */
+
+.sandbox-tool-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.sandbox-tool-container h2 {
+  font-size: 1.75rem;
+  text-align: center;
+  margin: 0 0 0.75rem 0;
+  color: #fbbf24;
+}
+
+.challenges-intro {
+  text-align: center;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  margin: 0 0 2rem 0;
+}
+
+.challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ============================================
+   CHALLENGE CARDS
+   ============================================ */
+
+.challenge-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(251, 191, 36, 0.15);
+  border-radius: 16px;
+  padding: 1.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.challenge-card:hover {
+  background: rgba(251, 191, 36, 0.05);
+  border-color: var(--challenge-color, rgba(251, 191, 36, 0.4));
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.challenge-card.completed {
+  border-color: #10b981;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+}
+
+.challenge-card.started {
+  border-color: #fbbf24;
+  background: rgba(251, 191, 36, 0.05);
+}
+
+.challenge-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.challenge-emoji {
+  font-size: 1.75rem;
+}
+
+.challenge-programme {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--challenge-color, #fbbf24);
+  font-weight: 600;
+  flex: 1;
+}
+
+.challenge-time {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.challenge-card h3 {
+  font-size: 1.2rem;
+  margin: 0 0 0.75rem 0;
+  color: #fff;
+}
+
+.challenge-card p {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  margin: 0 0 1.25rem 0;
+  line-height: 1.6;
+}
+
+.challenge-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.challenge-action {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--challenge-color, #fbbf24);
+}
+
+.challenge-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.challenge-status.completed {
+  color: #10b981;
+}
+
+.challenge-status.started {
+  color: #fbbf24;
+}
+
+.status-started {
+  font-size: 0.75rem;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.15);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.challenge-guide-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(251, 191, 36, 0.1);
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.challenge-guide-hint span:first-child {
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   RESULTS CTA
+   ============================================ */
+
+.sandbox-results-cta {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.sandbox-results-cta-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  border-radius: 16px;
+}
+
+.sandbox-results-cta-inner > svg:first-child {
+  color: #10b981;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.sandbox-results-cta-inner > div {
+  flex: 1;
+}
+
+.sandbox-results-cta-inner h3 {
+  font-size: 1.25rem;
+  margin: 0 0 0.35rem 0;
+  color: #fff;
+}
+
+.sandbox-results-cta-inner p {
+  font-size: 1rem;
+  color: #6ee7b7;
+  margin: 0;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.sandbox-footer {
+  background: rgba(15, 23, 42, 0.9);
+  border-top: 2px solid rgba(251, 191, 36, 0.3);
+  padding: 4rem 2rem;
+  margin-top: 2rem;
+}
+
+.sandbox-cta {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sandbox-cta h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fbbf24;
+  margin: 0 0 1rem 0;
+}
+
+.sandbox-cta > p {
+  font-size: 1.1rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0 0 2rem 0;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.cta-primary,
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 2.5rem;
+  border-radius: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.cta-primary {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #0f172a;
+}
+
+.cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4);
+}
+
+.cta-secondary {
+  background: transparent;
+  border: 2px solid rgba(251, 191, 36, 0.5);
+  color: #fbbf24;
+}
+
+.cta-secondary:hover {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: #fbbf24;
+}
+
+.cta-note {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ============================================
+   SANDBOX MODAL OVERLAY
+   ============================================ */
+
+.sandbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sandbox-modal {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sandbox-modal.success {
+  max-width: 500px;
+  text-align: center;
+}
+
+.sandbox-modal .sandbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  margin: 0;
+  text-align: left;
+  max-width: none;
+}
+
+.sandbox-back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin: -0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.sandbox-back:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sandbox-timer {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.sandbox-content {
+  padding: 1.5rem;
+}
+
+.sandbox-intro {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sandbox-emoji {
+  font-size: 2.5rem;
+}
+
+.sandbox-intro h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+  text-align: left;
+}
+
+.sandbox-programme {
+  color: var(--sandbox-color, #10b981);
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   SANDBOX GUIDE MESSAGE
+   ============================================ */
+
+.sandbox-guide {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.sandbox-guide .guide-emoji {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.sandbox-guide .guide-content {
+  flex: 1;
+}
+
+.sandbox-guide strong {
+  display: block;
+  color: #fbbf24;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.sandbox-guide p {
+  color: #fcd34d;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================
+   SANDBOX INSTRUCTIONS
+   ============================================ */
+
+.sandbox-instructions {
+  margin-bottom: 1.5rem;
+}
+
+.sandbox-instructions h3 {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin: 0 0 0.75rem 0;
+}
+
+.sandbox-instructions ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #e2e8f0;
+}
+
+.sandbox-instructions li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.sandbox-success-criteria {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 8px;
+  color: #6ee7b7;
+  font-size: 0.9rem;
+}
+
+.sandbox-success-criteria svg {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   SANDBOX WORKSPACE
+   ============================================ */
+
+.sandbox-workspace {
+  margin-bottom: 1.5rem;
+}
+
+.sandbox-workspace label {
+  display: block;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+}
+
+.sandbox-workspace textarea {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 200px;
+  transition: all 0.2s;
+}
+
+.sandbox-workspace textarea:focus {
+  outline: none;
+  border-color: var(--sandbox-color, #10b981);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.sandbox-workspace textarea::placeholder {
+  color: #64748b;
+}
+
+.word-counter {
+  text-align: right;
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+.word-counter.valid {
+  color: #10b981;
+}
+
+.word-counter.invalid {
+  color: #f87171;
+}
+
+.counter-hint {
+  opacity: 0.8;
+}
+
+/* ============================================
+   SANDBOX ACTIONS
+   ============================================ */
+
+.sandbox-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.sandbox-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sandbox-btn.primary {
+  background: linear-gradient(135deg, var(--sandbox-color, #10b981), color-mix(in srgb, var(--sandbox-color, #10b981) 80%, black));
+  border: none;
+  color: #fff;
+}
+
+.sandbox-btn.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.sandbox-btn.primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sandbox-btn.secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #94a3b8;
+}
+
+.sandbox-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+/* ============================================
+   SANDBOX SUCCESS STATE
+   ============================================ */
+
+.sandbox-success {
+  padding: 2rem;
+}
+
+.sandbox-success .success-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(16, 185, 129, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: #10b981;
+  animation: successPop 0.5s ease;
+}
+
+@keyframes successPop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.sandbox-success h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+}
+
+.sandbox-success > p {
+  color: #94a3b8;
+  margin: 0 0 1.5rem 0;
+}
+
+.sandbox-success .success-guide {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.sandbox-success .success-guide .guide-emoji {
+  font-size: 1.5rem;
+}
+
+.sandbox-success .success-guide .guide-message strong {
+  color: #fbbf24;
+  font-size: 0.85rem;
+}
+
+.sandbox-success .success-guide .guide-message p {
+  color: #fcd34d;
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0 0;
+  font-style: italic;
+}
+
+.sandbox-success .success-actions {
+  display: flex;
+  justify-content: center;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .sandbox-header {
+    padding: 2rem 1rem;
+  }
+  
+  .sandbox-title {
+    font-size: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .sandbox-icon {
+    font-size: 2.5rem;
+  }
+  
+  .sandbox-subtitle {
+    font-size: 1rem;
+  }
+  
+  .sandbox-tool-container {
+    padding: 1rem;
+  }
+
+  .sandbox-progress {
+    padding: 0 1rem;
+  }
+
+  .challenge-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sandbox-footer {
+    padding: 3rem 1rem;
+  }
+  
+  .sandbox-cta h3 {
+    font-size: 1.75rem;
+  }
+
+  .sandbox-results-cta {
+    padding: 0 1rem;
+  }
+
+  .sandbox-results-cta-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sandbox-breadcrumb {
+    font-size: 0.85rem;
+  }
+  
+  .sandbox-title {
+    font-size: 1.5rem;
+  }
+  
+  .cta-primary,
+  .cta-secondary {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+
+  .sandbox-modal {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .sandbox-actions {
+    flex-direction: column;
+  }
+
+  .sandbox-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sandbox-guide {
+    flex-direction: column;
+    text-align: center;
+  }
+}

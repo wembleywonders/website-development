@@ -1,0 +1,543 @@
+/**
+ * Invention Disclosure Form Styles
+ * Wembley Wonders CIC
+ * 
+ * Clean, focused form design - guides users through complex IP documentation
+ */
+
+$font-display: 'JetBrains Mono', 'Fira Code', monospace;
+$font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+// Industrial palette
+$steel-dark: #1a1d21;
+$steel-mid: #2d3139;
+$steel-light: #3d424d;
+$concrete: #e8e6e1;
+$concrete-dark: #9a9790;
+$copper: #b87333;
+$copper-light: #d4956a;
+$safety-amber: #f59e0b;
+$safety-emerald: #10b981;
+$safety-red: #ef4444;
+
+// ============================================================================
+// CONTAINER
+// ============================================================================
+
+.formContainer {
+  min-height: 100vh;
+  background: $steel-dark;
+  color: $concrete;
+  font-family: $font-body;
+  display: flex;
+  flex-direction: column;
+}
+
+// ============================================================================
+// HEADER & STEPS
+// ============================================================================
+
+.formHeader {
+  background: $steel-mid;
+  border-bottom: 3px solid $copper;
+  padding: 2rem;
+  text-align: center;
+}
+
+.formTitle {
+  font-family: $font-display;
+  font-size: 1.75rem;
+  color: $concrete;
+  margin: 0 0 0.25rem;
+  
+  &::before {
+    content: '📋 ';
+  }
+}
+
+.formSubtitle {
+  color: $concrete-dark;
+  margin: 0 0 2rem;
+}
+
+.stepIndicator {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.stepDot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid $steel-light;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    border-color: $steel-highlight;
+    background: rgba($steel-light, 0.3);
+  }
+  
+  &.current {
+    border-color: $copper;
+    background: rgba($copper, 0.1);
+    
+    .stepNumber {
+      background: $copper;
+      color: $steel-dark;
+    }
+  }
+  
+  &.completed {
+    border-color: $safety-emerald;
+    
+    .stepNumber {
+      background: $safety-emerald;
+      color: $steel-dark;
+    }
+  }
+}
+
+.stepNumber {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: $steel-light;
+  color: $concrete;
+  font-family: $font-display;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepLabel {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $concrete-dark;
+}
+
+// ============================================================================
+// FORM CONTENT
+// ============================================================================
+
+.formContent {
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.stepContent {
+  h2 {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    color: $concrete;
+    margin: 0 0 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $steel-light;
+  }
+}
+
+// ============================================================================
+// FORM FIELDS
+// ============================================================================
+
+.fieldGroup {
+  margin-bottom: 1.5rem;
+  
+  label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $concrete;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="date"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  font-family: $font-body;
+  font-size: 0.9375rem;
+  padding: 0.75rem 1rem;
+  background: $steel-mid;
+  border: 1px solid $steel-light;
+  border-radius: 4px;
+  color: $concrete;
+  transition: border-color 0.2s ease;
+  
+  &::placeholder {
+    color: $concrete-dark;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $copper;
+  }
+  
+  &.hasError {
+    border-color: $safety-red;
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239a9790' d='M3 4.5L6 7.5L9 4.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+}
+
+// ============================================================================
+// ARRAY INPUTS
+// ============================================================================
+
+.arrayRow {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  
+  input {
+    flex: 1;
+  }
+  
+  button {
+    width: 36px;
+    height: 36px;
+    background: $steel-light;
+    border: none;
+    border-radius: 4px;
+    color: $concrete-dark;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    
+    &:hover {
+      background: $safety-red;
+      color: white;
+    }
+  }
+}
+
+.addButton {
+  font-family: $font-display;
+  font-size: 0.8125rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px dashed $steel-light;
+  border-radius: 4px;
+  color: $copper-light;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    border-color: $copper;
+    background: rgba($copper, 0.1);
+  }
+}
+
+// ============================================================================
+// CARDS
+// ============================================================================
+
+.inventorCard,
+.priorArtCard {
+  background: $steel-mid;
+  border: 1px solid $steel-light;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  
+  input, textarea, select {
+    margin-bottom: 0.75rem;
+    
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  
+  span {
+    font-family: $font-display;
+    font-size: 0.875rem;
+    color: $copper-light;
+  }
+  
+  button {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: 1px solid $steel-light;
+    border-radius: 4px;
+    color: $concrete-dark;
+    cursor: pointer;
+    
+    &:hover {
+      border-color: $safety-red;
+      color: $safety-red;
+    }
+  }
+}
+
+.totalDisplay {
+  font-family: $font-display;
+  font-size: 1rem;
+  color: $copper;
+  text-align: right;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: $steel-mid;
+  border-radius: 4px;
+}
+
+// ============================================================================
+// INFO BOXES
+// ============================================================================
+
+.warningBox {
+  background: rgba($safety-amber, 0.1);
+  border: 1px solid rgba($safety-amber, 0.3);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  
+  strong {
+    color: $safety-amber;
+  }
+}
+
+.errorBox {
+  background: rgba($safety-red, 0.1);
+  border: 1px solid rgba($safety-red, 0.3);
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: $safety-red;
+}
+
+.errorText {
+  display: block;
+  font-size: 0.8125rem;
+  color: $safety-red;
+  margin-top: 0.25rem;
+}
+
+.submitError {
+  background: rgba($safety-red, 0.1);
+  border: 1px solid $safety-red;
+  color: $safety-red;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+// ============================================================================
+// REVIEW STEP
+// ============================================================================
+
+.reviewSection {
+  background: $steel-mid;
+  border: 1px solid $steel-light;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  
+  h3 {
+    font-family: $font-display;
+    font-size: 1.125rem;
+    color: $copper-light;
+    margin: 0 0 0.75rem;
+  }
+  
+  p {
+    margin: 0.5rem 0;
+  }
+  
+  ul {
+    margin: 0.5rem 0;
+    padding-left: 1.25rem;
+    
+    li {
+      margin: 0.25rem 0;
+    }
+  }
+}
+
+.consentBox {
+  background: rgba($copper, 0.1);
+  border: 1px solid rgba($copper, 0.3);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  
+  p {
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+// ============================================================================
+// FORM ACTIONS
+// ============================================================================
+
+.formActions {
+  background: $steel-mid;
+  border-top: 1px solid $steel-light;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.cancelButton,
+.prevButton,
+.nextButton,
+.submitButton {
+  font-family: $font-display;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelButton {
+  background: transparent;
+  border: 1px solid $steel-light;
+  color: $concrete-dark;
+  
+  &:hover {
+    border-color: $concrete-dark;
+    color: $concrete;
+  }
+}
+
+.prevButton {
+  background: $steel-light;
+  border: none;
+  color: $concrete;
+  
+  &:hover {
+    background: $steel-highlight;
+  }
+}
+
+.nextButton {
+  background: $steel-light;
+  border: none;
+  color: $concrete;
+  
+  &:hover {
+    background: $copper;
+    color: $steel-dark;
+  }
+}
+
+.submitButton {
+  background: linear-gradient(135deg, $copper, $copper-light);
+  border: none;
+  color: $steel-dark;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($copper, 0.4);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@media (max-width: 640px) {
+  .formHeader {
+    padding: 1.5rem 1rem;
+  }
+  
+  .stepIndicator {
+    gap: 0.25rem;
+  }
+  
+  .stepDot {
+    padding: 0.375rem 0.5rem;
+  }
+  
+  .stepLabel {
+    display: none;
+  }
+  
+  .formContent {
+    padding: 1.5rem 1rem;
+  }
+  
+  .formActions {
+    flex-direction: column;
+    gap: 1rem;
+    
+    .cancelButton {
+      order: 2;
+    }
+    
+    .navButtons {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

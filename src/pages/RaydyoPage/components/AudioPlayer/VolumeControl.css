@@ -1,0 +1,115 @@
+.volume-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.volume-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.volume-btn:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.volume-slider-container {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 20px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 140px;
+}
+
+.volume-control.expanded .volume-slider-container {
+  opacity: 1;
+  visibility: visible;
+}
+
+.volume-slider {
+  position: relative;
+  width: 4px;
+  height: 100px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+}
+
+.volume-track {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.volume-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, #ff6b6b, #ff8e53);
+  border-radius: 2px;
+  transition: height 0.1s ease;
+}
+
+.volume-handle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: bottom 0.1s ease;
+  pointer-events: none;
+}
+
+.volume-percentage {
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .volume-slider-container {
+    position: fixed;
+    bottom: auto;
+    left: auto;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 1000;
+  }
+  
+  .volume-slider {
+    height: 120px;
+  }
+}

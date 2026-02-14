@@ -1,0 +1,382 @@
+/**
+ * WorkspaceHome Styles
+ * @module features/workspace/views/WorkspaceHome
+ */
+
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+@import '../../../../styles/animations';
+
+.workspaceHome {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-primary);
+  
+  &[data-theme="dark"] {
+    background: var(--dark-bg-primary);
+  }
+}
+
+// ============================================================================
+// CONTROLS BAR
+// ============================================================================
+
+.controlsBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  
+  @include mobile {
+    flex-wrap: wrap;
+    padding: var(--spacing-sm);
+  }
+}
+
+.controlsLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex: 1;
+  
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.controlsRight {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+// Search Box
+.searchBox {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+  
+  svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+    pointer-events: none;
+  }
+  
+  input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    padding-left: 40px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    transition: all 0.2s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px var(--primary-alpha-20);
+    }
+    
+    &::placeholder {
+      color: var(--text-tertiary);
+    }
+  }
+  
+  .clearButton {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 4px;
+    background: transparent;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+  }
+}
+
+// Filter Button
+.filterButton {
+  @include button-base;
+  @include button-secondary;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  
+  &.active {
+    background: var(--primary-alpha-10);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+  
+  .badge {
+    @include badge;
+    background: var(--primary-color);
+    color: white;
+    margin-left: 4px;
+  }
+}
+
+// View Mode Group
+.viewModeGroup {
+  display: flex;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  padding: 2px;
+  
+  button {
+    @include button-base;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    
+    &:hover:not(.active) {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+    
+    &.active {
+      background: var(--bg-primary);
+      color: var(--primary-color);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    &:first-child {
+      border-radius: var(--radius-md) 0 0 var(--radius-md);
+    }
+    
+    &:last-child {
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+  }
+}
+
+// Toggle Button
+.toggleButton {
+  @include button-base;
+  @include button-ghost;
+  
+  &.active {
+    color: var(--primary-color);
+    background: var(--primary-alpha-10);
+  }
+}
+
+// ============================================================================
+// CONTENT AREA
+// ============================================================================
+
+.contentArea {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex: 1;
+  padding: var(--spacing-lg);
+  overflow: hidden;
+  
+  @include tablet {
+    padding: var(--spacing-md);
+  }
+  
+  @include mobile {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-md);
+  }
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  overflow-y: auto;
+  
+  @include custom-scrollbar;
+}
+
+.sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  
+  @include custom-scrollbar;
+  
+  @include tablet {
+    display: none;
+  }
+}
+
+// ============================================================================
+// PROJECTS SECTION
+// ============================================================================
+
+.projectsSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-sm);
+  
+  h2 {
+    font-size: var(--font-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+  
+  .count {
+    color: var(--text-tertiary);
+    font-weight: 400;
+    font-size: var(--font-md);
+  }
+  
+  .viewAllButton {
+    @include button-base;
+    @include button-ghost;
+    font-size: var(--font-sm);
+    color: var(--primary-color);
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ============================================================================
+// EMPTY STATE
+// ============================================================================
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  text-align: center;
+  
+  .emptyIcon {
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-quaternary);
+    opacity: 0.5;
+  }
+  
+  h3 {
+    font-size: var(--font-xl);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .createButton {
+    @include button-base;
+    @include button-primary;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+}
+
+// No Results
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  text-align: center;
+  
+  p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .clearFiltersButton {
+    @include button-base;
+    @include button-secondary;
+  }
+}
+
+// ============================================================================
+// LOADING STATE
+// ============================================================================
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  
+  .spinner {
+    @include rotate-animation;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  p {
+    color: var(--text-secondary);
+  }
+}
+
+// ============================================================================
+// OVERLAY
+// ============================================================================
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-overlay);
+  animation: fadeIn 0.2s ease;
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@include mobile {
+  .contentArea {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    display: none;
+  }
+  
+  .controlsBar {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+  }
+}

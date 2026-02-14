@@ -1,0 +1,421 @@
+/* Shared styles for all Pageturners writing activities */
+
+/* Container & Layout */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #e2e8f0;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.backButton {
+  background: rgba(102, 126, 234, 0.2);
+  border: 1px solid rgba(102, 126, 234, 0.4);
+  color: #a5b4fc;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  margin-bottom: 2rem;
+}
+
+.backButton:hover {
+  background: rgba(102, 126, 234, 0.3);
+  transform: translateX(-4px);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Grid Layouts */
+.genreGrid,
+.formatGrid,
+.typeGrid,
+.pathwayGrid,
+.themeGrid,
+.practiceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* Cards */
+.genreCard,
+.formatCard,
+.typeCard,
+.pathwayCard,
+.themeCard,
+.practiceCard,
+.promptCard,
+.templateCard {
+  background: rgba(15, 23, 42, 0.6);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.genreCard:hover,
+.formatCard:hover,
+.typeCard:hover,
+.pathwayCard:hover,
+.themeCard:hover,
+.practiceCard:hover,
+.promptCard:hover,
+.templateCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(102, 126, 234, 0.6);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+}
+
+.genreIcon,
+.formatIcon,
+.typeIcon,
+.pathwayIcon,
+.themeIcon,
+.practiceIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.genreTitle,
+.formatTitle,
+.typeTitle,
+.pathwayTitle,
+.themeTitle,
+.practiceTitle,
+.promptTitle,
+.templateTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 0.75rem;
+}
+
+.genreDescription,
+.formatDescription,
+.typeDescription,
+.pathwayDescription,
+.themeDescription,
+.practiceDescription {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.genreButton,
+.formatButton,
+.typeButton,
+.pathwayButton,
+.themeButton,
+.practiceButton,
+.promptButton,
+.templateButton {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.genreButton:hover,
+.formatButton:hover,
+.typeButton:hover,
+.pathwayButton:hover,
+.themeButton:hover,
+.practiceButton:hover,
+.promptButton:hover,
+.templateButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Writing Container */
+.writingContainer,
+.designContainer,
+.submissionContainer,
+.workContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 2rem;
+}
+
+.writingHeader,
+.designHeader,
+.submissionHeader,
+.workHeader {
+  margin-bottom: 2rem;
+}
+
+.promptInfo,
+.scriptInfo,
+.gameInfo,
+.pathwayInfo,
+.themeInfo,
+.practiceInfo {
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.currentPrompt,
+.currentTemplate,
+.currentPathway,
+.currentTheme,
+.currentPractice {
+  font-size: 1.5rem;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+
+.currentGuidance,
+.currentDescription,
+.currentDetails {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* Editor */
+.editorContainer {
+  background: rgba(15, 23, 42, 0.6);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.editorToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.counts {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.count,
+.wordCount {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.editor,
+.sceneContent,
+.contentArea,
+.bioArea,
+.narrativeArea {
+  width: 100%;
+  min-height: 400px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  color: #e2e8f0;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 1rem;
+  line-height: 1.8;
+  resize: vertical;
+}
+
+.editor:focus,
+.sceneContent:focus,
+.contentArea:focus,
+.bioArea:focus,
+.narrativeArea:focus {
+  outline: none;
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.editorFooter,
+.designFooter {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.saveButton,
+.exportButton {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.saveButton:hover:not(:disabled),
+.exportButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.saveButton:disabled,
+.exportButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.doneButton {
+  padding: 1rem 2rem;
+  background: rgba(102, 126, 234, 0.2);
+  border: 1px solid rgba(102, 126, 234, 0.4);
+  color: #a5b4fc;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.doneButton:hover {
+  background: rgba(102, 126, 234, 0.3);
+}
+
+.memberNote {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+/* Info Boxes */
+.infoBox,
+.missionBox,
+.revenueInfo,
+.safetyNotice,
+.resourcesBox,
+.aftercareBox,
+.crisisInfo {
+  background: rgba(234, 88, 12, 0.1);
+  border: 1px solid rgba(234, 88, 12, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.infoBox h3,
+.missionBox h3,
+.revenueInfo h3,
+.safetyNotice h3,
+.resourcesBox h3 {
+  color: #fb923c;
+  margin-bottom: 1rem;
+}
+
+.infoBox p,
+.missionBox p,
+.revenueInfo p,
+.safetyNotice p,
+.resourcesBox p {
+  color: #e2e8f0;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+/* Prompt Grid */
+.promptGrid,
+.templateGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.promptStarter {
+  color: #a5b4fc;
+  font-style: italic;
+  margin: 0.75rem 0;
+}
+
+.promptGuidance,
+.typeGuidance,
+.practiceGuidance {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .container,
+  .writingContainer,
+  .designContainer,
+  .submissionContainer,
+  .workContainer {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .genreGrid,
+  .formatGrid,
+  .typeGrid,
+  .pathwayGrid,
+  .themeGrid,
+  .practiceGrid,
+  .promptGrid,
+  .templateGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .editorToolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .editorFooter,
+  .designFooter {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .saveButton,
+  .exportButton,
+  .doneButton {
+    width: 100%;
+  }
+}

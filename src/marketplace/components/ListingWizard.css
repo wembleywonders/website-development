@@ -1,0 +1,478 @@
+/**
+ * LISTING WIZARD STYLES
+ * 
+ * @copyright 2024-2026 Wembley Wonders CIC
+ */
+
+.listing-wizard {
+  background: white;
+  border-radius: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Progress */
+.listing-wizard__progress {
+  display: flex;
+  background: #F9FAFB;
+  padding: 20px;
+  gap: 8px;
+  border-bottom: 1px solid #E5E7EB;
+  overflow-x: auto;
+}
+
+.listing-wizard__step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #6B7280;
+  white-space: nowrap;
+}
+
+.listing-wizard__step span {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #E5E7EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.listing-wizard__step--active {
+  background: #8B5CF6;
+  color: white;
+}
+
+.listing-wizard__step--active span {
+  background: white;
+  color: #8B5CF6;
+}
+
+/* Content */
+.listing-wizard__content {
+  padding: 32px;
+}
+
+.listing-wizard__section h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 8px 0;
+}
+
+.listing-wizard__hint {
+  font-size: 14px;
+  color: #6B7280;
+  margin: 0 0 24px 0;
+}
+
+/* Type Cards */
+.listing-wizard__type-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.listing-wizard__type-card {
+  padding: 24px;
+  background: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.listing-wizard__type-card:hover {
+  border-color: #8B5CF6;
+}
+
+.listing-wizard__type-card--selected {
+  border-color: #8B5CF6;
+  background: #F5F3FF;
+}
+
+.listing-wizard__type-icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.listing-wizard__type-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 8px 0;
+}
+
+.listing-wizard__type-card p {
+  font-size: 13px;
+  color: #6B7280;
+  margin: 0 0 12px 0;
+}
+
+.listing-wizard__type-card ul {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.listing-wizard__type-card li {
+  font-size: 12px;
+  color: #6B7280;
+  margin-bottom: 4px;
+}
+
+/* Programme Grid */
+.listing-wizard__programme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.listing-wizard__programme-card {
+  padding: 20px;
+  background: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.listing-wizard__programme-card:hover {
+  border-color: #8B5CF6;
+}
+
+.listing-wizard__programme-card--selected {
+  border-color: #8B5CF6;
+  background: #F5F3FF;
+}
+
+.listing-wizard__programme-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin: 0 auto 12px;
+  color: white;
+}
+
+.listing-wizard__programme-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 4px 0;
+}
+
+.listing-wizard__programme-card p {
+  font-size: 12px;
+  color: #6B7280;
+  margin: 0;
+}
+
+/* Programme Header */
+.listing-wizard__programme-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+/* Suggestions */
+.listing-wizard__suggestions {
+  margin-bottom: 24px;
+}
+
+.listing-wizard__suggestions h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 12px 0;
+}
+
+.listing-wizard__suggestion-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.listing-wizard__suggestion {
+  padding: 10px 16px;
+  background: #F3F4F6;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.listing-wizard__suggestion:hover {
+  background: #E5E7EB;
+}
+
+.listing-wizard__suggestion--selected {
+  background: #8B5CF6;
+  color: white;
+}
+
+.listing-wizard__custom-input {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.listing-wizard__custom-input label {
+  font-size: 13px;
+  color: #6B7280;
+}
+
+.listing-wizard__custom-input input {
+  padding: 10px 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.listing-wizard__custom-input input:focus {
+  outline: none;
+  border-color: #8B5CF6;
+}
+
+/* Tips */
+.listing-wizard__tips {
+  padding: 16px;
+  background: #FEF3C7;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.listing-wizard__tips h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #92400E;
+  margin: 0 0 12px 0;
+}
+
+.listing-wizard__tips ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.listing-wizard__tips li {
+  font-size: 13px;
+  color: #78350F;
+  margin-bottom: 6px;
+}
+
+/* Form */
+.listing-wizard__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.listing-wizard__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.listing-wizard__field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.listing-wizard__field input,
+.listing-wizard__field textarea {
+  padding: 12px 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.listing-wizard__field input:focus,
+.listing-wizard__field textarea:focus {
+  outline: none;
+  border-color: #8B5CF6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.listing-wizard__field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.listing-wizard__earnings-preview {
+  font-size: 13px;
+  color: #10B981;
+  margin-top: 8px;
+}
+
+/* Preview Card */
+.listing-wizard__preview-card {
+  background: #F9FAFB;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.listing-wizard__preview-image {
+  height: 200px;
+  background: #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #9CA3AF;
+}
+
+.listing-wizard__preview-image span {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.listing-wizard__preview-image p {
+  font-size: 13px;
+  margin: 0;
+}
+
+.listing-wizard__preview-content {
+  padding: 20px;
+}
+
+.listing-wizard__preview-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.listing-wizard__preview-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 8px 0;
+}
+
+.listing-wizard__preview-desc {
+  font-size: 14px;
+  color: #6B7280;
+  margin: 0 0 16px 0;
+}
+
+.listing-wizard__preview-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.listing-wizard__preview-amount {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.listing-wizard__preview-type {
+  font-size: 13px;
+  color: #6B7280;
+}
+
+.listing-wizard__preview-split {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #10B981;
+}
+
+/* Actions */
+.listing-wizard__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.listing-wizard__btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.listing-wizard__btn--primary {
+  background: #8B5CF6;
+  color: white;
+  border: none;
+}
+
+.listing-wizard__btn--primary:hover {
+  background: #7C3AED;
+}
+
+.listing-wizard__btn--primary:disabled {
+  background: #D1D5DB;
+  cursor: not-allowed;
+}
+
+.listing-wizard__btn--secondary {
+  background: white;
+  color: #374151;
+  border: 1px solid #D1D5DB;
+}
+
+.listing-wizard__btn--secondary:hover {
+  background: #F9FAFB;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .listing-wizard__content {
+    padding: 20px;
+  }
+  
+  .listing-wizard__type-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .listing-wizard__programme-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .listing-wizard__actions {
+    flex-direction: column;
+  }
+  
+  .listing-wizard__btn {
+    width: 100%;
+    text-align: center;
+  }
+}

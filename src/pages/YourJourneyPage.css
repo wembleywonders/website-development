@@ -1,0 +1,658 @@
+/* src/pages/YourJourneyPage.css */
+
+.yourJourneyPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin-top: 80px;
+}
+
+/* Hero Section */
+.journeyHero {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.heroTitle {
+  font-family: 'Great Vibes', cursive;
+  font-size: 4rem;
+  color: #ffffff;
+  margin: 0 0 1.5rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.heroSubtitle {
+  font-size: 1.3rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0 0 2rem 0;
+}
+
+.mayaIntro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: rgba(79, 70, 229, 0.2);
+  border: 1px solid rgba(79, 70, 229, 0.4);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.mayaAvatar {
+  font-size: 3rem;
+}
+
+/* Container */
+.journeyContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.sectionIntro {
+  font-size: 1.15rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+/* Flywheel Section */
+.flywheelSection {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 2rem;
+  padding: 3rem;
+  margin-bottom: 3rem;
+}
+
+.flywheelDiagram {
+  position: relative;
+  padding: 3rem 1rem;
+  min-height: 400px;
+}
+
+.flywheelCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.6);
+  z-index: 10;
+}
+
+.mayaCenterIcon {
+  font-size: 3rem;
+}
+
+.flywheelStages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 12rem;
+}
+
+.stage {
+  background: rgba(51, 65, 85, 0.8);
+  border: 2px solid rgba(148, 163, 184, 0.3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  min-width: 140px;
+  text-align: center;
+}
+
+.stageNumber {
+  background: rgba(255, 255, 255, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.stageArrow {
+  font-size: 2rem;
+  color: #0ea5e9;
+}
+
+.stageCycle {
+  font-size: 2.5rem;
+  color: #a855f7;
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Journey Stages */
+.journeyStage {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 2rem;
+  padding: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.stageHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(148, 163, 184, 0.2);
+}
+
+.stageIcon {
+  font-size: 3.5rem;
+}
+
+.stageHeader h2 {
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.stageTagline {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  font-style: italic;
+  margin: 0;
+}
+
+.stageContent {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.stageDescription h3 {
+  font-size: 1.6rem;
+  color: #0ea5e9;
+  margin: 0 0 1rem 0;
+}
+
+.stageDescription h4 {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin: 2rem 0 1rem 0;
+}
+
+.stageDescription ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stageDescription li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.stageDescription li strong {
+  color: #0ea5e9;
+}
+
+.exampleCard {
+  background: rgba(15, 23, 42, 0.6);
+  border-left: 4px solid #a855f7;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: 6rem;
+}
+
+.exampleCard h4 {
+  color: #a855f7;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 1rem 0;
+}
+
+.exampleCard p {
+  color: #cbd5e1;
+  line-height: 1.7;
+  font-style: italic;
+  margin: 0 0 1rem 0;
+}
+
+.exampleAuthor {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-style: normal;
+}
+
+.autoLogFeature {
+  display: flex;
+  gap: 1rem;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  margin-top: 2rem;
+}
+
+.featureIcon {
+  font-size: 2rem;
+}
+
+/* Cultivate Tracks */
+.cultivateTracks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.track h5 {
+  color: #0ea5e9;
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+}
+
+.creativeTrack {
+  border-left: 4px solid #10b981;
+}
+
+.citizenshipTrack {
+  border-left: 4px solid #f59e0b;
+}
+
+/* ROV Grid */
+.rovIntro {
+  margin-top: 2rem;
+}
+
+.rovIntro h5 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+}
+
+.rovGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.rovCard {
+  background: rgba(79, 70, 229, 0.15);
+  border: 1px solid rgba(79, 70, 229, 0.3);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.rovIcon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.rovCard strong {
+  display: block;
+  color: #a78bfa;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.rovCard p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.8rem;
+}
+
+/* Automation Flow */
+.automationFlow {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.flowStep {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(51, 65, 85, 0.5);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.flowIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.flowStep strong {
+  display: block;
+  color: #0ea5e9;
+  margin-bottom: 0.25rem;
+}
+
+.flowStep p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.flowArrow {
+  text-align: center;
+  font-size: 2rem;
+  color: #0ea5e9;
+  margin: 0.5rem 0;
+}
+
+.flowArrow.cycle {
+  color: #a855f7;
+  font-size: 3rem;
+}
+
+.eachOneTeachOne {
+  background: rgba(168, 85, 247, 0.15);
+  border-left: 4px solid #a855f7;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.eachOneTeachOne h4 {
+  color: #a855f7;
+  margin: 0 0 0.5rem 0;
+}
+
+/* Stage CTAs */
+.stageCta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.stageButton {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.stageButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.5);
+}
+
+.stageButton.secondary {
+  background: transparent;
+  border: 2px solid #0ea5e9;
+  color: #0ea5e9;
+}
+
+.stageButton.secondary:hover {
+  background: #0ea5e9;
+  color: white;
+}
+
+/* Connoisseur Section */
+.connoisseurSection {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 2rem;
+  padding: 3rem;
+  margin-bottom: 3rem;
+}
+
+.connoisseurFeatures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.featureCard {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.featureCard .featureIcon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.featureCard h3 {
+  color: #0ea5e9;
+  margin: 0 0 0.5rem 0;
+}
+
+.featureCard p {
+  color: #cbd5e1;
+  margin: 0;
+}
+
+/* Dashboard Preview */
+.dashboardPreview {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 2rem;
+  padding: 3rem;
+  margin-bottom: 3rem;
+}
+
+.dashboardMockup {
+  background: rgba(15, 23, 42, 0.7);
+  border: 2px solid rgba(148, 163, 184, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.mockupHeader {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.mockupContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.progressSection, .skillsSection, .impactSection {
+  background: rgba(51, 65, 85, 0.5);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.progressBar, .skillBar {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 0.5rem;
+  height: 10px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.progressFill, .skillFill {
+  background: linear-gradient(90deg, #0ea5e9, #06b6d4);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.journeyProgress {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+.journeyProgress li {
+  padding: 0.5rem 0;
+  color: #94a3b8;
+}
+
+.journeyProgress li.complete {
+  color: #10b981;
+}
+
+.journeyProgress li.active {
+  color: #0ea5e9;
+  font-weight: 600;
+}
+
+.skillItem {
+  margin-bottom: 1.5rem;
+}
+
+.skillLevel {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.impactSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+.impactSection li {
+  padding: 0.5rem 0;
+  color: #cbd5e1;
+}
+
+/* Final CTA */
+.finalCta {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.2) 0%, rgba(124, 58, 237, 0.2) 100%);
+  border: 2px solid rgba(79, 70, 229, 0.3);
+  border-radius: 2rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+.finalCta h2 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+}
+
+.finalCta p {
+  font-size: 1.15rem;
+  color: #cbd5e1;
+  margin: 0 0 2rem 0;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaButton {
+  padding: 1.1rem 2.5rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+
+.ctaButton.primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+}
+
+.ctaButton.secondary {
+  background: transparent;
+  border: 2px solid #0ea5e9;
+  color: #0ea5e9;
+}
+
+.ctaButton.large {
+  padding: 1.1rem 2.5rem;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .stageContent {
+    grid-template-columns: 1fr;
+  }
+
+  .exampleCard {
+    position: static;
+  }
+
+  .cultivateTracks {
+    grid-template-columns: 1fr;
+  }
+
+  .rovGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .connoisseurFeatures {
+    grid-template-columns: 1fr;
+  }
+
+  .mockupContent {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.8rem;
+  }
+
+  .flywheelStages {
+    flex-direction: column;
+  }
+
+  .stageArrow {
+    transform: rotate(90deg);
+  }
+
+  .rovGrid {
+    grid-template-columns: 1fr;
+  }
+}

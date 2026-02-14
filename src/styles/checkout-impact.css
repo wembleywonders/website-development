@@ -1,0 +1,189 @@
+/**
+ * CHECKOUT IMPACT STYLES
+ * 
+ * Styling for the community impact display at checkout.
+ * Uses WW design tokens (dark theme, glass morphism).
+ */
+
+.checkout-impact {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.checkout-impact--compact {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 8px;
+}
+
+.checkout-impact--compact .checkout-impact__icon {
+  font-size: 1rem;
+}
+
+.checkout-impact--compact .checkout-impact__text {
+  font-size: 0.875rem;
+  color: #10b981;
+}
+
+/* Header */
+.checkout-impact__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.checkout-impact__icon {
+  font-size: 1.5rem;
+}
+
+.checkout-impact__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #10b981;
+}
+
+/* Main Content */
+.checkout-impact__main {
+  margin-bottom: 1.25rem;
+}
+
+.checkout-impact__contribution {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  color: #e5e7eb;
+}
+
+.checkout-impact__contribution strong {
+  color: #10b981;
+  font-size: 1.25rem;
+}
+
+.checkout-impact__estimate {
+  font-size: 0.9375rem;
+  margin: 0;
+  color: #9ca3af;
+}
+
+.checkout-impact__estimate strong {
+  color: #34d399;
+}
+
+/* Breakdown */
+.checkout-impact__breakdown {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.checkout-impact__breakdown-title {
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.checkout-impact__splits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.checkout-impact__split {
+  display: grid;
+  grid-template-columns: 80px 1fr 40px;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.checkout-impact__split-label {
+  font-size: 0.8125rem;
+  color: #d1d5db;
+}
+
+.checkout-impact__split-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.checkout-impact__split-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.checkout-impact__split-fill--creator {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.checkout-impact__split-fill--community {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.checkout-impact__split-fill--operations {
+  background: linear-gradient(90deg, #6b7280, #9ca3af);
+}
+
+.checkout-impact__split-value {
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  text-align: right;
+}
+
+/* Footer */
+.checkout-impact__footer {
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.checkout-impact__note {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Light theme variant */
+.checkout-impact--light {
+  background: rgba(16, 185, 129, 0.05);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.checkout-impact--light .checkout-impact__contribution {
+  color: #1f2937;
+}
+
+.checkout-impact--light .checkout-impact__estimate {
+  color: #4b5563;
+}
+
+.checkout-impact--light .checkout-impact__breakdown {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .checkout-impact {
+    padding: 1rem;
+  }
+  
+  .checkout-impact__split {
+    grid-template-columns: 70px 1fr 35px;
+    gap: 0.5rem;
+  }
+  
+  .checkout-impact__split-label {
+    font-size: 0.75rem;
+  }
+}

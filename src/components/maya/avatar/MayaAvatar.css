@@ -1,0 +1,123 @@
+.maya-avatar {
+  position: relative;
+  display: inline-block;
+}
+
+.maya-avatar.small {
+  --avatar-size: 40px;
+  --face-size: 20px;
+}
+
+.maya-avatar.medium {
+  --avatar-size: 60px;
+  --face-size: 30px;
+}
+
+.maya-avatar.large {
+  --avatar-size: 80px;
+  --face-size: 40px;
+}
+
+.avatar-container {
+  position: relative;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  transition: all var(--transition-duration, 0.3s) ease;
+}
+
+.avatar-background {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--avatar-color, #8b5cf6), rgba(139, 92, 246, 0.8));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-duration, 0.3s) ease;
+}
+
+.avatar-face {
+  font-size: var(--face-size);
+  transition: all var(--transition-duration, 0.3s) ease;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.avatar-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--avatar-color, #8b5cf6) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-duration, 0.3s) ease;
+  pointer-events: none;
+}
+
+/* Expression-based styling */
+.maya-avatar:not(.transitioning) .avatar-background {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.maya-avatar.transitioning .avatar-background {
+  transform: scale(0.9);
+}
+
+.maya-avatar.transitioning .avatar-glow {
+  opacity: 0.6;
+}
+
+/* Hover effects */
+.maya-avatar:hover .avatar-background {
+  transform: scale(1.05);
+  box-shadow: 
+    0 6px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.maya-avatar:hover .avatar-glow {
+  opacity: 0.4;
+}
+
+/* Pulse animation for active states */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 0 0 0 var(--avatar-color, #8b5cf6);
+  }
+  50% {
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 0 0 4px rgba(139, 92, 246, 0.2);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .maya-avatar.large {
+    --avatar-size: 60px;
+    --face-size: 30px;
+  }
+  
+  .maya-avatar.medium {
+    --avatar-size: 50px;
+    --face-size: 25px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .maya-avatar * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

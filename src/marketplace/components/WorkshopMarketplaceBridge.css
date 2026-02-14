@@ -1,0 +1,325 @@
+/**
+ * WORKSHOP MARKETPLACE BRIDGE STYLES
+ * 
+ * @copyright 2024-2026 Wembley Wonders CIC
+ */
+
+.workshop-bridge {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Header */
+.workshop-bridge__header {
+  padding: 32px;
+  text-align: center;
+  color: white;
+}
+
+.workshop-bridge__icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.workshop-bridge__title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.workshop-bridge__subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Progress */
+.workshop-bridge__progress {
+  padding: 20px 24px;
+  background: #F9FAFB;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.workshop-bridge__progress-bar {
+  height: 8px;
+  background: #E5E7EB;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.workshop-bridge__progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.workshop-bridge__progress-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #6B7280;
+}
+
+.workshop-bridge__graduated {
+  color: #10B981;
+  font-weight: 600;
+}
+
+/* Sections */
+.workshop-bridge__section {
+  padding: 20px 24px;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.workshop-bridge__section--highlight {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border-bottom: none;
+}
+
+.workshop-bridge__section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 12px 0;
+}
+
+/* Skills */
+.workshop-bridge__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.workshop-bridge__skill {
+  padding: 6px 12px;
+  background: #EEF2FF;
+  color: #4338CA;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Unlocks */
+.workshop-bridge__unlocks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.workshop-bridge__unlock-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.workshop-bridge__unlock-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F2937;
+}
+
+.workshop-bridge__unlock-action {
+  padding: 6px 12px;
+  background: #8B5CF6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.workshop-bridge__unlock-action:hover {
+  background: #7C3AED;
+}
+
+/* Graduation */
+.workshop-bridge__graduation {
+  padding: 32px 24px;
+  text-align: center;
+  background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+}
+
+.workshop-bridge__graduation-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.workshop-bridge__graduation h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #065F46;
+  margin: 0 0 8px 0;
+}
+
+.workshop-bridge__graduation p {
+  font-size: 14px;
+  color: #047857;
+  margin: 0 0 24px 0;
+  line-height: 1.5;
+}
+
+.workshop-bridge__graduation-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.workshop-bridge__stat {
+  text-align: center;
+}
+
+.workshop-bridge__stat-value {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #065F46;
+}
+
+.workshop-bridge__stat-label {
+  font-size: 12px;
+  color: #047857;
+}
+
+/* Actions */
+.workshop-bridge__actions {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.workshop-bridge__action {
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.workshop-bridge__action--primary {
+  background: #8B5CF6;
+  color: white;
+  border: none;
+}
+
+.workshop-bridge__action--primary:hover {
+  background: #7C3AED;
+}
+
+.workshop-bridge__action--secondary {
+  background: white;
+  color: #374151;
+  border: 1px solid #D1D5DB;
+}
+
+.workshop-bridge__action--secondary:hover {
+  background: #F9FAFB;
+}
+
+/* Next Steps */
+.workshop-bridge__next-steps {
+  padding: 16px;
+  background: #F3F4F6;
+  border-radius: 8px;
+}
+
+.workshop-bridge__next-steps h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 12px 0;
+}
+
+.workshop-bridge__next-steps ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.workshop-bridge__next-steps li {
+  font-size: 13px;
+  color: #4B5563;
+  padding: 6px 0;
+}
+
+/* Maya Tip */
+.workshop-bridge__maya-tip {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #EEF2FF;
+  border-top: 1px solid #C7D2FE;
+}
+
+.workshop-bridge__maya-avatar {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.workshop-bridge__maya-content {
+  flex: 1;
+}
+
+.workshop-bridge__maya-name {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4338CA;
+  margin-bottom: 4px;
+}
+
+.workshop-bridge__maya-content p {
+  font-size: 13px;
+  color: #4B5563;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .workshop-bridge__header {
+    padding: 24px;
+  }
+  
+  .workshop-bridge__title {
+    font-size: 20px;
+  }
+  
+  .workshop-bridge__graduation-stats {
+    gap: 20px;
+  }
+  
+  .workshop-bridge__stat-value {
+    font-size: 24px;
+  }
+  
+  .workshop-bridge__unlock-item {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  
+  .workshop-bridge__unlock-action {
+    width: 100%;
+  }
+}

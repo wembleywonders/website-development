@@ -1,0 +1,222 @@
+/* src/pages/journey/CreateSection.css */
+
+/* ===================================
+   CREATE SECTION
+   =================================== */
+
+.create-section {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
+  padding: 4rem 2rem;
+  position: relative;
+}
+
+/* 3-Column Grid */
+.create-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.create-card {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.create-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #fbbf24 0%, #0ea5e9 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.create-card:hover::before {
+  transform: scaleX(1);
+}
+
+.create-card:hover {
+  transform: translateY(-8px);
+  border-color: #0ea5e9;
+  box-shadow: 0 8px 30px rgba(14, 165, 233, 0.3);
+}
+
+.create-card.static:hover {
+  transform: translateY(-5px);
+}
+
+/* Card Visual */
+.card-visual {
+  margin-bottom: 1.5rem;
+}
+
+.card-emoji {
+  font-size: 4rem;
+  display: block;
+  animation: float-card 3s ease-in-out infinite;
+}
+
+.create-card.static .card-emoji {
+  animation: none;
+}
+
+@keyframes float-card {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.lab-card .card-emoji {
+  animation-delay: 0s;
+}
+
+.workshop-card .card-emoji {
+  animation-delay: 1s;
+}
+
+.project-card .card-emoji {
+  animation-delay: 2s;
+}
+
+/* Card Content */
+.card-title {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Specific card colors */
+.lab-card:hover {
+  border-color: #fbbf24;
+  box-shadow: 0 8px 30px rgba(251, 191, 36, 0.3);
+}
+
+.workshop-card:hover {
+  border-color: #0ea5e9;
+  box-shadow: 0 8px 30px rgba(14, 165, 233, 0.3);
+}
+
+.project-card:hover {
+  border-color: #10b981;
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+}
+
+/* Overlay Text */
+.section-overlay-text {
+  text-align: center;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  font-style: italic;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 0.75rem;
+  border-left: 4px solid #fbbf24;
+  border-right: 4px solid #0ea5e9;
+}
+
+/* CTAs centered */
+.section-ctas.center {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 968px) {
+  .create-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .section-overlay-text {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .create-section {
+    padding: 3rem 1rem;
+  }
+
+  .create-card {
+    padding: 1.5rem;
+  }
+
+  .card-emoji {
+    font-size: 3rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .card-description {
+    font-size: 0.95rem;
+  }
+
+  .section-overlay-text {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-section {
+    padding: 2rem 1rem;
+  }
+
+  .create-grid {
+    gap: 1rem;
+  }
+
+  .section-overlay-text {
+    font-size: 1rem;
+  }
+}
+
+/* ===================================
+   REDUCED MOTION
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .card-emoji {
+    animation: none;
+  }
+
+  .create-card:hover {
+    transform: none;
+  }
+
+  .create-card::before {
+    transition: none;
+  }
+}

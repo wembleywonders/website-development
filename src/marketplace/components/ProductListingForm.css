@@ -1,0 +1,542 @@
+/**
+ * PRODUCT LISTING FORM STYLES
+ * 
+ * @copyright 2024-2026 Wembley Wonders CIC
+ */
+
+.listing-form {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Header */
+.listing-form__header {
+  padding: 24px 24px 0;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.listing-form__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 24px 0;
+}
+
+/* Steps */
+.listing-form__steps {
+  display: flex;
+  align-items: center;
+  padding-bottom: 24px;
+  overflow-x: auto;
+}
+
+.listing-form__step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.listing-form__step-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #E5E7EB;
+  color: #6B7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.listing-form__step--active .listing-form__step-number {
+  background: #8B5CF6;
+  color: white;
+}
+
+.listing-form__step--complete .listing-form__step-number {
+  background: #10B981;
+  color: white;
+}
+
+.listing-form__step-label {
+  font-size: 13px;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.listing-form__step--active .listing-form__step-label {
+  color: #8B5CF6;
+}
+
+.listing-form__step-line {
+  flex: 1;
+  height: 2px;
+  background: #E5E7EB;
+  margin: 0 12px;
+  min-width: 20px;
+}
+
+/* Tips */
+.listing-form__tips {
+  padding: 16px 24px;
+  background: #F9FAFB;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.listing-form__tip {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.listing-form__tip:last-child {
+  margin-bottom: 0;
+}
+
+.listing-form__tip--warning {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.listing-form__tip--tip {
+  background: #EEF2FF;
+  color: #4338CA;
+}
+
+/* Content */
+.listing-form__content {
+  padding: 24px;
+}
+
+.listing-form__section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Fields */
+.listing-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.listing-form__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.listing-form__input,
+.listing-form__select,
+.listing-form__textarea {
+  padding: 10px 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1F2937;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.listing-form__input:focus,
+.listing-form__select:focus,
+.listing-form__textarea:focus {
+  outline: none;
+  border-color: #8B5CF6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.listing-form__input--error {
+  border-color: #EF4444;
+}
+
+.listing-form__input--price {
+  max-width: 200px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.listing-form__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.listing-form__hint {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+.listing-form__error {
+  font-size: 12px;
+  color: #EF4444;
+}
+
+/* Radio Groups */
+.listing-form__radio-group {
+  display: flex;
+  gap: 16px;
+}
+
+.listing-form__radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 12px 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.listing-form__radio:has(input:checked) {
+  border-color: #8B5CF6;
+  background: #F5F3FF;
+}
+
+.listing-form__radio span {
+  font-size: 14px;
+  color: #374151;
+}
+
+/* Delivery Options */
+.listing-form__delivery-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.listing-form__delivery-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.listing-form__delivery-option:has(input:checked) {
+  border-color: #8B5CF6;
+  background: #F5F3FF;
+}
+
+.listing-form__delivery-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.listing-form__delivery-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F2937;
+}
+
+.listing-form__delivery-desc {
+  font-size: 12px;
+  color: #6B7280;
+}
+
+/* Tags */
+.listing-form__tag-input {
+  display: flex;
+  gap: 8px;
+}
+
+.listing-form__tag-input .listing-form__input {
+  flex: 1;
+}
+
+.listing-form__tag-add {
+  padding: 10px 16px;
+  background: #E5E7EB;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.listing-form__tag-add:hover {
+  background: #D1D5DB;
+}
+
+.listing-form__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.listing-form__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: #EEF2FF;
+  color: #4338CA;
+  border-radius: 16px;
+  font-size: 13px;
+}
+
+.listing-form__tag button {
+  background: none;
+  border: none;
+  color: #6366F1;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+}
+
+/* Pricing Guidance */
+.listing-form__pricing-guidance {
+  padding: 16px;
+  background: #F0FDF4;
+  border-radius: 8px;
+  border: 1px solid #BBF7D0;
+}
+
+.listing-form__pricing-guidance h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #166534;
+  margin: 0 0 8px 0;
+}
+
+.listing-form__pricing-guidance p {
+  font-size: 13px;
+  color: #15803D;
+  margin: 0 0 8px 0;
+}
+
+.listing-form__pricing-guidance ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.listing-form__pricing-guidance li {
+  font-size: 12px;
+  color: #166534;
+  margin-bottom: 4px;
+}
+
+/* Revenue Preview */
+.listing-form__revenue-preview {
+  padding: 16px;
+  background: #F9FAFB;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.listing-form__revenue-preview h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 12px 0;
+}
+
+.listing-form__revenue-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.listing-form__revenue-bar {
+  position: relative;
+  height: 32px;
+  background: #E5E7EB;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.listing-form__revenue-bar span {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  z-index: 1;
+}
+
+.listing-form__revenue-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.listing-form__revenue-fill--creator {
+  background: #8B5CF6;
+}
+
+.listing-form__revenue-fill--community {
+  background: #10B981;
+}
+
+.listing-form__revenue-fill--operations {
+  background: #6B7280;
+}
+
+/* Upload Zone */
+.listing-form__upload-zone {
+  border: 2px dashed #D1D5DB;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.listing-form__upload-zone:hover {
+  border-color: #8B5CF6;
+  background: #F5F3FF;
+}
+
+.listing-form__upload-zone--small {
+  padding: 24px;
+}
+
+.listing-form__upload-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.listing-form__upload-placeholder p {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  color: #4B5563;
+}
+
+.listing-form__upload-hint {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+/* Review */
+.listing-form__review h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 20px 0;
+}
+
+.listing-form__review-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.listing-form__review-label {
+  font-size: 14px;
+  color: #6B7280;
+}
+
+.listing-form__review-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F2937;
+}
+
+.listing-form__review-value--highlight {
+  color: #10B981;
+}
+
+/* Footer */
+.listing-form__footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-top: 1px solid #E5E7EB;
+  background: #F9FAFB;
+  border-radius: 0 0 12px 12px;
+}
+
+.listing-form__footer-left,
+.listing-form__footer-right {
+  display: flex;
+  gap: 12px;
+}
+
+.listing-form__btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.listing-form__btn--primary {
+  background: #8B5CF6;
+  color: white;
+  border: none;
+}
+
+.listing-form__btn--primary:hover {
+  background: #7C3AED;
+}
+
+.listing-form__btn--secondary {
+  background: white;
+  color: #374151;
+  border: 1px solid #D1D5DB;
+}
+
+.listing-form__btn--secondary:hover {
+  background: #F9FAFB;
+}
+
+.listing-form__btn--ghost {
+  background: none;
+  color: #6B7280;
+  border: none;
+}
+
+.listing-form__btn--ghost:hover {
+  color: #374151;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .listing-form__header {
+    padding: 16px 16px 0;
+  }
+  
+  .listing-form__content {
+    padding: 16px;
+  }
+  
+  .listing-form__footer {
+    flex-direction: column-reverse;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .listing-form__footer-left,
+  .listing-form__footer-right {
+    width: 100%;
+  }
+  
+  .listing-form__btn {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .listing-form__radio-group {
+    flex-direction: column;
+  }
+}

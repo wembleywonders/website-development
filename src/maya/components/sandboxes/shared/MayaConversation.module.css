@@ -1,0 +1,532 @@
+/*
+ * G-TECH COMMUNITY PLATFORM IP PROTECTION
+ * Copyright (c) 2024-2026 Wembley Wonders CIC
+ * Company No. 12960817
+ * All rights reserved.
+ */
+
+/**
+ * MayaConversation Styles
+ * 
+ * Styles for the embedded sandbox Maya component
+ * Three variants: inline, panel, minimal
+ * 
+ * Message type colors:
+ * - community-mirror: cyan (others like you)
+ * - gatekeeper-bypass: orange (no approval needed)
+ * - ignition: gold (breakthrough moments)
+ * - push: pink (encouragement)
+ * - reflection: gold (questions)
+ * - pattern: green (insights)
+ */
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+.mayaConversation {
+  --maya-primary: #8B5CF6;
+  --maya-primary-light: #A78BFA;
+  --maya-bg: #1E1B4B;
+  --maya-bg-light: #312E81;
+  --maya-text: #F5F3FF;
+  --maya-text-muted: #C4B5FD;
+  --maya-border: rgba(139, 92, 246, 0.3);
+  --maya-gold: #F59E0B;
+  --maya-insight: #10B981;
+  --maya-community: #06B6D4;
+  --maya-bypass: #F97316;
+  --maya-push: #EC4899;
+  
+  display: flex;
+  gap: 12px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+/* ============================================
+   VARIANTS
+   ============================================ */
+
+/* Inline - flows with content */
+.inline {
+  align-items: flex-start;
+  padding: 12px;
+  background: rgba(139, 92, 246, 0.08);
+  border-radius: 8px;
+  border-left: 3px solid var(--maya-primary);
+}
+
+/* Panel - sidebar style */
+.panel {
+  flex-direction: column;
+  padding: 16px;
+  background: var(--maya-bg);
+  border-radius: 12px;
+  border: 1px solid var(--maya-border);
+}
+
+.panel .avatarContainer {
+  flex-direction: row;
+  margin-bottom: 12px;
+}
+
+/* Minimal - just avatar + message */
+.minimal {
+  align-items: center;
+  padding: 8px 12px;
+  background: transparent;
+}
+
+.minimal .avatarContainer {
+  flex-shrink: 0;
+}
+
+.minimal .content {
+  flex: 1;
+}
+
+/* ============================================
+   MESSAGE TYPE VARIANTS
+   ============================================ */
+
+/* Community mirror - "others like you" */
+.community-mirror {
+  border-left-color: var(--maya-community);
+}
+
+.community-mirror.panel {
+  background: linear-gradient(135deg, var(--maya-bg) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border-color: var(--maya-community);
+}
+
+.community-mirror.inline {
+  background: rgba(6, 182, 212, 0.1);
+}
+
+/* Gatekeeper bypass - "no approval needed" */
+.gatekeeper-bypass {
+  border-left-color: var(--maya-bypass);
+}
+
+.gatekeeper-bypass.panel {
+  background: linear-gradient(135deg, var(--maya-bg) 0%, rgba(249, 115, 22, 0.1) 100%);
+  border-color: var(--maya-bypass);
+}
+
+.gatekeeper-bypass.inline {
+  background: rgba(249, 115, 22, 0.1);
+}
+
+/* Ignition - breakthrough moments */
+.ignition {
+  border-left-color: var(--maya-gold);
+}
+
+.ignition.panel {
+  background: linear-gradient(135deg, var(--maya-bg) 0%, rgba(245, 158, 11, 0.15) 100%);
+  border-color: var(--maya-gold);
+}
+
+.ignition.inline {
+  background: rgba(245, 158, 11, 0.12);
+}
+
+/* Push - encouragement */
+.push {
+  border-left-color: var(--maya-push);
+}
+
+.push.panel {
+  background: linear-gradient(135deg, var(--maya-bg) 0%, rgba(236, 72, 153, 0.1) 100%);
+  border-color: var(--maya-push);
+}
+
+.push.inline {
+  background: rgba(236, 72, 153, 0.08);
+}
+
+/* Reflection - questions */
+.reflection {
+  border-left-color: var(--maya-gold);
+}
+
+.reflection.panel {
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.reflection.inline {
+  background: rgba(245, 158, 11, 0.08);
+}
+
+/* Pattern - insights */
+.pattern {
+  border-left-color: var(--maya-insight);
+}
+
+.pattern.panel {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.pattern.inline {
+  background: rgba(16, 185, 129, 0.08);
+}
+
+/* ============================================
+   AVATAR
+   ============================================ */
+
+.avatarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--maya-primary) 0%, #7C3AED 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.avatarLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--maya-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.panel .avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+}
+
+.minimal .avatar {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+}
+
+/* ============================================
+   CONTENT
+   ============================================ */
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.message {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--maya-text);
+}
+
+.inline .message {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Type indicator emoji */
+.typeIndicator {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+/* ============================================
+   TYPING INDICATOR
+   ============================================ */
+
+.typing {
+  display: flex;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.typing span {
+  width: 8px;
+  height: 8px;
+  background: var(--maya-primary);
+  border-radius: 50%;
+  animation: typingBounce 1.4s ease-in-out infinite;
+}
+
+.typing span:nth-child(1) { animation-delay: 0s; }
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   RESPONSE FORM
+   ============================================ */
+
+.responseForm {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.responseInput {
+  flex: 1;
+  background: var(--maya-bg);
+  border: 1px solid var(--maya-border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: var(--maya-text);
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.responseInput:focus {
+  outline: none;
+  border-color: var(--maya-primary);
+}
+
+.responseInput::placeholder {
+  color: var(--maya-text-muted);
+}
+
+.responseSubmit {
+  background: var(--maya-primary);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.responseSubmit:hover:not(:disabled) {
+  background: #7C3AED;
+}
+
+.responseSubmit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   STAGE INDICATOR (Dev)
+   ============================================ */
+
+.stageIndicator {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--maya-border);
+  font-size: 11px;
+  color: var(--maya-text-muted);
+  opacity: 0.7;
+}
+
+/* ============================================
+   HINT WRAPPER
+   ============================================ */
+
+.hintWrapper {
+  position: relative;
+}
+
+.hintDismiss {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: 1px solid var(--maya-border);
+  color: var(--maya-text-muted);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hintDismiss:hover {
+  background: var(--maya-bg-light);
+  color: var(--maya-text);
+}
+
+/* ============================================
+   SILENT INDICATOR
+   ============================================ */
+
+.silentIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px dashed var(--maya-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.silentIndicator:hover {
+  background: rgba(139, 92, 246, 0.05);
+  border-style: solid;
+}
+
+.silentAvatar {
+  width: 24px;
+  height: 24px;
+  background: var(--maya-bg-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.silentLabel {
+  font-size: 12px;
+  color: var(--maya-text-muted);
+  font-style: italic;
+}
+
+/* ============================================
+   CONCEPT INTRO
+   ============================================ */
+
+.conceptIntro {
+  position: relative;
+}
+
+.learnMore {
+  background: transparent;
+  border: none;
+  color: var(--maya-primary);
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  padding: 0;
+}
+
+.learnMore:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   SUCCESS STORY
+   ============================================ */
+
+.successStory {
+  background: linear-gradient(135deg, var(--maya-bg) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border: 1px solid var(--maya-community);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.successHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--maya-community);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.successIcon {
+  font-size: 14px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 480px) {
+  .panel {
+    padding: 12px;
+  }
+  
+  .avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+  
+  .message {
+    font-size: 13px;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .typing span {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .mayaConversation {
+    --maya-border: rgba(139, 92, 246, 0.6);
+  }
+  
+  .inline,
+  .panel {
+    border-left-width: 4px;
+  }
+}
+
+/* ============================================
+   DARK MODE ADJUSTMENTS
+   ============================================ */
+
+@media (prefers-color-scheme: light) {
+  .mayaConversation {
+    --maya-bg: #F5F3FF;
+    --maya-bg-light: #EDE9FE;
+    --maya-text: #1E1B4B;
+    --maya-text-muted: #6B7280;
+    --maya-border: rgba(139, 92, 246, 0.2);
+  }
+  
+  .inline .message {
+    color: var(--maya-text);
+  }
+  
+  .avatar {
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+  }
+  
+  .responseInput {
+    background: white;
+    border-color: var(--maya-border);
+    color: var(--maya-text);
+  }
+  
+  .silentIndicator {
+    background: rgba(139, 92, 246, 0.05);
+  }
+  
+  .silentIndicator:hover {
+    background: rgba(139, 92, 246, 0.1);
+  }
+}

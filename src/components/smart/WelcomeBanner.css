@@ -1,0 +1,94 @@
+.welcome-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  z-index: 2000;
+  padding: 15px 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 15px;
+}
+
+.banner-icon {
+  font-size: 1.5em;
+  flex-shrink: 0;
+}
+
+.banner-text {
+  flex: 1;
+  text-align: center;
+}
+
+.banner-text p {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.banner-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.banner-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+}
+
+.banner-btn.accept {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.banner-btn.accept:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.banner-btn.dismiss {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 8px 12px;
+  font-size: 1.2em;
+}
+
+.banner-btn.dismiss:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .banner-content {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .banner-text p {
+    font-size: 1em;
+  }
+}

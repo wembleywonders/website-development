@@ -1,0 +1,465 @@
+/**
+ * Global Styles
+ * Base styles and CSS reset
+ */
+
+@import './variables';
+@import './mixins';
+@import './animations';
+
+// ============================================================================
+// CSS RESET
+// ============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%; /* WebKit browsers (Safari, iOS, Chrome) */
+  -ms-text-size-adjust: 100%; /* Unprefixed: modern browsers (Chrome 54+, Chrome Android 54+, Edge 79+, Samsung Internet 6.0+) */
+  text-size-adjust: 100%; /* IE/Old Edge */
+  /* NOTE: -moz-text-size-adjust is omitted due to limited/unsupported support in some Firefox/Safari versions */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-md);
+  font-weight: 400;
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+// ============================================================================
+// TYPOGRAPHY
+// ============================================================================
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+}
+
+h1 { @include heading-1; }
+h2 { @include heading-2; }
+h3 { @include heading-3; }
+
+h4 {
+  font-size: var(--font-lg);
+  font-weight: 600;
+}
+
+h5 {
+  font-size: var(--font-md);
+  font-weight: 600;
+}
+
+h6 {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+p {
+  margin: 0;
+  @include body-text;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-fast) var(--ease-in-out);
+  
+  &:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
+  
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+strong, b {
+  font-weight: 600;
+}
+
+em, i {
+  font-style: italic;
+}
+
+small {
+  @include small-text;
+}
+
+code {
+  font-family: var(--font-family-mono);
+  font-size: 0.875em;
+  padding: 0.125em 0.25em;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+}
+
+pre {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-sm);
+  line-height: var(--line-height-relaxed);
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  @include custom-scrollbar;
+  
+  code {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+}
+
+blockquote {
+  margin: var(--spacing-md) 0;
+  padding-left: var(--spacing-lg);
+  border-left: 3px solid var(--primary-color);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+// ============================================================================
+// LISTS
+// ============================================================================
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+article ul,
+article ol {
+  margin: var(--spacing-sm) 0;
+  padding-left: var(--spacing-lg);
+  list-style: initial;
+}
+
+dl {
+  margin: 0;
+  
+  dt {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  dd {
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--text-secondary);
+  }
+}
+
+// ============================================================================
+// FORMS
+// ============================================================================
+
+button {
+  @include button-base;
+  @include button-ghost;
+}
+
+input,
+textarea,
+select {
+  @include input-base;
+}
+
+select {
+  @include select-base;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+label {
+  display: block;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+fieldset {
+  margin: 0;
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  
+  legend {
+    padding: 0 var(--spacing-xs);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+}
+
+// ============================================================================
+// TABLES
+// ============================================================================
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  
+  th,
+  td {
+    padding: var(--spacing-sm);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  th {
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+  }
+  
+  td {
+    color: var(--text-secondary);
+  }
+  
+  tbody tr:hover {
+    background: var(--bg-secondary);
+  }
+}
+
+// ============================================================================
+// MEDIA
+// ============================================================================
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe {
+  border: 0;
+}
+
+svg {
+  fill: currentColor;
+  vertical-align: middle;
+}
+
+// ============================================================================
+// UTILITIES
+// ============================================================================
+
+.sr-only {
+  @include visually-hidden;
+}
+
+.container {
+  @include container;
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.truncate {
+  @include text-truncate;
+}
+
+.line-clamp-2 {
+  @include line-clamp(2);
+}
+
+.line-clamp-3 {
+  @include line-clamp(3);
+}
+
+// ============================================================================
+// FOCUS STYLES
+// ============================================================================
+
+:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+// ============================================================================
+// SELECTION
+// ============================================================================
+
+::selection {
+  background: var(--primary-alpha-20);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background: var(--primary-alpha-20);
+  color: var(--text-primary);
+}
+
+// ============================================================================
+// PRINT STYLES
+// ============================================================================
+
+@media print {
+  body {
+    color: #000;
+    background: #fff;
+  }
+  
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// ============================================================================
+// RESPONSIVE ROOT FONT SIZE
+// ============================================================================
+
+@include mobile {
+  html {
+    font-size: 14px;
+  }
+}
+
+@include wide {
+  html {
+    font-size: 18px;
+  }
+}
+
+// ============================================================================
+// APP ROOT
+// ============================================================================
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+// ============================================================================
+// LOADING STATES
+// ============================================================================
+
+.loading {
+  @include loading-skeleton;
+}
+
+.skeleton {
+  @include loading-skeleton;
+}
+
+.spinner {
+  @include rotate-animation;
+}
+
+// ============================================================================
+// LAYOUT HELPERS
+// ============================================================================
+
+.flex {
+  display: flex;
+  
+  &.center {
+    @include flex-center;
+  }
+  
+  &.column {
+    flex-direction: column;
+  }
+  
+  &.wrap {
+    flex-wrap: wrap;
+  }
+}
+
+.grid {
+  display: grid;
+  
+  &.responsive {
+    @include responsive-grid;
+  }
+}
+
+// ============================================================================
+// SPACING UTILITIES
+// ============================================================================
+
+@each $size, $value in (
+  'xs': var(--spacing-xs),
+  'sm': var(--spacing-sm),
+  'md': var(--spacing-md),
+  'lg': var(--spacing-lg),
+  'xl': var(--spacing-xl),
+  '2xl': var(--spacing-2xl)
+) {
+  .m-#{$size} { margin: $value; }
+  .mt-#{$size} { margin-top: $value; }
+  .mr-#{$size} { margin-right: $value; }
+  .mb-#{$size} { margin-bottom: $value; }
+  .ml-#{$size} { margin-left: $value; }
+  .mx-#{$size} { margin-left: $value; margin-right: $value; }
+  .my-#{$size} { margin-top: $value; margin-bottom: $value; }
+  
+  .p-#{$size} { padding: $value; }
+  .pt-#{$size} { padding-top: $value; }
+  .pr-#{$size} { padding-right: $value; }
+  .pb-#{$size} { padding-bottom: $value; }
+  .pl-#{$size} { padding-left: $value; }
+  .px-#{$size} { padding-left: $value; padding-right: $value; }
+  .py-#{$size} { padding-top: $value; padding-bottom: $value; }
+}

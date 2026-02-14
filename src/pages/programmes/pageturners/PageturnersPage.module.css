@@ -1,0 +1,693 @@
+/* Pageturners Writer's Workshop Page Styles */
+
+.pageturnersContent {
+  color: #e2e8f0;
+}
+
+/* Section Styling */
+.aboutSection,
+.workshopSection,
+.progressionSection,
+.connectionSection,
+.involvedSection,
+.librarySection,
+.scheduleSection,
+.missionSection,
+.contactSection {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.contactSection {
+  border-bottom: none;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0ea5e9;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.leadText {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+/* ✨ Sandbox Promotion Section */
+.sandboxPromotionSection {
+  margin: 3rem 0;
+  padding: 0;
+}
+
+.sandboxCard {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(168, 85, 247, 0.2);
+}
+
+.sandboxCard::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.sandboxCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(168, 85, 247, 0.6);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%);
+  box-shadow: 0 12px 48px rgba(168, 85, 247, 0.3);
+}
+
+.sandboxIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.sandboxTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  color: #a855f7;
+}
+
+.sandboxDescription {
+  font-size: 1.1rem;
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sandboxFeatures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.feature {
+  background: rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: #e2e8f0;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.feature:hover {
+  background: rgba(168, 85, 247, 0.3);
+  border-color: rgba(168, 85, 247, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ✨ NEW: Highlight Story Starter availability in features */
+.sandboxFeatures .feature:nth-child(2) {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.3) 0%, rgba(46, 125, 50, 0.3) 100%);
+  border: 2px solid #4caf50;
+  color: #a5d6a7;
+  font-weight: 700;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+  }
+}
+
+.sandboxCta {
+  display: inline-block;
+  padding: 1.2rem 2.5rem;
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);
+  margin-bottom: 1.5rem;
+}
+
+.sandboxCta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(168, 85, 247, 0.4);
+}
+
+.sandboxCta:active {
+  transform: translateY(-2px);
+}
+
+.sandboxNote {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-style: italic;
+  margin: 0;
+  position: relative;
+}
+
+/* Workshop Grid */
+.workshopGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.workshopCard {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  padding-bottom: 80px; /* ✨ NEW: Extra space for label + link */
+  transition: all 0.3s ease;
+  position: relative; /* ✨ NEW: For absolute positioning of labels/links */
+}
+
+.workshopCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(14, 165, 233, 0.5);
+  box-shadow: 0 8px 25px rgba(14, 165, 233, 0.2);
+}
+
+/* ✨ NEW: Story Starter card special styling (first card) */
+.workshopCard:first-of-type {
+  border: 2px solid #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.1) 100%);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+.workshopCard:first-of-type:hover {
+  border-color: #667eea;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4);
+}
+
+.workshopCard:first-of-type .cardIcon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3.5rem;
+}
+
+.cardIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.workshopCard h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #0ea5e9;
+  margin-bottom: 0.75rem;
+}
+
+.workshopCard p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+/* ✨ NEW: Try Now links in workshop cards */
+.tryNowLink {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  color: #667eea;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+.tryNowLink:hover {
+  color: #5568d3;
+  text-decoration: underline;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* ✨ NEW: Coming Soon labels */
+.comingSoonLabel {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  color: #000;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+}
+
+/* Progression Path */
+.progressionPath {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.progressionStep {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.progressionStep::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 50px;
+  bottom: -2rem;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(6, 182, 212, 0.5) 0%, rgba(6, 182, 212, 0.1) 100%);
+}
+
+.progressionStep:last-child::before {
+  display: none;
+}
+
+.stepNumber {
+  min-width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+}
+
+.stepContent {
+  flex: 1;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.stepContent h4 {
+  font-size: 1.2rem;
+  color: #06b6d4;
+  margin: 0 0 0.5rem 0;
+}
+
+.stepContent p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.stepLink {
+  color: #06b6d4;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.stepLink:hover {
+  color: #0ea5e9;
+  transform: translateX(4px);
+}
+
+/* Connection Box */
+.connectionSection {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 3rem 0;
+}
+
+.connectionBox h3 {
+  font-size: 1.5rem;
+  color: #a855f7;
+  margin-bottom: 1rem;
+}
+
+.connectionBox p {
+  color: #e2e8f0;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.connectionBox a {
+  color: #a855f7;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.connectionBox a:hover {
+  color: #c084fc;
+}
+
+.journeyText {
+  background: rgba(168, 85, 247, 0.15);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #a855f7;
+  margin-top: 1.5rem;
+}
+
+/* Pathway Grid */
+.pathwayGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.pathwayCard {
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.pathwayCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(6, 182, 212, 0.6);
+  background: rgba(6, 182, 212, 0.15);
+}
+
+.pathwayCard h3 {
+  font-size: 1.2rem;
+  color: #06b6d4;
+  margin-bottom: 0.75rem;
+}
+
+.pathwayCard p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.pathwayLink {
+  color: #06b6d4;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.pathwayLink:hover {
+  color: #0ea5e9;
+  transform: translateX(4px);
+}
+
+/* Library Section */
+.librarySection p {
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.libraryCta,
+.scheduleCta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ctaButton,
+.ctaButtonSecondary {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.ctaButton {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+}
+
+.ctaButtonSecondary {
+  background: transparent;
+  color: #0ea5e9;
+  border: 2px solid #0ea5e9;
+}
+
+.ctaButtonSecondary:hover {
+  background: #0ea5e9;
+  color: white;
+}
+
+/* Mission Section */
+.missionSection {
+  background: rgba(234, 88, 12, 0.1);
+  border: 1px solid rgba(234, 88, 12, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.missionSection p {
+  color: #e2e8f0;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+/* Contact Section */
+.contactSection {
+  text-align: center;
+}
+
+.contactOptions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.contactButton {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.contactButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+}
+
+.phoneNumber {
+  color: #06b6d4;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .workshopGrid,
+  .pathwayGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+
+  .leadText {
+    font-size: 1.1rem;
+  }
+
+  .sandboxCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .sandboxCard::before {
+    display: none;
+  }
+
+  .sandboxIcon {
+    font-size: 3rem;
+  }
+
+  .sandboxTitle {
+    font-size: 2rem;
+  }
+
+  .sandboxDescription {
+    font-size: 1rem;
+  }
+
+  .sandboxFeatures {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .feature {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .sandboxCta {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+
+  .progressionPath {
+    padding-left: 0;
+  }
+
+  .progressionStep {
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 0;
+  }
+
+  .progressionStep::before {
+    left: 24px;
+    top: 50px;
+  }
+
+  .libraryCta,
+  .scheduleCta {
+    flex-direction: column;
+  }
+
+  .ctaButton,
+  .ctaButtonSecondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* ✨ Mobile adjustments for workshop cards */
+  .workshopCard {
+    padding-bottom: 75px;
+  }
+
+  .comingSoonLabel {
+    font-size: 0.7rem;
+    padding: 5px 12px;
+  }
+
+  .tryNowLink {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sandboxCard {
+    padding: 1.5rem 1rem;
+  }
+
+  .sandboxIcon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .sandboxTitle {
+    font-size: 1.75rem;
+  }
+
+  .sandboxDescription {
+    font-size: 0.95rem;
+  }
+
+  .sandboxFeatures {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .workshopCard,
+  .pathwayCard {
+    padding: 1.5rem 1rem;
+  }
+
+  .workshopCard {
+    padding-bottom: 70px;
+  }
+
+  .contactOptions {
+    gap: 0.75rem;
+  }
+
+  .contactButton {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}

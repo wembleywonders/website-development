@@ -1,0 +1,263 @@
+/* src/components/skills/CertificationBadge.css */
+
+.certification-badge {
+  background: #ffffff;
+  border: 3px solid #e1e8ed;
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  min-width: 200px;
+  max-width: 280px;
+}
+
+.certification-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: inherit;
+  transition: all 0.3s ease;
+}
+
+.certification-badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.certification-badge.bronze {
+  border-color: #cd7f32;
+}
+
+.certification-badge.bronze::before {
+  background: linear-gradient(90deg, #cd7f32, #b8691a);
+}
+
+.certification-badge.silver {
+  border-color: #c0c0c0;
+}
+
+.certification-badge.silver::before {
+  background: linear-gradient(90deg, #c0c0c0, #a8a8a8);
+}
+
+.certification-badge.gold {
+  border-color: #ffd700;
+}
+
+.certification-badge.gold::before {
+  background: linear-gradient(90deg, #ffd700, #f1c40f);
+}
+
+.certification-badge.platinum {
+  border-color: #e5e4e2;
+}
+
+.certification-badge.platinum::before {
+  background: linear-gradient(90deg, #e5e4e2, #d5d3d1);
+}
+
+.certification-badge.verified {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fff8 100%);
+}
+
+.certification-badge.pending {
+  background: linear-gradient(145deg, #ffffff 0%, #fffdf8 100%);
+  opacity: 0.8;
+}
+
+.badge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.badge-icon {
+  font-size: 32px;
+  display: block;
+}
+
+.verification-check {
+  background: #27ae60;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.check-mark {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.badge-content {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.badge-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.badge-category {
+  font-size: 12px;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.badge-details {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+  text-align: left;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-row .label {
+  font-size: 12px;
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+.detail-row .value {
+  font-size: 12px;
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: right;
+  max-width: 60%;
+}
+
+.verification-id {
+  font-family: 'Courier New', monospace;
+  font-size: 10px !important;
+  background: #ecf0f1;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.status.verified {
+  color: #27ae60;
+}
+
+.status.pending {
+  color: #f39c12;
+}
+
+.badge-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #ecf0f1;
+  padding-top: 12px;
+  margin-top: 16px;
+}
+
+.badge-level {
+  font-size: 11px;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.earned-date {
+  font-size: 11px;
+  color: #95a5a6;
+  font-weight: 500;
+}
+
+/* Bronze Badge Animation */
+.certification-badge.bronze:hover .badge-icon {
+  animation: bronzeGlow 2s ease-in-out infinite;
+}
+
+@keyframes bronzeGlow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2) drop-shadow(0 0 8px #cd7f32); }
+}
+
+/* Silver Badge Animation */
+.certification-badge.silver:hover .badge-icon {
+  animation: silverGlow 2s ease-in-out infinite;
+}
+
+@keyframes silverGlow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3) drop-shadow(0 0 10px #c0c0c0); }
+}
+
+/* Gold Badge Animation */
+.certification-badge.gold:hover .badge-icon {
+  animation: goldGlow 2s ease-in-out infinite;
+}
+
+@keyframes goldGlow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.4) drop-shadow(0 0 12px #ffd700); }
+}
+
+/* Platinum Badge Animation */
+.certification-badge.platinum:hover .badge-icon {
+  animation: platinumGlow 2s ease-in-out infinite;
+}
+
+@keyframes platinumGlow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2) drop-shadow(0 0 15px #e5e4e2); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .certification-badge {
+    min-width: 160px;
+    max-width: 240px;
+    padding: 16px;
+  }
+  
+  .badge-icon {
+    font-size: 28px;
+  }
+  
+  .badge-name {
+    font-size: 16px;
+  }
+  
+  .verification-check {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .check-mark {
+    font-size: 12px;
+  }
+  
+  .badge-details {
+    padding: 12px;
+  }
+}

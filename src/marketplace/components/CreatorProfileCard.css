@@ -1,0 +1,311 @@
+/**
+ * CREATOR PROFILE CARD STYLES
+ * 
+ * @copyright 2024-2026 Wembley Wonders CIC
+ */
+
+.creator-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.creator-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.creator-card:focus {
+  outline: 2px solid #8B5CF6;
+  outline-offset: 2px;
+}
+
+.creator-card--compact {
+  padding: 16px;
+  gap: 12px;
+}
+
+/* Header */
+.creator-card__header {
+  display: flex;
+  gap: 16px;
+}
+
+.creator-card--compact .creator-card__header {
+  gap: 12px;
+}
+
+/* Avatar */
+.creator-card__avatar-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.creator-card__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #F3F4F6;
+}
+
+.creator-card--compact .creator-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-width: 2px;
+}
+
+.creator-card__verified {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: #10B981;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.creator-card--compact .creator-card__verified {
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+}
+
+/* Header Info */
+.creator-card__header-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.creator-card__name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 4px 0;
+}
+
+.creator-card--compact .creator-card__name {
+  font-size: 16px;
+}
+
+.creator-card__tagline {
+  font-size: 14px;
+  color: #6B7280;
+  margin: 0 0 8px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.creator-card--compact .creator-card__tagline {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.creator-card__location {
+  font-size: 12px;
+  color: #9CA3AF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.creator-card__remote-badge {
+  font-size: 11px;
+  background: #EEF2FF;
+  color: #4F46E5;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Programmes */
+.creator-card__programmes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.creator-card__programme-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.creator-card--compact .creator-card__programme-badge {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+}
+
+/* Combinations */
+.creator-card__combinations {
+  padding: 12px;
+  background: #F9FAFB;
+  border-radius: 8px;
+}
+
+.creator-card__combinations-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6B7280;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.creator-card__combination-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.creator-card__combination-name {
+  font-size: 11px;
+  background: white;
+  color: #4B5563;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #E5E7EB;
+}
+
+.creator-card__combination-more {
+  font-size: 11px;
+  color: #9CA3AF;
+  padding: 4px 8px;
+}
+
+/* Stats */
+.creator-card__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.creator-card--compact .creator-card__stats {
+  gap: 12px;
+}
+
+.creator-card__stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.creator-card__stat-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.creator-card__stat-label {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+.creator-card__stat--collab .creator-card__stat-label {
+  color: #10B981;
+}
+
+/* Footer */
+.creator-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid #F3F4F6;
+  margin-top: auto;
+}
+
+/* Availability */
+.creator-card__availability {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.creator-card__availability--available {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.creator-card__availability--limited {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.creator-card__availability--unavailable {
+  background: #F3F4F6;
+  color: #6B7280;
+}
+
+/* Contact Button */
+.creator-card__contact-btn {
+  padding: 8px 16px;
+  background: #8B5CF6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.creator-card__contact-btn:hover {
+  background: #7C3AED;
+}
+
+.creator-card__contact-btn:active {
+  background: #6D28D9;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .creator-card {
+    padding: 16px;
+  }
+  
+  .creator-card__header {
+    gap: 12px;
+  }
+  
+  .creator-card__avatar {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .creator-card__name {
+    font-size: 16px;
+  }
+  
+  .creator-card__footer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .creator-card__contact-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,778 @@
+/*
+ * G-TECH COMMUNITY PLATFORM IP PROTECTION
+ * Copyright (c) 2024-2026 Wembley Wonders CIC
+ * Company No. 12960817
+ * All rights reserved.
+ */
+
+/**
+ * MayaCompanion Styles
+ * 
+ * Design principles:
+ * - Warm, approachable presence
+ * - Non-intrusive in WITNESS mode
+ * - Clear visual hierarchy
+ * - Consistent with Wembley Wonders brand
+ * - Message type differentiation for community/gatekeeper/push messages
+ */
+
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+
+.mayaCompanion {
+  --maya-primary: #8B5CF6;
+  --maya-primary-light: #A78BFA;
+  --maya-primary-dark: #7C3AED;
+  --maya-bg: #1E1B4B;
+  --maya-bg-light: #312E81;
+  --maya-text: #F5F3FF;
+  --maya-text-muted: #C4B5FD;
+  --maya-border: rgba(139, 92, 246, 0.3);
+  --maya-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  --maya-radius: 16px;
+  --maya-radius-sm: 8px;
+  
+  /* Gold accent for celebrations/ignition */
+  --maya-gold: #F59E0B;
+  --maya-gold-light: #FCD34D;
+  
+  /* Success/insight colors */
+  --maya-insight: #10B981;
+  --maya-insight-light: #34D399;
+  
+  /* Community colors */
+  --maya-community: #06B6D4;
+  --maya-community-light: #22D3EE;
+  
+  /* Gatekeeper bypass colors */
+  --maya-bypass: #F97316;
+  --maya-bypass-light: #FB923C;
+  
+  /* Push/encouragement colors */
+  --maya-push: #EC4899;
+  --maya-push-light: #F472B6;
+  
+  position: fixed;
+  z-index: 1000;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+/* ============================================
+   POSITIONING
+   ============================================ */
+
+.bottom-right {
+  bottom: 24px;
+  right: 24px;
+}
+
+.bottom-left {
+  bottom: 24px;
+  left: 24px;
+}
+
+.top-right {
+  top: 24px;
+  right: 24px;
+}
+
+.top-left {
+  top: 24px;
+  left: 24px;
+}
+
+/* ============================================
+   AVATAR
+   ============================================ */
+
+.avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--maya-primary) 0%, var(--maya-primary-dark) 100%);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.avatar.small {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+}
+
+.avatar.medium {
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+}
+
+.avatar.large {
+  width: 64px;
+  height: 64px;
+  font-size: 32px;
+}
+
+.avatarEmoji {
+  line-height: 1;
+}
+
+.avatar.animated {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(139, 92, 246, 0);
+  }
+}
+
+.unreadDot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background: var(--maya-gold);
+  border-radius: 50%;
+  border: 2px solid var(--maya-bg);
+  animation: unreadPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes unreadPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* ============================================
+   COLLAPSED ICON (WITNESS MODE)
+   ============================================ */
+
+.collapsedIcon {
+  background: var(--maya-bg);
+  border: 1px solid var(--maya-border);
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--maya-shadow);
+}
+
+.collapsedIcon:hover {
+  transform: scale(1.05);
+  border-color: var(--maya-primary);
+}
+
+.collapsedIcon:focus {
+  outline: 2px solid var(--maya-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   FLOATING BUTTON (ACTIVE MODE)
+   ============================================ */
+
+.floatingBtn {
+  background: var(--maya-bg);
+  border: 2px solid var(--maya-primary);
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--maya-shadow);
+}
+
+.floatingBtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 48px rgba(139, 92, 246, 0.4);
+}
+
+.floatingBtn:focus {
+  outline: 2px solid var(--maya-gold);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   INLINE OVERLAY (ACTIVE MODE)
+   ============================================ */
+
+.inlineOverlay {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: var(--maya-bg);
+  border: 1px solid var(--maya-border);
+  border-radius: var(--maya-radius);
+  box-shadow: var(--maya-shadow);
+  max-width: 360px;
+  animation: slideIn 0.3s ease-out;
+}
+
+.inlineOverlay.community-mirror {
+  border-color: var(--maya-community);
+  background: linear-gradient(135deg, var(--maya-bg) 0%, rgba(6, 182, 212, 0.1) 100%);
+}
+
+.inlineOverlay.gatekeeper-bypass {
+  border-color: var(--maya-bypass);
+  background: linear-gradient(135deg, var(--maya-bg) 0%, rgba(249, 115, 22, 0.1) 100%);
+}
+
+.inlineOverlay.ignition {
+  border-color: var(--maya-gold);
+  background: linear-gradient(135deg, var(--maya-bg) 0%, rgba(245, 158, 11, 0.15) 100%);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.inlineContent {
+  flex: 1;
+}
+
+.inlineContent p {
+  margin: 0 0 12px 0;
+  color: var(--maya-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.dismissBtn {
+  background: transparent;
+  border: 1px solid var(--maya-border);
+  color: var(--maya-text-muted);
+  padding: 6px 12px;
+  border-radius: var(--maya-radius-sm);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dismissBtn:hover {
+  background: var(--maya-bg-light);
+  border-color: var(--maya-primary);
+  color: var(--maya-text);
+}
+
+/* ============================================
+   CHAT PANEL
+   ============================================ */
+
+.chatPanel {
+  width: 380px;
+  max-height: 520px;
+  background: var(--maya-bg);
+  border: 1px solid var(--maya-border);
+  border-radius: var(--maya-radius);
+  box-shadow: var(--maya-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: panelIn 0.3s ease-out;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.chatHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--maya-border);
+  background: var(--maya-bg-light);
+}
+
+.chatHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chatHeaderInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatHeaderName {
+  font-weight: 600;
+  color: var(--maya-text);
+  font-size: 15px;
+}
+
+.chatHeaderStatus {
+  font-size: 12px;
+  color: var(--maya-text-muted);
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: var(--maya-text-muted);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--maya-radius-sm);
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--maya-text);
+}
+
+/* ============================================
+   CHAT MESSAGES
+   ============================================ */
+
+.chatMessages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px;
+  text-align: center;
+  color: var(--maya-text-muted);
+}
+
+.emptyState p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============================================
+   MESSAGE BUBBLE
+   ============================================ */
+
+.messageBubble {
+  padding: 12px 16px;
+  border-radius: var(--maya-radius);
+  background: var(--maya-bg-light);
+  position: relative;
+}
+
+.typeLabel {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  font-size: 14px;
+  background: var(--maya-bg);
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+.messageBubble.narration {
+  border-left: 3px solid var(--maya-primary);
+}
+
+.messageBubble.intent {
+  border-left: 3px solid var(--maya-primary-light);
+}
+
+.messageBubble.reflection {
+  border-left: 3px solid var(--maya-gold);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.messageBubble.tradeoff {
+  border-left: 3px solid var(--maya-insight);
+}
+
+.messageBubble.pattern {
+  border-left: 3px solid var(--maya-insight);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.messageBubble.handoff {
+  border-left: 3px solid var(--maya-gold);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+}
+
+.messageBubble.re-entry {
+  border-left: 3px solid var(--maya-insight);
+}
+
+.messageBubble.session-end {
+  border-left: 3px solid var(--maya-text-muted);
+}
+
+/* NEW: Community mirror messages */
+.messageBubble.community-mirror {
+  border-left: 3px solid var(--maya-community);
+  background: rgba(6, 182, 212, 0.1);
+}
+
+/* NEW: Gatekeeper bypass messages */
+.messageBubble.gatekeeper-bypass {
+  border-left: 3px solid var(--maya-bypass);
+  background: rgba(249, 115, 22, 0.1);
+}
+
+/* NEW: Ignition/breakthrough messages */
+.messageBubble.ignition {
+  border-left: 3px solid var(--maya-gold);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(252, 211, 77, 0.1) 100%);
+}
+
+/* NEW: Push/encouragement messages */
+.messageBubble.push {
+  border-left: 3px solid var(--maya-push);
+  background: rgba(236, 72, 153, 0.1);
+}
+
+.messageText {
+  margin: 0;
+  color: var(--maya-text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.messageTime {
+  display: block;
+  font-size: 11px;
+  color: var(--maya-text-muted);
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+/* ============================================
+   RESPONSE BUTTONS
+   ============================================ */
+
+.responseButtons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.responseBtn {
+  padding: 8px 16px;
+  border-radius: var(--maya-radius-sm);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: 1px solid var(--maya-border);
+  color: var(--maya-text-muted);
+}
+
+.responseBtn:hover {
+  background: var(--maya-bg);
+  border-color: var(--maya-primary);
+  color: var(--maya-text);
+}
+
+.responseBtn.primary {
+  background: var(--maya-primary);
+  border-color: var(--maya-primary);
+  color: white;
+}
+
+.responseBtn.primary:hover {
+  background: var(--maya-primary-dark);
+}
+
+.reflectionInput {
+  flex: 1;
+  background: var(--maya-bg);
+  border: 1px solid var(--maya-border);
+  border-radius: var(--maya-radius-sm);
+  padding: 8px 12px;
+  color: var(--maya-text);
+  font-size: 13px;
+}
+
+.reflectionInput:focus {
+  outline: none;
+  border-color: var(--maya-primary);
+}
+
+.reflectionInput::placeholder {
+  color: var(--maya-text-muted);
+}
+
+/* ============================================
+   CHAT INPUT
+   ============================================ */
+
+.chatInput {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid var(--maya-border);
+  background: var(--maya-bg-light);
+}
+
+.input {
+  flex: 1;
+  background: var(--maya-bg);
+  border: 1px solid var(--maya-border);
+  border-radius: var(--maya-radius-sm);
+  padding: 10px 14px;
+  color: var(--maya-text);
+  font-size: 14px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--maya-primary);
+}
+
+.input::placeholder {
+  color: var(--maya-text-muted);
+}
+
+.sendBtn {
+  background: var(--maya-primary);
+  border: none;
+  border-radius: var(--maya-radius-sm);
+  color: white;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sendBtn:hover:not(:disabled) {
+  background: var(--maya-primary-dark);
+}
+
+.sendBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   CONTEXT PANEL (Sidebar)
+   ============================================ */
+
+.contextPanel {
+  background: var(--maya-bg);
+  border: 1px solid var(--maya-border);
+  border-radius: var(--maya-radius-sm);
+  padding: 12px;
+}
+
+.contextHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--maya-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contextHint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--maya-text);
+  line-height: 1.5;
+}
+
+/* ============================================
+   STATUS INDICATOR
+   ============================================ */
+
+.statusIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusMayaBtn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.statusMayaBtn:hover {
+  opacity: 1;
+}
+
+.nextActionBtn {
+  background: var(--maya-primary);
+  border: none;
+  border-radius: var(--maya-radius-sm);
+  color: white;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nextActionBtn:hover {
+  background: var(--maya-primary-dark);
+}
+
+/* ============================================
+   COMMUNITY SPOTLIGHT
+   ============================================ */
+
+.communitySpotlight {
+  background: linear-gradient(135deg, var(--maya-bg) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border: 1px solid var(--maya-community);
+  border-radius: var(--maya-radius-sm);
+  padding: 12px;
+}
+
+.spotlightHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--maya-community);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.spotlightIcon {
+  font-size: 14px;
+}
+
+.spotlightText {
+  margin: 0;
+  font-size: 13px;
+  color: var(--maya-text);
+  line-height: 1.5;
+}
+
+.spotlightText strong {
+  color: var(--maya-community-light);
+}
+
+.spotlightQuote {
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  color: var(--maya-text-muted);
+  font-style: italic;
+  padding-left: 12px;
+  border-left: 2px solid var(--maya-community);
+}
+
+/* ============================================
+   DEV INDICATOR
+   ============================================ */
+
+.devIndicator {
+  position: absolute;
+  bottom: -24px;
+  right: 0;
+  font-size: 10px;
+  color: var(--maya-text-muted);
+  background: var(--maya-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 480px) {
+  .chatPanel {
+    width: calc(100vw - 32px);
+    max-height: calc(100vh - 100px);
+    position: fixed;
+    bottom: 80px;
+    right: 16px;
+    left: 16px;
+  }
+  
+  .inlineOverlay {
+    max-width: calc(100vw - 48px);
+  }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+.chatMessages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatMessages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chatMessages::-webkit-scrollbar-thumb {
+  background: var(--maya-border);
+  border-radius: 3px;
+}
+
+.chatMessages::-webkit-scrollbar-thumb:hover {
+  background: var(--maya-primary);
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar.animated,
+  .unreadDot {
+    animation: none;
+  }
+  
+  .inlineOverlay,
+  .chatPanel {
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .mayaCompanion {
+    --maya-border: rgba(139, 92, 246, 0.6);
+  }
+  
+  .messageBubble {
+    border-left-width: 4px;
+  }
+}

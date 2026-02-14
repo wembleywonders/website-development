@@ -1,0 +1,466 @@
+/**
+ * COLLABORATION FINDER STYLES
+ * 
+ * @copyright 2024-2026 Wembley Wonders CIC
+ */
+
+.collab-finder {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+.collab-finder__header {
+  margin-bottom: 24px;
+}
+
+.collab-finder__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 8px 0;
+}
+
+.collab-finder__subtitle {
+  font-size: 14px;
+  color: #6B7280;
+  margin: 0;
+}
+
+/* Your Skills */
+.collab-finder__your-skills {
+  padding: 16px;
+  background: #F9FAFB;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.collab-finder__your-skills h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6B7280;
+  margin: 0 0 12px 0;
+}
+
+.collab-finder__programme-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.collab-finder__programme-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+}
+
+/* Combinations */
+.collab-finder__combinations {
+  margin-bottom: 24px;
+}
+
+.collab-finder__combinations h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 16px 0;
+}
+
+.collab-finder__combo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.collab-finder__combo-card {
+  padding: 16px;
+  background: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.collab-finder__combo-card:hover {
+  border-color: #8B5CF6;
+}
+
+.collab-finder__combo-card--selected {
+  border-color: #8B5CF6;
+  background: #F5F3FF;
+}
+
+.collab-finder__combo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.collab-finder__combo-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.collab-finder__combo-multiplier {
+  font-size: 12px;
+  font-weight: 600;
+  color: #10B981;
+  background: #D1FAE5;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.collab-finder__combo-programmes {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.collab-finder__mini-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.collab-finder__mini-badge--have {
+  color: white;
+}
+
+.collab-finder__mini-badge--need {
+  background: #F3F4F6;
+  border: 2px dashed #D1D5DB;
+}
+
+.collab-finder__combo-need {
+  font-size: 11px;
+  color: #6B7280;
+}
+
+/* Filters */
+.collab-finder__filters {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.collab-finder__filter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.collab-finder__filter label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6B7280;
+}
+
+.collab-finder__filter input,
+.collab-finder__filter select {
+  padding: 8px 12px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.collab-finder__filter input:focus,
+.collab-finder__filter select:focus {
+  outline: none;
+  border-color: #8B5CF6;
+}
+
+.collab-finder__clear-filter {
+  padding: 8px 12px;
+  background: #FEE2E2;
+  color: #DC2626;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.collab-finder__clear-filter:hover {
+  background: #FECACA;
+}
+
+/* Results */
+.collab-finder__results h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 16px 0;
+}
+
+.collab-finder__empty {
+  text-align: center;
+  padding: 40px;
+  color: #6B7280;
+}
+
+.collab-finder__creator-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Creator Card */
+.collab-finder__creator-card {
+  padding: 20px;
+  background: #F9FAFB;
+  border-radius: 12px;
+  border: 1px solid #E5E7EB;
+}
+
+.collab-finder__creator-main {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.collab-finder__creator-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.collab-finder__creator-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.collab-finder__creator-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.collab-finder__verified {
+  width: 16px;
+  height: 16px;
+  background: #10B981;
+  color: white;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.collab-finder__creator-tagline {
+  font-size: 13px;
+  color: #6B7280;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.collab-finder__creator-location {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin: 0;
+}
+
+.collab-finder__creator-score {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.collab-finder__score-value {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #8B5CF6;
+}
+
+.collab-finder__score-label {
+  font-size: 11px;
+  color: #9CA3AF;
+}
+
+/* Skills */
+.collab-finder__creator-skills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.collab-finder__skills-label {
+  font-size: 12px;
+  color: #6B7280;
+}
+
+.collab-finder__skill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: white;
+}
+
+/* Combos */
+.collab-finder__creator-combos {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.collab-finder__combos-label {
+  font-size: 12px;
+  color: #6B7280;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.collab-finder__combo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.collab-finder__combo-tag {
+  padding: 4px 8px;
+  background: #EEF2FF;
+  color: #4338CA;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.collab-finder__combo-more {
+  padding: 4px 8px;
+  color: #9CA3AF;
+  font-size: 11px;
+}
+
+/* Actions */
+.collab-finder__creator-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid #E5E7EB;
+}
+
+.collab-finder__availability {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.collab-finder__availability--available {
+  color: #10B981;
+}
+
+.collab-finder__availability--limited {
+  color: #F59E0B;
+}
+
+.collab-finder__availability--unavailable {
+  color: #9CA3AF;
+}
+
+.collab-finder__buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.collab-finder__btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.collab-finder__btn--primary {
+  background: #8B5CF6;
+  color: white;
+  border: none;
+}
+
+.collab-finder__btn--primary:hover {
+  background: #7C3AED;
+}
+
+.collab-finder__btn--secondary {
+  background: white;
+  color: #374151;
+  border: 1px solid #D1D5DB;
+}
+
+.collab-finder__btn--secondary:hover {
+  background: #F9FAFB;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .collab-finder__filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .collab-finder__combo-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .collab-finder__creator-main {
+    flex-wrap: wrap;
+  }
+  
+  .collab-finder__creator-score {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .collab-finder__score-value {
+    font-size: 18px;
+  }
+  
+  .collab-finder__creator-actions {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .collab-finder__buttons {
+    width: 100%;
+  }
+  
+  .collab-finder__btn {
+    flex: 1;
+    text-align: center;
+  }
+}

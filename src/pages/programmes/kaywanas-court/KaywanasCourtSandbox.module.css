@@ -1,0 +1,1265 @@
+/* ========================================
+   KAYWANA'S COURT SANDBOX - Complete Styles
+   Heritage Performance Tools for Diaspora Theatre
+   ======================================== */
+
+/* ========================================
+   BASE SANDBOX CONTENT
+   ======================================== */
+
+.sandboxContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Hero Section */
+.heroSection {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  border-radius: 16px;
+  padding: 48px 32px;
+  color: white;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.dedication {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.dedicationTitle {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.dedicationMessage {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  line-height: 1.7;
+}
+
+.dedicationMessage strong {
+  color: #fbbf24;
+}
+
+/* Section Titles */
+.sectionTitle {
+  font-size: 1.75rem;
+  margin-bottom: 20px;
+  color: #a78bfa;
+}
+
+.sectionIntro {
+  color: #a0aec0;
+  margin-bottom: 32px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ========================================
+   HERITAGE TOOLS SECTION
+   ======================================== */
+
+.heritageToolsSection {
+  margin: 2rem 0 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 1rem;
+}
+
+.heritageToolsSection h2 {
+  color: #a78bfa;
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.heritageToolsSection > p {
+  color: #a0aec0;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+}
+
+.heritageToolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.heritageToolCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.heritageToolCard:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+.toolIcon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.heritageToolCard h3 {
+  color: #a78bfa;
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.heritageToolCard > p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.toolFeatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.toolFeatures span {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.25rem;
+}
+
+.toolButton {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toolButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+}
+
+.comingSoonBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 0.3rem 0.6rem;
+  background: #fbbf24;
+  color: #000;
+  border-radius: 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* ========================================
+   HERITAGE PERFORMANCE BUILDER
+   ======================================== */
+
+.heritageBuilder {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.builderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.builderHeader h2 {
+  color: #a78bfa;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.closeButton {
+  padding: 0.6rem 1.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.builderIntro {
+  background: rgba(139, 92, 246, 0.1);
+  border-left: 3px solid #a78bfa;
+  padding: 1rem 1.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin-bottom: 2rem;
+}
+
+.builderIntro p {
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Steps */
+.step {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 2rem;
+}
+
+.step h3 {
+  color: #a78bfa;
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.step > p {
+  color: #a0aec0;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+}
+
+/* Tradition Grid */
+.traditionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.traditionCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.traditionCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.traditionCard.selected {
+  border-color: #a78bfa;
+  background: rgba(139, 92, 246, 0.15);
+}
+
+.traditionFlag {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.traditionCard h4 {
+  color: #fff;
+  font-size: 1rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.traditionRegion {
+  color: #a78bfa;
+  font-size: 0.8rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.traditionDesc {
+  color: #a0aec0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Form Styles */
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #a78bfa;
+}
+
+.formGroup textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.formGroup select {
+  cursor: pointer;
+}
+
+.formGroup select option {
+  background: #1e293b;
+  color: #fff;
+}
+
+.formHint {
+  color: #718096;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #e2e8f0;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Duration Options */
+.durationOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.5rem;
+}
+
+.durationOption {
+  padding: 0.6rem 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  color: #e2e8f0;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.durationOption:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.durationOption.selected {
+  border-color: #a78bfa;
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}
+
+/* Step Buttons */
+.stepButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.nextButton {
+  flex: 1;
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nextButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+}
+
+.nextButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.backButton {
+  padding: 0.85rem 1.5rem;
+  background: transparent;
+  color: #a78bfa;
+  border: 1px solid #a78bfa;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.downloadButton {
+  flex: 1;
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.downloadButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+/* ========================================
+   CONCEPT SUMMARY (Step 3 Result)
+   ======================================== */
+
+.conceptSummary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.conceptHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.conceptFlag {
+  font-size: 3.5rem;
+}
+
+.conceptTitle {
+  flex: 1;
+}
+
+.conceptTitle h4 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.conceptTitle p {
+  color: #a78bfa;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.conceptDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.conceptRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.conceptLabel {
+  color: #718096;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.conceptValue {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.traditionElements {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.traditionElements h5 {
+  color: #a78bfa;
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.traditionElements ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.venueInfo {
+  margin-bottom: 1.25rem;
+}
+
+.venueInfo h5 {
+  color: #fff;
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.venueInfo p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.5;
+}
+
+.notesSection {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+}
+
+.notesSection h5 {
+  color: #fff;
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.notesSection p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  margin: 0;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.conceptActions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Next Steps Box */
+.nextSteps {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.nextSteps h4 {
+  color: #10b981;
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.nextSteps p {
+  color: #a0aec0;
+  font-size: 0.95rem;
+  margin: 0 0 1rem 0;
+  line-height: 1.6;
+}
+
+.joinLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.joinLink:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+/* ========================================
+   ANANSI STORY ADAPTER
+   ======================================== */
+
+.oralAdapter {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.adapterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.adapterHeader h2 {
+  color: #ffd700;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.adapterIntro {
+  color: #e2e8f0;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 215, 0, 0.1);
+  border-left: 3px solid #ffd700;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+/* Story Grid */
+.storyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.storyCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.storyCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.storyCard.selected {
+  border-color: #ffd700;
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.storyCard h4 {
+  color: #fff;
+  font-size: 1.05rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.storySource {
+  color: #ffd700;
+  font-size: 0.8rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.storySummary {
+  color: #a0aec0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 0 0.75rem 0;
+}
+
+.storyThemes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.themeTag {
+  background: rgba(255, 215, 0, 0.15);
+  color: #ffd700;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Story Detail View */
+.storyDetail {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.storyDetailHeader {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.storyDetailHeader h3 {
+  color: #ffd700;
+  font-size: 1.35rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.storyDetailHeader p {
+  color: #a0aec0;
+  margin: 0;
+}
+
+.storyDetailContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.storySection h4 {
+  color: #fff;
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.storySection p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.storySection ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #a0aec0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Staging Tips */
+.stagingTip {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stagingTip h4 {
+  color: #a78bfa;
+  font-size: 1rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.stagingTip p {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Adaptation Form */
+.adaptationForm {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 2rem;
+}
+
+.adaptationForm h3 {
+  color: #ffd700;
+  font-size: 1.25rem;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Adaptation Summary */
+.adaptationSummary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.adaptationHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.adaptationIcon {
+  font-size: 3rem;
+}
+
+.adaptationTitle h4 {
+  color: #ffd700;
+  font-size: 1.5rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.adaptationTitle p {
+  color: #a0aec0;
+  margin: 0;
+}
+
+.adaptationDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.adaptationRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.adaptationLabel {
+  color: #718096;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.adaptationValue {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.adaptationNotes {
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.adaptationNotes h5 {
+  color: #ffd700;
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.adaptationNotes ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ========================================
+   PIONEERS SECTION
+   ======================================== */
+
+.pioneersSection {
+  margin: 2rem 0;
+}
+
+.pioneersSection h3 {
+  color: #ffd700;
+  font-size: 1.25rem;
+  margin: 0 0 1rem 0;
+}
+
+.pioneers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.pioneer {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+}
+
+.pioneer strong {
+  display: block;
+  color: #ffd700;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.pioneer p {
+  color: #a0aec0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ========================================
+   COMING SOON TOOLS SECTION
+   ======================================== */
+
+.comingSoonSection {
+  margin: 3rem 0;
+}
+
+.comingSoonSection h2 {
+  color: #a78bfa;
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+}
+
+.comingSoonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.comingSoonCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.comingSoonIcon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.comingSoonCard h3 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.comingSoonCard p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+
+.ctaSection {
+  margin: 3rem 0;
+}
+
+.ctaCard {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  text-align: center;
+  color: white;
+}
+
+.ctaCard h2 {
+  font-size: 1.75rem;
+  margin: 0 0 1rem 0;
+}
+
+.ctaCard > p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.95;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.ctaPrimary {
+  background: white;
+  color: #7c3aed;
+}
+
+.ctaPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.ctaSecondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+}
+
+.ctaSecondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.slidingScale {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-top: 1rem;
+}
+
+/* ========================================
+   BACK SECTION
+   ======================================== */
+
+.backSection {
+  text-align: center;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.backLink {
+  color: #a78bfa;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: #8b5cf6;
+}
+
+/* ========================================
+   ACTIVITY SECTIONS (Legacy Support)
+   ======================================== */
+
+.activitySection {
+  margin-bottom: 40px;
+}
+
+.activityCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+}
+
+.activityIcon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.activityCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.activityCard p {
+  color: #a0aec0;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.activityButton {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.activityButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+}
+
+/* ========================================
+   MISSION SECTION
+   ======================================== */
+
+.missionSection {
+  margin-bottom: 48px;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.missionContent p {
+  line-height: 1.8;
+  color: #a0aec0;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.missionContent p:last-child {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+  .sandboxContent {
+    padding: 16px;
+  }
+
+  .heroSection {
+    padding: 32px 20px;
+  }
+
+  .dedicationTitle {
+    font-size: 1.5rem;
+  }
+
+  .heritageBuilder,
+  .oralAdapter {
+    padding: 1rem;
+  }
+
+  .builderHeader,
+  .adapterHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .builderHeader h2,
+  .adapterHeader h2 {
+    font-size: 1.5rem;
+  }
+
+  .step {
+    padding: 1.5rem;
+  }
+
+  .traditionGrid,
+  .storyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .conceptHeader,
+  .adaptationHeader {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .conceptDetails,
+  .adaptationDetails {
+    grid-template-columns: 1fr;
+  }
+
+  .stepButtons,
+  .conceptActions {
+    flex-direction: column;
+  }
+
+  .nextButton,
+  .backButton,
+  .downloadButton {
+    width: 100%;
+  }
+
+  .pioneers {
+    grid-template-columns: 1fr;
+  }
+
+  .heritageToolsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .comingSoonGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  .durationOptions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .durationOptions {
+    grid-template-columns: 1fr;
+  }
+
+  .storyThemes {
+    justify-content: flex-start;
+  }
+
+  .toolFeatures {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

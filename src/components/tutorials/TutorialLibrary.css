@@ -1,0 +1,902 @@
+/* ========================================
+   TUTORIAL LIBRARY - STEMgeneers
+   ======================================== */
+
+.tutorial-library {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Library Header */
+.library-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.library-header h2 {
+  color: #10b981;
+  font-size: 2rem;
+  margin: 0 0 12px 0;
+}
+
+.library-header p {
+  color: #a0aec0;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Pathway Filters */
+.pathway-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #a0aec0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #e2e8f0;
+}
+
+.filter-btn.active {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.filter-btn.devices.active {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: #8b5cf6;
+  color: #8b5cf6;
+}
+
+.filter-btn.mobility.active {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.filter-btn.hometech.active {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+/* Tutorial Sections */
+.tutorial-section {
+  margin-bottom: 48px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin: 0 0 8px 0;
+}
+
+.section-title.free {
+  color: #10b981;
+}
+
+.section-title.members {
+  color: #fbbf24;
+}
+
+.section-description {
+  color: #94a3b8;
+  margin: 0 0 24px 0;
+}
+
+/* Tutorial Grid */
+.tutorial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Tutorial Card */
+.tutorial-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tutorial-card:hover:not(.locked) {
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
+}
+
+.tutorial-card.locked {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.tutorial-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.tutorial-icon {
+  font-size: 2.5rem;
+}
+
+.free-badge {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.members-badge {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.tutorial-card h3 {
+  color: #fff;
+  font-size: 1.15rem;
+  margin: 0 0 8px 0;
+}
+
+.tutorial-card p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+.tutorial-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.pathway-tag {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.difficulty-tag {
+  background: rgba(255, 255, 255, 0.1);
+  color: #a0aec0;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.duration-tag {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.start-tutorial-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.start-tutorial-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.unlock-btn {
+  width: 100%;
+  padding: 12px;
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.unlock-btn:hover {
+  background: rgba(251, 191, 36, 0.2);
+}
+
+/* ========================================
+   TUTORIAL VIEWER
+   ======================================== */
+
+.tutorial-viewer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.tutorial-viewer-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.back-btn {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  min-width: 200px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #059669);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  color: #10b981;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tutorial-viewer-content {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 32px;
+}
+
+/* Main Content */
+.tutorial-main {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.tutorial-title-section {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.tutorial-icon-large {
+  font-size: 4rem;
+}
+
+.tutorial-title-section h1 {
+  color: #fff;
+  font-size: 1.75rem;
+  margin: 0 0 8px 0;
+}
+
+.tutorial-description {
+  color: #a0aec0;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Video Placeholder */
+.video-placeholder {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.video-inner {
+  text-align: center;
+}
+
+.video-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.video-placeholder p {
+  color: #a0aec0;
+  margin: 0;
+}
+
+.video-note {
+  color: #64748b !important;
+  font-size: 0.85rem !important;
+  margin-top: 8px !important;
+}
+
+/* Step Navigation */
+.step-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.step-nav-btn {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #a0aec0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.step-nav-btn:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.step-nav-btn.active {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.step-nav-btn.completed {
+  background: #10b981;
+  border-color: #10b981;
+  color: white;
+}
+
+/* Step Content */
+.step-content {
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.step-header {
+  margin-bottom: 16px;
+}
+
+.step-number {
+  display: inline-block;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.step-header h2 {
+  color: #fff;
+  font-size: 1.35rem;
+  margin: 0;
+}
+
+.step-description {
+  color: #e2e8f0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 20px 0;
+}
+
+.step-tip {
+  background: rgba(139, 92, 246, 0.1);
+  border-left: 3px solid #8b5cf6;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 16px;
+}
+
+.step-tip span {
+  color: #a78bfa;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.step-tip p {
+  color: #e2e8f0;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.step-warning {
+  background: rgba(239, 68, 68, 0.1);
+  border-left: 3px solid #ef4444;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 16px;
+}
+
+.step-warning span {
+  color: #f87171;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.step-warning p {
+  color: #e2e8f0;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.step-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.mark-complete-btn {
+  padding: 12px 24px;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  border-radius: 8px;
+  color: #10b981;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mark-complete-btn:hover:not(:disabled) {
+  background: rgba(16, 185, 129, 0.3);
+}
+
+.mark-complete-btn:disabled {
+  background: #10b981;
+  color: white;
+  cursor: default;
+}
+
+.next-step-btn {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.next-step-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Common Mistakes */
+.common-mistakes {
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.common-mistakes h3 {
+  color: #f87171;
+  margin: 0 0 16px 0;
+}
+
+.common-mistakes ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #e2e8f0;
+  line-height: 1.8;
+}
+
+.common-mistakes li {
+  margin-bottom: 8px;
+}
+
+/* ========================================
+   SIDEBAR
+   ======================================== */
+
+.tutorial-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Tools Section */
+.tools-section {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.tools-section h3 {
+  color: #10b981;
+  margin: 0 0 16px 0;
+  font-size: 1.1rem;
+}
+
+.tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tool-item {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.tool-item.essential {
+  border-left: 3px solid #10b981;
+}
+
+.tool-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.tool-name {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.tool-price {
+  color: #10b981;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.essential-badge {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  margin-bottom: 6px;
+}
+
+.cyberstore-link {
+  display: block;
+  color: #8b5cf6;
+  font-size: 0.8rem;
+  text-decoration: none;
+  margin-top: 6px;
+}
+
+.cyberstore-link:hover {
+  text-decoration: underline;
+}
+
+/* Kit Upsell */
+.kit-upsell {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.kit-upsell h3 {
+  color: #a78bfa;
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.kit-upsell > p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  margin: 0 0 16px 0;
+}
+
+.kit-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.kit-card strong {
+  display: block;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.kit-price {
+  display: block;
+  color: #a78bfa;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.kit-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.kit-link:hover {
+  transform: translateY(-1px);
+}
+
+/* Workshop Upsell */
+.workshop-upsell {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(251, 191, 36, 0.05));
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.workshop-upsell h3 {
+  color: #fbbf24;
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.workshop-upsell > p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  margin: 0 0 16px 0;
+}
+
+.workshop-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.workshop-card strong {
+  display: block;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.workshop-price {
+  display: block;
+  color: #fbbf24;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.workshop-card p {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin: 0 0 12px 0;
+}
+
+.workshop-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  color: #000;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.workshop-link:hover {
+  transform: translateY(-1px);
+}
+
+/* Next Tutorial */
+.next-tutorial {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.next-tutorial h3 {
+  color: #10b981;
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.next-tutorial > p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  margin: 0 0 12px 0;
+}
+
+.next-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.next-card span:first-child {
+  font-size: 2rem;
+}
+
+.next-card strong {
+  display: block;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.next-difficulty {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+/* ========================================
+   MEMBERSHIP CTA
+   ======================================== */
+
+.membership-cta {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  margin-top: 48px;
+}
+
+.membership-cta h3 {
+  color: #10b981;
+  font-size: 1.5rem;
+  margin: 0 0 12px 0;
+}
+
+.membership-cta > .cta-content > p {
+  color: #a0aec0;
+  max-width: 500px;
+  margin: 0 auto 24px;
+  line-height: 1.6;
+}
+
+.cta-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.cta-features span {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+}
+
+.membership-btn {
+  display: inline-block;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+}
+
+.membership-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+}
+
+.sliding-scale {
+  color: #10b981;
+  font-size: 0.9rem;
+  margin-top: 16px;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .tutorial-viewer-content {
+    grid-template-columns: 1fr;
+  }
+
+  .tutorial-sidebar {
+    order: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .tutorial-library {
+    padding: 16px;
+  }
+
+  .pathway-filters {
+    flex-direction: column;
+  }
+
+  .filter-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .tutorial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tutorial-viewer-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .progress-bar {
+    order: 1;
+    width: 100%;
+  }
+
+  .tutorial-title-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .step-actions {
+    flex-direction: column;
+  }
+
+  .membership-cta {
+    padding: 24px;
+  }
+
+  .cta-features {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,0 +1,200 @@
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useMayaStore } from '../../stores/mayaStore';
+import './Header.css';
+
+const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const { isVisitorGuideActive, toggleVisitorGuide } = useMayaStore();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
+
+  return (
+    <header>
+      <div className="header-container">
+        <div className="header-brand">
+          <Link to="/" className="brand-link">
+            <span className="brand-icon">🏆</span>
+            <span className="brand-text">Wembley Wonders</span>
+          </Link>
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className="desktop-nav">
+          <ul className="nav-list">
+            <li>
+              <Link 
+                to="/about" 
+                className={`nav-link ${isActive('/about') ? 'active' : ''}`}
+              >
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/get-started" 
+                className={`nav-link ${isActive('/get-started') ? 'active' : ''}`}
+              >
+                Get Started
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/programmes" 
+                className={`nav-link ${isActive('/programmes') ? 'active' : ''}`}
+              >
+                Programmes
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/calendar" 
+                className={`nav-link ${isActive('/calendar') ? 'active' : ''}`}
+              >
+                Community Calendar
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/shop" 
+                className={`nav-link shop-link ${isActive('/shop') ? 'active' : ''}`}
+              >
+                <span className="shop-icon">🛍️</span>
+                Shop
+              </Link>
+            </li>
+            <li>
+              <button 
+                className={`maya-header-toggle ${isVisitorGuideActive ? 'active' : ''}`}
+                onClick={toggleVisitorGuide}
+                aria-label="Toggle Maya AI Assistant"
+              >
+                <span className="maya-icon maya-sparkle">✨</span>
+                Maya
+              </button>
+            </li>
+            <li>
+              <Link 
+                to="/membership" 
+                className={`nav-link ${isActive('/membership') ? 'active' : ''}`}
+              >
+                Membership
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/workshops" 
+                className={`nav-link ${isActive('/workshops') ? 'active' : ''}`}
+              >
+                Workshops
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="mobile-menu-toggle"
+          onClick={toggleMenu}
+          aria-label="Toggle mobile menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {/* Mobile Navigation */}
+        <nav className={`mobile-nav ${isMenuOpen ? 'open' : ''}`}>
+          <ul className="mobile-nav-list">
+            <li>
+              <Link 
+                to="/about" 
+                className={`nav-link ${isActive('/about') ? 'active' : ''}`}
+                onClick={toggleMenu}
+              >
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/get-started" 
+                className={`nav-link ${isActive('/get-started') ? 'active' : ''}`}
+                onClick={toggleMenu}
+              >
+                Get Started
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/programmes" 
+                className={`nav-link ${isActive('/programmes') ? 'active' : ''}`}
+                onClick={toggleMenu}
+              >
+                Programmes
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/calendar" 
+                className={`nav-link ${isActive('/calendar') ? 'active' : ''}`}
+                onClick={toggleMenu}
+              >
+                Community Calendar
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/shop" 
+                className={`nav-link shop-link ${isActive('/shop') ? 'active' : ''}`}
+                onClick={toggleMenu}
+              >
+                <span className="shop-icon">🛍️</span>
+                Shop
+              </Link>
+            </li>
+            <li>
+              <button 
+                className={`maya-header-toggle ${isVisitorGuideActive ? 'active' : ''}`}
+                onClick={() => {
+                  toggleVisitorGuide();
+                  toggleMenu();
+                }}
+                aria-label="Toggle Maya AI Assistant"
+              >
+                <span className="maya-icon maya-sparkle">✨</span>
+                Maya
+              </button>
+            </li>
+            <li>
+              <Link 
+                to="/membership" 
+                className={`nav-link ${isActive('/membership') ? 'active' : ''}`}
+                onClick={toggleMenu}
+              >
+                Membership
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/workshops" 
+                className={`nav-link ${isActive('/workshops') ? 'active' : ''}`}
+                onClick={toggleMenu}
+              >
+                Workshops
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  );
+};
+
+export default Header;

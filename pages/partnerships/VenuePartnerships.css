@@ -1,0 +1,760 @@
+/**
+ * VENUE PARTNERSHIPS STYLES
+ * 
+ * Practical, clear, information-dense.
+ * This is infrastructure documentation, not marketing.
+ */
+
+.venue-partnerships {
+  --vp-bg: #1a1a2e;
+  --vp-card: rgba(255, 255, 255, 0.05);
+  --vp-border: rgba(255, 255, 255, 0.1);
+  --vp-text: #ffffff;
+  --vp-text-muted: rgba(255, 255, 255, 0.7);
+  --vp-accent: #10b981;
+  --vp-secondary: #6366f1;
+  --vp-warning: #f59e0b;
+  --vp-community: #22c55e;
+  --vp-commercial: #3b82f6;
+  --vp-council: #a855f7;
+  --vp-partner: #ec4899;
+  
+  background: var(--vp-bg);
+  color: var(--vp-text);
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.venue-partnerships__header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.venue-partnerships__header h1 {
+  font-size: 36px;
+  margin: 0 0 16px;
+}
+
+.venue-partnerships__header p {
+  font-size: 18px;
+  color: var(--vp-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================================
+   REALITY CHECK SECTION
+   ============================================================ */
+
+.venue-partnerships__reality {
+  max-width: 1000px;
+  margin: 0 auto 48px;
+}
+
+.venue-partnerships__reality h2 {
+  text-align: center;
+  margin: 0 0 24px;
+  font-size: 24px;
+}
+
+.reality-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.reality-card {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.reality-card h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: var(--vp-warning);
+}
+
+.reality-card p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--vp-text-muted);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   COMPARISON TABLE
+   ============================================================ */
+
+.venue-partnerships__comparison {
+  max-width: 900px;
+  margin: 0 auto 48px;
+}
+
+.venue-partnerships__comparison h2 {
+  text-align: center;
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.venue-partnerships__comparison > p {
+  text-align: center;
+  color: var(--vp-text-muted);
+  margin: 0 0 24px;
+}
+
+.comparison-table {
+  background: var(--vp-card);
+  border: 1px solid var(--vp-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.comparison-header {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  background: rgba(255, 255, 255, 0.05);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  border-top: 1px solid var(--vp-border);
+}
+
+.comparison-cell {
+  padding: 14px 16px;
+  font-size: 13px;
+}
+
+.comparison-cell--label {
+  font-weight: 600;
+  color: var(--vp-text);
+}
+
+.comparison-row .comparison-cell:not(.comparison-cell--label) {
+  color: var(--vp-text-muted);
+}
+
+/* ============================================================
+   FILTERS
+   ============================================================ */
+
+.venue-partnerships__filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  color: var(--vp-text-muted);
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.venue-partnerships__filters button {
+  padding: 10px 18px;
+  background: var(--vp-card);
+  border: 1px solid var(--vp-border);
+  border-radius: 8px;
+  color: var(--vp-text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.venue-partnerships__filters button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--vp-text);
+}
+
+.venue-partnerships__filters button.active {
+  background: var(--vp-accent);
+  border-color: var(--vp-accent);
+  color: white;
+}
+
+/* ============================================================
+   VENUE GRID
+   ============================================================ */
+
+.venue-partnerships__venues {
+  max-width: 1100px;
+  margin: 0 auto 48px;
+}
+
+.venues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.venue-card {
+  background: var(--vp-card);
+  border: 1px solid var(--vp-border);
+  border-radius: 14px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.venue-card:hover {
+  transform: translateY(-4px);
+}
+
+.venue-card--community:hover {
+  border-color: var(--vp-community);
+}
+
+.venue-card--commercial:hover {
+  border-color: var(--vp-commercial);
+}
+
+.venue-card--council:hover {
+  border-color: var(--vp-council);
+}
+
+.venue-card--partner:hover {
+  border-color: var(--vp-partner);
+}
+
+.venue-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.venue-card__header .venue-type {
+  font-size: 28px;
+}
+
+.venue-card__header h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.venue-card__description {
+  margin: 0 0 16px;
+  color: var(--vp-text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.venue-card__quick-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.venue-card__quick-facts .fact {
+  font-size: 13px;
+  color: var(--vp-text-muted);
+}
+
+.venue-card__best-for {
+  font-size: 13px;
+  color: var(--vp-text-muted);
+  margin-bottom: 16px;
+}
+
+.venue-card__best-for strong {
+  color: var(--vp-text);
+}
+
+.venue-card__details {
+  width: 100%;
+  padding: 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 8px;
+  color: var(--vp-accent);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.venue-card__details:hover {
+  background: rgba(16, 185, 129, 0.2);
+}
+
+/* ============================================================
+   VENUE MODAL
+   ============================================================ */
+
+.venue-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 1000;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+
+.venue-modal__content {
+  background: var(--vp-bg);
+  border: 1px solid var(--vp-border);
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 700px;
+  width: 100%;
+  position: relative;
+  margin: auto 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background: var(--vp-card);
+  border: 1px solid var(--vp-border);
+  border-radius: 50%;
+  color: var(--vp-text);
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.venue-detail__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.venue-type-large {
+  font-size: 48px;
+}
+
+.venue-detail__header h2 {
+  margin: 0 0 4px;
+  font-size: 28px;
+}
+
+.venue-detail__header .address {
+  margin: 0;
+  color: var(--vp-text-muted);
+  font-size: 14px;
+}
+
+.venue-detail__description {
+  margin: 0 0 24px;
+  color: var(--vp-text-muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Real Talk Section */
+.venue-detail__real-talk {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.venue-detail__real-talk h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: var(--vp-warning);
+}
+
+.venue-detail__real-talk p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--vp-text);
+}
+
+/* Sections */
+.venue-detail__section {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--vp-border);
+}
+
+.venue-detail__section:last-of-type {
+  border-bottom: none;
+}
+
+.venue-detail__section h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.venue-detail__section h4 {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+/* Capacity Grid */
+.capacity-grid {
+  display: flex;
+  gap: 24px;
+}
+
+.capacity-item {
+  text-align: center;
+}
+
+.capacity-item .number {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--vp-accent);
+}
+
+.capacity-item .label {
+  font-size: 13px;
+  color: var(--vp-text-muted);
+}
+
+/* Pricing */
+.pricing-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.price-tag {
+  padding: 6px 14px;
+  background: var(--vp-card);
+  border: 1px solid var(--vp-border);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.price-tag--free {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+.price-tag--ww {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: var(--vp-accent);
+}
+
+.price-tag--deposit {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+}
+
+.pricing-notes {
+  margin: 0;
+  font-size: 13px;
+  color: var(--vp-text-muted);
+  font-style: italic;
+}
+
+/* Facilities List */
+.facilities-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.facilities-list li {
+  font-size: 14px;
+  color: var(--vp-text-muted);
+  padding-left: 20px;
+  position: relative;
+}
+
+.facilities-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--vp-accent);
+}
+
+/* Accessibility Grid */
+.accessibility-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.accessibility-grid span {
+  font-size: 13px;
+  padding: 8px 12px;
+  background: var(--vp-card);
+  border-radius: 6px;
+}
+
+.accessibility-grid span.yes {
+  background: rgba(34, 197, 94, 0.1);
+  color: #4ade80;
+}
+
+.accessibility-grid span.no {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
+
+.transport-info {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--vp-text-muted);
+}
+
+.accessibility-notes {
+  margin: 0;
+  font-size: 13px;
+  color: var(--vp-text-muted);
+  font-style: italic;
+}
+
+/* Suitability Columns */
+.venue-detail__suitability {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.suitability-column ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.suitability-column li {
+  font-size: 14px;
+  color: var(--vp-text-muted);
+  margin-bottom: 6px;
+}
+
+/* Relationship */
+.venue-detail__relationship {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  border-bottom: none;
+}
+
+.venue-detail__relationship h3 {
+  color: #a5b4fc;
+}
+
+.venue-detail__relationship p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Actions */
+.venue-detail__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.action-primary {
+  flex: 1;
+  padding: 14px 24px;
+  background: var(--vp-accent);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.action-primary:hover {
+  background: #059669;
+}
+
+.action-secondary {
+  padding: 14px 24px;
+  background: transparent;
+  border: 1px solid var(--vp-border);
+  border-radius: 10px;
+  color: var(--vp-text);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.action-secondary:hover {
+  background: var(--vp-card);
+}
+
+/* ============================================================
+   HELP SECTION
+   ============================================================ */
+
+.venue-partnerships__help {
+  max-width: 1000px;
+  margin: 0 auto 48px;
+}
+
+.venue-partnerships__help h2 {
+  text-align: center;
+  margin: 0 0 24px;
+  font-size: 24px;
+}
+
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.help-card {
+  background: var(--vp-card);
+  border: 1px solid var(--vp-border);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+}
+
+.help-card .icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.help-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.help-card p {
+  margin: 0;
+  color: var(--vp-text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.venue-partnerships__footer {
+  text-align: center;
+  padding-top: 32px;
+  border-top: 1px solid var(--vp-border);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.venue-partnerships__footer p {
+  margin: 0 0 8px;
+  color: var(--vp-text-muted);
+  font-size: 14px;
+}
+
+.company-info {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .venue-partnerships {
+    padding: 24px 16px;
+  }
+  
+  .venue-partnerships__header h1 {
+    font-size: 28px;
+  }
+  
+  .comparison-header,
+  .comparison-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .comparison-header .comparison-cell:first-child,
+  .comparison-row .comparison-cell:first-child {
+    display: none;
+  }
+  
+  .comparison-header .comparison-cell:not(:first-child)::before,
+  .comparison-row .comparison-cell:not(:first-child)::before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+  }
+  
+  .venues-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .venue-modal__content {
+    padding: 24px 20px;
+  }
+  
+  .venue-detail__suitability {
+    grid-template-columns: 1fr;
+  }
+  
+  .facilities-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .venue-detail__actions {
+    flex-direction: column;
+  }
+  
+  .capacity-grid {
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 480px) {
+  .venue-partnerships__filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-label {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  .venue-partnerships__filters button {
+    width: 100%;
+  }
+  
+  .reality-grid,
+  .help-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .accessibility-grid {
+    grid-template-columns: 1fr;
+  }
+}

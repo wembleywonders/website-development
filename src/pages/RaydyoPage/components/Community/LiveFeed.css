@@ -1,0 +1,255 @@
+/* Live Feed */
+.live-feed {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.live-feed.offline {
+  height: auto;
+}
+
+.feed-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.feed-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status.live {
+  background: rgba(255, 71, 87, 0.1);
+  color: #ff4757;
+  border: 1px solid rgba(255, 71, 87, 0.3);
+}
+
+.status.offline {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background: #ff4757;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.feed-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  scroll-behavior: smooth;
+}
+
+.feed-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.feed-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+}
+
+.feed-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.feed-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.feed-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.feed-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.feed-item.join {
+  border-left: 3px solid #4ecdc4;
+}
+
+.feed-item.reaction {
+  border-left: 3px solid #ff6b6b;
+}
+
+.feed-item.comment {
+  border-left: 3px solid #ffe66d;
+}
+
+.feed-item.request {
+  border-left: 3px solid #a8e6cf;
+}
+
+.item-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 2px;
+}
+
+.item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  word-wrap: break-word;
+}
+
+.item-text strong {
+  color: white;
+  font-weight: 600;
+}
+
+.item-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+}
+
+.comment-form {
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  gap: 8px;
+}
+
+.comment-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.comment-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.comment-input:focus {
+  border-color: #4ecdc4;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.send-btn {
+  background: linear-gradient(135deg, #4ecdc4, #44a08d);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.send-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+}
+
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.offline-message {
+  text-align: center;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.offline-message svg {
+  margin-bottom: 16px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.offline-message p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .live-feed {
+    height: 300px;
+  }
+  
+  .feed-header {
+    padding: 12px 16px;
+  }
+  
+  .feed-content {
+    padding: 8px;
+  }
+  
+  .comment-form {
+    padding: 8px 12px;
+  }
+  
+  .comment-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .live-dot {
+    animation: none;
+  }
+  
+  .send-btn:hover {
+    transform: none;
+  }
+}

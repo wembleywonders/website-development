@@ -1,0 +1,718 @@
+/* src/pages/CalendarPage.css */
+/* UPDATED: Opportunities-focused calendar for insecure workers */
+
+.calendar-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ========================================
+   VIEW CONTROLS
+   ======================================== */
+
+.view-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 12px;
+  width: fit-content;
+}
+
+.view-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-btn:hover {
+  color: #cbd5e1;
+  background: rgba(148, 163, 184, 0.1);
+}
+
+.view-btn.active {
+  background: rgba(34, 197, 94, 0.2);
+  color: #6ee7b7;
+}
+
+.view-btn .btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ========================================
+   FILTER BAR
+   ======================================== */
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.filter-icon {
+  width: 20px;
+  height: 20px;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.filter-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 20px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  border-color: rgba(148, 163, 184, 0.4);
+  color: #cbd5e1;
+}
+
+.filter-btn.active {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #6ee7b7;
+}
+
+/* ========================================
+   URGENT BANNER
+   ======================================== */
+
+.urgent-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.urgent-icon {
+  font-size: 1rem;
+}
+
+.urgent-text {
+  color: #fca5a5;
+  font-size: 0.95rem;
+}
+
+.urgent-text strong {
+  color: #f87171;
+}
+
+/* ========================================
+   OPPORTUNITIES GRID
+   ======================================== */
+
+.opportunities-section {
+  margin-bottom: 3rem;
+}
+
+.opportunities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.opportunity-card {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.opportunity-card:hover {
+  border-color: rgba(34, 197, 94, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.opportunity-card.urgent {
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.opportunity-card.gig {
+  border-left: 4px solid #22c55e;
+}
+
+.opportunity-card.production-role {
+  border-left: 4px solid #8b5cf6;
+}
+
+.opportunity-card.workshop {
+  border-left: 4px solid #f59e0b;
+}
+
+.opportunity-card.session {
+  border-left: 4px solid #3b82f6;
+}
+
+.opportunity-card.drop-in {
+  border-left: 4px solid #06b6d4;
+}
+
+/* Card Header */
+.opp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.opp-type {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.type-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.urgency-badge {
+  padding: 0.2rem 0.5rem;
+  background: rgba(239, 68, 68, 0.2);
+  border-radius: 4px;
+  color: #f87171;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.opp-title {
+  color: #e2e8f0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.opp-description {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+}
+
+/* Card Details */
+.opp-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.detail-icon {
+  width: 14px;
+  height: 14px;
+  color: #64748b;
+}
+
+.location-tag {
+  padding: 0.15rem 0.4rem;
+  background: rgba(148, 163, 184, 0.15);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.flexibility-tag {
+  padding: 0.15rem 0.4rem;
+  background: rgba(34, 197, 94, 0.15);
+  border-radius: 4px;
+  color: #6ee7b7;
+  font-size: 0.75rem;
+}
+
+/* Compensation */
+.opp-compensation {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.6rem 0.85rem;
+  background: rgba(34, 197, 94, 0.15);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.comp-icon {
+  width: 16px;
+  height: 16px;
+  color: #22c55e;
+}
+
+.opp-compensation span {
+  color: #6ee7b7;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Skills */
+.opp-skills {
+  margin-bottom: 0.75rem;
+}
+
+.opp-skills.no-skills {
+  margin-bottom: 1rem;
+}
+
+.skills-label {
+  display: block;
+  color: #64748b;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.skill-tag {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.skill-tag.needed {
+  background: rgba(148, 163, 184, 0.15);
+  color: #cbd5e1;
+}
+
+.skill-tag.gain {
+  background: rgba(34, 197, 94, 0.15);
+  color: #6ee7b7;
+}
+
+.no-skills-badge {
+  display: inline-block;
+  padding: 0.35rem 0.6rem;
+  background: rgba(34, 197, 94, 0.15);
+  border-radius: 6px;
+  color: #6ee7b7;
+  font-size: 0.85rem;
+}
+
+/* Exit Pathways */
+.opp-exit {
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 6px;
+}
+
+.exit-label {
+  color: #a5b4fc;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.exit-paths {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  margin-left: 0.25rem;
+}
+
+/* Card Footer */
+.opp-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.spots-left {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.apply-btn {
+  padding: 0.6rem 1.25rem;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.apply-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+/* ========================================
+   PRODUCTIONS SECTION
+   ======================================== */
+
+.productions-section {
+  margin-bottom: 3rem;
+}
+
+.productions-intro {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.productions-intro h2 {
+  color: #e2e8f0;
+  font-size: 1.75rem;
+  margin: 0 0 1rem;
+}
+
+.productions-intro p {
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.productions-intro strong {
+  color: #6ee7b7;
+}
+
+.productions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.production-card {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.production-header {
+  padding: 2rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.production-meta {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.production-quarter,
+.production-origin,
+.production-type {
+  padding: 0.25rem 0.6rem;
+  background: rgba(148, 163, 184, 0.15);
+  border-radius: 4px;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.production-header h3 {
+  color: #e2e8f0;
+  font-size: 1.5rem;
+  margin: 0 0 0.35rem;
+}
+
+.production-author {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+}
+
+.production-description {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+
+.production-highlights {
+  display: flex;
+  gap: 2rem;
+}
+
+.highlight {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.highlight-icon {
+  width: 18px;
+  height: 18px;
+  color: #22c55e;
+}
+
+.highlight strong {
+  color: #6ee7b7;
+}
+
+/* Production Roles */
+.production-roles {
+  padding: 2rem;
+}
+
+.production-roles h4 {
+  color: #e2e8f0;
+  font-size: 1.1rem;
+  margin: 0 0 1.5rem;
+}
+
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.role-card {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.role-card:hover {
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.role-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.role-header h5 {
+  color: #e2e8f0;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.role-pay {
+  padding: 0.25rem 0.5rem;
+  background: rgba(34, 197, 94, 0.2);
+  border-radius: 4px;
+  color: #6ee7b7;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.role-details {
+  margin-bottom: 1rem;
+}
+
+.role-details p {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin: 0 0 0.35rem;
+  line-height: 1.4;
+}
+
+.role-details strong {
+  color: #cbd5e1;
+}
+
+.role-exits {
+  padding: 0.75rem;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.role-exits .exit-label {
+  display: block;
+  color: #a5b4fc;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.role-exits p {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.role-apply-btn {
+  width: 100%;
+  padding: 0.6rem;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+  color: #6ee7b7;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.role-apply-btn:hover {
+  background: rgba(34, 197, 94, 0.25);
+  border-color: #22c55e;
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+
+.calendar-cta {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(34, 197, 94, 0.05);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 20px;
+}
+
+.calendar-cta h2 {
+  color: #e2e8f0;
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.calendar-cta p {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0 0 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cta-btn.primary {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+}
+
+.cta-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.cta-btn.secondary {
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #cbd5e1;
+}
+
+.cta-btn.secondary:hover {
+  border-color: rgba(148, 163, 184, 0.5);
+  background: rgba(148, 163, 184, 0.15);
+}
+
+.cta-btn .btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-options {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+  }
+
+  .opportunities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .production-highlights {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .roles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+
+  .cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,198 @@
+/**
+ * WorkspaceHero Styles
+ * @module features/workspace/views/components/WorkspaceHero
+ */
+
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+@import '../../../../styles/animations';
+
+.hero {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+  
+  @include mobile {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: pulse 20s ease-in-out infinite;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    left: -10%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    animation: pulse 20s ease-in-out infinite reverse;
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  
+  @include tablet {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.greeting {
+  flex: 1;
+  
+  h1 {
+    font-size: var(--font-2xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+    
+    @include mobile {
+      font-size: var(--font-xl);
+    }
+  }
+  
+  .subtitle {
+    font-size: var(--font-md);
+    opacity: 0.9;
+    
+    strong {
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  
+  @include mobile {
+    width: 100%;
+    margin-top: var(--spacing-md);
+  }
+}
+
+.syncStatus {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-full);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  margin-right: var(--spacing-sm);
+  
+  .syncIcon {
+    @include rotate-animation;
+  }
+  
+  .onlineIcon {
+    color: var(--success-color);
+  }
+  
+  .offlineIcon {
+    color: var(--warning-color);
+  }
+  
+  .pendingBadge {
+    @include badge;
+    background: var(--warning-color);
+    color: var(--text-on-warning);
+    margin-left: var(--spacing-xs);
+  }
+}
+
+.iconButton {
+  @include button-base;
+  padding: var(--spacing-sm);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.primaryButton {
+  @include button-base;
+  @include button-primary;
+  background: white;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+  
+  &:hover {
+    background: var(--bg-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  @include mobile {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+.lastActivity {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: var(--font-sm);
+  opacity: 0.8;
+  
+  svg {
+    opacity: 0.7;
+  }
+}
+
+// Animation
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(10%, 10%) scale(1.05);
+  }
+  50% {
+    transform: translate(-5%, 5%) scale(0.95);
+  }
+  75% {
+    transform: translate(5%, -10%) scale(1.02);
+  }
+}

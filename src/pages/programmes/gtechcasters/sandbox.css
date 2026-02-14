@@ -1,0 +1,418 @@
+/*
+ * G-TECH COMMUNITY PLATFORM IP PROTECTION
+ * Copyright (c) 2024-2026 Wembley Wonders CIC
+ * Company No. 12960817
+ * All rights reserved.
+ */
+
+/**
+ * G-Tech Casters Sandbox Styles
+ * Podcast creation space with audio-themed aesthetics
+ */
+
+.gtechcasters-sandbox {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #ffffff;
+  padding: 2rem;
+}
+
+.sandbox-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sandbox-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #e94560, #ff6b6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sandbox-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sandbox-step {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sandbox-step h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.step-description {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 2rem;
+}
+
+/* Interest Selection Grid */
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.interest-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.interest-card:hover {
+  background: rgba(233, 69, 96, 0.1);
+  border-color: rgba(233, 69, 96, 0.3);
+  transform: translateY(-2px);
+}
+
+.interest-card.selected {
+  background: rgba(233, 69, 96, 0.2);
+  border-color: #e94560;
+  box-shadow: 0 0 20px rgba(233, 69, 96, 0.3);
+}
+
+.interest-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.interest-label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #ffffff;
+}
+
+.interest-description {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Pathways Grid */
+.pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pathway-card {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.pathway-card:hover {
+  background: rgba(233, 69, 96, 0.1);
+  border-color: rgba(233, 69, 96, 0.3);
+}
+
+.pathway-card.selected {
+  background: rgba(233, 69, 96, 0.2);
+  border-color: #e94560;
+}
+
+.pathway-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.pathway-description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+}
+
+.pathway-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.skill-tag {
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.earning-potential {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(90deg, #e94560, #ff6b6b);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Concept Section */
+.concept-section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.concept-section h3 {
+  margin-bottom: 1rem;
+}
+
+.concept-input {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.concept-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.concept-input:focus {
+  outline: none;
+  border-color: #e94560;
+}
+
+/* Buttons */
+.next-button {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 2rem auto 0;
+  padding: 1rem 2rem;
+  background: linear-gradient(90deg, #e94560, #ff6b6b);
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+}
+
+/* Plan Summary */
+.plan-summary {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.plan-section {
+  margin-bottom: 1.5rem;
+}
+
+.plan-section:last-child {
+  margin-bottom: 0;
+}
+
+.plan-section h3 {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.selected-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.selected-tag {
+  padding: 0.5rem 1rem;
+  background: rgba(233, 69, 96, 0.2);
+  border: 1px solid rgba(233, 69, 96, 0.4);
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.pathway-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  width: 100%;
+}
+
+.concept-display {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+/* Next Steps */
+.next-steps {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.next-steps h3 {
+  margin-bottom: 1.5rem;
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.action-button {
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-button.primary {
+  background: linear-gradient(90deg, #e94560, #ff6b6b);
+  border: none;
+  color: #ffffff;
+}
+
+.action-button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+}
+
+.action-button.secondary {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.action-button.secondary:hover {
+  border-color: #e94560;
+  background: rgba(233, 69, 96, 0.1);
+}
+
+/* ============================================
+   MAYA CONTAINER STYLES
+   ============================================ */
+
+.maya-welcome-container,
+.maya-bypass-container,
+.maya-community-container,
+.maya-success-container,
+.maya-push-container,
+.maya-ignition-container,
+.maya-pathway-container,
+.maya-final-container {
+  margin: 16px 0;
+  animation: mayaFadeIn 0.5s ease-out;
+}
+
+@keyframes mayaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.maya-welcome-container {
+  margin-bottom: 24px;
+}
+
+.maya-bypass-container {
+  max-width: 500px;
+  margin: 0 auto 24px auto;
+}
+
+.maya-community-container {
+  margin: 16px 0 24px 0;
+}
+
+.maya-success-container {
+  margin: 0 0 24px 0;
+}
+
+.maya-push-container {
+  margin-top: 12px;
+}
+
+.maya-ignition-container {
+  margin-bottom: 24px;
+}
+
+.maya-pathway-container {
+  margin: 24px 0;
+}
+
+.maya-final-container {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gtechcasters-sandbox {
+    padding: 1rem;
+  }
+  
+  .sandbox-header h1 {
+    font-size: 2rem;
+  }
+  
+  .interests-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .pathways-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .maya-welcome-container,
+  .maya-bypass-container,
+  .maya-community-container,
+  .maya-success-container,
+  .maya-push-container,
+  .maya-ignition-container,
+  .maya-pathway-container,
+  .maya-final-container {
+    margin: 12px 0;
+  }
+}

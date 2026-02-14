@@ -1,0 +1,162 @@
+import React from 'react';
+import { SafeComponent } from '../wrapper/SafeReact';
+
+import { Card, CardContent, CardHeader, CardTitle } from '../interfaces/shared/components/ui/card';
+import { Shield, Award, Users, BookOpen, ChevronRight } from 'lucide-react';
+
+const HomePage: React.FC = () => {
+  return (
+    <div className="space-y-6">
+      {/* Hero Section */}
+      <section className="relative rounded-lg overflow-hidden bg-gradient-to-r from-gray-900 to-gray-800 p-6 md:p-8">
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">
+            Empowering Communities Through Accessible E-Learning
+          </h1>
+          <p className="text-xl text-amber-100 mb-6 max-w-3xl">
+            G-Tech Community bridges the digital divide by providing inclusive learning pathways for the 10 million
+            digitally excluded people in the UK, including 1.5 million with disabilities.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <button className="bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-2 px-6 rounded-md transition-colors">
+              Get Started
+            </button>
+            <button className="border border-amber-500 text-amber-400 hover:bg-amber-500/10 font-bold py-2 px-6 rounded-md transition-colors">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 5 Cs Framework */}
+      <section>
+        <h2 className="text-2xl font-bold text-amber-400 mb-6">Our 5 Cs Framework</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Connect */}
+          <Card className="bg-gray-900 border border-amber-500/20 hover:border-amber-500/50 transition-colors">
+            <CardHeader>
+              <CardTitle className="flex items-center text-xl text-amber-400">
+                <Users className="mr-2 h-5 w-5" /> CONNECT
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-amber-100 mb-4">
+                Build meaningful connections within our inclusive digital community.
+              </p>
+              <a href="/connect" className="inline-flex items-center text-amber-400 hover:text-amber-300">
+                Join the community <ChevronRight className="ml-1 h-4 w-4" />
+              </a>
+            </CardContent>
+          </Card>
+
+          {/* Create */}
+          <Card className="bg-gray-900 border border-amber-500/20 hover:border-amber-500/50 transition-colors">
+            <CardHeader>
+              <CardTitle className="flex items-center text-xl text-amber-400">
+                <BookOpen className="mr-2 h-5 w-5" /> CREATE
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-amber-100 mb-4">
+                Develop digital skills and build projects through our badge certification system.
+              </p>
+              <a href="/create" className="inline-flex items-center text-amber-400 hover:text-amber-300">
+                Start creating <ChevronRight className="ml-1 h-4 w-4" />
+              </a>
+            </CardContent>
+          </Card>
+
+          {/* Cultivate */}
+          <Card className="bg-gray-900 border border-amber-500/20 hover:border-amber-500/50 transition-colors">
+            <CardHeader>
+              <CardTitle className="flex items-center text-xl text-amber-400">
+                <Shield className="mr-2 h-5 w-5" /> CULTIVATE
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-amber-100 mb-4">
+                Grow your skills and nurture others through sustainable learning pathways.
+              </p>
+              <a href="/cultivate" className="inline-flex items-center text-amber-400 hover:text-amber-300">
+                Explore pathways <ChevronRight className="ml-1 h-4 w-4" />
+              </a>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          {/* Change */}
+          <Card className="bg-gray-900 border border-amber-500/20 hover:border-amber-500/50 transition-colors">
+            <CardHeader>
+              <CardTitle className="flex items-center text-xl text-amber-400">
+                <Award className="mr-2 h-5 w-5" /> CHANGE
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-amber-100 mb-4">
+                Transform your future through our career pathways and mentorship programs.
+              </p>
+              <a href="/change" className="inline-flex items-center text-amber-400 hover:text-amber-300">
+                Make a change <ChevronRight className="ml-1 h-4 w-4" />
+              </a>
+            </CardContent>
+          </Card>
+
+          {/* Compete */}
+          <Card className="bg-gray-900 border border-amber-500/20 hover:border-amber-500/50 transition-colors">
+            <CardHeader>
+              <CardTitle className="flex items-center text-xl text-amber-400">
+                <Award className="mr-2 h-5 w-5" /> COMPETE
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-amber-100 mb-4">
+                Showcase your skills through tournaments and collaborative challenges.
+              </p>
+              <a href="/compete" className="inline-flex items-center text-amber-400 hover:text-amber-300">
+                Join competitions <ChevronRight className="ml-1 h-4 w-4" />
+              </a>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Impact Stats */}
+      <section className="bg-gray-900 border border-amber-500/20 rounded-lg p-6">
+        <h2 className="text-2xl font-bold text-amber-400 mb-6">Our Impact</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="text-center">
+            <div className="text-4xl font-bold text-amber-400 mb-2">10M+</div>
+            <p className="text-amber-100">Digitally excluded people in the UK we aim to reach</p>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-amber-400 mb-2">12</div>
+            <p className="text-amber-100">Career pathways with badge certification</p>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-amber-400 mb-2">£63B</div>
+            <p className="text-amber-100">Economic impact of the digital skills gap we're addressing</p>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-amber-400 mb-2">5 Yrs</div>
+            <p className="text-amber-100">Development of our integrated platform</p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="text-center bg-gradient-to-r from-amber-600 to-amber-500 rounded-lg p-8">
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Join the Community?</h2>
+        <p className="text-gray-800 mb-6 max-w-2xl mx-auto">
+          Become part of our growing network of learners, creators, and mentors. Everyone is welcome.
+        </p>
+        <button className="bg-gray-900 hover:bg-gray-800 text-amber-400 font-bold py-3 px-8 rounded-md transition-colors">
+          Sign Up Now
+        </button>
+      </section>
+    </div>
+  );
+};
+
+export default HomePage;

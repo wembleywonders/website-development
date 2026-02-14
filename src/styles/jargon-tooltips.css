@@ -1,0 +1,332 @@
+/* Jargon Tooltips and Maya Visitor Guide Styles */
+
+/* Jargon term styling */
+.jargon-term {
+  position: relative;
+  border-bottom: 1px dotted #8b5cf6;
+  cursor: help;
+  display: inline;
+  transition: all 0.2s ease;
+}
+
+.jargon-term:hover {
+  border-bottom-color: #a78bfa;
+  color: #8b5cf6;
+}
+
+/* Tooltip styling */
+.jargon-term:hover::after {
+  content: attr(data-definition);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(10px);
+  color: #f8fafc;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  z-index: 1000;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  max-width: 300px;
+  white-space: normal;
+  width: max-content;
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+
+/* Tooltip arrow */
+.jargon-term:hover::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  border: 6px solid transparent;
+  border-top-color: rgba(30, 41, 59, 0.95);
+  z-index: 1001;
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+
+/* Tooltip animation */
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Maya Visitor Toggle Button */
+.maya-visitor-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.maya-visitor-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(139, 92, 246, 0.4);
+  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+}
+
+.maya-visitor-toggle:active {
+  transform: translateY(0);
+}
+
+.maya-icon {
+  font-size: 1.2rem;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.maya-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Sparkle animation for Maya icon */
+@keyframes sparkle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Visitor Guide Styles (included from VisitorGuide component) */
+.visitor-guide {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1rem;
+  color: #f8fafc;
+  z-index: 1000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.visitor-guide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.visitor-guide-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.guide-close-btn {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guide-close-btn:hover {
+  color: #f8fafc;
+}
+
+.visitor-guide-content {
+  padding: 1rem;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.context-info {
+  margin-bottom: 1rem;
+}
+
+.behavior-indicator {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin: 0 0 0.5rem 0;
+}
+
+.current-programme {
+  font-size: 0.9rem;
+  color: #8b5cf6;
+  margin: 0;
+}
+
+.contextual-guidance h4,
+.jargon-help h4,
+.next-steps h4,
+.quick-questions h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0 0 0.5rem 0;
+}
+
+.contextual-guidance ul,
+.next-steps ul {
+  margin: 0;
+  padding-left: 1rem;
+  list-style-type: disc;
+}
+
+.contextual-guidance li,
+.next-steps li {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+.jargon-terms,
+.question-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.jargon-btn,
+.question-btn {
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #c4b5fd;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.jargon-btn:hover,
+.question-btn:hover {
+  background: rgba(139, 92, 246, 0.3);
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #ddd6fe;
+}
+
+.contact-prompt {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.contact-prompt p {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin: 0;
+  text-align: center;
+}
+
+.contact-prompt a {
+  color: #8b5cf6;
+  text-decoration: none;
+}
+
+.contact-prompt a:hover {
+  color: #a78bfa;
+  text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .jargon-term:hover::after {
+    position: fixed;
+    bottom: 50px;
+    left: 20px;
+    right: 20px;
+    transform: none;
+    width: auto;
+    max-width: none;
+  }
+  
+  .jargon-term:hover::before {
+    display: none;
+  }
+  
+  .visitor-guide {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 1rem 1rem 0 0;
+  }
+  
+  .maya-visitor-toggle {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 16px;
+  }
+  
+  .maya-label {
+    display: none;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .jargon-term:hover::after,
+  .jargon-term:hover::before {
+    animation: none;
+  }
+  
+  .maya-icon {
+    animation: none;
+  }
+  
+  .maya-visitor-toggle {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .jargon-term {
+    border-bottom-color: #fff;
+  }
+  
+  .jargon-term:hover::after {
+    background: #000;
+    border-color: #fff;
+  }
+}

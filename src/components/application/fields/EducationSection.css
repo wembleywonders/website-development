@@ -1,0 +1,620 @@
+.education-section {
+  padding: 2rem;
+}
+
+/* Section Header */
+.section-header {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.section-header p {
+  color: #4a5568;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.form-label.required::after {
+  content: ' *';
+  color: #e53e3e;
+  font-weight: 700;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: white;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Education Levels */
+.education-levels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.75rem;
+}
+
+.education-level-option {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.education-level-option:hover {
+  border-color: #cbd5e0;
+  background: #f7fafc;
+}
+
+.education-level-option input[type="radio"] {
+  margin-right: 0.75rem;
+  margin-top: 0.1rem;
+  accent-color: #667eea;
+}
+
+.education-level-option:has(input:checked) {
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+.level-content {
+  flex: 1;
+}
+
+.level-label {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.level-description {
+  font-size: 0.85rem;
+  color: #4a5568;
+  line-height: 1.4;
+}
+
+/* Education Details Section */
+.education-details-section {
+  margin-top: 2rem;
+  border-top: 2px solid #f1f5f9;
+  padding-top: 2rem;
+}
+
+.subsection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.subsection-header h3 {
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.subsection-header p {
+  color: #4a5568;
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0;
+  line-height: 1.4;
+}
+
+.btn-add {
+  background: #48bb78;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-add:hover {
+  background: #38a169;
+}
+
+/* Education List */
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.education-item {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.education-item:hover {
+  border-color: #cbd5e0;
+}
+
+.education-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  gap: 1rem;
+}
+
+.education-title {
+  color: #2d3748;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.education-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  background: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-edit {
+  color: #4299e1;
+  border-color: #4299e1;
+}
+
+.btn-edit:hover {
+  background: #4299e1;
+  color: white;
+}
+
+.btn-delete {
+  color: #e53e3e;
+  border-color: #e53e3e;
+}
+
+.btn-delete:hover {
+  background: #e53e3e;
+  color: white;
+}
+
+.education-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.education-level {
+  font-size: 0.9rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.education-year {
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+.relevance-indicator {
+  font-size: 0.85rem;
+  color: #48bb78;
+  font-weight: 500;
+}
+
+/* Professional Qualifications */
+.professional-qualifications-section {
+  margin-top: 2rem;
+  border-top: 2px solid #f1f5f9;
+  padding-top: 2rem;
+}
+
+.professional-qualifications-section h3 {
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.professional-qualifications-section p {
+  color: #4a5568;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.qualifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.qualification-category {
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.qualification-category h4 {
+  color: #2d3748;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.qualification-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.qualification-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.qualification-option:hover {
+  background: #edf2f7;
+}
+
+.qualification-option input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: #667eea;
+}
+
+.qualification-label {
+  font-size: 0.9rem;
+  color: #2d3748;
+  line-height: 1.3;
+}
+
+/* Current Study Section */
+.current-study-section {
+  margin-top: 2rem;
+  border-top: 2px solid #f1f5f9;
+  padding-top: 2rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: #2d3748;
+  font-size: 0.95rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: #667eea;
+}
+
+/* Education Form Modal */
+.education-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.form-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.form-modal {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.form-header h3 {
+  margin: 0;
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #4a5568;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-close:hover {
+  background: #f1f5f9;
+}
+
+.form-modal form {
+  padding: 2rem;
+}
+
+.field-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid #f1f5f9;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: #667eea;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #5a67d8;
+}
+
+.btn-secondary {
+  background: #f7fafc;
+  color: #4a5568;
+  border: 2px solid #e2e8f0;
+}
+
+.btn-secondary:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+/* Error Handling */
+.error-message {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.error-message::before {
+  content: '⚠';
+  font-size: 0.8rem;
+}
+
+.error-summary {
+  background: #fed7d7;
+  border: 1px solid #feb2b2;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .education-section {
+    padding: 1rem;
+  }
+
+  .education-levels {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .subsection-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .education-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .education-actions {
+    justify-content: center;
+  }
+
+  .qualifications-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-overlay {
+    padding: 0.5rem;
+  }
+
+  .form-modal {
+    max-height: 95vh;
+  }
+
+  .form-header {
+    padding: 1rem;
+  }
+
+  .form-modal form {
+    padding: 1rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .education-level-option {
+    padding: 0.75rem;
+  }
+
+  .level-label {
+    font-size: 0.9rem;
+  }
+
+  .level-description {
+    font-size: 0.8rem;
+  }
+
+  .education-item {
+    padding: 0.75rem;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .qualification-category {
+    padding: 0.75rem;
+  }
+
+  .qualification-option {
+    padding: 0.25rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .education-form {
+    display: none;
+  }
+
+  .education-actions {
+    display: none;
+  }
+
+  .btn-add {
+    display: none;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .education-level-option,
+  .form-input,
+  .form-select,
+  .form-textarea,
+  .btn-primary,
+  .btn-secondary,
+  .education-item,
+  .qualification-option {
+    transition: none;
+  }
+}
+
+/* Focus Styles */
+.btn-add:focus,
+.btn-edit:focus,
+.btn-delete:focus,
+.btn-primary:focus,
+.btn-secondary:focus,
+.btn-close:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}

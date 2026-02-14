@@ -1,0 +1,404 @@
+/* src/components/sandboxes/mini/RepairSketchSandbox.css */
+
+.repair-sketch-sandbox {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ============================================
+   PROGRESS
+   ============================================ */
+.sketch-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 12px;
+}
+
+.panel-indicators {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.panel-indicator {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.5);
+  border: 2px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.panel-indicator:hover {
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+.panel-indicator.active {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.panel-indicator.has-content {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.panel-indicator .panel-num {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.panel-indicator .check {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #10b981;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  color: white;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* ============================================
+   TOOL PALETTE
+   ============================================ */
+.tool-palette {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 12px;
+}
+
+.tool-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tool-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.tool-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tool-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tool-btn.active {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.2);
+}
+
+.color-options {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.color-btn {
+  width: 28px;
+  height: 28px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.color-btn:hover {
+  transform: scale(1.15);
+}
+
+.color-btn.active {
+  border-color: white;
+  transform: scale(1.15);
+}
+
+.tool-group input[type="range"] {
+  width: 80px;
+  cursor: pointer;
+}
+
+.btn-clear-panel {
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 6px;
+  color: #f87171;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-clear-panel:hover {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+/* ============================================
+   DRAWING AREA
+   ============================================ */
+.drawing-area {
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.panel-number {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3b82f6;
+  padding: 0.25rem 0.75rem;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 6px;
+}
+
+.panel-title-input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #f8fafc;
+}
+
+.panel-title-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.panel-title-input::placeholder {
+  color: #64748b;
+}
+
+.canvas-container {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.drawing-canvas {
+  width: 100%;
+  height: auto;
+  cursor: crosshair;
+  display: block;
+  touch-action: none;
+}
+
+.panel-navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.panel-navigation button {
+  padding: 0.5rem 1.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 6px;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.panel-navigation button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.panel-navigation button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   PREVIEW SECTION
+   ============================================ */
+.preview-section {
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.preview-section h4 {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.preview-panel {
+  background: rgba(15, 23, 42, 0.5);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.preview-panel:hover {
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+.preview-panel.active {
+  border-color: #3b82f6;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.preview-num {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #93c5fd;
+}
+
+.preview-title {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preview-canvas {
+  aspect-ratio: 3/2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.preview-canvas canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.empty-indicator {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* ============================================
+   TIPS PANEL
+   ============================================ */
+.tips-panel {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.tips-panel h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  color: #fbbf24;
+}
+
+.tips-panel ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.tips-panel li {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: #fef3c7;
+  line-height: 1.5;
+}
+
+.tips-panel li strong {
+  color: #fbbf24;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .tool-palette {
+    justify-content: center;
+  }
+  
+  .btn-clear-panel {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  .preview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .panel-indicators {
+    gap: 0.375rem;
+  }
+  
+  .panel-indicator {
+    width: 36px;
+    height: 36px;
+  }
+}

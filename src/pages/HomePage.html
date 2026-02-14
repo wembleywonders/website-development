@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wembley Wonders CIC - Let's Get Digital!</title>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            --secondary-gradient: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --background-light: #f8fafc;
+            --background-white: #ffffff;
+            --border-light: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--background-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Styles */
+        .header {
+            background: var(--background-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #4f46e5;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--background-white);
+            color: var(--text-primary);
+            border: 2px solid var(--border-light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--background-light);
+            transform: translateY(-1px);
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Hero Styles */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Workshops Section */
+        .workshops-section {
+            padding: 4rem 0;
+            background: var(--background-white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .workshops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .workshop-card {
+            background: var(--background-white);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border-left: 4px solid;
+        }
+
+        .workshop-card:nth-child(1) {
+            border-left-color: #4f46e5;
+        }
+
+        .workshop-card:nth-child(2) {
+            border-left-color: #0ea5e9;
+        }
+
+        .workshop-card:nth-child(3) {
+            border-left-color: #f59e0b;
+        }
+
+        .workshop-card:nth-child(4) {
+            border-left-color: #10b981;
+        }
+
+        .workshop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .workshop-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .workshop-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .workshop-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .workshop-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .workshop-features li {
+            padding: 0.3rem 0;
+            color: var(--text-secondary);
+        }
+
+        .workshop-features li::before {
+            content: '•';
+            color: #4f46e5;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .workshop-meta {
+            background: var(--background-light);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            background: var(--background-light);
+            padding: 3rem 0;
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+
+        .how-it-works h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .how-it-works ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .how-it-works li {
+            background: var(--background-white);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .how-it-works li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* Animation Styles */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .workshops-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .how-it-works ul {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+                    <div class="logo">Wembley Wonders</div>
+                    <ul class="nav-links">
+                        <li><a href="/workshops">Workshops</a></li>
+                        <li><a href="/get-involved">Get Involved</a></li>
+                        <li><a href="/our-story">Our Story</a></li>
+                    </ul>
+                    <div class="nav-actions">
+                        <a href="/workshops" class="btn btn-primary">Join a Workshop</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <div class="container">
+                    <div class="hero-badge fade-in">
+                        <span>🎵</span>
+                        Community Digital Connection
+                    </div>
+                    
+                    <h1 class="hero-title fade-in">
+                        Hey Wembley Resident..Let's Get Digital!
+                    </h1>
+                    
+                    <p class="hero-subtitle fade-in">
+                        No Pressure Drop....just 'Grab and Go'. Four Saturday afternoons a year where you can update your skills at your own pace.
+                    </p>
+                    
+                    <div class="hero-actions fade-in">
+                        <a href="/workshops" class="btn btn-primary btn-large">
+                            See Our Workshops
+                        </a>
+                        <a href="/our-story" class="btn btn-secondary btn-large">
+                            Our Story
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="workshops-section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Quarterly "Grab and Go" Digital Sessions</h2>
+                    <p class="section-subtitle">
+                        Try what interests you, connect with neighbors, discover what clicks for you. All sessions at Wembley Library, 32 Engineers Way, Wembley Park.
+                    </p>
+                </div>
+
+                <div class="workshops-grid fade-in">
+                    <div class="workshop-card">
+                        <div class="workshop-icon">💻</div>
+                        <h3 class="workshop-title">Q1: GET COMFORTABLE WITH EMAIL & STAYING SAFE</h3>
+                        <p class="workshop-description">
+                            Try out email, have a go at online forms, learn to spot dodgy websites
+                        </p>
+                        <ul class="workshop-features">
+                            <li>With IT specialists and headmistresses who explain things clearly</li>
+                            <li>Saturday afternoon at Wembley Library</li>
+                            <li>Bring your questions, leave with what works for you</li>
+                            <li>Basic computer navigation and online safety</li>
+                        </ul>
+                        <div class="workshop-meta">
+                            March 2025 • £50 • 15 neighbors max
+                        </div>
+                    </div>
+
+                    <div class="workshop-card">
+                        <div class="workshop-icon">🎵</div>
+                        <h3 class="workshop-title">Q2: RECORD FAMILY STORIES & TRY CREATIVE STUFF</h3>
+                        <p class="workshop-description">
+                            Capture family memories, experiment with simple editing, have fun with smartphone video
+                        </p>
+                        <ul class="workshop-features">
+                            <li>Led by local DJs and radio folk who love sharing what they know</li>
+                            <li>Hands-on session - you'll actually create something to take home</li>
+                            <li>Use your smartphone for recording and basic editing</li>
+                            <li>Content creation basics for family sharing</li>
+                        </ul>
+                        <div class="workshop-meta">
+                            June 2025 • £50 • 15 places
+                        </div>
+                    </div>
+
+                    <div class="workshop-card">
+                        <div class="workshop-icon">🔬</div>
+                        <h3 class="workshop-title">Q3: EXPLORE HOW TECHNOLOGY ACTUALLY WORKS</h3>
+                        <p class="workshop-description">
+                            Try basic programming, build a simple circuit, understand your gadgets better
+                        </p>
+                        <ul class="workshop-features">
+                            <li>With electrical engineering lecturers and hackspace volunteers</li>
+                            <li>Build something that lights up and works</li>
+                            <li>Basic programming concepts using visual tools</li>
+                            <li>Connect with local maker community</li>
+                        </ul>
+                        <div class="workshop-meta">
+                            September 2025 • £50 • 15 spaces
+                        </div>
+                    </div>
+
+                    <div class="workshop-card">
+                        <div class="workshop-icon">📚</div>
+                        <h3 class="workshop-title">Q4: PRESERVE FAMILY MEMORIES SAFELY</h3>
+                        <p class="workshop-description">
+                            Learn respectful ways to record family stories and organize old photos digitally
+                        </p>
+                        <ul class="workshop-features">
+                            <li>With Judith, our child development specialist who understands family dynamics</li>
+                            <li>Family-friendly - bring relatives if you want</li>
+                            <li>Digital archiving techniques that actually work</li>
+                            <li>Community heritage project opportunities</li>
+                        </ul>
+                        <div class="workshop-meta">
+                            December 2025 • £50 • 15 participants
+                        </div>
+                    </div>
+                </div>
+
+                <div class="how-it-works">
+                    <h3>How It Works</h3>
+                    <ul>
+                        <li>Come to whichever sessions interest you</li>
+                        <li>Small groups mean everyone gets individual encouragement</li>
+                        <li>£50 covers venue, materials, and volunteer time</li>
+                        <li>No homework, no pressure to continue</li>
+                        <li>All sessions include 3-4 local volunteers for hands-on help</li>
+                        <li>Accessible venue with parking and public transport links</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>Wembley Wonders CIC</p>
+                        <p>Email: email@wembleywonders.org</p>
+                        <p>Bank: Cooperative Bank<br>Sort Code: 08-92-99<br>Account: 67365869</p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Workshops</h3>
+                        <ul>
+                            <li><a href="/digital-basics">Digital Basics</a></li>
+                            <li><a href="/creative-media">Creative Media</a></li>
+                            <li><a href="/stem-fundamentals">STEM Fundamentals</a></li>
+                            <li><a href="/heritage-community">Heritage & Community</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Community</h3>
+                        <ul>
+                            <li><a href="/get-involved">Get Involved</a></li>
+                            <li><a href="/our-story">Our Story</a></li>
+                            <li><a href="/start-journey">Start Your Journey</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Venue</h3>
+                        <p>Wembley Library<br>32 Engineers Way<br>Wembley Park, Brent HA9 8TS</p>
+                        <p>Opposite Wembley Stadium</p>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Wembley Wonders CIC. Community Interest Company supporting local digital skills development.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Add fade-in animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

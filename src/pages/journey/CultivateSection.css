@@ -1,0 +1,232 @@
+/* src/pages/journey/CultivateSection.css */
+
+/* ===================================
+   CULTIVATE SECTION
+   =================================== */
+
+.cultivate-section {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+  padding: 4rem 2rem;
+}
+
+/* Modules Grid */
+.cultivate-modules {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.cultivate-module {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.cultivate-module::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  padding: 2px;
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  /* Standard unprefixed mask for broader compatibility */
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cultivate-module:hover::after {
+  opacity: 1;
+}
+
+.cultivate-module:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+}
+
+.cultivate-module.static:hover {
+  transform: translateY(-5px);
+}
+
+/* Module Icon */
+.module-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1.5rem;
+  animation: pulse-grow 3s ease-in-out infinite;
+}
+
+.cultivate-module.static .module-icon {
+  animation: none;
+}
+
+@keyframes pulse-grow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.sandbox .module-icon {
+  animation-delay: 0s;
+}
+
+.journal .module-icon {
+  animation-delay: 1s;
+}
+
+.fanclub .module-icon {
+  animation-delay: 2s;
+}
+
+/* Module Content */
+.cultivate-module h3 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+.cultivate-module p {
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Module Link */
+.module-link {
+  display: inline-block;
+  color: #10b981;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.module-link:hover {
+  color: #34d399;
+  transform: translateX(5px);
+}
+
+/* Specific module styling */
+.sandbox {
+  border-top: 4px solid #fbbf24;
+}
+
+.sandbox:hover {
+  border-color: #fbbf24;
+  box-shadow: 0 8px 30px rgba(251, 191, 36, 0.3);
+}
+
+.sandbox .module-link {
+  color: #fbbf24;
+}
+
+.sandbox .module-link:hover {
+  color: #fcd34d;
+}
+
+.journal {
+  border-top: 4px solid #ec4899;
+}
+
+.journal:hover {
+  border-color: #ec4899;
+  box-shadow: 0 8px 30px rgba(236, 72, 153, 0.3);
+}
+
+.journal .module-link {
+  color: #ec4899;
+}
+
+.journal .module-link:hover {
+  color: #f472b6;
+}
+
+.fanclub {
+  border-top: 4px solid #a855f7;
+}
+
+.fanclub:hover {
+  border-color: #a855f7;
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.3);
+}
+
+.fanclub .module-link {
+  color: #a855f7;
+}
+
+.fanclub .module-link:hover {
+  color: #c084fc;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 968px) {
+  .cultivate-modules {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cultivate-section {
+    padding: 3rem 1rem;
+  }
+
+  .cultivate-module {
+    padding: 2rem 1.5rem;
+  }
+
+  .module-icon {
+    font-size: 3rem;
+  }
+
+  .cultivate-module h3 {
+    font-size: 1.25rem;
+  }
+
+  .cultivate-module p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cultivate-section {
+    padding: 2rem 1rem;
+  }
+
+  .cultivate-modules {
+    gap: 1rem;
+  }
+}
+
+/* ===================================
+   REDUCED MOTION
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .module-icon {
+    animation: none;
+  }
+
+  .cultivate-module:hover {
+    transform: none;
+  }
+
+  .module-link:hover {
+    transform: none;
+  }
+}

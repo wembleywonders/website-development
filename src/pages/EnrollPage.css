@@ -1,0 +1,873 @@
+/* EnrollPage.css - CONVERSION-OPTIMIZED */
+/* Revenue Target: £38-65K Year 1 from programme enrollments */
+
+.enroll-page {
+  min-height: 100vh;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+/* ======================
+   HERO SECTION
+   ====================== */
+.hero-section {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 4rem 2rem;
+  text-align: center;
+  border-bottom: 2px solid rgba(6, 182, 212, 0.2);
+}
+
+.hero-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+}
+
+.badge-icon {
+  font-size: 1.2rem;
+}
+
+.badge-text {
+  color: #10b981;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+}
+
+.hero-title .highlight {
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #cbd5e1;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 2rem 0;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-top: 0.5rem;
+}
+
+.hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.btn-primary-large {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-primary-large:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn-secondary-large {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: transparent;
+  color: #06b6d4;
+  border: 2px solid #06b6d4;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary-large:hover {
+  background: rgba(6, 182, 212, 0.1);
+  transform: translateY(-2px);
+}
+
+.trust-text {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-top: 1.5rem;
+}
+
+/* ======================
+   PATHWAYS SECTION
+   ====================== */
+.pathways-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: #94a3b8;
+}
+
+.pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.pathway-card {
+  background: rgba(30, 41, 59, 0.5);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.pathway-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(6, 182, 212, 0.5);
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.2);
+}
+
+.pathway-card.selected {
+  border-color: #10b981;
+  border-width: 3px;
+  background: rgba(16, 185, 129, 0.1);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+.pathway-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.pathway-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.pathway-tagline {
+  font-size: 1rem;
+  color: #06b6d4;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.pathway-description {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.pathway-outcomes {
+  margin: 1.5rem 0;
+}
+
+.pathway-outcomes h4 {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pathway-outcomes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pathway-outcomes li {
+  padding: 0.5rem 0;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+}
+
+.pathway-select-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 2px solid;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.pathway-select-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.learn-more-link {
+  display: block;
+  text-align: center;
+  color: #06b6d4;
+  text-decoration: none;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.learn-more-link:hover {
+  color: #0ea5e9;
+}
+
+/* ======================
+   SEASONS SECTION
+   ====================== */
+.seasons-section {
+  padding: 4rem 2rem;
+  background: rgba(30, 41, 59, 0.3);
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.seasons-selector {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.season-tab {
+  padding: 1rem 2rem;
+  background: rgba(51, 65, 85, 0.5);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  color: #f8fafc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.season-tab:hover {
+  background: rgba(51, 65, 85, 0.8);
+  border-color: rgba(6, 182, 212, 0.5);
+}
+
+.season-tab.active {
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  border-color: #06b6d4;
+  color: white;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+}
+
+.season-name {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.season-status {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.season-details {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.season-info {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.season-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.info-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.info-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.info-content {
+  flex: 1;
+}
+
+.info-label {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 0.25rem;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.pricing-info {
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.price-primary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.price-label {
+  font-size: 1rem;
+  color: #94a3b8;
+}
+
+.price-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.price-secondary {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin-bottom: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.price-note {
+  font-size: 0.85rem;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-top: 0.75rem;
+}
+
+/* ======================
+   WHAT'S INCLUDED SECTION
+   ====================== */
+.whats-included-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.included-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.included-item {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.included-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(6, 182, 212, 0.5);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+}
+
+.included-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.included-item h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #06b6d4;
+}
+
+.included-item p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ======================
+   SOCIAL PROOF SECTION
+   ====================== */
+.social-proof-section {
+  padding: 4rem 2rem;
+  background: rgba(30, 41, 59, 0.3);
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 3rem auto;
+}
+
+.testimonial-card {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.testimonial-rating {
+  color: #fbbf24;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.testimonial-text {
+  color: #e2e8f0;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testimonial-author {
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  padding-top: 1rem;
+}
+
+.author-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #f8fafc;
+}
+
+.author-pathway {
+  font-size: 0.9rem;
+  color: #06b6d4;
+  margin-top: 0.25rem;
+}
+
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding: 2rem;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item .stat-number {
+  font-size: 2.5rem;
+}
+
+.stat-item .stat-label {
+  font-size: 0.9rem;
+}
+
+/* ======================
+   ENROLLMENT FORM SECTION
+   ====================== */
+.enrollment-section {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.enrollment-container {
+  background: rgba(30, 41, 59, 0.5);
+  border: 2px solid rgba(6, 182, 212, 0.3);
+  border-radius: 16px;
+  padding: 3rem;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+}
+
+.form-header p {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+.enrollment-form {
+  margin-top: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #f8fafc;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  color: #f8fafc;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #06b6d4;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+.help-text {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-top: 0.5rem;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.checkbox-group span {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.checkbox-group a {
+  color: #06b6d4;
+  text-decoration: underline;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 1.25rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  margin-top: 1rem;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.form-footer-text {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-top: 1.5rem;
+}
+
+.no-pathway-selected {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.no-pathway-selected p {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+}
+
+.btn-secondary {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  background: transparent;
+  color: #06b6d4;
+  border: 2px solid #06b6d4;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(6, 182, 212, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ======================
+   FAQ SECTION
+   ====================== */
+.faq-section {
+  padding: 4rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-list {
+  margin: 2rem 0;
+}
+
+.faq-item {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: 1.25rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: #f8fafc;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+
+.faq-item summary:hover {
+  background: rgba(6, 182, 212, 0.1);
+  color: #06b6d4;
+}
+
+.faq-item p {
+  padding: 0 1.25rem 1.25rem 1.25rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+.faq-cta {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.faq-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.text-link {
+  color: #06b6d4;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 1rem;
+  transition: all 0.3s ease;
+}
+
+.text-link:hover {
+  color: #0ea5e9;
+  text-decoration: underline;
+}
+
+/* ======================
+   FINAL CTA SECTION
+   ====================== */
+.final-cta-section {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-top: 2px solid rgba(6, 182, 212, 0.2);
+  text-align: center;
+}
+
+.final-cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.final-cta-content h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+}
+
+.final-cta-content > p {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.trust-badges {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-top: 1.5rem;
+}
+
+/* ======================
+   RESPONSIVE DESIGN
+   ====================== */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .pathways-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .seasons-selector {
+    flex-direction: column;
+  }
+
+  .season-info-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .included-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-bar {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .enrollment-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .final-cta-content h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .enrollment-container {
+    padding: 1.5rem 1rem;
+  }
+}

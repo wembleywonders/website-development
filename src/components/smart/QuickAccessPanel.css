@@ -1,0 +1,96 @@
+.quick-access-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 1000;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  animation: slideUp 0.5s ease-out;
+  min-width: 200px;
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.panel-header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.panel-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.panel-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.panel-links {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quick-link {
+  width: 100%;
+  padding: 12px 15px;
+  text-align: left;
+  border: none;
+  background: #f8f9fa;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #333;
+}
+
+.quick-link:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  .quick-access-panel {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+  }
+  
+  .panel-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .quick-link {
+    flex: 1;
+    min-width: calc(50% - 5px);
+    text-align: center;
+    font-size: 0.9em;
+  }
+}

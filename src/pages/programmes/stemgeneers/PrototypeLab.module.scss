@@ -1,0 +1,1068 @@
+/**
+ * STEMgeneers Prototype Lab Styles
+ * Aesthetic: Industrial Control Panel
+ * 
+ * Think factory floor meets maker space.
+ * Exposed steel, warning stripes, equipment readouts,
+ * high-visibility status indicators, functional grid layouts.
+ */
+
+// Variables
+$font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+$font-sans: 'Work Sans', -apple-system, sans-serif;
+
+$steel-900: #0f1114;
+$steel-800: #1a1d21;
+$steel-700: #242830;
+$steel-600: #2d3139;
+$steel-500: #3d424d;
+$steel-400: #4a5160;
+$steel-300: #6b7280;
+$steel-200: #9ca3af;
+$steel-100: #d1d5db;
+$steel-50: #e8e6e1;
+
+$copper: #b87333;
+$copper-light: #d4956a;
+$brass: #c9a227;
+
+$safety-amber: #f59e0b;
+$safety-emerald: #10b981;
+$safety-violet: #8b5cf6;
+$safety-sky: #0ea5e9;
+$safety-red: #ef4444;
+
+// Mixins
+@mixin panel {
+  background: $steel-700;
+  border: 1px solid $steel-500;
+  border-radius: 6px;
+}
+
+@mixin panel-header {
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $steel-200;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid $steel-500;
+  margin-bottom: 1rem;
+}
+
+// ============================================================================
+// LAYOUT
+// ============================================================================
+
+.lab {
+  min-height: 100vh;
+  background: $steel-800;
+  color: $steel-50;
+  font-family: $font-sans;
+}
+
+.header {
+  background: linear-gradient(135deg, $steel-900 0%, $steel-700 100%);
+  border-bottom: 2px solid $copper;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      $safety-amber 0px, $safety-amber 10px,
+      $steel-900 10px, $steel-900 20px
+    );
+    opacity: 0.3;
+  }
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.labIcon {
+  width: 48px;
+  height: 48px;
+  background: $copper;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gearIcon {
+  font-size: 1.75rem;
+  color: $steel-900;
+  animation: slowSpin 10s linear infinite;
+}
+
+@keyframes slowSpin {
+  to { transform: rotate(360deg); }
+}
+
+.title {
+  font-family: $font-mono;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $steel-50;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: $steel-200;
+  margin: 0;
+}
+
+.labStatus {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.statusIndicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+
+  &.amber .gaugeFill { stroke: $safety-amber; }
+  &.emerald .gaugeFill { stroke: $safety-emerald; }
+  &.violet .gaugeFill { stroke: $safety-violet; }
+  &.sky .gaugeFill { stroke: $safety-sky; }
+}
+
+.gauge {
+  width: 48px;
+  height: 48px;
+  position: relative;
+}
+
+.gaugeRing {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.gaugeBg {
+  stroke: $steel-600;
+}
+
+.gaugeFill {
+  stroke: $steel-200;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.6s ease;
+}
+
+.gaugeValue {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: $font-mono;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: $steel-50;
+}
+
+.gaugeLabel {
+  font-size: 0.625rem;
+  color: $steel-300;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// ============================================================================
+// TABS
+// ============================================================================
+
+.tabNav {
+  display: flex;
+  background: $steel-900;
+  border-bottom: 1px solid $steel-600;
+  padding: 0 2rem;
+  overflow-x: auto;
+}
+
+.tab {
+  font-family: $font-mono;
+  font-size: 0.8125rem;
+  padding: 0.875rem 1.25rem;
+  color: $steel-300;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: $steel-50;
+    background: rgba($steel-500, 0.3);
+  }
+
+  &.active {
+    color: $copper-light;
+    border-bottom-color: $copper;
+  }
+}
+
+// ============================================================================
+// MAIN CONTENT
+// ============================================================================
+
+.mainContent {
+  padding: 1.5rem 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+// ============================================================================
+// WORKSPACE VIEW
+// ============================================================================
+
+.workspace {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+  min-height: 600px;
+}
+
+.buildList {
+  @include panel;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.buildListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include panel-header;
+
+  h2 {
+    font-family: $font-mono;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $steel-200;
+    margin: 0;
+  }
+}
+
+.newBuildButton {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  background: $copper;
+  color: $steel-900;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover { background: $copper-light; }
+}
+
+.newBuildForm {
+  @include panel;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-color: $copper;
+}
+
+.builds {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.buildItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+
+  &:hover {
+    background: $steel-600;
+  }
+
+  &.selected {
+    background: $steel-600;
+    border-color: $copper;
+  }
+}
+
+.buildInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.buildName {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: $steel-50;
+}
+
+.buildVersion {
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  color: $steel-300;
+}
+
+.buildStatus {
+  font-family: $font-mono;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  padding: 0.125rem 0.5rem;
+  border-radius: 10px;
+  
+  &.concept { background: $steel-600; color: $steel-200; }
+  &.research { background: rgba($safety-sky, 0.2); color: $safety-sky; }
+  &.design { background: rgba($safety-violet, 0.2); color: $safety-violet; }
+  &.development { background: rgba($safety-amber, 0.2); color: $safety-amber; }
+  &.testing { background: rgba($brass, 0.2); color: $brass; }
+  &.documentation { background: rgba($copper, 0.2); color: $copper-light; }
+  &.protected { background: rgba($safety-emerald, 0.2); color: $safety-emerald; }
+  &.marketplace { background: rgba($safety-emerald, 0.3); color: $safety-emerald; }
+}
+
+// Build Detail
+.buildDetail {
+  @include panel;
+  padding: 1.5rem;
+}
+
+.buildDetailHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  h2 {
+    font-family: $font-mono;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $steel-50;
+    margin: 0;
+  }
+}
+
+.versionTag {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  background: $steel-600;
+  color: $copper-light;
+  border-radius: 3px;
+}
+
+.buildDescription {
+  color: $steel-200;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+
+// Iteration Timeline
+.iterationTimeline {
+  margin-bottom: 2rem;
+
+  h3 { @include panel-header; }
+}
+
+.timeline {
+  position: relative;
+  padding-left: 1.5rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8px;
+    bottom: 0;
+    width: 2px;
+    background: $steel-500;
+  }
+}
+
+.timelineEntry {
+  position: relative;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.timelineDot {
+  position: absolute;
+  left: -1.5rem;
+  top: 0.25rem;
+  width: 18px;
+  height: 18px;
+  background: $steel-600;
+  border: 2px solid $copper;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.witnessedMark {
+  font-size: 0.625rem;
+  color: $safety-emerald;
+}
+
+.timelineContent {
+  @include panel;
+  padding: 1rem;
+
+  h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: $steel-50;
+    margin: 0.5rem 0 0.25rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+    color: $steel-200;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+.timelineMeta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timelineVersion {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  color: $copper;
+}
+
+.timelineDate {
+  font-size: 0.75rem;
+  color: $steel-300;
+}
+
+.changeList {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+
+  li {
+    font-size: 0.8125rem;
+    color: $steel-200;
+    padding: 0.125rem 0;
+  }
+}
+
+.witnessedLabel {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  color: $safety-emerald;
+  padding: 0.125rem 0.5rem;
+  background: rgba($safety-emerald, 0.1);
+  border-radius: 3px;
+}
+
+// New Iteration Form
+.newIterationForm {
+  border-top: 2px solid $copper;
+  padding-top: 1.5rem;
+
+  h3 { @include panel-header; }
+}
+
+.changesField {
+  margin: 0.75rem 0;
+
+  label {
+    display: block;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $steel-300;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.changeRow {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.375rem;
+}
+
+.witnessRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.75rem 0;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: $steel-200;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    accent-color: $copper;
+  }
+}
+
+.witnessInput {
+  flex: 1;
+  max-width: 200px;
+}
+
+.iterationTip {
+  background: rgba($safety-amber, 0.1);
+  border: 1px solid rgba($safety-amber, 0.3);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 0.8125rem;
+  color: $safety-amber;
+  margin: 1rem 0;
+  line-height: 1.5;
+
+  strong { color: $steel-50; }
+}
+
+.noIterations {
+  color: $steel-300;
+  font-style: italic;
+  padding: 1rem;
+}
+
+.noBuildSelected {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 400px;
+  color: $steel-300;
+  text-align: center;
+
+  h3 { color: $steel-200; margin: 1rem 0 0.25rem; }
+  p { margin: 0; }
+}
+
+.noBuildIcon {
+  font-size: 3rem;
+  opacity: 0.3;
+}
+
+// ============================================================================
+// FORM ELEMENTS
+// ============================================================================
+
+.input {
+  width: 100%;
+  font-family: $font-sans;
+  font-size: 0.875rem;
+  padding: 0.625rem 0.75rem;
+  background: $steel-800;
+  border: 1px solid $steel-500;
+  border-radius: 4px;
+  color: $steel-50;
+  transition: border-color 0.15s ease;
+
+  &::placeholder { color: $steel-400; }
+  &:focus { outline: none; border-color: $copper; }
+}
+
+.textarea {
+  @extend .input;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.primaryBtn {
+  font-family: $font-mono;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  background: $copper;
+  color: $steel-900;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover { background: $copper-light; }
+}
+
+.secondaryBtn {
+  @extend .primaryBtn;
+  background: $steel-500;
+  color: $steel-50;
+
+  &:hover { background: $steel-400; }
+}
+
+.ghostBtn {
+  font-family: $font-mono;
+  font-size: 0.8125rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: $steel-300;
+  border: 1px solid $steel-500;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover { color: $steel-50; border-color: $steel-300; }
+}
+
+.addBtn {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  background: transparent;
+  color: $copper;
+  border: 1px dashed $steel-500;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 0.25rem;
+
+  &:hover { border-color: $copper; background: rgba($copper, 0.1); }
+}
+
+.removeBtn {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid $steel-500;
+  border-radius: 3px;
+  color: $safety-red;
+  cursor: pointer;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+
+  &:hover { background: rgba($safety-red, 0.1); border-color: $safety-red; }
+}
+
+.formActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+// ============================================================================
+// EQUIPMENT VIEW
+// ============================================================================
+
+.equipmentView {
+  h2 { @include panel-header; }
+}
+
+.equipmentCategory {
+  margin-bottom: 2rem;
+}
+
+.categoryTitle {
+  font-family: $font-mono;
+  font-size: 0.875rem;
+  color: $copper-light;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid $steel-600;
+}
+
+.equipmentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.equipmentCard {
+  @include panel;
+  padding: 1rem;
+
+  &.available { border-left: 3px solid $safety-emerald; }
+  &.in-use { border-left: 3px solid $safety-amber; }
+  &.maintenance { border-left: 3px solid $safety-red; }
+  &.reserved { border-left: 3px solid $safety-violet; }
+}
+
+.eqHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.eqName {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: $steel-50;
+}
+
+.eqStatus {
+  font-family: $font-mono;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  padding: 0.125rem 0.5rem;
+  border-radius: 3px;
+
+  &.available { background: rgba($safety-emerald, 0.2); color: $safety-emerald; }
+  &.in-use { background: rgba($safety-amber, 0.2); color: $safety-amber; }
+  &.maintenance { background: rgba($safety-red, 0.2); color: $safety-red; }
+  &.reserved { background: rgba($safety-violet, 0.2); color: $safety-violet; }
+}
+
+.eqMeta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.eqLocation {
+  font-size: 0.8125rem;
+  color: $steel-300;
+}
+
+.eqSafety {
+  font-family: $font-mono;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+
+  &.basic { color: $safety-emerald; }
+  &.intermediate { color: $safety-amber; }
+  &.advanced { color: $safety-red; }
+}
+
+.eqTraining {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.trainingLabel {
+  font-size: 0.6875rem;
+  color: $steel-300;
+}
+
+.trainingTag {
+  font-size: 0.625rem;
+  padding: 0.125rem 0.375rem;
+  background: $steel-600;
+  border-radius: 3px;
+  color: $steel-200;
+}
+
+// ============================================================================
+// BOM VIEW
+// ============================================================================
+
+.bomView {
+  h2 {
+    @include panel-header;
+    span { color: $copper-light; }
+  }
+}
+
+.bomHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.bomSummary {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.bomTotal {
+  font-family: $font-mono;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: $copper-light;
+}
+
+.bomProgress {
+  font-size: 0.875rem;
+  color: $steel-300;
+}
+
+.bomTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    font-family: $font-mono;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $steel-300;
+    text-align: left;
+    padding: 0.625rem 0.5rem;
+    border-bottom: 2px solid $steel-500;
+  }
+
+  td {
+    padding: 0.5rem;
+    border-bottom: 1px solid $steel-600;
+    vertical-align: middle;
+  }
+
+  tr.acquired td { opacity: 0.5; }
+}
+
+.tableInput {
+  width: 100%;
+  font-family: $font-sans;
+  font-size: 0.8125rem;
+  padding: 0.375rem 0.5rem;
+  background: $steel-800;
+  border: 1px solid $steel-600;
+  border-radius: 3px;
+  color: $steel-50;
+
+  &:focus { outline: none; border-color: $copper; }
+}
+
+.tableInputSmall {
+  @extend .tableInput;
+  width: 80px;
+}
+
+.tableSelect {
+  @extend .tableInput;
+  appearance: none;
+}
+
+.costCell {
+  font-family: $font-mono;
+  font-size: 0.8125rem;
+  color: $copper-light;
+}
+
+.totalLabel {
+  text-align: right;
+  font-weight: 600;
+  color: $steel-200;
+}
+
+.totalValue {
+  font-family: $font-mono;
+  font-weight: 700;
+  color: $copper;
+  font-size: 1rem;
+}
+
+// ============================================================================
+// SHARED STATES
+// ============================================================================
+
+.emptyState, .emptyBuilds, .emptyBom {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: $steel-300;
+
+  p { margin: 0.25rem 0; }
+  button { margin-top: 1rem; }
+}
+
+.loading {
+  padding: 2rem;
+  text-align: center;
+  color: $steel-300;
+}
+
+.viewDescription {
+  color: $steel-200;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+// Safety View
+.safetyWarning {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba($safety-amber, 0.1);
+  border: 1px solid rgba($safety-amber, 0.3);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+
+  p { margin: 0; font-size: 0.9375rem; color: $steel-50; line-height: 1.5; }
+}
+
+.warningIcon {
+  font-size: 1.5rem;
+  color: $safety-amber;
+  flex-shrink: 0;
+}
+
+.safetyCategories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.safetyCategory {
+  @include panel;
+  padding: 1rem;
+
+  h3 {
+    font-family: $font-mono;
+    font-size: 0.875rem;
+    color: $copper-light;
+    margin: 0 0 0.75rem;
+  }
+}
+
+.checklistPlaceholder {
+  font-size: 0.8125rem;
+  color: $steel-300;
+  font-style: italic;
+}
+
+// Patent Prep View
+.patentPrepView {
+  h2 { @include panel-header; }
+}
+
+.patentChecklist {
+  @include panel;
+  padding: 1.5rem;
+
+  h3 {
+    font-family: $font-mono;
+    font-size: 1rem;
+    color: $steel-50;
+    margin: 0 0 1.25rem;
+  }
+}
+
+.readinessGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.readinessItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+
+  &.ready {
+    background: rgba($safety-emerald, 0.08);
+    border: 1px solid rgba($safety-emerald, 0.2);
+
+    .readinessCheck { color: $safety-emerald; }
+  }
+
+  &.pending {
+    background: $steel-700;
+    border: 1px solid $steel-500;
+
+    .readinessCheck { color: $steel-400; }
+  }
+}
+
+.readinessCheck {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.readinessContent {
+  h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: $steel-50;
+    margin: 0 0 0.25rem;
+  }
+
+  p {
+    font-size: 0.8125rem;
+    color: $steel-300;
+    margin: 0;
+  }
+}
+
+.readinessDetail {
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  color: $steel-400;
+  display: block;
+  margin-top: 0.375rem;
+}
+
+.patentActions {
+  display: flex;
+  gap: 1rem;
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+  }
+
+  .labStatus {
+    justify-content: center;
+  }
+
+  .tabNav {
+    padding: 0 1rem;
+  }
+
+  .mainContent {
+    padding: 1rem;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .equipmentGrid {
+    grid-template-columns: 1fr;
+  }
+}

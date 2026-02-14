@@ -1,0 +1,626 @@
+//src/components/layout/Header.tsx
+ 
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSmartRouting } from '../../hooks/useSmartRouting';
+import { SmartSearch } from '../smart/SmartSearch';
+import './Header.css';
+
+const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { confidence, suggestedPath, welcomeMessage } = useSmartRouting();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleDropdown = (dropdown: string) => {
+    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
+  const isActive = (path: string) => {
+    return location.pathname === path || location.pathname.startsWith(path);
+  };
+
+  // Smart navigation items for Get Started dropdown
+  const quickAccessItems = [
+    {
+      title: "Someone mentioned us on the radio?",
+      href: "/raydyo",
+      description: "Visit Raydyo community radio",
+      icon: "📻",
+      isHighlighted: confidence > 0.7 && suggestedPath === '/raydyo'
+    },
+    {
+      title: "Looking for training?",
+      href: "/workshops",
+      description: "Skills workshops & development",
+      icon: "🎯",
+      isHighlighted: confidence > 0.7 && suggestedPath === '/workshops'
+    },
+    {
+      title: "Heard about our gaming?",
+      href: "/joystick",
+      description: "Joystick Magazine & events",
+      icon: "🎮",
+      isHighlighted: confidence > 0.7 && suggestedPath === '/joystick'
+    },
+    {
+      title: "Want to get involved?",
+      href: "/membership",
+      description: "Join our community",
+      icon: "🤝",
+      isHighlighted: confidence > 0.7 && suggestedPath === '/membership'
+    }
+  ];
+
+  return (
+    <>
+      {/* Top Header Section - Logo, Title, Location Badge, Communications */}
+      <header className="main-header">
+        <div className="header-container">
+          {/* Left: Brand Section with Logo, Name, and Location Badge */}
+          <div className="header-brand">
+            <Link to="/" className="brand-link" onClick={closeMenu}>
+              <img 
+                src="/src/assets/images/wembleylionlogo.png" 
+                alt="Wembley Wonders" 
+                className="brand-logo-img"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "/src/assets/logo.jpg";
+                }}
+              />
+              <div className="brand-content">
+                <span className="brand-text">Wembley Wonders</span>
+                <Link to="/" className="location-badge" onClick={closeMenu}>
+                  <span className="location-icon">🏡</span>
+                  <span className="location-text">Building Community Wealth in Wembley</span>
+                </Link>
+              </div>
+            </Link>
+          </div>
+
+          {/* Right: Communications Section */}
+          <div className="header-actions">
+            <div className="comms-section">
+              <Link to="/raydyo" className="comm-button">
+                <span className="comm-icon">📻</span>
+                <span className="comm-text">Radio</span>
+              </Link>
+
+              <Link to="/joystick" className="comm-button">
+                <span className="comm-icon">🎮</span>
+                <span className="comm-text">Magazine</span>
+              </Link>
+
+              <Link to="/work-with-us" className="comm-button">
+                <span className="comm-icon">🏪</span>
+                <span className="comm-text">Advertise</span>
+              </Link>
+            </div>
+
+            {/* Mobile Menu Toggle */}
+            <button 
+              className="mobile-menu-toggle"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Navigation Bar */}
+      <nav className="main-navigation">
+        <div className="nav-container">
+          <ul className="nav-list">
+            {/* What's On Dropdown */}
+            <li 
+              className="nav-item nav-dropdown"
+              onMouseEnter={() => setActiveDropdown('whats-on')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="nav-button nav-whats-on">
+                What's On ▼
+              </button>
+              
+              {activeDropdown === 'whats-on' && (
+                <div className="dropdown-menu">
+                  <div className="dropdown-header">
+                    <h4>What's On</h4>
+                    <p>Activities and opportunities</p>
+                  </div>
+                  
+                  <Link to="/calendar" className="dropdown-item" onClick={closeMenu}>
+                    📅 Community Calendar
+                  </Link>
+                  
+                  <Link to="/programmes" className="dropdown-item" onClick={closeMenu}>
+                    🎓 All Programmes
+                  </Link>
+                  
+                  <Link to="/workshops" className="dropdown-item" onClick={closeMenu}>
+                    🔨 Workshops
+                  </Link>
+
+                  <div className="dropdown-divider"></div>
+                  
+                  <Link to="/programmes/stemgeneers" className="dropdown-item" onClick={closeMenu}>
+                    🔬 STEMgeneers
+                  </Link>
+                  
+                  <Link to="/programmes/techreneurs" className="dropdown-item" onClick={closeMenu}>
+                    💼 TECHreneurs
+                  </Link>
+                  
+                  <Link to="/programmes/gtechcasters" className="dropdown-item" onClick={closeMenu}>
+                    🎙️ G-Tech Casters
+                  </Link>
+                  
+                  <Link to="/programmes/kaywanas-court" className="dropdown-item" onClick={closeMenu}>
+                    🎭 Kaywana's Court
+                  </Link>
+                  
+                  <Link to="/programmes/pageturners" className="dropdown-item" onClick={closeMenu}>
+                    ✍️ Pageturners Writer's Workshop
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Programmes Dropdown */}
+            <li 
+              className="nav-item nav-dropdown"
+              onMouseEnter={() => setActiveDropdown('programmes')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="nav-button nav-programmes">
+                Programmes ▼
+              </button>
+              
+              {activeDropdown === 'programmes' && (
+                <div className="dropdown-menu">
+                  <div className="dropdown-header">
+                    <h4>Our Programmes</h4>
+                    <p>Creative platforms & development</p>
+                  </div>
+                  
+                  <Link to="/programmes" className="dropdown-item dropdown-item-featured" onClick={closeMenu}>
+                    🎓 All Programmes
+                  </Link>
+
+                  <Link to="/creators-journal" className="dropdown-item" onClick={closeMenu}>
+                    📔 Creator's Journal
+                  </Link>
+
+                  <div className="dropdown-divider"></div>
+                  
+                  <Link to="/programmes/stemgeneers" className="dropdown-item" onClick={closeMenu}>
+                    🔬 STEMgeneers
+                  </Link>
+                  
+                  <Link to="/programmes/techreneurs" className="dropdown-item" onClick={closeMenu}>
+                    💼 TECHreneurs
+                  </Link>
+                  
+                  <Link to="/programmes/kaywanas-court" className="dropdown-item" onClick={closeMenu}>
+                    🎭 Kaywana's Court
+                  </Link>
+                  
+                  <Link to="/programmes/pageturners" className="dropdown-item" onClick={closeMenu}>
+                    ✍️ Pageturners Writer's Workshop
+                  </Link>
+
+                  <Link to="/programmes/gtechcasters" className="dropdown-item" onClick={closeMenu}>
+                    🎙️ G-Tech Casters
+                  </Link>
+
+                  <div className="dropdown-divider"></div>
+                  
+                  <Link to="/raydyo" className="dropdown-item" onClick={closeMenu}>
+                    📻 Raydyo Radio
+                  </Link>
+                  
+                  <Link to="/joystick" className="dropdown-item" onClick={closeMenu}>
+                    🎮 Joystick Magazine
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Get Started with Smart Features */}
+            <li 
+              className="nav-item nav-dropdown"
+              onMouseEnter={() => setActiveDropdown('get-started')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <Link to="/get-started" className="nav-button nav-get-started">
+                Get Started {confidence > 0.6 ? '✨' : '▼'}
+              </Link>
+              
+              {activeDropdown === 'get-started' && (
+                <div className="dropdown-menu dropdown-large">
+                  <div className="dropdown-header-center">
+                    <h4>{confidence > 0.6 && welcomeMessage ? welcomeMessage : "What brings you here?"}</h4>
+                    <p>Quick paths based on what people usually tell us</p>
+                  </div>
+                  
+                  <div className="smart-search-container">
+                    <SmartSearch 
+                      placeholder="Search for something specific..."
+                      className="header-search"
+                      showSuggestions={true}
+                    />
+                  </div>
+                  
+                  <div className="quick-access-grid">
+                    {quickAccessItems.map((item, index) => (
+                      <Link
+                        key={index}
+                        to={item.href}
+                        className={`quick-access-item ${item.isHighlighted ? 'highlighted' : ''}`}
+                        onClick={closeMenu}
+                      >
+                        <span className="quick-icon">{item.icon}</span>
+                        <div className="quick-content">
+                          <div className="quick-title">{item.title}</div>
+                          <div className="quick-description">{item.description}</div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                  
+                  <div className="dropdown-footer">
+                    <Link to="/get-started" onClick={closeMenu}>
+                      View all options →
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </li>
+
+            {/* Who We Are Dropdown */}
+            <li 
+              className="nav-item nav-dropdown"
+              onMouseEnter={() => setActiveDropdown('who-we-are')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="nav-button nav-who-we-are">
+                Who We Are ▼
+              </button>
+              
+              {activeDropdown === 'who-we-are' && (
+                <div className="dropdown-menu">
+                  <div className="dropdown-header">
+                    <h4>Who We Are</h4>
+                    <p>Our story and mission</p>
+                  </div>
+                  
+                  <Link to="/about" className="dropdown-item" onClick={closeMenu}>
+                    🏛️ About Us
+                  </Link>
+
+                  <Link to="/team" className="dropdown-item" onClick={closeMenu}>
+                    ⚽ Team
+                  </Link>
+
+                  <Link to="/who-we-are/how-we-share-power" className="dropdown-item" onClick={closeMenu}>
+                    ⚖️ How We Share Power
+                  </Link>
+
+                  <Link to="/who-we-are/directors-pathway" className="dropdown-item" onClick={closeMenu}>
+                    👔 Directors Pathway
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Members Benefits Dropdown */}
+            <li 
+              className="nav-item nav-dropdown"
+              onMouseEnter={() => setActiveDropdown('members-benefits')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="nav-button nav-members-benefits">
+                Members Benefits ▼
+              </button>
+              
+              {activeDropdown === 'members-benefits' && (
+                <div className="dropdown-menu">
+                  <div className="dropdown-header">
+                    <h4>Members Benefits</h4>
+                    <p>Benefits and community values</p>
+                  </div>
+                  
+                  <Link to="/members-bonus" className="dropdown-item" onClick={closeMenu}>
+                    💰 Individual Benefits
+                  </Link>
+                  
+                  <Link to="/members-bonus/community-ownership" className="dropdown-item" onClick={closeMenu}>
+                    🤝 Community Ownership
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Partner with Us Dropdown */}
+            <li 
+              className="nav-item nav-dropdown"
+              onMouseEnter={() => setActiveDropdown('partner-with-us')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="nav-button nav-partner">
+                🤝 Partner with Us ▼
+              </button>
+              
+              {activeDropdown === 'partner-with-us' && (
+                <div className="dropdown-menu">
+                  <div className="dropdown-header">
+                    <h4>Partner with Us</h4>
+                    <p>Partnerships and services</p>
+                  </div>
+                  
+                  <Link to="/partner-with-us" className="dropdown-item" onClick={closeMenu}>
+                    🤝 Business Partnerships
+                  </Link>
+                  
+                  <Link to="/work-with-us" className="dropdown-item" onClick={closeMenu}>
+                    💼 Work With Us
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Account Dropdown */}
+            <li 
+              className="nav-item nav-dropdown"
+              onMouseEnter={() => setActiveDropdown('account')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="nav-button nav-account">
+                👤 Account ▼
+              </button>
+              
+              {activeDropdown === 'account' && (
+                <div className="dropdown-menu dropdown-right">
+                  <div className="dropdown-header">
+                    <h4>Account Access</h4>
+                    <p>Join our community</p>
+                  </div>
+                  
+                  <Link to="/login" className="dropdown-item" onClick={closeMenu}>
+                    🔑 Login
+                  </Link>
+                  
+                  <Link to="/signup" className="dropdown-item dropdown-item-featured" onClick={closeMenu}>
+                    ✨ Sign Up
+                  </Link>
+                </div>
+              )}
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      {/* Mobile Navigation */}
+      <div className={`mobile-nav ${isMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-nav-content">
+          <ul className="mobile-nav-list">
+            {/* What's On Mobile */}
+            <li className="mobile-nav-item">
+              <button 
+                className="mobile-nav-toggle"
+                onClick={() => handleDropdown('mobile-whats-on')}
+              >
+                What's On {activeDropdown === 'mobile-whats-on' ? '▲' : '▼'}
+              </button>
+              
+              {activeDropdown === 'mobile-whats-on' && (
+                <div className="mobile-submenu">
+                  <Link to="/calendar" className="mobile-nav-link" onClick={closeMenu}>
+                    📅 Community Calendar
+                  </Link>
+                  
+                  <Link to="/programmes" className="mobile-nav-link" onClick={closeMenu}>
+                    🎓 All Programmes
+                  </Link>
+                  
+                  <Link to="/workshops" className="mobile-nav-link" onClick={closeMenu}>
+                    🔨 Workshops
+                  </Link>
+
+                  <Link to="/programmes/stemgeneers" className="mobile-nav-link" onClick={closeMenu}>
+                    🔬 STEMgeneers
+                  </Link>
+                  
+                  <Link to="/programmes/techreneurs" className="mobile-nav-link" onClick={closeMenu}>
+                    💼 TECHreneurs
+                  </Link>
+
+                  <Link to="/programmes/kaywanas-court" className="mobile-nav-link" onClick={closeMenu}>
+                    🎭 Kaywana's Court
+                  </Link>
+                  
+                  <Link to="/programmes/pageturners" className="mobile-nav-link" onClick={closeMenu}>
+                    ✍️ Pageturners Workshop
+                  </Link>
+                  
+                  <Link to="/programmes/gtechcasters" className="mobile-nav-link" onClick={closeMenu}>
+                    🎙️ G-Tech Casters
+                  </Link>   
+                </div>
+              )}
+            </li>
+
+            {/* Programmes Mobile */}
+            <li className="mobile-nav-item">
+              <button 
+                className="mobile-nav-toggle"
+                onClick={() => handleDropdown('mobile-programmes')}
+              >
+                Programmes {activeDropdown === 'mobile-programmes' ? '▲' : '▼'}
+              </button>
+              
+              {activeDropdown === 'mobile-programmes' && (
+                <div className="mobile-submenu">
+                  <Link to="/programmes" className="mobile-nav-link mobile-nav-featured" onClick={closeMenu}>
+                    🎓 All Programmes
+                  </Link>
+                  
+                  <Link to="/creators-journal" className="mobile-nav-link" onClick={closeMenu}>
+                    📔 Creator's Journal
+                  </Link>
+                  
+                  <Link to="/programmes/stemgeneers" className="mobile-nav-link" onClick={closeMenu}>
+                    🔬 STEMgeneers
+                  </Link>
+                  
+                  <Link to="/programmes/techreneurs" className="mobile-nav-link" onClick={closeMenu}>
+                    💼 TECHreneurs
+                  </Link>
+                  
+                  <Link to="/programmes/kaywanas-court" className="mobile-nav-link" onClick={closeMenu}>
+                    🎭 Kaywana's Court
+                  </Link>
+                  
+                  <Link to="/programmes/pageturners" className="mobile-nav-link" onClick={closeMenu}>
+                    ✍️ Pageturners Workshop
+                  </Link>
+
+                  <Link to="/programmes/gtechcasters" className="mobile-nav-link" onClick={closeMenu}>
+                    🎙️ G-Tech Casters
+                  </Link>
+
+                  <Link to="/raydyo" className="mobile-nav-link" onClick={closeMenu}>
+                    📻 Raydyo Radio
+                  </Link>
+                  
+                  <Link to="/joystick" className="mobile-nav-link" onClick={closeMenu}>
+                    🎮 Joystick Magazine
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Get Started Mobile */}
+            <li className="mobile-nav-item">
+              <Link to="/get-started" className="mobile-nav-link mobile-nav-featured" onClick={closeMenu}>
+                🚀 Get Started {confidence > 0.6 ? '✨' : ''}
+              </Link>
+            </li>
+
+            {/* Who We Are Mobile */}
+            <li className="mobile-nav-item">
+              <button 
+                className="mobile-nav-toggle"
+                onClick={() => handleDropdown('mobile-who-we-are')}
+              >
+                Who We Are {activeDropdown === 'mobile-who-we-are' ? '▲' : '▼'}
+              </button>
+
+              {activeDropdown === 'mobile-who-we-are' && (
+                <div className="mobile-submenu">
+                  <Link to="/about" className="mobile-nav-link" onClick={closeMenu}>
+                    🏛️ About Us
+                  </Link>
+
+                  <Link to="/team" className="mobile-nav-link" onClick={closeMenu}>
+                    ⚽ Team
+                  </Link>
+
+                  <Link to="/who-we-are/how-we-share-power" className="mobile-nav-link" onClick={closeMenu}>
+                    ⚖️ How We Share Power
+                  </Link>
+
+                  <Link to="/who-we-are/directors-pathway" className="mobile-nav-link" onClick={closeMenu}>
+                    👔 Directors Pathway
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Members Benefits Mobile */}
+            <li className="mobile-nav-item">
+              <button 
+                className="mobile-nav-toggle"
+                onClick={() => handleDropdown('mobile-members-benefits')}
+              >
+                Members Benefits {activeDropdown === 'mobile-members-benefits' ? '▲' : '▼'}
+              </button>
+              
+              {activeDropdown === 'mobile-members-benefits' && (
+                <div className="mobile-submenu">
+                  <Link to="/members-bonus" className="mobile-nav-link" onClick={closeMenu}>
+                    💰 Individual Benefits
+                  </Link>
+                  
+                  <Link to="/members-bonus/community-ownership" className="mobile-nav-link" onClick={closeMenu}>
+                    🤝 Community Ownership
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Partner with Us Mobile */}
+            <li className="mobile-nav-item">
+              <button 
+                className="mobile-nav-toggle"
+                onClick={() => handleDropdown('mobile-partner-with-us')}
+              >
+                🤝 Partner with Us {activeDropdown === 'mobile-partner-with-us' ? '▲' : '▼'}
+              </button>
+              
+              {activeDropdown === 'mobile-partner-with-us' && (
+                <div className="mobile-submenu">
+                  <Link to="/partner-with-us" className="mobile-nav-link" onClick={closeMenu}>
+                    🤝 Business Partnerships
+                  </Link>
+                  
+                  <Link to="/work-with-us" className="mobile-nav-link" onClick={closeMenu}>
+                    💼 Work With Us
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Account Mobile */}
+            <li className="mobile-nav-item">
+              <button 
+                className="mobile-nav-toggle"
+                onClick={() => handleDropdown('mobile-account')}
+              >
+                👤 Account {activeDropdown === 'mobile-account' ? '▲' : '▼'}
+              </button>
+              
+              {activeDropdown === 'mobile-account' && (
+                <div className="mobile-submenu">
+                  <Link to="/login" className="mobile-nav-link" onClick={closeMenu}>
+                    🔑 Login
+                  </Link>
+                  
+                  <Link to="/signup" className="mobile-nav-link mobile-nav-featured" onClick={closeMenu}>
+                    ✨ Sign Up
+                  </Link>
+                </div>
+              )}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Header;

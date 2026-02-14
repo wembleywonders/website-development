@@ -1,0 +1,233 @@
+/* ═══════════════════════════════════════════════════════════════
+   SPARK GENERATOR v2 — Dark Theme
+   Matches site-wide #0f172a / #1e293b palette
+   ═══════════════════════════════════════════════════════════════ */
+
+.spark-gen { max-width: 900px; margin: 0 auto; padding: 0 1rem 3rem; }
+
+/* ── Header ── */
+.spark-gen-header { text-align: center; margin-bottom: 2.5rem; }
+.spark-gen-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 100px; padding: 4px 16px;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase; color: #fbbf24; margin-bottom: 0.75rem;
+}
+.spark-gen-subtitle { color: #94a3b8; font-size: 1rem; line-height: 1.6; max-width: 500px; margin: 0 auto; }
+
+/* ── Programme Selector ── */
+.spark-gen-programmes { margin-bottom: 2rem; }
+.spark-gen-section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #64748b; margin-bottom: 0.75rem; }
+.programme-selector-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+.programme-select-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 10px 8px;
+  background: rgba(51, 65, 85, 0.3);
+  border: 1.5px solid rgba(148, 163, 184, 0.12);
+  border-radius: 12px; cursor: pointer; transition: all 0.2s ease; color: #94a3b8;
+}
+.programme-select-btn:hover {
+  border-color: var(--prog-color); color: var(--prog-color);
+  background: color-mix(in srgb, var(--prog-color) 8%, rgba(15, 23, 42, 0.8));
+}
+.programme-select-btn.selected {
+  border-color: var(--prog-color);
+  background: color-mix(in srgb, var(--prog-color) 12%, rgba(15, 23, 42, 0.8));
+  color: var(--prog-color); transform: scale(1.02);
+}
+.prog-select-icon { font-size: 1.3rem; }
+.prog-select-name { font-size: 0.7rem; font-weight: 600; text-align: center; line-height: 1.2; }
+.prog-select-spark { font-size: 0.6rem; color: #64748b; font-style: italic; }
+
+/* ── Connected Panel ── */
+.spark-gen-connected {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  margin-bottom: 1.5rem; padding: 12px 16px; border-radius: 12px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+.connected-link {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 600;
+  text-decoration: none;
+  background: rgba(51, 65, 85, 0.4);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  color: #94a3b8; transition: all 0.2s;
+}
+.connected-link:hover {
+  border-color: var(--prog-color); color: var(--prog-color);
+  background: rgba(51, 65, 85, 0.6);
+}
+.connected-guide {
+  margin-left: auto; font-size: 0.8rem; color: #64748b;
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* ── Spark Display ── */
+.spark-display { text-align: center; margin-bottom: 2rem; }
+.spark-display-empty {
+  padding: 3rem 2rem; border-radius: 16px;
+  background: rgba(51, 65, 85, 0.2);
+  border: 2px dashed rgba(148, 163, 184, 0.15);
+}
+.spark-display-empty-icon { font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.4; }
+.spark-display-empty-text { color: #64748b; font-size: 0.9rem; }
+
+.spark-display-active {
+  padding: 2rem; border-radius: 20px;
+  background: color-mix(in srgb, var(--prog-color) 6%, rgba(15, 23, 42, 0.8));
+  border: 2px solid color-mix(in srgb, var(--prog-color) 20%, transparent);
+  animation: sparkIn 0.4s ease;
+}
+@keyframes sparkIn { from { opacity: 0; transform: scale(0.96) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+.spark-source {
+  display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 1rem;
+}
+.spark-source-icon { font-size: 1.2rem; }
+.spark-source-name { font-size: 0.8rem; font-weight: 600; color: var(--prog-color); }
+.spark-prompt { font-size: 1.4rem; font-weight: 700; line-height: 1.3; color: #f8fafc; margin: 0 0 1rem; }
+.spark-meta { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.spark-meta-item {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 0.75rem; color: #64748b;
+}
+.spark-meta-item svg { opacity: 0.6; }
+
+/* ── Generate Buttons ── */
+.spark-gen-buttons { display: flex; gap: 10px; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
+.spark-gen-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 24px; border-radius: 12px; border: none;
+  font-weight: 700; font-size: 0.9rem; cursor: pointer;
+  transition: all 0.2s; color: white;
+}
+.spark-gen-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.spark-gen-btn.opener {
+  background: linear-gradient(135deg, var(--prog-color, #4f46e5), color-mix(in srgb, var(--prog-color, #4f46e5) 70%, #7c3aed));
+  box-shadow: 0 4px 15px color-mix(in srgb, var(--prog-color) 30%, transparent);
+}
+.spark-gen-btn.opener:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 25px color-mix(in srgb, var(--prog-color) 40%, transparent); }
+.spark-gen-btn.closer {
+  background: rgba(51, 65, 85, 0.6);
+  border: 1.5px solid rgba(148, 163, 184, 0.2);
+  color: #cbd5e1;
+}
+.spark-gen-btn.closer:hover:not(:disabled) { background: rgba(51, 65, 85, 0.8); border-color: rgba(148, 163, 184, 0.35); transform: translateY(-2px); }
+
+/* ── Session Plan ── */
+.session-plan { margin-bottom: 2rem; }
+.session-plan-toggle {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  padding: 12px 16px; border-radius: 12px;
+  background: rgba(51, 65, 85, 0.3);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  cursor: pointer; color: #94a3b8; font-weight: 700; font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.session-plan-toggle:hover { border-color: rgba(148, 163, 184, 0.25); }
+.session-plan-toggle span:first-child { flex: 1; text-align: left; }
+
+.session-plan-content {
+  margin-top: 8px; padding: 16px; border-radius: 12px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  animation: feFadeIn 0.3s ease;
+}
+
+/* ── Session Timeline ── */
+.session-timeline { display: flex; flex-direction: column; gap: 2px; }
+.timeline-segment {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; border-radius: 10px;
+  background: rgba(51, 65, 85, 0.2);
+  border: 1px solid rgba(148, 163, 184, 0.06);
+  transition: all 0.2s;
+}
+.timeline-segment:hover { background: rgba(51, 65, 85, 0.35); }
+.timeline-segment.active {
+  background: color-mix(in srgb, var(--prog-color) 8%, rgba(15, 23, 42, 0.8));
+  border-color: color-mix(in srgb, var(--prog-color) 20%, transparent);
+}
+.timeline-time { font-size: 0.7rem; font-weight: 700; color: #64748b; min-width: 35px; text-align: right; }
+.timeline-bar {
+  width: 4px; border-radius: 2px; align-self: stretch;
+  background: rgba(148, 163, 184, 0.15);
+}
+.timeline-segment.active .timeline-bar { background: var(--prog-color); }
+.timeline-name { font-size: 0.8rem; font-weight: 600; color: #cbd5e1; flex: 1; }
+.timeline-segment.active .timeline-name { color: var(--prog-color); }
+.timeline-action {
+  font-size: 0.7rem; font-weight: 600; color: var(--prog-color);
+  padding: 3px 8px; border-radius: 6px;
+  background: color-mix(in srgb, var(--prog-color) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--prog-color) 15%, transparent);
+  text-decoration: none; cursor: pointer;
+  transition: all 0.2s;
+}
+.timeline-action:hover { background: color-mix(in srgb, var(--prog-color) 18%, transparent); }
+
+/* ── Sandbox Challenges ── */
+.sandbox-challenges { margin-bottom: 2rem; }
+.sandbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.sandbox-card {
+  padding: 14px 16px; border-radius: 12px;
+  background: rgba(51, 65, 85, 0.25);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  text-decoration: none; transition: all 0.2s;
+}
+.sandbox-card:hover { border-color: var(--prog-color); transform: translateY(-2px); }
+.sandbox-card-title { font-size: 0.85rem; font-weight: 700; color: #e2e8f0; margin-bottom: 4px; }
+.sandbox-card-desc { font-size: 0.75rem; color: #94a3b8; margin-bottom: 6px; }
+.sandbox-card-duration { font-size: 0.65rem; color: #64748b; font-weight: 600; }
+
+/* ── Zoom Tips ── */
+.zoom-tips {
+  padding: 14px 18px; border-radius: 12px;
+  background: rgba(6, 182, 212, 0.06);
+  border: 1px solid rgba(6, 182, 212, 0.15);
+  margin-bottom: 2rem;
+}
+.zoom-tips-title { font-size: 0.75rem; font-weight: 700; color: #22d3ee; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+.zoom-tips-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.zoom-tips-list li {
+  font-size: 0.8rem; color: #94a3b8; line-height: 1.5;
+  padding-left: 16px; position: relative;
+}
+.zoom-tips-list li::before { content: '→'; position: absolute; left: 0; color: #22d3ee; }
+
+/* ── Spark Map ── */
+.spark-map { margin-top: 2rem; }
+.spark-map-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+.spark-map-card {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 14px 10px; border-radius: 12px;
+  background: rgba(51, 65, 85, 0.25);
+  border: 1.5px solid rgba(148, 163, 184, 0.1);
+  text-decoration: none; transition: all 0.2s; cursor: pointer;
+}
+.spark-map-card:hover {
+  border-color: var(--card-color, rgba(148, 163, 184, 0.3));
+  background: color-mix(in srgb, var(--card-color, #4f46e5) 6%, rgba(15, 23, 42, 0.8));
+  transform: translateY(-2px);
+}
+.spark-map-icon { font-size: 1.5rem; }
+.spark-map-name { font-size: 0.7rem; font-weight: 700; color: #e2e8f0; text-align: center; }
+.spark-map-spark { font-size: 0.6rem; color: #64748b; text-align: center; font-style: italic; }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .programme-selector-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 6px; }
+  .programme-select-btn { padding: 8px 4px; }
+  .prog-select-name { font-size: 0.6rem; }
+  .spark-prompt { font-size: 1.1rem; }
+  .spark-gen-buttons { flex-direction: column; align-items: stretch; }
+  .spark-gen-btn { justify-content: center; }
+  .spark-gen-connected { flex-direction: column; align-items: stretch; }
+  .connected-guide { margin-left: 0; }
+  .spark-map-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+}

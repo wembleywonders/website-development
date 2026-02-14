@@ -1,0 +1,1326 @@
+/*
+ * G-TECH COMMUNITY PLATFORM IP PROTECTION
+ * Copyright (c) 2024-2026 Wembley Wonders CIC
+ * Company No. 12960817
+ * All rights reserved.
+ */
+
+/**
+ * Songwriting Workshop Styles
+ * Creative, warm, inspiring.
+ */
+
+/* ============================================
+   CONTAINER
+   ============================================ */
+
+.songwriting-workshop {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.workshop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: rgba(15, 52, 96, 0.8);
+  border-bottom: 3px solid rgba(233, 69, 96, 0.5);
+}
+
+.header-content h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #e94560 0%, #f9b208 50%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 0.25rem 0;
+}
+
+.header-content p {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.workshop-header .close-btn {
+  padding: 0.75rem 1.5rem;
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.workshop-header .close-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* ============================================
+   TAB NAVIGATION
+   ============================================ */
+
+.workshop-tabs {
+  display: flex;
+  background: rgba(15, 52, 96, 0.6);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  overflow-x: auto;
+}
+
+.workshop-tabs .tab {
+  flex: 1;
+  min-width: 140px;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #94a3b8;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.workshop-tabs .tab:hover {
+  color: #e2e8f0;
+  background: rgba(233, 69, 96, 0.1);
+}
+
+.workshop-tabs .tab.active {
+  color: #e94560;
+  border-bottom-color: #e94560;
+  background: rgba(233, 69, 96, 0.15);
+}
+
+.tab-count {
+  background: rgba(148, 163, 184, 0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.tab.active .tab-count {
+  background: rgba(233, 69, 96, 0.3);
+  color: #e94560;
+}
+
+/* ============================================
+   CONTENT AREA
+   ============================================ */
+
+.workshop-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.workshop-panel {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.panel-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.panel-header h3 {
+  font-size: 1.75rem;
+  color: #f9b208;
+  margin: 0 0 0.5rem 0;
+}
+
+.panel-header p {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* ============================================
+   CONTROLS ROW
+   ============================================ */
+
+.controls-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  flex: 1;
+  min-width: 150px;
+}
+
+.control-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.control-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(15, 52, 96, 0.8);
+  border: 2px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  color: #e2e8f0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.control-group select:hover,
+.control-group select:focus {
+  border-color: #e94560;
+  outline: none;
+}
+
+/* ============================================
+   CHORD BUILDER
+   ============================================ */
+
+.chords-in-key {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(15, 52, 96, 0.5);
+  border-radius: 12px;
+}
+
+.chords-in-key h4 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.key-chords {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.key-chord {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 70px;
+}
+
+.key-chord.major {
+  background: linear-gradient(135deg, rgba(249, 178, 8, 0.3), rgba(249, 178, 8, 0.1));
+  border: 2px solid rgba(249, 178, 8, 0.5);
+}
+
+.key-chord.minor {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0.1));
+  border: 2px solid rgba(168, 85, 247, 0.5);
+}
+
+.key-chord.dim {
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.3), rgba(148, 163, 184, 0.1));
+  border: 2px solid rgba(148, 163, 184, 0.5);
+}
+
+.key-chord:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.key-chord:active {
+  transform: scale(0.95);
+}
+
+.chord-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.chord-numeral {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+/* Progression Library */
+.progression-library {
+  margin-bottom: 2rem;
+}
+
+.progression-library h4 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.progressions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.progression-card {
+  background: rgba(15, 52, 96, 0.6);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.progression-card:hover {
+  border-color: rgba(233, 69, 96, 0.5);
+  background: rgba(233, 69, 96, 0.1);
+}
+
+.progression-card.selected {
+  border-color: #e94560;
+  background: rgba(233, 69, 96, 0.2);
+}
+
+.prog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.prog-name {
+  font-weight: 700;
+  color: #e2e8f0;
+  font-size: 1rem;
+}
+
+.prog-cultural {
+  font-size: 1.1rem;
+}
+
+.prog-numerals {
+  font-size: 0.95rem;
+  color: #f9b208;
+  margin-bottom: 0.5rem;
+  font-family: 'Monaco', 'Consolas', monospace;
+}
+
+.prog-mood {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.prog-genres {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.genre-tag {
+  padding: 0.2rem 0.5rem;
+  background: rgba(168, 85, 247, 0.2);
+  color: #a855f7;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* Progression Details */
+.progression-details {
+  background: rgba(249, 178, 8, 0.1);
+  border: 2px solid rgba(249, 178, 8, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.details-header h4 {
+  font-size: 1.25rem;
+  color: #f9b208;
+  margin: 0;
+}
+
+.play-btn {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #e94560, #d63850);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.play-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+}
+
+.prog-full-numerals {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.numeral-box {
+  padding: 0.5rem 0.75rem;
+  background: rgba(15, 52, 96, 0.8);
+  border: 1px solid rgba(249, 178, 8, 0.5);
+  border-radius: 6px;
+  font-family: 'Monaco', 'Consolas', monospace;
+  color: #f9b208;
+}
+
+.prog-description {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.cultural-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(168, 85, 247, 0.1);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.cultural-icon {
+  font-size: 1.25rem;
+}
+
+.famous-songs {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   MELODY WORKSHOP
+   ============================================ */
+
+.scale-info {
+  background: rgba(15, 52, 96, 0.5);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.scale-mood,
+.scale-genres {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  margin-bottom: 0.5rem;
+}
+
+.scale-mood strong,
+.scale-genres strong {
+  color: #f9b208;
+}
+
+.scale-desc {
+  color: #94a3b8;
+  font-style: italic;
+  margin: 0.75rem 0 0 0;
+}
+
+.scale-keyboard {
+  margin-bottom: 2rem;
+}
+
+.scale-keyboard h4 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.scale-notes {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.scale-note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(to bottom, #fafafa 0%, #e0e0e0 100%);
+  border: 2px solid #ccc;
+  border-radius: 0 0 8px 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-width: 60px;
+  color: #333;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.scale-note:hover {
+  background: linear-gradient(to bottom, #fff 0%, #f0f0f0 100%);
+  transform: translateY(-4px);
+}
+
+.scale-note:active {
+  background: linear-gradient(to bottom, #a855f7 0%, #7c3aed 100%);
+  color: white;
+  transform: translateY(2px);
+}
+
+.scale-note.root {
+  background: linear-gradient(to bottom, #f9b208 0%, #e09800 100%);
+  border-color: #c78800;
+  color: white;
+}
+
+.scale-note .degree {
+  font-size: 0.65rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.scale-note.root .degree {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Melody Builder */
+.melody-builder {
+  background: rgba(15, 52, 96, 0.5);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.melody-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.melody-header h4 {
+  margin: 0;
+  color: #e2e8f0;
+}
+
+.melody-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.melody-actions button {
+  padding: 0.5rem 1rem;
+  background: rgba(233, 69, 96, 0.2);
+  border: 1px solid #e94560;
+  color: #e94560;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.melody-actions button:hover:not(:disabled) {
+  background: #e94560;
+  color: white;
+}
+
+.melody-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.melody-display {
+  min-height: 60px;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.melody-placeholder {
+  color: #64748b;
+  font-style: italic;
+}
+
+.melody-note {
+  padding: 0.5rem 0.75rem;
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  animation: noteAppear 0.2s ease;
+}
+
+@keyframes noteAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Melodic Patterns */
+.melodic-patterns h4 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.patterns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.pattern-card {
+  background: rgba(15, 52, 96, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.pattern-name {
+  font-weight: 700;
+  color: #f9b208;
+  margin-bottom: 0.5rem;
+}
+
+.pattern-contour {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.contour-arrow {
+  color: #a855f7;
+}
+
+.pattern-emotion {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.pattern-example {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   STRUCTURE BUILDER
+   ============================================ */
+
+.structure-templates h4 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.templates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.structure-template {
+  background: rgba(15, 52, 96, 0.6);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.structure-template:hover {
+  border-color: rgba(6, 182, 212, 0.5);
+}
+
+.structure-template.selected {
+  border-color: #06b6d4;
+  background: rgba(6, 182, 212, 0.1);
+}
+
+.template-name {
+  font-weight: 700;
+  color: #06b6d4;
+  margin-bottom: 0.25rem;
+}
+
+.template-genres {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+}
+
+.template-sections {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  font-family: 'Monaco', 'Consolas', monospace;
+}
+
+/* Current Structure */
+.current-structure {
+  background: rgba(15, 52, 96, 0.5);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.current-structure h4 {
+  margin: 0 0 1rem 0;
+  color: #e2e8f0;
+}
+
+.structure-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-height: 60px;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.structure-placeholder {
+  color: #64748b;
+  font-style: italic;
+}
+
+.timeline-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  position: relative;
+}
+
+.timeline-section.intro { background: rgba(6, 182, 212, 0.3); border: 1px solid #06b6d4; }
+.timeline-section.verse { background: rgba(34, 197, 94, 0.3); border: 1px solid #22c55e; }
+.timeline-section.pre-chorus { background: rgba(249, 115, 22, 0.3); border: 1px solid #f97316; }
+.timeline-section.chorus { background: rgba(233, 69, 96, 0.3); border: 1px solid #e94560; }
+.timeline-section.post-chorus { background: rgba(236, 72, 153, 0.3); border: 1px solid #ec4899; }
+.timeline-section.bridge { background: rgba(168, 85, 247, 0.3); border: 1px solid #a855f7; }
+.timeline-section.breakdown { background: rgba(99, 102, 241, 0.3); border: 1px solid #6366f1; }
+.timeline-section.outro { background: rgba(107, 114, 128, 0.3); border: 1px solid #6b7280; }
+.timeline-section.drop { background: rgba(239, 68, 68, 0.3); border: 1px solid #ef4444; }
+
+.section-name {
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.section-bars {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.remove-section {
+  background: rgba(239, 68, 68, 0.3);
+  border: none;
+  color: #ef4444;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.structure-stats {
+  margin-top: 1rem;
+  text-align: right;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* Section Palette */
+.section-palette h4 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.sections-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-btn {
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.section-btn.intro { background: rgba(6, 182, 212, 0.2); border: 2px solid #06b6d4; color: #06b6d4; }
+.section-btn.verse { background: rgba(34, 197, 94, 0.2); border: 2px solid #22c55e; color: #22c55e; }
+.section-btn.pre-chorus { background: rgba(249, 115, 22, 0.2); border: 2px solid #f97316; color: #f97316; }
+.section-btn.chorus { background: rgba(233, 69, 96, 0.2); border: 2px solid #e94560; color: #e94560; }
+.section-btn.post-chorus { background: rgba(236, 72, 153, 0.2); border: 2px solid #ec4899; color: #ec4899; }
+.section-btn.bridge { background: rgba(168, 85, 247, 0.2); border: 2px solid #a855f7; color: #a855f7; }
+.section-btn.breakdown { background: rgba(99, 102, 241, 0.2); border: 2px solid #6366f1; color: #6366f1; }
+.section-btn.outro { background: rgba(107, 114, 128, 0.2); border: 2px solid #6b7280; color: #6b7280; }
+.section-btn.drop { background: rgba(239, 68, 68, 0.2); border: 2px solid #ef4444; color: #ef4444; }
+
+.section-btn:hover {
+  transform: translateY(-2px);
+}
+
+.section-title {
+  font-weight: 600;
+}
+
+.section-bars-small {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* Section Reference */
+.section-reference h4 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.reference-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.reference-card {
+  background: rgba(15, 52, 96, 0.5);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.reference-card h5 {
+  color: #f9b208;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.ref-purpose {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.ref-lyrics {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.ref-tips {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.ref-tips li {
+  margin-bottom: 0.25rem;
+}
+
+/* ============================================
+   LYRIC LAB
+   ============================================ */
+
+.lyric-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .lyric-tools {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Rhyme Finder */
+.rhyme-finder {
+  background: rgba(15, 52, 96, 0.5);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.rhyme-finder h4 {
+  margin: 0 0 1rem 0;
+  color: #e2e8f0;
+}
+
+.rhyme-input-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.rhyme-input-row input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  color: #e2e8f0;
+  font-size: 1rem;
+}
+
+.rhyme-input-row input:focus {
+  border-color: #e94560;
+  outline: none;
+}
+
+.rhyme-input-row button {
+  padding: 0.75rem 1.25rem;
+  background: #e94560;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.rhyme-input-row button:hover {
+  background: #d63850;
+}
+
+.rhymes-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rhyme-word {
+  padding: 0.5rem 0.75rem;
+  background: rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: #a855f7;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.rhyme-word:hover {
+  background: rgba(168, 85, 247, 0.3);
+}
+
+/* Writing Area */
+.writing-area {
+  grid-column: span 1;
+}
+
+@media (min-width: 901px) {
+  .writing-area {
+    grid-row: span 2;
+  }
+}
+
+.writing-area h4 {
+  margin: 0 0 1rem 0;
+  color: #e2e8f0;
+}
+
+.writing-area textarea {
+  width: 100%;
+  min-height: 300px;
+  padding: 1rem;
+  background: rgba(15, 52, 96, 0.8);
+  border: 2px solid rgba(148, 163, 184, 0.3);
+  border-radius: 12px;
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-family: 'Georgia', serif;
+  line-height: 1.8;
+  resize: vertical;
+}
+
+.writing-area textarea:focus {
+  border-color: #e94560;
+  outline: none;
+}
+
+.writing-area textarea::placeholder {
+  color: #64748b;
+}
+
+.lyric-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.lyric-stats .stat {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* Rhyme Types */
+.rhyme-types {
+  background: rgba(15, 52, 96, 0.5);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.rhyme-types h4 {
+  margin: 0 0 1rem 0;
+  color: #e2e8f0;
+}
+
+.types-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rhyme-type {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.rhyme-type strong {
+  color: #f9b208;
+  font-size: 0.9rem;
+}
+
+.type-desc {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.type-example {
+  font-size: 0.8rem;
+  color: #a855f7;
+  font-style: italic;
+}
+
+/* Writing Prompts */
+.writing-prompts h4 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.prompts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prompt-card {
+  background: rgba(15, 52, 96, 0.6);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.prompt-card:hover {
+  border-color: rgba(249, 178, 8, 0.5);
+}
+
+.prompt-card.selected {
+  border-color: #f9b208;
+  background: rgba(249, 178, 8, 0.1);
+}
+
+.prompt-theme {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: rgba(233, 69, 96, 0.2);
+  color: #e94560;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.prompt-text {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.prompt-cultural {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* Prompt Details */
+.prompt-details {
+  background: rgba(249, 178, 8, 0.1);
+  border: 2px solid rgba(249, 178, 8, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.prompt-details h4 {
+  color: #f9b208;
+  margin: 0 0 0.75rem 0;
+}
+
+.prompt-full {
+  color: #e2e8f0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.prompt-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.prompt-keywords strong {
+  color: #94a3b8;
+  margin-right: 0.5rem;
+}
+
+.keyword {
+  padding: 0.4rem 0.75rem;
+  background: rgba(168, 85, 247, 0.2);
+  color: #a855f7;
+  border-radius: 15px;
+  font-size: 0.85rem;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.workshop-footer {
+  padding: 1.5rem 2rem;
+  background: rgba(15, 52, 96, 0.8);
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.winston-wisdom {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: rgba(249, 178, 8, 0.1);
+  border: 1px solid rgba(249, 178, 8, 0.3);
+  border-left: 4px solid #f9b208;
+  border-radius: 8px;
+}
+
+.winston-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.winston-wisdom p {
+  margin: 0;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.winston-wisdom strong {
+  color: #f9b208;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .workshop-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .header-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .workshop-tabs .tab {
+    min-width: 80px;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .tab-count {
+    display: none;
+  }
+
+  .workshop-content {
+    padding: 1rem;
+  }
+
+  .controls-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .key-chords {
+    gap: 0.5rem;
+  }
+
+  .key-chord {
+    padding: 0.75rem 1rem;
+    min-width: 55px;
+  }
+
+  .chord-name {
+    font-size: 1rem;
+  }
+
+  .progressions-grid,
+  .templates-grid,
+  .patterns-grid,
+  .reference-grid,
+  .prompts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lyric-tools {
+    grid-template-columns: 1fr;
+  }
+
+  .writing-area textarea {
+    min-height: 200px;
+  }
+
+  .winston-wisdom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+.progressions-grid::-webkit-scrollbar,
+.prompts-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.progressions-grid::-webkit-scrollbar-track,
+.prompts-grid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.progressions-grid::-webkit-scrollbar-thumb,
+.prompts-grid::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 4px;
+}
+
+.progressions-grid::-webkit-scrollbar-thumb:hover,
+.prompts-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .key-chord,
+  .progression-card,
+  .scale-note,
+  .melody-note,
+  .section-btn,
+  .prompt-card {
+    transition: none;
+  }
+
+  @keyframes noteAppear {
+    from, to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+.key-chord:focus-visible,
+.progression-card:focus-visible,
+.scale-note:focus-visible,
+.section-btn:focus-visible,
+.prompt-card:focus-visible {
+  outline: 2px solid #f9b208;
+  outline-offset: 2px;
+}

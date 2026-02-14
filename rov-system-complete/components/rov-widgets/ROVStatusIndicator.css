@@ -1,0 +1,172 @@
+/* src/components/rov-widgets/ROVStatusIndicator.css */
+
+.rov-status-indicator {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.status-header h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.active-count {
+  font-size: 0.8rem;
+  color: #10b981;
+  font-weight: 500;
+}
+
+.rov-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+.rov-status-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: #f9fafb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.rov-status-card:hover {
+  background: #f3f4f6;
+}
+
+.rov-status-card.active {
+  background: linear-gradient(135deg, #f0fdf4 0%, #f9fafb 100%);
+  border: 1px solid #bbf7d0;
+}
+
+.rov-status-card.inactive {
+  opacity: 0.6;
+}
+
+.rov-avatar {
+  position: relative;
+  font-size: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.status-dot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.status-dot.online {
+  background: #10b981;
+}
+
+.status-dot.offline {
+  background: #9ca3af;
+}
+
+.rov-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.rov-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.rov-role {
+  font-size: 0.7rem;
+  color: #6b7280;
+}
+
+.rov-task {
+  font-size: 0.7rem;
+  color: #3b82f6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rov-activity {
+  font-size: 0.65rem;
+  color: #9ca3af;
+}
+
+/* Compact mode */
+.rov-status-compact {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rov-avatars {
+  display: flex;
+}
+
+.rov-avatar-small {
+  font-size: 1.2rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-left: -0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border: 2px solid white;
+}
+
+.rov-avatar-small:first-child {
+  margin-left: 0;
+}
+
+.rov-avatar-small:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.rov-avatar-small.active {
+  border-color: #10b981;
+}
+
+.rov-count {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .rov-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

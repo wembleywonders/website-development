@@ -1,0 +1,654 @@
+/* ConnectorApplicationGatewayPage.css */
+
+.connector-gateway-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
+}
+
+.gateway-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Hero Section */
+.gateway-hero {
+  text-align: center;
+  padding: 3rem 0 4rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  margin-bottom: 3rem;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #cbd5e1;
+  margin: 0 0 2rem 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #06b6d4;
+  font-weight: 500;
+}
+
+.badge-icon {
+  color: #06b6d4;
+}
+
+/* Pathway Selection */
+.pathway-selection {
+  margin-bottom: 4rem;
+}
+
+.pathway-selection h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 0 1rem 0;
+}
+
+.section-intro {
+  text-align: center;
+  color: #94a3b8;
+  margin: 0 0 3rem 0;
+  font-size: 1.1rem;
+}
+
+.pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Pathway Cards */
+.pathway-card {
+  background: rgba(30, 41, 59, 0.6);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.pathway-card:hover {
+  border-color: rgba(148, 163, 184, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.pathway-card.assessment {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.pathway-card.assessment:hover {
+  border-color: rgba(139, 92, 246, 0.6);
+}
+
+.pathway-badge {
+  position: absolute;
+  top: -12px;
+  right: 2rem;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  padding: 0.375rem 1rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pathway-header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.pathway-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: rgba(6, 182, 212, 0.2);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.pathway-card.assessment .pathway-icon-wrapper {
+  background: rgba(139, 92, 246, 0.2);
+}
+
+.pathway-icon {
+  color: #06b6d4;
+}
+
+.pathway-card.assessment .pathway-icon {
+  color: #8b5cf6;
+}
+
+.pathway-header h3 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #f8fafc;
+}
+
+.pathway-subtitle {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.pathway-content {
+  margin-bottom: 2rem;
+}
+
+.time-estimate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.time-icon {
+  color: #94a3b8;
+}
+
+.pathway-info,
+.pathway-requirements,
+.pathway-steps {
+  margin-bottom: 1.5rem;
+}
+
+.pathway-info h4,
+.pathway-requirements h4,
+.pathway-steps h4 {
+  font-size: 1rem;
+  color: #f8fafc;
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
+}
+
+.info-list,
+.requirements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.info-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.check-icon {
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.requirements-list {
+  padding-left: 1.5rem;
+}
+
+.requirements-list li {
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+  list-style-type: disc;
+}
+
+.steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.steps-list li {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(139, 92, 246, 0.2);
+  border: 2px solid #8b5cf6;
+  border-radius: 50%;
+  color: #8b5cf6;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.step-content {
+  flex: 1;
+  padding-top: 0.25rem;
+}
+
+.step-content strong {
+  display: block;
+  color: #f8fafc;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.step-content span {
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+/* Pathway Actions */
+.pathway-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  padding-top: 1.5rem;
+}
+
+.pathway-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.pathway-btn.primary {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: white;
+}
+
+.pathway-btn.primary:hover {
+  background: linear-gradient(135deg, #0891b2, #0e7490);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
+}
+
+.pathway-card.assessment .pathway-btn.primary {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.pathway-card.assessment .pathway-btn.primary:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+.btn-icon {
+  transition: transform 0.2s ease;
+}
+
+.pathway-btn:hover .btn-icon {
+  transform: translateX(4px);
+}
+
+.pathway-link {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.pathway-link:hover {
+  color: #cbd5e1;
+  text-decoration: underline;
+}
+
+/* Help Section */
+.help-section {
+  margin-bottom: 4rem;
+}
+
+.help-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 12px;
+}
+
+.help-icon {
+  color: #f59e0b;
+  flex-shrink: 0;
+}
+
+.help-content h3 {
+  font-size: 1.25rem;
+  margin: 0 0 1rem 0;
+  color: #f8fafc;
+}
+
+.help-content p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.help-actions {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.help-link {
+  color: #f59e0b;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.help-link:hover {
+  color: #d97706;
+  text-decoration: underline;
+}
+
+/* Role Overview */
+.role-overview {
+  margin-bottom: 4rem;
+}
+
+.role-overview h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 0 2rem 0;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.overview-card {
+  padding: 1.5rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.overview-card:hover {
+  border-color: rgba(148, 163, 184, 0.4);
+  transform: translateY(-2px);
+}
+
+.overview-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.overview-card h4 {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem 0;
+  color: #f8fafc;
+}
+
+.overview-card p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Commitment Section */
+.commitment-section {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.commitment-section h2 {
+  font-size: 2rem;
+  margin: 0 0 2rem 0;
+}
+
+.commitment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.commitment-item {
+  padding: 1.5rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+}
+
+.commitment-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #06b6d4;
+  margin-bottom: 0.5rem;
+}
+
+.commitment-label {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.commitment-note {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+}
+
+.cta-section p {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin: 0 0 2rem 0;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cta-btn.primary {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+}
+
+.cta-btn.primary:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+.cta-btn.secondary {
+  background: rgba(30, 41, 59, 0.8);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.cta-btn.secondary:hover {
+  background: rgba(30, 41, 59, 1);
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .pathways-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .gateway-container {
+    padding: 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-badges {
+    gap: 0.75rem;
+  }
+
+  .badge {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .pathway-card {
+    padding: 1.5rem;
+  }
+
+  .pathway-badge {
+    right: 1rem;
+  }
+
+  .help-card {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .commitment-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+
+  .cta-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .pathway-selection h2,
+  .role-overview h2,
+  .commitment-section h2,
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .pathway-card {
+    padding: 1rem;
+  }
+
+  .pathway-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .steps-list li {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .commitment-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .connector-gateway-page {
+    background: white;
+    color: black;
+  }
+
+  .pathway-btn,
+  .cta-btn,
+  .help-link {
+    display: none;
+  }
+}

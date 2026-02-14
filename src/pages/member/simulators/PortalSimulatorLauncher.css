@@ -1,0 +1,377 @@
+/* src/pages/member/simulators/PortalSimulatorLauncher.css */
+.portal-simulator-launcher {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.page-header {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="30" r="2" fill="rgba(52,152,219,0.1)"/><circle cx="80" cy="70" r="1.5" fill="rgba(155,89,182,0.15)"/><circle cx="50" cy="50" r="2.5" fill="rgba(52,152,219,0.1)"/></svg>') repeat;
+  animation: float 20s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-50px); }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.safety-notice {
+  background: linear-gradient(45deg, #27ae60, #2ecc71);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.safety-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.safety-icon {
+  font-size: 1.5rem;
+}
+
+.safety-text {
+  font-weight: 600;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.launch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.simulator-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
+  border: 3px solid transparent;
+  position: relative;
+}
+
+.simulator-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  border-color: #3498db;
+}
+
+.simulator-header {
+  padding: 30px;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.simulator-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.simulator-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.simulator-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.simulator-status {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255,255,255,0.2);
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.simulator-content {
+  padding: 30px;
+}
+
+.simulator-description {
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.simulator-features {
+  list-style: none;
+  margin-bottom: 25px;
+  padding: 0;
+}
+
+.simulator-features li {
+  padding: 8px 0;
+  color: #555;
+  position: relative;
+  padding-left: 25px;
+}
+
+.simulator-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.simulator-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.stat-item {
+  background: #f8f9fa;
+  padding: 15px 10px;
+  border-radius: 10px;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3498db;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.simulator-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.launch-btn {
+  flex: 1;
+  padding: 15px 20px;
+  background: linear-gradient(45deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.launch-btn:hover {
+  background: linear-gradient(45deg, #2980b9, #3498db);
+  transform: translateY(-2px);
+}
+
+.help-btn {
+  padding: 15px;
+  background: transparent;
+  color: #3498db;
+  border: 2px solid #3498db;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.help-btn:hover {
+  background: #3498db;
+  color: white;
+}
+
+.rov-assistant {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  color: white;
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.rov-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.rov-message {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.rov-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.rov-btn {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 2px solid rgba(255,255,255,0.3);
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.rov-btn:hover {
+  background: rgba(255,255,255,0.3);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.practice-history {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.history-title {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.history-item {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 15px;
+  border-left: 5px solid #3498db;
+}
+
+.history-portal {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.history-date {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.history-progress {
+  background: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 8px;
+  margin-bottom: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  transition: width 0.3s ease;
+}
+
+.history-status {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-completed {
+  color: #27ae60;
+}
+
+.status-progress {
+  color: #f39c12;
+}
+
+.status-not-started {
+  color: #95a5a6;
+}
+
+@media (max-width: 768px) {
+  .launch-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .simulator-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .rov-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}

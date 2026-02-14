@@ -1,0 +1,286 @@
+/* src/components/membership/TierCard.css */
+
+.tier-card {
+  background: #ffffff;
+  border: 2px solid #e1e8ed;
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  transition: all 0.3s ease;
+  height: fit-content;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.tier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.tier-card.connector {
+  border-color: #3498db;
+}
+
+.tier-card.curator {
+  border-color: #9b59b6;
+}
+
+.tier-card.champion {
+  border-color: #f39c12;
+}
+
+.tier-card.current {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow: 0 8px 30px rgba(52, 152, 219, 0.2);
+}
+
+.tier-card.popular {
+  background: linear-gradient(145deg, #ffffff 0%, #fdfbff 100%);
+  box-shadow: 0 8px 30px rgba(155, 89, 182, 0.2);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
+}
+
+.current-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #27ae60, #229954);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.tier-header {
+  text-align: center;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.tier-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.tier-name {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #2c3e50;
+}
+
+.tier-description {
+  font-size: 14px;
+  color: #7f8c8d;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.tier-price {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.price {
+  font-size: 48px;
+  font-weight: 800;
+  color: #2c3e50;
+}
+
+.period {
+  font-size: 16px;
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+.tier-features, .tier-skills, .tier-rov, .tier-limitations {
+  margin-bottom: 24px;
+}
+
+.tier-features h4, .tier-skills h4, .tier-rov h4, .tier-limitations h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 12px 0;
+}
+
+.tier-features ul, .tier-rov ul, .tier-limitations ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-item, .rov-item, .limitation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #34495e;
+}
+
+.check-icon {
+  color: #27ae60;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.rov-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.limit-icon {
+  color: #f39c12;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  background: #ecf0f1;
+  color: #34495e;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tier-card.connector .skill-tag {
+  background: rgba(52, 152, 219, 0.1);
+  color: #2980b9;
+}
+
+.tier-card.curator .skill-tag {
+  background: rgba(155, 89, 182, 0.1);
+  color: #8e44ad;
+}
+
+.tier-card.champion .skill-tag {
+  background: rgba(243, 156, 18, 0.1);
+  color: #e67e22;
+}
+
+.tier-actions {
+  margin-top: 32px;
+}
+
+.select-plan-btn, .current-plan-btn, .learn-more-btn {
+  width: 100%;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.select-plan-btn {
+  background: #3498db;
+  color: white;
+}
+
+.select-plan-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+}
+
+.current-plan-btn {
+  background: #27ae60;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.learn-more-btn {
+  background: #ecf0f1;
+  color: #34495e;
+  border: 2px solid #bdc3c7;
+}
+
+.learn-more-btn:hover {
+  background: #d5dbdb;
+  border-color: #95a5a6;
+  transform: translateY(-1px);
+}
+
+/* Hover Effects for Different Tiers */
+.tier-card.connector:hover {
+  border-color: #2980b9;
+  box-shadow: 0 12px 40px rgba(52, 152, 219, 0.2);
+}
+
+.tier-card.curator:hover {
+  border-color: #8e44ad;
+  box-shadow: 0 12px 40px rgba(155, 89, 182, 0.2);
+}
+
+.tier-card.champion:hover {
+  border-color: #e67e22;
+  box-shadow: 0 12px 40px rgba(243, 156, 18, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tier-card {
+    padding: 24px;
+    max-width: 100%;
+  }
+  
+  .tier-icon {
+    font-size: 40px;
+  }
+  
+  .tier-name {
+    font-size: 24px;
+  }
+  
+  .price {
+    font-size: 40px;
+  }
+  
+  .period {
+    font-size: 14px;
+  }
+  
+  .skills-list {
+    justify-content: center;
+  }
+  
+  .select-plan-btn, .current-plan-btn, .learn-more-btn {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+}

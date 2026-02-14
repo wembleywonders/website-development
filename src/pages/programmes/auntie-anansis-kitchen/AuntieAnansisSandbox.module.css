@@ -1,0 +1,474 @@
+/* ========================================
+   AUNTIE ANANSI'S SANDBOX - LANDING PAGE
+   ======================================== */
+
+.sandboxContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* ========================================
+   DEDICATION SECTION
+   ======================================== */
+
+.dedicationSection {
+  margin-bottom: 4rem;
+}
+
+.dedicationCard {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+  border: 2px solid rgba(251, 191, 36, 0.3);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+.dedicationIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.dedicationCard h3 {
+  color: #fbbf24;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.pioneers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.pioneer {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.pioneer strong {
+  display: block;
+  color: #fbbf24;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.pioneer p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ========================================
+   ABOUT SECTION
+   ======================================== */
+
+.aboutSection {
+  margin-bottom: 4rem;
+}
+
+.aboutSection h2 {
+  color: #fbbf24;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.aboutIntro {
+  color: #e2e8f0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.feature {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.feature:hover {
+  border-color: rgba(251, 191, 36, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.15);
+}
+
+.featureIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature h4 {
+  color: #fbbf24;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.feature p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ========================================
+   CRISIS SECTION
+   ======================================== */
+
+.crisisSection {
+  margin-bottom: 4rem;
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+  border-radius: 1.5rem;
+  border: 2px solid rgba(251, 191, 36, 0.2);
+}
+
+.crisisSection h2 {
+  color: #fbbf24;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.crisisContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.crisisCard {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.crisisCard h4 {
+  color: #fbbf24;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.crisisCard p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.crisisSolution {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.15) 100%);
+  border: 2px solid rgba(251, 191, 36, 0.4);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.crisisSolution h4 {
+  color: #fbbf24;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.crisisSolution p {
+  color: #e2e8f0;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* ========================================
+   CONNECTIONS SECTION
+   ======================================== */
+
+.connectionsSection {
+  margin-bottom: 4rem;
+}
+
+.connectionsSection h2 {
+  color: #fbbf24;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.connectionsIntro {
+  color: #e2e8f0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+}
+
+.connectionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.connectionCard {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.connectionCard:hover {
+  border-color: rgba(251, 191, 36, 0.6);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.2);
+}
+
+.connectionIcon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.connectionCard h4 {
+  color: #fbbf24;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.connectionCard p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ========================================
+   TOOL SECTION
+   ======================================== */
+
+.toolSection {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.toolSection h2 {
+  color: #fbbf24;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.toolSection p {
+  color: #e2e8f0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   FREE SECTION
+   ======================================== */
+
+.freeSection {
+  background: rgba(15, 23, 42, 0.6);
+  border: 2px solid rgba(251, 191, 36, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.freeSection h3 {
+  color: #fbbf24;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.freeSection p {
+  color: #e2e8f0;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto 1rem;
+}
+
+.freeSection p:last-child {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+
+.ctaSection {
+  margin: 4rem 0;
+}
+
+.ctaCard {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.15) 100%);
+  border: 2px solid rgba(251, 191, 36, 0.4);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+.ctaCard h2 {
+  color: #fbbf24;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.ctaCard p {
+  color: #e2e8f0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.primaryButton {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #0f172a;
+  border: none;
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4);
+}
+
+.secondaryButton {
+  background: rgba(15, 23, 42, 0.6);
+  color: #fbbf24;
+  border: 2px solid rgba(251, 191, 36, 0.4);
+}
+
+.secondaryButton:hover {
+  border-color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   FOOTER NOTE
+   ======================================== */
+
+.footerNote {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.footerNote p {
+  color: #94a3b8;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.footerNote strong {
+  color: #fbbf24;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+  .dedicationCard {
+    padding: 2rem;
+  }
+
+  .dedicationCard h3 {
+    font-size: 1.4rem;
+  }
+
+  .pioneers {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .featureGrid,
+  .connectionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .crisisSection {
+    padding: 2rem;
+  }
+
+  .crisisContent {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaCard {
+    padding: 2rem;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sandboxContent {
+    padding: 1rem 0.5rem;
+  }
+
+  .dedicationCard {
+    padding: 1.5rem;
+  }
+
+  .dedicationIcon {
+    font-size: 3rem;
+  }
+
+  .featureIcon {
+    font-size: 2.5rem;
+  }
+
+  .connectionIcon {
+    font-size: 2rem;
+  }
+}

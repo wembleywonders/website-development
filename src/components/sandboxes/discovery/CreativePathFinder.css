@@ -1,0 +1,595 @@
+/* src/components/sandboxes/discovery/CreativePathFinder.css */
+
+.creative-path-finder {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.finder-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.finder-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  color: #1f2937;
+}
+
+.finder-header p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #6b7280;
+}
+
+/* ============================================
+   SELECTION PROGRESS
+   ============================================ */
+.selection-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.progress-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.progress-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.progress-dots .dot.filled {
+  background: #4338ca;
+  transform: scale(1.1);
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* ============================================
+   CHALLENGE SECTION
+   ============================================ */
+.challenge-section h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+  color: #374151;
+}
+
+.challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.challenge-card {
+  position: relative;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.challenge-card:hover:not(.disabled) {
+  border-color: var(--accent-color, #4338ca);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.challenge-card.selected {
+  border-color: var(--accent-color, #4338ca);
+  background: linear-gradient(135deg, rgba(67, 56, 202, 0.05), white);
+  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.15);
+}
+
+.challenge-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.selected-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-color, #4338ca);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.challenge-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.programme-emoji {
+  font-size: 1.5rem;
+}
+
+.programme-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-color, #6b7280);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.challenge-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #1f2937;
+}
+
+.challenge-description {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.challenge-meta {
+  margin-bottom: 0.75rem;
+}
+
+.challenge-meta .duration {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.challenge-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.skill-tag {
+  padding: 0.25rem 0.5rem;
+  background: #f3f4f6;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  color: #4b5563;
+}
+
+.challenge-card.selected .skill-tag {
+  background: rgba(67, 56, 202, 0.1);
+  color: var(--accent-color, #4338ca);
+}
+
+/* ============================================
+   START SECTION
+   ============================================ */
+.start-section {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.btn-start-journey {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #4338ca, #6366f1);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-start-journey:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(67, 56, 202, 0.3);
+}
+
+.btn-start-journey:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.selected-summary {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.selected-summary strong {
+  color: #374151;
+}
+
+.selected-item {
+  padding: 0.375rem 0.75rem;
+  background: #eff6ff;
+  border-radius: 8px;
+  color: #4338ca;
+  font-size: 0.85rem;
+}
+
+/* ============================================
+   PLAY SECTION
+   ============================================ */
+.play-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.challenge-progress {
+  margin-bottom: 2rem;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.progress-steps .step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+
+.progress-steps .step.current,
+.progress-steps .step.completed {
+  opacity: 1;
+}
+
+.progress-steps .step-emoji {
+  font-size: 1.5rem;
+}
+
+.progress-steps .step-name {
+  font-size: 0.7rem;
+  color: #6b7280;
+}
+
+.progress-steps .step.current .step-name {
+  font-weight: 600;
+  color: #4338ca;
+}
+
+.progress-bar {
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4338ca, #6366f1);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.active-challenge {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.challenge-intro {
+  display: flex;
+  gap: 1.25rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(67, 56, 202, 0.05), white);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.challenge-intro .big-emoji {
+  font-size: 3rem;
+}
+
+.challenge-intro .programme-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-color, #4338ca);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.challenge-intro h2 {
+  margin: 0.25rem 0 0.5rem 0;
+  font-size: 1.5rem;
+  color: #1f2937;
+}
+
+.challenge-intro p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.challenge-workspace {
+  padding: 2rem;
+  min-height: 300px;
+}
+
+.workspace-placeholder {
+  text-align: center;
+  padding: 3rem;
+  background: #f9fafb;
+  border: 2px dashed #e5e7eb;
+  border-radius: 12px;
+}
+
+.workspace-placeholder .hint {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-family: monospace;
+}
+
+.demo-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.btn-complete {
+  padding: 0.75rem 1.5rem;
+  background: #10b981;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-skip {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.challenge-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #f9fafb;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* ============================================
+   RESULTS SECTION
+   ============================================ */
+.results-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.results-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.results-header .celebration {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.results-header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.75rem;
+  color: #1f2937;
+}
+
+.results-header p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.result-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--accent-color, #4338ca);
+}
+
+.result-card.skipped {
+  opacity: 0.6;
+  border-left-color: #9ca3af;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.result-emoji {
+  font-size: 2rem;
+}
+
+.result-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.result-card h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  color: var(--accent-color, #1f2937);
+}
+
+.result-card p {
+  margin: 0 0 1rem 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.btn-explore {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--accent-color, #4338ca);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.btn-explore:hover {
+  opacity: 0.9;
+}
+
+.results-cta {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+.results-cta h3 {
+  margin: 0 0 0.5rem 0;
+  color: #1f2937;
+}
+
+.results-cta > p {
+  margin: 0 0 1.5rem 0;
+  color: #6b7280;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-programmes {
+  padding: 0.75rem 1.5rem;
+  background: #4338ca;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.btn-restart {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.reality-check {
+  padding: 1.25rem;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 12px;
+}
+
+.reality-check h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+  color: #92400e;
+}
+
+.reality-check p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #78350f;
+  line-height: 1.5;
+}
+
+.reality-check strong {
+  color: #92400e;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .creative-path-finder {
+    padding: 1rem;
+  }
+  
+  .finder-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .challenge-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .challenge-intro {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .progress-steps .step-name {
+    display: none;
+  }
+  
+  .challenge-footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .demo-actions {
+    flex-direction: column;
+  }
+}

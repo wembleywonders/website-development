@@ -1,0 +1,282 @@
+/**
+ * PRODUCT CARD STYLES
+ * 
+ * @copyright 2024-2026 Wembley Wonders CIC
+ */
+
+.product-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.product-card:focus {
+  outline: 2px solid #8B5CF6;
+  outline-offset: 2px;
+}
+
+.product-card--inactive {
+  opacity: 0.7;
+}
+
+.product-card--compact {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.product-card--compact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Container */
+.product-card__image-container {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: #F3F4F6;
+}
+
+.product-card--compact .product-card__image-container {
+  aspect-ratio: 1/1;
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card__image {
+  transform: scale(1.05);
+}
+
+/* Badges */
+.product-card__badges {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.product-card__badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.product-card__badge--digital {
+  background: #10B981;
+  color: white;
+}
+
+.product-card__badge--sale {
+  background: #EF4444;
+  color: white;
+}
+
+.product-card__badge--sold-out {
+  background: #6B7280;
+  color: white;
+}
+
+/* Favourite Button */
+.product-card__favourite {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.product-card__favourite:hover {
+  transform: scale(1.1);
+}
+
+.product-card__favourite--active {
+  animation: heartPulse 0.3s ease;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Content */
+.product-card__content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-card--compact .product-card__content {
+  padding: 12px;
+}
+
+/* Programme Tag */
+.product-card__programme {
+  margin-bottom: 8px;
+}
+
+.product-card__programme-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: white;
+}
+
+/* Title */
+.product-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card--compact .product-card__title {
+  font-size: 14px;
+  -webkit-line-clamp: 1;
+}
+
+/* Creator */
+.product-card__creator {
+  font-size: 13px;
+  color: #6B7280;
+  margin: 0 0 8px 0;
+}
+
+/* Description */
+.product-card__description {
+  font-size: 13px;
+  color: #6B7280;
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+/* Stats */
+.product-card__stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.product-card__stat {
+  font-size: 12px;
+  color: #6B7280;
+}
+
+/* Pricing */
+.product-card__pricing {
+  margin-bottom: 12px;
+}
+
+.product-card__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.product-card__price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.product-card--compact .product-card__price {
+  font-size: 16px;
+}
+
+.product-card__original-price {
+  font-size: 14px;
+  color: #9CA3AF;
+  text-decoration: line-through;
+}
+
+/* Revenue Split */
+.product-card__revenue-split {
+  margin-top: 4px;
+}
+
+.product-card__creator-share {
+  font-size: 11px;
+  color: #10B981;
+  font-weight: 500;
+}
+
+/* Add to Cart Button */
+.product-card__add-to-cart {
+  width: 100%;
+  padding: 10px 16px;
+  background: #8B5CF6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: auto;
+}
+
+.product-card__add-to-cart:hover {
+  background: #7C3AED;
+}
+
+.product-card__add-to-cart:active {
+  background: #6D28D9;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .product-card__content {
+    padding: 12px;
+  }
+  
+  .product-card__title {
+    font-size: 14px;
+  }
+  
+  .product-card__price {
+    font-size: 18px;
+  }
+}

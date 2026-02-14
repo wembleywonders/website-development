@@ -1,0 +1,358 @@
+/* ImpactPage.css - With Visual Philosophy Section */
+
+.impact-page { 
+  min-height: 100vh; 
+  background: #0f172a; 
+  color: #f8fafc; 
+}
+
+/* Hero Section */
+.hero-section { 
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
+  padding: 4rem 2rem; 
+  text-align: center; 
+  border-bottom: 2px solid rgba(16, 185, 129, 0.3); 
+}
+
+.hero-section h1 { 
+  font-size: 3rem; 
+  font-weight: 900; 
+  margin: 0 0 1rem 0; 
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
+  -webkit-background-clip: text; 
+  background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+}
+
+.hero-section p { 
+  font-size: 1.25rem; 
+  color: #cbd5e1; 
+}
+
+/* Section Containers */
+.stats-section, 
+.outcomes-section, 
+.testimonials-section, 
+.stories-section, 
+.cta-section { 
+  padding: 4rem 2rem; 
+  max-width: 1200px; 
+  margin: 0 auto; 
+}
+
+/* Stats Grid */
+.stats-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 2rem; 
+}
+
+.stat-card { 
+  background: rgba(30, 41, 59, 0.5); 
+  border: 1px solid rgba(148, 163, 184, 0.2); 
+  border-radius: 12px; 
+  padding: 2rem; 
+  text-align: center; 
+}
+
+.stat-number { 
+  font-size: 3rem; 
+  font-weight: 900; 
+  color: #10b981; 
+  line-height: 1; 
+}
+
+.stat-label { 
+  font-size: 1rem; 
+  color: #cbd5e1; 
+  margin: 0.5rem 0; 
+}
+
+.stat-comparison { 
+  font-size: 0.85rem; 
+  color: #94a3b8; 
+}
+
+/* Section Headers */
+.outcomes-section h2, 
+.testimonials-section h2, 
+.stories-section h2, 
+.cta-section h2 { 
+  text-align: center; 
+  font-size: 2.5rem; 
+  margin-bottom: 2rem; 
+}
+
+/* Outcomes Grid */
+.outcomes-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 2rem; 
+}
+
+.outcome-card { 
+  background: rgba(30, 41, 59, 0.5); 
+  border: 1px solid rgba(148, 163, 184, 0.2); 
+  border-radius: 12px; 
+  padding: 2rem; 
+}
+
+.outcome-icon { 
+  font-size: 2.5rem; 
+  margin-bottom: 1rem; 
+}
+
+.outcome-card h3 { 
+  color: #10b981; 
+  margin-bottom: 1rem; 
+}
+
+.outcome-card ul { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+}
+
+.outcome-card li { 
+  padding: 0.5rem 0; 
+  color: #cbd5e1; 
+}
+
+/* Testimonials Grid */
+.testimonials-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 2rem; 
+}
+
+.testimonial-card { 
+  background: rgba(30, 41, 59, 0.5); 
+  border-left: 4px solid #10b981; 
+  border-radius: 8px; 
+  padding: 2rem; 
+}
+
+.testimonial-quote { 
+  font-size: 1.1rem; 
+  font-style: italic; 
+  color: #cbd5e1; 
+  margin-bottom: 1.5rem; 
+  line-height: 1.6; 
+}
+
+.testimonial-author { 
+  margin-bottom: 0.5rem; 
+}
+
+.testimonial-author strong { 
+  display: block; 
+  color: #f8fafc; 
+}
+
+.testimonial-author span { 
+  color: #94a3b8; 
+  font-size: 0.9rem; 
+}
+
+.testimonial-impact { 
+  color: #10b981; 
+  font-weight: 600; 
+  font-size: 0.9rem; 
+}
+
+/* Story Cards */
+.story-card { 
+  background: rgba(30, 41, 59, 0.5); 
+  border: 1px solid rgba(148, 163, 184, 0.2); 
+  border-radius: 12px; 
+  padding: 2rem; 
+  margin-bottom: 2rem; 
+}
+
+.story-card h3 { 
+  color: #10b981; 
+  margin-bottom: 1rem; 
+}
+
+.story-card p { 
+  color: #cbd5e1; 
+  line-height: 1.7; 
+  margin-bottom: 1rem; 
+}
+
+.story-outcome { 
+  color: #06b6d4; 
+  font-weight: 600; 
+}
+
+/* CTA Section */
+.cta-section { 
+  text-align: center; 
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%); 
+  border-top: 2px solid rgba(16, 185, 129, 0.3); 
+}
+
+.cta-section p { 
+  font-size: 1.1rem; 
+  color: #cbd5e1; 
+  margin-bottom: 2rem; 
+}
+
+.btn-primary { 
+  padding: 1rem 2rem; 
+  font-size: 1.1rem; 
+  font-weight: 700; 
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
+  color: white; 
+  border: none; 
+  border-radius: 8px; 
+  text-decoration: none; 
+  display: inline-block; 
+  transition: all 0.3s ease; 
+}
+
+.btn-primary:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); 
+}
+
+/* ============================================
+   VISUAL PHILOSOPHY SECTION
+   ============================================ */
+
+.visual-philosophy-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.05) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border-top: 1px solid rgba(251, 191, 36, 0.2);
+  border-bottom: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.visual-philosophy-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #fbbf24;
+  margin: 0 0 1rem 0;
+}
+
+.vp-intro {
+  text-align: center;
+  font-size: 1.15rem;
+  color: #cbd5e1;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.vp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto 2.5rem;
+}
+
+.vp-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(251, 191, 36, 0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.vp-card:hover {
+  background: rgba(251, 191, 36, 0.05);
+  border-color: rgba(251, 191, 36, 0.3);
+  transform: translateY(-2px);
+}
+
+.vp-card .vp-icon {
+  font-size: 1.75rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.vp-card h4 {
+  font-size: 1.1rem;
+  color: #f8fafc;
+  margin: 0 0 0.5rem 0;
+}
+
+.vp-card p {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.vp-cta {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.vp-cta p {
+  color: #cbd5e1;
+  margin: 0 0 0.75rem 0;
+}
+
+.vp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fbbf24;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid rgba(251, 191, 36, 0.4);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.vp-link:hover {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: #fbbf24;
+  transform: translateX(4px);
+}
+
+.vp-tagline {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.vp-tagline em {
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) { 
+  .hero-section h1 { 
+    font-size: 2rem; 
+  } 
+  
+  .stats-grid, 
+  .outcomes-grid, 
+  .testimonials-grid { 
+    grid-template-columns: 1fr; 
+  }
+
+  .visual-philosophy-section {
+    padding: 3rem 1rem;
+  }
+
+  .visual-philosophy-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .vp-intro {
+    font-size: 1rem;
+  }
+
+  .vp-grid {
+    grid-template-columns: 1fr;
+  }
+}

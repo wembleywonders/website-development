@@ -1,0 +1,904 @@
+/**
+ * Prototype Registry Dashboard Styles
+ * Wembley Wonders CIC
+ * 
+ * Aesthetic: Industrial Workshop
+ * - Exposed structure, honest materials
+ * - Functional typography
+ * - Clear visual hierarchy
+ * - Warm metallics with safety accent colors
+ */
+
+// ============================================================================
+// VARIABLES
+// ============================================================================
+
+$font-display: 'JetBrains Mono', 'Fira Code', monospace;
+$font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+// Industrial palette
+$steel-dark: #1a1d21;
+$steel-mid: #2d3139;
+$steel-light: #3d424d;
+$steel-highlight: #4a5160;
+
+$copper: #b87333;
+$copper-light: #d4956a;
+$brass: #c9a227;
+
+$concrete: #e8e6e1;
+$concrete-dark: #9a9790;
+
+// Safety colors (high visibility)
+$safety-amber: #f59e0b;
+$safety-emerald: #10b981;
+$safety-violet: #8b5cf6;
+$safety-sky: #0ea5e9;
+$safety-red: #ef4444;
+
+// ============================================================================
+// DASHBOARD LAYOUT
+// ============================================================================
+
+.dashboard {
+  min-height: 100vh;
+  background: 
+    linear-gradient(180deg, $steel-dark 0%, $steel-mid 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  color: $concrete;
+  font-family: $font-body;
+}
+
+// ============================================================================
+// HEADER
+// ============================================================================
+
+.header {
+  background: linear-gradient(90deg, $steel-dark 0%, $steel-mid 50%, $steel-dark 100%);
+  border-bottom: 3px solid $copper;
+  padding: 1.5rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, $copper-light, transparent);
+    opacity: 0.5;
+  }
+}
+
+.headerContent {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $concrete;
+  letter-spacing: -0.02em;
+  margin: 0;
+  
+  &::before {
+    content: '//';
+    color: $copper;
+    margin-right: 0.5rem;
+    opacity: 0.7;
+  }
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: $concrete-dark;
+  margin: 0;
+  padding-left: 1.75rem;
+}
+
+.headerActions {
+  display: flex;
+  gap: 1rem;
+}
+
+// ============================================================================
+// BUTTONS
+// ============================================================================
+
+.primaryButton {
+  font-family: $font-display;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, $copper 0%, $copper-light 100%);
+  color: $steel-dark;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.secondaryButton {
+  @extend .primaryButton;
+  background: $steel-light;
+  color: $concrete;
+  
+  &:hover {
+    background: $steel-highlight;
+  }
+}
+
+.buttonIcon {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+// ============================================================================
+// STATS BAR
+// ============================================================================
+
+.statsBar {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.statCard {
+  background: $steel-mid;
+  border: 1px solid $steel-light;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    border-color: $steel-highlight;
+    transform: translateY(-2px);
+  }
+  
+  &.amber .statValue { color: $safety-amber; }
+  &.emerald .statValue { color: $safety-emerald; }
+  &.violet .statValue { color: $safety-violet; }
+  &.sky .statValue { color: $safety-sky; }
+}
+
+.statIcon {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.statContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.statValue {
+  font-family: $font-display;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $concrete;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: $concrete-dark;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+
+// ============================================================================
+// FILTERS
+// ============================================================================
+
+.filtersSection {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 2rem 1rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.searchBox {
+  flex: 1;
+  min-width: 250px;
+}
+
+.searchInput {
+  width: 100%;
+  font-family: $font-body;
+  font-size: 0.9375rem;
+  padding: 0.75rem 1rem;
+  background: $steel-dark;
+  border: 1px solid $steel-light;
+  border-radius: 4px;
+  color: $concrete;
+  transition: all 0.2s ease;
+  
+  &::placeholder {
+    color: $concrete-dark;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $copper;
+    box-shadow: 0 0 0 3px rgba($copper, 0.2);
+  }
+}
+
+.filterGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filterSelect {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filterLabel {
+  font-size: 0.6875rem;
+  color: $concrete-dark;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.select {
+  font-family: $font-body;
+  font-size: 0.875rem;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  background: $steel-dark url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239a9790' d='M3 4.5L6 7.5L9 4.5'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
+  border: 1px solid $steel-light;
+  border-radius: 4px;
+  color: $concrete;
+  cursor: pointer;
+  appearance: none;
+  min-width: 150px;
+  
+  &:focus {
+    outline: none;
+    border-color: $copper;
+  }
+  
+  option {
+    background: $steel-dark;
+    color: $concrete;
+  }
+}
+
+.viewToggle {
+  display: flex;
+  border: 1px solid $steel-light;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.viewButton {
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  background: $steel-dark;
+  border: none;
+  color: $concrete-dark;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  
+  &:hover {
+    background: $steel-light;
+    color: $concrete;
+  }
+  
+  &.active {
+    background: $steel-light;
+    color: $copper;
+  }
+  
+  &:first-child {
+    border-right: 1px solid $steel-light;
+  }
+}
+
+// ============================================================================
+// MAIN CONTENT
+// ============================================================================
+
+.mainContent {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1rem 2rem 3rem;
+}
+
+.prototypeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.prototypeList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+// ============================================================================
+// PROTOTYPE CARD
+// ============================================================================
+
+.prototypeCard {
+  background: $steel-mid;
+  border: 1px solid $steel-light;
+  border-radius: 8px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: $copper;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  &:hover {
+    border-color: $steel-highlight;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $copper;
+  }
+  
+  &.list {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 1.25rem;
+    
+    .cardHeader { order: 2; }
+    .cardDescription { display: none; }
+    .cardMeta { display: none; }
+    .cardFooter { order: 3; }
+  }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.categoryBadge {
+  font-family: $font-display;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  background: $steel-dark;
+  border-radius: 3px;
+  color: $concrete-dark;
+}
+
+.cardTitle {
+  font-family: $font-display;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: $concrete;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  font-size: 0.875rem;
+  color: $concrete-dark;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $steel-light;
+}
+
+.programme {
+  font-size: 0.8125rem;
+  color: $copper-light;
+}
+
+.version {
+  font-family: $font-display;
+  font-size: 0.75rem;
+  color: $concrete-dark;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.creators {
+  display: flex;
+  align-items: center;
+}
+
+.creatorAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: $steel-highlight;
+  color: $concrete;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $steel-mid;
+  margin-left: -8px;
+  
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.creatorMore {
+  font-size: 0.75rem;
+  color: $concrete-dark;
+  margin-left: 0.5rem;
+}
+
+// ============================================================================
+// BADGES
+// ============================================================================
+
+.ipBadge {
+  font-family: $font-display;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  
+  &.ipUnprotected {
+    background: rgba($concrete-dark, 0.2);
+    color: $concrete-dark;
+  }
+  
+  &.ipDisclosed {
+    background: rgba($safety-amber, 0.2);
+    color: $safety-amber;
+  }
+  
+  &.ipReview {
+    background: rgba($safety-sky, 0.2);
+    color: $safety-sky;
+  }
+  
+  &.ipPending {
+    background: rgba($safety-violet, 0.2);
+    color: $safety-violet;
+  }
+  
+  &.ipGranted {
+    background: rgba($safety-emerald, 0.2);
+    color: $safety-emerald;
+  }
+  
+  &.ipDesign {
+    background: rgba($brass, 0.2);
+    color: $brass;
+  }
+  
+  &.ipTrademark {
+    background: rgba($copper, 0.2);
+    color: $copper-light;
+  }
+  
+  &.ipCopyright {
+    background: rgba($concrete, 0.1);
+    color: $concrete;
+  }
+  
+  &.ipOpenSource {
+    background: rgba($safety-emerald, 0.15);
+    color: $safety-emerald;
+  }
+  
+  &.ipCC {
+    background: rgba($safety-sky, 0.15);
+    color: $safety-sky;
+  }
+}
+
+.statusBadge {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.625rem;
+  border-radius: 12px;
+  
+  &.concept { background: $steel-dark; color: $concrete-dark; }
+  &.research { background: rgba($safety-sky, 0.2); color: $safety-sky; }
+  &.design { background: rgba($safety-violet, 0.2); color: $safety-violet; }
+  &.development { background: rgba($safety-amber, 0.2); color: $safety-amber; }
+  &.testing { background: rgba($brass, 0.2); color: $brass; }
+  &.documentation { background: rgba($copper, 0.2); color: $copper-light; }
+  &.review { background: rgba($safety-sky, 0.3); color: $safety-sky; }
+  &.protected { background: rgba($safety-emerald, 0.2); color: $safety-emerald; }
+  &.marketplace { background: rgba($safety-emerald, 0.3); color: $safety-emerald; }
+  &.archived { background: $steel-dark; color: $concrete-dark; }
+}
+
+// ============================================================================
+// LOADING & EMPTY STATES
+// ============================================================================
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  color: $concrete-dark;
+  
+  p {
+    margin-top: 1rem;
+  }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid $steel-light;
+  border-top-color: $copper;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+  
+  h3 {
+    font-family: $font-display;
+    font-size: 1.25rem;
+    color: $concrete;
+    margin: 1rem 0 0.5rem;
+  }
+  
+  p {
+    color: $concrete-dark;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  opacity: 0.5;
+}
+
+// ============================================================================
+// DETAIL PANEL
+// ============================================================================
+
+.detailPanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 480px;
+  max-width: 100vw;
+  height: 100vh;
+  background: $steel-dark;
+  border-left: 1px solid $steel-light;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.4);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid $steel-light;
+  background: $steel-mid;
+  
+  h2 {
+    font-family: $font-display;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $concrete;
+    margin: 0;
+  }
+}
+
+.closeButton {
+  width: 32px;
+  height: 32px;
+  font-size: 1.5rem;
+  line-height: 1;
+  background: transparent;
+  border: 1px solid $steel-light;
+  border-radius: 4px;
+  color: $concrete-dark;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  
+  &:hover {
+    background: $steel-light;
+    color: $concrete;
+  }
+}
+
+.panelContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.panelSection {
+  margin-bottom: 1.5rem;
+  
+  h4 {
+    font-family: $font-display;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $concrete-dark;
+    margin: 0 0 0.75rem 0;
+  }
+  
+  p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: $concrete;
+    margin: 0;
+  }
+}
+
+.statusRow {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.creatorList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.creatorItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid $steel-light;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.creatorName {
+  font-weight: 500;
+  color: $concrete;
+  flex: 1;
+}
+
+.creatorRole {
+  font-size: 0.8125rem;
+  color: $concrete-dark;
+  text-transform: capitalize;
+}
+
+.creatorContribution {
+  font-family: $font-display;
+  font-size: 0.8125rem;
+  color: $copper-light;
+}
+
+.versionTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.versionEntry {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  background: $steel-mid;
+  border-radius: 4px;
+}
+
+.versionNumber {
+  font-family: $font-display;
+  font-size: 0.75rem;
+  color: $copper;
+  min-width: 48px;
+}
+
+.versionTitle {
+  font-size: 0.875rem;
+  color: $concrete;
+  flex: 1;
+}
+
+.versionDate {
+  font-size: 0.75rem;
+  color: $concrete-dark;
+}
+
+.ownershipBreakdown {
+  background: $steel-mid;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.ownershipBar {
+  height: 12px;
+  background: $steel-dark;
+  border-radius: 6px;
+  display: flex;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.creatorShare {
+  background: linear-gradient(90deg, $copper, $copper-light);
+  transition: width 0.3s ease;
+}
+
+.communityShare {
+  background: linear-gradient(90deg, $safety-emerald, lighten($safety-emerald, 10%));
+  transition: width 0.3s ease;
+}
+
+.ownershipLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: $concrete-dark;
+}
+
+.panelActions {
+  padding: 1.5rem;
+  border-top: 1px solid $steel-light;
+  display: flex;
+  gap: 1rem;
+  
+  button {
+    flex: 1;
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+  
+  .headerContent {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .statsBar {
+    padding: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .filtersSection {
+    padding: 0 1rem 1rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filterGroup {
+    width: 100%;
+    
+    .filterSelect {
+      flex: 1;
+    }
+  }
+  
+  .mainContent {
+    padding: 1rem;
+  }
+  
+  .prototypeGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .detailPanel {
+    width: 100%;
+  }
+}

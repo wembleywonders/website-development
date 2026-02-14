@@ -1,0 +1,2516 @@
+/* ========================================
+   STEMGENEERS SANDBOX - Applied Tech Tools
+   ======================================== */
+
+/* Base Content */
+.sandboxContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Hero Section */
+.heroSection {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 16px;
+  padding: 48px 32px;
+  color: white;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.dedication {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.dedicationTitle {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.dedicationMessage {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  line-height: 1.7;
+}
+
+.dedicationMessage strong {
+  color: #fbbf24;
+}
+
+/* Section Titles */
+.sectionTitle {
+  font-size: 1.75rem;
+  margin-bottom: 24px;
+  color: #10b981;
+}
+
+/* Tools Section */
+.toolsSection {
+  margin-bottom: 48px;
+}
+
+.toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.toolCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 28px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.toolCard:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
+}
+
+.toolIcon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.toolCard h3 {
+  font-size: 1.25rem;
+  margin: 0 0 12px 0;
+  color: #fff;
+}
+
+.toolCard > p {
+  color: #a0aec0;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+.toolFeatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.toolFeatures span {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.toolButton {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toolButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.comingSoonBadge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 6px 12px;
+  background: #fbbf24;
+  color: #000;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.strategicBadge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #000;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ========================================
+   DIAGNOSTIC TRAINER
+   ======================================== */
+
+.trainerContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.trainerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.trainerHeader h2 {
+  color: #10b981;
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.trainerScore {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.closeButton {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.trainerIntro {
+  background: rgba(16, 185, 129, 0.1);
+  border-left: 3px solid #10b981;
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 32px;
+}
+
+.trainerIntro p {
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.scoreDisplay {
+  margin-top: 16px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* Scenarios Grid */
+.scenariosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.scenarioPreview {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s;
+}
+
+.scenarioPreview:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.scenarioIcon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.scenarioPreview h4 {
+  color: #fff;
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.scenarioPreview > p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  margin: 0 0 12px 0;
+  font-style: italic;
+}
+
+.scenarioMeta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.difficultyBadge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.difficultyBadge.beginner {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.difficultyBadge.intermediate {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.difficultyBadge.advanced {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.pathwayBadge {
+  padding: 4px 10px;
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+.startScenarioButton {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.startScenarioButton:hover {
+  transform: translateY(-1px);
+}
+
+/* Scenario Card (Active) */
+.scenarioCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.scenarioHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.scenarioHeader h3 {
+  color: #fff;
+  margin: 0 0 8px 0;
+}
+
+.symptomBox {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.symptomBox h4 {
+  color: #fbbf24;
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+}
+
+.symptomBox p {
+  color: #e2e8f0;
+  margin: 0;
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.diagnosisSection {
+  margin-bottom: 24px;
+}
+
+.diagnosisSection h4 {
+  color: #fff;
+  margin: 0 0 16px 0;
+}
+
+.causesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.causeOption {
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.causeOption:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.causeOption.selected {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+}
+
+.submitButton {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Solution Section */
+.solutionSection {
+  margin-top: 24px;
+}
+
+.resultBanner {
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.resultBanner.correct {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.resultBanner.incorrect {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.correctAnswer {
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.correctAnswer h4 {
+  color: #10b981;
+  margin: 0 0 8px 0;
+}
+
+.correctAnswer p {
+  color: #e2e8f0;
+  margin: 0;
+  font-weight: 600;
+}
+
+.diagnosticSteps {
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.diagnosticSteps h4 {
+  color: #a78bfa;
+  margin: 0 0 12px 0;
+}
+
+.diagnosticSteps ol {
+  margin: 0;
+  padding-left: 20px;
+  color: #e2e8f0;
+  line-height: 1.8;
+}
+
+.solutionBox {
+  background: rgba(251, 191, 36, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.solutionBox h4 {
+  color: #fbbf24;
+  margin: 0 0 8px 0;
+}
+
+.solutionBox p {
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.solutionActions {
+  display: flex;
+  gap: 12px;
+}
+
+.nextButton {
+  flex: 1;
+  padding: 14px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nextButton:hover {
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   PRICING CALCULATOR
+   ======================================== */
+
+.pricingContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.pricingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pricingHeader h2 {
+  color: #10b981;
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.pricingIntro {
+  background: rgba(16, 185, 129, 0.1);
+  border-left: 3px solid #10b981;
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 32px;
+}
+
+.pricingIntro p {
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Category Selection */
+.categorySelection {
+  margin-bottom: 32px;
+}
+
+.categorySelection h3 {
+  color: #fff;
+  margin: 0 0 16px 0;
+}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.categoryButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.categoryButton:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.categoryIcon {
+  font-size: 2.5rem;
+}
+
+.backCategoryButton {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+/* Services Section */
+.servicesSection {
+  margin-bottom: 32px;
+}
+
+.servicesSection h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.3rem;
+}
+
+.servicesTable {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.serviceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  gap: 20px;
+}
+
+.serviceInfo {
+  flex: 1;
+}
+
+.serviceInfo h4 {
+  color: #fff;
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+}
+
+.serviceNotes {
+  color: #a0aec0;
+  font-size: 0.85rem;
+  margin: 0 0 8px 0;
+}
+
+.serviceMeta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.serviceRate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.rateRange {
+  color: #10b981;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.serviceCounter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.serviceCounter button {
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.serviceCounter button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.serviceCounter span {
+  color: #fff;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Projection Card */
+.projectionCard {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.projectionCard h3 {
+  color: #10b981;
+  margin: 0 0 8px 0;
+}
+
+.projectionNote {
+  color: #a0aec0;
+  margin: 0 0 16px 0;
+}
+
+.projectionSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.projectionItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.projectionTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: rgba(16, 185, 129, 0.15);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.projectionTotal span {
+  color: #e2e8f0;
+}
+
+.projectionTotal strong {
+  color: #10b981;
+  font-size: 1.5rem;
+}
+
+.projectionDisclaimer {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ========================================
+   EQUIPMENT COLLECTIVE CALCULATOR
+   ======================================== */
+
+.collectiveContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.collectiveHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.collectiveHeader h2 {
+  color: #fbbf24;
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.collectiveIntro {
+  background: rgba(251, 191, 36, 0.1);
+  border-left: 3px solid #fbbf24;
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 32px;
+}
+
+.collectiveIntro p {
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.collectiveForm {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 32px;
+}
+
+.formGroup {
+  margin-bottom: 28px;
+}
+
+.formGroup:last-child {
+  margin-bottom: 0;
+}
+
+.formGroup label {
+  display: block;
+  color: #e2e8f0;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.formGroup input[type="range"] {
+  width: 100%;
+  height: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  outline: none;
+}
+
+.formGroup input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: #fbbf24;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.formGroup select {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.formGroup select option {
+  background: #1e293b;
+  color: #fff;
+}
+
+.rangeValue {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+  color: #fbbf24;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Collective Results */
+.collectiveResults {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.collectiveResults h3 {
+  color: #fbbf24;
+  margin: 0 0 24px 0;
+  font-size: 1.3rem;
+}
+
+.resultsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.resultCard {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.resultCard.highlight {
+  background: rgba(16, 185, 129, 0.15);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+}
+
+.resultLabel {
+  display: block;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.resultValue {
+  display: block;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.resultCard.highlight .resultValue {
+  color: #10b981;
+}
+
+/* Equipment Section */
+.equipmentSection {
+  margin-bottom: 32px;
+}
+
+.equipmentSection h4 {
+  color: #fff;
+  margin: 0 0 16px 0;
+}
+
+.equipmentList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.equipmentItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 6px;
+}
+
+.equipmentItem span:first-child {
+  color: #e2e8f0;
+}
+
+.equipmentItem span:last-child {
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* Timeline Section */
+.timelineSection {
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.timelineSection h4 {
+  color: #a78bfa;
+  margin: 0 0 8px 0;
+}
+
+.timelineSection p {
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Collective Note */
+.collectiveNote {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.collectiveNote h4 {
+  color: #fbbf24;
+  margin: 0 0 12px 0;
+}
+
+.collectiveNote ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #a0aec0;
+  line-height: 1.8;
+}
+
+.collectiveNote strong {
+  color: #e2e8f0;
+}
+
+/* Next Steps Box */
+.nextStepsBox {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.nextStepsBox h4 {
+  color: #10b981;
+  margin: 0 0 12px 0;
+}
+
+.nextStepsBox p {
+  color: #a0aec0;
+  margin: 0 0 16px 0;
+  line-height: 1.6;
+}
+
+.joinButton {
+  display: inline-block;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.joinButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+/* ========================================
+   ECOSYSTEM EXPLORER
+   ======================================== */
+
+.ecosystemContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.ecosystemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ecosystemHeader h2 {
+  color: #fbbf24;
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.ecosystemIntro {
+  margin-bottom: 32px;
+}
+
+.introBox {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.introBox h3 {
+  color: #fbbf24;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+.introBox p {
+  margin: 0;
+  line-height: 1.7;
+  color: #e2e8f0;
+}
+
+.introBox strong {
+  color: #fbbf24;
+}
+
+/* Pathway Selection */
+.ecosystemPathways {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.ecosystemPathways h3 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.ecosystemPathways > p {
+  color: #a0aec0;
+  margin-bottom: 32px;
+}
+
+.pathwayButtons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pathwaySelectButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 180px;
+}
+
+.pathwaySelectButton:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.pathwaySelectButton span:last-child {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.changePathwayButton {
+  background: none;
+  border: none;
+  color: #a0aec0;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.changePathwayButton:hover {
+  color: #fff;
+}
+
+/* View Tabs */
+.viewTabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+}
+
+.viewTab {
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #a0aec0;
+  transition: all 0.2s ease;
+}
+
+.viewTab:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.viewTab.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+/* Business Categories */
+.businessCategories h3 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.categoryIntro {
+  color: #a0aec0;
+  margin-bottom: 24px;
+}
+
+.businessCategoryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.businessCategoryCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.businessCategoryCard:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.businessCategoryHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.businessCategoryIcon {
+  font-size: 1.75rem;
+}
+
+.businessCategoryHeader h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.businessCategoryDesc {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.brentContext {
+  background: rgba(251, 191, 36, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  border-left: 3px solid #fbbf24;
+  color: #e2e8f0;
+}
+
+.brentContext strong {
+  color: #fbbf24;
+}
+
+.businessCategorySection {
+  margin-bottom: 16px;
+}
+
+.businessCategorySection h5 {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.businessCategorySection ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  color: #a0aec0;
+}
+
+.businessCategorySection li {
+  margin-bottom: 4px;
+}
+
+.skillTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skillTag {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.whyYou {
+  background: rgba(16, 185, 129, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-top: 16px;
+  color: #e2e8f0;
+}
+
+.whyYou strong {
+  color: #10b981;
+}
+
+/* Entry Points */
+.entryPointsSection h3,
+.successionSection h3,
+.eventSection h3 {
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.entryIntro,
+.successionIntro,
+.eventIntro {
+  color: #a0aec0;
+  margin-bottom: 24px;
+}
+
+.entryPointsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.entryCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.entryCard h4 {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.entryDesc {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.entryDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+}
+
+.entryLabel {
+  font-weight: 600;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.realTalk {
+  background: rgba(251, 191, 36, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-top: 16px;
+  color: #e2e8f0;
+}
+
+.realTalk strong {
+  color: #fbbf24;
+}
+
+/* Succession Signals */
+.signalsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.signalCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.signalHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.signalNumber {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #000;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.signalHeader h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.signalMeaning {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  color: #a0aec0;
+}
+
+.signalMeaning strong {
+  color: #e2e8f0;
+}
+
+.signalOpportunity {
+  background: rgba(16, 185, 129, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+}
+
+.signalOpportunity strong {
+  color: #10b981;
+}
+
+.successionNote,
+.eventNote {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.successionNote h4,
+.eventNote h4 {
+  color: #fbbf24;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.successionNote p,
+.eventNote p {
+  margin-bottom: 12px;
+  line-height: 1.7;
+  color: #e2e8f0;
+}
+
+.successionNote p:last-child,
+.eventNote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Event Economy */
+.eventGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.eventCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.eventCard h4 {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.eventDetail {
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+}
+
+.eventDetail strong {
+  display: block;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
+
+.eventSkills {
+  margin-top: 16px;
+}
+
+.eventSkills strong {
+  display: block;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+/* Ecosystem CTA */
+.ecosystemCTA {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 32px;
+  border-radius: 12px;
+  margin-top: 40px;
+}
+
+.ecosystemCTA h3 {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.ecosystemCTA p {
+  color: #a0aec0;
+  margin-bottom: 20px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ecosystemJoinButton {
+  display: inline-block;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.ecosystemJoinButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+/* ========================================
+   PATHWAYS SUMMARY
+   ======================================== */
+
+.pathwaysSummary {
+  margin-bottom: 48px;
+}
+
+.pathwaysGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.pathwayMini {
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.pathwayMini span {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.pathwayMini h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.pathwayMini p {
+  color: #a0aec0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+
+.ctaSection {
+  margin-bottom: 48px;
+}
+
+.ctaCard {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  color: white;
+}
+
+.ctaCard h2 {
+  font-size: 2rem;
+  margin: 0 0 16px 0;
+}
+
+.ctaCard > p {
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  opacity: 0.95;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.ctaPrimary {
+  background: white;
+  color: #059669;
+}
+
+.ctaPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.ctaSecondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+}
+
+.ctaSecondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ========================================
+   BACK SECTION
+   ======================================== */
+
+.backSection {
+  text-align: center;
+  margin-top: 48px;
+  padding-bottom: 40px;
+}
+
+.backLink {
+  color: #10b981;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: #059669;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+  .sandboxContent {
+    padding: 16px;
+  }
+
+  .heroSection {
+    padding: 32px 20px;
+  }
+
+  .dedicationTitle {
+    font-size: 1.5rem;
+  }
+
+  .toolsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .trainerContainer,
+  .pricingContainer,
+  .collectiveContainer,
+  .ecosystemContainer {
+    padding: 16px;
+  }
+
+  .trainerHeader,
+  .pricingHeader,
+  .collectiveHeader,
+  .ecosystemHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .scenariosGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .causesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .categoryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .serviceRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .serviceRate {
+    align-items: flex-start;
+    margin-top: 12px;
+  }
+
+  .resultsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pathwaysGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+  }
+
+  /* Ecosystem Explorer Responsive */
+  .viewTabs {
+    justify-content: center;
+  }
+  
+  .viewTab {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+  
+  .pathwayButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .businessCategoryGrid,
+  .entryPointsGrid,
+  .signalsGrid,
+  .eventGrid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ========================================
+   ECOSYSTEM INTEGRATION ADDITIONS
+   Add these to STEMgeneersSandbox.module.css
+   ======================================== */
+
+/* ========================================
+   ECOSYSTEM PROMPT (Diagnostic Trainer)
+   ======================================== */
+
+.ecosystemPromptCard {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(16, 185, 129, 0.1) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.scoreHighlight {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.ecosystemPromptCard h3 {
+  color: #fbbf24;
+  margin: 0 0 12px 0;
+  font-size: 1.5rem;
+}
+
+.ecosystemPromptCard > p {
+  color: #e2e8f0;
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+
+.ecosystemBusinessList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.ecosystemBusinessCard {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.ecosystemBusinessCard h4 {
+  color: #fff;
+  margin: 0 0 4px 0;
+  font-size: 1.1rem;
+}
+
+.businessType {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin: 0 0 12px 0;
+}
+
+.businessDetail {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  margin-bottom: 8px;
+}
+
+.businessDetail strong {
+  color: #10b981;
+}
+
+.businessContext {
+  font-size: 0.85rem;
+  color: #a0aec0;
+  font-style: italic;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ecosystemPromptActions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.continueTrainingButton {
+  padding: 14px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.continueTrainingButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.exploreEcosystemButton {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.exploreEcosystemButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+/* Ecosystem context in solution */
+.ecosystemContext {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.ecosystemContext h4 {
+  color: #fbbf24;
+  margin: 0 0 12px 0;
+  font-size: 1rem;
+}
+
+.ecosystemContext p {
+  color: #e2e8f0;
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.ecosystemContext p:last-child {
+  margin-bottom: 0;
+}
+
+.ecosystemHint {
+  margin-top: 16px;
+  padding: 12px;
+  background: rgba(251, 191, 36, 0.1);
+  border-radius: 8px;
+  color: #fbbf24;
+  font-size: 0.9rem;
+}
+
+/* ========================================
+   PRICING CALCULATOR - ECOSYSTEM MODE
+   ======================================== */
+
+.viewModeToggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 4px;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.viewModeButton {
+  padding: 10px 20px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: #a0aec0;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viewModeButton:hover {
+  color: #fff;
+}
+
+.viewModeButton.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+}
+
+.ecosystemExplainer {
+  background: rgba(16, 185, 129, 0.1);
+  border-left: 3px solid #10b981;
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 24px;
+}
+
+.ecosystemExplainer h4 {
+  color: #10b981;
+  margin: 0 0 8px 0;
+}
+
+.ecosystemExplainer p {
+  color: #e2e8f0;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.ecosystemRates {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 280px;
+}
+
+.ecosystemRateItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.rateType {
+  color: #a0aec0;
+  text-transform: capitalize;
+  min-width: 80px;
+}
+
+.rateValue {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.rateVolume {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.rateStability {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.rateStability.variable {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.rateStability.steady {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.rateStability.predictable {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.switchToEcosystemButton {
+  width: 100%;
+  padding: 12px;
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 8px;
+  color: #fbbf24;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.2s;
+}
+
+.switchToEcosystemButton:hover {
+  background: rgba(251, 191, 36, 0.25);
+}
+
+.ecosystemConnectionCard {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.ecosystemConnectionCard h3 {
+  color: #10b981;
+  margin: 0 0 16px 0;
+}
+
+/* ========================================
+   INCOME PATHWAY MAPPER
+   ======================================== */
+
+.incomeMapperContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.incomeMapperHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.incomeMapperHeader h2 {
+  color: #fbbf24;
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.incomeMapperIntro {
+  background: rgba(251, 191, 36, 0.1);
+  border-left: 3px solid #fbbf24;
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 32px;
+}
+
+.incomeMapperIntro p {
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Priority Selection */
+.prioritySection {
+  margin-bottom: 32px;
+}
+
+.prioritySection h3 {
+  color: #fff;
+  margin: 0 0 16px 0;
+}
+
+.priorityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.priorityButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.priorityButton:hover {
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.priorityButton.selected {
+  border-color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.priorityIcon {
+  font-size: 1.25rem;
+}
+
+/* Recommendation */
+.recommendationCard {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+
+.recommendationCard h3 {
+  color: #10b981;
+  margin: 0 0 16px 0;
+  font-size: 1rem;
+}
+
+.recommendedPathway {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.recommendedIcon {
+  font-size: 2.5rem;
+}
+
+.recommendedPathway h4 {
+  color: #fff;
+  margin: 0 0 4px 0;
+  font-size: 1.25rem;
+}
+
+.recommendedPathway p {
+  color: #a0aec0;
+  margin: 0;
+}
+
+/* Pathways Comparison */
+.pathwaysComparison {
+  margin-bottom: 32px;
+}
+
+.pathwaysComparison h3 {
+  color: #fff;
+  margin: 0 0 20px 0;
+}
+
+.pathwaysGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.pathwayCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.pathwayCard:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.pathwayCard.recommended {
+  border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.pathwayCard.expanded {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.recommendedBadge {
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 12px;
+}
+
+.pathwayHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.pathwayIcon {
+  font-size: 1.75rem;
+}
+
+.pathwayHeader h4 {
+  color: #fff;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.pathwayDesc {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  margin: 0 0 16px 0;
+}
+
+.pathwayMetrics {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.pathwayMetric {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.metricLabel {
+  display: block;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+}
+
+.metricValue {
+  display: block;
+  color: #10b981;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.pathwayIndicators {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.indicator {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.indicator.variable {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.indicator.steady {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.indicator.predictable {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.successionIndicator {
+  padding: 4px 10px;
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.pathwayDetails {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pathwayDetails h5 {
+  color: #fff;
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+}
+
+.pathwayDetails ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #a0aec0;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+/* Key Insight Box */
+.keyInsightBox {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.keyInsightBox h4 {
+  color: #fbbf24;
+  margin: 0 0 12px 0;
+}
+
+.keyInsightBox p {
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ========================================
+   COLLECTIVE - ECOSYSTEM CONNECTION
+   ======================================== */
+
+.collectiveEcosystemConnection {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.collectiveEcosystemConnection h4 {
+  color: #fbbf24;
+  margin: 0 0 12px 0;
+}
+
+.collectiveEcosystemConnection p {
+  color: #e2e8f0;
+  margin: 0 0 12px 0;
+}
+
+.collectiveEcosystemConnection ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #a0aec0;
+  line-height: 1.8;
+}
+
+.collectiveEcosystemConnection strong {
+  color: #fbbf24;
+}
+
+/* ========================================
+   PHILOSOPHY SECTION
+   ======================================== */
+
+.philosophySection {
+  margin-bottom: 48px;
+}
+
+.philosophyCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.philosophyCard h2 {
+  color: #fff;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+.philosophyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.philosophyItem {
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.philosophyItem:first-child {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.philosophyItem:last-child {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.philosophyItem h4 {
+  color: #fff;
+  margin: 0 0 8px 0;
+}
+
+.philosophyItem > p {
+  color: #e2e8f0;
+  margin: 0 0 12px 0;
+  font-size: 0.95rem;
+}
+
+.philosophyProblem {
+  color: #ef4444 !important;
+  font-size: 0.9rem !important;
+  font-style: italic;
+}
+
+.philosophyBenefit {
+  color: #10b981 !important;
+  font-size: 0.9rem !important;
+  font-style: italic;
+}
+
+.philosophyConclusion {
+  color: #e2e8f0;
+  text-align: center;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.philosophyConclusion strong {
+  color: #fbbf24;
+}
+
+/* Pathway Mini - Ecosystem Addition */
+.pathwayEcosystem {
+  color: #10b981;
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+
+/* ========================================
+   RESPONSIVE ADDITIONS
+   ======================================== */
+
+@media (max-width: 768px) {
+  .ecosystemBusinessList {
+    grid-template-columns: 1fr;
+  }
+  
+  .ecosystemRateItem {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  
+  .priorityGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pathwaysGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .viewModeToggle {
+    width: 100%;
+  }
+  
+  .viewModeButton {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .philosophyGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ecosystemPromptActions {
+    flex-direction: column;
+  }
+  
+  .continueTrainingButton,
+  .exploreEcosystemButton {
+    width: 100%;
+    text-align: center;
+  }
+}

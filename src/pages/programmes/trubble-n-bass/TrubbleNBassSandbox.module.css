@@ -1,0 +1,547 @@
+/* TrubbleNBassSandbox.module.css - CREATOR'S WORKSHOP EDITION */
+/* Complete styles for the three-tool creator's workshop */
+
+/* ============================================
+   SANDBOX CONTENT WRAPPER
+   ============================================ */
+
+.sandboxContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.heroSection {
+  text-align: center;
+  padding: 3rem 2rem;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, rgba(233, 69, 96, 0.15) 0%, rgba(249, 178, 8, 0.15) 50%, rgba(168, 85, 247, 0.15) 100%);
+  border: 2px solid rgba(233, 69, 96, 0.3);
+  border-radius: 20px;
+}
+
+.heroTitle {
+  font-size: 2.25rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #e94560 0%, #f9b208 50%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 1rem 0;
+}
+
+.heroText {
+  font-size: 1.15rem;
+  color: #cbd5e1;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   CORE TOOLS SECTION
+   ============================================ */
+
+.coreTools {
+  margin-bottom: 3rem;
+}
+
+.coreTools h2 {
+  font-size: 1.75rem;
+  color: #e2e8f0;
+  text-align: center;
+  margin: 0 0 2rem 0;
+}
+
+.toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.toolCard {
+  background: rgba(15, 52, 96, 0.6);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.toolCard:hover {
+  border-color: rgba(168, 85, 247, 0.5);
+  transform: translateY(-4px);
+}
+
+/* Flagship tool (Songwriting Workshop) */
+.toolFlagship {
+  border-color: rgba(233, 69, 96, 0.5);
+  background: linear-gradient(135deg, rgba(233, 69, 96, 0.15) 0%, rgba(15, 52, 96, 0.8) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.toolFlagship::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e94560, #f9b208, #a855f7);
+}
+
+.toolFlagship:hover {
+  border-color: #e94560;
+}
+
+.toolHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.toolIcon {
+  font-size: 2.5rem;
+}
+
+.newBadge {
+  padding: 0.4rem 0.75rem;
+  background: linear-gradient(135deg, #e94560, #f9b208);
+  color: white;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(233, 69, 96, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(233, 69, 96, 0);
+  }
+}
+
+.badges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.badgeFree {
+  padding: 0.4rem 0.75rem;
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.toolCard h3 {
+  font-size: 1.4rem;
+  color: #e2e8f0;
+  margin: 0 0 0.75rem 0;
+}
+
+.toolDesc {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
+}
+
+.toolFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.toolFeatures li {
+  padding: 0.5rem 0;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.toolFeatures li:last-child {
+  border-bottom: none;
+}
+
+.toolBtn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toolFlagship .toolBtn {
+  background: linear-gradient(135deg, #e94560, #d63850);
+}
+
+.toolBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+}
+
+.toolFlagship .toolBtn:hover {
+  box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+}
+
+/* ============================================
+   HERITAGE SECTION
+   ============================================ */
+
+.heritageSection {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(15, 52, 96, 0.4);
+  border-radius: 16px;
+}
+
+.heritageSection h3 {
+  font-size: 1.5rem;
+  color: #f9b208;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+
+.heritageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.heritageCard {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.heritageCard:hover {
+  border-color: rgba(249, 178, 8, 0.5);
+  transform: translateY(-4px);
+}
+
+.heritageIcon {
+  font-size: 2.25rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.heritageCard h4 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0 0 0.5rem 0;
+}
+
+.heritageCard p {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================
+   JOURNEY SECTION
+   ============================================ */
+
+.journey {
+  margin-bottom: 3rem;
+}
+
+.journey h2 {
+  font-size: 1.5rem;
+  color: #e2e8f0;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.journeySteps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.step {
+  flex: 1;
+  min-width: 180px;
+  max-width: 220px;
+  background: rgba(15, 52, 96, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.stepNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.step h4 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0 0 0.5rem 0;
+}
+
+.step p {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.stepArrow {
+  font-size: 1.5rem;
+  color: #64748b;
+}
+
+@media (max-width: 900px) {
+  .stepArrow {
+    transform: rotate(90deg);
+    margin: 0.5rem 0;
+  }
+  
+  .journeySteps {
+    flex-direction: column;
+  }
+  
+  .step {
+    max-width: 100%;
+  }
+}
+
+/* ============================================
+   STORY SECTION
+   ============================================ */
+
+.story {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 16px;
+}
+
+.story h2 {
+  font-size: 1.5rem;
+  color: #f9b208;
+  margin: 0 0 1.5rem 0;
+}
+
+.storyContent p {
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin: 0 0 1rem 0;
+}
+
+.storyContent p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   QUICK ACCESS
+   ============================================ */
+
+.quickAccess {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.quickAccess h2 {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  margin: 0 0 1.5rem 0;
+}
+
+.quickGrid {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.quickGrid button {
+  padding: 1rem 2rem;
+  background: rgba(168, 85, 247, 0.2);
+  border: 2px solid #a855f7;
+  color: #a855f7;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quickGrid button:hover {
+  background: #a855f7;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+
+.cta {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(233, 69, 96, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+  border: 2px solid rgba(233, 69, 96, 0.3);
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+.cta h2 {
+  font-size: 1.75rem;
+  color: #e2e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.cta > p {
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0 0 2rem 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #e94560, #d63850);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctaPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+}
+
+.ctaSecondary {
+  padding: 1rem 2.5rem;
+  background: transparent;
+  color: #06b6d4;
+  border: 2px solid #06b6d4;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ctaSecondary:hover {
+  background: #06b6d4;
+  color: white;
+}
+
+.slidingScale {
+  margin-top: 1.5rem !important;
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+/* ============================================
+   BACK LINK
+   ============================================ */
+
+.backLink {
+  display: block;
+  text-align: center;
+  color: #a855f7;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 1rem;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: #c084fc;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .sandboxContent {
+    padding: 1rem;
+  }
+
+  .heroTitle {
+    font-size: 1.5rem;
+  }
+
+  .toolsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolCard {
+    padding: 1.5rem;
+  }
+
+  .heritageGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+  }
+
+  .quickGrid {
+    flex-direction: column;
+  }
+
+  .quickGrid button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .heritageGrid {
+    grid-template-columns: 1fr;
+  }
+}

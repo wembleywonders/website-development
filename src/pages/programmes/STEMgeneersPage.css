@@ -1,0 +1,839 @@
+/* ========================================
+   STEMGENEERS PAGE - Applied Tech Programme
+   ======================================== */
+
+/* Hero Section */
+.stemgeneers-page .stemgeneers-hero {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 16px;
+  padding: 48px 32px;
+  text-align: center;
+  color: white;
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .stemgeneers-hero .hero-badge.tech {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.stemgeneers-page .stemgeneers-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.stemgeneers-page .stemgeneers-hero .hero-tagline {
+  font-size: 1.35rem;
+  opacity: 0.95;
+  margin-bottom: 16px;
+}
+
+.stemgeneers-page .stemgeneers-hero .hero-quote {
+  font-size: 1.1rem;
+  font-style: italic;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ========================================
+   HERITAGE SECTION
+   ======================================== */
+
+.stemgeneers-page .heritage-section {
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .heritage-section h2 {
+  color: #10b981;
+  font-size: 1.75rem;
+  margin-bottom: 16px;
+}
+
+.stemgeneers-page .heritage-section .section-intro {
+  color: #a0aec0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 800px;
+}
+
+.stemgeneers-page .heritage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.stemgeneers-page .heritage-card {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.stemgeneers-page .heritage-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.stemgeneers-page .heritage-card h3 {
+  color: #10b981;
+  font-size: 1.15rem;
+  margin: 0 0 12px 0;
+}
+
+.stemgeneers-page .heritage-card p {
+  color: #a0aec0;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+  font-size: 0.95rem;
+}
+
+.stemgeneers-page .heritage-lesson {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 16px !important;
+}
+
+.stemgeneers-page .heritage-lesson strong {
+  color: #6ee7b7;
+}
+
+/* ========================================
+   REFRAME SECTION
+   ======================================== */
+
+.stemgeneers-page .reframe-section {
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .reframe-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.stemgeneers-page .reframe-card h2 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+.stemgeneers-page .reframe-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.stemgeneers-page .reframe-old,
+.stemgeneers-page .reframe-new {
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.stemgeneers-page .reframe-old {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.stemgeneers-page .reframe-new {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.stemgeneers-page .reframe-old h3 {
+  color: #ef4444;
+  margin: 0 0 12px 0;
+}
+
+.stemgeneers-page .reframe-new h3 {
+  color: #10b981;
+  margin: 0 0 12px 0;
+}
+
+.stemgeneers-page .reframe-old p,
+.stemgeneers-page .reframe-new p {
+  color: #e2e8f0;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.stemgeneers-page .reframe-old ul,
+.stemgeneers-page .reframe-new ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #a0aec0;
+  line-height: 1.8;
+}
+
+/* ========================================
+   PATHWAYS SECTION
+   ======================================== */
+
+.stemgeneers-page .pathways-section {
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .pathways-section h2 {
+  color: #10b981;
+  font-size: 1.75rem;
+  margin-bottom: 16px;
+}
+
+.stemgeneers-page .pathways-section .section-intro {
+  color: #a0aec0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 800px;
+}
+
+.stemgeneers-page .pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.stemgeneers-page .pathway-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.stemgeneers-page .pathway-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stemgeneers-page .pathway-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.stemgeneers-page .pathway-desc {
+  padding: 0 20px;
+  color: #a0aec0;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.stemgeneers-page .pathway-services {
+  padding: 0 20px 20px;
+}
+
+.stemgeneers-page .pathway-services h4 {
+  color: #fff;
+  font-size: 0.95rem;
+  margin: 0 0 12px 0;
+}
+
+.stemgeneers-page .service-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+.stemgeneers-page .service-name {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.stemgeneers-page .service-rate {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.stemgeneers-page .pathway-gap {
+  padding: 0 20px 20px;
+}
+
+.stemgeneers-page .pathway-gap h4 {
+  color: #fbbf24;
+  font-size: 0.9rem;
+  margin: 0 0 8px 0;
+}
+
+.stemgeneers-page .pathway-gap p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.stemgeneers-page .pathway-heritage {
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stemgeneers-page .pathway-heritage p {
+  color: #a0aec0;
+  font-size: 0.85rem;
+  margin: 0;
+  font-style: italic;
+}
+
+.stemgeneers-page .pathway-heritage strong {
+  color: #6ee7b7;
+}
+
+/* ========================================
+   COLLECTIVE SECTION
+   ======================================== */
+
+.stemgeneers-page .collective-section {
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .collective-section h2 {
+  color: #fbbf24;
+  font-size: 1.75rem;
+  margin-bottom: 16px;
+}
+
+.stemgeneers-page .collective-section .section-intro {
+  color: #a0aec0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 800px;
+}
+
+.stemgeneers-page .collective-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.stemgeneers-page .collective-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.stemgeneers-page .collective-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+}
+
+.stemgeneers-page .collective-card.shared h3 {
+  color: #10b981;
+}
+
+.stemgeneers-page .collective-card.wholesale h3 {
+  color: #8b5cf6;
+}
+
+.stemgeneers-page .collective-card.pardner h3 {
+  color: #fbbf24;
+}
+
+.stemgeneers-page .collective-card p {
+  color: #a0aec0;
+  font-size: 0.95rem;
+  margin: 0 0 16px 0;
+}
+
+.stemgeneers-page .collective-card ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #e2e8f0;
+  line-height: 1.7;
+  font-size: 0.9rem;
+}
+
+.stemgeneers-page .pardner-example {
+  background: rgba(251, 191, 36, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.stemgeneers-page .pardner-example p {
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.stemgeneers-page .pardner-note {
+  font-style: italic;
+  color: #94a3b8 !important;
+}
+
+/* ========================================
+   TRAJECTORY SECTION
+   ======================================== */
+
+.stemgeneers-page .trajectory-section {
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .trajectory-section h2 {
+  color: #10b981;
+  font-size: 1.75rem;
+  margin-bottom: 16px;
+}
+
+.stemgeneers-page .trajectory-section .section-intro {
+  color: #a0aec0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 800px;
+}
+
+.stemgeneers-page .trajectory-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stemgeneers-page .trajectory-step {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.stemgeneers-page .trajectory-phase {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  height: fit-content;
+}
+
+.stemgeneers-page .trajectory-content {
+  flex: 1;
+}
+
+.stemgeneers-page .trajectory-desc {
+  color: #e2e8f0;
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}
+
+.stemgeneers-page .trajectory-income {
+  color: #10b981;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Additional Streams */
+.stemgeneers-page .additional-streams {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.stemgeneers-page .additional-streams h3 {
+  color: #a78bfa;
+  margin: 0 0 16px 0;
+}
+
+.stemgeneers-page .streams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.stemgeneers-page .stream-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.stemgeneers-page .stream-name {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.stemgeneers-page .stream-rate {
+  color: #a78bfa;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ========================================
+   INTEGRATION SECTION
+   ======================================== */
+
+.stemgeneers-page .integration-section {
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .integration-section h2 {
+  color: #10b981;
+  font-size: 1.75rem;
+  margin-bottom: 16px;
+}
+
+.stemgeneers-page .integration-section .section-intro {
+  color: #a0aec0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.stemgeneers-page .integration-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.stemgeneers-page .integration-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.stemgeneers-page .integration-card:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.stemgeneers-page .integration-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.stemgeneers-page .integration-card h4 {
+  color: #10b981;
+  font-size: 1rem;
+  margin: 0 0 8px 0;
+}
+
+.stemgeneers-page .integration-card p {
+  color: #a0aec0;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ========================================
+   OUTCOMES SECTION
+   ======================================== */
+
+.stemgeneers-page .outcomes-section {
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .outcomes-section h2 {
+  color: #10b981;
+  font-size: 1.75rem;
+  margin-bottom: 24px;
+}
+
+.stemgeneers-page .outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.stemgeneers-page .outcome-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 10px;
+}
+
+.stemgeneers-page .outcome-item svg {
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.stemgeneers-page .outcome-item p {
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ========================================
+   MESSAGING SECTION
+   ======================================== */
+
+.stemgeneers-page .messaging-section {
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .messaging-section h2 {
+  color: #10b981;
+  font-size: 1.75rem;
+  margin-bottom: 24px;
+}
+
+.stemgeneers-page .messaging-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.stemgeneers-page .messaging-card {
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.stemgeneers-page .messaging-card.parents {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.stemgeneers-page .messaging-card.young-people {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.stemgeneers-page .messaging-card h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.15rem;
+}
+
+.stemgeneers-page .messaging-card.parents h3 {
+  color: #fbbf24;
+}
+
+.stemgeneers-page .messaging-card.young-people h3 {
+  color: #10b981;
+}
+
+.stemgeneers-page .messaging-card p {
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* ========================================
+   SANDBOX SECTION
+   ======================================== */
+
+.stemgeneers-page .sandbox-section {
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .sandbox-card {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+}
+
+.stemgeneers-page .sandbox-card svg {
+  color: #10b981;
+  margin-bottom: 16px;
+}
+
+.stemgeneers-page .sandbox-card h2 {
+  color: #10b981;
+  margin: 0 0 12px 0;
+}
+
+.stemgeneers-page .sandbox-card p {
+  color: #a0aec0;
+  max-width: 600px;
+  margin: 0 auto 24px;
+  line-height: 1.7;
+}
+
+.stemgeneers-page .sandbox-cta {
+  display: inline-block;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.stemgeneers-page .sandbox-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+
+.stemgeneers-page .stemgeneers-cta {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 16px;
+  padding: 48px;
+  text-align: center;
+  color: white;
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .stemgeneers-cta .cta-content svg {
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+.stemgeneers-page .stemgeneers-cta h2 {
+  font-size: 2rem;
+  margin: 0 0 16px 0;
+}
+
+.stemgeneers-page .stemgeneers-cta p {
+  font-size: 1.1rem;
+  margin: 0 0 24px 0;
+  opacity: 0.95;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.stemgeneers-page .stemgeneers-cta .cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stemgeneers-page .stemgeneers-cta .cta-button {
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.stemgeneers-page .stemgeneers-cta .cta-button.primary {
+  background: white;
+  color: #059669;
+}
+
+.stemgeneers-page .stemgeneers-cta .cta-button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.stemgeneers-page .stemgeneers-cta .cta-button.secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+}
+
+.stemgeneers-page .stemgeneers-cta .cta-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ========================================
+   CLOSING SECTION
+   ======================================== */
+
+.stemgeneers-page .closing-section {
+  margin-bottom: 48px;
+}
+
+.stemgeneers-page .closing-quote {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #a0aec0;
+  line-height: 1.8;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px;
+  background: rgba(16, 185, 129, 0.05);
+  border-left: 4px solid #10b981;
+  border-radius: 0 12px 12px 0;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+  .stemgeneers-page .stemgeneers-hero {
+    padding: 32px 20px;
+  }
+
+  .stemgeneers-page .stemgeneers-hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .stemgeneers-page .heritage-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stemgeneers-page .reframe-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .stemgeneers-page .pathways-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stemgeneers-page .collective-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stemgeneers-page .trajectory-step {
+    flex-direction: column;
+  }
+
+  .stemgeneers-page .streams-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stemgeneers-page .integration-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stemgeneers-page .messaging-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stemgeneers-page .stemgeneers-cta {
+    padding: 32px 20px;
+  }
+
+  .stemgeneers-page .stemgeneers-cta .cta-buttons {
+    flex-direction: column;
+  }
+
+  .stemgeneers-page .stemgeneers-cta .cta-button {
+    width: 100%;
+    text-align: center;
+  }
+}

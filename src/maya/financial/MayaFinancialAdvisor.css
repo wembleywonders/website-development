@@ -1,0 +1,799 @@
+/*
+ * G-TECH COMMUNITY PLATFORM IP PROTECTION
+ * Copyright (c) 2024-2026 Wembley Wonders CIC
+ * Company No. 12960817
+ * 
+ * Maya Financial Advisor Styles
+ */
+
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
+
+.maya-financial-advisor {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 16px;
+  padding: 24px;
+  color: #fff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.mfa-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mfa-avatar {
+  font-size: 48px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mfa-title h2 {
+  margin: 0 0 4px 0;
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #fff, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mfa-title p {
+  margin: 0;
+  color: #a0aec0;
+  font-size: 14px;
+}
+
+/* ============================================
+   TABS
+   ============================================ */
+
+.mfa-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.mfa-tabs button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a0aec0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.mfa-tabs button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.mfa-tabs button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ============================================
+   CONTENT AREA
+   ============================================ */
+
+.mfa-content {
+  min-height: 400px;
+}
+
+.mfa-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.mfa-content .intro {
+  color: #a0aec0;
+  margin: 0 0 24px 0;
+  font-size: 14px;
+}
+
+/* ============================================
+   INPUT FORMS
+   ============================================ */
+
+.cost-input-form,
+.tax-inputs,
+.employment-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cost-input-form input,
+.cost-input-form select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.cost-input-form input:first-child {
+  flex: 1;
+  min-width: 150px;
+}
+
+.cost-input-form input[type="number"] {
+  width: 100px;
+}
+
+.cost-input-form select {
+  min-width: 120px;
+}
+
+.cost-input-form button,
+.calculate-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cost-input-form button:hover,
+.calculate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+}
+
+.calculate-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.input-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.input-group small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #718096;
+}
+
+.input-with-prefix {
+  display: flex;
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.input-with-prefix span {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 16px;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+.input-with-prefix input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 12px 16px;
+  font-size: 16px;
+}
+
+.input-with-prefix input:focus {
+  outline: none;
+}
+
+.input-group select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.input-group.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.input-group.checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #667eea;
+}
+
+.hours-input {
+  margin-bottom: 24px;
+}
+
+.hours-input label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
+.hours-input input {
+  width: 80px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ============================================
+   COSTS LIST
+   ============================================ */
+
+.costs-list {
+  margin-bottom: 24px;
+}
+
+.costs-list h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cost-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.cost-item .cost-label {
+  flex: 1;
+  font-weight: 500;
+}
+
+.cost-item .cost-category {
+  font-size: 12px;
+  color: #718096;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.cost-item .cost-amount {
+  font-weight: 600;
+  color: #68d391;
+}
+
+.cost-item button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fc8181;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.cost-item button:hover {
+  background: rgba(252, 129, 129, 0.2);
+}
+
+/* ============================================
+   RESULTS
+   ============================================ */
+
+.pricing-result,
+.tax-result,
+.employment-result {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.result-breakdown h4,
+.suggested-prices h4 {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.breakdown-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 14px;
+}
+
+.breakdown-item.total {
+  border-bottom: none;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  padding-top: 12px;
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.suggested-prices {
+  margin-top: 24px;
+}
+
+.price-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.price-option {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.price-option.recommended {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+  border: 2px solid #667eea;
+}
+
+.price-option .price-label {
+  display: block;
+  font-size: 12px;
+  color: #a0aec0;
+  margin-bottom: 8px;
+}
+
+.price-option .price-value {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.price-option.minimum .price-value {
+  color: #fbd38d;
+}
+
+.price-option.recommended .price-value {
+  color: #68d391;
+}
+
+.price-option.premium .price-value {
+  color: #b794f4;
+}
+
+.price-option .price-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #68d391;
+  color: #1a1a2e;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.hourly-equivalent {
+  margin-top: 16px;
+  text-align: center;
+  color: #a0aec0;
+  font-size: 14px;
+}
+
+.hourly-equivalent strong {
+  color: #68d391;
+  font-size: 18px;
+}
+
+/* ============================================
+   SUMMARY TABLES
+   ============================================ */
+
+.result-summary {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.summary-item.total {
+  background: rgba(252, 129, 129, 0.1);
+  font-weight: 600;
+  color: #fc8181;
+}
+
+.summary-item.take-home {
+  background: rgba(104, 211, 145, 0.1);
+  font-weight: 600;
+  color: #68d391;
+  font-size: 16px;
+}
+
+.effective-rate,
+.overhead-rate {
+  text-align: center;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #a0aec0;
+}
+
+.effective-rate span,
+.overhead-rate span {
+  display: block;
+}
+
+.effective-rate strong,
+.overhead-rate strong {
+  color: #fbd38d;
+  font-size: 20px;
+}
+
+/* ============================================
+   MAYA ADVICE
+   ============================================ */
+
+.maya-advice {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+  margin: 20px 0;
+}
+
+.maya-advice .maya-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.maya-advice p {
+  margin: 0;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.maya-quote {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.maya-quote .maya-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.maya-quote p {
+  margin: 0;
+  font-style: italic;
+  color: #a0aec0;
+  line-height: 1.6;
+}
+
+/* ============================================
+   TIPS & EXTRAS
+   ============================================ */
+
+.tax-tips,
+.alternatives {
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+}
+
+.tax-tips h4,
+.alternatives h4 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+}
+
+.tax-tips ul,
+.alternatives ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tax-tips li,
+.alternatives li {
+  padding: 8px 0;
+  color: #e2e8f0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.tax-tips li strong,
+.alternatives li strong {
+  color: #68d391;
+}
+
+/* ============================================
+   PROGRAMME GUIDE
+   ============================================ */
+
+.programme-guide h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.guide-section {
+  margin-bottom: 32px;
+}
+
+.guide-section h4 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Rates Table */
+.rates-table {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.rates-header,
+.rates-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.rates-header {
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 12px;
+  font-weight: 600;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rates-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 14px;
+}
+
+.rates-row:last-child {
+  border-bottom: none;
+}
+
+.rates-row .recommended {
+  color: #68d391;
+  font-weight: 600;
+}
+
+/* Common Costs List */
+.costs-list .common-cost {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.common-cost .cost-name {
+  color: #e2e8f0;
+}
+
+.common-cost .cost-typical {
+  color: #68d391;
+  font-weight: 500;
+}
+
+.common-cost .cost-category {
+  font-size: 11px;
+  color: #718096;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+
+/* Tips List */
+.tips-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tips-list li {
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.tips-list li::before {
+  content: '💡 ';
+}
+
+/* Deductible Grid */
+.deductible-intro {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #a0aec0;
+}
+
+.deductible-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+
+.deductible-item {
+  padding: 10px 14px;
+  background: rgba(104, 211, 145, 0.1);
+  border-radius: 8px;
+  font-size: 13px;
+  color: #68d391;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 640px) {
+  .maya-financial-advisor {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .mfa-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .mfa-tabs {
+    justify-content: flex-start;
+  }
+  
+  .mfa-tabs button {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  
+  .cost-input-form {
+    flex-direction: column;
+  }
+  
+  .cost-input-form input,
+  .cost-input-form select {
+    width: 100%;
+  }
+  
+  .price-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .rates-header,
+  .rates-row {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+  
+  .common-cost {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  
+  .deductible-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .maya-financial-advisor {
+    background: #fff;
+    color: #000;
+  }
+  
+  .mfa-tabs,
+  .cost-input-form,
+  .calculate-btn,
+  .cost-item button {
+    display: none;
+  }
+  
+  .pricing-result,
+  .tax-result,
+  .employment-result {
+    background: #f5f5f5;
+    break-inside: avoid;
+  }
+}

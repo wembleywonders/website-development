@@ -1,0 +1,333 @@
+/* Simple Uploader */
+.simple-uploader {
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px 0;
+}
+
+.uploader-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.uploader-header svg {
+  color: #ffc107;
+}
+
+.uploader-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffc107;
+}
+
+.uploader-header p {
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.access-denied {
+  text-align: center;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.access-denied svg {
+  margin-bottom: 16px;
+  color: #ff4757;
+}
+
+.access-denied h3 {
+  color: #ff4757;
+  margin-bottom: 8px;
+}
+
+.upload-select {
+  text-align: center;
+}
+
+.upload-zone {
+  border: 2px dashed rgba(255, 193, 7, 0.3);
+  border-radius: 12px;
+  padding: 40px 20px;
+  background: rgba(255, 193, 7, 0.05);
+  transition: all 0.3s ease;
+}
+
+.upload-zone:hover {
+  border-color: rgba(255, 193, 7, 0.5);
+  background: rgba(255, 193, 7, 0.1);
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-label {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.upload-label svg {
+  color: #ffc107;
+}
+
+.upload-label h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffc107;
+}
+
+.upload-label p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.upload-label small {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.upload-details {
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.file-info {
+  margin-bottom: 24px;
+}
+
+.file-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.file-preview svg {
+  color: #4ecdc4;
+}
+
+.file-preview h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.file-preview p {
+  margin: 4px 0 0 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.details-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.form-group input,
+.form-group textarea {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #ffc107;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group small {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.cancel-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.upload-btn {
+  background: linear-gradient(135deg, #ffc107, #ff8f00);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.upload-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.upload-progress {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.progress-header {
+  margin-bottom: 24px;
+}
+
+.progress-header svg {
+  color: #ffc107;
+  margin-bottom: 16px;
+}
+
+.progress-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.progress-bar {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  height: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(135deg, #ffc107, #ff8f00);
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s ease;
+}
+
+.upload-complete {
+  text-align: center;
+  padding: 40px 20px;
+  color: white;
+}
+
+.upload-complete svg {
+  color: #4caf50;
+  margin-bottom: 16px;
+}
+
+.upload-complete h4 {
+  margin: 0 0 12px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4caf50;
+}
+
+.schedule-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .simple-uploader {
+    padding: 20px;
+  }
+  
+  .upload-zone {
+    padding: 30px 16px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .cancel-btn,
+  .upload-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .upload-details {
+    animation: none;
+  }
+  
+  .upload-btn:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,11 @@
+// Add these routes to your router configuration:
+// /who-we-are/how-we-share-power
+// /policies/inclusion-framework
+// /policies/revenue-sharing
+// /policies/governance
+// /policies/conflict-resolution
+// /policies/safeguarding
+// /legal/cic-documents
+// /legal/financial-reports
+// /legal/insurance
+// /legal/data-protection

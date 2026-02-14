@@ -1,0 +1,239 @@
+/* src/pages/journey/CelebrateSection.css */
+
+/* ===================================
+   CELEBRATE SECTION
+   =================================== */
+
+.celebrate-section {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);
+  padding: 4rem 2rem;
+}
+
+/* Platforms Grid */
+.celebrate-platforms {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.platform-card {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.platform-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.platform-card:hover::before {
+  opacity: 1;
+}
+
+.platform-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: #fbbf24;
+  box-shadow: 0 12px 35px rgba(251, 191, 36, 0.4);
+}
+
+/* Platform Icon */
+.platform-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1.5rem;
+  animation: celebrate-bounce 2s ease-in-out infinite;
+}
+
+@keyframes celebrate-bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+.cyberstore .platform-icon {
+  animation-delay: 0s;
+}
+
+.silk-stilettos .platform-icon {
+  animation-delay: 0.66s;
+}
+
+.passionistas .platform-icon {
+  animation-delay: 1.33s;
+}
+
+/* Platform Content */
+.platform-card h3 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.platform-card p {
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Platform Link */
+.platform-link {
+  display: inline-block;
+  color: #fbbf24;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+}
+
+.platform-link:hover {
+  color: #fcd34d;
+  border-color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+  transform: translateX(5px);
+}
+
+/* Specific platform styling */
+.cyberstore {
+  border-top: 4px solid #0ea5e9;
+}
+
+.cyberstore:hover {
+  border-color: #0ea5e9;
+  box-shadow: 0 12px 35px rgba(14, 165, 233, 0.4);
+}
+
+.cyberstore .platform-link {
+  color: #0ea5e9;
+}
+
+.cyberstore .platform-link:hover {
+  color: #38bdf8;
+  border-color: #0ea5e9;
+}
+
+.silk-stilettos {
+  border-top: 4px solid #ec4899;
+}
+
+.silk-stilettos:hover {
+  border-color: #ec4899;
+  box-shadow: 0 12px 35px rgba(236, 72, 153, 0.4);
+}
+
+.silk-stilettos .platform-link {
+  color: #ec4899;
+}
+
+.silk-stilettos .platform-link:hover {
+  color: #f472b6;
+  border-color: #ec4899;
+}
+
+.passionistas {
+  border-top: 4px solid #a855f7;
+}
+
+.passionistas:hover {
+  border-color: #a855f7;
+  box-shadow: 0 12px 35px rgba(168, 85, 247, 0.4);
+}
+
+.passionistas .platform-link {
+  color: #a855f7;
+}
+
+.passionistas .platform-link:hover {
+  color: #c084fc;
+  border-color: #a855f7;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 968px) {
+  .celebrate-platforms {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .celebrate-section {
+    padding: 3rem 1rem;
+  }
+
+  .platform-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .platform-icon {
+    font-size: 3rem;
+  }
+
+  .platform-card h3 {
+    font-size: 1.25rem;
+  }
+
+  .platform-card p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .celebrate-section {
+    padding: 2rem 1rem;
+  }
+
+  .celebrate-platforms {
+    gap: 1rem;
+  }
+}
+
+/* ===================================
+   REDUCED MOTION
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .platform-icon {
+    animation: none;
+  }
+
+  .platform-card:hover {
+    transform: translateY(-5px) scale(1);
+  }
+
+  .platform-link:hover {
+    transform: none;
+  }
+}

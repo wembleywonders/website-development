@@ -1,0 +1,61 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "backdrop-filter",
+          "user-select",
+          "min-width: fit-content",
+          "-webkit-mask",
+          "text-size-adjust",
+          "color: color-mix(in srgb, var(--prog-color) 80%, black)",
+          "border: 1px solid color-mix(in srgb, var(--prog-color) 10%, transparent)",
+          "border: 1.5px solid color-mix(in srgb, var(--prog-color) 15%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--prog-color) 15%, transparent)",
+          "border-bottom: 1px solid color-mix(in srgb, var(--prog-color) 10%, transparent)",
+          "border-color: color-mix(in srgb, var(--prog-color) 20%, transparent)",
+          "border: 1.5px solid color-mix(in srgb, var(--prog-color, #6366f1) 15%, transparent)",
+          "scrollbar-width",
+          "scrollbar-width: thin",
+          "border: 1px solid color-mix(in srgb, var(--prog-color) 20%, transparent)",
+          "border: 2px solid color-mix(in srgb, var(--prog-color) 20%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--prog-color) 25%, transparent)",
+          "scrollbar-color",
+          "border: 1px solid color-mix(in srgb, var(--path-color) 15%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--card-color) 15%, transparent)",
+          "border-color: color-mix(in srgb, var(--card-color) 30%, transparent)"
+        ]
+      }
+    ],
+    "axe/forms": [
+      "default",
+      {
+        "label": "off",
+        "select-name": "off"
+      }
+    ],
+    "no-inline-styles": "off",
+    "axe/name-role-value": [
+      "default",
+      {
+        "button-name": "off"
+      }
+    ],
+    "axe/aria": [
+      "default",
+      {
+        "aria-valid-attr-value": "off"
+      }
+    ],
+    "axe/keyboard": [
+      "default",
+      {
+        "nested-interactive": "off"
+      }
+    ]
+  }
+}

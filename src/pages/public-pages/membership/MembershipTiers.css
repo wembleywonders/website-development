@@ -1,0 +1,543 @@
+/* src/pages/public-pages/membership/MembershipTiers.css */
+
+.membership-tiers-page {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.page-header {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/membership-pattern.svg') repeat;
+  opacity: 0.1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.membership-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.page-title {
+  font-size: 48px;
+  font-weight: 800;
+  margin: 0 0 24px 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.page-subtitle {
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0;
+  opacity: 0.95;
+  line-height: 1.5;
+}
+
+.tiers-container {
+  background: #ffffff;
+  position: relative;
+  z-index: 3;
+  margin-top: -40px;
+  border-radius: 40px 40px 0 0;
+  padding: 80px 20px;
+}
+
+.tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto 80px;
+}
+
+.tier-card {
+  background: #ffffff;
+  border: 2px solid #e9ecef;
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.tier-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #bdc3c7, #95a5a6);
+  transition: all 0.3s ease;
+}
+
+.tier-card.connector::before {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+.tier-card.curator::before {
+  background: linear-gradient(90deg, #9b59b6, #8e44ad);
+}
+
+.tier-card.champion::before {
+  background: linear-gradient(90deg, #f39c12, #e67e22);
+}
+
+.tier-card:hover {
+  transform: translateY(-8px) rotateX(5deg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.tier-card.popular {
+  border-color: #9b59b6;
+  background: linear-gradient(145deg, #ffffff 0%, #fdfbff 100%);
+  box-shadow: 0 8px 30px rgba(155, 89, 182, 0.2);
+}
+
+.tier-card.popular::after {
+  content: 'MOST POPULAR';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+  color: white;
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
+}
+
+.tier-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f1f2f6;
+}
+
+.tier-icon {
+  font-size: 56px;
+  margin-bottom: 20px;
+  display: block;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tier-card.connector .tier-icon {
+  color: #3498db;
+}
+
+.tier-card.curator .tier-icon {
+  color: #9b59b6;
+}
+
+.tier-card.champion .tier-icon {
+  color: #f39c12;
+}
+
+.tier-name {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 12px 0;
+  color: #2c3e50;
+}
+
+.tier-tagline {
+  font-size: 14px;
+  color: #7f8c8d;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+  font-style: italic;
+}
+
+.tier-price {
+  margin-bottom: 32px;
+}
+
+.price-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+.currency {
+  font-size: 24px;
+  font-weight: 600;
+  color: #7f8c8d;
+}
+
+.amount {
+  font-size: 56px;
+  font-weight: 800;
+  color: #2c3e50;
+}
+
+.period {
+  font-size: 18px;
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+.value-proposition {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.value-text {
+  font-size: 14px;
+  color: #495057;
+  margin: 0;
+  font-weight: 500;
+}
+
+.features-section {
+  margin-bottom: 32px;
+}
+
+.features-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 16px 0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #495057;
+}
+
+.feature-icon {
+  color: #27ae60;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.skills-preview {
+  background: rgba(52, 152, 219, 0.05);
+  border-left: 4px solid #3498db;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.tier-card.curator .skills-preview {
+  background: rgba(155, 89, 182, 0.05);
+  border-left-color: #9b59b6;
+}
+
+.tier-card.champion .skills-preview {
+  background: rgba(243, 156, 18, 0.05);
+  border-left-color: #f39c12;
+}
+
+.skills-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  background: #3498db;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.tier-card.curator .skill-tag {
+  background: #9b59b6;
+}
+
+.tier-card.champion .skill-tag {
+  background: #f39c12;
+}
+
+.tier-cta {
+  text-align: center;
+}
+
+.cta-button {
+  width: 100%;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #6c757d;
+  color: white;
+}
+
+.tier-card.connector .cta-button {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.tier-card.curator .cta-button {
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.tier-card.champion .cta-button {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.progression-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.progression-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.progression-subtitle {
+  font-size: 18px;
+  margin: 0 0 48px 0;
+  opacity: 0.95;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progression-flow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  max-width: 800px;
+  margin: 0 auto 48px;
+  flex-wrap: wrap;
+}
+
+.flow-step {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  min-width: 180px;
+  backdrop-filter: blur(10px);
+}
+
+.step-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.step-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.step-description {
+  font-size: 12px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.flow-arrow {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.7);
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .flow-arrow {
+    display: block;
+  }
+}
+
+.cta-section {
+  background: #ffffff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.final-cta-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 16px 0;
+}
+
+.final-cta-subtitle {
+  font-size: 16px;
+  color: #7f8c8d;
+  margin: 0 0 32px 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-primary, .cta-secondary {
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cta-primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+}
+
+.cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.cta-secondary {
+  background: transparent;
+  color: #667eea;
+  border: 2px solid #667eea;
+}
+
+.cta-secondary:hover {
+  background: #667eea;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 36px;
+  }
+  
+  .tiers-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 16px;
+  }
+  
+  .tier-card {
+    padding: 32px 24px;
+  }
+  
+  .tier-icon {
+    font-size: 48px;
+    height: 60px;
+  }
+  
+  .tier-name {
+    font-size: 28px;
+  }
+  
+  .amount {
+    font-size: 48px;
+  }
+  
+  .progression-flow {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .flow-step {
+    min-width: auto;
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-primary, .cta-secondary {
+    width: 100%;
+    max-width: 280px;
+  }
+}

@@ -1,0 +1,968 @@
+/* ============================================
+   DIGITAL ART GUIDE PAGE
+   /resources/digital-art-guide
+   ============================================ */
+
+.digital-art-guide {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0a0a0f 0%, #12121a 100%);
+  color: #e2e8f0;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+
+.dag-hero {
+  padding: 6rem 1.5rem 4rem;
+  text-align: center;
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+}
+
+.dag-hero__container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.dag-hero__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+  border-radius: 20px;
+  color: #a855f7;
+  margin-bottom: 1.5rem;
+}
+
+.dag-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.dag-hero__subtitle {
+  font-size: 1.15rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+}
+
+.dag-hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.dag-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.dag-badge--green {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.dag-badge--gold {
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  color: #fbbf24;
+}
+
+.dag-badge--blue {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #3b82f6;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+.dag-section {
+  padding: 4rem 1.5rem;
+}
+
+.dag-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.dag-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.75rem;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.dag-section-intro {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  margin: 0 0 2rem;
+}
+
+.dag-section-header {
+  margin-bottom: 2rem;
+}
+
+.dag-section-header p {
+  color: #64748b;
+  margin: 0;
+}
+
+.dag-section-header--expandable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dag-section-header--expandable:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dag-section-header--expandable h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.dag-section-content {
+  margin-top: 1.5rem;
+}
+
+/* ============================================
+   START WHERE YOU ARE - LEVELS
+   ============================================ */
+
+.dag-start {
+  background: rgba(168, 85, 247, 0.03);
+  border-top: 1px solid rgba(168, 85, 247, 0.1);
+  border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+}
+
+.dag-levels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.dag-level {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.dag-level:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dag-level--recommended {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.dag-level__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dag-level__price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.dag-level__header h3 {
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 0;
+}
+
+.dag-level > p {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.dag-level__verdict {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #a855f7;
+  font-weight: 500;
+}
+
+/* ============================================
+   SOFTWARE SECTION
+   ============================================ */
+
+.dag-krita-highlight {
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 16px;
+  margin-bottom: 2rem;
+}
+
+.dag-krita-highlight__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dag-krita-highlight__header h3 {
+  font-size: 1.25rem;
+  color: #fff;
+  margin: 0;
+}
+
+.dag-krita-highlight > p {
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+}
+
+.dag-krita-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.dag-krita-features span {
+  padding: 0.375rem 0.75rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: #a855f7;
+}
+
+.dag-section-content h4 {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dag-software-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.dag-software-card {
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.dag-software-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.dag-software-card__header h5 {
+  font-size: 1rem;
+  color: #fff;
+  margin: 0;
+}
+
+.dag-software-card__price {
+  font-size: 0.85rem;
+  color: #10b981;
+  font-weight: 500;
+}
+
+.dag-software-card__platform {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0 0 0.5rem;
+}
+
+.dag-software-card__best {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.dag-software-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: #a855f7;
+  text-decoration: none;
+  margin-top: 0.75rem;
+}
+
+.dag-software-card__link:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   HARDWARE SECTION
+   ============================================ */
+
+.dag-hardware-category {
+  margin-bottom: 2.5rem;
+}
+
+.dag-hardware-category:last-child {
+  margin-bottom: 0;
+}
+
+.dag-hardware-category > h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 0 0 0.5rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.dag-hardware-note {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0 0 1rem;
+}
+
+.dag-hardware-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.dag-hardware-card {
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  position: relative;
+}
+
+.dag-hardware-card--recommended {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.dag-recommended-badge {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  padding: 0.25rem 0.5rem;
+  background: #10b981;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.dag-hardware-card h5 {
+  font-size: 0.95rem;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.dag-hardware-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+.dag-hardware-card > p {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0.5rem 0 0;
+}
+
+.dag-hardware-tip {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+/* ============================================
+   PATHWAYS SECTION
+   ============================================ */
+
+.dag-pathways {
+  background: rgba(236, 72, 153, 0.03);
+  border-top: 1px solid rgba(236, 72, 153, 0.1);
+  border-bottom: 1px solid rgba(236, 72, 153, 0.1);
+}
+
+.dag-pathway-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.dag-pathway-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.dag-pathway-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(236, 72, 153, 0.3);
+  transform: translateY(-2px);
+}
+
+.dag-pathway-icon {
+  font-size: 2rem;
+}
+
+.dag-pathway-content {
+  flex: 1;
+}
+
+.dag-pathway-content h4 {
+  font-size: 1rem;
+  color: #fff;
+  margin: 0 0 0.25rem;
+}
+
+.dag-pathway-how {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0 0 0.5rem;
+}
+
+.dag-pathway-earning {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: #10b981;
+  margin: 0;
+}
+
+.dag-pathway-arrow {
+  color: #64748b;
+  transition: transform 0.2s ease;
+}
+
+.dag-pathway-card:hover .dag-pathway-arrow {
+  transform: translateX(4px);
+  color: #ec4899;
+}
+
+/* Journey Diagram */
+.dag-journey {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.dag-journey h3 {
+  font-size: 1.25rem;
+  color: #fff;
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.dag-journey-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.dag-journey-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.dag-journey-step__marker {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.dag-journey-step__content strong {
+  display: block;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.dag-journey-step__content span {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.dag-journey-arrow {
+  font-size: 1.5rem;
+  color: #64748b;
+}
+
+/* ============================================
+   EQUIPMENT LENDING SECTION
+   ============================================ */
+
+.dag-lending {
+  background: rgba(251, 191, 36, 0.03);
+  border-top: 1px solid rgba(251, 191, 36, 0.1);
+  border-bottom: 1px solid rgba(251, 191, 36, 0.1);
+}
+
+.dag-lending-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.dag-lending-header svg {
+  color: #fbbf24;
+}
+
+.dag-lending-header h2 {
+  margin: 0;
+  flex: 1;
+}
+
+.dag-lending-header p {
+  color: #94a3b8;
+  margin: 0;
+  width: 100%;
+}
+
+.dag-lending-intro {
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.dag-lending-intro p {
+  margin: 0;
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+/* Wishlist */
+.dag-wishlist h3 {
+  font-size: 1.25rem;
+  color: #fbbf24;
+  margin: 0 0 1.5rem;
+}
+
+.dag-wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dag-wishlist-card {
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.dag-wishlist-card h4 {
+  font-size: 1rem;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.dag-wishlist-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.dag-wishlist-card li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.dag-wishlist-card li:last-child {
+  border-bottom: none;
+}
+
+.dag-wishlist-total {
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.dag-wishlist-total strong {
+  color: #10b981;
+}
+
+.dag-wishlist-grand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 12px;
+}
+
+.dag-wishlist-grand span {
+  font-size: 1rem;
+  color: #cbd5e1;
+}
+
+.dag-wishlist-grand strong {
+  font-size: 1.75rem;
+  color: #10b981;
+}
+
+/* Contribute */
+.dag-contribute {
+  margin-top: 2.5rem;
+}
+
+.dag-contribute h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  color: #ec4899;
+  margin: 0 0 1.5rem;
+}
+
+.dag-contribute-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.dag-contribute-option {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.dag-contribute-option svg {
+  color: #fbbf24;
+  margin-bottom: 0.75rem;
+}
+
+.dag-contribute-option h4 {
+  font-size: 1rem;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.dag-contribute-option p {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* ============================================
+   QUICK START SECTION
+   ============================================ */
+
+.dag-quickstart {
+  background: rgba(59, 130, 246, 0.03);
+}
+
+.dag-quickstart h2 {
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.dag-checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.dag-checklist {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.dag-checklist--highlight {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.dag-checklist h4 {
+  font-size: 1rem;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.dag-checklist ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dag-checklist li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.dag-checklist li::before {
+  content: '□';
+  position: absolute;
+  left: 0;
+  color: #64748b;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+
+.dag-cta {
+  text-align: center;
+  background: 
+    radial-gradient(ellipse at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+}
+
+.dag-cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.dag-cta-content h2 {
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.dag-cta-content > p {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  margin: 0 0 2rem;
+}
+
+.dag-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.dag-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.dag-btn--small {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.dag-btn--primary {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  color: #fff;
+}
+
+.dag-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+}
+
+.dag-btn--secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.dag-btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dag-btn--outline {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.dag-btn--outline:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   FOOTER NOTE
+   ============================================ */
+
+.dag-footer-note {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dag-footer-note p {
+  max-width: 700px;
+  margin: 0 auto 1rem;
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+.dag-footer-note p:last-child {
+  margin-bottom: 0;
+}
+
+.dag-contact a {
+  color: #a855f7;
+  text-decoration: none;
+}
+
+.dag-contact a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .dag-hero {
+    padding: 4rem 1rem 3rem;
+  }
+  
+  .dag-section {
+    padding: 3rem 1rem;
+  }
+  
+  .dag-journey-steps {
+    flex-direction: column;
+  }
+  
+  .dag-journey-arrow {
+    transform: rotate(90deg);
+  }
+  
+  .dag-lending-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .dag-wishlist-grand {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .dag-hero__badges {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dag-cta-buttons {
+    flex-direction: column;
+  }
+  
+  .dag-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .dag-btn,
+  .dag-level,
+  .dag-pathway-card,
+  .dag-hardware-card {
+    transition: none;
+  }
+}
+
+.dag-btn:focus-visible,
+.dag-section-header--expandable:focus-visible {
+  outline: 2px solid #a855f7;
+  outline-offset: 2px;
+}

@@ -1,0 +1,221 @@
+/* src/pages/creators-hub/sandbox/steps/MiniLabStep.css */
+
+.mini-lab-step {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.step-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.step-header h2 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.step-header p {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Prompt Selection */
+.prompt-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.prompt-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  border: 3px solid transparent;
+  outline: none;
+}
+
+.prompt-card:hover,
+.prompt-card:focus {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  border-color: #fff;
+}
+
+.prompt-card h3 {
+  font-size: 1.3rem;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.prompt-card p {
+  font-size: 0.9rem;
+  opacity: 0.95;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Prompt Response */
+.prompt-response {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.selected-prompt {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.selected-prompt h3 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.selected-prompt p {
+  color: #666;
+  margin: 0 0 1rem 0;
+  font-size: 0.95rem;
+}
+
+.change-prompt {
+  background: none;
+  border: none;
+  color: #667eea;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.change-prompt:hover {
+  color: #764ba2;
+}
+
+/* Response Area */
+.response-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.response-area textarea {
+  width: 100%;
+  padding: 1.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.response-area textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.char-count {
+  text-align: right;
+  color: #999;
+  font-size: 0.85rem;
+}
+
+/* Button Styles */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mini-lab-step {
+    padding: 1rem;
+  }
+
+  .prompt-selection {
+    grid-template-columns: 1fr;
+  }
+
+  .step-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .response-area textarea {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+}
+
+@media (max-width: 480px) {
+  .mini-lab-step {
+    padding: 0.75rem;
+  }
+
+  .prompt-card {
+    padding: 1.5rem;
+  }
+
+  .prompt-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .prompt-card p {
+    font-size: 0.85rem;
+  }
+
+  .selected-prompt {
+    padding: 1rem;
+  }
+
+  .selected-prompt h3 {
+    font-size: 1.2rem;
+  }
+
+  .response-area textarea {
+    padding: 1rem;
+  }
+}

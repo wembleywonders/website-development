@@ -1,0 +1,183 @@
+/* Kaywana's Court Link */
+.kaywanas-court-link {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.3s ease;
+}
+
+.kaywanas-court-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(76, 175, 80, 0.4);
+}
+
+.promo-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.icon-wrapper {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #4caf50, #43a047);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.header-text h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4caf50;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.promo-content {
+  margin-bottom: 20px;
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.services {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.service {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(76, 175, 80, 0.1);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 3px solid #4caf50;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-indicator.live {
+  background: #4caf50;
+  animation: pulse 2s infinite;
+}
+
+.availability span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.promo-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.primary-cta {
+  background: linear-gradient(135deg, #4caf50, #43a047);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.primary-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.secondary-cta {
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  color: #4caf50;
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  flex: 1;
+  text-align: center;
+}
+
+.secondary-cta:hover {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: rgba(76, 175, 80, 0.5);
+}
+
+.integration-note {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.integration-note small {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .kaywanas-court-link {
+    padding: 20px;
+  }
+  
+  .promo-actions {
+    flex-direction: column;
+  }
+  
+  .primary-cta,
+  .secondary-cta {
+    flex: none;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .kaywanas-court-link:hover,
+  .primary-cta:hover,
+  .status-indicator.live {
+    transform: none;
+    animation: none;
+  }
+}

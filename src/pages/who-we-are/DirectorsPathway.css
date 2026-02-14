@@ -1,0 +1,713 @@
+/* src/pages/who-we-are/DirectorsPathway.css */
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 2rem 2rem;
+  margin-bottom: 4rem;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  color: white;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Page Container */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem 2rem;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-description {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 1.125rem;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* What Directors Do Section */
+.what-directors-do {
+  margin-bottom: 6rem;
+}
+
+.directors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.director-card {
+  background: rgba(51, 65, 85, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.director-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.director-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #667eea;
+  margin: 0 auto 1.5rem auto;
+}
+
+.director-card h4 {
+  color: #e2e8f0;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.director-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Pathway Stages Section */
+.pathway-stages {
+  margin-bottom: 6rem;
+}
+
+.stages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stage-card {
+  background: rgba(51, 65, 85, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.stage-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.stage-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.stage-number {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.stage-card h4 {
+  color: #e2e8f0;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.stage-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.stage-duration {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #667eea;
+  font-weight: 500;
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.stage-arrow {
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2rem;
+  height: 2rem;
+  color: #667eea;
+  background: rgba(51, 65, 85, 0.8);
+  border-radius: 50%;
+  padding: 0.25rem;
+}
+
+/* Governance Skills Section */
+.governance-skills {
+  margin-bottom: 6rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.skill-card {
+  background: rgba(51, 65, 85, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.skill-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #667eea;
+  margin-bottom: 1rem;
+}
+
+.skill-card h4 {
+  color: #e2e8f0;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.skill-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-card li {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.skill-card li::before {
+  content: "•";
+  color: #667eea;
+  position: absolute;
+  left: 0;
+}
+
+/* Board Structure Section */
+.board-structure {
+  margin-bottom: 6rem;
+}
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.board-card {
+  background: rgba(51, 65, 85, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.board-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.board-icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 1.5rem auto;
+}
+
+.board-icon.founder {
+  color: #fbbf24;
+}
+
+.board-icon.community {
+  color: #10b981;
+}
+
+.board-icon.advisory {
+  color: #8b5cf6;
+}
+
+.board-card h4 {
+  color: #e2e8f0;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.board-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Election Process Section */
+.election-process {
+  margin-bottom: 6rem;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.process-card {
+  background: rgba(51, 65, 85, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.process-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.process-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #667eea;
+  margin: 0 auto 1.5rem auto;
+}
+
+.process-card h4 {
+  color: #e2e8f0;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+}
+
+.process-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Accountability Section */
+.accountability-measures {
+  margin-bottom: 6rem;
+}
+
+.accountability-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.accountability-card {
+  background: rgba(51, 65, 85, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.accountability-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.accountability-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #667eea;
+  margin-bottom: 1rem;
+}
+
+.accountability-card h4 {
+  color: #e2e8f0;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+}
+
+.accountability-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Role Expectations Section */
+.role-expectations {
+  margin-bottom: 6rem;
+}
+
+.expectations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.expectation-card {
+  background: rgba(51, 65, 85, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.expectation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.expectation-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #667eea;
+  margin: 0 auto 1.5rem auto;
+}
+
+.expectation-card h4 {
+  color: #e2e8f0;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.expectation-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Leadership Interest Section */
+.leadership-interest {
+  margin-bottom: 6rem;
+}
+
+.leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.leadership-card {
+  background: rgba(51, 65, 85, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.leadership-card h4 {
+  color: #e2e8f0;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.leadership-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.leadership-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.leadership-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+/* Call to Action Section */
+.leadership-cta {
+  margin-top: 4rem;
+  padding: 3rem 2rem;
+  background: rgba(30, 41, 59, 0.3);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #667eea;
+  margin: 0 auto 1.5rem auto;
+}
+
+.leadership-cta h3 {
+  color: #e2e8f0;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.leadership-cta p {
+  color: #94a3b8;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.cta-btn.primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.cta-btn.secondary {
+  background: rgba(51, 65, 85, 0.5);
+  color: #e2e8f0;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  color: white;
+  text-decoration: none;
+}
+
+.cta-btn.primary:hover {
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.cta-btn.secondary:hover {
+  background: rgba(51, 65, 85, 0.8);
+  border-color: rgba(100, 116, 139, 0.5);
+}
+
+.contact-info {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.contact-info p {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 0 1rem 4rem 1rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .directors-grid,
+  .skills-grid,
+  .board-grid,
+  .process-grid,
+  .accountability-grid,
+  .expectations-grid,
+  .leadership-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stages-container {
+    gap: 1.5rem;
+  }
+
+  .stage-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .stage-arrow {
+    position: static;
+    transform: rotate(90deg);
+    margin: 1rem auto;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .director-card,
+  .stage-card,
+  .skill-card,
+  .board-card,
+  .process-card,
+  .accountability-card,
+  .expectation-card,
+  .leadership-card {
+    padding: 1.5rem;
+  }
+
+  .leadership-cta {
+    padding: 2rem 1rem;
+  }
+}

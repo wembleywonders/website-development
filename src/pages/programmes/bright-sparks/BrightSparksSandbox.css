@@ -1,0 +1,1160 @@
+/* src/pages/programmes/bright-sparks/BrightSparksSandbox.css */
+
+.bright-sparks-sandbox {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  color: #fff;
+  padding: 2rem;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.bs-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+
+.bs-header__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.bs-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.bs-header p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================
+   SELECTION HEADER
+   ============================================ */
+
+.bs-selection__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto 1.5rem;
+}
+
+.bs-selection__header h2 {
+  font-size: 1.25rem;
+}
+
+.bs-selection__counter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.bs-selection__counter span:not(.bs-selection__count) {
+  color: rgba(255, 255, 255, 0.3);
+  transition: color 0.2s;
+}
+
+.bs-selection__counter span.filled {
+  color: #fbbf24;
+}
+
+/* ============================================
+   PROGRESS BAR (New)
+   ============================================ */
+
+.bs-progress-bar {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.progress-header span {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.reset-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.reset-btn:hover {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.progress-track {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #059669);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.progress-label {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.progress-ready {
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* ============================================
+   CHALLENGE GRID
+   ============================================ */
+
+.bs-challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+}
+
+.bs-challenge-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.bs-challenge-card:hover:not(.disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.bs-challenge-card.selected {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: #fbbf24;
+}
+
+/* New: Challenge card states */
+.bs-challenge-card.completed {
+  border-color: #10b981;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+}
+
+.bs-challenge-card.started {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.bs-challenge-card.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.bs-challenge-card__check {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #fbbf24;
+}
+
+.bs-challenge-card.completed .bs-challenge-card__check {
+  color: #10b981;
+}
+
+.bs-challenge-card__emoji {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.bs-challenge-card__programme {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--challenge-color);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.bs-challenge-card__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.bs-challenge-card__description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+
+.bs-challenge-card__meta {
+  margin-bottom: 0.75rem;
+}
+
+.bs-challenge-card__duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.bs-challenge-card__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.bs-skill-tag {
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* New: Challenge status indicator */
+.challenge-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.challenge-status.completed {
+  color: #10b981;
+}
+
+.challenge-status.started {
+  color: #f59e0b;
+}
+
+.status-started {
+  font-size: 0.75rem;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* New: Guide hint on cards */
+.challenge-guide-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.challenge-guide-hint span:first-child {
+  font-size: 1rem;
+}
+
+/* ============================================
+   START SECTION
+   ============================================ */
+
+.bs-start-section {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.bs-start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #0f172a;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bs-start-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+}
+
+.bs-start-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.bs-start-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================
+   JOURNEY HEADER / PROGRESS STEPS
+   ============================================ */
+
+.bs-journey-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.bs-progress {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bs-progress__step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.bs-progress__step.complete {
+  background: #10b981;
+}
+
+.bs-progress__step.active {
+  background: #fbbf24;
+  color: #0f172a;
+}
+
+.bs-progress__text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================================
+   SANDBOX MODAL OVERLAY
+   ============================================ */
+
+.sandbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sandbox-modal {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sandbox-modal.success {
+  max-width: 500px;
+  text-align: center;
+}
+
+.sandbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.sandbox-back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin: -0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.sandbox-back:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sandbox-timer {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.sandbox-content {
+  padding: 1.5rem;
+}
+
+.sandbox-intro {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sandbox-emoji {
+  font-size: 2.5rem;
+}
+
+.sandbox-intro h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+}
+
+.sandbox-programme {
+  color: var(--sandbox-color, #10b981);
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   SANDBOX GUIDE MESSAGE
+   ============================================ */
+
+.sandbox-guide {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.sandbox-guide .guide-emoji {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.sandbox-guide .guide-content {
+  flex: 1;
+}
+
+.sandbox-guide strong {
+  display: block;
+  color: #fbbf24;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.sandbox-guide p {
+  color: #fcd34d;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================
+   SANDBOX INSTRUCTIONS
+   ============================================ */
+
+.sandbox-instructions {
+  margin-bottom: 1.5rem;
+}
+
+.sandbox-instructions h3 {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin: 0 0 0.75rem 0;
+}
+
+.sandbox-instructions ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #e2e8f0;
+}
+
+.sandbox-instructions li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.sandbox-success-criteria {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 8px;
+  color: #6ee7b7;
+  font-size: 0.9rem;
+}
+
+.sandbox-success-criteria svg {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   SANDBOX WORKSPACE
+   ============================================ */
+
+.sandbox-workspace {
+  margin-bottom: 1.5rem;
+}
+
+.sandbox-workspace label {
+  display: block;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+}
+
+.sandbox-workspace textarea {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 200px;
+  transition: all 0.2s;
+}
+
+.sandbox-workspace textarea:focus {
+  outline: none;
+  border-color: var(--sandbox-color, #10b981);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.sandbox-workspace textarea::placeholder {
+  color: #64748b;
+}
+
+.word-counter {
+  text-align: right;
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+.word-counter.valid {
+  color: #10b981;
+}
+
+.word-counter.invalid {
+  color: #f87171;
+}
+
+.counter-hint {
+  opacity: 0.8;
+}
+
+/* ============================================
+   SANDBOX ACTIONS
+   ============================================ */
+
+.sandbox-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.sandbox-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sandbox-btn.primary {
+  background: linear-gradient(135deg, var(--sandbox-color, #10b981), color-mix(in srgb, var(--sandbox-color, #10b981) 80%, black));
+  border: none;
+  color: #fff;
+}
+
+.sandbox-btn.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.sandbox-btn.primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sandbox-btn.secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #94a3b8;
+}
+
+.sandbox-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+/* ============================================
+   SANDBOX SUCCESS STATE
+   ============================================ */
+
+.sandbox-success {
+  padding: 2rem;
+}
+
+.sandbox-success .success-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(16, 185, 129, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: #10b981;
+  animation: successPop 0.5s ease;
+}
+
+@keyframes successPop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.sandbox-success h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+}
+
+.sandbox-success > p {
+  color: #94a3b8;
+  margin: 0 0 1.5rem 0;
+}
+
+.sandbox-success .success-guide {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.sandbox-success .success-guide .guide-emoji {
+  font-size: 1.5rem;
+}
+
+.sandbox-success .success-guide .guide-message strong {
+  color: #fbbf24;
+  font-size: 0.85rem;
+}
+
+.sandbox-success .success-guide .guide-message p {
+  color: #fcd34d;
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0 0;
+  font-style: italic;
+}
+
+.sandbox-success .success-actions {
+  display: flex;
+  justify-content: center;
+}
+
+/* ============================================
+   ACTIVE CHALLENGE (Original)
+   ============================================ */
+
+.bs-active-challenge {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bs-active-challenge__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.bs-active-challenge__emoji {
+  font-size: 3rem;
+}
+
+.bs-active-challenge__programme {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--challenge-color);
+  font-weight: 600;
+}
+
+.bs-active-challenge__title {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.bs-active-challenge__task {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.bs-active-challenge__task h2 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--challenge-color);
+}
+
+.bs-active-challenge__task p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.bs-active-challenge__workspace {
+  min-height: 300px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.bs-workspace-placeholder {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.bs-workspace-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  color: var(--challenge-color);
+  text-decoration: none;
+}
+
+.bs-active-challenge__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ============================================
+   BUTTONS (Original)
+   ============================================ */
+
+.bs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.bs-btn--primary {
+  background: #fbbf24;
+  color: #0f172a;
+}
+
+.bs-btn--secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bs-btn--complete {
+  background: #10b981;
+  color: #fff;
+}
+
+.bs-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   COMPLETE SCREEN
+   ============================================ */
+
+.bs-complete {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.bs-complete__icon {
+  color: #fbbf24;
+  margin-bottom: 1.5rem;
+}
+
+.bs-complete h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.bs-complete > p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2rem;
+}
+
+.bs-complete__results {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.bs-complete__results h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.bs-result-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid var(--challenge-color);
+}
+
+.bs-result-card__emoji {
+  font-size: 2rem;
+}
+
+.bs-result-card__info {
+  flex: 1;
+}
+
+.bs-result-card__info h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.bs-result-card__info p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.bs-result-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--challenge-color);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.bs-complete__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ============================================
+   MIGRATION PENDING NOTICE
+   ============================================ */
+
+.bs-migration-pending {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bs-migration-pending svg {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.bs-migration-pending strong {
+  display: block;
+  color: #10b981;
+  margin-bottom: 0.25rem;
+}
+
+.bs-migration-pending p {
+  color: #6ee7b7;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.bs-already-applied {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 10px;
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* ============================================
+   FLOW STEP STATES
+   ============================================ */
+
+.flow-step.completed .flow-marker {
+  background: #10b981;
+  color: #fff;
+}
+
+.flow-step.completed .flow-content span {
+  color: #10b981;
+}
+
+/* ============================================
+   SUCCESS MODAL (for Migration)
+   ============================================ */
+
+.bs-modal.success {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.bs-modal.success .success-content .success-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(16, 185, 129, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: #10b981;
+}
+
+.bs-modal.success h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0 0 1rem 0;
+}
+
+.bs-modal.success p {
+  color: #94a3b8;
+  margin: 0 0 1rem 0;
+  line-height: 1.6;
+}
+
+.bs-modal.success .bs-btn {
+  margin-top: 1rem;
+}
+
+/* ============================================
+   PROGRAMME CHIP LINKS
+   ============================================ */
+
+.programme-chip {
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.programme-chip:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* TECHreneurs link in programmes note */
+.techreneurs-link {
+  color: #10b981;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.techreneurs-link:hover {
+  color: #34d399;
+  text-decoration: underline;
+}
+
+.techreneurs-link strong {
+  font-weight: 700;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .bs-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .bs-challenge-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bs-active-challenge__actions {
+    flex-direction: column;
+  }
+  
+  .bs-complete__actions {
+    flex-direction: column;
+  }
+
+  .sandbox-modal {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .sandbox-actions {
+    flex-direction: column;
+  }
+
+  .sandbox-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sandbox-guide {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .progress-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .bs-progress-bar {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bright-sparks-sandbox {
+    padding: 1rem;
+  }
+
+  .bs-challenge-card {
+    padding: 1rem;
+  }
+
+  .sandbox-content {
+    padding: 1rem;
+  }
+
+  .sandbox-workspace textarea {
+    min-height: 150px;
+  }
+}

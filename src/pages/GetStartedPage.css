@@ -1,0 +1,338 @@
+/* GetStartedPage.css - Additional styles for workflow preview */
+
+/* ===================================
+   ENTRY PATHWAYS GRID
+   =================================== */
+
+.entry-pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.entry-pathway-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.entry-pathway-card:hover {
+  transform: translateY(-5px);
+  border-color: #0ea5e9;
+  box-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
+}
+
+.pathway-icon-header {
+  margin-bottom: 1.5rem;
+}
+
+.pathway-icon-large {
+  color: #0ea5e9;
+}
+
+.entry-pathway-card h3 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.pathway-subtitle {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.pathway-description {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+.pathway-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pathway-primary-btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pathway-primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.5);
+}
+
+.pathway-secondary-btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: #0ea5e9;
+  border: 2px solid #0ea5e9;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pathway-secondary-btn:hover {
+  background: #0ea5e9;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ===================================
+   POST-SIGNUP FLOW - FIXED VERSION
+   =================================== */
+
+.post-signup-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.flow-step {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.flow-number {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 1.5rem 0;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.5);
+  flex-shrink: 0;
+}
+
+.flow-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flow-content h3 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+}
+
+.flow-content p {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.flow-arrow {
+  font-size: 2rem;
+  color: #0ea5e9;
+  font-weight: bold;
+  flex-shrink: 0;
+  width: 40px;
+  text-align: center;
+}
+
+.signup-cta {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(30, 41, 59, 0.4);
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.signup-note {
+  color: #10b981;
+  font-size: 0.9rem;
+  margin: 1rem 0 0 0;
+  font-weight: 500;
+}
+
+/* ===================================
+   QUICK LINKS GRID
+   =================================== */
+
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.quick-link-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.quick-link-card:hover {
+  transform: translateY(-5px);
+  border-color: #0ea5e9;
+  box-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
+}
+
+.quick-link-card svg {
+  color: #0ea5e9;
+  margin-bottom: 1rem;
+}
+
+.quick-link-card h3 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.quick-link-card p {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+.quick-link-btn {
+  display: inline-block;
+  color: #0ea5e9;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.quick-link-btn:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* ===================================
+   SUGGESTED BANNER
+   =================================== */
+
+.suggested-banner {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+  border: 2px solid rgba(16, 185, 129, 0.4);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.suggestion-text {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.suggestion-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.suggestion-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5);
+}
+
+/* ===================================
+   RESPONSIVE - MOBILE FIRST
+   =================================== */
+
+@media (max-width: 1200px) {
+  /* Stack flow horizontally on tablets */
+  .post-signup-flow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .flow-arrow {
+    transform: rotate(90deg);
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  
+  .flow-step {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 968px) {
+  .entry-pathways-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-links-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .suggested-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .suggestion-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .post-signup-flow {
+    padding: 1rem;
+  }
+  
+  .flow-step {
+    padding: 1.5rem;
+  }
+}

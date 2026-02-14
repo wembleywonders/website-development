@@ -1,0 +1,518 @@
+import React, { useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import './AuthPages.css';
+
+const SignupPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const intent = searchParams.get('intent') || 'general';
+  
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    dateOfBirth: '',
+    agreeToTerms: false,
+    agreeToPrivacy: false,
+  });
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // Intent-specific messaging
+  const getIntentMessage = () => {
+    switch (intent) {
+      case 'creator':
+        return {
+          title: 'Join as Creator',
+          subtitle: 'Start building and selling digital products. Keep 55% of every sale.',
+          icon: '🎨'
+        };
+      case 'learner':
+        return {
+          title: 'Start Learning',
+          subtitle: 'Access free workshops and skills training. Build your portfolio.',
+          icon: '🎓'
+        };
+      case 'volunteer':
+        return {
+          title: 'Join Community',
+          subtitle: 'Help shape local programs while developing new skills.',
+          icon: '🤝'
+        };
+      default:
+        return {
+          title: 'Join Wembley Wonders',
+          subtitle: 'Create your account and start your journey today.',
+          icon: '🏆'
+        };
+    }
+  };
+
+  const intentMessage = getIntentMessage();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+    
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    // First Name
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    } else if (formData.firstName.trim().length < 2) {
+      newErrors.firstName = 'First name must be at least 2 characters';
+    }
+
+    // Last Name
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    } else if (formData.lastName.trim().length < 2) {
+      newErrors.lastName = 'Last name must be at least 2 characters';
+    }
+
+    // Email
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    // Password
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 8) {
+      newErrors.password = 'Password must be at least 8 characters';
+    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
+      newErrors.password = 'Password must include uppercase, lowercase, and number';
+    }
+
+    // Confirm Password
+    if (!formData.confirmPassword) {
+      newErrors.confirmPassword = 'Please confirm your password';
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+
+    // Date of Birth
+    if (!formData.dateOfBirth) {
+      newErrors.dateOfBirth = 'Date of birth is required';
+    } else {
+      const birthDate = new Date(formData.dateOfBirth);
+      const today = new Date();
+      const age = today.getFullYear() - birthDate.getFullYear();
+      
+      if (age < 11) {
+        newErrors.dateOfBirth = 'You must be at least 11 years old';
+      } else if (age > 120) {
+        newErrors.dateOfBirth = 'Please enter a valid date of birth';
+      }
+    }
+
+    // Terms & Privacy
+    if (!formData.agreeToTerms) {
+      newErrors.agreeToTerms = 'You must agree to the Terms of Service';
+    }
+    if (!formData.agreeToPrivacy) {
+      newErrors.agreeToPrivacy = 'You must agree to the Privacy Policy';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+    
+    setIsSubmitting(true);
+
+    try {
+      // TODO: Replace with your actual API endpoint
+      const response = await fetch('https://api.wembleywonders.org/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          dateOfBirth: formData.dateOfBirth,
+          intent: intent,
+        })
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Signup failed');
+      }
+
+      const { token, user } = await response.json();
+      
+      // Store token (both sites can read from localStorage)
+      localStorage.setItem('ww-token', token);
+      localStorage.setItem('ww-user', JSON.stringify(user));
+      
+      // Redirect to workspace with intent
+      const workspaceUrl = import.meta.env.VITE_WORKSPACE_URL || 'http://localhost:5174';
+      window.location.href = `${workspaceUrl}/onboarding?intent=${intent}`;
+      
+    } catch (error: any) {
+      const errorMessage = error?.message || 'Registration failed. Please try again.';
+      setErrors({ form: errorMessage });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="auth-page">
+      
+      {/* Background Effects */}
+      <div className="auth-bg-overlay" />
+      <div className="auth-bg-gradient" />
+
+      {/* Main Content */}
+      <div className="auth-container">
+        
+        {/* Header */}
+        <div className="auth-header">
+          <div className="auth-logo-fallback">{intentMessage.icon}</div>
+          
+          <h1 className="auth-title">{intentMessage.title}</h1>
+          <p className="auth-subtitle">{intentMessage.subtitle}</p>
+        </div>
+
+        {/* Form Section */}
+        <div className="auth-form-wrapper">
+          
+          {/* Alert Messages */}
+          {errors.form && (
+            <div className="auth-alerts">
+              <div className="alert alert-error">
+                <span className="alert-icon">⚠️</span>
+                {errors.form}
+              </div>
+            </div>
+          )}
+
+          {/* Main Form */}
+          <div className="auth-form-card">
+            <form onSubmit={handleSubmit} className="auth-form">
+              
+              {/* Name Fields (Side by Side) */}
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="firstName" className="form-label">
+                    First Name
+                  </label>
+                  <input
+                    id="firstName"
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className={`form-input ${errors.firstName ? 'error' : ''}`}
+                    placeholder="Enter first name"
+                    autoComplete="given-name"
+                  />
+                  {errors.firstName && (
+                    <p className="form-error">{errors.firstName}</p>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="lastName" className="form-label">
+                    Last Name
+                  </label>
+                  <input
+                    id="lastName"
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className={`form-input ${errors.lastName ? 'error' : ''}`}
+                    placeholder="Enter last name"
+                    autoComplete="family-name"
+                  />
+                  {errors.lastName && (
+                    <p className="form-error">{errors.lastName}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Email Field */}
+              <div className="form-group">
+                <label htmlFor="email" className="form-label">
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className={`form-input ${errors.email ? 'error' : ''}`}
+                  placeholder="Enter your email"
+                  autoComplete="email"
+                />
+                {errors.email && (
+                  <p className="form-error">{errors.email}</p>
+                )}
+              </div>
+
+              {/* Date of Birth */}
+              <div className="form-group">
+                <label htmlFor="dateOfBirth" className="form-label">
+                  Date of Birth
+                </label>
+                <input
+                  id="dateOfBirth"
+                  type="date"
+                  name="dateOfBirth"
+                  value={formData.dateOfBirth}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className={`form-input ${errors.dateOfBirth ? 'error' : ''}`}
+                  max={new Date().toISOString().split('T')[0]}
+                />
+                {errors.dateOfBirth && (
+                  <p className="form-error">{errors.dateOfBirth}</p>
+                )}
+                <p className="form-hint">
+                  You must be at least 11 years old to join
+                </p>
+              </div>
+
+              {/* Password Fields */}
+              <div className="form-group">
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <div className="password-wrapper">
+                  <input
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className={`form-input ${errors.password ? 'error' : ''}`}
+                    placeholder="Create a password"
+                    autoComplete="new-password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="password-toggle"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  >
+                    {showPassword ? '👁️' : '👁️‍🗨️'}
+                  </button>
+                </div>
+                {errors.password && (
+                  <p className="form-error">{errors.password}</p>
+                )}
+                <p className="form-hint">
+                  At least 8 characters with uppercase, lowercase, and number
+                </p>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="confirmPassword" className="form-label">
+                  Confirm Password
+                </label>
+                <div className="password-wrapper">
+                  <input
+                    id="confirmPassword"
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className={`form-input ${errors.confirmPassword ? 'error' : ''}`}
+                    placeholder="Confirm your password"
+                    autoComplete="new-password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="password-toggle"
+                    aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                  >
+                    {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                  </button>
+                </div>
+                {errors.confirmPassword && (
+                  <p className="form-error">{errors.confirmPassword}</p>
+                )}
+              </div>
+
+              {/* Terms & Privacy Checkboxes */}
+              <div className="form-group">
+                <label className={`checkbox-label full ${errors.agreeToTerms ? 'error' : ''}`}>
+                  <input
+                    type="checkbox"
+                    name="agreeToTerms"
+                    checked={formData.agreeToTerms}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className="checkbox-input"
+                  />
+                  <span>
+                    I agree to the{' '}
+                    <Link to="/terms" target="_blank" className="inline-link">
+                      Terms of Service
+                    </Link>
+                  </span>
+                </label>
+                {errors.agreeToTerms && (
+                  <p className="form-error">{errors.agreeToTerms}</p>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label className={`checkbox-label full ${errors.agreeToPrivacy ? 'error' : ''}`}>
+                  <input
+                    type="checkbox"
+                    name="agreeToPrivacy"
+                    checked={formData.agreeToPrivacy}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className="checkbox-input"
+                  />
+                  <span>
+                    I agree to the{' '}
+                    <Link to="/privacy" target="_blank" className="inline-link">
+                      Privacy Policy
+                    </Link>
+                  </span>
+                </label>
+                {errors.agreeToPrivacy && (
+                  <p className="form-error">{errors.agreeToPrivacy}</p>
+                )}
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="submit-button"
+              >
+                {isSubmitting ? (
+                  <>
+                    <span className="button-spinner" />
+                    Creating account...
+                  </>
+                ) : (
+                  'Create Account'
+                )}
+              </button>
+            </form>
+          </div>
+
+          {/* Login Link */}
+          <div className="auth-alternate">
+            <p>
+              Already have an account?{' '}
+              <Link to="/auth/login" className="alternate-link">
+                Sign in
+              </Link>
+            </p>
+          </div>
+
+          {/* What You'll Get - Intent Specific */}
+          <div className="auth-benefits">
+            <h3 className="benefits-title">What You'll Get</h3>
+            
+            {intent === 'creator' && (
+              <div className="benefits-grid">
+                <div className="benefit-item">
+                  <span className="benefit-icon">🎨</span>
+                  <span className="benefit-text">Creator Tools</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-icon">💰</span>
+                  <span className="benefit-text">55% Revenue</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-icon">✅</span>
+                  <span className="benefit-text">Quality Badge</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-icon">📻</span>
+                  <span className="benefit-text">Promotion</span>
+                </div>
+              </div>
+            )}
+
+            {intent === 'learner' && (
+              <div className="benefits-grid">
+                <div className="benefit-item">
+                  <span className="benefit-icon">🎓</span>
+                  <span className="benefit-text">Free Workshops</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-icon">📚</span>
+                  <span className="benefit-text">Learning Pathways</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-icon">🏆</span>
+                  <span className="benefit-text">Certifications</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-icon">🤝</span>
+                  <span className="benefit-text">Community Support</span>
+                </div>
+              </div>
+            )}
+
+            {(intent === 'volunteer' || intent === 'general') && (
+              <div className="benefits-grid">
+                <div className="benefit-item">
+                  <span className="benefit-icon">🎓</span>
+                  <span className="benefit-text">Free Programmes</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-icon">👥</span>
+                  <span className="benefit-text">Community Access</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-icon">🏆</span>
+                  <span className="benefit-text">Certifications</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-icon">💼</span>
+                  <span className="benefit-text">Career Support</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SignupPage;

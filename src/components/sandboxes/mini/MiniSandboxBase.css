@@ -1,0 +1,482 @@
+/* src/components/sandboxes/mini/MiniSandboxBase.css */
+/* "Felt, Glue & Rounded Scissors" - safe creative exploration */
+
+.mini-sandbox {
+  min-height: 100vh;
+  background: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.sandbox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: rgba(30, 41, 59, 0.8);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.sandbox-identity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sandbox-emoji {
+  font-size: 2.5rem;
+}
+
+.sandbox-identity h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.sandbox-programme {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  background: rgba(148, 163, 184, 0.2);
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+}
+
+.sandbox-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-pause,
+.btn-prompt {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #f8fafc;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-pause:hover,
+.btn-prompt:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   SESSION TIMER
+   ============================================ */
+.session-timer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+  font-family: 'Monaco', 'Consolas', monospace;
+}
+
+.session-timer.low-time {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.3);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.timer-icon {
+  font-size: 1.25rem;
+}
+
+.timer-display {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.timer-elapsed {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.timer-separator {
+  color: #94a3b8;
+}
+
+.timer-limit {
+  color: #94a3b8;
+}
+
+.timer-paused {
+  font-size: 0.7rem;
+  background: #f59e0b;
+  color: #1f2937;
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* ============================================
+   CONSTRAINTS DISPLAY
+   ============================================ */
+.sandbox-constraints {
+  padding: 0.75rem 1.5rem;
+  background: rgba(30, 41, 59, 0.5);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.constraints-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.constraints-label > span:first-child {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.constraints-hint {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.constraints-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.constraint-badge {
+  padding: 0.375rem 0.75rem;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  color: #c4b5fd;
+}
+
+/* ============================================
+   CONSTRAINT METER
+   ============================================ */
+.constraint-meter {
+  padding: 0.75rem;
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.constraint-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.375rem;
+}
+
+.constraint-emoji {
+  font-size: 1rem;
+}
+
+.constraint-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  flex: 1;
+}
+
+.constraint-count {
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: 'Monaco', 'Consolas', monospace;
+}
+
+.constraint-bar {
+  height: 6px;
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.constraint-fill {
+  height: 100%;
+  background: #10b981;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.constraint-meter.near-limit .constraint-fill {
+  background: #f59e0b;
+}
+
+.constraint-meter.at-limit .constraint-fill {
+  background: #ef4444;
+}
+
+.constraint-meter.at-limit .constraint-count {
+  color: #ef4444;
+}
+
+/* ============================================
+   PROMPT OVERLAY
+   ============================================ */
+.sandbox-prompt-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 100;
+}
+
+.prompt-card {
+  max-width: 600px;
+  width: 100%;
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.prompt-header {
+  margin-bottom: 1.5rem;
+}
+
+.prompt-category {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.prompt-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #f8fafc;
+}
+
+.prompt-brief {
+  padding: 1.25rem;
+  background: rgba(59, 130, 246, 0.1);
+  border-left: 4px solid #3b82f6;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1.5rem;
+}
+
+.prompt-brief p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.prompt-hints {
+  margin-bottom: 1.5rem;
+}
+
+.prompt-hints h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.prompt-hints ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.prompt-hints li {
+  margin-bottom: 0.375rem;
+  font-size: 0.875rem;
+  color: #cbd5e1;
+}
+
+.prompt-inspiration {
+  margin-bottom: 1.5rem;
+}
+
+.btn-inspiration {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px dashed rgba(251, 191, 36, 0.4);
+  border-radius: 8px;
+  color: #fbbf24;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-inspiration:hover {
+  background: rgba(251, 191, 36, 0.15);
+}
+
+.inspiration-content {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(251, 191, 36, 0.1);
+  border-radius: 8px;
+}
+
+.inspiration-content p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #fef3c7;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.prompt-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn-start {
+  padding: 1rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-start:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+.btn-back,
+.btn-close {
+  padding: 0.75rem;
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-back:hover,
+.btn-close:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+/* ============================================
+   WORKSPACE
+   ============================================ */
+.sandbox-workspace {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.sandbox-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: rgba(30, 41, 59, 0.8);
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.footer-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.footer-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-discard {
+  padding: 0.625rem 1.25rem;
+  background: transparent;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 6px;
+  color: #f87171;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-discard:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.btn-save {
+  padding: 0.625rem 1.25rem;
+  background: #3b82f6;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-save:hover {
+  background: #2563eb;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .sandbox-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .sandbox-controls {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  .sandbox-footer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .footer-actions {
+    width: 100%;
+  }
+  
+  .footer-actions button {
+    flex: 1;
+  }
+  
+  .prompt-card {
+    padding: 1.5rem;
+  }
+}

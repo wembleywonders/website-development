@@ -1,0 +1,104 @@
+/* Account Creation Section */
+.account-creation-section {
+  margin: 3rem 0;
+}
+
+.account-creation-card {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1));
+  border: 2px solid rgba(79, 70, 229, 0.3);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+.account-creation-content h2 {
+  font-size: 2rem;
+  color: #818cf8;
+  margin-bottom: 1rem;
+}
+
+.account-creation-content > p {
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto;
+  max-width: 500px;
+  text-align: left;
+}
+
+.benefits-list li {
+  color: #e2e8f0;
+  font-size: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.benefits-list li:last-child {
+  border-bottom: none;
+}
+
+.account-creation-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.create-account-btn {
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.create-account-btn.primary {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+}
+
+.create-account-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4);
+}
+
+.create-account-btn.secondary {
+  background: transparent;
+  color: #cbd5e1;
+  border: 2px solid rgba(148, 163, 184, 0.3);
+}
+
+.create-account-btn.secondary:hover {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+.account-note {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .account-creation-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .account-creation-actions {
+    flex-direction: column;
+  }
+  
+  .create-account-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

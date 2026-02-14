@@ -1,0 +1,125 @@
+/**
+ * RecentProjects Styles
+ * @module features/project/components/RecentProjects
+ */
+
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.recentProjects {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.projectsContainer {
+  display: grid;
+  gap: var(--spacing-md);
+  
+  // Grid View
+  &:has(+ .grid) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// View Mode Variations
+.grid {
+  .projectsContainer {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+.list {
+  .projectsContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kanban {
+  .projectsContainer {
+    display: flex;
+    gap: var(--spacing-md);
+    overflow-x: auto;
+    padding-bottom: var(--spacing-sm);
+    
+    @include custom-scrollbar;
+  }
+}
+
+.timeline {
+  .projectsContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border-color);
+    }
+  }
+}
+
+.loading {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+  
+  .loadingCard {
+    height: 200px;
+    background: linear-gradient(
+      90deg,
+      var(--bg-secondary) 0%,
+      var(--bg-tertiary) 50%,
+      var(--bg-secondary) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: var(--radius-lg);
+  }
+}
+
+.viewAll {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+  
+  .viewAllButton {
+    @include button-base;
+    @include button-secondary;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    
+    svg {
+      transition: transform 0.2s ease;
+    }
+    
+    &:hover {
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

@@ -1,0 +1,723 @@
+/**
+ * CREATOR DASHBOARD & ROV STYLES
+ * 
+ * Styles for the creator dashboard and all ROV components.
+ * Uses WW design tokens (dark theme, glass morphism).
+ */
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+
+.creator-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.creator-dashboard__header {
+  margin-bottom: 2rem;
+}
+
+.creator-dashboard__welcome {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.creator-dashboard__welcome .avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #10b981);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  overflow: hidden;
+}
+
+.creator-dashboard__welcome .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.creator-dashboard__welcome h1 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.membership-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.membership-badge--visitor { background: #374151; color: #9ca3af; }
+.membership-badge--explorer { background: #1e3a5f; color: #60a5fa; }
+.membership-badge--member { background: #064e3b; color: #34d399; }
+.membership-badge--champion { background: #713f12; color: #fbbf24; }
+
+/* Widget Grid */
+.creator-dashboard__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Widget Base */
+.creator-dashboard__widget {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.creator-dashboard__widget:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.widget-icon {
+  font-size: 1.25rem;
+}
+
+.widget-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.widget-content {
+  margin-bottom: 1rem;
+}
+
+.widget-footer {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* Token Widget */
+.token-balance {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.token-balance .amount {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+.token-balance .label {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.token-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.token-stats .stat {
+  text-align: center;
+}
+
+.token-stats .value {
+  display: block;
+  font-weight: 600;
+}
+
+.token-stats .stat--pending .value {
+  color: #34d399;
+}
+
+/* Credentials Widget */
+.credentials-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.credential-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 0.8125rem;
+}
+
+.credential-icon {
+  font-size: 1rem;
+}
+
+.empty {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Marketplace Widget */
+.marketplace-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.marketplace-stats .stat {
+  text-align: center;
+}
+
+.marketplace-stats .value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.marketplace-stats .label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* Community Impact Widget */
+.creator-dashboard__widget--community {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.impact-main {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.impact-main .amount {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.impact-detail {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #d1d5db;
+}
+
+/* Programme Progress */
+.creator-dashboard__widget--programme {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+  cursor: default;
+}
+
+.progress-bar {
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+}
+
+/* ROV Recommendations */
+.creator-dashboard__rovs {
+  margin-bottom: 2rem;
+}
+
+.creator-dashboard__rovs h3 {
+  margin-bottom: 1rem;
+}
+
+.rov-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.rov-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.rov-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.rov-card--high {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.rov-icon {
+  font-size: 2rem;
+}
+
+.rov-name {
+  font-weight: 600;
+}
+
+.rov-reason {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.rov-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 0.25rem 0.5rem;
+  background: #10b981;
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+
+/* Quick Actions */
+.creator-dashboard__actions h3 {
+  margin-bottom: 1rem;
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #e5e7eb;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.action-btn--primary {
+  background: linear-gradient(135deg, #3b82f6, #10b981);
+  border-color: transparent;
+}
+
+.action-btn--primary:hover {
+  opacity: 0.9;
+}
+
+/* ============================================================
+   ROV COMPONENTS (Base Styles)
+   ============================================================ */
+
+[class*="-rov"] {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+[class*="-rov__header"] {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[class*="-rov__avatar"] {
+  font-size: 2rem;
+}
+
+[class*="-rov__info"] h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+[class*="-rov__info"] span {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+[class*="-rov__profile"] {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+[class*="-rov__profile"] p {
+  margin: 0 0 0.5rem 0;
+}
+
+[class*="-rov__profile"] .philosophy {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Task Grid */
+[class*="-rov__task-grid"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+[class*="-rov__task"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[class*="-rov__task"]:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[class*="-rov__task"].active {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+[class*="-rov__task"] .icon {
+  font-size: 1.5rem;
+}
+
+[class*="-rov__task"] .label {
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+/* Guide */
+[class*="-rov__guide"] {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+[class*="-rov__guide"] h3 {
+  margin: 0 0 1rem 0;
+}
+
+[class*="-rov__meta"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+}
+
+/* AI Note */
+[class*="-rov__ai-note"] {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.ai-yes {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.ai-no {
+  background: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+[class*="-rov__ai-note"] p {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+.voice-warning, .danger-zone, .ethical-note {
+  color: #fbbf24;
+  font-size: 0.8125rem;
+}
+
+/* Steps */
+[class*="-rov__steps"] {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+[class*="-rov__step"] {
+  padding-left: 1rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+[class*="-rov__step-header"] {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.step-number {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+[class*="-rov__step"] h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+[class*="-rov__step"] > p {
+  margin: 0 0 0.75rem 0;
+  color: #d1d5db;
+  font-size: 0.9375rem;
+}
+
+[class*="-rov__step"] ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+[class*="-rov__step"] li {
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* AI Option */
+[class*="-rov__ai-option"] {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 8px;
+}
+
+[class*="-rov__ai-option"] strong {
+  color: #a78bfa;
+}
+
+[class*="-rov__ai-option"] p {
+  margin: 0.25rem 0;
+  font-size: 0.8125rem;
+}
+
+[class*="-rov__ai-option"] .warning {
+  color: #fbbf24;
+}
+
+[class*="-rov__ai-option"] .time-saved {
+  color: #34d399;
+}
+
+/* Tools */
+[class*="-rov__tools"] {
+  margin-bottom: 1.5rem;
+}
+
+[class*="-rov__tools"] h3 {
+  margin-bottom: 1rem;
+}
+
+[class*="-rov__tool-list"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+[class*="-rov__tool"] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+[class*="-rov__tool"]:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tool-name {
+  font-weight: 600;
+}
+
+.tool-cost {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.cost-free { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+.cost-freemium { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+.cost-paid { background: rgba(234, 179, 8, 0.2); color: #fbbf24; }
+
+.tool-purpose {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.tool-warning {
+  font-size: 0.6875rem;
+  color: #fbbf24;
+}
+
+/* Footer */
+[class*="-rov__footer"] {
+  padding: 1rem;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 8px;
+}
+
+[class*="-rov__footer"] p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #34d399;
+}
+
+/* Templates */
+[class*="-rov__templates"] {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[class*="-rov__template"] {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+[class*="-rov__template"] h5 {
+  margin: 0 0 0.5rem 0;
+}
+
+[class*="-rov__template"] .usage {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}
+
+[class*="-rov__template"] pre {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+[class*="-rov__template"] button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #3b82f6;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+/* Code Example */
+.code-example {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 0.75rem 0;
+  overflow-x: auto;
+}
+
+.code-example code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8125rem;
+  color: #e5e7eb;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .creator-dashboard {
+    padding: 1rem;
+  }
+  
+  .creator-dashboard__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  [class*="-rov__task-grid"] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  [class*="-rov__tool-list"] {
+    grid-template-columns: 1fr;
+  }
+}

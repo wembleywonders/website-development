@@ -1,0 +1,25 @@
+/* FAQPage.css - Streamlined */
+.faq-page { min-height: 100vh; background: #0f172a; color: #f8fafc; }
+.hero-section { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 4rem 2rem; text-align: center; border-bottom: 2px solid rgba(14, 165, 233, 0.3); }
+.hero-section h1 { font-size: 3rem; font-weight: 900; margin: 0 0 1rem 0; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-section p { font-size: 1.25rem; color: #cbd5e1; }
+.faq-content { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
+.category-nav { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3rem; }
+.category-btn { background: rgba(30, 41, 59, 0.5); border: 2px solid rgba(148, 163, 184, 0.2); padding: 0.75rem 1.5rem; border-radius: 25px; color: #94a3b8; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; }
+.category-btn:hover { background: rgba(30, 41, 59, 0.8); border-color: rgba(14, 165, 233, 0.4); color: #cbd5e1; }
+.category-btn.active { background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(2, 132, 199, 0.2)); border-color: #0ea5e9; color: #0ea5e9; }
+.category-icon { font-size: 1.2rem; }
+.faq-list { display: flex; flex-direction: column; gap: 1rem; }
+.faq-item { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 8px; overflow: hidden; }
+.faq-item summary { padding: 1.25rem; cursor: pointer; font-weight: 600; color: #f8fafc; font-size: 1.05rem; transition: all 0.3s ease; list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::before { content: '+'; margin-right: 1rem; color: #0ea5e9; font-size: 1.5rem; font-weight: bold; }
+.faq-item[open] summary::before { content: '−'; }
+.faq-item summary:hover { background: rgba(14, 165, 233, 0.1); color: #0ea5e9; }
+.faq-item p { padding: 0 1.25rem 1.25rem 1.25rem; color: #cbd5e1; line-height: 1.7; margin: 0; }
+.still-questions { text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(2, 132, 199, 0.1) 100%); border-top: 2px solid rgba(14, 165, 233, 0.3); }
+.still-questions h2 { font-size: 2rem; margin-bottom: 1rem; }
+.still-questions p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; }
+.btn-primary { padding: 1rem 2rem; font-size: 1.1rem; font-weight: 700; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: white; border: none; border-radius: 8px; text-decoration: none; display: inline-block; transition: all 0.3s ease; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4); }
+@media (max-width: 768px) { .hero-section h1 { font-size: 2rem; } .category-nav { flex-direction: column; } .category-btn { justify-content: center; } }

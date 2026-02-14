@@ -1,0 +1,130 @@
+.contextual-hero {
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contextual-hero.high-confidence {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.contextual-hero.medium-confidence {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+}
+
+.contextual-hero.default {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-icon {
+  font-size: 4em;
+  margin-bottom: 20px;
+  display: block;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.contextual-hero h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.contextual-hero p {
+  font-size: 1.3em;
+  margin-bottom: 30px;
+  opacity: 0.95;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-cta {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+}
+
+.hero-cta.primary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-cta.primary:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.hero-cta.secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.hero-cta.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .contextual-hero {
+    padding: 40px 20px;
+  }
+  
+  .contextual-hero h1 {
+    font-size: 2.2em;
+  }
+  
+  .contextual-hero p {
+    font-size: 1.1em;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-cta {
+    width: 100%;
+    max-width: 250px;
+  }
+}

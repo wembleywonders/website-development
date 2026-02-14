@@ -1,0 +1,591 @@
+/* src/pages/SimulatorsPage.css */
+
+.simulatorsPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin-top: 80px;
+}
+
+/* Hero Section */
+.simulatorsHero {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.heroTitle {
+  font-family: 'Great Vibes', cursive;
+  font-size: 4rem;
+  color: #ffffff;
+  margin: 0 0 1.5rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.heroSubtitle {
+  font-size: 1.3rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0 0 2rem 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heroHighlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(245, 158, 11, 0.2);
+  border: 2px solid rgba(245, 158, 11, 0.4);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.highlightIcon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.heroHighlight p {
+  margin: 0;
+  color: #fef3c7;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Container */
+.simulatorsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.sectionIntro {
+  font-size: 1.15rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+/* Problem Section */
+.problemSection {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 2rem;
+  padding: 3rem;
+  margin-bottom: 3rem;
+}
+
+.problemGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.problemCard {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.problemIcon {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.problemCard h3 {
+  color: #ef4444;
+  font-size: 1.4rem;
+  margin: 0 0 1rem 0;
+}
+
+.problemCard ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.problemCard li {
+  padding: 0.5rem 0;
+  color: #cbd5e1;
+  font-style: italic;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.problemResult {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid rgba(239, 68, 68, 0.3);
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.problemResult strong {
+  color: #ef4444;
+}
+
+/* Solution Section */
+.solutionSection {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 2rem;
+  padding: 3rem;
+  margin-bottom: 3rem;
+}
+
+.solutionFeatures {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.featureCard {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.featureIcon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.featureCard h3 {
+  color: #10b981;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.featureCard p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Simulators Grid */
+.simulatorsGrid {
+  margin: 3rem 0;
+}
+
+.simulatorCard {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.simulatorCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.hmrcSimulator { border-top: 4px solid #f59e0b; }
+.bankingSimulator { border-top: 4px solid #10b981; }
+.housingSimulator { border-top: 4px solid #ef4444; }
+.dwpSimulator { border-top: 4px solid #0ea5e9; }
+.nhsSimulator { border-top: 4px solid #a855f7; }
+.jobsSimulator { border-top: 4px solid #06b6d4; }
+
+.simulatorHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.simulatorIcon {
+  font-size: 3.5rem;
+}
+
+.simulatorHeader h3 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin: 0 0 0.25rem 0;
+}
+
+.simulatorTagline {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0;
+  font-style: italic;
+}
+
+.difficultyBadge {
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: rgba(14, 165, 233, 0.2);
+  color: #38bdf8;
+  border: 1px solid rgba(14, 165, 233, 0.4);
+}
+
+.simulatorContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.whatYoullLearn, .forWhom, .rovSupport {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.whatYoullLearn h4, .forWhom h4, .rovSupport h4 {
+  color: #0ea5e9;
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+}
+
+.whatYoullLearn ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.whatYoullLearn li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.whatYoullLearn li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: bold;
+}
+
+.forWhom p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.rovList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rovBadge {
+  background: rgba(79, 70, 229, 0.2);
+  border: 1px solid rgba(79, 70, 229, 0.4);
+  color: #a78bfa;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.realStory {
+  grid-column: 1 / -1;
+  background: rgba(168, 85, 247, 0.15);
+  border-left: 4px solid #a855f7;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.storyText {
+  color: #e0e7ff;
+  font-style: italic;
+  line-height: 1.7;
+  margin: 0 0 0.75rem 0;
+}
+
+.storyAuthor {
+  color: #c4b5fd;
+  font-size: 0.9rem;
+}
+
+.simulatorCta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.simulatorButton {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.simulatorButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5);
+}
+
+.learnMore {
+  padding: 1rem 2rem;
+  background: transparent;
+  color: #0ea5e9;
+  border: 2px solid #0ea5e9;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.learnMore:hover {
+  background: #0ea5e9;
+  color: white;
+}
+
+/* How It Works Section */
+.howItWorksSection {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 2rem;
+  padding: 3rem;
+  margin-bottom: 3rem;
+}
+
+.processFlow {
+  margin-top: 2rem;
+}
+
+.processStep {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 2rem;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.processStep::after {
+  content: "↓";
+  position: absolute;
+  bottom: -1.75rem;
+  left: 2.5rem;
+  font-size: 2rem;
+  color: #0ea5e9;
+}
+
+.processStep:last-child::after {
+  content: "✓";
+  color: #10b981;
+}
+
+.stepNumber {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.stepContent h3 {
+  color: #0ea5e9;
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.stepContent p {
+  color: #cbd5e1;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.stepAction {
+  color: #94a3b8;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+/* Integration Section */
+.integrationSection {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 2rem;
+  padding: 3rem;
+  margin-bottom: 3rem;
+}
+
+.integrationGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.integrationCard {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.integrationCard h3 {
+  color: #0ea5e9;
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+}
+
+.integrationCard p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.integrationIcon {
+  font-size: 2rem;
+  color: #94a3b8;
+}
+
+/* Final CTA */
+.finalCta {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.2) 0%, rgba(124, 58, 237, 0.2) 100%);
+  border: 2px solid rgba(79, 70, 229, 0.3);
+  border-radius: 2rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+.finalCta h2 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+}
+
+.finalCta p {
+  font-size: 1.15rem;
+  color: #cbd5e1;
+  margin: 0 0 2rem 0;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.ctaButton {
+  padding: 1.1rem 2.5rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.ctaButton.primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+}
+
+.ctaButton.secondary {
+  background: transparent;
+  border: 2px solid #0ea5e9;
+  color: #0ea5e9;
+}
+
+.ctaButton.large {
+  padding: 1.1rem 2.5rem;
+}
+
+.ctaFootnote {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.ctaFootnote p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .problemGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .solutionFeatures {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .simulatorContent {
+    grid-template-columns: 1fr;
+  }
+
+  .integrationGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.8rem;
+  }
+
+  .solutionFeatures {
+    grid-template-columns: 1fr;
+  }
+
+  .processStep {
+    flex-direction: column;
+  }
+
+  .processStep::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

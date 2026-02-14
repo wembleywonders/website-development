@@ -1,0 +1,1375 @@
+/* ================================================
+   PRODUCTION PLANNER V2 STYLES
+   Interactive Maya-Guided Production Planning
+   ================================================ */
+
+/* Container */
+.plannerContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #e2e8f0;
+}
+
+/* Header */
+.plannerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(168, 85, 247, 0.3);
+}
+
+.plannerHeader h2 {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.downloadCounter {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  background: rgba(168, 85, 247, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.downloadCounter strong {
+  color: #a855f7;
+  font-weight: 600;
+}
+
+/* Progress Bar */
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  transition: width 0.4s ease;
+  border-radius: 1rem;
+}
+
+/* Maya Conversation Section */
+.mayaSection {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(168, 85, 247, 0.05);
+  border-left: 4px solid #a855f7;
+  border-radius: 0.75rem;
+  animation: fadeIn 0.4s ease;
+}
+
+.mayaAvatar {
+  font-size: 3rem;
+  flex-shrink: 0;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.mayaSpeech {
+  flex: 1;
+}
+
+.mayaSpeech p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+/* Step Content */
+.stepContent {
+  min-height: 400px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================================
+   INTRO SCREEN
+   ================================================ */
+
+.introScreen {
+  text-align: center;
+  padding: 2rem;
+}
+
+.iconLarge {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.introScreen h2 {
+  font-size: 2rem;
+  color: #f1f5f9;
+  margin-bottom: 1rem;
+}
+
+.introText {
+  font-size: 1.1rem;
+  color: #cbd5e1;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.benefit {
+  background: rgba(168, 85, 247, 0.1);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  transition: all 0.3s ease;
+}
+
+.benefit:hover {
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: translateY(-4px);
+}
+
+.benefitIcon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.benefit h4 {
+  color: #f1f5f9;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.benefit p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.startButton {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+}
+
+.startButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+}
+
+.freeCounter {
+  margin-top: 1.5rem;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+/* ================================================
+   STEP SCREENS (Common Styles)
+   ================================================ */
+
+.stepScreen {
+  padding: 1rem 0;
+}
+
+.stepScreen h3 {
+  font-size: 1.75rem;
+  color: #f1f5f9;
+  margin-bottom: 0.75rem;
+}
+
+.stepDescription {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* ================================================
+   PERFORMANCE TYPE STEP
+   ================================================ */
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.optionCard {
+  background: rgba(30, 41, 59, 0.6);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.optionCard:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(168, 85, 247, 0.1);
+  transform: translateY(-4px);
+}
+
+.optionCard.selected {
+  border-color: #a855f7;
+  background: rgba(168, 85, 247, 0.15);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.optionIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.optionCard h4 {
+  color: #f1f5f9;
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.optionCard > p {
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.examplesList {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.examplesList li {
+  margin-bottom: 0.4rem;
+}
+
+/* ================================================
+   NEEDS STEP
+   ================================================ */
+
+.needsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.needCard {
+  background: rgba(30, 41, 59, 0.6);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.needCard:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(168, 85, 247, 0.1);
+  transform: translateY(-2px);
+}
+
+.needCard.selected {
+  border-color: #a855f7;
+  background: rgba(168, 85, 247, 0.15);
+}
+
+.needCheckbox {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #a855f7;
+}
+
+.needIcon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.needCard h4 {
+  color: #f1f5f9;
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.needCard p {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.helpText {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+/* ================================================
+   DESCRIPTION STEP
+   ================================================ */
+
+.descriptionInput {
+  width: 100%;
+  min-height: 200px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.descriptionInput:focus {
+  outline: none;
+  border-color: #a855f7;
+  background: rgba(168, 85, 247, 0.05);
+}
+
+.descriptionInput::placeholder {
+  color: #64748b;
+}
+
+.charCount {
+  text-align: right;
+  color: #64748b;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.examplesBox {
+  background: rgba(168, 85, 247, 0.05);
+  border-left: 4px solid #a855f7;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+}
+
+.examplesBox h4 {
+  color: #f1f5f9;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.examplesBox ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.examplesBox li {
+  color: #cbd5e1;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.examplesBox strong {
+  color: #a855f7;
+}
+
+/* ================================================
+   SEASON STEP
+   ================================================ */
+
+.seasonsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.seasonCard {
+  background: rgba(30, 41, 59, 0.6);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.seasonCard:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(168, 85, 247, 0.1);
+  transform: translateY(-4px);
+}
+
+.seasonCard.selected {
+  border-color: #a855f7;
+  background: rgba(168, 85, 247, 0.15);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.seasonIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.seasonCard h4 {
+  color: #f1f5f9;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.seasonPeriod {
+  color: #a855f7;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.seasonTheme {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-bottom: 0.75rem;
+}
+
+.seasonDesc {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.seasonBestFor {
+  color: #64748b;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.seasonBestFor strong {
+  color: #94a3b8;
+}
+
+/* ================================================
+   BUDGET STEP
+   ================================================ */
+
+.budgetsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.budgetCard {
+  background: rgba(30, 41, 59, 0.6);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.budgetCard:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(168, 85, 247, 0.1);
+  transform: translateY(-4px);
+}
+
+.budgetCard.selected {
+  border-color: #a855f7;
+  background: rgba(168, 85, 247, 0.15);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.budgetCard.recommended {
+  border-color: #10b981;
+}
+
+.budgetCard.recommended.selected {
+  border-color: #a855f7;
+}
+
+.recommendedBadge {
+  position: absolute;
+  top: -10px;
+  right: 1rem;
+  background: #10b981;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.budgetCard h4 {
+  color: #f1f5f9;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.budgetRange {
+  color: #a855f7;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.budgetVenue,
+.budgetAudience {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.budgetDesc {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.workshopBox {
+  background: rgba(168, 85, 247, 0.1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 3px solid #a855f7;
+}
+
+.workshopBox strong {
+  color: #f1f5f9;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.workshopBox p {
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.budgetNote {
+  background: rgba(16, 185, 129, 0.1);
+  border-left: 4px solid #10b981;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.budgetNote p {
+  color: #cbd5e1;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.budgetNote strong {
+  color: #10b981;
+}
+
+/* ================================================
+   PLAN DISPLAY
+   ================================================ */
+
+.planScreen {
+  padding: 1rem 0;
+}
+
+.planHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(168, 85, 247, 0.3);
+}
+
+.planHeader h2 {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.planSubtitle {
+  color: #cbd5e1;
+  font-size: 1.1rem;
+}
+
+.planSection {
+  margin-bottom: 3rem;
+}
+
+.planSection h3 {
+  color: #f1f5f9;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(148, 163, 184, 0.2);
+}
+
+.sectionIntro {
+  color: #cbd5e1;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.showDescription {
+  color: #e2e8f0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  padding: 1.5rem;
+  background: rgba(168, 85, 247, 0.05);
+  border-left: 4px solid #a855f7;
+  border-radius: 0.5rem;
+}
+
+/* Venue Box */
+.venueBox {
+  background: rgba(30, 41, 59, 0.6);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.venueBox h4 {
+  color: #f1f5f9;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.venueBox p {
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+}
+
+.venueBox strong {
+  color: #a855f7;
+}
+
+/* Timeline */
+.timeline {
+  display: grid;
+  gap: 1rem;
+}
+
+.timelineWeek {
+  background: rgba(30, 41, 59, 0.6);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  border-left: 4px solid #a855f7;
+}
+
+.timelineWeek h4 {
+  color: #f1f5f9;
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+}
+
+.timelineWeek ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.timelineWeek li {
+  color: #cbd5e1;
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+
+/* Workshop Recommendations */
+.workshopsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.workshopCard {
+  background: rgba(30, 41, 59, 0.6);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(168, 85, 247, 0.2);
+  transition: all 0.3s ease;
+}
+
+.workshopCard:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: translateY(-4px);
+}
+
+.workshopCard h4 {
+  color: #a855f7;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.workshopName {
+  color: #f1f5f9;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.workshopSchedule {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.workshopPurpose {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.workshopLink {
+  color: #a855f7;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.workshopLink:hover {
+  color: #ec4899;
+}
+
+.workshopNote {
+  background: rgba(168, 85, 247, 0.1);
+  border-left: 4px solid #a855f7;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+}
+
+.workshopNote p {
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.workshopNote strong {
+  color: #f1f5f9;
+}
+
+/* Budget & Revenue Tables */
+.budgetTable,
+.revenueTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.budgetTable td,
+.revenueTable td {
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.budgetTable td:first-child,
+.revenueTable td:first-child {
+  color: #cbd5e1;
+}
+
+.budgetTable td:last-child,
+.revenueTable td:last-child {
+  color: #a855f7;
+  font-weight: 600;
+  text-align: right;
+}
+
+.totalRow td {
+  padding-top: 1rem;
+  border-top: 2px solid rgba(168, 85, 247, 0.4);
+  border-bottom: none;
+}
+
+.revenueBox {
+  background: rgba(30, 41, 59, 0.6);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.revenueBox h4 {
+  color: #f1f5f9;
+  font-size: 1.1rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.revenueBox > p {
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+}
+
+.revenueBox strong {
+  color: #a855f7;
+}
+
+/* Commitment Box */
+.commitmentBox {
+  background: rgba(16, 185, 129, 0.1);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(16, 185, 129, 0.3);
+}
+
+.commitmentBox > p {
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.commitmentBox strong {
+  color: #10b981;
+}
+
+.commitmentBox ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.commitmentBox li {
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+}
+
+.impactNote {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(16, 185, 129, 0.3);
+  font-style: italic;
+}
+
+.commitmentNote {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+/* Plan Actions */
+.planActions {
+  background: rgba(168, 85, 247, 0.05);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(168, 85, 247, 0.2);
+}
+
+.planActions h3 {
+  color: #f1f5f9;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: none;
+}
+
+.downloadButton {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.downloadButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+}
+
+.downloadNote {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.limitReached {
+  background: rgba(236, 72, 153, 0.1);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(236, 72, 153, 0.3);
+  text-align: center;
+}
+
+.limitReached h4 {
+  color: #f1f5f9;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.limitReached > p {
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.limitReached ul {
+  text-align: left;
+  max-width: 400px;
+  margin: 1.5rem auto;
+}
+
+.limitReached li {
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+}
+
+.joinButton {
+  display: inline-block;
+  background: linear-gradient(135deg, #ec4899, #f59e0b);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+}
+
+.joinButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+}
+
+.secondaryActions {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.resetButton {
+  background: rgba(148, 163, 184, 0.2);
+  color: #cbd5e1;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.resetButton:hover {
+  background: rgba(148, 163, 184, 0.3);
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+.memberBenefits {
+  background: rgba(30, 41, 59, 0.6);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  margin-top: 2rem;
+}
+
+.memberBenefits h4 {
+  color: #f1f5f9;
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.memberBenefits > p {
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.memberBenefits ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.memberBenefits li {
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.learnMoreButton {
+  display: inline-block;
+  background: rgba(168, 85, 247, 0.2);
+  color: #a855f7;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #a855f7;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.learnMoreButton:hover {
+  background: rgba(168, 85, 247, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ================================================
+   NAVIGATION
+   ================================================ */
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(148, 163, 184, 0.2);
+}
+
+.backButton,
+.nextButton {
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.backButton {
+  background: rgba(148, 163, 184, 0.2);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.backButton:hover {
+  background: rgba(148, 163, 184, 0.3);
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+.nextButton {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+}
+
+.nextButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+}
+
+.nextButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ================================================
+   CONVERSION MODAL
+   ================================================ */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.modalContent {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(148, 163, 184, 0.2);
+  border: none;
+  color: #cbd5e1;
+  font-size: 1.5rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.modalClose:hover {
+  background: rgba(148, 163, 184, 0.4);
+  transform: rotate(90deg);
+}
+
+.modalContent h3 {
+  color: #f1f5f9;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.modalContent > p {
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.modalContent h4 {
+  color: #f1f5f9;
+  font-size: 1.2rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.modalContent ul {
+  margin: 0 0 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.modalContent li {
+  color: #cbd5e1;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.modalActions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.modalJoinButton {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+}
+
+.modalJoinButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+}
+
+.modalKeepButton,
+.modalLearnButton {
+  background: rgba(148, 163, 184, 0.2);
+  color: #cbd5e1;
+  padding: 0.875rem 2rem;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+}
+
+.modalKeepButton:hover,
+.modalLearnButton:hover {
+  background: rgba(148, 163, 184, 0.3);
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+.pricingOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.pricingTier {
+  background: rgba(30, 41, 59, 0.6);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  text-align: center;
+  position: relative;
+}
+
+.pricingTier.bestValue {
+  border-color: #10b981;
+}
+
+.bestValueBadge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #10b981;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.pricingTier p {
+  margin: 0.25rem 0;
+  color: #cbd5e1;
+}
+
+.pricingTier p:first-of-type {
+  color: #a855f7;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+/* ================================================
+   RESPONSIVE DESIGN
+   ================================================ */
+
+@media (max-width: 768px) {
+  .plannerContainer {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .plannerHeader {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .plannerHeader h2 {
+    font-size: 1.5rem;
+  }
+
+  .optionsGrid,
+  .needsGrid,
+  .seasonsGrid,
+  .budgetsGrid,
+  .workshopsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .mayaSection {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mayaAvatar {
+    font-size: 2.5rem;
+  }
+
+  .navigation {
+    flex-direction: column;
+  }
+
+  .backButton,
+  .nextButton {
+    width: 100%;
+  }
+
+  .modalContent {
+    padding: 2rem 1.5rem;
+  }
+
+  .pricingOptions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .plannerHeader h2 {
+    font-size: 1.25rem;
+  }
+
+  .stepScreen h3 {
+    font-size: 1.4rem;
+  }
+
+  .iconLarge {
+    font-size: 3rem;
+  }
+
+  .introScreen h2 {
+    font-size: 1.5rem;
+  }
+
+  .startButton {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}

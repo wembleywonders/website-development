@@ -1,0 +1,346 @@
+/* src/pages/member/sandboxes/MiniSandboxLauncher.css */
+
+.mini-sandbox-launcher {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   PHILOSOPHY BANNER
+   ============================================ */
+.philosophy-banner {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #eff6ff, #fdf4ff);
+  border: 1px solid #c7d2fe;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+}
+
+.philosophy-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.philosophy-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #4338ca;
+}
+
+.philosophy-content p {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.philosophy-content p:last-child {
+  margin-bottom: 0;
+}
+
+.philosophy-note {
+  padding: 0.75rem 1rem;
+  background: rgba(67, 56, 202, 0.1);
+  border-radius: 8px;
+  font-size: 0.85rem !important;
+}
+
+.philosophy-note strong {
+  color: #4338ca;
+}
+
+/* ============================================
+   CATEGORY FILTER
+   ============================================ */
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-btn {
+  padding: 0.5rem 1.25rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #4b5563;
+}
+
+.category-btn:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.category-btn.active {
+  background: #4338ca;
+  border-color: #4338ca;
+  color: white;
+}
+
+/* ============================================
+   SANDBOX GRID
+   ============================================ */
+.sandbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sandbox-card {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.sandbox-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.new-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.sandbox-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.sandbox-emoji {
+  font-size: 2.5rem;
+}
+
+.category-tag {
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sandbox-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.15rem;
+  color: #1f2937;
+}
+
+.sandbox-description {
+  margin: 0 0 1rem 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.sandbox-programme {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.sandbox-constraints {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.sandbox-constraints h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sandbox-constraints ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sandbox-constraints li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  padding: 0.25rem 0;
+}
+
+.constraint-label {
+  color: #6b7280;
+}
+
+.constraint-value {
+  font-weight: 600;
+  color: #4338ca;
+}
+
+.sandbox-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.skill-tag {
+  padding: 0.25rem 0.5rem;
+  background: #e0e7ff;
+  color: #4338ca;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.sandbox-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  margin-top: auto;
+}
+
+.time-estimate {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.btn-launch {
+  padding: 0.5rem 1.25rem;
+  background: linear-gradient(135deg, #4338ca, #6366f1);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-launch:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3);
+}
+
+/* ============================================
+   PROGRESSION NOTE
+   ============================================ */
+.progression-note {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.progression-note h4 {
+  margin: 0 0 1.25rem 0;
+  font-size: 1rem;
+  color: #1f2937;
+}
+
+.progression-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+.progression-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  background: white;
+  border-radius: 8px;
+  min-width: 100px;
+  border: 2px solid transparent;
+}
+
+.progression-step.current {
+  border-color: #4338ca;
+  background: #eff6ff;
+}
+
+.progression-step .step-emoji {
+  font-size: 1.5rem;
+}
+
+.progression-step .step-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.progression-step .step-desc {
+  font-size: 0.7rem;
+  color: #6b7280;
+}
+
+.progression-arrow {
+  font-size: 1.25rem;
+  color: #9ca3af;
+}
+
+.progression-note > p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .philosophy-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .sandbox-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .category-filter {
+    justify-content: center;
+  }
+  
+  .progression-diagram {
+    flex-direction: column;
+  }
+  
+  .progression-arrow {
+    transform: rotate(90deg);
+  }
+}

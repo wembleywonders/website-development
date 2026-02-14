@@ -1,0 +1,442 @@
+/* ========================================
+   KAYWANA'S COURT PAGE - HERITAGE ADDITIONS
+   Merge these styles into KaywanasCourtPage.module.css
+   ======================================== */
+
+/* Heritage Welcome Section */
+.heritageWelcome {
+  margin: 2rem 0;
+}
+
+.welcomeCard {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.welcomeCard h2 {
+  color: #a78bfa;
+  font-size: 1.75rem;
+  margin: 0 0 1.5rem 0;
+}
+
+.welcomeCard p {
+  color: #e2e8f0;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto 1rem auto;
+}
+
+.welcomeEmphasis {
+  font-size: 1rem !important;
+  color: #a0aec0 !important;
+}
+
+.welcomeEmphasis strong {
+  color: #ffd700;
+}
+
+/* Heritage Performance Traditions Section */
+.heritageSection {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+}
+
+.traditionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.traditionCategory {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.traditionCategory h3 {
+  color: #ffd700;
+  font-size: 1.25rem;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.traditionCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.traditionCard:last-child {
+  margin-bottom: 0;
+}
+
+.traditionCard h4 {
+  color: #fff;
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.traditionCard p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 0.75rem 0;
+}
+
+.traditionNote {
+  display: inline-block;
+  background: rgba(255, 215, 0, 0.1);
+  color: #ffd700;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+}
+
+/* Heritage Language Performance Section */
+.languageSection {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 1rem;
+}
+
+.languageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.languageCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: border-color 0.2s ease;
+}
+
+.languageCard:hover {
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.languageFlag {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.languageCard h4 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.languageCard p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+}
+
+.languageCard a {
+  color: #ffd700;
+}
+
+.languageEarning {
+  display: inline-block;
+  background: rgba(72, 187, 120, 0.15);
+  color: #48bb78;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.languageNote {
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid #ffd700;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.languageNote p {
+  color: #a0aec0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.languageNote strong {
+  color: #ffd700;
+}
+
+/* Intergenerational Section */
+.intergenerationalSection {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+}
+
+.intergenGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.intergenCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.intergenIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.intergenCard h4 {
+  color: #fff;
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.intergenCard p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+}
+
+.intergenCard ul {
+  margin: 0 0 1rem 0;
+  padding-left: 1.25rem;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.intergenEarning {
+  display: inline-block;
+  background: rgba(72, 187, 120, 0.15);
+  color: #48bb78;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+/* Dinner Theatre Section */
+.dinnerSection {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+  border-radius: 1rem;
+}
+
+.dinnerCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.dinnerFormat,
+.dinnerRevenue,
+.dinnerThemes {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.dinnerFormat h4,
+.dinnerRevenue h4,
+.dinnerThemes h4 {
+  color: #ff8c00;
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+}
+
+.dinnerFormat ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.dinnerFormat ol strong {
+  color: #fff;
+}
+
+.dinnerRevenue p {
+  color: #a0aec0;
+  margin: 0 0 0.75rem 0;
+}
+
+.dinnerRevenue ul {
+  margin: 0 0 1rem 0;
+  padding-left: 1.25rem;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.dinnerRevenue ul strong {
+  color: #48bb78;
+}
+
+.dinnerNote {
+  color: #718096 !important;
+  font-size: 0.85rem !important;
+  font-style: italic;
+}
+
+.themeList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.theme {
+  background: rgba(255, 140, 0, 0.1);
+  color: #ffd700;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.dinnerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #ff8c00;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.dinnerLink:hover {
+  background: #ff7b00;
+}
+
+/* Rayd-yo Connection Section */
+.raydyoSection {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+}
+
+.raydyoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.raydyoCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.raydyoCard h4 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.raydyoCard p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+}
+
+.raydyoEarning {
+  display: inline-block;
+  background: rgba(72, 187, 120, 0.15);
+  color: #48bb78;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.raydyoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.raydyoLink:hover {
+  transform: translateY(-2px);
+}
+
+/* Season Suggestion Text */
+.seasonSuggestion {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  color: #a0aec0;
+}
+
+.seasonSuggestion strong {
+  color: #ffd700;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .traditionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .languageGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .intergenGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dinnerCard {
+    grid-template-columns: 1fr;
+  }
+
+  .raydyoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .welcomeCard {
+    padding: 1.5rem;
+  }
+
+  .welcomeCard h2 {
+    font-size: 1.5rem;
+  }
+}

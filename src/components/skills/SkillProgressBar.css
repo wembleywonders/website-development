@@ -1,0 +1,184 @@
+/* src/components/skills/SkillProgressBar.css */
+
+.skill-progress-bar {
+  background: #ffffff;
+  border: 1px solid #e1e8ed;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.skill-progress-bar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #3498db;
+}
+
+.skill-progress-bar.active {
+  border-color: #3498db;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.skill-info {
+  flex: 1;
+}
+
+.skill-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 4px 0;
+}
+
+.skill-category {
+  font-size: 12px;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.skill-levels {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #5d6d7e;
+}
+
+.current-level {
+  font-weight: 500;
+  color: #34495e;
+}
+
+.arrow {
+  color: #3498db;
+  font-weight: bold;
+}
+
+.target-level {
+  font-weight: 500;
+  color: #27ae60;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.progress-track {
+  flex: 1;
+  height: 8px;
+  background: #ecf0f1;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.progress-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+  min-width: 40px;
+  text-align: right;
+}
+
+.time-estimate {
+  margin-bottom: 16px;
+}
+
+.time-estimate span {
+  font-size: 13px;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.skill-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.practice-btn, .track-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.practice-btn {
+  background: #3498db;
+  color: white;
+}
+
+.practice-btn:hover {
+  background: #2980b9;
+  transform: translateY(-1px);
+}
+
+.track-btn {
+  background: #ecf0f1;
+  color: #34495e;
+  border: 1px solid #bdc3c7;
+}
+
+.track-btn:hover {
+  background: #d5dbdb;
+  border-color: #95a5a6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .skill-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .skill-levels {
+    font-size: 12px;
+  }
+  
+  .skill-actions {
+    flex-direction: column;
+  }
+  
+  .practice-btn, .track-btn {
+    width: 100%;
+  }
+}

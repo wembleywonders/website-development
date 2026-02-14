@@ -1,0 +1,149 @@
+/* src/pages/journey/ContinuousLoop.css */
+
+/* ===================================
+   CONTINUOUS LOOP SECTION
+   =================================== */
+
+.continuous-loop {
+  background: #0f172a;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+/* Loop Title */
+.loop-title {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.loop-subtitle {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  margin: 0 0 3rem 0;
+  font-style: italic;
+}
+
+/* Loop Diagram */
+.loop-diagram {
+  max-width: 500px;
+  margin: 0 auto 3rem;
+  position: relative;
+}
+
+.loop-diagram.static .loop-segment {
+  animation: none;
+}
+
+/* SVG Styling */
+.loop-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
+}
+
+.loop-segment {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: pulse-segment 3s ease-in-out infinite;
+}
+
+@keyframes pulse-segment {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.loop-segment:nth-child(1) { animation-delay: 0s; }
+.loop-segment:nth-child(2) { animation-delay: 0.6s; }
+.loop-segment:nth-child(3) { animation-delay: 1.2s; }
+.loop-segment:nth-child(4) { animation-delay: 1.8s; }
+.loop-segment:nth-child(5) { animation-delay: 2.4s; }
+
+.loop-segment:hover {
+  opacity: 0.6 !important;
+  transform: scale(1.1);
+}
+
+/* Loop Tagline */
+.loop-tagline {
+  margin-bottom: 2rem;
+}
+
+.loop-tagline p {
+  font-size: 1.3rem;
+  color: #cbd5e1;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 768px) {
+  .continuous-loop {
+    padding: 3rem 1rem;
+  }
+
+  .loop-title {
+    font-size: 2rem;
+  }
+
+  .loop-subtitle {
+    font-size: 1rem;
+  }
+
+  .loop-diagram {
+    max-width: 350px;
+  }
+
+  .loop-tagline p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .continuous-loop {
+    padding: 2rem 1rem;
+  }
+
+  .loop-title {
+    font-size: 1.75rem;
+  }
+
+  .loop-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .loop-diagram {
+    max-width: 280px;
+  }
+
+  .loop-tagline p {
+    font-size: 1rem;
+  }
+}
+
+/* ===================================
+   REDUCED MOTION
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .loop-segment {
+    animation: none;
+  }
+
+  .loop-segment:hover {
+    transform: none;
+  }
+}
