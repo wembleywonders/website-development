@@ -8,7 +8,16 @@ interface PageTemplateProps {
   pageGuide?: string;
   showMaya?: boolean;
   children: React.ReactNode;
-  pageType?: 'standard' | 'shop' | 'programme' | 'programmes' | 'community' | 'framework' | 'sandbox';
+  pageType?: 
+    | 'standard' 
+    | 'shop' 
+    | 'programme' 
+    | 'programmes' 
+    | 'community' 
+    | 'framework' 
+    | 'sandbox'
+    | 'money'
+    | 'opportunities';
 }
 
 const PageTemplate: React.FC<PageTemplateProps> = ({
@@ -50,7 +59,6 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
       </div>
     );
 
-    // Maya Widget - moved to sidebar
     const mayaWidget = showMaya && (
       <div className={styles.sidebarSection}>
         <h3 className={styles.sidebarTitle}>Maya Assistant</h3>
@@ -65,6 +73,25 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
       </div>
     );
 
+    // Full programme list — used by both 'programme' and 'sandbox' sidebars
+    const allProgrammesNav = (
+      <nav className={styles.sidebarNav}>
+        <Link to="/programmes/stemgeneers" className={styles.sidebarLink}>STEMgeneers</Link>
+        <Link to="/programmes/techreneurs" className={styles.sidebarLink}>TECHreneurs</Link>
+        <Link to="/programmes/kaywanas-court" className={styles.sidebarLink}>Kaywana's Court</Link>
+        <Link to="/programmes/pageturners" className={styles.sidebarLink}>Pageturners</Link>
+        <Link to="/programmes/gtech-casters" className={styles.sidebarLink}>G-Tech Casters</Link>
+        <Link to="/programmes/trubble-n-bass" className={styles.sidebarLink}>Trubble n Bass</Link>
+        <Link to="/programmes/silk-stilettos" className={styles.sidebarLink}>Silk Stilettos</Link>
+        <Link to="/programmes/auntie-anansis-kitchen" className={styles.sidebarLink}>Auntie Anansi's Kitchen</Link>
+        <Link to="/programmes/bright-sparks" className={styles.sidebarLink}>Bright Sparks</Link>
+        <Link to="/programmes/scrap-cat" className={styles.sidebarLink}>Scrap Cat</Link>
+        <Link to="/programmes/easy-street" className={styles.sidebarLink}>Easy Street</Link>
+        <Link to="/raydyo" className={styles.sidebarLink}>Rayd-yo</Link>
+        <Link to="/joystick" className={styles.sidebarLink}>Joystick</Link>
+      </nav>
+    );
+
     switch (pageType) {
       case 'sandbox':
         return (
@@ -74,15 +101,17 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
             <div className={styles.sidebarSection}>
               <h3 className={styles.sidebarTitle}>Programme Sandboxes</h3>
               <nav className={styles.sidebarNav}>
-                <Link to="/programmes/kaywanas-court/sandbox" className={styles.sidebarLink}>Kaywana's Court</Link>
-                <Link to="/programmes/pageturners/sandbox" className={styles.sidebarLink}>Pageturners</Link>
-                <Link to="/programmes/trubble-n-bass/sandbox" className={styles.sidebarLink}>Trubble n Bass</Link>
                 <Link to="/programmes/stemgeneers/sandbox" className={styles.sidebarLink}>STEMgeneers</Link>
                 <Link to="/programmes/techreneurs/sandbox" className={styles.sidebarLink}>TECHreneurs</Link>
-                <Link to="/programmes/gtechcasters/sandbox" className={styles.sidebarLink}>G-Tech Casters</Link>
+                <Link to="/programmes/kaywanas-court/sandbox" className={styles.sidebarLink}>Kaywana's Court</Link>
+                <Link to="/programmes/pageturners/sandbox" className={styles.sidebarLink}>Pageturners</Link>
+                <Link to="/programmes/gtech-casters/sandbox" className={styles.sidebarLink}>G-Tech Casters</Link>
+                <Link to="/programmes/trubble-n-bass/sandbox" className={styles.sidebarLink}>Trubble n Bass</Link>
+                <Link to="/programmes/silk-stilettos/sandbox" className={styles.sidebarLink}>Silk Stilettos</Link>
                 <Link to="/programmes/auntie-anansis-kitchen/sandbox" className={styles.sidebarLink}>Auntie Anansi's Kitchen</Link>
                 <Link to="/programmes/bright-sparks/sandbox" className={styles.sidebarLink}>Bright Sparks</Link>
-                <Link to="/programmes/silk-stilettos/sandbox" className={styles.sidebarLink}>Silk Stilettos</Link>
+                <Link to="/programmes/scrap-cat/sandbox" className={styles.sidebarLink}>Scrap Cat</Link>
+                <Link to="/programmes/easy-street/sandbox" className={styles.sidebarLink}>Easy Street</Link>
               </nav>
             </div>
             <div className={styles.sidebarSection}>
@@ -135,13 +164,8 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
             {mayaWidget}
             {baseNavigation}
             <div className={styles.sidebarSection}>
-              <h3 className={styles.sidebarTitle}>Programmes</h3>
-              <nav className={styles.sidebarNav}>
-                <Link to="/programmes/kaywanas-court" className={styles.sidebarLink}>Kaywana's Court</Link>
-                <Link to="/programmes/pageturners" className={styles.sidebarLink}>Pageturners</Link>
-                <Link to="/raydyo" className={styles.sidebarLink}>Raydyo</Link>
-                <Link to="/joystick" className={styles.sidebarLink}>Joystick</Link>
-              </nav>
+              <h3 className={styles.sidebarTitle}>All Programmes</h3>
+              {allProgrammesNav}
             </div>
             <div className={styles.sidebarSection}>
               <h3 className={styles.sidebarTitle}>Take Action</h3>
@@ -249,6 +273,63 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
                 </Link>
                 <Link to="/programmes" className={`${styles.ctaButton} ${styles.ctaButtonSecondary}`}>
                   View Programmes
+                </Link>
+              </div>
+            </div>
+            {mayaHelp}
+          </div>
+        );
+
+      case 'money':
+        return (
+          <div className={styles.sidebarDefault}>
+            {mayaWidget}
+            {baseNavigation}
+            <div className={styles.sidebarSection}>
+              <h3 className={styles.sidebarTitle}>Money Tools</h3>
+              <nav className={styles.sidebarNav}>
+                <Link to="/programmes/money-reset" className={styles.sidebarLink}>Money Reset</Link>
+                <Link to="/programmes/techreneurs" className={styles.sidebarLink}>TECHreneurs</Link>
+                <Link to="/membership" className={styles.sidebarLink}>Membership Benefits</Link>
+              </nav>
+            </div>
+            <div className={styles.sidebarSection}>
+              <h3 className={styles.sidebarTitle}>Take Action</h3>
+              <div className={styles.sidebarCta}>
+                <Link to="/membership" className={`${styles.ctaButton} ${styles.ctaButtonPrimary}`}>
+                  Join as Member
+                </Link>
+                <Link to="/contact" className={`${styles.ctaButton} ${styles.ctaButtonSecondary}`}>
+                  Get Advice
+                </Link>
+              </div>
+            </div>
+            {mayaHelp}
+          </div>
+        );
+
+      case 'opportunities':
+        return (
+          <div className={styles.sidebarDefault}>
+            {mayaWidget}
+            {baseNavigation}
+            <div className={styles.sidebarSection}>
+              <h3 className={styles.sidebarTitle}>Opportunities</h3>
+              <nav className={styles.sidebarNav}>
+                <Link to="/programmes" className={styles.sidebarLink}>Programmes</Link>
+                <Link to="/volunteers" className={styles.sidebarLink}>Volunteer</Link>
+                <Link to="/work-with-us" className={styles.sidebarLink}>Work With Us</Link>
+                <Link to="/membership" className={styles.sidebarLink}>Membership</Link>
+              </nav>
+            </div>
+            <div className={styles.sidebarSection}>
+              <h3 className={styles.sidebarTitle}>Take Action</h3>
+              <div className={styles.sidebarCta}>
+                <Link to="/get-started" className={`${styles.ctaButton} ${styles.ctaButtonPrimary}`}>
+                  Get Started
+                </Link>
+                <Link to="/contact" className={`${styles.ctaButton} ${styles.ctaButtonSecondary}`}>
+                  Contact Us
                 </Link>
               </div>
             </div>

@@ -144,11 +144,11 @@ const Footer: React.FC = () => {
                 </div>
               </div>
               <div className="footer-links">
-                <Link to="/contact" className="footer-link">
+                <Link to="/complaints" className="footer-link">
                   <span className="link-icon">📞</span>
                   Contact Us
                 </Link>
-                <Link to="/about" className="footer-link">
+                <Link to="/accessibility" className="footer-link">
                   <span className="link-icon">ℹ️</span>
                   About Us
                 </Link>
@@ -156,7 +156,7 @@ const Footer: React.FC = () => {
                   <span className="link-icon">🛡️</span>
                   Safeguarding
                 </Link>
-                <Link to="/about" className="footer-link">
+                <Link to="/accessibility" className="footer-link">
                   <span className="link-icon">♿</span>
                   Accessibility
                 </Link>
@@ -181,10 +181,10 @@ const Footer: React.FC = () => {
             </div>
             <div className="footer-right">
               <div className="footer-meta-links">
-                <Link to="/privacy" className="meta-link">Privacy Policy</Link>
+                <Link to="/cookies" className="meta-link">Privacy Policy</Link>
                 <Link to="/terms" className="meta-link">Terms of Service</Link>
-                <Link to="/privacy" className="meta-link">Cookie Policy</Link>
-                <Link to="/contact" className="meta-link">Complaints Procedure</Link>
+                <Link to="/cookies" className="meta-link">Cookie Policy</Link>
+                <Link to="/complaints" className="meta-link">Complaints Procedure</Link>
               </div>
             </div>
           </div>

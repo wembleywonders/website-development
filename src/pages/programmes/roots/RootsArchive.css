@@ -1,0 +1,930 @@
+/* RootsArchive.css
+   Knowledge Archive component — inherits RootsPage.css tokens.
+   Same palette: sage (#4A6741 / #86b880), amber (#D4A853),
+   terracotta (#C4622D), dark slate base (#0f172a / #1e293b).
+   Playfair Display for headers, system sans for body.
+*/
+
+/* ── Archive page wrapper ─────────────────────────────────────────────────── */
+.roots-archive-page {
+  padding: 5rem 2rem 8rem;
+  background: rgba(15, 23, 42, 0.4);
+  position: relative;
+}
+
+/* ── Archive header ───────────────────────────────────────────────────────── */
+.ra-header {
+  max-width: 860px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.ra-header__eyebrow {
+  display: inline-block;
+  background: rgba(74, 103, 65, 0.2);
+  color: #86b880;
+  border: 1px solid rgba(134, 184, 128, 0.3);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+
+.ra-header__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  color: #f8fafc;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+.ra-header__sub {
+  font-size: 1rem;
+  color: #94a3b8;
+  line-height: 1.8;
+  margin: 0 0 2.5rem;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Podcast series callout ───────────────────────────────────────────────── */
+.ra-podcast-series {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(134, 184, 128, 0.25);
+  border-left: 4px solid #86b880;
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.75rem;
+  margin: 0 auto 2.5rem;
+  max-width: 700px;
+  text-align: left;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.ra-podcast-series__icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.ra-podcast-series__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #86b880;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.ra-podcast-series__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
+}
+
+.ra-podcast-series__desc {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.7;
+}
+
+/* ── Evidence grade legend ────────────────────────────────────────────────── */
+.ra-grade-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.ra-grade-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-left: 3px solid var(--badge-colour, #86b880);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+}
+
+/* ── Filter bar ───────────────────────────────────────────────────────────── */
+.ra-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 auto 2.5rem;
+  max-width: 900px;
+}
+
+.ra-filter-btn {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 20px;
+  color: #94a3b8;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ra-filter-btn:hover {
+  background: rgba(74, 103, 65, 0.2);
+  border-color: rgba(134, 184, 128, 0.3);
+  color: #86b880;
+}
+
+.ra-filter-btn--active {
+  background: rgba(74, 103, 65, 0.3);
+  border-color: #86b880;
+  color: #86b880;
+  font-weight: 600;
+}
+
+/* ── Sections container ───────────────────────────────────────────────────── */
+.ra-sections {
+  max-width: 900px;
+  margin: 0 auto 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ── Archive card (expandable) ────────────────────────────────────────────── */
+.ra-card {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: box-shadow 0.2s ease;
+}
+
+.ra-card:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+.ra-card--judith-leads {
+  border-color: rgba(134, 184, 128, 0.4);
+  border-width: 2px;
+}
+
+.ra-card--open {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+/* Header button */
+.ra-card__header {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1.5rem 1.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.ra-card__header:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.ra-card--open .ra-card__header {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.ra-card__header-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.ra-card__tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.ra-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.ra-card__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.ra-card__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.ra-card__summary {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ra-card__header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.ra-card__podcast-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.ra-card__chevron {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+  transition: color 0.2s;
+}
+
+.ra-card--open .ra-card__chevron {
+  color: #86b880;
+}
+
+/* ── Expandable body ──────────────────────────────────────────────────────── */
+.ra-card__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ra-card__body-inner {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.ra-card__intro {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin: 0;
+  font-style: italic;
+  border-left: 3px solid rgba(74, 103, 65, 0.5);
+  padding-left: 1rem;
+}
+
+/* ── Podcast slot (inside card) ───────────────────────────────────────────── */
+.ra-podcast-slot {
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.ra-podcast-slot--live {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.ra-podcast-slot--recorded {
+  background: rgba(251, 191, 36, 0.06);
+  border-color: rgba(251, 191, 36, 0.25);
+}
+
+.ra-podcast-slot--planned {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.ra-podcast-slot__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.ra-podcast-slot--live     .ra-podcast-slot__label { color: #10b981; }
+.ra-podcast-slot--recorded .ra-podcast-slot__label { color: #fbbf24; }
+.ra-podcast-slot--planned  .ra-podcast-slot__label { color: #64748b; }
+
+.ra-podcast-slot__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 0.35rem;
+}
+
+.ra-podcast-slot__meta {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+.ra-podcast-slot__play {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ra-podcast-slot__play:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.ra-podcast-slot__note {
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.6;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* ── Podcast dots ─────────────────────────────────────────────────────────── */
+.ra-podcast-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ra-podcast-dot--available { background: #10b981; box-shadow: 0 0 6px #10b981; }
+.ra-podcast-dot--recorded  { background: #fbbf24; }
+.ra-podcast-dot--planned   { background: #475569; }
+.ra-podcast-dot--none      { display: none; }
+
+/* ── Evidence claims ──────────────────────────────────────────────────────── */
+.ra-card__claims-title,
+.ra-card__subsections-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0 0 1rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.ra-card__claims-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ra-card__claim {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.ra-card__claim-text {
+  flex: 1;
+}
+
+.ra-card__claim-note {
+  display: block;
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+/* Evidence badge */
+.ra-evidence-badge {
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1;
+  margin-top: 0.1rem;
+  cursor: default;
+  filter: drop-shadow(0 0 4px var(--badge-colour, transparent));
+}
+
+/* ── Subsections grid ─────────────────────────────────────────────────────── */
+.ra-card__subsections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.ra-card__subsection {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  transition: background 0.2s;
+}
+
+.ra-card__subsection:hover {
+  background: rgba(15, 23, 42, 0.75);
+}
+
+.ra-card__subsection-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #86b880;
+  margin: 0 0 0.4rem;
+}
+
+.ra-card__subsection-content {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Aya prompt strip (inside card) ──────────────────────────────────────── */
+.ra-card__aya-prompt {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(74, 103, 65, 0.1);
+  border: 1px solid rgba(134, 184, 128, 0.2);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+}
+
+.ra-card__aya-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.ra-card__aya-label {
+  font-size: 0.75rem;
+  color: #86b880;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.ra-card__aya-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ra-card__aya-topic {
+  background: rgba(74, 103, 65, 0.2);
+  border: 1px solid rgba(134, 184, 128, 0.3);
+  border-radius: 20px;
+  color: #86b880;
+  font-family: inherit;
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ra-card__aya-topic:hover {
+  background: rgba(74, 103, 65, 0.4);
+  transform: translateY(-1px);
+}
+
+/* ── Status badge ─────────────────────────────────────────────────────────── */
+.ra-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.ra-status-badge--live     { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
+.ra-status-badge--progress { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+.ra-status-badge--soon     { background: rgba(71,85,105,0.4);   color: #94a3b8; border: 1px solid rgba(148,163,184,0.2); }
+.ra-status-badge--judith   { background: rgba(74,103,65,0.2);   color: #86b880; border: 1px solid rgba(134,184,128,0.35); }
+
+.ra-status-badge__lead {
+  font-weight: 400;
+  opacity: 0.8;
+  font-size: 0.65rem;
+}
+
+/* ── Seasonal block ───────────────────────────────────────────────────────── */
+.ra-seasonal-block {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ra-seasonal-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.ra-seasonal-header__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: 900;
+  color: #f8fafc;
+  margin: 0 0 0.5rem;
+}
+
+.ra-seasonal-header__sub {
+  font-size: 0.92rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ra-seasonal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.ra-seasonal-card {
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-left: 3px solid #D4A853;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ra-seasonal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+.ra-seasonal-card__icon {
+  font-size: 1.75rem;
+}
+
+.ra-seasonal-card__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.ra-seasonal-card__desc {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+}
+
+.ra-seasonal-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+}
+
+.ra-seasonal-card__podcast {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.ra-seasonal-card__aya {
+  background: rgba(74, 103, 65, 0.2);
+  border: 1px solid rgba(134, 184, 128, 0.25);
+  border-radius: 20px;
+  color: #86b880;
+  font-family: inherit;
+  font-size: 0.75rem;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ra-seasonal-card__aya:hover {
+  background: rgba(74, 103, 65, 0.35);
+  transform: translateY(-1px);
+}
+
+/* ── Aya drawer (slides up from bottom-right) ────────────────────────────── */
+.ra-aya-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 2rem;
+  backdrop-filter: blur(4px);
+}
+
+.ra-aya-drawer {
+  background: rgba(15, 23, 42, 0.97);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  width: min(480px, 95vw);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+  position: relative;
+  color: #f8fafc;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.ra-aya-drawer__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.ra-aya-drawer__close:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.ra-aya-drawer__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ra-aya-drawer__avatar {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, #4A6741 0%, #2d4a28 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.ra-aya-drawer__name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.15rem;
+}
+
+.ra-aya-drawer__role {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+  font-style: italic;
+}
+
+.ra-aya-drawer__intro p {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  line-height: 1.75;
+  margin: 0 0 0.75rem;
+}
+
+.ra-aya-drawer__building {
+  display: flex;
+  gap: 8px;
+  background: rgba(74, 103, 65, 0.12);
+  border: 1px solid rgba(134, 184, 128, 0.2);
+  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  line-height: 1.65;
+  margin: 1rem 0;
+}
+
+.ra-aya-drawer__input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+.ra-aya-drawer__input {
+  flex: 1;
+  background: rgba(51, 65, 85, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: #f8fafc;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ra-aya-drawer__input::placeholder { color: #64748b; }
+
+.ra-aya-drawer__input:focus {
+  border-color: #86b880;
+  box-shadow: 0 0 0 2px rgba(74, 103, 65, 0.2);
+}
+
+.ra-aya-drawer__confirmed {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.ra-aya-drawer__confirmed-icon {
+  font-size: 2rem;
+  color: #86b880;
+  margin-bottom: 1rem;
+}
+
+.ra-aya-drawer__confirmed p {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0 0 0.75rem;
+}
+
+.ra-aya-drawer__confirmed em {
+  color: #86b880;
+  font-style: normal;
+}
+
+/* ── Aya FAB ──────────────────────────────────────────────────────────────── */
+.ra-aya-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #4A6741 0%, #2d4a28 100%);
+  color: #f8fafc;
+  border: none;
+  border-radius: 50px;
+  padding: 13px 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 8px 25px rgba(74, 103, 65, 0.45);
+  z-index: 999;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ra-aya-fab:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 30px rgba(74, 103, 65, 0.6);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .roots-archive-page {
+    padding: 3rem 1.25rem 6rem;
+  }
+
+  .ra-card__header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ra-card__header-right {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .ra-card__subsections-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ra-seasonal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ra-podcast-series {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ra-aya-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .ra-aya-drawer {
+    border-radius: 16px 16px 0 0;
+    width: 100%;
+    max-height: 90vh;
+  }
+
+  .ra-aya-fab {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ra-filter-bar {
+    gap: 6px;
+  }
+
+  .ra-filter-btn {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+
+  .ra-card__body-inner {
+    padding: 1.25rem;
+  }
+}
+
+/* ── IWD event links (added to RootsPage) ────────────────────────────────── */
+.roots-iwd__event-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: all 0.2s ease;
+}
+
+.roots-iwd__event-link:hover {
+  background: rgba(74, 103, 65, 0.2);
+  border-color: rgba(134, 184, 128, 0.3);
+  color: #86b880;
+  transform: translateY(-1px);
+}

@@ -73,7 +73,6 @@
   line-height: 1.6;
 }
 
-/* Hero Promise */
 .cp-hero-promise {
   display: flex;
   justify-content: center;
@@ -102,6 +101,440 @@
 .cp-promise-item > span:last-child {
   font-size: 0.85rem;
   color: #94a3b8;
+}
+
+
+/* ============================================
+   PAGE HERO
+   ============================================ */
+
+.pathways-hero {
+  text-align: center;
+  padding: 3rem 1rem 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.pathways-hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+}
+
+.pathways-hero-sub {
+  font-size: 1.15rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ============================================
+   MODE SWITCHER
+   ============================================ */
+
+.pathways-mode-switcher {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 1.5rem 0 0.5rem;
+}
+
+.mode-btn {
+  padding: 0.625rem 1.5rem;
+  background: rgba(51, 65, 85, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+  background: rgba(71, 85, 105, 0.7);
+  color: #f8fafc;
+}
+
+.mode-btn.active {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  border-color: #8b5cf6;
+  color: white;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3);
+}
+
+/* ============================================
+   JOURNEY MODE
+   ============================================ */
+
+.journey-mode {
+  padding: 2rem 0;
+}
+
+.journey-hero {
+  text-align: center;
+  padding: 2rem 0 3rem;
+}
+
+.journey-hero h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.journey-hero p {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Actual TSX class names for talent selection intro */
+.talent-selection {
+  text-align: center;
+  padding: 2rem 0 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.selection-heading {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+}
+
+.selection-sub {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+
+.stories-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f8fafc;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+/* Talent picker */
+.talent-picker {
+  margin-bottom: 3rem;
+}
+
+.talent-picker h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f8fafc;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.talent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.talent-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: rgba(51, 65, 85, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  color: #f8fafc;
+}
+
+.talent-card:hover {
+  background: rgba(71, 85, 105, 0.95);
+  border-color: rgba(139, 92, 246, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.talent-card.selected {
+  background: rgba(139, 92, 246, 0.25);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.4);
+}
+
+.talent-emoji {
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.talent-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.3;
+}
+
+/* TSX uses talent-subtext, not talent-desc */
+.talent-subtext,
+.talent-desc {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+/* Pathway result */
+.pathway-result {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pathway-result-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pathway-result-header h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+  flex: 1;
+}
+
+.pathway-income-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 100px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #10b981;
+  white-space: nowrap;
+}
+
+/* Zone flow */
+.zone-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.zone-block {
+  flex: 1;
+  min-width: 160px;
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
+.zone-block--1 {
+  background: rgba(251, 191, 36, 0.08);
+  border-color: rgba(251, 191, 36, 0.25);
+}
+
+.zone-block--2 {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.25);
+}
+
+.zone-block--3 {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.zone-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.zone-block--1 .zone-label { color: #fbbf24; }
+.zone-block--2 .zone-label { color: #a78bfa; }
+.zone-block--3 .zone-label { color: #34d399; }
+
+.zone-name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 0.25rem;
+}
+
+.zone-desc {
+  display: block;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.zone-arrow {
+  display: flex;
+  align-items: center;
+  color: #475569;
+  font-size: 1.25rem;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+/* Pathway stats */
+.pathway-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 10px;
+}
+
+.pathway-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 140px;
+}
+
+.pathway-stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pathway-stat-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.4;
+}
+
+/* Pathway actions */
+.pathway-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Milestones */
+.journey-milestones {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+.journey-milestones h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 1.25rem;
+}
+
+.milestone-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.milestone-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 10px;
+}
+
+.milestone-period {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  padding-top: 0.125rem;
+  min-width: 80px;
+}
+
+.milestone-content {
+  flex: 1;
+}
+
+.milestone-content strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #f8fafc;
+  margin-bottom: 0.2rem;
+}
+
+.milestone-content span {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.milestone-earning {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #10b981;
+  white-space: nowrap;
+  padding: 0.25rem 0.75rem;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 100px;
+  align-self: center;
+}
+
+/* Journey stories */
+.journey-stories {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.journey-stories h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 1.25rem;
+}
+
+/* Compare mode wrapper */
+.compare-mode {
+  padding: 2rem 0;
 }
 
 /* ============================================
@@ -153,7 +586,6 @@
   border-radius: 100px;
 }
 
-/* Quiz Progress */
 .cp-quiz-progress {
   height: 4px;
   background: rgba(148, 163, 184, 0.2);
@@ -169,7 +601,6 @@
   transition: width 0.3s ease;
 }
 
-/* Quiz Question */
 .cp-quiz-question h4 {
   font-size: 1.5rem;
   font-weight: 700;
@@ -315,7 +746,6 @@
   color: #64748b;
 }
 
-/* Journey Flow */
 .cp-result-journey {
   padding: 1.5rem;
   background: rgba(15, 23, 42, 0.5);
@@ -344,34 +774,15 @@
   font-weight: 500;
 }
 
-.cp-flow-step.optional {
-  background: rgba(148, 163, 184, 0.1);
-  color: #94a3b8;
-}
-
-.cp-flow-step.main {
-  background: rgba(139, 92, 246, 0.2);
-  color: #a78bfa;
-  font-weight: 600;
-}
-
-.cp-flow-step.required {
-  background: rgba(16, 185, 129, 0.2);
-  color: #34d399;
-  font-weight: 600;
-}
-
-.cp-flow-step.final {
-  background: rgba(251, 191, 36, 0.2);
-  color: #fbbf24;
-  font-weight: 600;
-}
+.cp-flow-step.optional  { background: rgba(148, 163, 184, 0.1); color: #94a3b8; }
+.cp-flow-step.main      { background: rgba(139, 92, 246, 0.2);  color: #a78bfa; font-weight: 600; }
+.cp-flow-step.required  { background: rgba(16, 185, 129, 0.2);  color: #34d399; font-weight: 600; }
+.cp-flow-step.final     { background: rgba(251, 191, 36, 0.2);  color: #fbbf24; font-weight: 600; }
 
 .cp-journey-flow svg {
   color: #64748b;
 }
 
-/* Result Actions */
 .cp-result-actions {
   display: flex;
   gap: 1rem;
@@ -457,7 +868,7 @@
 }
 
 /* ============================================
-   JOURNEY SECTION
+   JOURNEY SECTION (classic timeline)
    ============================================ */
 
 .cp-journey-section {
@@ -583,7 +994,6 @@
   border-bottom: 1px solid rgba(148, 163, 184, 0.1);
 }
 
-/* Filter Bar */
 .cp-filter-bar {
   display: flex;
   align-items: center;
@@ -661,7 +1071,6 @@
   box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
 }
 
-/* Filters Panel */
 .cp-filters {
   display: flex;
   flex-direction: column;
@@ -716,7 +1125,6 @@
   color: white;
 }
 
-/* Programme Cards */
 .cp-programmes-list {
   display: flex;
   flex-direction: column;
@@ -835,7 +1243,6 @@
   transform: rotate(180deg);
 }
 
-/* Programme Details */
 .cp-programme-details {
   padding: 0 1.5rem 1.5rem;
   border-top: 1px solid rgba(148, 163, 184, 0.1);
@@ -918,7 +1325,6 @@
   flex-wrap: wrap;
 }
 
-/* No Results */
 .cp-no-results {
   text-align: center;
   padding: 3rem;
@@ -1112,7 +1518,6 @@
   margin-bottom: 1.25rem;
 }
 
-/* CTA Quote */
 .cp-cta-quote {
   max-width: 700px;
   margin: 0 auto;
@@ -1265,7 +1670,7 @@
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
 .cp-modal-content {
@@ -1283,14 +1688,8 @@
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .cp-modal-close {
@@ -1323,7 +1722,6 @@
   margin-bottom: 2rem;
 }
 
-/* Compare Grid */
 .cp-compare-grid {
   display: grid;
   gap: 1rem;
@@ -1402,165 +1800,79 @@
    ============================================ */
 
 @media (max-width: 900px) {
-  .cp-hero-content h2 {
-    font-size: 2rem;
-  }
-  
-  .cp-hero-intro {
-    font-size: 1.1rem;
-  }
-  
-  .cp-quiz-question h4 {
-    font-size: 1.25rem;
-  }
-  
-  .cp-section-header h2 {
-    font-size: 1.5rem;
-  }
-  
-  .cp-programme-header {
-    flex-wrap: wrap;
-  }
-  
-  .cp-programme-income {
-    order: 4;
-    margin-top: 0.5rem;
-  }
-  
-  .cp-programme-grid {
-    grid-template-columns: 1fr;
-  }
+  .cp-hero-content h2  { font-size: 2rem; }
+  .cp-hero-intro       { font-size: 1.1rem; }
+  .cp-quiz-question h4 { font-size: 1.25rem; }
+  .cp-section-header h2 { font-size: 1.5rem; }
+  .cp-programme-header  { flex-wrap: wrap; }
+  .cp-programme-income  { order: 4; margin-top: 0.5rem; }
+  .cp-programme-grid    { grid-template-columns: 1fr; }
+  .journey-hero h2      { font-size: 1.75rem; }
 }
 
 @media (max-width: 768px) {
-  .cp-hero-content h2 {
-    font-size: 1.75rem;
-  }
-  
-  .cp-hero-promise {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .cp-quiz-container {
-    padding: 1.5rem;
-  }
-  
+  .cp-hero-content h2  { font-size: 1.75rem; }
+  .cp-hero-promise     { flex-direction: column; gap: 1rem; }
+  .cp-quiz-container   { padding: 1.5rem; }
+
   .cp-journey-timeline {
     min-width: unset;
     flex-direction: column;
     align-items: stretch;
   }
-  
-  .cp-journey-line {
-    display: none;
-  }
-  
+
+  .cp-journey-line { display: none; }
+
   .cp-journey-stage {
     flex-direction: row;
     text-align: left;
     gap: 1rem;
   }
-  
-  .cp-stage-content {
-    max-width: none;
-  }
-  
-  .cp-different-grid {
-    grid-template-columns: 1fr;
-  }
-  
+
+  .cp-stage-content { max-width: none; }
+  .cp-different-grid { grid-template-columns: 1fr; }
+
   .cp-filter-bar {
     flex-direction: column;
     align-items: stretch;
   }
-  
-  .cp-compare-btn {
-    margin-left: 0;
-  }
-  
-  .cp-programme-card {
-    position: relative;
-  }
-  
-  .cp-stories-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .cp-story-header {
-    flex-wrap: wrap;
-  }
-  
-  .cp-story-earnings {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    margin-top: 0.5rem;
-  }
-  
-  .cp-cta-options {
-    grid-template-columns: 1fr;
-  }
-  
-  .cp-cta-option.featured {
-    order: -1;
-  }
-  
-  .cp-result-actions {
-    flex-direction: column;
-  }
-  
-  .cp-modal-content.compare {
-    padding: 1.5rem;
-  }
-  
-  .cp-compare-grid {
-    grid-template-columns: 1fr !important;
-  }
+
+  .cp-compare-btn { margin-left: 0; }
+
+  .cp-stories-grid     { grid-template-columns: 1fr; }
+  .cp-story-header     { flex-wrap: wrap; }
+  .cp-story-earnings   { order: 3; width: 100%; justify-content: center; margin-top: 0.5rem; }
+  .cp-cta-options      { grid-template-columns: 1fr; }
+  .cp-cta-option.featured { order: -1; }
+  .cp-result-actions   { flex-direction: column; }
+
+  .cp-modal-content.compare { padding: 1.5rem; }
+  .cp-compare-grid { grid-template-columns: 1fr !important; }
+
+  .pathways-mode-switcher { flex-direction: column; align-items: stretch; padding: 1rem; }
+  .mode-btn { text-align: center; }
+
+  .zone-flow    { flex-direction: column; }
+  .zone-arrow   { transform: rotate(90deg); align-self: center; }
+  .talent-grid  { grid-template-columns: repeat(2, 1fr); }
+  .pathway-stats { flex-direction: column; }
+  .milestone-item { flex-wrap: wrap; }
+  .milestone-earning { width: 100%; text-align: center; margin-top: 0.5rem; }
 }
 
 @media (max-width: 480px) {
-  .cp-content {
-    padding: 0 0.75rem;
-  }
-  
-  .cp-hero {
-    padding: 2rem 0;
-  }
-  
-  .cp-hero-content h2 {
-    font-size: 1.5rem;
-  }
-  
-  .cp-quiz-option {
-    padding: 1rem;
-    font-size: 0.9rem;
-  }
-  
-  .cp-programme-header {
-    padding: 1rem;
-  }
-  
-  .cp-programme-icon-wrap {
-    width: 48px;
-    height: 48px;
-  }
-  
-  .cp-programme-info h3 {
-    font-size: 1rem;
-  }
-  
-  .cp-programme-details {
-    padding: 0 1rem 1rem;
-  }
-  
-  .cp-programme-actions {
-    flex-direction: column;
-  }
-  
-  .cp-cta-content h2 {
-    font-size: 1.5rem;
-  }
+  .cp-content  { padding: 0 0.75rem; }
+  .cp-hero     { padding: 2rem 0; }
+  .cp-hero-content h2 { font-size: 1.5rem; }
+  .cp-quiz-option { padding: 1rem; font-size: 0.9rem; }
+  .cp-programme-header { padding: 1rem; }
+  .cp-programme-icon-wrap { width: 48px; height: 48px; }
+  .cp-programme-info h3 { font-size: 1rem; }
+  .cp-programme-details { padding: 0 1rem 1rem; }
+  .cp-programme-actions { flex-direction: column; }
+  .cp-cta-content h2 { font-size: 1.5rem; }
+  .talent-grid { grid-template-columns: 1fr; }
+  .journey-hero h2 { font-size: 1.5rem; }
 }
 
 /* ============================================
@@ -1577,17 +1889,170 @@
   .cp-different-card,
   .cp-result-programme,
   .cp-filter-btn,
-  .cp-compare-btn {
+  .cp-compare-btn,
+  .talent-card,
+  .pathway-result {
     transition: none;
+    animation: none;
   }
-  
+
   .cp-modal-overlay,
   .cp-modal-content {
     animation: none;
   }
-  
+
   .cp-quiz-progress-fill,
   .cp-programme-chevron {
     transition: none;
   }
+}
+
+/* ============================================
+   COMPARE MODE — BROWSE ALL PROGRAMMES GRID
+   ============================================ */
+
+.programme-grid {
+  max-width: 800px;
+  margin: 2rem auto 0;
+}
+
+.programme-grid h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+}
+
+.programme-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+
+.programme-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 1rem;
+  background: rgba(51, 65, 85, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s ease;
+  color: #f8fafc;
+}
+
+.programme-card:hover {
+  background: rgba(71, 85, 105, 0.95);
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: #f8fafc;
+}
+
+.prog-emoji {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.prog-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.3;
+}
+
+.prog-ceiling {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.25rem 0.6rem;
+  border-radius: 100px;
+}
+
+@media (max-width: 480px) {
+  .programme-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================
+   COMPARE MODE — QUIZ (unprefixed class names
+   as used in TSX: quiz-wrapper, quiz-question,
+   quiz-options, quiz-option, quiz-progress)
+   ============================================ */
+
+.quiz-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.quiz-progress {
+  font-size: 0.85rem;
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 100px;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.quiz-question {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f8fafc;
+  text-align: center;
+  margin: 0 0 1.75rem;
+  line-height: 1.4;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quiz-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.4rem;
+  background: rgba(51, 65, 85, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
+  color: #f8fafc;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: all 0.15s ease;
+}
+
+.quiz-option:hover {
+  background: rgba(71, 85, 105, 0.95);
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateX(4px);
+  color: #f8fafc;
+}
+
+@media (max-width: 768px) {
+  .quiz-wrapper { padding: 1.5rem; }
+  .quiz-question { font-size: 1.15rem; }
+  .quiz-option   { padding: 1rem; font-size: 0.95rem; }
 }

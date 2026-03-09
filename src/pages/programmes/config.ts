@@ -16,6 +16,14 @@ export interface ProgrammeConfig {
   investment: string;
   location: string;
   whoFor: string;
+  // Optional fields for specialist programmes
+  led?: string;
+  leads?: string[];
+  rov?: string;
+  status?: 'active' | 'coming-soon' | 'building';
+  launchDate?: string;
+  cyberstore?: boolean;
+  apothecary?: boolean;
   pipeline: {
     impactLab: string;
     platform: string;
@@ -302,14 +310,93 @@ export const PROGRAMMES: Record<string, ProgrammeConfig> = {
         'Navigating licensing, pop-ups, and food business regulations'
       ]
     }
+  },
+
+  // ── Roots ────────────────────────────────────────────────────────────────
+  // Women-led · Women-directed · Women-managed
+  // Leads: Judith Fontanelle (Director, Community Engagement)
+  //        Flora Agba (H&S Risk Management Event Coordinator)
+  //        Natalie (Women's Studies Consultant, BA Roehampton)
+  // ROV: Aya — body sovereignty knowledge keeper
+  // Status: coming-soon → building (after founding team session)
+  //         → active on IWD 8 March 2026
+
+  'roots': {
+    id: 'roots',
+    name: 'Roots',
+    icon: '🌿',
+    tagline: 'The knowledge that should have been handed down.',
+    description: 'A women-led body sovereignty resource — hair science, chemical literacy, the history of appearance standards, evidence-graded remedies, mixed heritage hair care for new mothers, and a creator economy for community-developed natural alternatives. What your body is. What it isn\'t. What they didn\'t tell you.',
+    color: '#4A6741',
+    duration: 'Year-round resource + seasonal workshops',
+    groupSize: 'Open community resource + cohort training (12-15 per mothers\' pathway)',
+    timeCommitment: 'Self-paced archive access + monthly workshops',
+    investment: 'Free resource access | Sliding scale £0-200 for training pathways',
+    location: 'Online archive + Wembley Hub workshops + East London salon network',
+    whoFor: 'Women of all ages | New and young mothers | Mixed heritage families | Natural hair creators | Ages 16+',
+    led: 'Women-led · Women-directed · Women-managed',
+    leads: ['Judith Fontanelle', 'Flora Agba', 'Natalie'],
+    rov: 'aya',
+    status: 'coming-soon',
+    launchDate: '2026-03-08',
+    cyberstore: true,
+    apothecary: true,
+    pipeline: {
+      impactLab: 'Access the knowledge archive — hair science by texture, ingredient literacy, remedies database, legal rights. Use Aya to get personalised guidance.',
+      platform: 'Contribute to the archive. Share seasonal guides. Add your remedies and formulations to the community database.',
+      showcase: 'IWD launch event 8 March 2026 — "What They Didn\'t Tell You". Mothers\' Day workshop 22 March. Quarterly Apothecary showcases.',
+      monetize: 'Develop natural hair and beauty alternatives through the Apothecary pathway. List on Cyberstore — keep 55% of every sale.'
+    },
+    learning: {
+      cultural: [
+        'History of appearance standards — the nasal index, lip standards, colorism, the nubility requirement',
+        'The good hair taxonomy and its origins in plantation social hierarchies',
+        'Skin bleaching — Fair & Lovely campaign history, mercury content, the anti-Blackness operating at the level of the body',
+        'The natural hair movement as political act — the Halo Code, the CROWN Act, UK workplace discrimination',
+        'Intragroup colorism as legacy of divide-and-rule',
+        'Caribbean, South Asian, East Asian, and MENA beauty standard pressures and their distinct histories',
+        'The Sapeur principle: style as conscious choice, not compelled compliance'
+      ],
+      technical: [
+        'Hair science by texture — porosity, density, elasticity, scalp pH, sebum travel',
+        'Chemical literacy — sodium hydroxide in edge controls, relaxer chemistry, bleach developer volumes, DMDM hydantoin',
+        'Evidence-graded remedies — traction alopecia, chemical damage, hyperpigmentation, skin bleaching damage',
+        'Ingredient red flags — INCI naming, what to look for, what to avoid',
+        'Mixed heritage hair care by texture type — practical guidance for new and young mothers',
+        'Seasonal hair care — back to school, winter damage, half-term reset, spring/summer management',
+        'Your rights in the hairdresser\'s chair — consent, scripts for speaking up, what to do when things go wrong'
+      ],
+      professional: [
+        'Apothecary formulation — ingredient combinations, what works together and why',
+        'UK Cosmetic Products Regulation — what claims you can make, INCI naming, the compliance pathway',
+        'Community testing methodology — getting real feedback before commercial launch',
+        'Cyberstore listing and brand development for natural hair and beauty products',
+        'Regulatory literacy — the difference between a cosmetic and a medicinal product',
+        'Pricing for community economics — not extractive, not exploitative'
+      ]
+    }
   }
+
 };
 
-// Helper functions
+// ── Helper functions ─────────────────────────────────────────────────────────
+
 export function getProgramme(id: string): ProgrammeConfig | undefined {
   return PROGRAMMES[id];
 }
 
 export function getAllProgrammeIds(): string[] {
   return Object.keys(PROGRAMMES);
+}
+
+export function getActiveProgrammes(): ProgrammeConfig[] {
+  return Object.values(PROGRAMMES).filter(
+    (p) => !p.status || p.status === 'active'
+  );
+}
+
+export function getComingSoonProgrammes(): ProgrammeConfig[] {
+  return Object.values(PROGRAMMES).filter(
+    (p) => p.status === 'coming-soon' || p.status === 'building'
+  );
 }

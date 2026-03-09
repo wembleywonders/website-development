@@ -1,0 +1,366 @@
+/* ─── ClaimPage.module.css ───────────────────────────────────────────────────
+   The cherry on top of the counter-archive.
+   A young person on the bus home scans their slip and lands here.
+   Make it feel like receiving something real.
+──────────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&display=swap');
+
+/* ── Page shell ───────────────────────────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background: #0e1a18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 20px;
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+/* Radial glow — deep teal light from above */
+.bgGlow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(10,74,69,0.8) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 90%, rgba(232,184,75,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Subtle grid texture */
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232,184,75,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,184,75,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+  pointer-events: none;
+}
+
+/* ── Shell — constrains content width ────────────────────────────────────── */
+.shell {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+/* ── Wordmark ─────────────────────────────────────────────────────────────── */
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: fadeDown 0.5s ease both;
+}
+
+.wwBadge {
+  width: 44px;
+  height: 44px;
+  background: #e8b84b;
+  color: #0a4a45;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  letter-spacing: -1px;
+  flex-shrink: 0;
+}
+
+.wwName {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: rgba(250,247,240,0.92);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.wwSub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(250,247,240,0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.06);
+  animation: riseIn 0.5s ease 0.1s both;
+  color: #18120a;
+}
+
+.cardBar {
+  height: 6px;
+  background: linear-gradient(90deg, #0a4a45 0%, #1a9688 60%, #e8b84b 100%);
+}
+
+.cardInner {
+  padding: 32px 28px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+/* ── Card typography ──────────────────────────────────────────────────────── */
+.cardEyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #1a9688;
+  margin-bottom: 10px;
+}
+
+.cardTitle {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(24px, 5vw, 32px);
+  color: #0a4a45;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+
+.cardTitleSm {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #0a4a45;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+
+/* ── Role + context pills ─────────────────────────────────────────────────── */
+.roleRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.rolePill {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: #0a4a45;
+  color: #e8b84b;
+  border: none;
+}
+
+.contextPill {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #5a5040;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: #f2ece0;
+  border: none;
+}
+
+/* ── Creator name ─────────────────────────────────────────────────────────── */
+.creatorRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.diamond {
+  color: #e8b84b;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.creatorName {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #18120a;
+  letter-spacing: -0.01em;
+}
+
+/* ── Body text ────────────────────────────────────────────────────────────── */
+.cardBody {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #5a5040;
+  font-weight: 300;
+  margin-bottom: 16px;
+  font-family: 'Fraunces', serif;
+}
+
+.expiry {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #bbb;
+  margin-bottom: 28px;
+}
+
+.claimedAt {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #1a9688;
+  margin-bottom: 28px;
+}
+
+/* ── Success mark ─────────────────────────────────────────────────────────── */
+@keyframes popIn {
+  0%   { transform: scale(0.5); opacity: 0; }
+  70%  { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.successMark {
+  font-size: 40px;
+  color: #e8b84b;
+  margin-bottom: 12px;
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  line-height: 1;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+.btnClaim {
+  width: 100%;
+  padding: 16px;
+  background: #0a4a45;
+  color: #e8b84b;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.15s, transform 0.1s;
+  margin-bottom: 12px;
+}
+
+.btnClaim:hover {
+  background: #0d6b62;
+}
+
+.btnClaim:active {
+  transform: scale(0.99);
+}
+
+.btnSecondary {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: #5a5040;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: color 0.15s;
+}
+
+.btnSecondary:hover {
+  color: #0a4a45;
+}
+
+/* ── Loading / centred states ─────────────────────────────────────────────── */
+.centred {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 0;
+  animation: fadeDown 0.4s ease both;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(232,184,75,0.15);
+  border-top-color: #e8b84b;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.loadingText {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: rgba(250,247,240,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(250,247,240,0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  animation: fadeDown 0.5s ease 0.2s both;
+}
+
+.footerDots {
+  color: rgba(232,184,75,0.3);
+  letter-spacing: 4px;
+}
+
+/* ── Animations ───────────────────────────────────────────────────────────── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Mobile ───────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .page {
+    padding: 24px 16px;
+    align-items: flex-start;
+  }
+  .cardInner {
+    padding: 24px 20px 28px;
+  }
+  .cardTitle {
+    font-size: 26px;
+  }
+  .creatorName {
+    font-size: 20px;
+  }
+}

@@ -56,6 +56,8 @@ import AuntieAnansisKitchenPage from '../pages/programmes/auntie-anansis-kitchen
 import TrubbleNBassPage from '../pages/trubble-n-bass';
 import MoneyResetPage from '../pages/programmes/money-reset';
 import ScrapCatPage from '../pages/programmes/scrap-cat';
+import RootsPage from '../pages/programmes/roots/RootsPage';
+import RootsSandbox from '../pages/programmes/roots/sandbox';
 
 // ============================================
 // PROGRAMME SANDBOXES
@@ -153,6 +155,9 @@ import PrivacyPolicyPage from '../pages/PrivacyPolicyPage';
 import TermsOfServicePage from '../pages/TermsOfServicePage';
 import SafeguardingPolicyPage from '../pages/SafeguardingPolicyPage';
 import RuleBookPage from '../pages/RuleBookPage';
+import AccessibilityPage from '../pages/AccessibilityPage';
+import CookiePolicyPage from '../pages/CookiePolicyPage';
+import ComplaintsPage from '../pages/ComplaintsPage';
 
 // ============================================
 // DASHBOARD & MEMBER AREAS
@@ -365,6 +370,20 @@ const AppRouter: React.FC = () => {
         <Route path="/programmes/scrap-cat" element={<ScrapCatPage />} />
 
         {/* ============================================
+            ROOTS — Body Sovereignty Resource
+            Women-led · Women-directed · Women-managed
+            Leads: Judith Fontanelle · Flora Agba · Natalie
+            ROV: Aya | Status: coming-soon → active IWD 8 Mar 2026
+            ============================================ */}
+        <Route path="/programmes/roots" element={<RootsPage />} />
+        <Route path="/programmes/roots/sandbox" element={<RootsSandbox />} />
+        {/* Convenience aliases */}
+        <Route path="/roots" element={<Navigate to="/programmes/roots" replace />} />
+        <Route path="/body-sovereignty" element={<Navigate to="/programmes/roots" replace />} />
+        <Route path="/hair-care" element={<Navigate to="/programmes/roots" replace />} />
+        <Route path="/apothecary" element={<Navigate to="/programmes/roots" replace />} />
+
+        {/* ============================================
             PATHWAYS
             ============================================ */}
         <Route path="/pathways" element={<PathwaysIndex />} />
@@ -470,6 +489,9 @@ const AppRouter: React.FC = () => {
         <Route path="/safeguarding" element={<SafeguardingPolicyPage />} />
         <Route path="/policies/safeguarding" element={<Navigate to="/safeguarding" replace />} />
         <Route path="/rulebook" element={<RuleBookPage />} />
+        <Route path="/accessibility" element={<AccessibilityPage />} />
+        <Route path="/cookies" element={<CookiePolicyPage />} />
+        <Route path="/complaints" element={<ComplaintsPage />} />
 
         {/* ============================================
             DASHBOARDS (Protected - add auth wrapper later)

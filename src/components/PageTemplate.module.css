@@ -229,6 +229,11 @@
   min-width: 0;
 }
 
+/* =====================================================
+   THE FIX: contentWrapper sets the dark background
+   AND explicitly resets all text colour so Tailwind
+   preflight cannot override it via body/inherit chain
+   ===================================================== */
 .contentWrapper {
   background: rgba(30, 41, 59, 0.95);
   backdrop-filter: blur(20px);
@@ -236,6 +241,27 @@
   border-radius: 2rem;
   padding: 3rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  color: #e2e8f0;
+}
+
+/* Every element inside contentWrapper inherits light text.
+   This beats Tailwind preflight which resets color on body. */
+.contentWrapper *,
+.contentWrapper p,
+.contentWrapper span,
+.contentWrapper h1,
+.contentWrapper h2,
+.contentWrapper h3,
+.contentWrapper h4,
+.contentWrapper h5,
+.contentWrapper h6,
+.contentWrapper li,
+.contentWrapper a:not([class]),
+.contentWrapper button:not([class]),
+.contentWrapper label,
+.contentWrapper td,
+.contentWrapper th {
+  color: inherit;
 }
 
 /* Sidebar */
@@ -249,6 +275,7 @@
   position: sticky;
   top: 2rem;
   order: -1;
+  color: #e2e8f0;
 }
 
 .sidebarSection {

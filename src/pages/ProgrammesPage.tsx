@@ -6,17 +6,17 @@ import './ProgrammesPage.css';
 const ProgrammesPage: React.FC = () => {
   const programmes = [
     {
-      id: 'trubble-n-bass',
-      name: 'Trubble n Bass',
-      icon: '🎵',
-      tagline: 'Create Beats. Get Heard. Earn Income.',
-      color: '#10b981',
-      path: '/programmes/trubble-n-bass'
+      id: 'bright-sparks',
+      name: 'Bright Sparks',
+      icon: '✨',
+      tagline: 'Not sure where to start? Begin here.',
+      color: '#fbbf24',
+      path: '/programmes/bright-sparks'
     },
     {
       id: 'stemgeneers',
       name: 'STEMgeneers',
-      icon: '🤖',
+      icon: '⚡',
       tagline: 'Build. Code. Engineer.',
       color: '#3b82f6',
       path: '/programmes/stemgeneers'
@@ -24,14 +24,14 @@ const ProgrammesPage: React.FC = () => {
     {
       id: 'techreneurs',
       name: 'TECHreneurs',
-      icon: '💼',
+      icon: '💻',
       tagline: 'Build Businesses. Create Impact.',
       color: '#8b5cf6',
       path: '/programmes/techreneurs'
     },
     {
       id: 'gtechcasters',
-      name: 'G-TechCasters',
+      name: 'G-Tech Casters',
       icon: '🎙️',
       tagline: 'Create. Broadcast. Engage.',
       color: '#ef4444',
@@ -56,18 +56,18 @@ const ProgrammesPage: React.FC = () => {
     {
       id: 'silk-stilettos',
       name: 'Silk Stilettos',
-      icon: '👠',
+      icon: '🎨',
       tagline: 'Women Creating. Women Leading.',
       color: '#db2777',
       path: '/programmes/silk-stilettos'
     },
     {
-      id: 'bright-sparks',
-      name: 'Bright Sparks',
-      icon: '⚡',
-      tagline: 'Young Minds. Big Ideas.',
-      color: '#fbbf24',
-      path: '/programmes/bright-sparks'
+      id: 'trubble-n-bass',
+      name: 'Trubble n Bass',
+      icon: '🎵',
+      tagline: 'Create Beats. Get Heard. Earn Income.',
+      color: '#10b981',
+      path: '/programmes/trubble-n-bass'
     },
     {
       id: 'auntie-anansis-kitchen',
@@ -76,13 +76,29 @@ const ProgrammesPage: React.FC = () => {
       tagline: 'Preserve Culture. Reclaim Heritage.',
       color: '#f97316',
       path: '/programmes/auntie-anansis-kitchen'
+    },
+    {
+      id: 'easy-street',
+      name: 'Easy Street',
+      icon: '📻',
+      tagline: 'Radio Drama. Community Storytelling.',
+      color: '#06b6d4',
+      path: '/programmes/easy-street'
+    },
+    {
+      id: 'roots',
+      name: 'Roots',
+      icon: '🌿',
+      tagline: 'Body Sovereignty. Knowledge Archive.',
+      color: '#059669',
+      path: '/programmes/roots'
     }
   ];
 
   return (
     <PageTemplate 
       pageTitle="Our Programmes"
-      pageStrapline="Nine pathways to build skills, create impact, and earn income"
+      pageStrapline="Eleven pathways to build skills, create impact, and earn income"
       pageGuide="Choose your creative journey. Each programme includes hands-on learning, community projects, and real opportunities to showcase your work."
       pageType="standard"
     >
@@ -91,7 +107,7 @@ const ProgrammesPage: React.FC = () => {
         {/* Simple intro */}
         <section className="directory-intro">
           <p className="intro-text">
-            All programmes run on a sliding scale (£0-200). Members attend free. 
+            All programmes run on a sliding scale (£0–200). Members attend free. 
             Each programme leads to showcase opportunities and ongoing income potential.
           </p>
         </section>
@@ -119,16 +135,16 @@ const ProgrammesPage: React.FC = () => {
           ))}
         </section>
 
-        {/* Creator pathways link */}
+        {/* Earning path CTA */}
         <section className="pathways-cta">
           <div className="cta-box">
             <span className="cta-icon">🗺️</span>
             <div className="cta-text">
               <h3>Not sure where to start?</h3>
-              <p>Explore Creator Pathways to see how programmes connect and build on each other</p>
+              <p>Find your earning path — match your skills to a real income route</p>
             </div>
             <Link to="/creator-pathways" className="cta-button">
-              View Pathways
+              Find your earning path
             </Link>
           </div>
         </section>

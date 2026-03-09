@@ -7,9 +7,13 @@
 
 /**
  * MayaChat - Comprehensive Maya Chat Component
- * 
+ *
  * UPDATED: Compatible with unified mayaStore and Children of Anansi ROV framework
- * 
+ * CHANGE LOG (March 2026):
+ *   - Added intentContext support via React Router location.state
+ *   - 'pathway' intent triggers earning-path opening conversation
+ *   - getPageContext extended with /creator-pathways and /bright-sparks routes
+ *
  * Features:
  * - Member tier-specific guidance
  * - Visitor context detection
@@ -18,6 +22,7 @@
  * - ROV personality switching (Maya + 12 Children)
  * - Jargon explanation
  * - Programme awareness
+ * - Earning path intent from nav
  */
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
@@ -32,10 +37,10 @@ import {
   useMayaSession,
   useMayaOpenLoops
 } from '../maya/stores/mayaStore';
-import type { 
-  ActiveChild, 
-  MayaMode, 
-  PedagogicalStage 
+import type {
+  ActiveChild,
+  MayaMode,
+  PedagogicalStage
 } from '../maya/types/mayaTypes';
 import './MayaChat.css';
 
@@ -87,12 +92,27 @@ interface BehaviorPattern {
   suggestedActions: string[];
 }
 
+/**
+ * intentContext — optional signal passed via React Router location.state.
+ * Currently supported values:
+ *   'pathway'  — visitor clicked "Find your earning path →" in the nav
+ *
+ * How to trigger from a nav link:
+ *   <Link to="/creator-pathways" state={{ mayaIntent: 'pathway' }}>
+ *     Find your earning path →
+ *   </Link>
+ *
+ * MayaChat reads this from location.state directly — no prop needed.
+ * The prop is retained here as an escape hatch for programmatic control.
+ */
 interface MayaChatProps {
   membershipTier: 'membership' | 'connector' | 'curator' | 'champion' | 'apply' | 'visitor';
   memberProgress?: MemberProgress;
   onProgressUpdate?: (progress: MemberProgress) => void;
   userId?: string;
   className?: string;
+  /** Optional override — normally read from location.state.mayaIntent */
+  intentContext?: string;
 }
 
 // ============================================
@@ -273,7 +293,7 @@ interface Programme {
 
 const getCurrentProgramme = (): Programme => {
   const month = new Date().getMonth();
-  
+
   if (month >= 2 && month <= 4) {
     return {
       name: 'Trubble n Bass',
@@ -319,19 +339,17 @@ const detectBehaviorPattern = (context: {
   visitCount: number;
   currentPage: string;
 }): BehaviorPattern => {
-  const { timeOnPage, scrollDepth, visitCount, currentPage } = context;
-  
-  // Returning visitor
+  const { timeOnPage, scrollDepth, visitCount } = context;
+
   if (visitCount > 1) {
     return {
       type: 'returning',
       confidence: 0.8,
       indicators: ['Multiple visits detected'],
-      suggestedActions: ['Welcome back', 'Show what\'s new']
+      suggestedActions: ['Welcome back', "Show what's new"]
     };
   }
-  
-  // Deciding - spent significant time, high scroll depth
+
   if (timeOnPage > 120 && scrollDepth > 0.7) {
     return {
       type: 'deciding',
@@ -340,8 +358,7 @@ const detectBehaviorPattern = (context: {
       suggestedActions: ['Offer next step', 'Reduce friction']
     };
   }
-  
-  // Exploring - moderate engagement
+
   if (timeOnPage > 30 && scrollDepth > 0.3) {
     return {
       type: 'exploring',
@@ -350,8 +367,7 @@ const detectBehaviorPattern = (context: {
       suggestedActions: ['Provide context', 'Answer questions']
     };
   }
-  
-  // Browsing - default
+
   return {
     type: 'browsing',
     confidence: 0.5,
@@ -362,7 +378,7 @@ const detectBehaviorPattern = (context: {
 
 const detectInterests = (pages: string[], timeSpent: Record<string, number>): string[] => {
   const interests: string[] = [];
-  
+
   pages.forEach(page => {
     const time = timeSpent[page] || 0;
     if (time > 30) {
@@ -373,7 +389,7 @@ const detectInterests = (pages: string[], timeSpent: Record<string, number>): st
       if (page.includes('membership')) interests.push('Membership');
     }
   });
-  
+
   return [...new Set(interests)];
 };
 
@@ -410,6 +426,25 @@ const COMMON_QUESTIONS: Record<string, string> = {
 };
 
 // ============================================
+// PATHWAY INTENT GREETING
+// ============================================
+
+/**
+ * The four questions from the Skills-to-Income framework.
+ * Activated when a visitor arrives via "Find your earning path →" nav link.
+ * Does NOT reference programmes, seasons, or membership tiers —
+ * those come after the person has answered, not before.
+ */
+const PATHWAY_GREETING =
+  "You clicked 'Find your earning path' — good. I'm Maya.\n\n" +
+  "Before I point you anywhere, I want to ask you four things:\n\n" +
+  "What do you make, or want to make?\n" +
+  "Who do you make it for?\n" +
+  "What has stopped you so far?\n" +
+  "And what would feel like winning in two years?\n\n" +
+  "Take your time. There's no wrong answer.";
+
+// ============================================
 // MAIN COMPONENT
 // ============================================
 
@@ -418,28 +453,33 @@ const MayaChat: React.FC<MayaChatProps> = ({
   memberProgress,
   onProgressUpdate,
   userId,
-  className = ''
+  className = '',
+  intentContext: intentContextProp
 }) => {
   // === Store Hooks ===
   const { currentStage } = useMayaStage();
   const { currentMode } = useMayaMode();
-  const { 
-    activeEntity, 
-    setActiveEntity, 
-    routeToChild, 
+  const {
+    activeEntity,
+    setActiveEntity,
+    routeToChild,
     returnToMaya,
     currentMood,
-    setCurrentMood 
+    setCurrentMood
   } = useMayaROV();
   const { preferences } = useMayaPreferences();
   const { trackAction, trackROVSignal } = useMayaTracking();
   const { session, startSession, recordTopicDiscussed } = useMayaSession();
   const { openLoops, openLoop } = useMayaOpenLoops();
   const addStoreMessage = useMayaStore((s) => s.addMessage);
-  
+
   // === Location ===
   const location = useLocation();
-  
+
+  // === Resolve intent: prop override wins, then location.state ===
+  const locationState = location.state as { mayaIntent?: string } | null;
+  const resolvedIntent = intentContextProp ?? locationState?.mayaIntent ?? null;
+
   // === Local State ===
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -457,7 +497,7 @@ const MayaChat: React.FC<MayaChatProps> = ({
     lastActivity: new Date()
   });
   const [currentProgramme, setCurrentProgramme] = useState(getCurrentProgramme());
-  
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const pageTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -467,7 +507,7 @@ const MayaChat: React.FC<MayaChatProps> = ({
   // === Track page context ===
   useEffect(() => {
     const currentPage = location.pathname;
-    
+
     setUserContext(prev => ({
       ...prev,
       isLoggedIn: !!userId,
@@ -479,15 +519,11 @@ const MayaChat: React.FC<MayaChatProps> = ({
 
     setCurrentProgramme(getCurrentProgramme());
 
-    // Track visit count
     const visitCount = parseInt(localStorage.getItem('maya_visit_count') || '0') + 1;
     localStorage.setItem('maya_visit_count', visitCount.toString());
     setUserContext(prev => ({ ...prev, visitCount }));
 
-    // Reset page timer
-    if (pageTimerRef.current) {
-      clearInterval(pageTimerRef.current);
-    }
+    if (pageTimerRef.current) clearInterval(pageTimerRef.current);
 
     pageTimerRef.current = setInterval(() => {
       setUserContext(prev => ({
@@ -498,11 +534,19 @@ const MayaChat: React.FC<MayaChatProps> = ({
     }, 1000);
 
     return () => {
-      if (pageTimerRef.current) {
-        clearInterval(pageTimerRef.current);
-      }
+      if (pageTimerRef.current) clearInterval(pageTimerRef.current);
     };
   }, [location.pathname, userId]);
+
+  // === Reset messages when intent changes (new nav click) ===
+  useEffect(() => {
+    // When the visitor arrives with a fresh pathway intent, clear any prior
+    // conversation so the greeting reflects the new context.
+    if (resolvedIntent === 'pathway' && messages.length > 0) {
+      setMessages([]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resolvedIntent]);
 
   // === Behavior pattern detection ===
   useEffect(() => {
@@ -518,11 +562,7 @@ const MayaChat: React.FC<MayaChatProps> = ({
       { [location.pathname]: userContext.timeOnPage }
     );
 
-    setUserContext(prev => ({
-      ...prev,
-      behaviorPattern,
-      interests
-    }));
+    setUserContext(prev => ({ ...prev, behaviorPattern, interests }));
   }, [userContext.timeOnPage, userContext.scrollDepth, userContext.visitCount, location.pathname]);
 
   // === Track scroll depth ===
@@ -532,7 +572,6 @@ const MayaChat: React.FC<MayaChatProps> = ({
       const documentHeight = document.documentElement.scrollHeight - windowHeight;
       const scrollTop = window.pageYOffset;
       const scrollDepth = documentHeight > 0 ? scrollTop / documentHeight : 0;
-      
       setUserContext(prev => ({ ...prev, scrollDepth }));
     };
 
@@ -556,32 +595,36 @@ const MayaChat: React.FC<MayaChatProps> = ({
         }
       };
       setMessages([welcomeMessage]);
-      
-      // Start session in store
-      if (!session.id) {
-        startSession();
-      }
+
+      if (!session.id) startSession();
     }
   }, [isOpen, activeEntity]);
 
   // === Get appropriate greeting ===
   const getGreeting = useCallback((): string => {
     const isVisitor = !userId;
+
+    // ── PATHWAY INTENT: visitor clicked "Find your earning path →" ──────────
+    // Fires for both visitors and members — the four questions are universal.
+    // Members who want to find an income path deserve the same entry point.
+    if (resolvedIntent === 'pathway') {
+      return PATHWAY_GREETING;
+    }
+
     const child = CHILDREN_OF_ANANSI[activeEntity];
-    
+
     if (isVisitor) {
-      // Visitor greeting
       if (userContext.behaviorPattern.type === 'returning') {
         return `Welcome back! I'm ${child.name}, and I remember you've visited before. ${currentProgramme.name} is currently ${currentProgramme.status}. What brings you back today?`;
       }
-      
+
       if (userContext.timeOnPage > 60) {
         return `I see you've been exploring! I'm ${child.name}, your community guide. You seem interested in ${getPageContext(location.pathname).focus}. Can I help answer any questions?`;
       }
-      
+
       return `Hello! I'm ${child.name}, your community guide for Wembley Wonders. ${currentProgramme.name} is our current programme, focusing on ${currentProgramme.focus}. How can I help you today?`;
     }
-    
+
     // Member greeting based on tier
     switch (membershipTier) {
       case 'membership':
@@ -597,7 +640,7 @@ const MayaChat: React.FC<MayaChatProps> = ({
       default:
         return child.greeting || `Hello! I'm ${child.name}. How can I help you today?`;
     }
-  }, [activeEntity, userId, userContext, membershipTier, currentProgramme, location.pathname]);
+  }, [activeEntity, userId, userContext, membershipTier, currentProgramme, location.pathname, resolvedIntent]);
 
   // === Scroll to bottom ===
   const scrollToBottom = useCallback(() => {
@@ -611,14 +654,14 @@ const MayaChat: React.FC<MayaChatProps> = ({
   // === Route to appropriate child based on topic ===
   const routeToChildForTopic = useCallback((topic: string): ActiveChild => {
     const lowerTopic = topic.toLowerCase();
-    
+
     for (const [childId, child] of Object.entries(CHILDREN_OF_ANANSI)) {
       if (child.topics.some(t => lowerTopic.includes(t))) {
         return childId as ActiveChild;
       }
     }
-    
-    return 'maya'; // Default to Maya
+
+    return 'maya';
   }, []);
 
   // === Handle send message ===
@@ -636,16 +679,14 @@ const MayaChat: React.FC<MayaChatProps> = ({
     setInputMessage('');
     setIsTyping(true);
     trackAction('direction_action');
-    
+
     const input = inputMessage.trim();
 
-    // Generate response after delay
     setTimeout(() => {
       const response = generateResponse(input);
       setMessages(prev => [...prev, response]);
       setIsTyping(false);
 
-      // Update progress tracking
       if (response.metadata?.progressTracking && memberProgress && onProgressUpdate) {
         const updatedProgress = {
           ...memberProgress,
@@ -655,13 +696,12 @@ const MayaChat: React.FC<MayaChatProps> = ({
         onProgressUpdate(updatedProgress);
       }
 
-      // Log to store
       addStoreMessage(
         `Chat: ${input.slice(0, 50)}...`,
         'narration',
         { childId: activeEntity }
       );
-      
+
       recordTopicDiscussed(input.slice(0, 30));
     }, 1000 + Math.random() * 1000);
   }, [inputMessage, activeEntity, memberProgress, onProgressUpdate, trackAction, addStoreMessage, recordTopicDiscussed]);
@@ -670,38 +710,34 @@ const MayaChat: React.FC<MayaChatProps> = ({
   const generateResponse = useCallback((userInput: string): ChatMessage => {
     const input = userInput.toLowerCase();
     const child = CHILDREN_OF_ANANSI[activeEntity];
-    
-    // Safeguarding detection
+
     const safeguardingKeywords = ['child', 'young', 'youth', 'safeguarding', 'protection', 'vulnerable', 'concern', 'abuse'];
     const hasSafeguardingContent = safeguardingKeywords.some(keyword => input.includes(keyword));
-    
+
     let responseContent = '';
     let metadata: ChatMessage['metadata'] = {
       progressTracking: !!userId,
       contextualHelp: !userId
     };
 
-    // Safeguarding response - always prioritize
     if (hasSafeguardingContent && !input.includes('safeguarding status')) {
       metadata.safeguardingAlert = true;
       responseContent = `I understand you're asking about working with young people or vulnerable groups. This is important - we have strict safeguarding protocols. ${
-        activeEntity === 'akua' 
+        activeEntity === 'akua'
           ? "As your Legal Advocate, I need to emphasize that all work with young people requires enhanced DBS clearance, specific training, and adherence to our protection policies. No member has unsupervised access until fully cleared."
           : "Let me connect you with Akua, our Legal Advocate, who handles all safeguarding matters. No member has unsupervised access to youth programmes until they've completed our full assessment process."
       }`;
-      
-      // Route to Akua for safeguarding
+
       if (activeEntity !== 'akua') {
         setTimeout(() => {
           routeToChild('akua', 'Safeguarding topic detected', 'safeguarding');
           setActiveEntity('akua');
         }, 2000);
       }
-      
+
       return createResponse(responseContent, metadata);
     }
 
-    // Check for common questions (visitor-focused)
     if (!userId) {
       for (const [key, answer] of Object.entries(COMMON_QUESTIONS)) {
         if (input.includes(key)) {
@@ -710,7 +746,6 @@ const MayaChat: React.FC<MayaChatProps> = ({
       }
     }
 
-    // Check for jargon explanation requests
     for (const [term, definition] of Object.entries(JARGON_DEFINITIONS)) {
       if (input.includes(term) && (input.includes('what is') || input.includes('explain') || input.includes('mean'))) {
         metadata.jargonExplanation = true;
@@ -718,26 +753,23 @@ const MayaChat: React.FC<MayaChatProps> = ({
       }
     }
 
-    // Check if should route to different child
     const suggestedChild = routeToChildForTopic(input);
     if (suggestedChild !== activeEntity && suggestedChild !== 'maya') {
       const targetChild = CHILDREN_OF_ANANSI[suggestedChild];
       responseContent = `That sounds like something ${targetChild.name} specializes in - ${targetChild.specialization.toLowerCase()}. Would you like me to connect you with them?`;
-      
-      // Auto-route after brief delay if topic is clear
+
       if (targetChild.topics.some(t => input.includes(t))) {
         setTimeout(() => {
           routeToChild(suggestedChild, `Topic: ${input.slice(0, 30)}`, input.slice(0, 20));
           setActiveEntity(suggestedChild);
         }, 3000);
       }
-      
+
       return createResponse(responseContent, metadata);
     }
 
-    // Topic-specific responses based on current child
     responseContent = getChildResponse(input, activeEntity, membershipTier, userContext);
-    
+
     return createResponse(responseContent, metadata);
   }, [activeEntity, userId, membershipTier, userContext, routeToChild, setActiveEntity, routeToChildForTopic]);
 
@@ -753,24 +785,22 @@ const MayaChat: React.FC<MayaChatProps> = ({
 
   // === Get child-specific response ===
   const getChildResponse = (
-    input: string, 
-    childId: ActiveChild, 
-    tier: string, 
+    input: string,
+    childId: ActiveChild,
+    tier: string,
     context: UserContext
   ): string => {
     const child = CHILDREN_OF_ANANSI[childId];
-    
-    // Programme questions
+
     if (input.includes('programme') || input.includes('program')) {
       const prog = currentProgramme;
       return `Our current programme is ${prog.name}, focusing on ${prog.focus}. It's ${prog.status}. ${
-        childId === 'maya' 
-          ? `I can tell you more about any of our four seasonal programmes.`
+        childId === 'maya'
+          ? 'I can tell you more about any of our four seasonal programmes.'
           : `${child.name === 'Kofi' ? "I'm involved with the technical aspects." : `My siblings ${prog.children.map(c => CHILDREN_OF_ANANSI[c].name).join(', ')} are leading this one.`}`
       }`;
     }
 
-    // Getting started
     if (input.includes('start') || input.includes('join') || input.includes('begin')) {
       if (!context.isLoggedIn) {
         return "There are several ways to get involved! You can participate in programmes without any commitment, join as a member for regular access, or apply to become a volunteer with leadership opportunities. What interests you most?";
@@ -783,7 +813,6 @@ const MayaChat: React.FC<MayaChatProps> = ({
       }. What would you like to work on?`;
     }
 
-    // Progress questions (members only)
     if (context.isLoggedIn && (input.includes('progress') || input.includes('advance'))) {
       return `Advancement through our tiers requires demonstrating competence, commitment, and adherence to community standards. ${
         tier === 'connector' ? "You're in a 12-month probationary period. Focus on participation and skill development."
@@ -792,7 +821,6 @@ const MayaChat: React.FC<MayaChatProps> = ({
       }`;
     }
 
-    // Budget/money questions
     if (input.includes('budget') || input.includes('money') || input.includes('funding')) {
       if (childId === 'ntikuma') {
         return "I watch the numbers carefully. Tell me what you're planning and I'll help you understand the financial implications.";
@@ -800,21 +828,23 @@ const MayaChat: React.FC<MayaChatProps> = ({
       if (childId === 'kweku') {
         return "Before we talk budget, let's talk value. What problem are you solving and who benefits?";
       }
-      return `Budget questions are best handled by Ntikuma, our finance specialist. ${tier === 'curator' ? "As a Curator, you have authority up to £50,000 for projects." : tier === 'champion' ? "As a Champion, you have strategic budget authority." : "Shall I connect you?"}`;
+      return `Budget questions are best handled by Ntikuma, our finance specialist. ${
+        tier === 'curator' ? "As a Curator, you have authority up to £50,000 for projects."
+        : tier === 'champion' ? "As a Champion, you have strategic budget authority."
+        : "Shall I connect you?"
+      }`;
     }
 
-    // Default personality-based response
     return `As ${child.role}, I specialize in ${child.specialization.toLowerCase()}. Could you tell me more about what you need help with?`;
   };
 
   // === Switch active child ===
   const handleSwitchChild = useCallback((childId: ActiveChild) => {
     const child = CHILDREN_OF_ANANSI[childId];
-    
+
     routeToChild(childId, 'User selected', 'switch');
     setActiveEntity(childId);
-    
-    // Add introduction message
+
     const introMessage: ChatMessage = {
       id: `intro-${Date.now()}`,
       sender: childId === 'maya' ? 'maya' : 'child',
@@ -822,7 +852,7 @@ const MayaChat: React.FC<MayaChatProps> = ({
       timestamp: new Date(),
       childId
     };
-    
+
     setMessages(prev => [...prev, introMessage]);
   }, [routeToChild, setActiveEntity]);
 
@@ -838,7 +868,7 @@ const MayaChat: React.FC<MayaChatProps> = ({
         childId: 'maya',
         metadata: { jargonExplanation: true }
       };
-      
+
       setMessages(prev => [...prev, explanationMessage]);
     }
   }, [userId]);
@@ -847,7 +877,7 @@ const MayaChat: React.FC<MayaChatProps> = ({
   useEffect(() => {
     (window as any).mayaHandleJargonHover = handleJargonHover;
     (window as any).mayaUserContext = userContext;
-    
+
     return () => {
       delete (window as any).mayaHandleJargonHover;
       delete (window as any).mayaUserContext;
@@ -858,7 +888,7 @@ const MayaChat: React.FC<MayaChatProps> = ({
   if (!preferences.mayaEnabled) return null;
 
   // === Get available children for current tier ===
-  const availableChildren = Object.values(CHILDREN_OF_ANANSI).filter(child => 
+  const availableChildren = Object.values(CHILDREN_OF_ANANSI).filter(child =>
     child.primaryTiers.includes('all') || child.primaryTiers.includes(membershipTier)
   );
 
@@ -907,7 +937,6 @@ const MayaChat: React.FC<MayaChatProps> = ({
               </div>
             </div>
             <div className="chat-controls">
-              {/* Child switcher */}
               <div className="child-switcher">
                 {availableChildren.slice(0, 4).map(child => (
                   <button
@@ -933,9 +962,9 @@ const MayaChat: React.FC<MayaChatProps> = ({
               <div key={message.id} className={`message ${message.sender}`}>
                 <div className="message-avatar">
                   <span>
-                    {message.sender === 'user' 
-                      ? '👤' 
-                      : message.childId 
+                    {message.sender === 'user'
+                      ? '👤'
+                      : message.childId
                         ? CHILDREN_OF_ANANSI[message.childId]?.emoji || '👩🏿‍🦱'
                         : '👩🏿‍🦱'
                     }
@@ -944,7 +973,6 @@ const MayaChat: React.FC<MayaChatProps> = ({
                 <div className="message-content">
                   <div className="message-text">
                     {message.content.split('\n').map((line, i) => {
-                      // Handle bold
                       if (line.includes('**')) {
                         return (
                           <p key={i} dangerouslySetInnerHTML={{
@@ -1062,6 +1090,8 @@ const getPageContext = (pathname: string): { focus: string; purpose: string } =>
     '/calendar': { focus: 'Programmes', purpose: 'showcasing learning opportunities' },
     '/membership': { focus: 'Membership', purpose: 'explaining benefits and tiers' },
     '/get-started': { focus: 'Getting Started', purpose: 'pathway assessment and guidance' },
+    '/creator-pathways': { focus: 'Earning Path', purpose: 'matching skills to income routes' },
+    '/bright-sparks': { focus: 'Bright Sparks', purpose: 'entry-level skill development' },
     '/stemgineers': { focus: 'STEMgineers', purpose: 'STEM education programme' },
     '/techreneurs': { focus: 'TECHreneurs', purpose: 'entrepreneurship pathway' },
     '/finance': { focus: 'Finance', purpose: 'creator financial tools' }

@@ -1,4 +1,4 @@
-// src/pages/programmes/g-tech-casters/GTechCastersSandbox.tsx
+// src/pages/programmes/gtechcasters/GTechCastersSandbox.tsx
 // Media Pathways Planner - Ecosystem Edition
 // "Your Voice. Your Platform. Your Community."
 
@@ -490,7 +490,7 @@ const GTechCastersSandbox: React.FC = () => {
   return (
     <div className="gtc-sandbox">
       <header className="gtc-sandbox__header">
-        <Link to="/programmes/g-tech-casters" className="gtc-sandbox__back">
+        <Link to="/programmes/gtechcasters" className="gtc-sandbox__back">
           <ArrowLeft size={20} />
           <span>Back to Programme</span>
         </Link>
@@ -1012,7 +1012,7 @@ const GTechCastersSandbox: React.FC = () => {
                 <button className="gtc-sandbox__btn gtc-sandbox__btn--primary" disabled>
                   <Download size={18} />Download Plan (Coming Soon)
                 </button>
-                <Link to="/programmes/g-tech-casters" className="gtc-sandbox__btn gtc-sandbox__btn--secondary">
+                <Link to="/programmes/gtechcasters" className="gtc-sandbox__btn gtc-sandbox__btn--secondary">
                   <Mic size={18} />Join G-Tech Casters
                 </Link>
               </div>

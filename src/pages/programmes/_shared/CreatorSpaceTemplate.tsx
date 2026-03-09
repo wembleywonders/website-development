@@ -35,7 +35,7 @@ export const CreatorSpaceTemplate: React.FC<CreatorSpaceTemplateProps> = ({
 }) => {
   // Get guild mentor ROV for this space
   const guildMentor = Object.values(ROV_REGISTRY).find(
-    rov => rov.role === 'guild-mentor' &&
+    rov => rov.role === ('guild-mentor' as any) &&
            rov.contexts.creatorSpaces?.includes(spaceId as any)
   );
 

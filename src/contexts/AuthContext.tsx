@@ -20,6 +20,9 @@ interface AuthContextType {
   register: (registerData: RegisterRequest) => Promise<AuthResponse>;
   logout: () => void;
   refreshUser: () => Promise<void>;
+  // ✨ NEW: exposes the raw JWT Bearer token for direct API calls
+  // Used by ClaimPage and any other component that calls the backend directly
+  getToken: () => string | null;
   // Permission helpers
   canVote: () => boolean;
   canEnrollInProgrammes: () => boolean;
@@ -144,6 +147,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   };
 
+  // ✨ NEW: returns the raw JWT stored by authService, or null if not authenticated.
+  // Delegates to authService so there is one source of truth for token storage.
+  const getToken = (): string | null => authService.getToken?.() ?? null;
+
   // Permission helper functions
   const canVote = () => authService.canVote();
   const canEnrollInProgrammes = () => authService.canEnrollInProgrammes();
@@ -159,6 +166,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     register,
     logout,
     refreshUser,
+    getToken,
     canVote,
     canEnrollInProgrammes,
     isAdmin,

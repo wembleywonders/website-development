@@ -1,47 +1,55 @@
-/*
- * G-TECH COMMUNITY PLATFORM IP PROTECTION
- * Copyright (c) 2024-2026 Wembley Wonders CIC
- * Company No. 12960817
- * All rights reserved.
- */
-
-// SERVICE BAY IP PROTECTION RUNTIME
-(function () {
-  const COMPONENT_TYPE = 'maya-companion';
-})();
-
 /**
  * MayaCompanion - Main Maya AI Component
- * 
+ *
+ * UPDATED: Compatible with unified mayaStore structure and ROV framework
+ *
  * Implements the full pedagogical state machine with:
  * - ACTIVE mode: Inline overlays, proactive tips
  * - WITNESS mode: Collapsed icon, pull-only
  * - PARTNER mode: Minimal presence, pattern sharing
- * 
- * Key features:
- * - Community visibility: "Others like you" messages
- * - Gatekeeper bypass: "No approval needed" messaging
- * - Push without judgment: Encouraging without evaluating
- * 
+ * - ROUTING mode: Transitioning between Maya and children
+ *
  * Maya's silence is not absence—it's the sound of the user's own voice becoming primary.
  */
 
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  useMayaStore, 
-  useMayaMode, 
-  useMayaMessages, 
-  useMayaStage
+import {
+  useMayaStore,
+  useMayaMode,
+  useMayaMessages,
+  useMayaStage,
+  useMayaROV,
+  useMayaPreferences,
+  useMayaOpenLoops
 } from '../stores/mayaStore';
-import useMayaCommunity from '../stores/mayaStore';
-import { 
-  MayaMessage, 
-  MayaMode, 
+import {
+  MayaMessage,
+  MayaMode,
   STAGE_DEFINITIONS,
-  STAGE_MESSAGES,
-  getRandomMessage 
+  ActiveChild,
+  getRandomMessage
 } from '../types/mayaTypes';
 import styles from './MayaCompanion.module.css';
+
+// ============================================
+// CHILD INFO
+// ============================================
+
+const ENTITY_INFO: Record<ActiveChild, { emoji: string; name: string; role: string }> = {
+  maya:     { emoji: '👩🏾‍💼', name: 'Maya',     role: 'The Mother' },
+  kweku:    { emoji: '🎯',    name: 'Kweku',    role: 'Business Strategist' },
+  ntikuma:  { emoji: '📊',    name: 'Ntikuma',  role: 'Financial Advisor' },
+  anansewa: { emoji: '🎭',    name: 'Anansewa', role: 'Performance Coach' },
+  kofi:     { emoji: '🔧',    name: 'Kofi',     role: 'Technical Builder' },
+  afua:     { emoji: '🎙️',   name: 'Afua',     role: 'Voice Coach' },
+  yaw:      { emoji: '📝',    name: 'Yaw',      role: 'Journalist' },
+  esi:      { emoji: '📚',    name: 'Esi',      role: 'Heritage Keeper' },
+  kumi:     { emoji: '🎮',    name: 'Kumi',     role: 'Gaming Strategist' },
+  adaeze:   { emoji: '✂️',   name: 'Adaeze',   role: 'Fashion Designer' },
+  nyame:    { emoji: '⚖️',   name: 'Nyame',    role: 'Ethics Guide' },
+  osei:     { emoji: '✊',    name: 'Osei',     role: 'Community Organizer' },
+  akua:     { emoji: '📜',    name: 'Akua',     role: 'Legal Advocate' }
+};
 
 // ============================================
 // MAYA AVATAR
@@ -51,16 +59,19 @@ interface MayaAvatarProps {
   size?: 'small' | 'medium' | 'large';
   animated?: boolean;
   hasUnread?: boolean;
+  entity?: ActiveChild;
 }
 
-const MayaAvatar: React.FC<MayaAvatarProps> = ({ 
-  size = 'medium', 
+const MayaAvatar: React.FC<MayaAvatarProps> = ({
+  size = 'medium',
   animated = false,
-  hasUnread = false 
+  hasUnread = false,
+  entity = 'maya'
 }) => {
+  const info = ENTITY_INFO[entity] ?? ENTITY_INFO.maya;
   return (
     <div className={`${styles.avatar} ${styles[size]} ${animated ? styles.animated : ''}`}>
-      <span className={styles.avatarEmoji}>👩🏾‍💼</span>
+      <span className={styles.avatarEmoji}>{info.emoji}</span>
       {hasUnread && <span className={styles.unreadDot} />}
     </div>
   );
@@ -77,41 +88,49 @@ interface MayaMessageBubbleProps {
 
 const MayaMessageBubble: React.FC<MayaMessageBubbleProps> = ({ message, onResponse }) => {
   const [responded, setResponded] = useState(false);
-  
+  const [inputValue, setInputValue] = useState('');
+
   const handleResponse = (response: string) => {
     setResponded(true);
     onResponse?.(response);
   };
-  
-  // Get message type label for accessibility
-  const getTypeLabel = () => {
+
+  const entityInfo = message.metadata?.childId
+    ? (ENTITY_INFO[message.metadata.childId] ?? ENTITY_INFO.maya)
+    : ENTITY_INFO.maya;
+
+  const getTypeClass = () => {
     switch (message.type) {
-      case 'community-mirror': return '🌍';
-      case 'gatekeeper-bypass': return '🚀';
-      case 'ignition': return '🎯';
-      case 'push': return '💪';
-      case 'reflection': return '💭';
-      case 'pattern': return '🔍';
-      default: return '';
+      case 'community-mirror':        return styles.communityMirror;
+      case 'gatekeeper-bypass':       return styles.gatekeeperBypass;
+      case 'ignition':                return styles.ignition;
+      case 'push':                    return styles.push;
+      case 'child-introduction':      return styles.childIntro;
+      case 'child-return':            return styles.childReturn;
+      case 'independence-recognition':return styles.independence;
+      default:                        return '';
     }
   };
-  
+
   return (
-    <div className={`${styles.messageBubble} ${styles[message.type]}`}>
-      {getTypeLabel() && <span className={styles.typeLabel}>{getTypeLabel()}</span>}
+    <div className={`${styles.messageBubble} ${styles[message.type] ?? ''} ${getTypeClass()}`}>
+      {message.metadata?.childId && message.metadata.childId !== 'maya' && (
+        <div className={styles.entityIndicator}>
+          <span>{entityInfo.emoji}</span>
+          <span>{entityInfo.name}</span>
+        </div>
+      )}
+
       <p className={styles.messageText}>{message.text}</p>
-      
+
       {message.requiresResponse && !responded && (
         <div className={styles.responseButtons}>
           {message.type === 're-entry' && (
             <>
-              <button 
-                className={styles.responseBtn}
-                onClick={() => handleResponse('not-now')}
-              >
+              <button className={styles.responseBtn} onClick={() => handleResponse('not-now')}>
                 Not now
               </button>
-              <button 
+              <button
                 className={`${styles.responseBtn} ${styles.primary}`}
                 onClick={() => handleResponse('tell-me')}
               >
@@ -119,16 +138,13 @@ const MayaMessageBubble: React.FC<MayaMessageBubbleProps> = ({ message, onRespon
               </button>
             </>
           )}
-          
+
           {message.type === 'session-end' && (
             <>
-              <button 
-                className={styles.responseBtn}
-                onClick={() => handleResponse('nothing')}
-              >
+              <button className={styles.responseBtn} onClick={() => handleResponse('nothing')}>
                 Nothing comes to mind
               </button>
-              <button 
+              <button
                 className={`${styles.responseBtn} ${styles.primary}`}
                 onClick={() => handleResponse('yes')}
               >
@@ -136,22 +152,25 @@ const MayaMessageBubble: React.FC<MayaMessageBubbleProps> = ({ message, onRespon
               </button>
             </>
           )}
-          
-          {message.type === 'reflection' && (
-            <input 
+
+          {(message.type === 'three-questions' || message.type === 'reflection') && (
+            <input
               type="text"
               className={styles.reflectionInput}
-              placeholder="Type your thought..."
+              placeholder={message.type === 'three-questions' ? 'Tell me...' : 'Type your thought...'}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' && (e.target as HTMLInputElement).value) {
-                  handleResponse((e.target as HTMLInputElement).value);
+                if (e.key === 'Enter' && inputValue.trim()) {
+                  handleResponse(inputValue.trim());
+                  setInputValue('');
                 }
               }}
             />
           )}
         </div>
       )}
-      
+
       <span className={styles.messageTime}>
         {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
       </span>
@@ -165,29 +184,25 @@ const MayaMessageBubble: React.FC<MayaMessageBubbleProps> = ({ message, onRespon
 
 interface MayaInlineOverlayProps {
   message: string;
-  type?: string;
+  entity?: ActiveChild;
   onDismiss?: () => void;
 }
 
-export const MayaInlineOverlay: React.FC<MayaInlineOverlayProps> = ({ 
-  message, 
-  type = 'narration',
-  onDismiss 
-}) => {
-  return (
-    <div className={`${styles.inlineOverlay} ${styles[type]}`}>
-      <MayaAvatar size="small" />
-      <div className={styles.inlineContent}>
-        <p>{message}</p>
-        {onDismiss && (
-          <button className={styles.dismissBtn} onClick={onDismiss}>
-            Got it
-          </button>
-        )}
-      </div>
+export const MayaInlineOverlay: React.FC<MayaInlineOverlayProps> = ({
+  message,
+  entity = 'maya',
+  onDismiss
+}) => (
+  <div className={styles.inlineOverlay}>
+    <MayaAvatar size="small" entity={entity} />
+    <div className={styles.inlineContent}>
+      <p>{message}</p>
+      {onDismiss && (
+        <button className={styles.dismissBtn} onClick={onDismiss}>Got it</button>
+      )}
     </div>
-  );
-};
+  </div>
+);
 
 // ============================================
 // MAYA COLLAPSED ICON (WITNESS MODE)
@@ -196,20 +211,27 @@ export const MayaInlineOverlay: React.FC<MayaInlineOverlayProps> = ({
 interface MayaCollapsedIconProps {
   onClick: () => void;
   hasUnread: boolean;
+  entity?: ActiveChild;
+  openLoopCount?: number;
 }
 
-const MayaCollapsedIcon: React.FC<MayaCollapsedIconProps> = ({ onClick, hasUnread }) => {
-  return (
-    <button 
-      className={styles.collapsedIcon}
-      onClick={onClick}
-      aria-label="Open Maya"
-      title="Maya is here if you need"
-    >
-      <MayaAvatar size="medium" hasUnread={hasUnread} />
-    </button>
-  );
-};
+const MayaCollapsedIcon: React.FC<MayaCollapsedIconProps> = ({
+  onClick,
+  hasUnread,
+  entity = 'maya',
+  openLoopCount = 0
+}) => (
+  <button
+    className={styles.collapsedIcon}
+    onClick={onClick}
+    aria-label={`Open ${ENTITY_INFO[entity]?.name ?? 'Maya'}`}
+  >
+    <MayaAvatar size="medium" hasUnread={hasUnread} entity={entity} />
+    {openLoopCount > 0 && (
+      <span className={styles.openLoopBadge}>{openLoopCount}</span>
+    )}
+  </button>
+);
 
 // ============================================
 // MAYA CHAT PANEL
@@ -223,6 +245,8 @@ interface MayaChatPanelProps {
   onMessageResponse: (messageId: string, response: string) => void;
   mode: MayaMode;
   stage: number;
+  activeEntity: ActiveChild;
+  openLoopCount?: number;
 }
 
 const MayaChatPanel: React.FC<MayaChatPanelProps> = ({
@@ -232,24 +256,23 @@ const MayaChatPanel: React.FC<MayaChatPanelProps> = ({
   onSendMessage,
   onMessageResponse,
   mode,
-  stage
+  stage,
+  activeEntity,
+  openLoopCount = 0
 }) => {
   const [inputValue, setInputValue] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  
-  // Auto-scroll to bottom
+  const entityInfo = ENTITY_INFO[activeEntity] ?? ENTITY_INFO.maya;
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
-  
-  // Focus input when panel opens
+
   useEffect(() => {
-    if (isOpen) {
-      inputRef.current?.focus();
-    }
+    if (isOpen) inputRef.current?.focus();
   }, [isOpen]);
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputValue.trim()) {
@@ -257,75 +280,78 @@ const MayaChatPanel: React.FC<MayaChatPanelProps> = ({
       setInputValue('');
     }
   };
-  
-  // Different placeholder based on mode
+
   const getPlaceholder = () => {
+    if (activeEntity !== 'maya') return `Message ${entityInfo.name}...`;
     switch (mode) {
-      case 'ACTIVE':
-        return 'Ask Maya anything...';
+      case 'ACTIVE':  return 'Ask Maya anything...';
       case 'WITNESS':
-      case 'PARTNER':
-        return 'What are you thinking about?';
-      default:
-        return 'Type a message...';
+      case 'PARTNER': return 'What are you thinking about?';
+      case 'ROUTING': return 'Where do you need help?';
+      default:        return 'Type a message...';
     }
   };
-  
-  // Get Maya's current role description
-  const getRoleDescription = () => {
-    const stageDef = STAGE_DEFINITIONS[stage as 1|2|3|4|5];
-    if (mode === 'WITNESS') {
-      return 'Here when you need reflection';
-    }
-    if (mode === 'PARTNER') {
-      return 'Your creative partner';
-    }
-    return stageDef.mayaRole;
+
+  const getRoleText = () => {
+    if (activeEntity !== 'maya') return entityInfo.role;
+    return STAGE_DEFINITIONS[stage as 1 | 2 | 3 | 4 | 5]?.mayaRole ?? 'Guide';
   };
-  
+
   if (!isOpen) return null;
-  
+
   return (
     <div className={styles.chatPanel}>
       <div className={styles.chatHeader}>
         <div className={styles.chatHeaderLeft}>
-          <MayaAvatar size="small" />
+          <MayaAvatar size="small" entity={activeEntity} />
           <div className={styles.chatHeaderInfo}>
-            <span className={styles.chatHeaderName}>Maya</span>
-            <span className={styles.chatHeaderStatus}>
-              {getRoleDescription()}
-            </span>
+            <span className={styles.chatHeaderName}>{entityInfo.name}</span>
+            <span className={styles.chatHeaderStatus}>{getRoleText()}</span>
           </div>
         </div>
-        <button className={styles.closeBtn} onClick={onClose} aria-label="Close">
-          ✕
-        </button>
+        <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
       </div>
-      
+
+      <div className={styles.stageIndicator}>
+        <span>Stage {stage}: {STAGE_DEFINITIONS[stage as 1 | 2 | 3 | 4 | 5]?.label ?? 'Unknown'}</span>
+        <div className={styles.stageDots}>
+          {[1, 2, 3, 4, 5].map((s) => (
+            <span key={s} className={`${styles.stageDot} ${s <= stage ? styles.active : ''}`} />
+          ))}
+        </div>
+      </div>
+
+      {openLoopCount > 0 && (
+        <div className={styles.openLoopsIndicator}>
+          📌 {openLoopCount} open {openLoopCount === 1 ? 'thread' : 'threads'}
+        </div>
+      )}
+
       <div className={styles.chatMessages}>
         {messages.length === 0 && (
           <div className={styles.emptyState}>
-            <MayaAvatar size="large" />
+            <MayaAvatar size="large" entity={activeEntity} />
             <p>
-              {mode === 'WITNESS' 
-                ? "I'm here when you need reflection. No rush."
-                : "This isn't preparation for somewhere else. This IS the place."
-              }
+              {activeEntity === 'maya'
+                ? mode === 'WITNESS'
+                  ? "I'm here when you need reflection."
+                  : "How can I help you today?"
+                : `${entityInfo.name} is ready to help.`}
             </p>
           </div>
         )}
-        
+
         {messages.map((msg) => (
-          <MayaMessageBubble 
+          <MayaMessageBubble
             key={msg.id}
             message={msg}
             onResponse={(response) => onMessageResponse(msg.id, response)}
           />
         ))}
-        
+
         <div ref={messagesEndRef} />
       </div>
-      
+
       <form className={styles.chatInput} onSubmit={handleSubmit}>
         <input
           ref={inputRef}
@@ -335,8 +361,8 @@ const MayaChatPanel: React.FC<MayaChatPanelProps> = ({
           placeholder={getPlaceholder()}
           className={styles.input}
         />
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className={styles.sendBtn}
           disabled={!inputValue.trim()}
           aria-label="Send"
@@ -361,167 +387,110 @@ interface MayaCompanionProps {
 export const MayaCompanion: React.FC<MayaCompanionProps> = ({
   className = '',
   position = 'bottom-right',
-  sandboxId
+  sandboxId: _sandboxId
 }) => {
-  const { currentMode, shouldShowInline, isProactive } = useMayaMode();
-  const { currentStage } = useMayaStage();
-  const { 
-    messages, 
-    addMessage, 
-    // addStageMessage, // Removed because it does not exist
-    // addGatekeeperBypass, // Removed: does not exist
-    hasUnread, 
-    markAsRead 
-  } = useMayaMessages();
-  const { communityStats } = useMayaCommunity();
-  const isExpanded = useMayaStore((s) => s.isExpanded);
-  const toggleExpanded = useMayaStore((s) => s.toggleExpanded);
-  const setExpanded = useMayaStore((s) => s.setExpanded);
-  const userPreferences = useMayaStore((s) => s.userPreferences);
+  const { currentMode } = useMayaMode();
+  const { currentStage }  = useMayaStage();
+  const { messages, addMessage } = useMayaMessages();
+  const { activeEntity, routeToChild: _routeToChild, returnToMaya: _returnToMaya } = useMayaROV();
+  const { openLoops }     = useMayaOpenLoops();
+  const { preferences }   = useMayaPreferences();
+
+  const state        = useMayaStore((s) => s.state);
   const shareInsight = useMayaStore((s) => s.shareInsight);
-  const silentObservations = useMayaStore((s) => s.silentObservations);
-  
-  // Handle user sending a message
+
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [hasUnread,  setHasUnread]  = useState(false);
+
+  useEffect(() => {
+    if (isExpanded) setHasUnread(false);
+  }, [isExpanded]);
+
+  useEffect(() => {
+    if (!isExpanded && messages.length > 0) setHasUnread(true);
+  }, [messages.length, isExpanded]);
+
+  // ── send message ──────────────────────────────────────────
   const handleSendMessage = (text: string) => {
-    const lowerText = text.toLowerCase();
-    
-    // Detect key phrases and respond appropriately
-    if (currentMode === 'WITNESS' || currentMode === 'PARTNER') {
-      // Reflective response - ask a question back
-      setTimeout(() => {
-        addMessage(
-          "What made you think of that?",
-          'reflection'
-        );
-      }, 500);
+    if (activeEntity === 'maya') {
+      if (currentMode === 'WITNESS' || currentMode === 'PARTNER') {
+        setTimeout(() => addMessage("What made you think of that?", 'reflection'), 500);
+      } else {
+        setTimeout(() => addMessage(
+          "I see what you're working on. Try experimenting with different approaches—you can always undo.",
+          'narration'
+        ), 500);
+      }
     } else {
-      // Check for breakthrough/ignition moments
-      if (
-        lowerText.includes('i could build') ||
-        lowerText.includes('i want to create') ||
-        lowerText.includes('i have an idea') ||
-        lowerText.includes('what if i')
-      ) {
-        setTimeout(() => {
-          addMessage(
-            getRandomMessage(STAGE_MESSAGES[currentStage].ignitionMoment),
-            'ignition'
-          );
-        }, 500);
-      }
-      // Check for struggle/stuck signals
-      else if (
-        lowerText.includes('stuck') ||
-        lowerText.includes('confused') ||
-        lowerText.includes('not working') ||
-        lowerText.includes("don't know")
-      ) {
-        setTimeout(() => {
-          addMessage(
-            getRandomMessage(STAGE_MESSAGES[currentStage].pushMoment),
-            'push'
-          );
-          // Follow up with gatekeeper bypass if relevant
-          setTimeout(() => {
-            addMessage(
-              getRandomMessage(STAGE_MESSAGES[currentStage].gatekeeperBypass),
-              'gatekeeper-bypass'
-            );
-          }, 2000);
-        }, 500);
-      }
-      // Check for community questions
-      else if (
-        lowerText.includes('anyone else') ||
-        lowerText.includes('am i the only') ||
-        lowerText.includes('others')
-      ) {
-        setTimeout(() => {
-          addCommunityMirror();
-        }, 500);
-      }
-      // Default helpful response
-      else {
-        setTimeout(() => {
-          addMessage(
-            "I see what you're working on. Try experimenting—you can always undo. There's no wrong move here.",
-            'narration'
-          );
-        }, 500);
-      }
+      // Child personalities — concise, opinionated responses
+      const CHILD_RESPONSES: Record<ActiveChild, string[]> = {
+        maya:     ["How can I help?"],
+        kweku:    ["Interesting. But who's paying for this?", "What's your evidence?"],
+        ntikuma:  ["Let's look at the numbers.", "I notice a pattern here."],
+        anansewa: ["Show me again, and mean it this time.", "Breathe. Now speak."],
+        kofi:     ["Stop explaining. Build it.", "What have you actually made?"],
+        afua:     ["That's a list. Tell me like it matters.", "Find your spine."],
+        yaw:      ["If we don't write it down, it didn't happen.", "What's the angle?"],
+        esi:      ["Who taught you this?", "Their name goes in the book."],
+        kumi:     ["What's your strategy here?", "That was a throw. Let's analyse."],
+        adaeze:   ["What is this piece trying to say?", "Your hands know things."],
+        nyame:    ["That's what you want to do. But should you?", "Think it through."],
+        osei:     ["Who benefits from things staying the same?", "Are you in the room?"],
+        akua:     ["Do you have that in writing?", "Document everything."]
+      };
+      const pool = CHILD_RESPONSES[activeEntity] ?? CHILD_RESPONSES.maya;
+      const reply = pool[Math.floor(Math.random() * pool.length)];
+      setTimeout(() => addMessage(reply, 'narration', { childId: activeEntity }), 600);
     }
   };
-  
-  // Handle response to Maya's questions
+
+  // ── message response ──────────────────────────────────────
   const handleMessageResponse = (messageId: string, response: string) => {
-    const message = messages.find(m => m.id === messageId);
+    const message = messages.find((m) => m.id === messageId);
     if (!message) return;
-    
+
     if (message.type === 're-entry' && response === 'tell-me') {
-      // Share the pattern insight
-      const insight = silentObservations.insights.find(i => !i.shared);
+      const insight = state.silentObservations.insights.find((i) => !i.shared);
       if (insight) {
         shareInsight(insight.id);
-        addMessage(
-          insight.observation + " This isn't advice—it's a mirror.",
-          'pattern'
-        );
+        addMessage(insight.observation + " This isn't advice—it's a mirror.", 'pattern');
       }
     }
-    
+
     if (message.type === 'session-end' && response === 'yes') {
-      addMessage(
-        "I'm listening. What stood out to you?",
-        'reflection'
-      );
+      addMessage("I'm listening. What stood out to you?", 'reflection');
     }
   };
-  
-  // Don't render if Maya is disabled
-  if (!userPreferences.mayaEnabled) return null;
-  
+
+  // ── guard ─────────────────────────────────────────────────
+  if (!preferences?.mayaEnabled) return null;
+
   return (
     <div className={`${styles.mayaCompanion} ${styles[position]} ${className}`}>
-      {/* Collapsed icon (WITNESS/PARTNER mode) */}
-      {!shouldShowInline && !isExpanded && (
-        <MayaCollapsedIcon 
-          onClick={() => {
-            toggleExpanded();
-            markAsRead();
-          }}
+      {!isExpanded && (
+        <MayaCollapsedIcon
+          onClick={() => setIsExpanded(true)}
           hasUnread={hasUnread}
+          entity={activeEntity}
+          openLoopCount={openLoops.length}
         />
       )}
-      
-      {/* Floating button for ACTIVE mode when not expanded */}
-      {shouldShowInline && !isExpanded && (
-        <button 
-          className={styles.floatingBtn}
-          onClick={() => {
-            toggleExpanded();
-            markAsRead();
-          }}
-          aria-label="Open Maya"
-        >
-          <MayaAvatar size="medium" hasUnread={hasUnread} animated={hasUnread} />
-        </button>
-      )}
-      
-      {/* Chat panel */}
+
       <MayaChatPanel
         isOpen={isExpanded}
-        onClose={() => setExpanded(false)}
+        onClose={() => setIsExpanded(false)}
         messages={messages}
         onSendMessage={handleSendMessage}
         onMessageResponse={handleMessageResponse}
         mode={currentMode}
         stage={currentStage}
+        activeEntity={activeEntity}
+        openLoopCount={openLoops.length}
       />
-      
-      {/* Stage indicator (dev mode) */}
+
       {process.env.NODE_ENV === 'development' && (
         <div className={styles.devIndicator}>
-          Stage {currentStage} | {currentMode}
+          Stage {currentStage} | {currentMode} | {activeEntity}
         </div>
       )}
     </div>
@@ -544,39 +513,27 @@ export const MayaContextPanel: React.FC<MayaContextPanelProps> = ({
   className = ''
 }) => {
   const { currentMode } = useMayaMode();
-  const { currentStage } = useMayaStage();
-  const userPreferences = useMayaStore((s) => s.userPreferences);
-  
-  // Only show in ACTIVE mode or when user has hints enabled
-  if (currentMode !== 'ACTIVE' || !userPreferences.showHints) {
-    return null;
-  }
-  
-  // Context-sensitive hints based on current tool/action
-  const getContextHint = () => {
-    if (currentTool === 'layer') {
-      return "Layers let you test ideas without committing—watch how toggling this changes the outcome.";
-    }
-    if (currentTool === 'undo') {
-      return "Nothing is permanent here. Experiment freely.";
-    }
-    if (currentAction === 'stuck') {
-      return getRandomMessage(STAGE_MESSAGES[currentStage].hint);
-    }
-    if (currentAction === 'first-action') {
-      return getRandomMessage(STAGE_MESSAGES[currentStage].gatekeeperBypass);
-    }
+  const { preferences } = useMayaPreferences();
+  const { activeEntity } = useMayaROV();
+
+  if (currentMode !== 'ACTIVE' || !preferences?.showHints) return null;
+
+  const getContextHint = (): string | null => {
+    if (currentTool === 'layer')          return "Layers let you test ideas without committing—watch how toggling this changes the outcome.";
+    if (currentTool === 'undo')           return "Nothing is permanent here. Experiment freely.";
+    if (currentAction === 'stuck')        return "Being stuck is part of building. What have you tried so far?";
+    if (currentAction === 'first-action') return "No approval needed. Just start.";
     return null;
   };
-  
+
   const hint = getContextHint();
   if (!hint) return null;
-  
+
   return (
     <div className={`${styles.contextPanel} ${className}`}>
       <div className={styles.contextHeader}>
-        <MayaAvatar size="small" />
-        <span>Maya</span>
+        <MayaAvatar size="small" entity={activeEntity} />
+        <span>{ENTITY_INFO[activeEntity]?.name ?? 'Maya'}</span>
       </div>
       <p className={styles.contextHint}>{hint}</p>
     </div>
@@ -597,22 +554,24 @@ export const MayaStatusIndicator: React.FC<MayaStatusIndicatorProps> = ({
   nextActionLabel = 'Next →'
 }) => {
   const { currentMode } = useMayaMode();
-  const toggleExpanded = useMayaStore((s) => s.toggleExpanded);
-  
+  const { activeEntity } = useMayaROV();
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  if (currentMode === 'ACTIVE') return null;
+
+  const entityInfo = ENTITY_INFO[activeEntity] ?? ENTITY_INFO.maya;
+
   return (
     <div className={styles.statusIndicator}>
-      <button 
+      <button
         className={styles.statusMayaBtn}
-        onClick={toggleExpanded}
-        title="Talk to Maya"
+        onClick={() => setIsExpanded(!isExpanded)}
+        aria-label={`Toggle ${entityInfo.name}`}
       >
-        💬
+        {entityInfo.emoji}
       </button>
-      {onNextAction && currentMode !== 'ACTIVE' && (
-        <button 
-          className={styles.nextActionBtn}
-          onClick={onNextAction}
-        >
+      {onNextAction && (
+        <button className={styles.nextActionBtn} onClick={onNextAction}>
           {nextActionLabel}
         </button>
       )}
@@ -621,78 +580,33 @@ export const MayaStatusIndicator: React.FC<MayaStatusIndicatorProps> = ({
 };
 
 // ============================================
-// MAYA COMMUNITY SPOTLIGHT
-// For showing recent success stories
+// CHILD QUICK SWITCH
 // ============================================
 
-interface MayaCommunitySpotlightProps {
+interface ChildQuickSwitchProps {
+  onSelect: (childId: ActiveChild) => void;
+  currentEntity: ActiveChild;
   className?: string;
 }
 
-export const MayaCommunitySpotlight: React.FC<MayaCommunitySpotlightProps> = ({
+export const ChildQuickSwitch: React.FC<ChildQuickSwitchProps> = ({
+  onSelect,
+  currentEntity,
   className = ''
-}) => {
-  const { communityStats } = useMayaCommunity();
-  const userPreferences = useMayaStore((s) => s.userPreferences);
-  
-  if (!userPreferences.communityMessagesEnabled || !communityStats) {
-    return null;
-  }
-  
-  const recentStory = communityStats.recentSuccessStories[0];
-  if (!recentStory) return null;
-  
-  return (
-    <div className={`${styles.communitySpotlight} ${className}`}>
-      <div className={styles.spotlightHeader}>
-        <span className={styles.spotlightIcon}>🌟</span>
-        <span>Community Spotlight</span>
-      </div>
-      <p className={styles.spotlightText}>
-        <strong>{recentStory.creatorFirstName}</strong> from {recentStory.area} {recentStory.achievement} {recentStory.timeAgo}.
-      </p>
-      {recentStory.quote && (
-        <p className={styles.spotlightQuote}>"{recentStory.quote}"</p>
-      )}
-    </div>
-  );
-};
+}) => (
+  <div className={`${styles.quickSwitch} ${className}`}>
+    {(Object.entries(ENTITY_INFO) as [ActiveChild, typeof ENTITY_INFO[ActiveChild]][]).map(([id, info]) => (
+      <button
+        key={id}
+        className={`${styles.quickSwitchBtn} ${id === currentEntity ? styles.active : ''}`}
+        onClick={() => onSelect(id)}
+        disabled={id === currentEntity}
+        title={`${info.name} – ${info.role}`}
+      >
+        <span>{info.emoji}</span>
+      </button>
+    ))}
+  </div>
+);
 
 export default MayaCompanion;
-import type { MayaMessageType } from '../types/mayaTypes';
-
-function addCommunityMirror() {
-  // Use addMessage to show a community-mirror message
-  // Example: "Others have wondered about this too. You're not alone."
-  addMessage(
-    getRandomMessage([
-      "Others have wondered about this too. You're not alone.",
-      "You're not the only one thinking about this—many have asked similar questions.",
-      "Others like you have explored this path. Want to see what they discovered?"
-    ]),
-    'community-mirror'
-  );
-}
-function addMessage(text: string, type: MayaMessageType) {
-  // Generate a unique ID for the message
-  const id = Math.random().toString(36).substr(2, 9);
-  // Use current timestamp
-  const timestamp = new Date();
-  // Default message object
-  const message: MayaMessage = {
-    id,
-    text,
-    type,
-    timestamp,
-    requiresResponse: type === 're-entry' || type === 'session-end' || type === 'reflection',
-    // Provide default values for stage and mode, or retrieve them as needed
-    stage: 1, // Replace with actual current stage if available
-    mode: 'ACTIVE' // Replace with actual current mode if available
-  };
-  // Add the message to the store
-  useMayaMessages().addMessage(
-    message.text,
-    message.type
-  );
-}
-

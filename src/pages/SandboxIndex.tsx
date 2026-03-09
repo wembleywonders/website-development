@@ -9,7 +9,6 @@ import {
   Clock, 
   Sparkles, 
   ArrowRight,
-  Filter,
   Search
 } from 'lucide-react';
 import './SandboxIndex.css';
@@ -40,6 +39,19 @@ interface ProgrammeSandbox {
 
 const PROGRAMME_SANDBOXES: ProgrammeSandbox[] = [
   {
+    id: 'bright-sparks',
+    name: 'Bright Sparks',
+    emoji: '✨',
+    color: '#fbbf24',
+    tagline: 'Not sure where you fit? Start here.',
+    sandboxName: 'Discovery Journey',
+    sandboxDescription: 'Try mini-challenges from each programme to find your path',
+    status: 'available',
+    path: '/programmes/bright-sparks/sandbox',
+    estimatedTime: '45 min',
+    features: ['8 mini-challenges', 'Programme matcher', 'Strengths finder']
+  },
+  {
     id: 'g-tech-casters',
     name: 'G-Tech Casters',
     emoji: '🎙️',
@@ -66,22 +78,22 @@ const PROGRAMME_SANDBOXES: ProgrammeSandbox[] = [
     features: ['Character builder', 'Scene generator', 'Dialect guide']
   },
   {
-    id: 'stemgineers',
-    name: 'STEMgineers',
-    emoji: '🔧',
+    id: 'stemgeneers',
+    name: 'STEMgeneers',
+    emoji: '⚡',
     color: '#2a9d8f',
     tagline: 'Make. Build. Innovate.',
     sandboxName: 'Circuit Playground',
     sandboxDescription: 'Design and simulate basic circuits without any hardware',
     status: 'available',
-    path: '/programmes/stemgineers/sandbox',
+    path: '/programmes/stemgeneers/sandbox',
     estimatedTime: '25 min',
     features: ['Circuit builder', 'Component library', 'Simulation mode']
   },
   {
     id: 'techreneurs',
     name: 'TECHreneurs',
-    emoji: '💰',
+    emoji: '💻',
     color: '#e9c46a',
     tagline: 'Turn creativity into income.',
     sandboxName: 'Business Canvas',
@@ -93,8 +105,8 @@ const PROGRAMME_SANDBOXES: ProgrammeSandbox[] = [
   },
   {
     id: 'pageturners',
-    name: 'PageTurners',
-    emoji: '📖',
+    name: 'Pageturners',
+    emoji: '✍️',
     color: '#f4a261',
     tagline: 'Words. Stories. Worlds.',
     sandboxName: 'Story Starter',
@@ -105,17 +117,17 @@ const PROGRAMME_SANDBOXES: ProgrammeSandbox[] = [
     features: ['Writing prompts', 'Story structure', 'Character cards']
   },
   {
-    id: 'auntie-anansis-kitchen',
-    name: "Auntie Anansi's Kitchen",
-    emoji: '🍲',
-    color: '#d62828',
-    tagline: 'Culture. Food. Heritage.',
-    sandboxName: 'Recipe Heritage Keeper',
-    sandboxDescription: 'Document family recipes with stories, techniques, and heritage context',
+    id: 'silk-stilettos',
+    name: 'Silk Stilettos',
+    emoji: '🎨',
+    color: '#ff006e',
+    tagline: 'Style. Confidence. Expression.',
+    sandboxName: 'Creative Pathways Planner',
+    sandboxDescription: 'Map your creative interests to real earning pathways',
     status: 'available',
-    path: '/programmes/auntie-anansis-kitchen/sandbox',
-    estimatedTime: '20 min',
-    features: ['Recipe builder', 'Heritage stories', 'Technique videos']
+    path: '/programmes/silk-stilettos/sandbox',
+    estimatedTime: '25 min',
+    features: ['Interest explorer', 'Pathway mapper', '6-month plan']
   },
   {
     id: 'trubble-n-bass',
@@ -131,30 +143,43 @@ const PROGRAMME_SANDBOXES: ProgrammeSandbox[] = [
     features: ['Loop library', 'Beat sequencer', 'Mix basics']
   },
   {
-    id: 'silk-stilettos',
-    name: 'Silk Stilettos',
-    emoji: '👗',
-    color: '#ff006e',
-    tagline: 'Style. Confidence. Expression.',
-    sandboxName: 'Creative Pathways Planner',
-    sandboxDescription: 'Map your creative interests to real earning pathways',
+    id: 'auntie-anansis-kitchen',
+    name: "Auntie Anansi's Kitchen",
+    emoji: '🍲',
+    color: '#d62828',
+    tagline: 'Culture. Food. Heritage.',
+    sandboxName: 'Recipe Heritage Keeper',
+    sandboxDescription: 'Document family recipes with stories, techniques, and heritage context',
     status: 'available',
-    path: '/programmes/silk-stilettos/sandbox',
-    estimatedTime: '25 min',
-    features: ['Interest explorer', 'Pathway mapper', '6-month plan']
+    path: '/programmes/auntie-anansis-kitchen/sandbox',
+    estimatedTime: '20 min',
+    features: ['Recipe builder', 'Heritage stories', 'Technique videos']
   },
   {
-    id: 'bright-sparks',
-    name: 'Bright Sparks',
-    emoji: '✨',
-    color: '#fbbf24',
-    tagline: 'Not sure where you fit? Start here.',
-    sandboxName: 'Discovery Journey',
-    sandboxDescription: 'Try mini-challenges from each programme to find your path',
+    id: 'easy-street',
+    name: 'Easy Street',
+    emoji: '📻',
+    color: '#06b6d4',
+    tagline: 'Radio Drama. Community Storytelling.',
+    sandboxName: 'Drama Studio',
+    sandboxDescription: 'Write and produce a short radio drama scene with character and sound direction',
     status: 'available',
-    path: '/programmes/bright-sparks/sandbox',
-    estimatedTime: '45 min',
-    features: ['8 mini-challenges', 'Programme matcher', 'Strengths finder']
+    path: '/programmes/easy-street/sandbox',
+    estimatedTime: '20 min',
+    features: ['Scene builder', 'Character voices', 'Sound direction cues']
+  },
+  {
+    id: 'roots',
+    name: 'Roots',
+    emoji: '🌿',
+    color: '#059669',
+    tagline: 'Body Sovereignty. Knowledge Archive.',
+    sandboxName: 'Heritage Knowledge Builder',
+    sandboxDescription: 'Document and certify a piece of personal or community knowledge for the counter-archive',
+    status: 'available',
+    path: '/programmes/roots/sandbox',
+    estimatedTime: '15 min',
+    features: ['Knowledge entry form', 'Provenance tagging', 'Counter-archive preview']
   },
   {
     id: 'scrap-cat',
@@ -179,7 +204,6 @@ const SandboxIndex: React.FC = () => {
   const [filter, setFilter] = useState<'all' | 'available' | 'coming-soon'>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Filter sandboxes
   const filteredSandboxes = PROGRAMME_SANDBOXES.filter(sandbox => {
     const matchesFilter = filter === 'all' || sandbox.status === filter;
     const matchesSearch = 
@@ -189,7 +213,6 @@ const SandboxIndex: React.FC = () => {
     return matchesFilter && matchesSearch;
   });
 
-  // Count available vs coming soon
   const availableCount = PROGRAMME_SANDBOXES.filter(s => s.status === 'available').length;
   const comingSoonCount = PROGRAMME_SANDBOXES.filter(s => s.status === 'coming-soon').length;
 
@@ -216,7 +239,7 @@ const SandboxIndex: React.FC = () => {
               <span className="sandbox-index__stat-label">Available Now</span>
             </div>
             <div className="sandbox-index__stat">
-              <span className="sandbox-index__stat-value">10</span>
+              <span className="sandbox-index__stat-value">{PROGRAMME_SANDBOXES.length}</span>
               <span className="sandbox-index__stat-label">Programmes</span>
             </div>
             <div className="sandbox-index__stat">
@@ -361,7 +384,7 @@ const SandboxIndex: React.FC = () => {
         <div className="sandbox-index__container">
           <h2>Not sure where to start?</h2>
           <p>
-            Try Bright Sparks — it samples all 10 programmes in mini-challenges 
+            Try Bright Sparks — it samples all the programmes in mini-challenges 
             and recommends your best match.
           </p>
           <Link to="/programmes/bright-sparks/sandbox" className="sandbox-index__start-btn">

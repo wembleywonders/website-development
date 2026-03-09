@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { SafeComponent } from './wrapper/SafeReact'
 import { AuthProvider } from './contexts/AuthContext'
@@ -13,7 +13,7 @@ import ConnoisseurClubPage from './pages/ConnoisseurClubPage'
 import YourJourneyPage from './pages/YourJourneyPage'
 import AboutUsPage from './pages/AboutUsPage'
 import GetStartedPage from './pages/GetStartedPage'
-import SandboxIndex from './pages/SandboxIndex'  // ✨ Updated: Sandbox landing page
+import SandboxIndex from './pages/SandboxIndex'
 import ProgrammesPage from './pages/ProgrammesPage'
 import CreatorPathwaysPage from './pages/CreatorPathwaysPage'
 import CreatorFactoryPage from './pages/CreatorFactoryPage'
@@ -60,7 +60,8 @@ import HireGraduatesPage from './pages/HireGraduatesPage'
 // Programme pages
 import KaywanasCourtPage from './pages/programmes/kaywanas-court'
 import PageturnersPage from './pages/programmes/pageturners'
-import STEMgeneersPage from './pages/programmes/STEMgeneersPage'
+// ✨ FIXED: import from folder (index.tsx) — was ./pages/programmes/STEMgeneersPage
+import STEMgeneersPage from './pages/programmes/stemgeneers'
 import TECHreneursPage from './pages/programmes/techreneurs'
 import { GTechCastersPage } from './pages/programmes/gtechcasters'
 import TrubbleNBassPage from './pages/trubble-n-bass'
@@ -69,15 +70,25 @@ import BrightSparksPage from './pages/programmes/bright-sparks'
 import AuntieAnansisKitchenPage from './pages/programmes/auntie-anansis-kitchen'
 import { ScrapCatPage } from './pages/programmes/scrap-cat'
 import { MoneyResetPage } from './pages/programmes/money-reset'
+// ✨ Easy Street
+import EasyStreetPage from './pages/programmes/easy-street'
+// ✨ Roots — Body Sovereignty Resource
+// Women-led · Women-directed · Women-managed
+// Leads: Judith Fontanelle · Flora Agba · Natalie | ROV: Aya
+import RootsPage from './pages/programmes/roots/RootsPage'
+import RootsSandbox from './pages/programmes/roots/sandbox'
+
+// ✨ IWD 2026 Editorial — remove nav entry after 31 March 2026; route/page can remain as archive
+import IWDEditorialPage from './pages/editorial/IWDEditorialPage'
 
 // ✨ Programme Sandbox pages
 import KaywanasCourtSandbox from './pages/programmes/kaywanas-court/KaywanasCourtSandbox'
 import PageturnersSandbox from './pages/programmes/pageturners/PageturnersSandbox'
-import STEMgeneersSandbox from './pages/programmes/stemgeneers/STEMgeneersSandbox'
+import STEMgeneersSandbox from './pages/programmes/stemgeneers/sandbox'
 import TECHreneursSandbox from './pages/programmes/techreneurs/TECHreneursSandbox'
 import GTechCastersSandbox from './pages/programmes/gtechcasters/GTechCastersSandbox'
 import TrubbleNBassSandbox from './pages/programmes/trubble-n-bass/TrubbleNBassSandbox'
-import SilkStilettosSandbox from './pages/programmes/silk-stilettos/SilkStilettosSandbox'
+import SilkStilettosSandbox from './pages/programmes/silk-stilettos/sandbox'
 import BrightSparksSandbox from './pages/programmes/bright-sparks/BrightSparksSandbox'
 import AuntieAnansisKitchenSandbox from './pages/programmes/auntie-anansis-kitchen/AuntieAnansisKitchenSandbox'
 import ScrapCatSandbox from './pages/programmes/scrap-cat/ScrapCatSandbox'
@@ -131,6 +142,7 @@ import { FacilitationEngine } from './workshops/facilitation'
 // Components
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
+import { useEffect } from 'react'
 
 // ============================================
 // SMART ROUTING COMPONENTS
@@ -201,15 +213,18 @@ const SmartNotFound: React.FC = () => {
     const path = location.pathname.toLowerCase();
     const suggestions: string[] = [];
 
-    // ✨ NEW: Spark Generator & Facilitation suggestions
     if (path.includes('spark') || path.includes('warmup') || path.includes('warm-up') || path.includes('icebreaker')) {
       suggestions.push('/workshops/spark-generator');
     }
     if (path.includes('facilitat') || path.includes('session-plan') || path.includes('guide')) {
       suggestions.push('/workshops/facilitation');
     }
-
-    // Passionistas hub suggestions
+    if (path.includes('easy') || path.includes('street') || path.includes('radio-drama')) {
+      suggestions.push('/programmes/easy-street');
+    }
+    if (path.includes('roots') || path.includes('hair') || path.includes('body-sovereignty') || path.includes('apothecary')) {
+      suggestions.push('/programmes/roots');
+    }
     if (path.includes('tool') || path.includes('sandbox') || path.includes('try')) {
       suggestions.push('/sandbox');
     }
@@ -225,8 +240,6 @@ const SmartNotFound: React.FC = () => {
     if (path.includes('pathway') || path.includes('programme') || path.includes('program')) {
       suggestions.push('/pathways');
     }
-
-    // Revenue page suggestions
     if (path.includes('enrol') || path.includes('apply') || path.includes('join')) {
       suggestions.push('/enroll');
     }
@@ -257,34 +270,18 @@ const SmartNotFound: React.FC = () => {
     if (path.includes('faq') || path.includes('question')) {
       suggestions.push('/faq');
     }
-
-    // Auth suggestions
     if (path.includes('login') || path.includes('signin') || path.includes('sign-in')) {
       suggestions.push('/auth/login');
     }
     if (path.includes('signup') || path.includes('register') || path.includes('sign-up')) {
       suggestions.push('/auth/signup');
     }
-
-    // Existing page suggestions
-    if (path.includes('about')) {
-      suggestions.push('/about');
-    }
-    if (path.includes('contact')) {
-      suggestions.push('/contact');
-    }
-    if (path.includes('member')) {
-      suggestions.push('/membership');
-    }
-    if (path.includes('volunteer')) {
-      suggestions.push('/volunteers');
-    }
-    if (path.includes('shop') || path.includes('store')) {
-      suggestions.push('/shop');
-    }
-    if (path.includes('calendar') || path.includes('event')) {
-      suggestions.push('/calendar');
-    }
+    if (path.includes('about')) suggestions.push('/about');
+    if (path.includes('contact')) suggestions.push('/contact');
+    if (path.includes('member')) suggestions.push('/membership');
+    if (path.includes('volunteer')) suggestions.push('/volunteers');
+    if (path.includes('shop') || path.includes('store')) suggestions.push('/shop');
+    if (path.includes('calendar') || path.includes('event')) suggestions.push('/calendar');
 
     setSuggestions(suggestions.slice(0, 3));
   }, [location.pathname]);
@@ -330,19 +327,14 @@ function App() {
                 {/* ========================================
                     AUTH ROUTES
                     ======================================== */}
-                {/* Primary auth routes with /auth/ prefix */}
                 <Route path="/auth/login" element={<LoginPage />} />
                 <Route path="/auth/signup" element={<SignupPage />} />
-                
-                {/* Legacy auth routes (redirect to /auth/) */}
                 <Route path="/login" element={<Navigate to="/auth/login" replace />} />
                 <Route path="/signup" element={<Navigate to="/auth/signup" replace />} />
                 <Route path="/sign-up" element={<Navigate to="/auth/signup" replace />} />
                 <Route path="/sign-in" element={<Navigate to="/auth/login" replace />} />
                 <Route path="/signin" element={<Navigate to="/auth/login" replace />} />
                 <Route path="/register" element={<Navigate to="/auth/signup?intent=general" replace />} />
-                
-                {/* Intent-based signup shortcuts */}
                 <Route path="/join-as-creator" element={<Navigate to="/auth/signup?intent=creator" replace />} />
                 <Route path="/join-as-learner" element={<Navigate to="/auth/signup?intent=learner" replace />} />
                 <Route path="/join-as-volunteer" element={<Navigate to="/auth/signup?intent=volunteer" replace />} />
@@ -355,24 +347,16 @@ function App() {
                 <Route path="/admin/dashboard" element={<CreatorMetricsDashboard />} />
                 
                 {/* ========================================
-                    ✨ WORKSHOP ROUTES (Spark Generator & Facilitation)
+                    ✨ WORKSHOP ROUTES
                     ======================================== */}
-                
-                {/* Spark Generator — Facilitator Zoom warm-up tool */}
                 <Route path="/workshops/spark-generator" element={<SparkGeneratorPage />} />
-                
-                {/* Spark Generator aliases */}
                 <Route path="/sparks" element={<Navigate to="/workshops/spark-generator" replace />} />
                 <Route path="/spark-generator" element={<Navigate to="/workshops/spark-generator" replace />} />
                 <Route path="/tools/sparks" element={<Navigate to="/workshops/spark-generator" replace />} />
                 <Route path="/warmup" element={<Navigate to="/workshops/spark-generator" replace />} />
                 <Route path="/warm-up" element={<Navigate to="/workshops/spark-generator" replace />} />
                 <Route path="/icebreaker" element={<Navigate to="/workshops/spark-generator" replace />} />
-                
-                {/* Facilitation Engine — Week-by-week session guides */}
                 <Route path="/workshops/facilitation" element={<FacilitationEngine />} />
-                
-                {/* Facilitation aliases */}
                 <Route path="/facilitation" element={<Navigate to="/workshops/facilitation" replace />} />
                 <Route path="/guides" element={<Navigate to="/workshops/facilitation" replace />} />
                 <Route path="/session-plans" element={<Navigate to="/workshops/facilitation" replace />} />
@@ -393,11 +377,11 @@ function App() {
                 <Route path="/sandbox" element={<SandboxIndex />} />
                 <Route path="/sandboxes" element={<SandboxIndex />} />
                 <Route path="/try" element={<SandboxIndex />} />
-                
-                {/* Programme-specific sandboxes */}
                 <Route path="/programmes/kaywanas-court/sandbox" element={<KaywanasCourtSandbox />} />
                 <Route path="/programmes/pageturners/sandbox" element={<PageturnersSandbox />} />
                 <Route path="/programmes/stemgeneers/sandbox" element={<STEMgeneersSandbox />} />
+                {/* ✨ PrototypeLab — repair workshop (component coming; routes to sandbox meanwhile) */}
+                <Route path="/programmes/stemgeneers/prototype-lab" element={<STEMgeneersSandbox />} />
                 <Route path="/programmes/techreneurs/sandbox" element={<TECHreneursSandbox />} />
                 <Route path="/programmes/gtechcasters/sandbox" element={<GTechCastersSandbox />} />
                 <Route path="/programmes/trubble-n-bass/sandbox" element={<TrubbleNBassSandbox />} />
@@ -405,13 +389,14 @@ function App() {
                 <Route path="/programmes/bright-sparks/sandbox" element={<BrightSparksSandbox />} />
                 <Route path="/programmes/auntie-anansis-kitchen/sandbox" element={<AuntieAnansisKitchenSandbox />} />
                 <Route path="/programmes/scrap-cat/sandbox" element={<ScrapCatSandbox />} />
-                
-                {/* Sandbox aliases via pathways */}
+                {/* Roots sandbox */}
+                <Route path="/programmes/roots/sandbox" element={<RootsSandbox />} />
                 <Route path="/pathways/kaywanas-court/sandbox" element={<KaywanasCourtSandbox />} />
                 <Route path="/pathways/pageturners/sandbox" element={<PageturnersSandbox />} />
                 <Route path="/pathways/stemgeneers/sandbox" element={<STEMgeneersSandbox />} />
+                {/* ✨ PrototypeLab under /pathways/ prefix */}
+                <Route path="/pathways/stemgeneers/prototype-lab" element={<STEMgeneersSandbox />} />
                 <Route path="/pathways/techreneurs/sandbox" element={<TECHreneursSandbox />} />
-                <Route path="/pathways/gtechcasters/sandbox" element={<GTechCastersSandbox />} />
                 <Route path="/pathways/gtech-casters/sandbox" element={<GTechCastersSandbox />} />
                 <Route path="/pathways/trubble-n-bass/sandbox" element={<TrubbleNBassSandbox />} />
                 <Route path="/pathways/silk-stilettos/sandbox" element={<SilkStilettosSandbox />} />
@@ -419,6 +404,7 @@ function App() {
                 <Route path="/pathways/auntie-anansis-kitchen/sandbox" element={<AuntieAnansisKitchenSandbox />} />
                 <Route path="/pathways/aunties-kitchen/sandbox" element={<AuntieAnansisKitchenSandbox />} />
                 <Route path="/pathways/scrap-cat/sandbox" element={<ScrapCatSandbox />} />
+                <Route path="/pathways/roots/sandbox" element={<RootsSandbox />} />
                 
                 {/* ========================================
                     ✨ PATHWAYS (Primary navigation)
@@ -439,6 +425,10 @@ function App() {
                 <Route path="/pathways/raydyo" element={<RaydyoPage />} />
                 <Route path="/pathways/joystick" element={<JoystickPage />} />
                 <Route path="/pathways/money-reset" element={<MoneyResetPage />} />
+                {/* ✨ Easy Street pathway */}
+                <Route path="/pathways/easy-street" element={<EasyStreetPage />} />
+                {/* ✨ Roots pathway */}
+                <Route path="/pathways/roots" element={<RootsPage />} />
                 
                 {/* ========================================
                     REVENUE ROUTES
@@ -459,8 +449,6 @@ function App() {
                 <Route path="/journey" element={<JourneyPage />} />
                 <Route path="/faq" element={<FAQPage />} />
                 <Route path="/impact" element={<ImpactPage />} />
-                
-                {/* Revenue Route Aliases */}
                 <Route path="/apply" element={<EnrollPage />} />
                 <Route path="/business-training" element={<CorporateTrainingPage />} />
                 <Route path="/b2b" element={<CorporateTrainingPage />} />
@@ -472,37 +460,24 @@ function App() {
                     CORE ROUTES
                     ======================================== */}
                 <Route path="/" element={<HomePage />} />
-                
-                {/* ========================================
-                    CONNOISSEURS CLUB - CULTURAL FRAMEWORK
-                    ======================================== */}
                 <Route path="/connoisseurs-club" element={<ConnoisseurClubPage />} />
-                
                 <Route path="/your-journey" element={<YourJourneyPage />} />
                 <Route path="/about" element={<AboutUsPage />} />
                 <Route path="/team" element={<TeamPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/get-started" element={<GetStartedPage />} />
-                
-                {/* Creator Factory Routes */}
                 <Route path="/factory" element={<CreatorFactoryPage />} />
                 <Route path="/creator-factory" element={<CreatorFactoryPage />} />
                 <Route path="/the-factory" element={<CreatorFactoryPage />} />
-                
-                {/* Creator Pathways Routes (legacy) */}
                 <Route path="/creator-pathways" element={<CreatorPathwaysPage />} />
                 <Route path="/journey-map" element={<CreatorPathwaysPage />} />
-                
-                {/* Calendar & Events */}
                 <Route path="/calendar" element={<CalendarPage />} />
                 <Route path="/programmes" element={<CalendarPage />} />
                 <Route path="/shows" element={<CalendarPage />} />
                 <Route path="/events" element={<CommunityCalendarPage />} />
                 <Route path="/community-events" element={<CommunityCalendarPage />} />
-                
                 <Route path="/shop" element={<CommunityShopPage />} />
                 <Route path="/cyberstore" element={<CommunityShopPage />} />
-                <Route path="/community" element={<CommunityHubsPage />} />
                 <Route path="/workshops" element={<WorkshopsPage />} />
                 <Route path="/workshop-calendar" element={<WorkshopCalendarPage />} />
                 
@@ -514,13 +489,19 @@ function App() {
                 <Route path="/volunteer/apply" element={<Navigate to="/volunteer-application" replace />} />
                 <Route path="/become-a-volunteer" element={<Navigate to="/volunteer-application" replace />} />
                 
-                {/* Creator's Journal */}
+                {/* ========================================
+                    CREATOR'S JOURNAL
+                    ✨ Both paths resolve to the same page.
+                    /workspace/creators-journal is the canonical path used
+                    by STEMgeneersPage, Neville panel, and verification banner.
+                    /creators-journal kept as legacy alias.
+                    ======================================== */}
+                <Route path="/workspace/creators-journal" element={<CreatorsJournalPage />} />
                 <Route path="/creators-journal" element={<CreatorsJournalPage />} />
                 
                 {/* ========================================
-                    PROGRAMMES (Legacy - still works)
+                    PROGRAMMES (Legacy + Roots)
                     ======================================== */}
-                <Route path="/programmes" element={<ProgrammesPage />} />
                 <Route path="/programmes/all" element={<ProgrammesPage />} />
                 <Route path="/programmes/kaywanas-court" element={<KaywanasCourtPage />} />
                 <Route path="/programmes/pageturners" element={<PageturnersPage />} />
@@ -534,7 +515,19 @@ function App() {
                 <Route path="/programmes/trubble-n-bass" element={<TrubbleNBassPage />} />
                 <Route path="/programmes/scrap-cat" element={<ScrapCatPage />} />
                 <Route path="/programmes/money-reset" element={<MoneyResetPage />} />
+                {/* ✨ Easy Street */}
+                <Route path="/programmes/easy-street" element={<EasyStreetPage />} />
+                {/* ✨ Roots — Body Sovereignty Resource */}
+                <Route path="/programmes/roots" element={<RootsPage />} />
                 
+                {/* ========================================
+                    ✨ EDITORIAL ROUTES
+                    ======================================== */}
+                {/* IWD 2026 — nav entry to be removed after 31 March 2026
+                    Page auto-redirects to /programmes/roots from 1 April 2026
+                    Add Cloudflare _redirects entry: /editorial/iwd-2026 /programmes/roots 301 */}
+                <Route path="/editorial/iwd-2026" element={<IWDEditorialPage />} />
+
                 {/* Media Platform Routes */}
                 <Route path="/raydyo" element={<RaydyoPage />} />
                 <Route path="/joystick" element={<JoystickPage />} />
@@ -549,7 +542,6 @@ function App() {
                     ======================================== */}
                 <Route path="/membership" element={<MembershipPage />} />
                 <Route path="/connector" element={<ConnectorApplicationGatewayPage />} />
-                <Route path="/apply" element={<ConnectorApplicationGatewayPage />} />
                 <Route path="/application-success" element={<ApplicationSuccessPage />} />
                 <Route path="/application-dashboard" element={<ApplicationDashboard />} />
                 <Route path="/assessment-guide" element={<AssessmentGuidePage />} />
@@ -558,22 +550,16 @@ function App() {
                 <Route path="/curator" element={<CuratorPage />} />
                 <Route path="/champion" element={<ChampionPage />} />
                 <Route path="/community-overview" element={<CommunityOverviewPage />} />
-                <Route path="/membership" element={<ConnectorHandbookPage />} />
-                <Route path="/practice-assessment" element={<SampleScenariosPage />} />
                 <Route path="/success-stories" element={<SuccessStoriesPage />} />
-                
-                {/* Members Bonus Routes */}
-                <Route path="/membership" element={<IndividualBenefits />} />
-                <Route path="/membership" element={<IndividualBenefits />} />
-                <Route path="/membership" element={<CommunityOwnership />} />
-                
+                <Route path="/membership/benefits" element={<Navigate to="/membership" replace />} />
+                <Route path="/members-benefits" element={<Navigate to="/membership" replace />} />
+
                 {/* Who We Are sub-pages */}
                 <Route path="/who-we-are/how-we-share-power" element={<HowWeSharePower />} />
                 <Route path="/who-we-are/directors-pathway" element={<DirectorsPathway />} />
                 
                 {/* ========================================
                     ✨ REDIRECTS FROM NAVIGATION CONFIG
-                    Generated from REDIRECT_MAP
                     ======================================== */}
                 {Object.entries(REDIRECT_MAP).map(([from, to]) => (
                   <Route key={from} path={from} element={<Navigate to={to as string} replace />} />
@@ -582,16 +568,22 @@ function App() {
                 {/* ========================================
                     ADDITIONAL REDIRECTS
                     ======================================== */}
-                {/* Backwards compatibility */}
                 <Route path="/community-investment" element={<Navigate to="/partnerships" replace />} />
-                <Route path="/membership/benefits" element={<Navigate to="/membership" replace />} />
-                <Route path="/members-benefits" element={<Navigate to="/membership" replace />} />
                 <Route path="/projects" element={<Navigate to="/community" replace />} />
-                
-                {/* American spelling */}
                 <Route path="/programs" element={<Navigate to="/pathways" replace />} />
                 <Route path="/store" element={<Navigate to="/shop" replace />} />
-                
+
+                {/* Easy Street redirects */}
+                <Route path="/easy-street" element={<Navigate to="/programmes/easy-street" replace />} />
+                <Route path="/workshops/easy-street" element={<Navigate to="/programmes/easy-street" replace />} />
+                <Route path="/workshops/easy-street/content" element={<Navigate to="/programmes/easy-street" replace />} />
+
+                {/* Roots redirects — convenience aliases */}
+                <Route path="/roots" element={<Navigate to="/programmes/roots" replace />} />
+                <Route path="/body-sovereignty" element={<Navigate to="/programmes/roots" replace />} />
+                <Route path="/hair-care" element={<Navigate to="/programmes/roots" replace />} />
+                <Route path="/apothecary" element={<Navigate to="/programmes/roots" replace />} />
+
                 {/* Topic redirects → Pathways */}
                 <Route path="/stem" element={<Navigate to="/pathways/stemgeneers" replace />} />
                 <Route path="/entrepreneurship" element={<Navigate to="/pathways/techreneurs" replace />} />
@@ -616,27 +608,26 @@ function App() {
                 <Route path="/repair" element={<Navigate to="/pathways/scrap-cat" replace />} />
                 <Route path="/recycling" element={<Navigate to="/pathways/scrap-cat" replace />} />
                 <Route path="/money" element={<Navigate to="/pathways/money-reset" replace />} />
-                <Route path="/membership" element={<Navigate to="/pathways/money-reset" replace />} />
-                
+                <Route path="/radio-drama" element={<Navigate to="/programmes/easy-street" replace />} />
+
                 {/* Media platform SEO redirects */}
                 <Route path="/radio" element={<Navigate to="/raydyo" replace />} />
                 <Route path="/magazine" element={<Navigate to="/joystick" replace />} />
                 <Route path="/ezine" element={<Navigate to="/joystick" replace />} />
                 <Route path="/gaming" element={<Navigate to="/joystick" replace />} />
                 <Route path="/games" element={<Navigate to="/joystick" replace />} />
-                
+
                 {/* Tilted Crowns redirect */}
                 <Route path="/tilted-crowns" element={<Navigate to="/shop" replace />} />
                 <Route path="/crowns" element={<Navigate to="/shop" replace />} />
-                
+
                 {/* Creator's Journal redirects */}
                 <Route path="/journal" element={<Navigate to="/creators-journal" replace />} />
                 <Route path="/portfolio" element={<Navigate to="/creators-journal" replace />} />
                 <Route path="/dashboard" element={<Navigate to="/creators-journal" replace />} />
-                
+
                 {/* General redirects */}
                 <Route path="/training" element={<Navigate to="/corporate-training" replace />} />
-                <Route path="/programmes" element={<Navigate to="/workshops" replace />} />
                 <Route path="/courses" element={<Navigate to="/workshops" replace />} />
                 <Route path="/classes" element={<Navigate to="/workshops" replace />} />
                 <Route path="/learn" element={<Navigate to="/pathways" replace />} />
@@ -644,7 +635,7 @@ function App() {
                 <Route path="/help" element={<Navigate to="/contact" replace />} />
                 <Route path="/support" element={<Navigate to="/contact" replace />} />
                 <Route path="/volunteer" element={<Navigate to="/volunteers" replace />} />
-                
+
                 {/* Smart URL parameter handling */}
                 <Route path="/redirect" element={<SmartParameterRedirect />} />
                 

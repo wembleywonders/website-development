@@ -1,0 +1,530 @@
+/* src/pages/editorial/IWDEditorialPage.css
+ *
+ * Follows src/components/PageTemplate.module.css design system.
+ * Colour palette: slate-900 bg, white text, purple accent, cyan secondary.
+ * Typography: Great Vibes for display, Inter/system for body.
+ * Glass morphism: rgba backgrounds + backdrop-filter blur.
+ */
+
+/* ============================================
+   PAGE ROOT
+   ============================================ */
+
+.iwd-editorial-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin-top: 80px;
+  padding: 0;
+  width: 100%;
+  position: relative;
+}
+
+/* Subtle Wembley background texture in body */
+.iwd-editorial-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/images/backgrounds/desktop-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* All direct children sit above the texture */
+.iwd-editorial-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   MASTHEAD
+   ============================================ */
+
+.iwd-masthead {
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.iwd-joystick-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 0.6rem 1.25rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.joystick-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.25rem;
+}
+
+.joystick-issue {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.iwd-headline {
+  font-family: 'Great Vibes', cursive;
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 0 0 1.5rem 0;
+  color: #ffffff;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(255, 255, 255, 0.3);
+  -webkit-text-stroke: 1px #ffffff;
+  paint-order: stroke fill;
+  line-height: 1.3;
+}
+
+.iwd-standfirst {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #f8fafc;
+  line-height: 1.7;
+  margin: 0 0 2rem;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.9),
+    0 4px 15px rgba(0, 0, 0, 0.7);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.iwd-byline {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.byline-credit {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.byline-date {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.byline-credit::before {
+  content: '✊🏿 ';
+}
+
+/* ============================================
+   EDITORIAL CONTEXT
+   ============================================ */
+
+.iwd-context {
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+}
+
+.iwd-context-note {
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-left: 4px solid #a855f7;
+  border-radius: 0 12px 12px 0;
+  padding: 1.75rem 2rem;
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #e2e8f0;
+  font-style: italic;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.iwd-context-attribution {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-align: right;
+  margin: 0;
+  padding-right: 0.5rem;
+}
+
+/* ============================================
+   VOICE ENTRIES
+   ============================================ */
+
+.iwd-voices {
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+}
+
+.voices-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0ea5e9;
+  margin: 0 0 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+.voice-entry {
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.voice-entry:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(168, 85, 247, 0.1);
+}
+
+.voice-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.voice-contributor {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.voice-location {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.voice-quote {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #e2e8f0;
+  font-style: italic;
+  border-left: 3px solid #a855f7;
+  margin: 0 0 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.voice-quote::before {
+  content: '\201C';
+  color: #a855f7;
+  font-size: 1.5em;
+  line-height: 0;
+  vertical-align: -0.3em;
+  margin-right: 0.1em;
+}
+
+.voice-quote::after {
+  content: '\201D';
+  color: #a855f7;
+  font-size: 1.5em;
+  line-height: 0;
+  vertical-align: -0.3em;
+  margin-left: 0.1em;
+}
+
+.voice-context {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+}
+
+.voice-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #0ea5e9;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.voice-link:hover {
+  color: #38bdf8;
+}
+
+/* ============================================
+   RAYD-YO CALLOUT
+   ============================================ */
+
+.iwd-raydyo {
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+}
+
+.raydyo-callout {
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.raydyo-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #06b6d4;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  padding: 0.25rem 0.7rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.raydyo-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.75rem;
+}
+
+.raydyo-desc {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0 0 1.25rem;
+}
+
+.raydyo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #06b6d4;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.raydyo-link:hover {
+  color: #67e8f9;
+}
+
+/* ============================================
+   COUNTER-ARCHIVE NOTE
+   ============================================ */
+
+.iwd-archive {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  padding: 0 2rem;
+}
+
+.archive-note {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0 0 0.75rem;
+}
+
+.archive-link {
+  font-size: 0.9rem;
+  color: #a855f7;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.archive-link:hover {
+  color: #c084fc;
+}
+
+/* ============================================
+   ARCHIVE NOTICE (time-limited)
+   ============================================ */
+
+.iwd-archive-notice {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  padding: 0 2rem;
+}
+
+.iwd-archive-notice p {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 8px;
+}
+
+.iwd-archive-notice a {
+  color: #94a3b8;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.iwd-archive-notice a:hover {
+  color: #cbd5e1;
+}
+
+/* ============================================
+   CONTRIBUTE CTA
+   ============================================ */
+
+.iwd-contribute {
+  max-width: 760px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+}
+
+.iwd-contribute h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.75rem;
+}
+
+.iwd-contribute p {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 968px) {
+  .iwd-headline {
+    font-size: 3rem;
+  }
+
+  .iwd-standfirst {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .iwd-editorial-page {
+    margin-top: 100px;
+  }
+
+  .iwd-masthead {
+    padding: 2.5rem 1.25rem 2rem;
+  }
+
+  .iwd-headline {
+    font-size: 2.5rem;
+  }
+
+  .iwd-standfirst {
+    font-size: 1.05rem;
+  }
+
+  .iwd-byline {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .iwd-context,
+  .iwd-voices,
+  .iwd-raydyo,
+  .iwd-archive,
+  .iwd-archive-notice,
+  .iwd-contribute {
+    padding: 0 1.25rem;
+  }
+
+  .voice-entry {
+    padding: 1.5rem;
+  }
+
+  .iwd-context-note {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .voice-quote {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .iwd-headline {
+    font-size: 2rem;
+  }
+
+  .iwd-standfirst {
+    font-size: 0.95rem;
+  }
+
+  .voice-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

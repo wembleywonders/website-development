@@ -1,10 +1,31 @@
-/* Programme Page Styles */
+/* ============================================
+   PROGRAMME PAGE STYLES — Shared stylesheet
+   src/pages/programmes/ProgrammePage.css
+   
+   FIX LOG:
+   - .programme-hero h1 used -webkit-text-fill-color: transparent
+     for the cyan gradient text effect. On dark backgrounds this
+     looks great. On coloured hero backgrounds (STEMgeneers green,
+     any future coloured variant) it makes the h1 invisible.
+   
+   FIX: The gradient text effect is now opt-in via the
+   .programme-hero--gradient-text modifier class, not default.
+   Default h1 is plain white — safe on any background.
+   
+   Individual programme pages that want the cyan gradient h1
+   (dark background pages) add class="programme-hero--gradient-text"
+   to their hero section div.
+   
+   - .hero-tagline colour changed from #cbd5e1 (blue-grey) to
+     rgba(255,255,255,0.9) — works on both dark and coloured bg.
+   ============================================ */
 
 .programme-content {
   max-width: 100%;
 }
 
-/* Hero Section */
+/* ══════ HERO SECTION ══════ */
+
 .programme-hero {
   text-align: center;
   padding: 3rem 0;
@@ -19,25 +40,38 @@
   margin-bottom: 1rem;
 }
 
+/* DEFAULT: plain white — safe on any background colour */
 .programme-hero h1 {
   font-size: 3rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
+  color: #ffffff;
+  /* No -webkit-text-fill-color: transparent here.
+     That was making h1 invisible on coloured hero backgrounds.
+     Use .programme-hero--gradient-text modifier for the cyan
+     gradient effect on dark-background programme pages. */
+}
+
+/* OPT-IN modifier: cyan gradient h1 for dark-background heroes */
+.programme-hero--gradient-text h1 {
   background: linear-gradient(135deg, #06b6d4, #0891b2);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* Tagline — was #cbd5e1 (blue-grey), invisible on green/coloured bg.
+   rgba white works on both dark and coloured backgrounds. */
 .hero-tagline {
   font-size: 1.25rem;
-  color: #cbd5e1;
+  color: rgba(255, 255, 255, 0.9);
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.6;
 }
 
-/* Programme Sections */
+/* ══════ PROGRAMME SECTIONS ══════ */
+
 .programme-section {
   margin: 4rem 0;
 }
@@ -56,7 +90,8 @@
   margin-bottom: 2rem;
 }
 
-/* Mission Section */
+/* ══════ MISSION SECTION ══════ */
+
 .mission-section {
   display: flex;
   justify-content: center;
@@ -87,7 +122,8 @@
   margin: 0;
 }
 
-/* Audience Grid */
+/* ══════ AUDIENCE GRID ══════ */
+
 .audience-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -126,7 +162,8 @@
   margin: 0;
 }
 
-/* Pillars Grid */
+/* ══════ PILLARS GRID ══════ */
+
 .pillars-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -167,7 +204,8 @@
   font-size: 0.95rem;
 }
 
-/* Modules Grid */
+/* ══════ MODULES GRID ══════ */
+
 .modules-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -208,7 +246,8 @@
   font-size: 0.9rem;
 }
 
-/* Outcomes Section */
+/* ══════ OUTCOMES SECTION ══════ */
+
 .outcomes-section {
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.8));
   border-radius: 16px;
@@ -241,7 +280,8 @@
   font-size: 1.05rem;
 }
 
-/* Integration Section */
+/* ══════ INTEGRATION SECTION ══════ */
+
 .integration-section {
   background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(109, 40, 217, 0.1));
   border-radius: 16px;
@@ -305,7 +345,8 @@
   box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
 }
 
-/* Programme CTA */
+/* ══════ PROGRAMME CTA ══════ */
+
 .programme-cta {
   text-align: center;
   padding: 4rem 2rem;
@@ -318,6 +359,7 @@
 .programme-cta h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: #f8fafc;
 }
 
 .programme-cta p {
@@ -364,42 +406,8 @@
   transform: translateY(-2px);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .programme-hero h1 {
-    font-size: 2.25rem;
-  }
+/* ══════ PRODUCTION EXAMPLES ══════ */
 
-  .hero-tagline {
-    font-size: 1.05rem;
-  }
-
-  .programme-section h2 {
-    font-size: 1.875rem;
-  }
-
-  .integration-flow {
-    flex-direction: column;
-  }
-
-  .integration-flow svg {
-    transform: rotate(90deg);
-  }
-
-  .mission-card,
-  .integration-card {
-    padding: 2rem;
-  }
-
-  .programme-cta {
-    padding: 3rem 1.5rem;
-  }
-
-  .programme-cta h2 {
-    font-size: 2rem;
-  }
-}
-/* Production Examples - NEW */
 .production-examples {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -426,9 +434,7 @@
   margin-bottom: 1rem;
 }
 
-.example-header svg {
-  color: #10b981;
-}
+.example-header svg { color: #10b981; }
 
 .example-header h3 {
   font-size: 1.1rem;
@@ -445,11 +451,10 @@
 }
 
 .example-role strong,
-.example-skills strong {
-  color: #06b6d4;
-}
+.example-skills strong { color: #06b6d4; }
 
-/* Learning Path - NEW */
+/* ══════ LEARNING PATH ══════ */
+
 .learning-path {
   display: flex;
   align-items: center;
@@ -516,7 +521,8 @@
   height: 2rem;
 }
 
-/* Integration Links - NEW */
+/* ══════ INTEGRATION LINKS ══════ */
+
 .integration-links {
   display: flex;
   flex-direction: column;
@@ -524,7 +530,10 @@
   margin-top: 1.5rem;
 }
 
-.integration-link {
+/* Note: .integration-link also defined above in integration-section
+   context as inline-block purple button. The flex row version below
+   is for the list-style links used in MoneyReset and similar pages. */
+.integration-links .integration-link {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -535,19 +544,21 @@
   color: #e2e8f0;
   text-decoration: none;
   transition: all 0.3s ease;
+  /* Override the purple button style from above */
+  background: rgba(30, 41, 59, 0.5) !important;
 }
 
-.integration-link:hover {
-  background: rgba(6, 182, 212, 0.1);
+.integration-links .integration-link:hover {
+  background: rgba(6, 182, 212, 0.1) !important;
   border-color: rgba(6, 182, 212, 0.5);
   transform: translateX(4px);
+  box-shadow: none;
 }
 
-.integration-link svg {
-  color: #06b6d4;
-}
+.integration-links .integration-link svg { color: #06b6d4; }
 
-/* Sandbox Section - NEW */
+/* ══════ SANDBOX SECTION ══════ */
+
 .sandbox-section {
   background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
   padding: 2rem;
@@ -601,26 +612,10 @@
   line-height: 1.5;
 }
 
-.sandbox-note strong {
-  color: #c084fc;
-}
+.sandbox-note strong { color: #c084fc; }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .learning-path {
-    flex-direction: column;
-  }
-  
-  .path-arrow {
-    transform: rotate(90deg);
-  }
-  
-  .production-examples {
-    grid-template-columns: 1fr;
-  }
-}
+/* ══════ REVENUE MODEL GRID ══════ */
 
-/* Revenue Model Grid - NEW */
 .revenue-model-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -664,7 +659,8 @@
   line-height: 1.5;
 }
 
-/* Career Pathways - NEW */
+/* ══════ CAREER PATHWAYS ══════ */
+
 .career-pathways {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -699,13 +695,106 @@
   margin: 0;
 }
 
-/* Responsive */
+/* ══════ IMPACT CARD (MoneyReset no-shame section) ══════ */
+
+.impact-card {
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.impact-card svg { color: #a78bfa; flex-shrink: 0; margin-top: 4px; }
+
+.impact-card h3 {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0 0 0.5rem;
+}
+
+.impact-card p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ══════ PARDNER SECTION (MoneyReset) ══════ */
+
+.pardner-section .pardner-intro h2 {
+  color: #fbbf24;
+}
+
+.pardner-steps {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  counter-reset: pardner-counter;
+}
+
+.pardner-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  counter-increment: pardner-counter;
+}
+
+.pardner-steps li::before {
+  content: counter(pardner-counter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(251,191,36,0.15);
+  border: 1px solid rgba(251,191,36,0.3);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #fbbf24;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pardner-cta {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(251,191,36,0.06);
+  border: 1px solid rgba(251,191,36,0.2);
+  border-radius: 10px;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ══════ RESPONSIVE ══════ */
+
 @media (max-width: 768px) {
-  .revenue-model-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .career-pathways {
-    grid-template-columns: 1fr;
-  }
+  .programme-hero h1 { font-size: 2.25rem; }
+  .hero-tagline { font-size: 1.05rem; }
+  .programme-section h2 { font-size: 1.875rem; }
+
+  .integration-flow { flex-direction: column; }
+  .integration-flow svg { transform: rotate(90deg); }
+
+  .mission-card,
+  .integration-card { padding: 2rem; }
+
+  .programme-cta { padding: 3rem 1.5rem; }
+  .programme-cta h2 { font-size: 2rem; }
+
+  .learning-path { flex-direction: column; }
+  .path-arrow { transform: rotate(90deg); }
+
+  .production-examples { grid-template-columns: 1fr; }
+  .revenue-model-grid { grid-template-columns: 1fr; }
+  .career-pathways { grid-template-columns: 1fr; }
 }

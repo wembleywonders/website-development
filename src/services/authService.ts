@@ -153,6 +153,11 @@ class AuthService {
     return userStr ? JSON.parse(userStr) : null;
   }
 
+  // ✨ NEW: returns the raw JWT for direct API calls (e.g. ClaimPage redeem)
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+
   isAuthenticated(): boolean {
     return !!localStorage.getItem('authToken');
   }

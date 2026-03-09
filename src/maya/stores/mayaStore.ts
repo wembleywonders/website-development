@@ -73,6 +73,10 @@ import type {
 // ============================================
 
 interface MayaStore {
+  isExpanded: any;
+  userPreferences: any;
+  hasUnread: any;
+  silentObservations: any;
   // === Unified State ===
   state: UnifiedCreatorState;
   
@@ -202,6 +206,12 @@ export const useMayaStore = create<MayaStore>()(
     (set, get) => ({
       // === Unified State ===
       state: createDefaultUnifiedState('default', 'Creator'),
+      
+      // === UI State Properties ===
+      isExpanded: false,
+      userPreferences: {},
+      hasUnread: false,
+      silentObservations: { insights: [], patterns: { preferredTools: [], avoidedFeatures: [], preferredChildren: [], preferredDomains: [] }, documentedCapabilities: [] },
       
       // === Legacy Compatibility Getters ===
       get currentStage() { return get().state.pedagogicalStage; },
@@ -579,7 +589,7 @@ export const useMayaStore = create<MayaStore>()(
         }));
       },
       
-      closeLoop: (topic: string, outcome: string) => {
+      closeLoop: (topic: string, _outcome: string) => {
         set((s) => ({
           state: {
             ...s.state,
@@ -899,7 +909,7 @@ export const useMayaStore = create<MayaStore>()(
         // UI state not persisted in unified state, handled by component
       },
       
-      setExpanded: (expanded: boolean) => {
+      setExpanded: (_expanded: boolean) => {
         // UI state not persisted in unified state, handled by component
       },
       

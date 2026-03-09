@@ -10,7 +10,7 @@ import './DraggableMaya.css';
 interface DraggableMayaProps {
   membershipTier: 'visitor' | 'membership' | 'connector' | 'curator' | 'champion' | 'apply';
   userId?: string;
-  pageType?: 'standard' | 'shop' | 'programme' | 'community' | 'framework';
+  pageType?: 'standard' | 'shop' | 'programme' | 'community' | 'framework' | 'discovery';
   pageContext?: {
     title: string;
     section: string;
@@ -42,14 +42,19 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
   const dragRef = useRef<HTMLDivElement>(null);
   const chatRef = useRef<HTMLDivElement>(null);
 
-  // Generate contextual quick actions based on page type - moved outside useCallback to prevent dependencies
-  const getQuickActionsForPage = (pageType: string, membershipTier: string) => {
+  // ── Quick actions ──────────────────────────────────────────────────────────
+
+  const getQuickActionsForPage = (
+    pageType: string,
+    membershipTier: string,
+    data?: Record<string, any>
+  ) => {
     const baseActions = [
       { text: "What can you do?", action: "capabilities" },
       { text: "Site navigation help", action: "navigation" }
     ];
 
-    const pageSpecificActions = {
+    const pageSpecificActions: Record<string, Array<{text: string, action: string}>> = {
       shop: [
         { text: "Community marketplace", action: "shop_guide" },
         { text: "Support local business", action: "local_business" },
@@ -67,12 +72,52 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
       ],
       framework: [
         { text: "5C Framework explained", action: "framework_guide" },
-        { text: "Organization structure", action: "org_structure" },
+        { text: "Organisation structure", action: "org_structure" },
         { text: "How we share power", action: "governance_info" }
-      ]
+      ],
+      // ── Discovery (Bright Sparks) — state-aware ────────────────────────────
+      discovery: (() => {
+        const completed = data?.challengesCompleted ?? 0;
+        const track = data?.selectedTrack;
+
+        if (track === 'migrating') {
+          return [
+            { text: "What can I bring across?", action: "migration_content" },
+            { text: "How does the 55% work?", action: "revenue_model" },
+            { text: "TECHreneurs onboarding", action: "techreneurs_info" },
+            { text: "Talk to the team", action: "contact_team" }
+          ];
+        }
+
+        if (completed === 0) {
+          return [
+            { text: "Which challenge should I try?", action: "challenge_advice" },
+            { text: "What happens after this?", action: "journey_overview" },
+            { text: "Tell me about the programmes", action: "programme_overview" },
+            { text: "How does the 55% work?", action: "revenue_model" }
+          ];
+        }
+
+        if (completed >= 1 && completed < 3) {
+          return [
+            { text: "Which programme fits me?", action: "programme_match" },
+            { text: `I've done ${completed} — what next?`, action: "progress_advice" },
+            { text: "Tell me about STEMgeneers", action: "stemgeneers_info" },
+            { text: "How does the 55% work?", action: "revenue_model" }
+          ];
+        }
+
+        // completed >= 3
+        return [
+          { text: "Help me choose a programme", action: "programme_match" },
+          { text: "What is TECHreneurs?", action: "techreneurs_info" },
+          { text: "When can I start earning?", action: "earning_timeline" },
+          { text: "How does the 55% work?", action: "revenue_model" }
+        ];
+      })()
     };
 
-    const membershipActions = {
+    const membershipActions: Record<string, Array<{text: string, action: string}>> = {
       visitor: [{ text: "Membership benefits", action: "membership_info" }],
       membership: [{ text: "My member benefits", action: "member_dashboard" }],
       apply: [{ text: "Application help", action: "application_guide" }]
@@ -80,24 +125,28 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
 
     return [
       ...baseActions,
-      ...(pageSpecificActions[pageType as keyof typeof pageSpecificActions] || []),
-      ...(membershipActions[membershipTier as keyof typeof membershipActions] || [])
-    ].slice(0, 4); // Limit to 4 quick actions
+      ...(pageSpecificActions[pageType] || []),
+      ...(membershipActions[membershipTier] || [])
+    ].slice(0, 4);
   };
 
-  // Update quick actions when page type or membership changes - FIXED: removed function from dependency array
-  useEffect(() => {
-    setQuickActions(getQuickActionsForPage(pageType, membershipTier));
-  }, [pageType, membershipTier]); // ✅ Only primitive dependencies
+  // ── Effects ────────────────────────────────────────────────────────────────
 
-  // Load conversation state on mount - FIXED: added proper dependency array
+  // Recompute quick actions when progress or track changes
+  useEffect(() => {
+    setQuickActions(
+      getQuickActionsForPage(pageType, membershipTier, pageContext?.data)
+    );
+  }, [pageType, membershipTier, pageContext?.data?.challengesCompleted, pageContext?.data?.selectedTrack]); // ✅ Only primitive dependencies
+
+  // Load conversation state on mount
   useEffect(() => {
     const savedState = conversationPersistence.loadConversationState();
     if (savedState && savedState.messages.length > 0) {
       setMessages(savedState.messages);
       setPosition(savedState.dragPosition || { x: 20, y: 20 });
     } else {
-      const contextualWelcome = getContextualWelcome(pageType, pageContext?.title);
+      const contextualWelcome = getContextualWelcome(pageType, pageContext?.title, pageContext?.data);
       const welcomeMessage: ConversationMessage = {
         id: `maya-${Date.now()}`,
         text: contextualWelcome,
@@ -109,9 +158,9 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
       setMessages([welcomeMessage]);
       conversationPersistence.addMessage(welcomeMessage);
     }
-  }, []); // ✅ Only run once on mount - remove location.pathname dependency to prevent loops
+  }, []); // ✅ Only run once on mount
 
-  // Separate effect for handling location changes - FIXED: prevents infinite loops
+  // Separate effect for handling location changes
   useEffect(() => {
     conversationPersistence.updatePageContext({
       route: location.pathname,
@@ -121,9 +170,34 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
     });
   }, [location.pathname]); // ✅ Only update when location actually changes
 
-  // Generate contextual welcome message
-  const getContextualWelcome = (pageType: string, pageTitle?: string): string => {
-    const welcomeMessages = {
+  // ── Welcome message ────────────────────────────────────────────────────────
+
+  const getContextualWelcome = (
+    pageType: string,
+    pageTitle?: string,
+    data?: Record<string, any>
+  ): string => {
+    if (pageType === 'discovery') {
+      const completed = data?.challengesCompleted ?? 0;
+      const track = data?.selectedTrack;
+
+      if (track === 'migrating') {
+        return `Hi! I'm Maya. You're looking at bringing existing work across — good move. I can walk you through what content migrates cleanly, how the 55/25/20 split works in practice, and what TECHreneurs onboarding looks like. What do you want to know first?`;
+      }
+
+      if (completed === 0) {
+        return `Hi! I'm Maya. Bright Sparks is where every Wembley Wonders journey starts — try 3 mini-challenges from different programmes, see what clicks, and walk away with a clear next step. Not sure which challenge to pick first? Ask me and I'll point you somewhere useful.`;
+      }
+
+      if (completed >= 1 && completed < 3) {
+        return `Good to see you back — you've completed ${completed} challenge${completed > 1 ? 's' : ''} so far. Keep going — complete 3 to unlock your programme recommendations. If something you tried is pulling you in, tell me and I can tell you more about that programme.`;
+      }
+
+      // completed >= 3
+      return `You've completed ${completed} challenges — you've earned a proper look at where you fit. I can help you compare programmes, understand what TECHreneurs adds on top, or talk through the 55% model before you commit. What's on your mind?`;
+    }
+
+    const welcomeMessages: Record<string, string> = {
       shop: `Hi! I'm Maya, your Technical Assistant. I can help you navigate our community marketplace, find local businesses to support, and understand creator opportunities. ${pageTitle ? `You're viewing ${pageTitle} - ` : ''}what interests you?`,
       programme: `Hello! I'm Maya, here to guide you through our programmes. I can help match you with the right learning pathway, explain our seasonal workshops, and connect you with skill development opportunities. What would you like to explore?`,
       community: `Hi there! I'm Maya, your community guide. I can help you find support services, connect with local hubs, and understand how to get more involved in building community wealth in Wembley. How can I assist?`,
@@ -131,7 +205,7 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
       standard: `Hello! I'm Maya, your intelligent community guide. I remember our conversations across pages and provide contextual help. **New here?** Try the quick actions below or ask me anything about Wembley Wonders!`
     };
 
-    return welcomeMessages[pageType as keyof typeof welcomeMessages] || welcomeMessages.standard;
+    return welcomeMessages[pageType] || welcomeMessages.standard;
   };
 
   const getPageSection = (pathname: string): 'home' | 'about' | 'programs' | 'membership' | 'business' | 'apply' => {
@@ -143,7 +217,29 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
     return 'home';
   };
 
-  // Handle quick action clicks
+  // ── Enrich prompt with Bright Sparks context ──────────────────────────────
+
+  const buildEnrichedPrompt = (userText: string): string => {
+    if (pageType !== 'discovery' || !pageContext?.data) return userText;
+
+    const { challengesCompleted = 0, selectedTrack, completedChallengeIds = [] } = pageContext.data;
+
+    const lines = [
+      `[BRIGHT SPARKS CONTEXT]`,
+      `Track: ${selectedTrack ?? 'not yet selected'}`,
+      `Challenges completed: ${challengesCompleted}/3`,
+      completedChallengeIds.length
+        ? `Completed challenges: ${completedChallengeIds.join(', ')}`
+        : null,
+      `[USER MESSAGE]`,
+      userText
+    ].filter(Boolean);
+
+    return lines.join('\n');
+  };
+
+  // ── Messaging ──────────────────────────────────────────────────────────────
+
   const handleQuickAction = async (action: string, text: string) => {
     setInputText('');
     setCurrentExpression('thinking');
@@ -151,7 +247,7 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
 
     const userMessage: ConversationMessage = {
       id: `user-${Date.now()}`,
-      text: text,
+      text,
       sender: 'user',
       timestamp: new Date(),
       pageContext: location.pathname
@@ -163,7 +259,7 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
     try {
       const savedState = conversationPersistence.loadConversationState();
       const response = await rovIntegration.getContextualResponse(
-        text,
+        buildEnrichedPrompt(text),
         location.pathname,
         savedState?.userJourney || [location.pathname],
         membershipTier
@@ -206,7 +302,7 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
     setShowClearConfirm(false);
     conversationPersistence.clearConversation();
     
-    const contextualWelcome = getContextualWelcome(pageType, pageContext?.title);
+    const contextualWelcome = getContextualWelcome(pageType, pageContext?.title, pageContext?.data);
     const welcomeMessage: ConversationMessage = {
       id: `maya-${Date.now()}`,
       text: contextualWelcome,
@@ -221,7 +317,8 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
     setCurrentExpression('helpful');
   };
 
-  // Drag handlers - FIXED: removed unnecessary dependencies
+  // ── Drag handlers ──────────────────────────────────────────────────────────
+
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     if (chatRef.current && chatRef.current.contains(e.target as Node)) return;
     if ((e.target as Element).closest('.header-controls')) return;
@@ -264,7 +361,8 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
     }
   }, [isDragging, handleMouseMove, handleMouseUp]);
 
-  // Enhanced message sending with page context
+  // ── Enhanced message sending with page context ─────────────────────────────
+
   const handleSendMessage = async () => {
     if (!inputText.trim()) return;
 
@@ -285,7 +383,7 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
     try {
       const savedState = conversationPersistence.loadConversationState();
       const response = await rovIntegration.getContextualResponse(
-        inputText,
+        buildEnrichedPrompt(inputText),
         location.pathname,
         savedState?.userJourney || [location.pathname],
         membershipTier
@@ -322,6 +420,8 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
       setIsTyping(false);
     }
   };
+
+  // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
     <div 
@@ -363,7 +463,13 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
               />
               <div className="header-text">
                 <span>Maya - Technical Assistant</span>
-                <small>{pageContext?.title ? `Help for ${pageContext.title}` : 'Contextual guidance & support'}</small>
+                <small>
+                  {pageType === 'discovery'
+                    ? `Discovery guide · ${pageContext?.data?.challengesCompleted ?? 0}/3 challenges`
+                    : pageContext?.title
+                      ? `Help for ${pageContext.title}`
+                      : 'Contextual guidance & support'}
+                </small>
               </div>
             </div>
             <div className="header-controls">
@@ -387,7 +493,7 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
             </div>
           </div>
 
-          {/* Quick Actions Section */}
+          {/* Quick Actions */}
           {quickActions.length > 0 && messages.length <= 1 && (
             <div className="quick-actions">
               <div className="quick-actions-label">Quick help:</div>
@@ -448,7 +554,11 @@ const DraggableMaya: React.FC<DraggableMayaProps> = ({
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-              placeholder={`Ask Maya about ${pageType === 'standard' ? 'anything' : pageType + ' topics'}...`}
+              placeholder={
+                pageType === 'discovery'
+                  ? 'Ask Maya about programmes, challenges, or the 55% model...'
+                  : `Ask Maya about ${pageType === 'standard' ? 'anything' : pageType + ' topics'}...`
+              }
               disabled={isTyping}
             />
             <button onClick={handleSendMessage} disabled={isTyping || !inputText.trim()}>

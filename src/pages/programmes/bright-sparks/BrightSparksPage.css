@@ -1263,3 +1263,553 @@
     animation: none;
   }
 }
+
+/* ============================================
+   CHALLENGE SANDBOX (inline modal)
+   Classes used by ChallengeSandbox component
+   in index.tsx
+   ============================================ */
+
+/* Overlay */
+.sandbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Modal container */
+.sandbox-modal {
+  background: #1e293b;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease;
+  border-top: 3px solid var(--sandbox-color, #fbbf24);
+}
+
+/* Header row */
+.sandbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  flex-shrink: 0;
+}
+
+.sandbox-back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.sandbox-back:hover {
+  background: rgba(148, 163, 184, 0.1);
+  color: #f8fafc;
+}
+
+.sandbox-timer {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.85rem;
+  color: #64748b;
+  padding: 0.375rem 0.875rem;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 100px;
+}
+
+/* Content area */
+.sandbox-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Programme intro */
+.sandbox-intro {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sandbox-emoji {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.sandbox-intro h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.25rem;
+}
+
+.sandbox-programme {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sandbox-color, #fbbf24);
+  margin: 0;
+}
+
+/* Guide panel */
+.sandbox-guide {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 1rem 1.25rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 10px;
+  border-left: 3px solid var(--sandbox-color, #fbbf24);
+}
+
+.guide-emoji {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.guide-content strong,
+.guide-message strong {
+  display: block;
+  font-size: 0.8rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.375rem;
+}
+
+.guide-content p,
+.guide-message p {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Instructions */
+.sandbox-instructions {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.sandbox-instructions h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #f8fafc;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.875rem;
+}
+
+.sandbox-instructions ol {
+  padding-left: 1.25rem;
+  margin: 0 0 1rem;
+}
+
+.sandbox-instructions li {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  padding: 0.25rem 0;
+}
+
+.sandbox-success-criteria {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+  font-size: 0.875rem;
+  color: #cbd5e1;
+}
+
+.sandbox-success-criteria svg {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+/* Workspace */
+.sandbox-workspace {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.sandbox-workspace label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.sandbox-workspace textarea {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  font-family: inherit;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 160px;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.sandbox-workspace textarea:focus {
+  outline: none;
+  border-color: var(--sandbox-color, #fbbf24);
+}
+
+.sandbox-workspace textarea::placeholder {
+  color: #475569;
+}
+
+/* Word counter */
+.word-counter {
+  font-size: 0.8rem;
+  color: #64748b;
+  text-align: right;
+}
+
+.word-counter.valid {
+  color: #10b981;
+}
+
+.word-counter.invalid {
+  color: #f87171;
+}
+
+.counter-hint {
+  margin-left: 0.375rem;
+  font-style: italic;
+}
+
+/* Actions row */
+.sandbox-actions {
+  display: flex;
+  gap: 0.875rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.sandbox-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease;
+}
+
+.sandbox-btn.primary {
+  background: var(--sandbox-color, #fbbf24);
+  color: #0f172a;
+}
+
+.sandbox-btn.primary:hover:not(:disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.sandbox-btn.primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sandbox-btn.secondary {
+  background: rgba(51, 65, 85, 0.7);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.sandbox-btn.secondary:hover {
+  background: rgba(71, 85, 105, 0.9);
+  color: #f8fafc;
+}
+
+/* ── Success state ──────────────────────────── */
+
+.sandbox-modal.success {
+  border-top-color: #10b981;
+}
+
+.sandbox-success {
+  padding: 3rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.sandbox-success .success-icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.15);
+  border: 2px solid rgba(16, 185, 129, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+}
+
+.sandbox-success h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.sandbox-success > p {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin: 0;
+  max-width: 380px;
+}
+
+.success-guide {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 10px;
+  text-align: left;
+  max-width: 460px;
+  width: 100%;
+}
+
+.success-guide .guide-emoji {
+  font-size: 2rem;
+}
+
+.success-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ── Progress bar ────────────────────────────── */
+
+.bs-progress-bar {
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 10px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.reset-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: color 0.15s ease;
+}
+
+.reset-btn:hover {
+  color: #f87171;
+}
+
+.progress-track {
+  height: 6px;
+  background: rgba(148, 163, 184, 0.15);
+  border-radius: 100px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #6ee7b7);
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.progress-ready {
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* ── Migration pending notice ────────────────── */
+
+.bs-migration-pending {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  color: #a7f3d0;
+}
+
+.bs-migration-pending svg {
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.bs-migration-pending strong {
+  display: block;
+  color: #10b981;
+  margin-bottom: 0.25rem;
+}
+
+.bs-migration-pending p {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* ── Already applied state ───────────────────── */
+
+.bs-already-applied {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1.5rem;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 8px;
+  color: #10b981;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ── Challenge card status states ────────────── */
+
+.challenge-card.completed {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.challenge-card.started {
+  border-color: rgba(251, 191, 36, 0.4);
+  background: rgba(251, 191, 36, 0.04);
+}
+
+.challenge-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.challenge-status.completed {
+  color: #10b981;
+}
+
+.challenge-status.started .status-started {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fbbf24;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.challenge-guide-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.08);
+  font-size: 0.78rem;
+  color: #475569;
+}
+
+/* ── TECHreneurs link ────────────────────────── */
+
+.techreneurs-link {
+  color: #10b981;
+  text-decoration: none;
+}
+
+.techreneurs-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Sandbox responsive ──────────────────────── */
+
+@media (max-width: 768px) {
+  .sandbox-modal {
+    max-height: 95vh;
+    border-radius: 12px;
+  }
+
+  .sandbox-content {
+    padding: 1.25rem;
+  }
+
+  .sandbox-actions {
+    flex-direction: column-reverse;
+  }
+
+  .sandbox-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sandbox-success {
+    padding: 2rem 1.25rem;
+  }
+}
