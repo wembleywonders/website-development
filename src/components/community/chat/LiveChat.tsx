@@ -1,34 +1,4 @@
 import React, { useState } from 'react';
-import { React, { useState, useState } from 'react';
-;
-;
-;
-;
-;
-;
-/*
- * G-TECH COMMUNITY PLATFORM IP PROTECTION
- * =======================================
- * File: src/components/community/chat/LiveChat.tsx
- * Component: community-platform
- * Owner: G-Tech Community Platform Ltd
- * Copyright: 2024-2025 All Rights Reserved
- * License: Community-Controlled (Corporate use prohibited)
- * Service Bay Protected: 2025-08-05T10:21:44.404Z
- * Signature: 43db6e0cd976752d2be61c55a672763d2bb0d30e747a3081f259f3a4dde2f4cb
- * 
- * LEGAL NOTICE:
- * This code contains proprietary intellectual property of G-Tech Community Platform.
- * Unauthorized reverse engineering, corporate extraction, or commercial appropriation
- * constitutes willful copyright infringement under 17 USC 1201.
- * 
- * Community use authorized under community license
- * Corporate use explicitly prohibited without written authorization
- * 
- * Violation triggers automatic legal action and evidence preservation
- * Contact: legal@g-tech.org for licensing inquiries
- */
-
 // SERVICE BAY IP PROTECTION RUNTIME
 (function() {
   const COMPONENT_TYPE = 'community-platform';

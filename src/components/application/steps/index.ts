@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/components/application/steps/index.ts;
+// Stub — pending implementation
+export {};

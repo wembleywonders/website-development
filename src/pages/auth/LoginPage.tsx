@@ -68,7 +68,7 @@ const LoginPage: React.FC = () => {
       });
       
       // Successful login - redirect to intended page or dashboard
-      const redirectTo = location.state?.from?.pathname || '/dashboard';
+      const redirectTo = location.state?.from?.pathname || '/panel/story';
       navigate(redirectTo, { replace: true });
     } catch (error: any) {
       // Handle different error types
@@ -218,7 +218,7 @@ const LoginPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="submit-button"
+                className={`submit-button ${formData.email && formData.password ? 'submit-button--ready' : ''}`}
               >
                 {isSubmitting ? (
                   <>
@@ -236,7 +236,7 @@ const LoginPage: React.FC = () => {
           <div className="auth-alternate">
             <p>
               Don't have an account?{' '}
-              <Link to="/signup" className="alternate-link">
+              <Link to="/auth/signup" className="alternate-link">
                 Sign up
               </Link>
             </p>

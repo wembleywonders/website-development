@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/features/workspace/utils/projectUtils.ts;
+// Stub — pending implementation
+export {};

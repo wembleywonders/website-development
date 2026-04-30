@@ -35,7 +35,7 @@ const Q2CreativeMediaRegistration: React.FC = () => {
    title: 'Q2: Creative Media Workshop',
    date: 'Saturday, June 14, 2025',
    time: '2:00 PM - 4:00 PM',
-   venue: 'Wembley Community Centre Meeting Room',
+   venue: 'Wembley Wonders CIC Meeting Room',
    address: 'Harrow Road, Wembley, HA0 2SF',
    cost: '£50.00',
    placesAvailable: 15,

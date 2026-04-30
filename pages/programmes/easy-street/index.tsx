@@ -24,14 +24,14 @@ const EasyStreetPage: React.FC = () => {
       number: 2,
       title: 'The People',
       subtitle: 'Who lives here?',
-      description: 'Meet John and Marsha — thirty years of marriage in one kitchen. Pearl and Aubrey — separated but only meeting at Bible class. Brenda — back from Florida with Baptist fervour and the NHS on her lips like a prayer. Auntie Budgie. Bruk-up. Auntie Jenny. Then: who do you bring to the street?',
+      description: 'Meet Jackson and Myrtle — thirty years of marriage in one kitchen. Pearl and Aubrey — separated but only meeting at Bible class. Brenda — back from Florida with Baptist fervour and the NHS on her lips like a prayer. Auntie Budgie. Bruk-up. Auntie Jenny. Then: who do you bring to the street?',
       output: 'Your character\'s first scene. One page. One true thing.'
     },
     {
       number: 3,
       title: 'The Tension',
       subtitle: 'What\'s held inside?',
-      description: 'Every Easy Street scene carries something unsaid. John and Marsha\'s thirty years. Pearl\'s careful professional distance from what she knows about everyone. Aubrey\'s particular intelligence that has never found its right use. We study how drama lives in what isn\'t said as much as what is.',
+      description: 'Every Easy Street scene carries something unsaid. Jackson and Myrtle\'s thirty years. Pearl\'s careful professional distance from what she knows about everyone. Aubrey\'s particular intelligence that has never found its right use. We study how drama lives in what isn\'t said as much as what is.',
       output: 'A two-person scene. The thing nobody says out loud.'
     },
     {
@@ -59,40 +59,40 @@ const EasyStreetPage: React.FC = () => {
 
   const characters = [
     {
-      name: 'John & Marsha',
+      name: 'Jackson & Myrtle',
       years: '30 years married',
       detail: 'Something small goes wrong every morning. The drama is in what thirty years looks like from the inside.',
-      colour: '#c084fc'
+      colour: '#a855f7'   // purple
     },
     {
       name: 'Pearl & Aubrey',
       years: 'Separated. Sort of.',
       detail: 'Pearl put Aubrey out years ago. They only meet at Bible class. The whole church knows.',
-      colour: '#f59e0b'
+      colour: '#0ea5e9'   // blue
     },
     {
       name: 'Brenda',
       years: '30 years in Florida',
       detail: 'Back. Baptist. Reorganising the choir. The NHS moved her to tears and she\'s told everyone forty-seven times.',
-      colour: '#10b981'
+      colour: '#10b981'   // green
     },
     {
       name: 'Auntie Budgie',
       years: 'The institution',
       detail: 'Loud. Never to her face. Six month advance deposit on the Christmas cake. Her younger sister is Brenda.',
-      colour: '#ef4444'
+      colour: '#ef4444'   // red — kept, universally readable on dark
     },
     {
       name: 'Bruk-up',
       years: 'Nine years old',
       detail: 'Box of spare parts under the bed. Fixes everything. Asks for a screwdriver set every birthday — always just around the corner.',
-      colour: '#06b6d4'
+      colour: '#06b6d4'   // cyan — kept
     },
     {
       name: 'Auntie Jenny',
       years: 'The Elder',
       detail: 'Runs the Caribbean restaurant in the Wembley Triangle. Has a story she hasn\'t told yet.',
-      colour: '#f97316'
+      colour: '#fbbf24'   // amber — kept as character accent only
     }
   ];
 
@@ -113,7 +113,7 @@ const EasyStreetPage: React.FC = () => {
             <span className="es-hero__title-sub">A Community Radio Drama</span>
           </h1>
           <p className="es-hero__strapline">
-            John and Marsha. Pearl and Aubrey. Brenda back from Florida.
+            Jackson and Myrtle. Pearl and Aubrey. Brenda back from Florida.
             Auntie Budgie. Bruk-up under the table fixing everything.
             <em> Stories from the Caribbean British world — written by the community it belongs to.</em>
           </p>
@@ -138,30 +138,30 @@ const EasyStreetPage: React.FC = () => {
           <div className="es-what__text">
             <h2 className="es-section__heading">What Easy Street Is</h2>
             <p>
-              Easy Street is a serialised radio drama for Rayd-yo — the Wembley Wonders community 
-              broadcast platform. It is the Caribbean British equivalent of what Coronation Street 
-              was for working-class Northern England: ordinary people in extraordinary circumstances, 
+              Easy Street is a serialised radio drama for Rayd-yo — the Wembley Wonders community
+              broadcast platform. It is the Caribbean British equivalent of what Coronation Street
+              was for working-class Northern England: ordinary people in extraordinary circumstances,
               the drama living inside what is held and what is said and what is never quite said.
             </p>
             <p>
-              No drugs. No crime. No prison. No stereotype. The lives the British sitcom 
+              No drugs. No crime. No prison. No stereotype. The lives the British sitcom
               forgot to keep making room for — until now.
             </p>
             <p>
-              Easy Street is written by its community. Every episode is contributed by a Wembley 
-              Wonders member. Every contributor is credited, compensated, and archived. The world 
+              Easy Street is written by its community. Every episode is contributed by a Wembley
+              Wonders member. Every contributor is credited, compensated, and archived. The world
               belongs to the community that builds it.
             </p>
           </div>
           <div className="es-what__quote-block">
             <blockquote className="es-pull-quote">
-              "We encourage all the members of the company to write, direct, look at the lights — 
+              "We encourage all the members of the company to write, direct, look at the lights —
               so it was a theatre company that was very inclusive and we had everything, you know."
               <cite>— Jamal Ali, Black Theatre of Brixton, 1975</cite>
             </blockquote>
             <p className="es-what__quote-note">
-              That methodology is this methodology. Fifty years later. Wembley, not Brixton. 
-              Rayd-yo, not a theatre building. The same principle: everyone contributes, 
+              That methodology is this methodology. Fifty years later. Wembley, not Brixton.
+              Rayd-yo, not a theatre building. The same principle: everyone contributes,
               everyone is credited, the world belongs to the people who build it.
             </p>
           </div>
@@ -205,8 +205,8 @@ const EasyStreetPage: React.FC = () => {
           <div className="es-sandbox__label">The Sandbox</div>
           <h2 className="es-section__heading">Read It First. Then Write Yours.</h2>
           <p className="es-section__intro">
-            The sandbox is a published example of what an Easy Street scene looks like. 
-            Read it. Hear it. Then write the next scene — your scene, your characters, 
+            The sandbox is a published example of what an Easy Street scene looks like.
+            Read it. Hear it. Then write the next scene — your scene, your characters,
             your family's specific truth inside this world.
           </p>
 
@@ -214,81 +214,81 @@ const EasyStreetPage: React.FC = () => {
             <div className="es-sandbox__scene-header">
               <span className="es-sandbox__scene-label">Easy Street — Scene 1.01</span>
               <span className="es-sandbox__scene-title">H-Ugly</span>
-              <span className="es-sandbox__scene-meta">John & Marsha's Kitchen. Sunday Morning. Early.</span>
+              <span className="es-sandbox__scene-meta">Jackson & Myrtle's Kitchen. Sunday Morning. Early.</span>
             </div>
             <div className="es-sandbox__scene-body">
               <div className="es-sandbox__direction">
-                Sound: A kitchen. The low hiss of a gas ring. A radio — old gospel, 
-                turned low. The particular silence of a Sunday morning that has been 
+                Sound: A kitchen. The low hiss of a gas ring. A radio — old gospel,
+                turned low. The particular silence of a Sunday morning that has been
                 Sunday morning in this house for thirty years.
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">MARSHA</span>
-                <span className="es-sandbox__speech">John. John. The eggs finish.</span>
+                <span className="es-sandbox__char">MYRTLE</span>
+                <span className="es-sandbox__speech">Jackson. Jackson. The eggs finish.</span>
               </div>
 
               <div className="es-sandbox__direction">Silence.</div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">MARSHA</span>
+                <span className="es-sandbox__char">MYRTLE</span>
                 <span className="es-sandbox__speech">
                   I said the eggs finish. You hear me say the eggs finish?
                 </span>
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">JOHN</span>
+                <span className="es-sandbox__char">JACKSON</span>
                 <span className="es-sandbox__speech">
                   <em>(from somewhere else in the house)</em> I hear you.
                 </span>
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">MARSHA</span>
+                <span className="es-sandbox__char">MYRTLE</span>
                 <span className="es-sandbox__speech">And?</span>
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">JOHN</span>
+                <span className="es-sandbox__char">JACKSON</span>
                 <span className="es-sandbox__speech">And what?</span>
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">MARSHA</span>
+                <span className="es-sandbox__char">MYRTLE</span>
                 <span className="es-sandbox__speech">
-                  And you was going to the shop yesterday. I ask you 
+                  And you was going to the shop yesterday. I ask you
                   specifically. Get eggs. You write it down?
                 </span>
               </div>
 
               <div className="es-sandbox__direction">
-                Sound: footsteps. John enters. He is dressed — not for church yet, 
+                Sound: footsteps. Jackson enters. He is dressed — not for church yet,
                 but better than staying-in clothes. This is noted.
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">JOHN</span>
+                <span className="es-sandbox__char">MYRTLE</span>
                 <span className="es-sandbox__speech">Where you going dressed like that?</span>
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">MARSHA</span>
+                <span className="es-sandbox__char">JACKSON</span>
                 <span className="es-sandbox__speech">
-                  <em>(beat)</em> Me? You the one in your good shirt on a Sunday morning 
+                  <em>(beat)</em> Me? You the one in your good shirt on a Sunday morning
                   when the eggs finish.
                 </span>
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">JOHN</span>
+                <span className="es-sandbox__char">MYRTLE</span>
                 <span className="es-sandbox__speech">I'm just—</span>
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">MARSHA</span>
+                <span className="es-sandbox__char">JACKSON</span>
                 <span className="es-sandbox__speech">
-                  Thirty years, John. Thirty years I know every shirt in that 
+                  Thirty years, Myrtle. Thirty years I know every shirt in that
                   wardrobe. That is not your staying-in shirt.
                 </span>
               </div>
@@ -296,45 +296,37 @@ const EasyStreetPage: React.FC = () => {
               <div className="es-sandbox__direction">Silence. The radio fills it.</div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">JOHN</span>
+                <span className="es-sandbox__char">JACKSON</span>
                 <span className="es-sandbox__speech">
                   I'm going out. I'll get eggs.
                 </span>
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">MARSHA</span>
+                <span className="es-sandbox__char">MYRTLE</span>
+                <span className="es-sandbox__speech">Out where?</span>
+              </div>
+
+              <div className="es-sandbox__line">
+                <span className="es-sandbox__char">JACKSON</span>
+                <span className="es-sandbox__speech">Just — out. For some air.</span>
+              </div>
+
+              <div className="es-sandbox__line">
+                <span className="es-sandbox__char">MYRTLE</span>
+                <span className="es-sandbox__speech">In your good shirt.</span>
+              </div>
+
+              <div className="es-sandbox__line">
+                <span className="es-sandbox__char">JACKSON</span>
                 <span className="es-sandbox__speech">
-                  Out where?
+                  <em>(quietly, the patience finally)</em> Myrtle.
                 </span>
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">JOHN</span>
-                <span className="es-sandbox__speech">
-                  Just — out. For some air.
-                </span>
-              </div>
-
-              <div className="es-sandbox__line">
-                <span className="es-sandbox__char">MARSHA</span>
-                <span className="es-sandbox__speech">
-                  In your good shirt.
-                </span>
-              </div>
-
-              <div className="es-sandbox__line">
-                <span className="es-sandbox__char">JOHN</span>
-                <span className="es-sandbox__speech">
-                  <em>(quietly, the patience finally)</em> Marsha.
-                </span>
-              </div>
-
-              <div className="es-sandbox__line">
-                <span className="es-sandbox__char">MARSHA</span>
-                <span className="es-sandbox__speech">
-                  What.
-                </span>
+                <span className="es-sandbox__char">MYRTLE</span>
+                <span className="es-sandbox__speech">What.</span>
               </div>
 
               <div className="es-sandbox__direction">
@@ -342,24 +334,24 @@ const EasyStreetPage: React.FC = () => {
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">JOHN</span>
+                <span className="es-sandbox__char">JACKSON</span>
                 <span className="es-sandbox__speech">
-                  <em>(on his way to the door)</em> 
+                  <em>(on his way to the door)</em>
                   You know what your problem is? You h-ugly in the morning.
                 </span>
               </div>
 
               <div className="es-sandbox__direction">
                 Sound: the front door. Not slammed. Closed. Which is worse.
-                The radio continues. Old gospel. The gas ring still hissing 
+                The radio continues. Old gospel. The gas ring still hissing
                 under nothing.
-                Marsha stands in the kitchen.
+                Myrtle stands in the kitchen.
                 A beat. Two beats.
                 She picks up the phone.
               </div>
 
               <div className="es-sandbox__line">
-                <span className="es-sandbox__char">MARSHA</span>
+                <span className="es-sandbox__char">MYRTLE</span>
                 <span className="es-sandbox__speech">
                   Pearl. <em>(pause)</em> He gone out in his good shirt, Pearl.
                 </span>
@@ -372,10 +364,10 @@ const EasyStreetPage: React.FC = () => {
 
             <div className="es-sandbox__scene-footer">
               <div className="es-sandbox__attribution">
-                Easy Street is a Wembley Wonders CIC production. Written in the tradition 
-                of RAPP — Radical Alliance of Poets and Players, Brixton, founded 1972. 
+                Easy Street is a Wembley Wonders CIC production. Written in the tradition
+                of RAPP — Radical Alliance of Poets and Players, Brixton, founded 1972.
                 With acknowledgment to <strong>Jamal Ali</strong>, originator.
-                Community IP model: world © Wembley Wonders CIC. 
+                Community IP model: world © Wembley Wonders CIC.
                 Episode contributions attributed to their authors.
               </div>
             </div>
@@ -385,7 +377,7 @@ const EasyStreetPage: React.FC = () => {
             <h3>Now Write Yours</h3>
             <p>
               What happens next? Does Pearl answer? What does she know that
-              Marsha doesn't? What does Auntie Budgie say when she finds out?
+              Myrtle doesn't? What does Auntie Budgie say when she finds out?
             </p>
             <p>
               Or bring your own characters into the world. Your grandmother's
@@ -415,7 +407,7 @@ const EasyStreetPage: React.FC = () => {
             {weeks.map((week) => (
               <div
                 key={week.number}
-                className={`es-week ${activeWeek === week.number ? 'es-week--open' : ''}`}
+                className={`es-week${activeWeek === week.number ? ' es-week--open' : ''}`}
                 onClick={() => setActiveWeek(activeWeek === week.number ? null : week.number)}
               >
                 <div className="es-week__header">
@@ -453,8 +445,8 @@ const EasyStreetPage: React.FC = () => {
               <div className="es-ip__card-icon">🌍</div>
               <h3>The World</h3>
               <p>
-                Easy Street's world — the characters, the setting, the established 
-                universe — belongs to Wembley Wonders CIC. It is the community's 
+                Easy Street's world — the characters, the setting, the established
+                universe — belongs to Wembley Wonders CIC. It is the community's
                 asset. It cannot be sold, licensed away, or extracted.
               </p>
             </div>
@@ -462,8 +454,8 @@ const EasyStreetPage: React.FC = () => {
               <div className="es-ip__card-icon">✍🏾</div>
               <h3>Your Episode</h3>
               <p>
-                Every scene or episode you contribute is yours. Your name is on it. 
-                You are compensated under our 55/25/20 model. You license Wembley 
+                Every scene or episode you contribute is yours. Your name is on it.
+                You are compensated under our 55/25/20 model. You license Wembley
                 Wonders CIC to broadcast and archive it — you don't give it away.
               </p>
             </div>
@@ -471,8 +463,8 @@ const EasyStreetPage: React.FC = () => {
               <div className="es-ip__card-icon">🌱</div>
               <h3>The Lineage</h3>
               <p>
-                Every Easy Street production carries the RAPP attribution. 
-                Jamal Ali receives a Cultural Heritage contribution monthly — 
+                Every Easy Street production carries the RAPP attribution.
+                Jamal Ali receives a Cultural Heritage contribution monthly —
                 not when we put on a show, but now, because the debt is now.
               </p>
             </div>
@@ -480,8 +472,8 @@ const EasyStreetPage: React.FC = () => {
               <div className="es-ip__card-icon">📚</div>
               <h3>The Archive</h3>
               <p>
-                Every episode is permanently archived with full attribution. 
-                Ten years from now, fifty years from now, your name and your 
+                Every episode is permanently archived with full attribution.
+                Ten years from now, fifty years from now, your name and your
                 contribution are findable, citable, real.
               </p>
             </div>
@@ -497,23 +489,23 @@ const EasyStreetPage: React.FC = () => {
             <div className="es-for__item">
               <h3>The person who has always had a story</h3>
               <p>
-                The family scene that plays in your head. The character 
-                who is clearly your uncle but you've never written him down. 
+                The family scene that plays in your head. The character
+                who is clearly your uncle but you've never written him down.
                 This is where that goes.
               </p>
             </div>
             <div className="es-for__item">
               <h3>The person who wants to work in audio</h3>
               <p>
-                Radio drama. Podcast. Production. A broadcast credit on 
-                a real production is the thing that opens the next door. 
+                Radio drama. Podcast. Production. A broadcast credit on
+                a real production is the thing that opens the next door.
                 We help you get it.
               </p>
             </div>
             <div className="es-for__item">
               <h3>The person who wants to perform</h3>
               <p>
-                Easy Street needs voices as much as writers. 
+                Easy Street needs voices as much as writers.
                 Your character needs your voice. Recorded, produced, broadcast.
               </p>
             </div>
@@ -521,14 +513,14 @@ const EasyStreetPage: React.FC = () => {
               <h3>The person who isn't sure yet</h3>
               <p>
                 Read the sandbox scene. If something in it felt like recognition —
-                like you knew that kitchen, like you've heard that silence — 
+                like you knew that kitchen, like you've heard that silence —
                 you're in the right place.
               </p>
             </div>
           </div>
           <div className="es-for__note">
-            <strong>Age range:</strong> 16–60+. Wembley and the wider diaspora. 
-            All backgrounds. No previous writing or production experience required. 
+            <strong>Age range:</strong> 16–60+. Wembley and the wider diaspora.
+            All backgrounds. No previous writing or production experience required.
             If the sandbox scene felt true to you, that's the only qualification that matters.
           </div>
         </div>
@@ -549,7 +541,7 @@ const EasyStreetPage: React.FC = () => {
                 <a href="mailto:workshops@wembleywonders.org">
                   workshops@wembleywonders.org
                 </a>{' '}
-                with your name and a few sentences about what drew you here. 
+                with your name and a few sentences about what drew you here.
                 You can quote the sandbox scene if something in it landed.
               </p>
               <div className="es-join__deadline">
@@ -560,8 +552,8 @@ const EasyStreetPage: React.FC = () => {
             <div className="es-join__secondary">
               <h3>Come first</h3>
               <p>
-                Not ready to commit to six weeks? Come to a Coffee Morning first. 
-                Hear about the world. Meet people who are already writing in it. 
+                Not ready to commit to six weeks? Come to a Coffee Morning first.
+                Hear about the world. Meet people who are already writing in it.
                 Decide from there.
               </p>
               <Link to="/programmes/coffee-morning" className="es-btn es-btn--outline">
@@ -623,7 +615,7 @@ const EasyStreetPage: React.FC = () => {
             With acknowledgment to <strong>Jamal Ali</strong>, originator.
           </p>
           <p className="es-footer-cta__mission">
-            We are a Community Interest Company building skills, platforms and archives 
+            We are a Community Interest Company building skills, platforms and archives
             for the Forgotten 60% in Wembley. The world belongs to the community that builds it.
           </p>
           <Link to="/membership" className="es-btn es-btn--primary">

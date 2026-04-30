@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/types/intellectual-property/patents.ts;
+// Stub — pending implementation
+export {};

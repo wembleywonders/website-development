@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/marketplace/integrations/prototypeTracking.ts;
+// Stub — pending implementation
+export {};

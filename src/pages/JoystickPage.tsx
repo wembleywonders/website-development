@@ -1,511 +1,355 @@
+/*
+ * JOYSTICK E-ZINE — WEMBLEY WONDERS CIC
+ * Copyright (c) 2024-2026 Wembley Wonders CIC
+ * Company No. 12960817
+ * All rights reserved.
+ */
+ 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PageTemplate from '../components/PageTemplate';
-import DraggableMaya from '../components/maya/DraggableMaya';
-import MediaSection from '../components/media/MediaSection';
-import { 
-  BookOpen, Edit, Eye, Calendar, User, Tag, 
-  Heart, MessageCircle, Clock, Star, Search, 
-  Filter, Grid, List, Download, ArrowRight
-} from 'lucide-react';
 import './JoystickPage.css';
-
-const JoystickPage: React.FC = () => {
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const featuredArticles = [
-    {
-      id: 'go-karts-code',
-      title: "From Go-Karts to Code: My Summer Block Journey",
-      excerpt: "A participant's reflection on hands-on learning and how building physical projects led to programming breakthroughs.",
-      author: "Sarah M.",
-      authorRole: "Youth Programme Participant",
-      publishDate: "3 days ago",
-      readTime: "6 min read",
-      category: "Personal Stories",
-      tags: ["Learning", "STEM", "Youth"],
-      views: 234,
-      likes: 28,
-      comments: 12,
-      featured: true
-    },
-    {
-      id: 'maya-ai-analysis',
-      title: "Maya AI: Community Assistant or Digital Friend?",
-      excerpt: "Exploring AI's role in community engagement and what it means for authentic human connection.",
-      author: "Tech Talk Collective", 
-      authorRole: "Community Contributors",
-      publishDate: "5 days ago",
-      readTime: "8 min read",
-      category: "Technology Analysis",
-      tags: ["AI", "Community", "Ethics"],
-      views: 412,
-      likes: 56,
-      comments: 23,
-      featured: true
-    }
-  ];
-
-  const recentArticles = [
-    {
-      id: 'community-apps',
-      title: "Review: Best Apps for Local Community Organizing",
-      excerpt: "Tools that actually help neighborhoods connect, tested by our community organizers.",
-      author: "Community Curators",
-      authorRole: "Editorial Team",
-      publishDate: "1 week ago", 
-      readTime: "5 min read",
-      category: "App Reviews",
-      tags: ["Apps", "Community Organizing", "Reviews"],
-      views: 189,
-      likes: 34,
-      comments: 8
-    },
-    {
-      id: 'accessible-websites',
-      title: "Coding Workshop Spotlight: Building Accessible Websites",
-      excerpt: "Why web accessibility matters for everyone and how our workshop participants are making the web more inclusive.",
-      author: "STEMgineers Group",
-      authorRole: "Workshop Facilitators",
-      publishDate: "1 week ago",
-      readTime: "7 min read", 
-      category: "Tech Tutorials",
-      tags: ["Accessibility", "Web Development", "Workshops"],
-      views: 156,
-      likes: 41,
-      comments: 15
-    },
-    {
-      id: 'arduino-projects',
-      title: "Community Hardware Builds: Arduino Projects That Solve Real Problems",
-      excerpt: "From automated plant watering to air quality monitors, see what our makers have been building.",
-      author: "Maker Collective",
-      authorRole: "Community Makers",
-      publishDate: "2 weeks ago",
-      readTime: "9 min read",
-      category: "Project Showcases", 
-      tags: ["Arduino", "Hardware", "Problem Solving"],
-      views: 287,
-      likes: 52,
-      comments: 19
-    }
-  ];
-
-  const categories = [
-    { id: 'all', name: 'All Articles', count: featuredArticles.length + recentArticles.length },
-    { id: 'personal-stories', name: 'Personal Stories', count: 1 },
-    { id: 'technology-analysis', name: 'Technology Analysis', count: 1 },
-    { id: 'app-reviews', name: 'App Reviews', count: 1 },
-    { id: 'tech-tutorials', name: 'Tech Tutorials', count: 1 },
-    { id: 'project-showcases', name: 'Project Showcases', count: 1 }
-  ];
-
-  const allArticles = [...featuredArticles, ...recentArticles];
-  
-  const filteredArticles = allArticles.filter(article => {
-    const matchesCategory = selectedCategory === 'all' || 
-      article.category.toLowerCase().replace(' ', '-') === selectedCategory;
-    const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    return matchesCategory && matchesSearch;
-  });
-
-  const ArticleCard = ({ article, featured = false }: { article: any, featured?: boolean }) => (
-    <article className={`joystick-article-card ${featured ? 'featured' : ''} ${viewMode}`}>
-      {featured && (
-        <div className="featured-badge">
-          <Star size={16} />
-          Featured
+ 
+/* ─── TYPES ──────────────────────────────────────────────────────────── */
+ 
+interface Article {
+  id: string;
+  slug: string;
+  category: string;
+  categoryColor: string;
+  kicker?: string;
+  headline: string;
+  deck: string;
+  author: string;
+  authorRole: string;
+  date: string;
+  readTime: string;
+  featured?: boolean;
+  marketRun?: boolean;
+  sourceCredit?: string;
+  sourceUrl?: string;
+  tags: string[];
+}
+ 
+/* ─── DATA ───────────────────────────────────────────────────────────── */
+ 
+const ARTICLES: Article[] = [
+  {
+    id: 'biscuit-price-fix',
+    slug: 'biscuit-price-fix',
+    category: 'Cost of Living',
+    categoryColor: 'red',
+    kicker: 'Food prices — Regulation',
+    headline: "They calculated you'd pay it. So far, they've been right.",
+    deck: 'The biscuits in your trolley cost more here than in Germany. Same factory. Same wrapper. Same lorry. And somebody made a very deliberate decision about that.',
+    author: 'Andy Roberts / The Fine Print',
+    authorRole: 'Adapted for Joystick',
+    date: 'April 2026',
+    readTime: '7 min read',
+    featured: true,
+    sourceCredit: 'The Fine Print — Andy Roberts',
+    sourceUrl: 'https://www.youtube.com/watch?v=f63qalvQADc',
+    tags: ['food prices', 'cost of living', 'supermarkets', 'regulation'],
+  },
+  {
+    id: 'market-run-april',
+    slug: 'market-run-april',
+    category: "Auntie Anansi's Kitchen",
+    categoryColor: 'gold',
+    kicker: 'Market Run — April 2026',
+    headline: "Where to shop smarter in Brent right now",
+    deck: 'Cash-and-carry secrets, what\'s in season, and the ethnic grocers saving our readers serious money this month. Our new standing feature — community-sourced, locally verified.',
+    author: 'Joystick Editors',
+    authorRole: 'Community Intelligence',
+    date: 'April 2026',
+    readTime: '4 min read',
+    marketRun: true,
+    tags: ['shopping', 'local', 'food', 'community tips', 'Wembley', 'Brent'],
+  },
+  {
+    id: 'harlem-walk-music',
+    slug: 'harlem-walk-music',
+    category: 'Culture',
+    categoryColor: 'teal',
+    kicker: 'Harlesden — 28 March 2026',
+    headline: "The plaque, the people, and why Harlesden remembered",
+    deck: 'Aswad\'s Tony Gad, The Simmerons, Janet Kay — and a community that showed up to say these names belong on the map.',
+    author: 'Judith Fontanelle',
+    authorRole: 'Director of Community Engagement',
+    date: 'April 2026',
+    readTime: '5 min read',
+    tags: ['music', 'heritage', 'Harlesden', 'Aswad', 'roots'],
+  },
+  {
+    id: 'stemgeneers-showcase',
+    slug: 'stemgeneers-showcase',
+    category: 'STEMgeneers',
+    categoryColor: 'blue',
+    kicker: 'Programme News',
+    headline: "These young builders just proved Brent has engineers",
+    deck: 'The latest STEMgeneers cohort presented their projects last month. What they built, what they said, and what comes next.',
+    author: 'Joystick Editors',
+    authorRole: 'Programme Desk',
+    date: 'March 2026',
+    readTime: '4 min read',
+    tags: ['STEM', 'young people', 'engineering', 'Brent', 'STEMgeneers'],
+  },
+];
+ 
+const CATEGORIES = ['All', 'Cost of Living', "Auntie Anansi's Kitchen", 'Culture', 'STEMgeneers', 'Community'];
+ 
+/* ─── SUB-COMPONENTS ─────────────────────────────────────────────────── */
+ 
+const CategoryPill: React.FC<{ category: string; color: string }> = ({ category, color }) => (
+  <span className={`jk-pill jk-pill--${color}`}>{category}</span>
+);
+ 
+const FeaturedCard: React.FC<{ article: Article }> = ({ article }) => (
+  <article className="jk-featured-card">
+    <div className="jk-featured-flag">
+      <span className="jk-featured-label">Lead Story</span>
+    </div>
+    <div className="jk-featured-body">
+      <div className="jk-featured-meta">
+        <CategoryPill category={article.category} color={article.categoryColor} />
+        {article.kicker && <span className="jk-kicker">{article.kicker}</span>}
+      </div>
+      <h2 className="jk-featured-hed">{article.headline}</h2>
+      <p className="jk-featured-dek">{article.deck}</p>
+      <div className="jk-featured-footer">
+        <div className="jk-byline-block">
+          <span className="jk-author">{article.author}</span>
+          <span className="jk-author-role">{article.authorRole}</span>
+        </div>
+        <div className="jk-featured-actions">
+          <span className="jk-read-time">{article.readTime}</span>
+          <Link to={`/joystick/${article.slug}`} className="jk-btn-read">
+            Read the story →
+          </Link>
+        </div>
+      </div>
+      {article.sourceCredit && article.sourceUrl && (
+        <div className="jk-source-credit">
+          Source: <a href={article.sourceUrl} target="_blank" rel="noopener noreferrer">{article.sourceCredit}</a>
+          {' '}— adapted for Joystick
         </div>
       )}
-      
-      <div className="article-content">
-        <div className="article-header">
-          <div className="article-meta">
-            <span className="article-category">{article.category}</span>
-            <span className="article-date">
-              <Clock size={12} />
-              {article.publishDate}
-            </span>
-          </div>
-          <div className="article-stats">
-            <div className="stat-item">
-              <Eye size={14} />
-              <span>{article.views}</span>
-            </div>
-            <div className="stat-item">
-              <Heart size={14} />
-              <span>{article.likes}</span>
-            </div>
-          </div>
-        </div>
-        
-        <h3 className="article-title">{article.title}</h3>
-        <p className="article-excerpt">{article.excerpt}</p>
-        
-        <div className="article-tags">
-          {article.tags.map((tag: boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | React.Key | null | undefined, idx: React.Key | null | undefined) => (
-            <span key={typeof tag === 'string' || typeof tag === 'number' ? tag : idx} className="tag">
-              <Tag size={10} />
-              {tag}
-            </span>
-          ))}
-        </div>
-        
-        <div className="article-footer">
-          <div className="article-author">
-            <User size={16} />
-            <div className="author-info">
-              <span className="author-name">{article.author}</span>
-              <span className="author-role">{article.authorRole}</span>
-            </div>
-          </div>
-          
-          <div className="article-actions">
-            <span className="read-time">{article.readTime}</span>
-            <button className="read-button">
-              <BookOpen size={16} />
-              Read
-            </button>
-          </div>
+    </div>
+  </article>
+);
+ 
+const MarketRunCard: React.FC<{ article: Article }> = ({ article }) => (
+  <article className="jk-marketrun-card">
+    <div className="jk-marketrun-header">
+      <span className="jk-spider" aria-hidden="true">🕷</span>
+      <div>
+        <span className="jk-marketrun-label">Auntie Anansi's Market Run</span>
+        <span className="jk-marketrun-sub">New standing feature — April 2026</span>
+      </div>
+    </div>
+    <h3 className="jk-marketrun-hed">{article.headline}</h3>
+    <p className="jk-marketrun-dek">{article.deck}</p>
+    <div className="jk-marketrun-footer">
+      <span className="jk-read-time">{article.readTime}</span>
+      <Link to={`/joystick/${article.slug}`} className="jk-btn-gold">
+        Read + contribute tips →
+      </Link>
+    </div>
+  </article>
+);
+ 
+const ArticleCard: React.FC<{ article: Article }> = ({ article }) => {
+  if (article.featured) return <FeaturedCard article={article} />;
+  if (article.marketRun) return <MarketRunCard article={article} />;
+  return (
+    <article className="jk-article-card">
+      <div className="jk-article-meta">
+        <CategoryPill category={article.category} color={article.categoryColor} />
+        <span className="jk-article-date">{article.date}</span>
+      </div>
+      <h3 className="jk-article-hed">{article.headline}</h3>
+      <p className="jk-article-dek">{article.deck}</p>
+      <div className="jk-article-footer">
+        <span className="jk-author">{article.author}</span>
+        <div className="jk-article-actions">
+          <span className="jk-read-time">{article.readTime}</span>
+          <Link to={`/joystick/${article.slug}`} className="jk-btn-text">
+            Read →
+          </Link>
         </div>
       </div>
     </article>
   );
-
+};
+ 
+/* ─── PAGE ───────────────────────────────────────────────────────────── */
+ 
+const JoystickPage: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+ 
+  const filtered = ARTICLES.filter(a => {
+    const matchesCat = activeCategory === 'All' || a.category === activeCategory;
+    const q = searchQuery.toLowerCase();
+    const matchesSearch =
+      !q ||
+      a.headline.toLowerCase().includes(q) ||
+      a.deck.toLowerCase().includes(q) ||
+      a.tags.some(t => t.includes(q));
+    return matchesCat && matchesSearch;
+  });
+ 
+  const featured = filtered.find(a => a.featured);
+  const marketRun = filtered.find(a => a.marketRun);
+  const rest = filtered.filter(a => !a.featured && !a.marketRun);
+ 
   return (
-    <PageTemplate
-      pageTitle="Joystick E-zine"
-      pageStrapline="Wembley's digital magazine where residents write, create, and share stories about technology, gaming, community, and the future we're building together."
-      pageType="programme"
-    >
-      <DraggableMaya 
-        membershipTier="visitor"
-        pageType="programme"
-        pageContext={{
-          title: "Joystick Magazine",
-          section: "media",
-          contentType: "magazine"
-        }}
-      />
-
-      <div className="joystick-content">
-        {/* Hero Section */}
-        <section className="joystick-hero">
-          <div className="hero-badge">🎮</div>
-          <h1>Joystick E-zine</h1>
-          <p className="hero-tagline">
-            Community Publishing Platform – Tech, Gaming, and Digital Culture
-          </p>
-        </section>
-
-        {/* Search and Filter Controls */}
-        <section className="controls-section">
-          <div className="search-filters">
-            <div className="search-box">
-              <Search size={18} />
-              <input
-                type="text"
-                placeholder="Search articles, authors, or tags..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            
-            <div className="category-filter">
-              <Filter size={18} />
-              <select 
-                value={selectedCategory} 
-                onChange={(e) => setSelectedCategory(e.target.value)}
-              >
-                {categories.map(category => (
-                  <option key={category.id} value={category.id}>
-                    {category.name} ({category.count})
-                  </option>
-                ))}
-              </select>
-            </div>
+    <div className="jk-page">
+ 
+      {/* ── MASTHEAD ──────────────────────────────────────────────── */}
+      <header className="jk-masthead">
+        <div className="jk-masthead-top">
+          <div className="jk-masthead-left">
+            <span className="jk-issue-label">Wembley Wonders CIC</span>
           </div>
-          
-          <div className="view-controls">
-            <button 
-              className={`view-button ${viewMode === 'grid' ? 'active' : ''}`}
-              onClick={() => setViewMode('grid')}
+          <div className="jk-masthead-centre">
+            <div className="jk-logo-lockup">
+              <span className="jk-logo-icon" aria-hidden="true">🕹</span>
+              <h1 className="jk-logo">Joystick</h1>
+            </div>
+            <p className="jk-tagline">The community e-zine for the Forgotten 60%</p>
+          </div>
+          <div className="jk-masthead-right">
+            <span className="jk-issue-label">Issue 3 · April 2026</span>
+          </div>
+        </div>
+        <div className="jk-masthead-rule" />
+        <nav className="jk-nav" aria-label="Section navigation">
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat}
+              className={`jk-nav-btn${activeCategory === cat ? ' jk-nav-btn--active' : ''}`}
+              onClick={() => setActiveCategory(cat)}
             >
-              <Grid size={18} />
-              Grid
+              {cat}
             </button>
-            <button 
-              className={`view-button ${viewMode === 'list' ? 'active' : ''}`}
-              onClick={() => setViewMode('list')}
-            >
-              <List size={18} />
-              List
+          ))}
+          <div className="jk-search-wrap">
+            <input
+              type="search"
+              className="jk-search"
+              placeholder="Search Joystick…"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              aria-label="Search articles"
+            />
+          </div>
+        </nav>
+      </header>
+ 
+      {/* ── CONTENT ───────────────────────────────────────────────── */}
+      <main className="jk-main">
+ 
+        {/* Featured lead */}
+        {featured && <FeaturedCard article={featured} />}
+ 
+        {/* Two-col: market run + sidebar */}
+        <div className="jk-two-col">
+          <div className="jk-col-primary">
+            {marketRun && <MarketRunCard article={marketRun} />}
+            {rest.slice(0, 2).map(a => <ArticleCard key={a.id} article={a} />)}
+          </div>
+          <aside className="jk-sidebar">
+ 
+            {/* Contribute callout */}
+            <div className="jk-sidebar-box jk-sidebar-box--dark">
+              <h3 className="jk-sidebar-hed">Write for Joystick</h3>
+              <p className="jk-sidebar-body">
+                You don't need to be a journalist. You need to know something
+                the community needs to know. Story ideas, local tips,
+                programme updates, reader letters.
+              </p>
+              <a href="mailto:admin@wembleywonders.org?subject=Joystick%20submission"
+                className="jk-btn-outline">
+                Get in touch →
+              </a>
+            </div>
+ 
+            {/* Market Run tip callout */}
+            <div className="jk-sidebar-box jk-sidebar-box--gold">
+              <div className="jk-sidebar-spider" aria-hidden="true">🕷</div>
+              <h3 className="jk-sidebar-hed">Got a Market Run tip?</h3>
+              <p className="jk-sidebar-body">
+                Know a cash-and-carry bargain, a brilliant local grocer,
+                or a bulk-buy trick that saves your household real money?
+                Auntie Anansi wants to hear from you.
+              </p>
+              <a href="mailto:admin@wembleywonders.org?subject=Market%20Run"
+                className="jk-btn-gold-outline">
+                Send your tip →
+              </a>
+            </div>
+ 
+            {/* Past issues */}
+            <div className="jk-sidebar-box">
+              <h3 className="jk-sidebar-hed">Past issues</h3>
+              <ul className="jk-archive-list">
+                <li><Link to="/joystick/issue/2" className="jk-archive-link">Issue 2 · January 2026</Link></li>
+                <li><Link to="/joystick/issue/1" className="jk-archive-link">Issue 1 · October 2025</Link></li>
+              </ul>
+            </div>
+ 
+            {/* Programmes cross-link */}
+            <div className="jk-sidebar-box jk-sidebar-box--teal">
+              <h3 className="jk-sidebar-hed">On the platform</h3>
+              <ul className="jk-programme-links">
+                <li><Link to="/raydyo" className="jk-prog-link">📻 Rayd-yo</Link></li>
+                <li><Link to="/programmes/gtechcasters" className="jk-prog-link">🎙️ G-Tech Casters</Link></li>
+                <li><Link to="/programmes/kaywanascourt" className="jk-prog-link">⚖️ Kaywana's Court</Link></li>
+                <li><Link to="/programmes/roots" className="jk-prog-link">🌿 Roots</Link></li>
+                <li><Link to="/programmes/auntieanansiskitchen" className="jk-prog-link">🕷 Auntie Anansi's Kitchen</Link></li>
+              </ul>
+            </div>
+ 
+          </aside>
+        </div>
+ 
+        {/* Remaining articles */}
+        {rest.length > 2 && (
+          <section className="jk-more-section">
+            <h2 className="jk-section-hed">More from this issue</h2>
+            <div className="jk-article-grid">
+              {rest.slice(2).map(a => <ArticleCard key={a.id} article={a} />)}
+            </div>
+          </section>
+        )}
+ 
+        {/* No results */}
+        {filtered.length === 0 && (
+          <div className="jk-no-results">
+            <p>Nothing found for "{searchQuery}" in {activeCategory}.</p>
+            <button className="jk-btn-text" onClick={() => { setSearchQuery(''); setActiveCategory('All'); }}>
+              Clear filters
             </button>
           </div>
-        </section>
-
-        {/* Featured Articles */}
-        <section className="featured-section">
-          <h2>Featured Stories</h2>
-          <div className="featured-grid">
-            {featuredArticles.map(article => (
-              <ArticleCard key={article.id} article={article} featured={true} />
-            ))}
-          </div>
-        </section>
-
-        {/* Latest Issue Showcase */}
-        <section className="latest-issue-section">
-          <h2>Latest Issue - September 2024</h2>
-          
-          <div className="issue-showcase">
-            <div className="issue-cover">
-              <div className="cover-placeholder">
-                <BookOpen size={48} />
-                <h3>Issue #3</h3>
-                <p>Building Tomorrow</p>
-              </div>
-            </div>
-            
-            <div className="issue-content">
-              <h3>This Issue Features</h3>
-              <div className="issue-stats">
-                <div className="stat">
-                  <strong>8</strong> Articles
-                </div>
-                <div className="stat">
-                  <strong>12</strong> Contributors  
-                </div>
-                <div className="stat">
-                  <strong>45</strong> Pages
-                </div>
-              </div>
-              <p>
-                Our latest issue explores how community members are using technology 
-                to build connections, solve problems, and create opportunities for everyone.
-              </p>
-              <button className="read-issue-button">
-                <BookOpen size={18} />
-                Read Full Issue
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Recent Articles */}
-        <section className="articles-section">
-          <div className="section-header">
-            <h2>Recent Articles</h2>
-            <span className="article-count">
-              {filteredArticles.length} {filteredArticles.length === 1 ? 'article' : 'articles'}
-            </span>
-          </div>
-          
-          <div className={`articles-container ${viewMode}`}>
-            {filteredArticles.map(article => (
-              <ArticleCard key={article.id} article={article} />
-            ))}
-          </div>
-          
-          {filteredArticles.length === 0 && (
-            <div className="no-results">
-              <BookOpen size={48} />
-              <h3>No articles found</h3>
-              <p>Try adjusting your search terms or category filter.</p>
-            </div>
-          )}
-        </section>
-
-        {/* Magazine Showcase Media Section */}
-        <MediaSection 
-          contentType="joystick-showcase"
-          title="From Our Pages"
-          description="Visual stories, infographics, and community content from Joystick Magazine"
-          allowedRoles={['staff', 'volunteer', 'editor']}
-          placeholder="Share magazine content, cover designs, and featured article images"
-          autoArchive={false}
-          maxItems={6}
-          layout="grid"
-        />
-
-        {/* What is Joystick Section */}
-        <section className="about-section">
-          <h2>What is Joystick?</h2>
-          <div className="about-grid">
-            <div className="about-panel">
-              <div className="panel-icon">
-                <Edit size={32} />
-              </div>
-              <h3>Community Publishing</h3>
-              <p>
-                Residents write articles, reviews, tutorials, and opinion pieces 
-                about technology, gaming, digital skills, and community life.
-              </p>
-            </div>
-            
-            <div className="about-panel">
-              <div className="panel-icon">
-                <MessageCircle size={32} />
-              </div>
-              <h3>Tech & Gaming Culture</h3>
-              <p>
-                Reviews of games, apps, and tech tools. Discussions about how 
-                technology impacts our daily lives and community connections.
-              </p>
-            </div>
-            
-            <div className="about-panel">
-              <div className="panel-icon">
-                <Star size={32} />
-              </div>
-              <h3>Innovation Showcase</h3>
-              <p>
-                Highlighting community tech projects, coding achievements, 
-                and innovative solutions created by Wembley residents.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Contributing Section */}
-        <section className="contributing-section">
-          <h2>Contribute to Joystick</h2>
-          
-          <div className="contributing-grid">
-            <div className="contribute-card">
-              <div className="contribute-icon">
-                <Edit size={24} />
-              </div>
-              <h3>Write Articles</h3>
-              <p>
-                Share your knowledge, experiences, or opinions. We welcome writers 
-                of all skill levels and provide editing support.
-              </p>
-              <div className="contribute-details">
-                <strong>What we're looking for:</strong>
-                <ul>
-                  <li>Personal tech experiences and lessons learned</li>
-                  <li>Tutorial content that helps other residents</li>
-                  <li>Reviews and recommendations</li>
-                  <li>Community project documentation</li>
-                </ul>
-              </div>
-              <button className="contribute-button">
-                <Edit size={16} />
-                Submit Article
-              </button>
-            </div>
-            
-            <div className="contribute-card">
-              <div className="contribute-icon">
-                <Calendar size={24} />
-              </div>
-              <h3>Editorial Support</h3>
-              <p>
-                Help with editing, fact-checking, and publishing. Learn digital 
-                publishing skills while supporting community voices.
-              </p>
-              <div className="contribute-details">
-                <strong>Editorial roles:</strong>
-                <ul>
-                  <li>Copy editing and proofreading</li>
-                  <li>Fact-checking and research support</li>
-                  <li>Social media promotion</li>
-                  <li>Website maintenance and updates</li>
-                </ul>
-              </div>
-              <button className="contribute-button">
-                <MessageCircle size={16} />
-                Join Editorial Team
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Archive and Newsletter */}
-        <section className="archive-newsletter-section">
-          <div className="archive-split">
-            <div className="archive-browser">
-              <h2>Browse Archives</h2>
-              <p>
-                Explore past issues of Joystick and discover the evolution 
-                of our community's digital conversations.
-              </p>
-              <div className="archive-list">
-                <div className="archive-item">
-                  <Calendar size={16} />
-                  <span>Issue #2 - June 2024: "Summer of Making"</span>
-                  <button className="archive-read">Read</button>
-                </div>
-                <div className="archive-item">
-                  <Calendar size={16} />
-                  <span>Issue #1 - March 2024: "Getting Started"</span>
-                  <button className="archive-read">Read</button>
-                </div>
-              </div>
-              <button className="archive-button">
-                <BookOpen size={16} />
-                View All Issues
-              </button>
-            </div>
-            
-            <div className="newsletter-signup">
-              <h2>Stay Updated</h2>
-              <p>
-                Get the latest Joystick articles delivered to your inbox when each issue publishes.
-              </p>
-              <div className="newsletter-form">
-                <input 
-                  type="email" 
-                  placeholder="your.email@example.com"
-                  className="newsletter-input"
-                />
-                <button className="newsletter-button">
-                  Subscribe
-                </button>
-              </div>
-              <div className="newsletter-note">
-                <p>Community members only. Quarterly issues.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Link to G-Tech Casters Programme */}
-        <section className="programme-link-section">
-          <div className="programme-link-card">
-            <h2>Learn Digital Publishing with G-Tech Casters</h2>
-            <p>
-              Joystick Magazine is created by participants in our <strong>G-Tech Casters</strong> programme. 
-              Learn podcast production, digital storytelling, and media creation skills.
-            </p>
-            <Link to="/programmes/gtechcasters" className="programme-link-button">
-              <ArrowRight size={18} />
-              Explore G-Tech Casters Programme
-            </Link>
-          </div>
-        </section>
-
-        {/* Call to Action */}
-        <section className="joystick-cta">
-          <h2>Ready to Share Your Story?</h2>
-          <p>Join our community of writers, makers, and storytellers</p>
-          <div className="cta-buttons">
-            <Link to="/get-started" className="cta-button primary">
-              Get Started
-            </Link>
-            <Link to="/programmes/gtechcasters" className="cta-button secondary">
-              Learn More
-            </Link>
-          </div>
-        </section>
-      </div>
-    </PageTemplate>
+        )}
+ 
+      </main>
+ 
+      {/* ── FOOTER STRIP ──────────────────────────────────────────── */}
+      <footer className="jk-footer-strip">
+        <div className="jk-footer-inner">
+          <span>Joystick is published by Wembley Wonders CIC · Co. No. 12960817</span>
+          <span>
+            <a href="mailto:admin@wembleywonders.org">admin@wembleywonders.org</a>
+            {' · '}
+            <Link to="/editorial-standard">Editorial standards</Link>
+          </span>
+        </div>
+      </footer>
+ 
+    </div>
   );
 };
-
+ 
+export { JoystickPage };
 export default JoystickPage;

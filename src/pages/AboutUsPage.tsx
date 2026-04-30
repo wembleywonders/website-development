@@ -1,959 +1,464 @@
 import React, { useState } from 'react';
-import { Users, Award, Target, Heart, Globe, Shield, TrendingUp, CheckCircle, MapPin, Calendar, FileText, DollarSign, BookOpen, Radio, Drama, Factory, Zap, Lock, Scale, Mic, PenTool, Music, ChefHat, Sparkles, Eye, Link2, Clock, Fingerprint, Database, FileCheck, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageTemplate from '../components/PageTemplate';
-import DraggableMaya from '../components/maya/DraggableMaya';
-import './AboutUsPage.css';
+import styles from './AboutUsPage.module.css';
 
-type TabType = 'stance' | 'factory' | 'model' | 'protection' | 'productions' | 'leadership' | 'governance';
-
-/**
- * REWRITTEN WITH CORE UNDERSTANDING
- * ==================================
- * "We find the wonders the system would otherwise miss, 
- *  and we make sure they keep what they build."
- * 
- * The talent is already there. The CIC's job is to:
- * 1. SEE IT (when others don't)
- * 2. PROTECT IT (from systems that extract and redirect)
- * 3. DEVELOP IT (with proper resources)
- * 4. CREDIT IT (properly, permanently, financially)
- */
+// ============================================================
+// AboutUsPage.tsx — rebuilt March 2026, updated March 2026
+// ============================================================
+// One job: answer three questions Ria Hebden asks in 30 seconds.
+//
+// 1. Who are these people?
+//    → Claude and Judith Fontanelle. Seventeen years on the High Road.
+//      Self-financed. No extraction.
+//
+// 2. Do they understand what I understand?
+//    → The fracture between individual survival and cultural wholeness.
+//      The pipeline problem. Why Jimmy goes to Brighton.
+//      Yes. We understand it.
+//
+// 3. Is this worth my time?
+//    → 13 programmes. A provenance market. A heritage archive.
+//      Community radio. A membership society for women.
+//      55% to creators. Infrastructure, not aspiration.
+//      A published epistemological standard. A named methodology.
+//      A manifesto that says exactly what we are building and why.
+//
+// Voice: second person throughout. Playfair Display for all display.
+// No tabs. No blockchain. No Rosalind Franklin pitch deck.
+// One editorial flow. The same room as the homepage.
+// ============================================================
 
 const AboutUsPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<TabType>('stance');
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
-  const leadership = [
-    {
-      name: "Judith Fontanelle",
-      role: "Director of Community Engagement",
-      background: "Community development specialist with 15+ years experience in grassroots organizing and cultural programming.",
-      expertise: "Cultural production partnerships, creator development, stakeholder engagement",
-      achievements: "Led cultural initiatives serving 500+ creators, established partnerships with 12 community organizations"
-    },
-    {
-      name: "Claude Fontanelle", 
-      role: "Technical Director & Community Systems Architect",
-      background: "Technology educator and community organizer specializing in cultural production platforms and broadcast systems.",
-      expertise: "Radio drama production, broadcast technology, cultural archive systems",
-      achievements: "Developed Rayd-yo broadcast platform, designed production workflow systems, built G-Tech Cyberstore"
-    },
-    {
-      name: "Flora Agba",
-      role: "Health And Safety Advisor", 
-      background: "Professional health and safety consultant ensuring all productions meet regulatory compliance and safeguarding standards.",
-      expertise: "Production safety, cast/crew safeguarding, regulatory compliance",
-      achievements: "Established comprehensive safeguarding framework, zero incidents across all productions"
-    },
-    {
-      name: "Michael Franklin",
-      role: "Healthcare Professional & Wellbeing Advisor",
-      background: "Healthcare professional bringing medical expertise to cast/crew wellbeing and production safety.",
-      expertise: "Cast wellbeing, production health protocols, mental health support",
-      achievements: "Designed health-conscious production protocols, established wellbeing support for performers"
-    }
-  ];
-
-  const factoryStats = [
-    { metric: "Creator Revenue Share", value: "55%", context: "Yours. Permanently." },
-    { metric: "Pipeline Stages", value: "6", context: "Ideas to income" },
-    { metric: "Entry Points", value: "8", context: "Find your discipline" },
-    { metric: "Credit Extraction", value: "0%", context: "Your name stays on it" }
-  ];
-
-  const entryPoints = [
-    { name: "STEMgineers", icon: Zap, products: "STEM escape rooms, physics of football, wearable tech projects", price: "£5-£200" },
-    { name: "Silk Stilettos", icon: PenTool, products: "Tactical UI kits, strategy systems, biomimicry design frameworks", price: "£5-£120" },
-    { name: "Trubble n Bass", icon: Music, products: "Beat packs, synth presets, sound-to-LED projects", price: "£7-£35" },
-    { name: "Pageturners", icon: BookOpen, products: "Interactive fiction, culture guides, anthology zines", price: "£5-£50" },
-    { name: "Kaywana's Court", icon: Drama, products: "Performance scripts, culture packs, audio dramas", price: "£10-£45" },
-    { name: "G-Tech Casters", icon: Mic, products: "Podcast kits, audio branding, interview frameworks", price: "£10-£50" },
-    { name: "Auntie Anansi's Kitchen", icon: ChefHat, products: "Heritage recipe packs, food story bundles", price: "£10-£35" },
-    { name: "Bright Sparks", icon: Sparkles, products: "Try everything, find your fire", price: "Free start" }
-  ];
+  const toggle = (id: string) =>
+    setExpandedSection(prev => prev === id ? null : id);
 
   return (
     <PageTemplate
-      pageTitle="The Talent Is Already Here"
-      pageStrapline="Somewhere in Wembley right now there's someone with Rosalind Franklin's precision, Ada Lovelace's vision, or Zaha Hadid's clarity. The system will miss them. We won't. We find the wonders the system overlooks, and we make sure they keep what they build."
-      pageType="framework"
+      pageTitle="About Wembley Wonders"
+      pageStrapline="Who built this. Why it exists. Why it won't be extracted."
+      pageType="standard"
     >
-      <DraggableMaya 
-        membershipTier="visitor"
-        pageType="framework"
-        pageContext={{
-          title: "About Wembley Wonders CIC",
-          section: "framework",
-          contentType: "governance"
-        }}
-      />
+      <div className={styles.about}>
 
-      <div className="about-content">
-        {/* Legal Status Badge */}
-        <div className="legal-status-badge">
-          <Shield size={16} />
-          <span>Community Interest Company • No. 12960817 • Asset-Locked Structure</span>
-        </div>
-
-        {/* Navigation Tabs */}
-        <nav className="tab-navigation">
-          {[
-            { id: 'stance', label: 'Why We Exist', icon: Eye },
-            { id: 'factory', label: 'The Factory', icon: Factory },
-            { id: 'model', label: '55/25/20 Model', icon: DollarSign },
-            { id: 'protection', label: 'How We Protect', icon: Shield },
-            { id: 'productions', label: 'Productions', icon: Radio },
-            { id: 'leadership', label: 'Leadership', icon: Users },
-            { id: 'governance', label: 'Governance', icon: Scale }
-          ].map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              onClick={() => setActiveTab(id as TabType)}
-              className={`tab-button ${activeTab === id ? 'active' : ''}`}
-            >
-              <Icon size={18} />
-              {label}
-            </button>
-          ))}
-        </nav>
-
-        {/* Tab Content */}
-        <div className="tab-content">
-          
-          {activeTab === 'stance' && (
-            <div className="story-section">
-              <h2>Recognition, Not Rescue</h2>
-              
-              <div className="stance-hero">
-                <blockquote className="stance-quote">
-                  "Rosalind Franklin took the photograph that proved DNA's structure. Watson and Crick 
-                  got the Nobel. Jocelyn Bell Burnell discovered pulsars. Her supervisor got the credit. 
-                  Ada Lovelace saw general-purpose computing when Babbage only saw calculation. The pattern 
-                  is clear: capability has never been the problem. Recognition systems are. So we built different ones."
-                </blockquote>
-              </div>
-
-              <div className="story-cards">
-                <div className="story-card problem">
-                  <Eye size={32} />
-                  <h3>The Pattern We See</h3>
-                  <p>
-                    History is full of people whose work was extracted, credited elsewhere, or simply 
-                    overlooked. Not because they lacked talent — because the systems around them weren't 
-                    built to recognise it. That pattern continues today. Platforms take 65%. Algorithms 
-                    bury work. Credit flows upward. We've watched it happen to people we know.
-                  </p>
-                  <p className="stance-emphasis">
-                    The talent was never the problem.
-                  </p>
-                </div>
-
-                <div className="story-card solution">
-                  <Shield size={32} />
-                  <h3>What We Actually Do</h3>
-                  <p>
-                    We don't "help creators succeed." We find people whose capability the system would 
-                    miss, and we build infrastructure that protects what they create. Your work stays yours. 
-                    Your name stays on it. Your revenue comes to you. No supervisor taking your Nobel. 
-                    No "also contributed" footnote. No algorithm deciding you don't exist this month.
-                  </p>
-                  <p className="stance-emphasis">
-                    Protection, not patronage.
-                  </p>
-                </div>
-
-                <div className="story-card values">
-                  <Award size={32} />
-                  <h3>Why "Wonders"</h3>
-                  <p>
-                    The name isn't aspiration. It's recognition of existing reality. The teenager in Wembley 
-                    who thinks like Lovelace — who sees what systems could become, not just what they do — 
-                    is already a wonder. The woman with Hadid's uncompromising vision being told she's 
-                    "difficult" is already a wonder. Our job is to see them before the system writes them out.
-                  </p>
-                  <p className="stance-emphasis">
-                    They're not becoming wonders. They already are.
-                  </p>
-                </div>
-              </div>
-
-              <div className="stance-comparison">
-                <h3>Two Ways to Think About Community Organisations</h3>
-                <div className="comparison-table">
-                  <div className="comparison-column dependent">
-                    <h4>"Helping" Model</h4>
-                    <ul>
-                      <li>Assumes people need to be developed</li>
-                      <li>Success measured by participation numbers</li>
-                      <li>Programmes designed for funders</li>
-                      <li>Credit often flows to the organisation</li>
-                      <li>Dependent on external validation</li>
-                      <li>A valid approach for many</li>
-                    </ul>
-                  </div>
-                  <div className="comparison-column self-sufficient">
-                    <h4>Recognition Model</h4>
-                    <ul>
-                      <li>Assumes talent is already present</li>
-                      <li>Success measured by creator outcomes</li>
-                      <li>Programmes designed for creators</li>
-                      <li>Credit stays with the creator</li>
-                      <li>Self-sustaining through creator success</li>
-                      <li>The approach we've chosen</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="story-card location">
-                <Globe size={32} />
-                <h3>Rooted in Wembley</h3>
-                <div className="address-info">
-                  <div className="address-line">
-                    <MapPin size={16} />
-                    <span>Flat 2, 452 High Road, Wembley, Middlesex, HA9 7AY</span>
-                  </div>
-                  <p>
-                    Based in one of London's most diverse communities. The Franklins, Lovelaces, and Hadids 
-                    of our generation are here. They're already creating. Our job is to make sure the system 
-                    doesn't miss them the way it's missed so many before.
-                  </p>
-                  <p>📧 <a href="mailto:hello@wembleywonders.org">hello@wembleywonders.org</a></p>
-                </div>
-              </div>
-
-              <div className="stance-cta">
-                <h3>For the Lovelaces, Franklins, and Hadids</h3>
-                <p className="creator-message">
-                  If you've built things that got credited elsewhere. If you've been called "difficult" 
-                  when you were actually right. If platforms have taken your work and buried it behind 
-                  algorithms. We built this infrastructure specifically for you.
-                </p>
-                <p className="creator-emphasis">55% yours. Your name on it. No extraction.</p>
-                <h3>For Those Who Recognise Quality</h3>
-                <p className="buyer-message">
-                  When you buy from our Cyberstore, you're purchasing directly from creators who keep 
-                  the majority of what they earn. No corporate middlemen. No extracted value. The person 
-                  who made it gets paid properly. We think that's how it should work.
-                </p>
-              </div>
+        {/* ── OPENING DECLARATION ── */}
+        <section className={styles.declaration}>
+          <div className={styles.declarationInner}>
+            <p className={styles.declarationLead}>
+              You already know the wound.
+            </p>
+            <p className={styles.declarationBody}>
+              The person whose knowledge built something that got credited elsewhere.
+              The woman whose expertise was real but whose confidence had been quietly
+              eroded by twenty years of being overlooked. The man who spent four decades
+              building community intelligence that nobody ever formally witnessed.
+              The teenager in a town with no infrastructure for what they carry.
+            </p>
+            <p className={styles.declarationBody}>
+              We built Wembley Wonders because we know that person.
+              We've been that person. We've sat across from that person in a room on
+              the High Road for seventeen years and watched the system miss them
+              every single time.
+            </p>
+            <p className={styles.declarationEmphasis}>
+              We stopped watching and built the infrastructure instead.
+            </p>
+            <div className={styles.declarationManifesto}>
+              <Link to="/manifesto" className={styles.manifestoLink}>
+                <span className={styles.manifestoMark}>◆</span>
+                Read the Wembley Wonders Manifesto — what we are building and why
+                <span className={styles.manifestoArrow}>→</span>
+              </Link>
             </div>
-          )}
+          </div>
+        </section>
 
-          {activeTab === 'factory' && (
-            <div className="factory-section">
-              <h2>The Creator Factory</h2>
-              <p className="section-intro">
-                Not a programme that "develops talent." An infrastructure that protects it. 
-                Six stages from idea to income, with one guarantee: what you build stays yours.
-              </p>
+        {/* ── RULE ── */}
+        <div className={styles.rule} />
 
-              <div className="factory-stats">
-                {factoryStats.map((stat, index) => (
-                  <div key={index} className="factory-stat">
-                    <div className="stat-value">{stat.value}</div>
-                    <div className="stat-metric">{stat.metric}</div>
-                    <div className="stat-context">{stat.context}</div>
-                  </div>
-                ))}
+        {/* ── WHO WE ARE ── */}
+        <section className={styles.founders}>
+          <div className={styles.sectionLabel}>The people behind the platform</div>
+          <h2 className={styles.sectionTitle}>
+            Two people.<br />
+            <em>Seventeen years on the High Road.</em>
+          </h2>
+
+          <div className={styles.foundersGrid}>
+
+            {/* Judith */}
+            <div className={styles.founderCard}>
+              <div className={styles.founderPhoto}>
+                <img
+                  src="/images/judith-v4.png"
+                  alt="Judith Fontanelle"
+                  className={styles.founderImg}
+                  onError={e => {
+                    e.currentTarget.style.display = 'none';
+                    const placeholder = e.currentTarget.parentElement?.querySelector(
+                      `.${styles.founderInitial}`
+                    ) as HTMLElement;
+                    if (placeholder) placeholder.style.display = 'flex';
+                  }}
+                />
+                <div className={styles.founderInitial} style={{ display: 'none' }}>J</div>
               </div>
-
-              <div className="pipeline-visual">
-                <h3>The Six-Stage Pipeline</h3>
-                <div className="pipeline-stages">
-                  <div className="pipeline-stage">
-                    <div className="stage-number">1</div>
-                    <h4>Sandbox</h4>
-                    <p>Explore and experiment. Find what interests you. No pressure, no judgement.</p>
-                    <span className="stage-duration">Take your time</span>
-                  </div>
-                  <div className="pipeline-stage">
-                    <div className="stage-number">2</div>
-                    <h4>Testbed</h4>
-                    <p>Build a prototype. Get honest feedback. Test whether it works.</p>
-                    <span className="stage-duration">2-4 weeks</span>
-                  </div>
-                  <div className="pipeline-stage mandatory">
-                    <div className="stage-number">3</div>
-                    <h4>TECHreneurs</h4>
-                    <p>Learn to price, position, and protect your work. The business essentials.</p>
-                    <span className="stage-duration">4-6 weeks</span>
-                    <span className="stage-badge">Everyone completes this</span>
-                  </div>
-                  <div className="pipeline-stage">
-                    <div className="stage-number">4</div>
-                    <h4>The Forge</h4>
-                    <p>Build your finished product to professional standard. No compromise.</p>
-                    <span className="stage-duration">4-8 weeks</span>
-                  </div>
-                  <div className="pipeline-stage">
-                    <div className="stage-number">5</div>
-                    <h4>Polish Bays</h4>
-                    <p>Discipline-specific refinement. Ready for launch.</p>
-                    <span className="stage-duration">2-4 weeks</span>
-                  </div>
-                  <div className="pipeline-stage">
-                    <div className="stage-number">6</div>
-                    <h4>Distribution</h4>
-                    <p>Listed in Cyberstore. Promoted via Rayd-yo. Your name on it. Ongoing sales.</p>
-                    <span className="stage-duration">Ongoing</span>
-                  </div>
+              <div className={styles.founderContent}>
+                <div className={styles.founderMeta}>
+                  <span className={styles.founderName}>Judith Fontanelle</span>
+                  <span className={styles.founderRole}>Director of Community Engagement</span>
+                  <span className={styles.founderHandle}>@BryceOfWembley</span>
                 </div>
-              </div>
-
-              <div className="factory-principle">
-                <Lock size={24} />
-                <p>
-                  <strong>The TECHreneurs Principle:</strong> Everyone completes our economic 
-                  literacy programme before their product ships. Because capability without 
-                  commercial understanding is how the Franklins of history got their credit taken. 
-                  We teach people to protect what they build.
+                <p className={styles.founderVoice}>
+                  I'm the woman your friend told you to call. When you don't know
+                  where to start — when the system has made you feel like what you
+                  carry isn't valuable, when you need someone in your corner who
+                  actually understands the specific texture of that experience —
+                  that's me.
                 </p>
-              </div>
-
-              <div className="entry-points-section">
-                <h3>Eight Entry Points — One Pipeline</h3>
-                <p>Different disciplines, different creative expressions. Same credit protection. Same 55%.</p>
-                <div className="entry-points-grid">
-                  {entryPoints.map((entry, index) => {
-                    const Icon = entry.icon;
-                    return (
-                      <div key={index} className="entry-point-card">
-                        <Icon size={24} />
-                        <h4>{entry.name}</h4>
-                        <p>{entry.products}</p>
-                        <span className="price-range">{entry.price}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="factory-cta">
-                <Link to="/creator-factory" className="btn-factory">
-                  <Factory size={20} />
-                  Explore The Factory
-                </Link>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'model' && (
-            <div className="model-section">
-              <h2>The 55/25/20 Model</h2>
-              <p className="section-intro">
-                This isn't a revenue split. It's anti-extraction architecture. Designed to prevent 
-                the pattern where value flows away from the people who created it. Every transaction 
-                is recorded on-chain. Every split is enforced by code, not policy.
-              </p>
-
-              <div className="revenue-breakdown">
-                <div className="revenue-card creator">
-                  <div className="revenue-percentage">55%</div>
-                  <h3>Stays With the Creator</h3>
-                  <p>
-                    You made it, you keep the majority. No algorithm adjustments. No platform clawbacks. 
-                    No supervisor taking your credit. Your work, your name, your revenue.
-                  </p>
-                  <div className="revenue-example">
-                    <strong>Example:</strong> Your product sells for £25 → You receive £13.75
-                  </div>
-                  <p className="revenue-comparison">
-                    <strong>For context:</strong> Amazon offers 35%, Udemy 37%, YouTube 55% (but algorithm-dependent)
-                  </p>
-                </div>
-
-                <div className="revenue-card community">
-                  <div className="revenue-percentage">25%</div>
-                  <h3>Finds the Next Wonder</h3>
-                  <p>
-                    Production budgets. Equipment. Development programmes. Marketing. When your product 
-                    succeeds, it funds finding the next Franklin, the next Lovelace, the next Hadid. 
-                    The ones the system would otherwise miss.
-                  </p>
-                  <div className="revenue-example">
-                    <strong>Impact:</strong> Every £100 in sales → £25 to finding more wonders
-                  </div>
-                </div>
-
-                <div className="revenue-card platform">
-                  <div className="revenue-percentage">20%</div>
-                  <h3>Keeps the Infrastructure Running</h3>
-                  <p>
-                    Hosting. Payment processing. Streaming. Insurance. The infrastructure that protects 
-                    your credit and delivers your revenue. We run lean so creators keep more.
-                  </p>
-                  <div className="revenue-example">
-                    <strong>Operations:</strong> Modest overhead, maximum creator share
-                  </div>
-                </div>
-              </div>
-
-              <div className="model-difference">
-                <h3>Why This Architecture Works</h3>
-                <div className="difference-grid">
-                  <div className="difference-item">
-                    <CheckCircle size={32} />
-                    <h4>No Credit Extraction</h4>
-                    <p>Your name stays on your work. Permanently. No "also contributed."</p>
-                  </div>
-                  <div className="difference-item">
-                    <Lock size={32} />
-                    <h4>Asset-Locked CIC</h4>
-                    <p>We legally cannot extract profits. The 55/25/20 split is protected.</p>
-                  </div>
-                  <div className="difference-item">
-                    <TrendingUp size={32} />
-                    <h4>Compounding Catalogue</h4>
-                    <p>Your second product joins your first. Portfolio grows, income grows.</p>
-                  </div>
-                  <div className="difference-item">
-                    <Shield size={32} />
-                    <h4>No Algorithm Games</h4>
-                    <p>Your work doesn't get buried when you take a break. Make once, keep earning.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="transparency-commitment">
-                <h3>Radical Transparency</h3>
-                <p>
-                  Each quarter, we publish: total sales, creator payments, community fund allocation, 
-                  and operational costs. You can see exactly where every pound goes. Because opacity 
-                  is how extraction happens. We think sunlight is rather effective protection.
+                <p className={styles.founderVoice}>
+                  The Passionistas Fan Club is the community I wish had existed
+                  when I needed it. It exists now. I convene it. Walk in.
                 </p>
-                <Link to="/about" className="reports-link">
-                  <FileText size={16} />
-                  View Transparency Reports →
-                </Link>
-              </div>
-
-              <div className="blockchain-teaser">
-                <Database size={24} />
-                <div>
-                  <h3>Blockchain-Protected Credit</h3>
-                  <p>
-                    Every creation timestamped. Every contributor named. Every transaction recorded. 
-                    Your work, your name, your proof — permanently and cryptographically verified.
-                  </p>
-                  <button 
-                    onClick={() => setActiveTab('protection')} 
-                    className="protection-link"
+                <div className={styles.founderActions}>
+                  <a
+                    href="https://wa.me/447932198468?text=Hello%20Judith%2C%20I%27d%20like%20to%20find%20out%20more%20about%20Wembley%20Wonders"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.whatsappBtn}
                   >
-                    <Shield size={16} />
-                    See How We Protect Your Work →
-                  </button>
-                </div>
-              </div>
-
-              <div className="cta-section dual-register">
-                <div className="cta-creator">
-                  <h2>For Creators</h2>
-                  <p>
-                    If you've watched your work get credited elsewhere. If platforms have taken more 
-                    than they gave. If you've been the Franklin in a Watson-and-Crick situation. 
-                    We built this infrastructure specifically for you.
-                  </p>
-                  <p className="cta-emphasis">55% yours. Your name on it. No extraction.</p>
-                  <Link to="/creator-factory" className="cta-button">
-                    <Factory size={18} />
-                    Explore the Factory
-                  </Link>
-                </div>
-                <div className="cta-divider">
-                  <span>or</span>
-                </div>
-                <div className="cta-buyer">
-                  <h2>For Buyers</h2>
-                  <p>
-                    When you buy from the Cyberstore, 55% goes directly to the creator. Not a corporation. 
-                    Not a platform. The person who made it. Professional quality from people who keep 
-                    what they earn.
-                  </p>
-                  <p className="cta-emphasis">Fair pay. Real creators. Quality work.</p>
-                  <Link to="/cyberstore" className="cta-button secondary">
-                    <DollarSign size={18} />
-                    Visit Cyberstore
+                    💬 WhatsApp Judith directly
+                  </a>
+                  <Link to="/passionistas" className={styles.founderLink}>
+                    The Passionistas →
                   </Link>
                 </div>
               </div>
             </div>
-          )}
 
-          {activeTab === 'protection' && (
-            <div className="protection-section">
-              <h2>How We Protect Your Work</h2>
-              <p className="section-intro">
-                This isn't policy. It's architecture. Every creation timestamped on-chain. Every contributor 
-                named. Every sale recorded. Every credential verifiable. Your work, your name, your proof — 
-                permanently.
+            {/* Claude */}
+            <div className={styles.founderCard}>
+              <div className={styles.founderPhoto}>
+                <img
+                  src="/images/claude-fontanelle.jpg"
+                  alt="Claude Fontanelle"
+                  className={styles.founderImg}
+                  onError={e => {
+                    e.currentTarget.style.display = 'none';
+                    const placeholder = e.currentTarget.parentElement?.querySelector(
+                      `.${styles.founderInitial}`
+                    ) as HTMLElement;
+                    if (placeholder) placeholder.style.display = 'flex';
+                  }}
+                />
+                <div className={styles.founderInitial} style={{ display: 'none' }}>C</div>
+              </div>
+              <div className={styles.founderContent}>
+                <div className={styles.founderMeta}>
+                  <span className={styles.founderName}>Claude Fontanelle</span>
+                  <span className={styles.founderRole}>Technical Director & Co-founder</span>
+                  <span className={styles.founderHandle}>Wembley Wonders CIC</span>
+                </div>
+                <p className={styles.founderVoice}>
+                  I'm a self-taught developer, a former ICT lecturer, a trade union
+                  educator, a sub-editor, a community activist. I've spent forty years
+                  watching people underestimate what they carry — and watching the
+                  systems around them extract that value without acknowledgement
+                  or payment.
+                </p>
+                <p className={styles.founderVoice}>
+                  The platform is the infrastructure I built so that witnessing
+                  becomes income. The Connoisseurs Club is the framework I built
+                  for men who've never had their knowledge formally witnessed.
+                  Both took seventeen years to build properly.
+                </p>
+                <div className={styles.founderActions}>
+                  <Link to="/connoisseurs-club" className={styles.founderLink}>
+                    The Connoisseurs Club →
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <div className={styles.rule} />
+
+        {/* ── THE WOUND ── */}
+        <section className={styles.wound}>
+          <div className={styles.sectionLabel}>The problem we're solving</div>
+          <h2 className={styles.sectionTitle}>
+            The fracture is not new.<br />
+            <em>The infrastructure to heal it is.</em>
+          </h2>
+
+          <div className={styles.woundGrid}>
+            <div className={styles.woundText}>
+              <p>
+                In every iteration of immigration — in every community that has arrived
+                somewhere new and had to negotiate survival — there is a central tension
+                between individual advancement and cultural continuity. The system forces
+                a binary choice: assimilate and survive, or remain whole and be marginalised.
               </p>
-
-              <div className="protection-hero">
-                <blockquote className="protection-quote">
-                  "Rosalind Franklin's Photo 51 had no timestamp. No immutable record. No cryptographic 
-                  proof of who created it. Watson and Crick could claim they 'built on her work' without 
-                  crediting her. We built a system where that can't happen. Ever."
-                </blockquote>
-              </div>
-
-              <div className="protection-layers">
-                <h3>Four Layers of Protection</h3>
-                <div className="layers-grid">
-                  <div className="layer-card">
-                    <Clock size={32} />
-                    <h4>Creation Timestamp</h4>
-                    <p>
-                      The moment you create something, it's timestamped on the blockchain. 
-                      Immutable. Permanent. Proves you made it first.
-                    </p>
-                    <span className="layer-tech">On-chain timestamp with content hash</span>
-                  </div>
-                  <div className="layer-card">
-                    <Fingerprint size={32} />
-                    <h4>Attribution Record</h4>
-                    <p>
-                      Every contributor is named and roled. No "also contributed." No footnotes. 
-                      Your name, permanently attached to your work.
-                    </p>
-                    <span className="layer-tech">Contributor array with roles, on-chain</span>
-                  </div>
-                  <div className="layer-card">
-                    <Link2 size={32} />
-                    <h4>Citation Tracking</h4>
-                    <p>
-                      When someone builds on your work, the citation is recorded on-chain. 
-                      Your influence is tracked. Your reputation compounds.
-                    </p>
-                    <span className="layer-tech">Bidirectional citation links, verified</span>
-                  </div>
-                  <div className="layer-card">
-                    <FileCheck size={32} />
-                    <h4>Integrity Verification</h4>
-                    <p>
-                      Anyone can verify your work hasn't been altered. The content hash proves 
-                      this is exactly what you created. No modifications, no claims of changes.
-                    </p>
-                    <span className="layer-tech">Cryptographic content hash verification</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="protection-commerce">
-                <h3>Every Transaction Protected</h3>
-                <div className="commerce-flow">
-                  <div className="commerce-step">
-                    <span className="step-number">1</span>
-                    <h4>You Create</h4>
-                    <p>Work timestamped, contributors named, content hash recorded</p>
-                  </div>
-                  <div className="commerce-arrow">→</div>
-                  <div className="commerce-step">
-                    <span className="step-number">2</span>
-                    <h4>You List</h4>
-                    <p>Product added to Cyberstore with your verified creator profile</p>
-                  </div>
-                  <div className="commerce-arrow">→</div>
-                  <div className="commerce-step">
-                    <span className="step-number">3</span>
-                    <h4>Someone Buys</h4>
-                    <p>Transaction recorded on-chain with automatic 55/25/20 split</p>
-                  </div>
-                  <div className="commerce-arrow">→</div>
-                  <div className="commerce-step">
-                    <span className="step-number">4</span>
-                    <h4>You Get Paid</h4>
-                    <p>Blockchain receipt: date, amount, your share, verifiable</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="protection-credentials">
-                <h3>Portable Verified Credentials</h3>
-                <p className="credentials-intro">
-                  Your achievements aren't just certificates — they're cryptographically verified records 
-                  that follow you anywhere.
-                </p>
-                <div className="credentials-example">
-                  <div className="credential-card">
-                    <div className="credential-header">
-                      <Briefcase size={20} />
-                      <span className="credential-type">Creator Profile</span>
-                      <span className="credential-verified">✓ Blockchain Verified</span>
-                    </div>
-                    <div className="credential-content">
-                      <h4>Aisha Thompson</h4>
-                      <div className="credential-items">
-                        <div className="credential-item">
-                          <span className="item-label">TECHreneurs Certified</span>
-                          <span className="item-value">2026-03-15</span>
-                          <span className="item-hash">0x7a3b...</span>
-                        </div>
-                        <div className="credential-item">
-                          <span className="item-label">Products Shipped</span>
-                          <span className="item-value">7</span>
-                          <span className="item-hash">Verified</span>
-                        </div>
-                        <div className="credential-item">
-                          <span className="item-label">Total Earnings</span>
-                          <span className="item-value">£2,847</span>
-                          <span className="item-hash">Auditable</span>
-                        </div>
-                        <div className="credential-item">
-                          <span className="item-label">Collaboration Credits</span>
-                          <span className="item-value">3 projects</span>
-                          <span className="item-hash">On-chain</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="credential-footer">
-                      <span>Issuer: Wembley Wonders CIC #12960817</span>
-                      <span>Status: VALID</span>
-                    </div>
-                  </div>
-                </div>
-                <p className="credentials-uses">
-                  <strong>Use this anywhere:</strong> Bank loan applications. New platform profiles. 
-                  Job interviews. Benefits reporting. Anyone can verify — it's on the blockchain.
-                </p>
-              </div>
-
-              <div className="protection-benefits">
-                <h3>For Universal Credit Reporting</h3>
-                <p className="benefits-intro">
-                  We know many creators are building income while navigating benefits. The blockchain 
-                  makes reporting clean and verifiable.
-                </p>
-                <div className="benefits-features">
-                  <div className="benefit-item">
-                    <CheckCircle size={20} />
-                    <div>
-                      <h4>Clean Audit Trail</h4>
-                      <p>Every penny earned is documented with dates, amounts, and sources</p>
-                    </div>
-                  </div>
-                  <div className="benefit-item">
-                    <CheckCircle size={20} />
-                    <div>
-                      <h4>Legitimate Self-Employment</h4>
-                      <p>Earnings through a registered CIC with verifiable transaction records</p>
-                    </div>
-                  </div>
-                  <div className="benefit-item">
-                    <CheckCircle size={20} />
-                    <div>
-                      <h4>Exportable Reports</h4>
-                      <p>Generate monthly income reports directly from blockchain data</p>
-                    </div>
-                  </div>
-                  <div className="benefit-item">
-                    <CheckCircle size={20} />
-                    <div>
-                      <h4>No Ambiguity</h4>
-                      <p>DWP asks "prove your earnings" → Here's the blockchain receipt</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="benefits-note">
-                  <Lock size={20} />
-                  <p>
-                    TECHreneurs includes guidance on UC reporting, business accounts, and the 
-                    £6,000-£16,000 threshold. We help you build income safely and legally.
-                  </p>
-                </div>
-              </div>
-
-              <div className="protection-corporate">
-                <h3>Corporate Extraction Blocked</h3>
-                <p>
-                  Our infrastructure includes runtime protection that prevents corporate entities 
-                  from accessing or extracting community IP. The code literally won't run on 
-                  corporate domains.
-                </p>
-                <div className="corporate-blocked">
-                  <span className="blocked-label">Blocked:</span>
-                  <span className="blocked-corp">Meta</span>
-                  <span className="blocked-corp">Google</span>
-                  <span className="blocked-corp">Amazon</span>
-                  <span className="blocked-corp">Microsoft</span>
-                  <span className="blocked-corp">Virgin</span>
-                </div>
-                <p className="corporate-note">
-                  Community use authorized. Corporate extraction prohibited. This isn't policy — 
-                  it's encoded in the infrastructure.
-                </p>
-              </div>
-
-              <div className="protection-summary">
-                <h3>The Anti-Franklin Architecture</h3>
-                <div className="summary-grid">
-                  <div className="summary-item">
-                    <span className="summary-problem">Franklin's Problem</span>
-                    <span className="summary-arrow">→</span>
-                    <span className="summary-solution">Our Solution</span>
-                  </div>
-                  <div className="summary-item">
-                    <span className="summary-problem">No timestamp on Photo 51</span>
-                    <span className="summary-arrow">→</span>
-                    <span className="summary-solution">On-chain creation timestamp</span>
-                  </div>
-                  <div className="summary-item">
-                    <span className="summary-problem">Credit redirected to supervisors</span>
-                    <span className="summary-arrow">→</span>
-                    <span className="summary-solution">Immutable contributor records</span>
-                  </div>
-                  <div className="summary-item">
-                    <span className="summary-problem">"Also contributed" footnotes</span>
-                    <span className="summary-arrow">→</span>
-                    <span className="summary-solution">Full attribution, named and roled</span>
-                  </div>
-                  <div className="summary-item">
-                    <span className="summary-problem">No proof of influence</span>
-                    <span className="summary-arrow">→</span>
-                    <span className="summary-solution">Citation tracking on-chain</span>
-                  </div>
-                  <div className="summary-item">
-                    <span className="summary-problem">Work modified without consent</span>
-                    <span className="summary-arrow">→</span>
-                    <span className="summary-solution">Cryptographic integrity verification</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="protection-cta">
-                <h3>Your Work. Your Name. Your Proof.</h3>
-                <p>
-                  What you build here is protected by architecture, not promises. The blockchain 
-                  doesn't care who has more power or better lawyers. The record is the record. 
-                  Permanently.
-                </p>
-                <Link to="/creator-factory" className="cta-button">
-                  <Factory size={18} />
-                  Start Building
-                </Link>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'productions' && (
-            <div className="productions-section">
-              <h2>Cultural Productions</h2>
-              
-              <div className="production-context">
-                <Radio size={24} />
-                <p>
-                  Cultural production is where we began — bringing V.S. Naipaul, Derek Walcott, and 
-                  Sam Selvon to contemporary audiences. It remains a core pathway, integrated into 
-                  The Factory model. Cast and crew keep 55% through the same credit protection as all creators.
-                </p>
-              </div>
-
-              <div className="production-showcase">
-                <h3>Production Timeline</h3>
-                <div className="showcase-grid">
-                  <div className="showcase-item current">
-                    <Radio size={32} />
-                    <span className="production-status">Q1 2026</span>
-                    <h4>A House for Mr Biswas</h4>
-                    <p>V.S. Naipaul's masterpiece as 8-part radio drama</p>
-                    <span className="production-meta">18 cast/crew • 55% revenue share</span>
-                  </div>
-                  <div className="showcase-item upcoming">
-                    <Drama size={32} />
-                    <span className="production-status">Q3 2026</span>
-                    <h4>Louise Bennett Evening</h4>
-                    <p>Live performance celebrating Jamaican patois poetry</p>
-                    <span className="production-meta">Live + broadcast • Community event</span>
-                  </div>
-                  <div className="showcase-item roadmap">
-                    <BookOpen size={32} />
-                    <span className="production-status">2026–2028</span>
-                    <h4>Caribbean Voices Archive</h4>
-                    <p>From Edwidge Danticat to Derek Walcott</p>
-                    <span className="production-meta">Quarterly productions • Growing archive</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="production-roles">
-                <h3>Nine Professional Roles</h3>
-                <p>The Factory develops creators across all production disciplines — and protects their credit properly.</p>
-                <div className="roles-grid">
-                  <div className="role-item">Director</div>
-                  <div className="role-item">Producer</div>
-                  <div className="role-item">Writer</div>
-                  <div className="role-item">Sound Designer</div>
-                  <div className="role-item">Voice Actor</div>
-                  <div className="role-item">Music Composer</div>
-                  <div className="role-item">Editor</div>
-                  <div className="role-item">Production Manager</div>
-                  <div className="role-item">Marketing Lead</div>
-                </div>
-              </div>
-
-              <div className="production-pathway">
-                <h3>From Performance to Platform</h3>
-                <div className="pathway-flow">
-                  <div className="pathway-step">
-                    <span>1</span>
-                    <p><strong>Create</strong> — Perform in productions. Learn the craft. Build your portfolio.</p>
-                  </div>
-                  <div className="pathway-step">
-                    <span>2</span>
-                    <p><strong>Package</strong> — Turn your skills into sellable products. Tutorials. Templates. Assets.</p>
-                  </div>
-                  <div className="pathway-step">
-                    <span>3</span>
-                    <p><strong>Profit</strong> — List in the Cyberstore. 55% is yours. Your name on it. Ongoing revenue.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="productions-cta">
-                <Link to="/programmes" className="btn-productions">
-                  <Radio size={20} />
-                  Explore Productions
-                </Link>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'leadership' && (
-            <div className="leadership-section">
-              <h2>Leadership</h2>
-              <p className="section-intro">
-                A small team with a clear purpose: find the wonders, build the infrastructure, 
-                protect what they create.
+              <p>
+                That binary is a lie. But it's a lie that has been enforced so consistently,
+                across so many generations, that the communities who experienced it began
+                to enforce it themselves. Parents who sacrificed their culture to give
+                their children opportunities. Children who inherited the sacrifice
+                without the context.
               </p>
-
-              <div className="leadership-grid">
-                {leadership.map((leader, index) => (
-                  <div key={index} className="leader-card">
-                    <div className="leader-header">
-                      <div className="leader-avatar">
-                        {leader.name.split(' ').map(n => n[0]).join('')}
-                      </div>
-                      <div className="leader-info">
-                        <h3>{leader.name}</h3>
-                        <span className="leader-role">{leader.role}</span>
-                      </div>
-                    </div>
-                    <p className="leader-background">{leader.background}</p>
-                    <div className="leader-details">
-                      <h4>Core Expertise:</h4>
-                      <p>{leader.expertise}</p>
-                      <h4>Key Achievements:</h4>
-                      <p>{leader.achievements}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="leadership-accountability">
-                <Shield size={24} />
-                <div>
-                  <h3>Leadership Accountability</h3>
-                  <p>
-                    All leadership decisions are documented in our public governance records. 
-                    Quarterly reports include leadership activities, decisions made, and outcomes achieved. 
-                    Because the people we serve deserve to know how we're spending their trust.
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'governance' && (
-            <div className="governance-section">
-              <h2>Governance</h2>
-              <p className="section-intro">
-                Community Interest Company structure means we legally cannot extract value. 
-                The infrastructure belongs to the community it serves. That's rather the point.
+              <p>
+                The result is Jimmy. A man in Dunstable with forty years of accumulated
+                knowledge — cultural, technical, communal — who experiences despair because
+                there is no infrastructure in his town that recognises him whole.
+                Who only finds communal joy by moving to Brighton, where a different
+                community built infrastructure for a different kind of person who also
+                didn't fit the default.
               </p>
-
-              <div className="governance-cards">
-                <div className="governance-card">
-                  <Lock size={32} />
-                  <h3>Asset Lock</h3>
-                  <p>
-                    All assets are permanently locked for community benefit. Directors cannot extract 
-                    profits. If the company dissolves, assets transfer to similar CICs. This isn't 
-                    policy — it's law.
-                  </p>
-                </div>
-
-                <div className="governance-card">
-                  <Scale size={32} />
-                  <h3>Community Interest Test</h3>
-                  <p>
-                    Every major decision is tested against community benefit. Does this serve creators? 
-                    Does this protect their credit? Does this build sustainable infrastructure? 
-                    If not, we don't do it.
-                  </p>
-                </div>
-
-                <div className="governance-card">
-                  <FileText size={32} />
-                  <h3>Radical Transparency</h3>
-                  <p>
-                    Quarterly public reports: revenue, creator payments, community fund allocation, 
-                    operational costs, leadership decisions. Opacity is how extraction happens. 
-                    We don't do opacity.
-                  </p>
-                </div>
-
-                <div className="governance-card">
-                  <Users size={32} />
-                  <h3>Creator Representation</h3>
-                  <p>
-                    Active creators have formal input into governance decisions. Not consultation theatre. 
-                    Actual structural representation. The people we serve shape how we serve them.
-                  </p>
-                </div>
-              </div>
-
-              <div className="incorporation-info">
-                <Calendar size={24} />
-                <div>
-                  <h3>Incorporated 2020</h3>
-                  <p>
-                    Company No. 12960817. Five years of continuous operation. Zero regulatory violations. 
-                    Consistent audits. Growing community trust.
-                  </p>
-                </div>
-              </div>
-
-              <div className="governance-difference">
-                <h3>The Governance Distinction</h3>
-                <p>
-                  Many organisations say they serve their community. We're legally required to. 
-                  The CIC structure means our governance isn't a choice — it's an obligation. 
-                  We think that distinction matters quite a lot.
-                </p>
-              </div>
-
-              <div className="closing-statement">
-                <h3>Why We Built This</h3>
-                <p>
-                  Rosalind Franklin took the photograph. Jocelyn Bell Burnell found the pulsars. 
-                  Ada Lovelace saw the future of computing. The pattern of extraction and 
-                  misdirected credit is centuries old.
-                </p>
-                <p>
-                  Somewhere in Wembley right now, there's someone with that same capability. 
-                  The system will miss them. We won't.
-                </p>
-                <p className="closing-emphasis">
-                  We find the wonders the system overlooks. We make sure they keep what they build.
-                </p>
-                <p className="closing-tagline">
-                  That's what a Community Interest Company is for.
-                </p>
-              </div>
+              <p className={styles.woundEmphasis}>
+                Jimmy doesn't need Brighton. He needs Wembley Wonders.
+              </p>
             </div>
-          )}
+            <div className={styles.woundPull}>
+              <blockquote className={styles.pullQuote}>
+                "Family Knowledge = Family Investment."
+              </blockquote>
+              <p className={styles.pullContext}>
+                This is not a tagline. It is the economic argument against identity loss.
+                Your culture is not a liability in the marketplace.
+                It is the asset. The thing that makes you irreplaceable.
+                The thing that compounds rather than depreciates.
+                The thing your children inherit as wealth rather than as burden.
+              </p>
+            </div>
+          </div>
+        </section>
 
-        </div>
+        <div className={styles.rule} />
+
+        {/* ── THE PLATFORM ── */}
+        <section className={styles.platform}>
+          <div className={styles.sectionLabel}>What we built</div>
+          <h2 className={styles.sectionTitle}>
+            Thirteen programmes.<br />
+            <em>One community knowledge ecosystem.</em>
+          </h2>
+
+          <p className={styles.platformIntro}>
+            The platform exists to turn the knowledge people carry into documented,
+            attributed, income-generating assets — without extracting the value from
+            the people who created it. Every element of the architecture serves that
+            single purpose.
+          </p>
+
+          <div className={styles.platformGrid}>
+
+            {[
+              {
+                id: 'programmes',
+                icon: '🎓',
+                title: 'Thirteen Programmes',
+                summary: 'Five sections. Connect → Cultivate → Create → Compete → Change. Each programme a different lens on what you already carry.',
+                detail: 'From Bright Sparks — the curiosity threshold for people who haven\'t decided yet — to Roots, the body sovereignty programme led by Judith Fontanelle, Flora Agba and Natalie. From TECHreneurs, where you build a product around what you already know, to Kaywana\'s Court, where argument becomes art. Every programme produces documented, attributed output.',
+                link: '/programmes',
+                cta: 'See all programmes →',
+                colour: '#1D9E75',
+              },
+              {
+                id: 'model',
+                icon: '💷',
+                title: 'The 55/25/20 Model',
+                summary: '55% to the creator. 25% builds the next wonder. 20% protects the infrastructure. 0% extracted.',
+                detail: 'This is not a revenue split. It is anti-extraction architecture. Every creator keeps the majority of what they produce. The community fund builds capability for the next person. The platform costs are kept lean deliberately so the creator share stays high. No algorithm can change it. No platform update can reduce it. The editorial framework is what makes the 55% credible — not a promise but a specification.',
+                link: '/how-it-works',
+                cta: 'How it works →',
+                colour: '#d4a853',
+              },
+              {
+                id: 'standard',
+                icon: '◆',
+                title: 'The Editorial Standard',
+                summary: 'A published, transparent, six-question framework applied to every piece of knowledge that enters the archive. The same standard for everyone.',
+                detail: 'The Knowledge Commons Epistemological Framework names six concepts derived from six observed cases of epistemological failure. Every submission passes six questions: Is the methodology sound? Can you name a source? Does the claim stand without credentials? Is it falsifiable? Are key terms defined? What is the first premise and is it supported? This standard is public. Anyone can read it, challenge it, and build on it. That transparency is the credibility.',
+                link: '/editorial-standard',
+                cta: 'Read the standard →',
+                colour: '#D4A853',
+              },
+              {
+                id: 'cyberstore',
+                icon: '🛍️',
+                title: 'The Cyberstore',
+                summary: 'A provenance market. Not a shop. Every item carries its maker\'s story, cultural lineage, and programme provenance.',
+                detail: 'Eleven departments. Food & Heritage. Textiles & Fashion. Music & Audio. Written Works. Digital & Tech. Visual Art & Print. Educational Resources. Performance & Drama. Wellness & Body Sovereignty. Craft & Making. Knowledge Commons Archive. Every product documented from its origin to its sale.',
+                link: '/shop',
+                cta: 'Enter the market →',
+                colour: '#a855f7',
+              },
+              {
+                id: 'commons',
+                icon: '🗃️',
+                title: 'The Knowledge Commons',
+                summary: 'A publicly accessible counter-archive of Black British history. Free. No login required. Assembled, not generated.',
+                detail: 'Pioneer profiles, deep-dive threads, oral history contributions, the institutional map of post-colonial London. The history that didn\'t make the curriculum. Arthur Wharton. Claudia Jones. Samuel Coleridge-Taylor. William Cuffay. Ira Aldridge. The ground under Wembley Stadium and what it remembers. Every entry validated against the published editorial standard.',
+                link: '/knowledge-commons',
+                cta: 'Enter the archive →',
+                colour: '#d4a853',
+              },
+              {
+                id: 'membership',
+                icon: '👥',
+                title: 'Two Recognition Societies',
+                summary: 'The Connoisseurs Club for men. The Passionistas Fan Club for women. Both built on the belief that being seen is not a luxury — it is the point.',
+                detail: 'The Connoisseurs Club: five stages from Seedling to Elder, for men who\'ve built expertise in silence and never had that knowledge formally witnessed. The Passionistas Fan Club: a recognition society for women who are done being quietly extraordinary. Not a support group. Not a networking event. Properly, loudly, without apology.',
+                link: '/join',
+                cta: 'Find your door →',
+                colour: '#cc0000',
+              },
+              {
+                id: 'outputs',
+                icon: '📻',
+                title: 'Three Community Outputs',
+                summary: 'Rayd-yo. Joystick. The Knowledge Commons. Broadcast, written, archived. One knowledge ecosystem.',
+                detail: 'Everything created through Wembley Wonders has a home. Rayd-yo for broadcast — your show, your audience, your archive. Joystick for written work — your words, documented, attributed, permanently yours. The Knowledge Commons for the archive — the knowledge that was never written down, written down here. A creator who moves through all three leaves a provenance trail that no platform can strip-mine.',
+                link: '/heritage',
+                cta: 'See the ecosystem →',
+                colour: '#06b6d4',
+              },
+            ].map(item => (
+              <div
+                key={item.id}
+                className={`${styles.platformCard} ${expandedSection === item.id ? styles.platformCardOpen : ''}`}
+                style={{ '--item-colour': item.colour } as React.CSSProperties}
+              >
+                <button
+                  className={styles.platformCardHeader}
+                  onClick={() => toggle(item.id)}
+                >
+                  <span className={styles.platformIcon}>{item.icon}</span>
+                  <div className={styles.platformCardMeta}>
+                    <span className={styles.platformCardTitle}>{item.title}</span>
+                    <span className={styles.platformCardSummary}>{item.summary}</span>
+                  </div>
+                  <span className={styles.platformChevron}>
+                    {expandedSection === item.id ? '↑' : '↓'}
+                  </span>
+                </button>
+                {expandedSection === item.id && (
+                  <div className={styles.platformCardBody}>
+                    <p>{item.detail}</p>
+                    <Link
+                      to={item.link}
+                      className={styles.platformCardLink}
+                      style={{ color: item.colour }}
+                    >
+                      {item.cta}
+                    </Link>
+                  </div>
+                )}
+              </div>
+            ))}
+
+          </div>
+        </section>
+
+        <div className={styles.rule} />
+
+        {/* ── THE GOVERNANCE ── */}
+        <section className={styles.governance}>
+          <div className={styles.sectionLabel}>Why you can trust it</div>
+          <h2 className={styles.sectionTitle}>
+            Self-financed.<br />
+            <em>No grants. No obligations. No extraction.</em>
+          </h2>
+
+          <div className={styles.governanceGrid}>
+            <div className={styles.governanceText}>
+              <p>
+                Wembley Wonders CIC was incorporated on 19 October 2020.
+                Company No. 12960817. It has been self-financed since day one —
+                no grants, no external funding, no obligations to funders whose
+                priorities might not align with the community's.
+              </p>
+              <p>
+                The CIC structure means we are legally required to serve the
+                community interest. Our assets are locked — directors cannot
+                extract profits. If the company were ever dissolved, assets
+                would transfer to similar community interest companies.
+                This is not policy. It is law.
+              </p>
+              <p>
+                We are not building this to sell it. We are not building this
+                to extract from it. We built it because the infrastructure
+                didn't exist and someone had to build it.
+              </p>
+            </div>
+            <div className={styles.governanceFacts}>
+              {[
+                ['Company No.', '12960817'],
+                ['Incorporated', '19 October 2020'],
+                ['Structure', 'Community Interest Company'],
+                ['Registered', 'England and Wales'],
+                ['Address', '452 High Road, Wembley HA9 7AY'],
+                ['Safeguarding', 'All volunteers DBS-checked'],
+              ].map(([key, val]) => (
+                <div key={key} className={styles.governanceFact}>
+                  <span className={styles.governanceKey}>{key}</span>
+                  <span className={styles.governanceVal}>{val}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <div className={styles.rule} />
+
+        {/* ── THE INVITATION ── */}
+        <section className={styles.invitation}>
+          <h2 className={styles.invitationTitle}>
+            If you know the wound —
+          </h2>
+          <p className={styles.invitationBody}>
+            if you've spent your career building pipelines for people the system
+            overlooks, if you understand that the talent was always there and
+            the infrastructure was always the problem — then you already understand
+            what Wembley Wonders is for.
+          </p>
+          <p className={styles.invitationBody}>
+            We're not looking for validation. We're looking for people who want
+            to work on the same problem from different ends of the pipeline.
+            Judith's door is open. Walk in.
+          </p>
+          <div className={styles.invitationManifesto}>
+            <Link to="/manifesto" className={styles.invitationManifestoLink}>
+              <span className={styles.manifestoMark}>◆</span>
+              Read the full manifesto — the room we are building
+              <span className={styles.manifestoArrow}>→</span>
+            </Link>
+          </div>
+          <div className={styles.invitationActions}>
+            <a
+              href="https://wa.me/447932198468?text=Hello%20Judith%2C%20I%27d%20like%20to%20find%20out%20more%20about%20Wembley%20Wonders"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.invitationWhatsapp}
+            >
+              💬 WhatsApp Judith directly
+            </a>
+            <a
+              href="mailto:hello@wembleywonders.org"
+              className={styles.invitationEmail}
+            >
+              hello@wembleywonders.org
+            </a>
+            <Link to="/join" className={styles.invitationJoin}>
+              Or join free →
+            </Link>
+          </div>
+        </section>
+
       </div>
     </PageTemplate>
   );

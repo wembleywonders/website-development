@@ -28,6 +28,7 @@ import JoinPage from '../pages/JoinPage';
 import JoinSuccessPage from '../pages/JoinSuccessPage';
 import EnrollPage from '../pages/EnrollPage';
 import GetStartedPage from '../pages/GetStartedPage';
+import StartPage from '../pages/StartPage';
 
 // ============================================
 // MEMBERSHIP TIERS
@@ -76,6 +77,16 @@ import TrubbleNBassSandbox from '../pages/programmes/trubble-n-bass/TrubbleNBass
 // ============================================
 import RaydyoPage from '../pages/RaydyoPage';
 import JoystickPage from '../pages/JoystickPage';
+import JoystickArticlePage from '../pages/JoystickArticlePage';
+
+// ════════════════════════════════════════════════════════════════
+// ✨ KNOWLEDGE COMMONS — Counter-Archive · Heritage Layer
+// Publicly accessible · login to contribute
+// Entry: /heritage → KnowledgeCommonsShell (mode driven by ?mode=)
+// Oral History: /oral-history → living archive layer
+// ════════════════════════════════════════════════════════════════
+import KnowledgeCommonsShell from '../components/knowledge-commons/KnowledgeCommonsShell';
+import OralHistoryPage from '../pages/OralHistoryPage';
 
 // ============================================
 // COMMUNITY PAGES
@@ -212,6 +223,8 @@ const NotFoundPage: React.FC = () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
       <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Did you mean:</p>
       <a href="/programmes" style={{ color: '#10b981' }}>/programmes</a>
+      <a href="/heritage" style={{ color: '#10b981' }}>/heritage</a>
+      <a href="/oral-history" style={{ color: '#10b981' }}>/oral-history</a>
       <a href="/workshops/spark-generator" style={{ color: '#10b981' }}>/workshops/spark-generator</a>
       <a href="/workshops/facilitation" style={{ color: '#10b981' }}>/workshops/facilitation</a>
       <a href="/sessions" style={{ color: '#10b981' }}>/sessions</a>
@@ -283,7 +296,7 @@ const AppRouter: React.FC = () => {
         <Route path="/join/success" element={<JoinSuccessPage />} />
         <Route path="/enroll" element={<EnrollPage />} />
         <Route path="/get-started" element={<GetStartedPage />} />
-        <Route path="/start" element={<Navigate to="/get-started" replace />} />
+        <Route path="/start" element={<StartPage />} />
 
         {/* Membership Tiers */}
         <Route path="/connector" element={<ConnectorPage />} />
@@ -373,7 +386,7 @@ const AppRouter: React.FC = () => {
             ROOTS — Body Sovereignty Resource
             Women-led · Women-directed · Women-managed
             Leads: Judith Fontanelle · Flora Agba · Natalie
-            ROV: Aya | Status: coming-soon → active IWD 8 Mar 2026
+            ROV: Aya | Status: active from IWD 8 Mar 2026
             ============================================ */}
         <Route path="/programmes/roots" element={<RootsPage />} />
         <Route path="/programmes/roots/sandbox" element={<RootsSandbox />} />
@@ -382,6 +395,28 @@ const AppRouter: React.FC = () => {
         <Route path="/body-sovereignty" element={<Navigate to="/programmes/roots" replace />} />
         <Route path="/hair-care" element={<Navigate to="/programmes/roots" replace />} />
         <Route path="/apothecary" element={<Navigate to="/programmes/roots" replace />} />
+
+        {/* ════════════════════════════════════════════════════════════════
+            ✨ KNOWLEDGE COMMONS — Counter-Archive · Heritage Layer
+            Public read · Login to contribute
+            Canonical URL: /heritage
+            Mode is URL-param driven (?mode=thread|place|era|question|plaque)
+            so every view is shareable without additional routes.
+            Living archive layer: /oral-history
+            ════════════════════════════════════════════════════════════════ */}
+        <Route path="/heritage" element={<KnowledgeCommonsShell />} />
+        <Route path="/oral-history" element={<OralHistoryPage />} />
+
+        {/* Convenience aliases — all redirect to canonical */}
+        <Route path="/knowledge-commons" element={<Navigate to="/heritage" replace />} />
+        <Route path="/counter-archive" element={<Navigate to="/heritage" replace />} />
+        <Route path="/pioneers" element={<Navigate to="/heritage" replace />} />
+        <Route path="/archive" element={<Navigate to="/heritage" replace />} />
+        <Route path="/black-history" element={<Navigate to="/heritage?mode=era" replace />} />
+        <Route path="/routes" element={<Navigate to="/heritage?mode=place" replace />} />
+        <Route path="/threads" element={<Navigate to="/heritage?mode=thread" replace />} />
+        <Route path="/plaques" element={<Navigate to="/heritage?mode=plaque" replace />} />
+        <Route path="/missing-plaques" element={<Navigate to="/heritage?mode=plaque" replace />} />
 
         {/* ============================================
             PATHWAYS
@@ -404,6 +439,7 @@ const AppRouter: React.FC = () => {
             ============================================ */}
         <Route path="/raydyo" element={<RaydyoPage />} />
         <Route path="/joystick" element={<JoystickPage />} />
+        <Route path="/joystick/:slug" element={<JoystickArticlePage />} />
 
         {/* ============================================
             COMMUNITY

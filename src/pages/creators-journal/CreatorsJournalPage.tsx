@@ -13,6 +13,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import PageTemplate from '../../components/PageTemplate';
 import JournalTabs from '../../components/creators-journal/JournalTabs';
@@ -21,6 +22,7 @@ import CreateSection from '../../components/creators-journal/CreateSection';
 import CultivateSection from '../../components/creators-journal/CultivateSection';
 import CompeteSection from '../../components/creators-journal/CompeteSection';
 import CelebrateSection from '../../components/creators-journal/CelebrateSection';
+import BadgeProgress from '../../components/creators-journal/BadgeProgress';
 import {
   useJournalStats,
   useSTEMgeneersStats,
@@ -49,7 +51,7 @@ const useIsSTEMgeneer = () => {
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES
 // ─────────────────────────────────────────────────────────────────────────────
-type TabType = 'connect' | 'create' | 'cultivate' | 'compete' | 'celebrate';
+type TabType = 'connect' | 'create' | 'cultivate' | 'compete' | 'celebrate' | 'ilp';
 
 const REPAIR_LAYERS: RepairLayer[] = [
   'precision', 'appliance', 'home', 'furniture', 'making', 'trades'
@@ -514,7 +516,9 @@ const PortfolioExportButton: React.FC = () => {
 
 const CreatorsJournalPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('connect');
+  const { user } = useAuth();
   const journalStats = useJournalStats();
+  const portfolio = useJournalStore((s) => s.portfolio);
   const stemStats = useSTEMgeneersStats();
   const isSTEMgeneer = useIsSTEMgeneer();
   const pendingVerification = usePendingVerificationId();
@@ -526,6 +530,7 @@ const CreatorsJournalPage: React.FC = () => {
       case 'cultivate':  return <CultivateSection />;
       case 'compete':    return <CompeteSection />;
       case 'celebrate':  return <CelebrateSection />;
+      case 'ilp':        return <BadgeProgress learnerId={user?.id?.toString()} />;
       default:           return <ConnectSection />;
     }
   };
@@ -724,19 +729,19 @@ const CreatorsJournalPage: React.FC = () => {
             </div>
             <div className="impact-stat">
               <span className="stat-number">
-                {useJournalStore.getState().portfolio?.publicationRecord.joystickArticles ?? 0}
+                {portfolio?.publicationRecord.joystickArticles ?? 0}
               </span>
               <span className="stat-label">Stories Published</span>
             </div>
             <div className="impact-stat">
               <span className="stat-number">
-                {useJournalStore.getState().portfolio?.publicationRecord.peopleInspiredToJoin ?? 0}
+                {portfolio?.publicationRecord.peopleInspiredToJoin ?? 0}
               </span>
               <span className="stat-label">People Helped</span>
             </div>
             <div className="impact-stat">
               <span className="stat-number">
-                {useJournalStore.getState().portfolio?.publicationRecord.raydyoFeatures ?? 0}
+                {portfolio?.publicationRecord.raydyoFeatures ?? 0}
               </span>
               <span className="stat-label">Podcast Featured</span>
             </div>

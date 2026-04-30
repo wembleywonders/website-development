@@ -1,0 +1,219 @@
+/* ============================================================
+   CommunityShopPage.module.css
+   Wembley Wonders Cyberstore — Department / Shelf model
+   Maplin/Currys: you always know which room you're in
+   ============================================================ */
+
+.cyberstore { padding: 0 0 5rem; }
+
+/* ── Philosophy strip ── */
+.philosophyStrip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2rem;
+  background: rgba(212,168,83,0.06);
+  border-bottom: 1px solid rgba(212,168,83,0.15);
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.philosophyItem { display: flex; flex-direction: column; align-items: center; padding: 0 1.5rem; }
+.philosophyNum {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.75rem; font-weight: 900; color: #d4a853; line-height: 1;
+}
+.philosophyLabel { font-size: 0.7rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
+.philosophySep { width: 1px; height: 40px; background: rgba(212,168,83,0.2); }
+
+/* ── Search ── */
+.searchBar {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(15,23,42,0.7); border: 1px solid rgba(148,163,184,0.15);
+  border-radius: 0.875rem; padding: 0.75rem 1rem; margin: 0 2rem 1.5rem;
+}
+.searchIcon { font-size: 1rem; opacity: 0.5; }
+.searchInput { flex: 1; background: none; border: none; outline: none; color: #f8fafc; font-size: 0.9rem; font-family: inherit; }
+.searchInput::placeholder { color: #475569; }
+.searchClear { background: none; border: none; color: #64748b; font-size: 1.25rem; cursor: pointer; padding: 0 4px; line-height: 1; }
+
+/* ── Search results ── */
+.searchResults { padding: 0 2rem; }
+.searchResultsHeader {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1rem; font-size: 0.875rem; color: #94a3b8;
+}
+.clearSearchBtn {
+  background: none; border: 1px solid rgba(148,163,184,0.2); border-radius: 6px;
+  color: #64748b; font-size: 0.75rem; padding: 4px 10px; cursor: pointer; font-family: inherit;
+}
+.clearSearchBtn:hover { color: #94a3b8; }
+.searchResultsGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.noResults { color: #64748b; font-style: italic; padding: 2rem 0; }
+
+/* ── Store directory / floor plan ── */
+.storeDirectory {
+  margin: 0 2rem 2rem;
+  padding: 1.25rem;
+  background: rgba(15,23,42,0.5);
+  border: 1px solid rgba(148,163,184,0.08);
+  border-radius: 0.875rem;
+}
+.directoryLabel {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  color: #64748b; margin-bottom: 0.875rem;
+}
+.directoryGrid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px;
+}
+.directoryItem {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 0.75rem 0.5rem; background: rgba(15,23,42,0.7);
+  border: 1px solid rgba(148,163,184,0.08); border-top: 2px solid transparent;
+  border-radius: 0.625rem; cursor: pointer; font-family: inherit;
+  transition: all 0.15s; text-align: center;
+}
+.directoryItem:hover { border-top-color: var(--cat-colour); }
+.directoryOpen { border-top-color: var(--cat-colour) !important; background: rgba(15,23,42,0.9) !important; }
+.directoryIcon { font-size: 1.25rem; }
+.directoryName { font-size: 0.65rem; color: #94a3b8; line-height: 1.3; }
+.directoryOpen .directoryName { color: var(--cat-colour); }
+.directoryCount { font-size: 0.6rem; color: #475569; background: rgba(148,163,184,0.08); border-radius: 100px; padding: 1px 6px; }
+
+/* ── Featured section ── */
+.featuredSection { margin: 0 2rem 2rem; }
+.featuredHeader { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+.featuredLabel { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #d4a853; white-space: nowrap; }
+.featuredRule { flex: 1; height: 1px; background: linear-gradient(to right, rgba(212,168,83,0.3), transparent); }
+.featuredGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+/* ── Departments ── */
+.departments { display: flex; flex-direction: column; gap: 8px; padding: 0 2rem; }
+
+/* ── Department ── */
+.department {
+  border: 1px solid rgba(148,163,184,0.08);
+  border-left: 3px solid var(--cat-colour);
+  border-radius: 0.875rem;
+  overflow: hidden;
+  background: rgba(15,23,42,0.5);
+  transition: border-color 0.2s;
+}
+.departmentOpen {
+  border-color: var(--cat-colour);
+  background: rgba(15,23,42,0.7);
+}
+
+/* Department header — the aisle sign */
+.deptHeader {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.25rem; background: none; border: none; cursor: pointer;
+  font-family: inherit; text-align: left; gap: 1rem;
+}
+.deptHeader:hover { background: rgba(255,255,255,0.02); }
+.deptHeaderLeft { display: flex; align-items: center; gap: 12px; }
+.deptIcon { font-size: 1.5rem; }
+.deptTitles { display: flex; flex-direction: column; gap: 2px; }
+.deptName { font-family: 'Playfair Display', Georgia, serif; font-size: 1.05rem; font-weight: 700; color: #f8fafc; }
+.departmentOpen .deptName { color: var(--cat-colour); }
+.deptTagline { font-size: 0.75rem; color: #64748b; font-style: italic; }
+.deptHeaderRight { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.deptProgramme { font-size: 0.65rem; color: #475569; }
+.deptCount { font-size: 0.7rem; color: #64748b; background: rgba(148,163,184,0.08); border-radius: 100px; padding: 2px 8px; }
+.deptChevron { font-size: 0.875rem; color: var(--cat-colour); width: 20px; text-align: center; }
+
+/* Department body */
+.deptBody { padding: 0 1.25rem 1.25rem; }
+.deptDesc { font-size: 0.825rem; color: #94a3b8; line-height: 1.7; margin: 0 0 0.875rem; }
+.deptProgrammeLink { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: #64748b; margin-bottom: 1rem; }
+.programmePill { font-size: 0.75rem; font-weight: 600; text-decoration: none; transition: opacity 0.2s; }
+.programmePill:hover { opacity: 0.75; }
+
+/* ── Shelves ── */
+.shelves { display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* ── Shelf ── */
+.shelf {}
+.shelfHeader {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 0.875rem; padding-bottom: 6px;
+  border-bottom: 1px solid rgba(148,163,184,0.06);
+}
+.shelfLabel { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; }
+.shelfRule { flex: 1; height: 1px; }
+.shelfCount { font-size: 0.65rem; color: #475569; white-space: nowrap; }
+.shelfProducts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.shelfEmpty { font-size: 0.8rem; color: #475569; font-style: italic; padding: 0.75rem 0; }
+
+/* ── Product card ── */
+.productCard {
+  background: rgba(15,23,42,0.7); backdrop-filter: blur(20px);
+  border: 1px solid rgba(148,163,184,0.1); border-top: 3px solid var(--cat-colour);
+  border-radius: 0.875rem; padding: 1rem; display: flex; flex-direction: column;
+  gap: 0.625rem; transition: all 0.2s; position: relative;
+}
+.productCard:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); border-color: var(--cat-colour); }
+.expanded { border-color: var(--cat-colour); }
+
+.featuredBadge, .soonBadge {
+  position: absolute; top: 10px; right: 10px; font-size: 0.58rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; border-radius: 100px; padding: 2px 7px;
+}
+.featuredBadge { color: #d4a853; background: rgba(212,168,83,0.1); border: 1px solid rgba(212,168,83,0.2); }
+.soonBadge { color: #64748b; background: rgba(100,116,139,0.1); border: 1px solid rgba(100,116,139,0.2); }
+
+.productMeta { display: flex; align-items: center; justify-content: space-between; }
+.productSubcat { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cat-colour); }
+.productPrice { font-family: 'Playfair Display', Georgia, serif; font-size: 1.05rem; font-weight: 700; color: #f8fafc; }
+.productName { font-family: 'Playfair Display', Georgia, serif; font-size: 0.95rem; font-weight: 700; color: #f8fafc; margin: 0; line-height: 1.3; }
+.productDesc { font-size: 0.775rem; color: #94a3b8; line-height: 1.65; margin: 0; }
+.productTags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag { font-size: 0.6rem; color: #64748b; background: rgba(148,163,184,0.06); border: 1px solid rgba(148,163,184,0.1); border-radius: 100px; padding: 2px 7px; }
+
+.provenanceToggle { background: none; border: none; font-size: 0.72rem; font-weight: 600; cursor: pointer; font-family: inherit; padding: 0; text-align: left; transition: opacity 0.2s; }
+.provenanceToggle:hover { opacity: 0.75; }
+
+/* ── Provenance ── */
+.provenance { background: rgba(212,168,83,0.04); border: 1px solid rgba(212,168,83,0.12); border-radius: 0.625rem; overflow: hidden; }
+.provenanceHeader { display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; background: rgba(212,168,83,0.08); border-bottom: 1px solid rgba(212,168,83,0.1); }
+.provenanceLabel { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #d4a853; }
+.creatorShare { font-size: 0.6rem; font-weight: 700; color: #10b981; background: rgba(16,185,129,0.1); border-radius: 100px; padding: 2px 7px; }
+.provenanceBody { padding: 8px 10px; display: flex; flex-direction: column; gap: 5px; }
+.provenanceLine { display: grid; grid-template-columns: 70px 1fr; gap: 6px; font-size: 0.72rem; }
+.provenanceKey { color: #64748b; font-weight: 500; }
+.provenanceVal { color: #cbd5e1; line-height: 1.5; }
+
+/* ── Product actions ── */
+.productActions { display: flex; align-items: center; gap: 8px; margin-top: auto; }
+.buyBtn { flex: 1; padding: 0.5rem 0.75rem; border: none; border-radius: 0.5rem; color: white; font-size: 0.775rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: opacity 0.2s; }
+.buyBtn:hover { opacity: 0.85; }
+.notifyBtn { flex: 1; padding: 0.5rem 0.75rem; border: 1px solid rgba(148,163,184,0.2); border-radius: 0.5rem; background: none; color: #64748b; font-size: 0.775rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+.notifyBtn:hover { border-color: rgba(148,163,184,0.4); color: #94a3b8; }
+.unitLabel { font-size: 0.6rem; color: #475569; white-space: nowrap; }
+
+/* ── Contribute CTA ── */
+.contributeCta {
+  margin: 3rem 2rem 0; padding: 2rem; background: rgba(212,168,83,0.05);
+  border: 1px solid rgba(212,168,83,0.15); border-radius: 0.875rem;
+  display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center;
+}
+.contributeTitle { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; font-weight: 700; color: #f8fafc; margin: 0 0 0.5rem; }
+.contributeBody { font-size: 0.875rem; color: #94a3b8; line-height: 1.75; margin: 0; }
+.contributeActions { display: flex; flex-direction: column; gap: 8px; white-space: nowrap; }
+.contributeBtn { display: inline-block; padding: 0.75rem 1.5rem; background: #d4a853; color: #0f172a; font-size: 0.875rem; font-weight: 700; text-decoration: none; border-radius: 0.5rem; text-align: center; transition: opacity 0.2s; }
+.contributeBtn:hover { opacity: 0.85; }
+.contributeBtnSecondary { display: inline-block; padding: 0.75rem 1.5rem; border: 1px solid rgba(212,168,83,0.3); color: #d4a853; font-size: 0.875rem; font-weight: 600; text-decoration: none; border-radius: 0.5rem; text-align: center; transition: all 0.2s; }
+.contributeBtnSecondary:hover { background: rgba(212,168,83,0.08); }
+
+/* ── Responsive ── */
+@media (max-width: 968px) {
+  .featuredGrid, .searchResultsGrid, .shelfProducts { grid-template-columns: repeat(2, 1fr); }
+  .contributeCta { grid-template-columns: 1fr; }
+  .contributeActions { flex-direction: row; }
+  .directoryGrid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+}
+@media (max-width: 600px) {
+  .featuredGrid, .searchResultsGrid, .shelfProducts { grid-template-columns: 1fr; }
+  .philosophySep { display: none; }
+  .searchBar, .storeDirectory, .featuredSection, .departments, .contributeCta { margin-left: 1rem; margin-right: 1rem; }
+  .contributeActions { flex-direction: column; }
+}

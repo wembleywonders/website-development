@@ -1,0 +1,346 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   HousesPage.css — Wembley Wonders CIC
+   Platform dark theme — matches PageTemplate.module.css palette.
+   Two Houses retain distinct accent colours; overall background is
+   the site-wide dark gold aesthetic.
+───────────────────────────────────────────────────────────────────────────── */
+
+.houses-page {
+  --connoisseurs-accent: #5D8FAA;
+  --connoisseurs-light:  rgba(44, 62, 80, 0.35);
+  --connoisseurs-mid:    #7EB5CC;
+  --passionistas-accent: #B06EC0;
+  --passionistas-light:  rgba(123, 45, 139, 0.3);
+  --passionistas-mid:    #C084D4;
+  --gold:                #d4a853;
+  --warm-bg:             #0f172a;
+  --text-primary:        #f0e6d0;
+  --text-secondary:      #cbd5e1;
+  --text-muted:          #94a3b8;
+  --border:              rgba(255,255,255,0.08);
+  --border-strong:       rgba(212, 168, 83, 0.2);
+  --radius:              12px;
+  --radius-sm:           6px;
+
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* ── Breadcrumb ─────────────────────────────────────────────── */
+
+.houses-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 40px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+.houses-breadcrumb a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+.houses-breadcrumb a:hover { color: var(--gold); }
+.houses-breadcrumb span[aria-hidden] { color: var(--text-muted); }
+
+/* ── Hero ───────────────────────────────────────────────────── */
+
+.houses-hero {
+  padding: 80px 40px 60px;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+.houses-overline {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 24px;
+}
+.houses-headline {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0 0 32px;
+}
+.houses-subheadline {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin: 0 auto 16px;
+  max-width: 640px;
+}
+.houses-subheadline.secondary { font-size: 1rem; color: var(--text-muted); }
+
+/* ── Cards grid ─────────────────────────────────────────────── */
+
+.houses-cards-section {
+  padding: 20px 40px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.houses-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+@media (max-width: 760px) {
+  .houses-cards { grid-template-columns: 1fr; }
+  .houses-cards-section,
+  .houses-hero,
+  .houses-court-section,
+  .houses-unsure-section { padding-left: 20px; padding-right: 20px; }
+  .houses-breadcrumb { padding-left: 20px; padding-right: 20px; }
+}
+
+/* ── House cards ────────────────────────────────────────────── */
+
+.house-card {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+}
+.house-card.hovered {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+}
+.house-card--connoisseurs { border-top: 3px solid var(--connoisseurs-accent); }
+.house-card--connoisseurs.hovered {
+  box-shadow: 0 12px 40px rgba(93, 143, 170, 0.2);
+}
+.house-card--passionistas { border-top: 3px solid var(--passionistas-accent); }
+.house-card--passionistas.hovered {
+  box-shadow: 0 12px 40px rgba(176, 110, 192, 0.2);
+}
+
+.house-card-inner {
+  padding: 36px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  height: 100%;
+}
+.house-card-header { display: flex; align-items: flex-start; gap: 16px; }
+.house-sigil { font-size: 2rem; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+.house-name {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+  color: var(--text-primary);
+}
+.house-convenor {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.house-card--connoisseurs .house-convenor { color: var(--connoisseurs-mid); }
+.house-card--passionistas .house-convenor { color: var(--passionistas-mid); }
+
+.house-ethos {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+  font-style: italic;
+}
+
+/* ── Qualities & roles ──────────────────────────────────────── */
+
+.house-qualities-label {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+.house-qualities-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.house-qualities-list li {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  padding-left: 16px;
+  position: relative;
+}
+.house-qualities-list li::before { content: '—'; position: absolute; left: 0; }
+.house-card--connoisseurs .house-qualities-list li::before { color: var(--connoisseurs-mid); }
+.house-card--passionistas .house-qualities-list li::before { color: var(--passionistas-mid); }
+
+/* ── Role tags ──────────────────────────────────────────────── */
+
+.house-role-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.role-tag {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 100px;
+  color: var(--text-secondary);
+}
+.house-card--connoisseurs .role-tag {
+  background: var(--connoisseurs-light);
+  border: 1px solid rgba(93, 143, 170, 0.3);
+  color: var(--connoisseurs-mid);
+}
+.house-card--passionistas .role-tag {
+  background: var(--passionistas-light);
+  border: 1px solid rgba(176, 110, 192, 0.3);
+  color: var(--passionistas-mid);
+}
+
+/* ── Join buttons ───────────────────────────────────────────── */
+
+.house-card-footer { margin-top: auto; }
+.house-join-btn {
+  display: inline-block;
+  padding: 13px 24px;
+  border-radius: var(--radius-sm);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+.house-join-btn--connoisseurs {
+  background: var(--connoisseurs-accent);
+  color: #0f172a;
+}
+.house-join-btn--connoisseurs:hover {
+  background: var(--connoisseurs-mid);
+  transform: translateY(-1px);
+}
+.house-join-btn--passionistas {
+  background: var(--passionistas-accent);
+  color: #0f172a;
+}
+.house-join-btn--passionistas:hover {
+  background: var(--passionistas-mid);
+  transform: translateY(-1px);
+}
+
+/* ── Kaywana's Court section ────────────────────────────────── */
+
+.houses-court-section {
+  padding: 80px 40px;
+  background: rgba(212, 168, 83, 0.06);
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+}
+.houses-court-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+.court-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+  color: var(--text-primary);
+}
+.court-body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin: 0 0 48px;
+}
+.court-meetings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+  max-width: 540px;
+  margin: 0 auto;
+}
+.court-meeting {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.meeting-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 1px; }
+.court-meeting strong {
+  display: block;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.court-meeting span {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── Unsure section ─────────────────────────────────────────── */
+
+.houses-unsure-section {
+  padding: 80px 40px;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.unsure-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 0 0 20px;
+  color: var(--text-primary);
+}
+.unsure-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin: 0 0 36px;
+}
+.unsure-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.unsure-btn {
+  padding: 13px 28px;
+  border-radius: var(--radius-sm);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.unsure-btn--primary {
+  background: var(--gold);
+  color: #0f172a;
+}
+.unsure-btn--primary:hover {
+  background: #e0b96a;
+  transform: translateY(-1px);
+}
+.unsure-btn--secondary {
+  background: transparent;
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-secondary);
+}
+.unsure-btn--secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}

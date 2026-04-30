@@ -29,6 +29,9 @@ import {
 } from '../../../stores/journalStore';
 import type { RepairLayer, DiagnosisMethod } from '../../../types/creators-journal';
 import './sandbox.css';
+import { useLearnerHelp } from '../../../hooks/useLearnerHelp';
+import HelpPanel from '../../../components/learnerHelp/HelpPanel';
+import TutorialViewer from '../../../components/learnerHelp/TutorialViewer';
 
 // ============================================================================
 // ORIGINAL DATA — all preserved exactly
@@ -46,6 +49,21 @@ const repairItems = [
   { id: 'washing-machine-bearing', category: 'Appliance', name: 'Washing machine drum bearing', professionalCost: 240, actualCost: 25, timeMinutes: 180, toolsNeeded: ['Socket set', 'Bearing puller', 'Hammer', 'New bearing'], toolsCost: 25, difficulty: 'Advanced', layer: 'The Appliance Layer', note: 'Often quoted as uneconomical to repair — pushing replacement. The bearing itself is £8-20. The job is 3 hours but the machine runs another decade.' },
   { id: 'vacuum-carbon-brushes', category: 'Appliance', name: 'Vacuum cleaner motor brushes', professionalCost: 90, actualCost: 6, timeMinutes: 30, toolsNeeded: ['Screwdrivers', 'Replacement brushes'], toolsCost: 6, difficulty: 'Beginner', layer: 'The Appliance Layer', note: 'Most vacuum motors fail because carbon brushes wear down — £3-8 part. Repair shops charge labour plus often push replacement.' },
 ];
+
+
+// ── Repair item → tutorial mapping ────────────────────────────────────────
+const REPAIR_TUTORIAL_MAP: Record<string, string> = {
+  'watch-battery':        'phone-battery-health',
+  'phone-screen':         'phone-battery-health',
+  'lock-lubricant':       'phone-port-cleaning',
+  'tap-washer':           'phone-port-cleaning',
+  'bike-brake-cable':     'ebike-brake-adjustment',
+  'sewing-machine-service':'pc-cleaning-thermal',
+  'washing-machine-belt': 'pc-cleaning-thermal',
+  'washing-machine-bearing':'pc-cleaning-thermal',
+  'vacuum-carbon-brushes':'pc-cleaning-thermal',
+  'paint-room':           'pc-cleaning-thermal',
+};
 
 const printScenarios = [
   { part: 'Washing machine soap drawer handle', available: false, quotedCost: 45, printCost: 2, verdict: 'print', reason: 'Simple ABS print. Discontinued part. No structural load.' },
@@ -334,6 +352,8 @@ const GateStatusBadge: React.FC<{ layer: RepairLayer }> = ({ layer }) => {
 
 const STEMgeneerssandbox: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'cost' | 'diagnostic' | 'print' | 'collective'>('cost');
+  const { onLearnerNeedsHelp, activeHelp, dismissHelp, openTutorialAt, openTutorial, closeTutorial } =
+    useLearnerHelp('stemgeneers', 'diagnostic-trainer');
 
   // ── ORIGINAL STATE ────────────────────────────────────────────────────────
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
@@ -404,6 +424,19 @@ const STEMgeneerssandbox: React.FC = () => {
 
   const stepForward = (next: string) => {
     setDiagPath(p => [...p, next]);
+    // If navigating to a result node, trigger help
+    const targetNode = diagnosticTree[next];
+    if (targetNode && 'result' in targetNode && targetNode.diy) {
+      setTimeout(() => {
+        onLearnerNeedsHelp('diagnostic-result-diy-true', {
+          currentContent: {
+            type: 'result',
+            id: next,
+            label: targetNode.diagnosis,
+          },
+        });
+      }, 600);
+    }
   };
 
   // ── SESSION RECORDING ─────────────────────────────────────────────────────
@@ -456,6 +489,10 @@ const STEMgeneerssandbox: React.FC = () => {
     });
 
     setSessionRecorded(true);
+    // Trigger help based on session outcome
+    if (result.gateStatus === 'below-threshold') {
+      onLearnerNeedsHelp('session-below-threshold');
+    }
     setSessionResult({
       passed: result.gateStatus !== 'below-threshold',
       score,
@@ -550,7 +587,19 @@ const STEMgeneerssandbox: React.FC = () => {
                     <div className="cost-with"><span className="cost-label">Parts cost</span><span className="cost-value actual">£{item.actualCost}</span></div>
                     <div className="cost-time"><span className="cost-label">Time</span><span className="cost-value">{item.timeMinutes < 60 ? `${item.timeMinutes} min` : `${Math.round(item.timeMinutes/60)}h`}</span></div>
                   </div>
-                  {selectedItems.has(item.id) && <div className="repair-item-note">{item.note}</div>}
+                  {selectedItems.has(item.id) && (
+                    <>
+                      <div className="repair-item-note">{item.note}</div>
+                      {REPAIR_TUTORIAL_MAP[item.id] && (
+                        <button
+                          className="repair-item-tutorial-btn"
+                          onClick={(e) => { e.stopPropagation(); openTutorialAt(REPAIR_TUTORIAL_MAP[item.id]); }}
+                        >
+                          🔧 Start tutorial: how to do this yourself →
+                        </button>
+                      )}
+                    </>
+                  )}
                 </div>
               ))}
             </div>
@@ -566,6 +615,15 @@ const STEMgeneerssandbox: React.FC = () => {
               </div>
             )}
             {selectedItems.size === 0 && <div className="empty-state"><p>Select the repairs that happen in your household to see the calculation.</p></div>}
+
+          {/* Tutorial viewer — inline below repair card, inside cost tab */}
+          {openTutorial && (
+            <TutorialViewer
+              tutorialId={openTutorial.id}
+              startStep={openTutorial.step}
+              onClose={closeTutorial}
+            />
+          )}
           </div>
         )}
 
@@ -722,6 +780,15 @@ const STEMgeneerssandbox: React.FC = () => {
               </div>
             )}
           </div>
+        )}
+
+        {/* Contextual help panel — diagnostic trainer */}
+        {activeTab === 'diagnostic' && activeHelp && (
+          <HelpPanel
+            help={activeHelp}
+            onDismiss={dismissHelp}
+            onOpenTutorial={openTutorialAt}
+          />
         )}
 
         {/* ── TAB 3: PRINT OR BUY — original, unchanged ────────────────── */}

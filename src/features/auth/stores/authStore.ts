@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/features/auth/stores/authStore.ts;
+// Stub — pending implementation
+export {};

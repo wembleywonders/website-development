@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/features/workspace/hooks/useSwipeable.ts;
+// Stub — pending implementation
+export {};

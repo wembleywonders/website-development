@@ -457,27 +457,10 @@ const TeamPage: React.FC = () => {
       pageTitle="Team Members & Facilitation"
       pageStrapline="Workshop Leaders & Programme Coordinators"
       pageGuide="Meet our team members who facilitate workshops, lead programmes, and coordinate showcases. See how each specialist connects learning opportunities to community achievements."
-      pageType="team"
+      pageType="community"
       showMaya={true}
-      bannerConfig={{
-        raydyo: {
-          title: "Rayd-yo",
-          subtitle: "Team Interviews • Behind the Scenes",
-          link: "/raydyo"
-        },
-        joystick: {
-          title: "Joystick E-zine",
-          subtitle: "Team Profiles • Facilitation Features",
-          link: "/joystick"
-        },
-        localBusiness: {
-          businessName: "Work With Our Team",
-          offer: "Partner with our specialists",
-          link: "/work-with-us"
-        }
-      }}
     >
-      {smartRouting && smartRouting.showWelcome && <WelcomeBanner />}
+      {smartRouting && smartRouting.hasHighConfidenceSuggestion && <WelcomeBanner />}
 
       {/* Hero Section */}
       <section className="hero-section">
@@ -748,7 +731,7 @@ const TeamPage: React.FC = () => {
       {/* Maya Integration */}
       <DraggableMaya 
         membershipTier="visitor"
-        pageType="team"
+        pageType="community"
         pageContext={{
           title: "Team Members & Facilitation",
           section: "team",

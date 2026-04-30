@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/types/activities.ts;
+// Stub — pending implementation
+export {};

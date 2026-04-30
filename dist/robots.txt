@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /member-dashboard
+
+Sitemap: https://wembleywonders.org/sitemap.xml

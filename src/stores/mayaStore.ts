@@ -77,6 +77,7 @@ interface CommunityEngagement {
 }
 
 interface MayaState {
+  [x: string]: any;
   // Core conversation management
   mayaConversation: MayaMessage[];
   conversationHistory: MayaMessage[];

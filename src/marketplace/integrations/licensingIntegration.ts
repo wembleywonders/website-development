@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/marketplace/integrations/licensingIntegration.ts;
+// Stub — pending implementation
+export {};

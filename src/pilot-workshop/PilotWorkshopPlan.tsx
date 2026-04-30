@@ -24,7 +24,7 @@ const PilotWorkshopPlan: React.FC = () => {
     duration: '2 hours (10am-12pm)',
     participants: 8,
     volunteer: 'IT Specialist + Headmistress backup',
-    venue: 'Wembley Central Community Centre',
+    venue: 'Wembley Wonders CIC, 452 High Road, Wembley HA9 7AY',
     costs: {
       venue: 25,
       materials: 15,

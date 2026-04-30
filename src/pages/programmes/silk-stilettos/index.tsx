@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PageTemplate from '../../../components/PageTemplate';
 import DraggableMaya from '../../../components/maya/DraggableMaya';
-import PageMeta from '@components/PageMeta';
+
 import {
   Scissors, Package, Star, CheckCircle, ArrowRight,
   HandHeart, Coins, Zap, Shirt
@@ -231,10 +231,10 @@ const SilkStilettosPage: React.FC = () => {
   return (
     <PageTemplate
       pageTitle="Silk Stilettos"
-      pageStrapline="The Art of Dangerous Elegance — Making, Construction, and the Politics of Appearance"
+      pageStrapline="The Tradition of Dangerous Elegance — Sharp Dressing. Are you ready to be outstanding?"
       pageType="programme"
     >
-      <PageMeta pageKey="silk-stilettos" />
+
 
       <DraggableMaya
         membershipTier="visitor"
@@ -252,11 +252,8 @@ const SilkStilettosPage: React.FC = () => {
         <section className="ss-hero">
           <div className="ss-hero-badge">🗡️</div>
           <h1>Silk Stilettos</h1>
-          <p className="ss-hero-tagline">The Art of Dangerous Elegance</p>
-          <p className="ss-hero-quote">
-            "The stiletto was not decoration. Neither was the suit. 
-            Neither is this programme."
-          </p>
+          <p className="ss-hero-tagline">The Tradition of Dangerous Elegance</p>
+          <p className="ss-hero-quote">Sharp Dressing. Are you ready to be outstanding?</p>
         </section>
 
         {/* The name explained */}
@@ -517,7 +514,7 @@ const SilkStilettosPage: React.FC = () => {
         <section className="ss-cta">
           <div className="ss-cta-content">
             <span style={{ fontSize: '3rem' }}>🗡️</span>
-            <h2>Ready to Make the Argument?</h2>
+            <h2>Are You Ready to Be Outstanding?</h2>
             <p>
               Your community needs people who can make. Not just buy. 
               Not just wear. Make — with the technical knowledge to do it 

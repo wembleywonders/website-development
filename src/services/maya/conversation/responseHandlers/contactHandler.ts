@@ -13,7 +13,7 @@ export class ContactHandler {
     response += `Phone: ${judith.phone}\n`;
     response += `Mobile: ${judith.mobile}\n`;
     response += `Available: Mon-Fri, 9am-5pm (calls), Email responses within 4 hours\n\n`;
-    response += "You can also visit us at 123 High Road, Wembley HA9 6AA during weekday business hours.\n\n";
+    response += "You can also visit us at 452 High Road, Wembley HA9 7AY during weekday business hours.\n\n";
     
     response += "**Note:** If you need support services beyond what we provide (benefits, housing, health, legal, etc.), I can also signpost you to appropriate local organizations.";
     

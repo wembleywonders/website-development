@@ -1,0 +1,139 @@
+/* EarningsInstrument.css — "You came here rich." */
+
+.ei-widget {
+  background: rgba(30,41,59,0.6);
+  border: 1px solid rgba(212,168,83,0.2);
+  border-radius: 10px;
+  font-family: Georgia, serif;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.ei-widget-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.25rem; cursor: pointer; transition: background 0.15s;
+}
+.ei-widget-header:hover { background: rgba(30,41,59,0.8); }
+.ei-widget-left { display: flex; align-items: center; gap: 0.75rem; }
+.ei-widget-icon { font-size: 1.25rem; }
+.ei-widget-title { display: block; font-size: 0.9rem; font-weight: 700; color: #f0e6d0; }
+.ei-widget-summary { display: block; font-size: 0.75rem; color: #64748b; font-family: -apple-system,sans-serif; }
+.ei-widget-expand { font-size: 0.75rem; color: #d4a853; font-family: -apple-system,sans-serif; }
+
+.ei-instrument {
+  background: rgba(15,23,42,0.98);
+  border: 1px solid rgba(212,168,83,0.2);
+  border-radius: 12px; padding: 1.5rem;
+  font-family: Georgia, serif; color: #f0e6d0;
+}
+.ei-instrument--compact { border-radius: 10px; padding: 1.25rem; }
+
+.ei-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(148,163,184,0.1); }
+.ei-title { font-size: 1.1rem; font-weight: 700; color: #f0e6d0; margin: 0 0 0.25rem; }
+.ei-strapline { font-size: 0.8rem; color: #d4a853; font-style: italic; margin: 0; }
+.ei-collapse-btn { background: none; border: 1px solid rgba(148,163,184,0.2); border-radius: 6px; color: #64748b; font-size: 0.72rem; padding: 0.3rem 0.625rem; cursor: pointer; font-family: -apple-system,sans-serif; transition: all 0.15s; white-space: nowrap; }
+.ei-collapse-btn:hover { color: #94a3b8; }
+
+.ei-baseline { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.15); border-radius: 8px; padding: 0.875rem 1rem; margin-bottom: 1.25rem; }
+.ei-baseline-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; color: #64748b; margin-bottom: 0.625rem; font-family: -apple-system,sans-serif; }
+.ei-baseline-stats { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.ei-baseline-stat { display: flex; flex-direction: column; gap: 0.15rem; }
+.ei-baseline-value { font-size: 1.25rem; font-weight: 700; color: #f0e6d0; }
+.ei-baseline-value--income { color: #10b981; }
+.ei-baseline-value--savings { color: #d4a853; }
+.ei-baseline-desc { font-size: 0.72rem; color: #64748b; font-family: -apple-system,sans-serif; }
+
+.ei-target { margin-bottom: 1.25rem; }
+.ei-target-label { display: block; font-size: 0.78rem; color: #94a3b8; margin-bottom: 0.5rem; font-family: -apple-system,sans-serif; }
+.ei-target-row { display: flex; align-items: center; gap: 0.75rem; }
+.ei-target-prefix { font-size: 1rem; color: #d4a853; font-weight: 700; }
+.ei-target-slider { flex: 1; accent-color: #d4a853; cursor: pointer; }
+.ei-target-value { font-size: 0.9rem; font-weight: 700; color: #d4a853; white-space: nowrap; min-width: 80px; text-align: right; font-family: -apple-system,sans-serif; }
+.ei-target-restore { background: none; border: none; color: #64748b; font-size: 0.72rem; cursor: pointer; padding: 0.25rem 0; margin-top: 0.3rem; font-family: -apple-system,sans-serif; text-decoration: underline; }
+
+.ei-projection { margin-bottom: 1rem; }
+.ei-projection-bar-wrap { position: relative; height: 8px; background: rgba(148,163,184,0.12); border-radius: 100px; overflow: hidden; margin-bottom: 0.5rem; }
+.ei-projection-bar-fill { height: 100%; background: linear-gradient(90deg,#10b981,#d4a853); border-radius: 100px; transition: width 0.3s ease; }
+.ei-projection-numbers { display: flex; align-items: baseline; gap: 1rem; }
+.ei-projection-current { font-size: 1.5rem; font-weight: 700; color: #10b981; }
+.ei-projection-current em { font-size: 0.78rem; color: #64748b; font-style: normal; margin-left: 0.25rem; font-family: -apple-system,sans-serif; }
+.ei-projection-delta { font-size: 0.8rem; font-family: -apple-system,sans-serif; font-weight: 600; }
+.ei-projection-delta.positive { color: #10b981; }
+.ei-projection-delta.negative { color: #f87171; }
+
+.ei-split { margin-bottom: 1.25rem; }
+.ei-split-bar { display: flex; height: 24px; border-radius: 6px; overflow: hidden; margin-bottom: 0.4rem; }
+.ei-split-segment { display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; font-family: -apple-system,sans-serif; }
+.ei-split-creator  { background: #10b981; color: #0f172a; }
+.ei-split-community { background: #f59e0b; color: #0f172a; }
+.ei-split-platform  { background: rgba(100,116,139,0.4); color: #94a3b8; }
+.ei-split-labels { display: flex; gap: 1rem; flex-wrap: wrap; }
+.ei-split-label { font-size: 0.72rem; font-family: -apple-system,sans-serif; }
+.ei-split-label--creator  { color: #10b981; }
+.ei-split-label--community { color: #f59e0b; }
+.ei-split-label--platform  { color: #64748b; }
+
+.ei-solomon { padding: 1rem 1.25rem; border-radius: 8px; margin-bottom: 1.25rem; border-left: 3px solid #f59e0b; background: rgba(245,158,11,0.06); }
+.ei-solomon--conservative { border-color: #64748b; background: rgba(100,116,139,0.06); }
+.ei-solomon--ambitious    { border-color: #d4a853; background: rgba(212,168,83,0.06); }
+.ei-solomon-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+.ei-solomon-avatar { font-size: 1rem; }
+.ei-solomon-name { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: #f59e0b; font-weight: 700; font-family: -apple-system,sans-serif; }
+.ei-solomon-headline { font-size: 0.95rem; font-weight: 700; color: #f0e6d0; margin: 0 0 0.375rem; }
+.ei-solomon-gap { font-size: 0.8rem; color: #f87171; margin: 0 0 0.375rem; font-family: -apple-system,sans-serif; }
+.ei-solomon-advice { font-size: 0.82rem; color: #94a3b8; margin: 0 0 0.25rem; line-height: 1.55; font-style: italic; }
+.ei-solomon-advice--secondary { color: #64748b; }
+
+.ei-streams { margin-bottom: 1.25rem; }
+.ei-streams-header { display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.875rem; }
+.ei-streams-title { font-size: 0.82rem; font-weight: 700; color: #f0e6d0; text-transform: uppercase; letter-spacing: 0.06em; font-family: -apple-system,sans-serif; }
+.ei-streams-hint { font-size: 0.72rem; color: #64748b; font-family: -apple-system,sans-serif; }
+
+.ei-stream { margin-bottom: 0.625rem; border: 1px solid rgba(148,163,184,0.1); border-radius: 8px; overflow: hidden; transition: border-color 0.15s; }
+.ei-stream--active { border-color: rgba(212,168,83,0.25); background: rgba(30,41,59,0.4); }
+.ei-stream--inactive { background: rgba(15,23,42,0.3); }
+.ei-stream-header { display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 0.875rem; }
+.ei-stream-toggle { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; flex: 1; }
+.ei-stream-toggle input[type="checkbox"] { accent-color: #d4a853; width: 14px; height: 14px; cursor: pointer; }
+.ei-stream-icon { font-size: 1rem; }
+.ei-stream-label { font-size: 0.85rem; font-weight: 600; color: #f0e6d0; }
+.ei-stream-programme { font-size: 0.68rem; color: #64748b; margin-left: 0.375rem; font-family: -apple-system,sans-serif; }
+.ei-stream-monthly { font-size: 0.78rem; font-weight: 700; color: #10b981; white-space: nowrap; font-family: -apple-system,sans-serif; }
+.ei-stream-sliders { padding: 0.625rem 0.875rem 0.875rem; border-top: 1px solid rgba(148,163,184,0.08); display: flex; flex-direction: column; gap: 0.5rem; }
+.ei-stream-slider-row { display: grid; grid-template-columns: 200px 1fr 80px; align-items: center; gap: 0.625rem; }
+.ei-stream-slider-label { font-size: 0.72rem; color: #94a3b8; font-family: -apple-system,sans-serif; }
+.ei-stream-range { accent-color: #d4a853; cursor: pointer; width: 100%; }
+.ei-stream-range-bounds { font-size: 0.65rem; color: #475569; text-align: right; font-family: -apple-system,sans-serif; }
+.ei-stream-gross { font-size: 0.72rem; color: #64748b; font-family: -apple-system,sans-serif; padding-top: 0.25rem; }
+
+.ei-annual { display: flex; gap: 1.5rem; flex-wrap: wrap; padding: 1rem; background: rgba(30,41,59,0.4); border-radius: 8px; margin-bottom: 1.25rem; }
+.ei-annual-stat { display: flex; flex-direction: column; gap: 0.15rem; }
+.ei-annual-value { font-size: 1.35rem; font-weight: 700; color: #f0e6d0; }
+.ei-annual-value--community { color: #f59e0b; }
+.ei-annual-value--months { color: #d4a853; }
+.ei-annual-label { font-size: 0.72rem; color: #64748b; font-family: -apple-system,sans-serif; }
+
+.ei-pardner { padding: 1rem 1.25rem; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15); border-radius: 8px; margin-bottom: 1rem; }
+.ei-pardner-header { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.875rem; }
+.ei-pardner-title { font-size: 0.82rem; font-weight: 700; color: #f0e6d0; }
+.ei-pardner-subtitle { font-size: 0.7rem; color: #64748b; font-family: -apple-system,sans-serif; }
+.ei-pardner-stats { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.625rem; }
+.ei-pardner-stat { display: flex; flex-direction: column; gap: 0.15rem; }
+.ei-pardner-stat--hand .ei-pardner-stat-value { color: #f59e0b; }
+.ei-pardner-stat-value { font-size: 1.1rem; font-weight: 700; color: #f0e6d0; font-family: -apple-system,sans-serif; }
+.ei-pardner-stat-label { font-size: 0.68rem; color: #64748b; font-family: -apple-system,sans-serif; }
+.ei-pardner-arrow { color: #64748b; font-size: 1.25rem; }
+.ei-pardner-note { font-size: 0.75rem; color: #64748b; font-style: italic; margin: 0; line-height: 1.5; }
+.ei-pardner-adjuster { margin-bottom: 1rem; }
+.ei-pardner-adjuster-label { display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.4rem; font-family: -apple-system,sans-serif; }
+
+.ei-cta { text-align: center; padding-top: 0.5rem; }
+.ei-cta-btn { display: inline-block; padding: 0.625rem 1.5rem; background: #d4a853; color: #0f172a; font-weight: 700; font-size: 0.85rem; font-family: Georgia,serif; border-radius: 7px; text-decoration: none; transition: background 0.15s; }
+.ei-cta-btn:hover { background: #c49943; }
+
+@media (max-width: 600px) {
+  .ei-stream-slider-row { grid-template-columns: 1fr; gap: 0.3rem; }
+  .ei-stream-range-bounds { text-align: left; }
+  .ei-annual { gap: 1rem; }
+  .ei-split-labels { gap: 0.5rem; }
+}

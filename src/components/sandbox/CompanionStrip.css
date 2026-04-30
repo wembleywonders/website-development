@@ -1,0 +1,175 @@
+/* CompanionStrip.css
+   Companion panel strip — sits to the right of the primary workspace on desktop.
+   Collapses to bottom drawer on mobile.
+   Uses --cs-accent for per-programme colour theming.
+*/
+
+/* ── Strip layout ────────────────────────────────────────────────────────── */
+.cs-strip {
+  width: 38%;
+  min-width: 280px;
+  max-width: 420px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 0 0 16px;
+  border-left: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.cs-strip__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+}
+
+.cs-strip__count {
+  font-size: 0.72rem;
+  color: #64748b;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.cs-strip__close-all {
+  background: none;
+  border: none;
+  font-size: 0.72rem;
+  color: #64748b;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: inherit;
+  transition: color 0.15s;
+}
+
+.cs-strip__close-all:hover { color: #f8fafc; }
+
+.cs-strip__panels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+}
+
+/* ── Individual panel ────────────────────────────────────────────────────── */
+.cs-panel {
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-top: 2px solid var(--cs-accent, #9b7fe8);
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cs-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(15, 23, 42, 0.5);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.cs-panel__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cs-accent, #9b7fe8);
+  flex: 1;
+}
+
+.cs-panel__programme {
+  font-size: 0.68rem;
+  color: #475569;
+  letter-spacing: 0.05em;
+}
+
+.cs-panel__close {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  font-family: inherit;
+  transition: color 0.15s;
+}
+
+.cs-panel__close:hover { color: #f8fafc; }
+
+.cs-panel__body {
+  padding: 14px;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.65;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+/* ── Dock button ─────────────────────────────────────────────────────────── */
+.cs-dock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  color: #64748b;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.cs-dock-btn:hover {
+  border-color: var(--cs-accent, #9b7fe8);
+  color: var(--cs-accent, #9b7fe8);
+}
+
+.cs-dock-btn--active {
+  background: rgba(155, 127, 232, 0.12);
+  border-color: var(--cs-accent, #9b7fe8);
+  color: var(--cs-accent, #9b7fe8);
+}
+
+.cs-dock-btn__icon { font-size: 0.9rem; }
+
+/* ── Mobile — bottom drawer ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .cs-strip {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 16px;
+    background: rgba(15, 23, 42, 0.98);
+    border-left: none;
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+    z-index: 300;
+    max-height: 55vh;
+  }
+
+  .cs-strip__panels {
+    max-height: calc(55vh - 60px);
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .cs-panel {
+    min-width: 260px;
+    max-width: 300px;
+    flex-shrink: 0;
+  }
+
+  .cs-panel__body {
+    max-height: 200px;
+  }
+}

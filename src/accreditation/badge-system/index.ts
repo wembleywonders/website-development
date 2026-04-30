@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/accreditation/badge-system/index.ts;
+// Stub — pending implementation
+export {};

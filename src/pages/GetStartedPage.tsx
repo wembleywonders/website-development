@@ -1,248 +1,378 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useSmartRouting } from '../hooks/useSmartRouting';
-import { WelcomeBanner } from '../components/smart/WelcomeBanner';
 import { useMayaStore } from '../stores/mayaStore';
+import { useAuth } from '../contexts/AuthContext';
 import PageTemplate from '../components/PageTemplate';
 import DraggableMaya from '../components/maya/DraggableMaya';
-import { 
-  Radio, Target, Gamepad2, Users, ArrowRight, 
-  Sparkles, BookOpen, Heart, Palette
+import {
+  Pencil, BookOpen, Radio, Users, DollarSign,
+  Archive, ArrowRight, ExternalLink
 } from 'lucide-react';
 import './GetStartedPage.css';
 
-interface Pathway {
+interface ResumeItem {
+  label: string;
+  sublabel: string;
+  path: string;
+}
+
+interface FinderCard {
   id: string;
   title: string;
   subtitle: string;
-  icon: React.ComponentType<any>;
-  description: string;
-  primaryAction: () => void;
-  primaryText: string;
-  secondaryAction?: () => void;
-  secondaryText?: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  path: string;
+  accentBg: string;
+  accentColor: string;
 }
+
+interface MayaSuggestion {
+  text: string;
+  path: string;
+}
+
+interface MayaContext {
+  message: string;
+  suggestions: MayaSuggestion[];
+}
+
+interface MemberStats {
+  covenantScore: number;
+  covenantTier: string;
+  programmesVisited: number;
+  programmesTotal: number;
+  crossPollinationPct: number;
+  crossPollinationVsTierAvg: number;
+}
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+function getGreeting(): string {
+  const h = new Date().getHours();
+  if (h < 12) return 'Good morning';
+  if (h < 17) return 'Good afternoon';
+  return 'Good evening';
+}
+
+function todayLabel(): string {
+  return new Date().toLocaleDateString('en-GB', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Sub-components
+// ---------------------------------------------------------------------------
+
+const MayaBar: React.FC<{ context: MayaContext; onSuggestion: (path: string) => void }> = ({
+  context,
+  onSuggestion,
+}) => (
+  <div className="gs-maya-bar">
+    <div className="gs-maya-avatar" aria-hidden="true">M</div>
+    <div className="gs-maya-body">
+      <p className="gs-maya-message">{context.message}</p>
+      <div className="gs-maya-pills">
+        {context.suggestions.map((s) => (
+          <button
+            key={s.path}
+            className="gs-maya-pill"
+            onClick={() => onSuggestion(s.path)}
+          >
+            {s.text}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const ResumeCard: React.FC<{ item: ResumeItem; onGo: (path: string) => void }> = ({
+  item,
+  onGo,
+}) => (
+  <div className="gs-resume-card">
+    <div className="gs-resume-icon" aria-hidden="true">
+      <Radio size={20} />
+    </div>
+    <div className="gs-resume-text">
+      <h3>{item.label}</h3>
+      <p>{item.sublabel}</p>
+    </div>
+    <button className="gs-resume-btn" onClick={() => onGo(item.path)}>
+      Continue <ArrowRight size={14} />
+    </button>
+  </div>
+);
+
+const FinderGrid: React.FC<{
+  cards: FinderCard[];
+  onNavigate: (path: string) => void;
+}> = ({ cards, onNavigate }) => (
+  <div className="gs-finder-grid">
+    {cards.map((card) => {
+      const Icon = card.icon;
+      return (
+        <button
+          key={card.id}
+          className="gs-finder-card"
+          onClick={() => onNavigate(card.path)}
+        >
+          <div
+            className="gs-finder-icon"
+            style={{ backgroundColor: card.accentBg }}
+            aria-hidden="true"
+          >
+            <span style={{ color: card.accentColor }}>
+              <Icon size={16} className="gs-finder-icon-svg" />
+            </span>
+          </div>
+          <h4>{card.title}</h4>
+          <p>{card.subtitle}</p>
+        </button>
+      );
+    })}
+  </div>
+);
+
+const StatsRow: React.FC<{ stats: MemberStats }> = ({ stats }) => (
+  <div className="gs-stats-row">
+    <div className="gs-stat-card">
+      <span className="gs-stat-label">Covenant score</span>
+      <span className="gs-stat-value">{stats.covenantScore}</span>
+      <span className="gs-stat-sub">{stats.covenantTier} tier</span>
+    </div>
+    <div className="gs-stat-card">
+      <span className="gs-stat-label">Programmes visited</span>
+      <span className="gs-stat-value">{stats.programmesVisited}</span>
+      <span className="gs-stat-sub">of {stats.programmesTotal} available</span>
+    </div>
+    <div className="gs-stat-card">
+      <span className="gs-stat-label">Cross-pollination</span>
+      <span className="gs-stat-value">{stats.crossPollinationPct}%</span>
+      <span className="gs-stat-sub">
+        {stats.crossPollinationVsTierAvg >= 0 ? '+' : ''}
+        {stats.crossPollinationVsTierAvg}% vs tier avg
+      </span>
+    </div>
+  </div>
+);
+
+// ---------------------------------------------------------------------------
+// Finder card definitions
+// ---------------------------------------------------------------------------
+
+const FINDER_CARDS: FinderCard[] = [
+  {
+    id: 'create',
+    title: 'Create something',
+    subtitle: 'Templates, audio, tutorials',
+    icon: Pencil,
+    path: '/create',
+    accentBg: '#E1F5EE',
+    accentColor: '#0F6E56',
+  },
+  {
+    id: 'workshops',
+    title: 'Workshops',
+    subtitle: 'Find and book sessions',
+    icon: BookOpen,
+    path: '/workshops',
+    accentBg: '#EEEDFE',
+    accentColor: '#534AB7',
+  },
+  {
+    id: 'raydyo',
+    title: 'Rayd-yo',
+    subtitle: 'Listen live or get involved',
+    icon: Radio,
+    path: '/raydyo',
+    accentBg: '#FAEEDA',
+    accentColor: '#854F0B',
+  },
+  {
+    id: 'community',
+    title: 'Community',
+    subtitle: 'Sessions, events, roles',
+    icon: Users,
+    path: '/community',
+    accentBg: '#FBEAF0',
+    accentColor: '#993556',
+  },
+  {
+    id: 'counting-house',
+    title: 'Counting House',
+    subtitle: 'Money tools and calculators',
+    icon: DollarSign,
+    path: '/counting-house',
+    accentBg: '#E6F1FB',
+    accentColor: '#185FA5',
+  },
+  {
+    id: 'knowledge-commons',
+    title: 'Knowledge Commons',
+    subtitle: 'Archive, heritage, stories',
+    icon: Archive,
+    path: '/knowledge-commons',
+    accentBg: '#F1EFE8',
+    accentColor: '#5F5E5A',
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Mock data fetchers — replace with real API calls
+// ---------------------------------------------------------------------------
+
+function useMemberData(userId: number | null) {
+  const [resumeItem, setResumeItem] = useState<ResumeItem | null>(null);
+  const [mayaContext, setMayaContext] = useState<MayaContext | null>(null);
+  const [stats, setStats] = useState<MemberStats | null>(null);
+  const [raydyoLive, setRaydyoLive] = useState(false);
+
+  useEffect(() => {
+    if (!userId) return;
+
+    // TODO: replace with real API calls to /api/member/{userId}/resume etc.
+    setResumeItem({
+      label: 'Trubble n Bass — Production Brief',
+      sublabel: 'Stage 1 of 4 · Last opened 3 days ago',
+      path: '/trubble-n-bass',
+    });
+
+    setMayaContext({
+      message:
+        "You were in Trubble n Bass last week — your production brief is still open. There's also a Counting House session on Thursday you'd qualify for.",
+      suggestions: [
+        { text: 'Back to Trubble n Bass', path: '/trubble-n-bass' },
+        { text: 'Thursday session', path: '/workshops/counting-house-thursday' },
+        { text: 'Something else', path: '#finder' },
+      ],
+    });
+
+    setStats({
+      covenantScore: 74,
+      covenantTier: 'Connector',
+      programmesVisited: 4,
+      programmesTotal: 11,
+      crossPollinationPct: 31,
+      crossPollinationVsTierAvg: 8,
+    });
+
+    // TODO: replace with real broadcast schedule check
+    const hour = new Date().getHours();
+    setRaydyoLive(hour >= 6 && hour < 23);
+  }, [userId]);
+
+  return { resumeItem, mayaContext, stats, raydyoLive };
+}
+
+// ---------------------------------------------------------------------------
+// Page
+// ---------------------------------------------------------------------------
 
 const GetStartedPage: React.FC = () => {
   const navigate = useNavigate();
+  const { user, isLoading } = useAuth();
   const mayaStore = useMayaStore();
-  const { suggestedPath, welcomeMessage, confidence } = useSmartRouting();
-  
-  const showWelcome = confidence > 0.6 && welcomeMessage;
 
-  useEffect(() => {
-    // Maya context setup for get started page
-  }, [mayaStore]);
+  // displayName is derived from email in AuthContext e.g. "Cj Fontanelle"
+  // Fall back to first segment of username, then 'there'
+  const firstName = user?.displayName?.split(' ')[0]
+    ?? user?.username?.split(/[._-]/)[0]
+    ?? 'there';
 
-  // Primary entry pathways - what brings people here
-  const primaryPathways: Pathway[] = [
-    {
-      id: 'creator',
-      title: "I want to earn from my creativity",
-      subtitle: "Join our creator community",
-      icon: Palette,
-      description: "Use our tools to build and sell digital products. Keep 55% of every sale. Template studio, audio booth, and tutorial producer all included.",
-      primaryAction: () => navigate('/auth/signup?intent=creator'),
-      primaryText: "Join as Creator",
-      secondaryAction: () => navigate('/'),
-      secondaryText: "See how it works"
-    },
-    {
-      id: 'radio',
-      title: "I heard about your radio station",
-      subtitle: "That's Rayd-yo community radio",
-      icon: Radio,
-      description: "Listen live, request songs, join shows, or learn broadcasting. We train residents to become radio presenters and podcast producers.",
-      primaryAction: () => navigate('/raydyo'),
-      primaryText: "Visit Rayd-yo",
-      secondaryAction: () => navigate('/raydyo#get-involved'),
-      secondaryText: "Get involved"
-    },
-    {
-      id: 'training',
-      title: "I'm looking for skills training",
-      subtitle: "From basics to professional level",
-      icon: Target,
-      description: "Free workshops in digital skills, creative media, and professional development. Take our assessment to find your pathway.",
-      primaryAction: () => navigate('/workshops'),
-      primaryText: "See Workshops",
-      secondaryAction: () => navigate('/auth/signup?intent=learner'),
-      secondaryText: "Start learning"
-    },
-    {
-      id: 'gaming',
-      title: "I heard about gaming events",
-      subtitle: "Welcome to Joystick Gaming",
-      icon: Gamepad2,
-      description: "Gaming tournaments, retro nights, learn-to-stream workshops, and esports coaching. All skill levels welcome.",
-      primaryAction: () => navigate('/joystick'),
-      primaryText: "Visit Joystick",
-      secondaryAction: () => navigate('/joystick#events'),
-      secondaryText: "See events"
-    },
-    {
-      id: 'community',
-      title: "I want to get involved in my community",
-      subtitle: "Join as member or volunteer",
-      icon: Users,
-      description: "Become a Champion, Connector, or Curator. Help shape your local community while developing new skills and building connections.",
-      primaryAction: () => navigate('/membership'),
-      primaryText: "Learn about roles",
-      secondaryAction: () => navigate('/auth/signup?intent=volunteer'),
-      secondaryText: "Join community"
+  if (isLoading) return null; // wait for /me before rendering
+  const { resumeItem, mayaContext, stats, raydyoLive } = useMemberData(user?.id ?? null);
+
+  const handleNavigate = (path: string) => {
+    if (path === '#finder') {
+      document.getElementById('gs-finder')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate(path);
     }
-  ];
+  };
 
   return (
     <PageTemplate
       pageTitle="Get Started"
-      pageStrapline="Find Your Path in Our Community"
-      pageGuide="Whether someone sent you here or you're exploring on your own, we'll help you find exactly what you need."
+      pageStrapline="Pick up where you left off and explore what's new"
       pageType="community"
-      showMaya={true}
+      showMaya={false}
     >
-      {showWelcome && <WelcomeBanner />}
+      <div className="gs-page">
 
-      {/* Smart routing suggestion if available */}
-      {confidence > 0.6 && welcomeMessage && suggestedPath && (
-        <div className="suggested-banner">
-          <span className="suggestion-text">{welcomeMessage}</span>
-          <button 
-            className="suggestion-btn"
-            onClick={() => navigate(suggestedPath)}
-          >
-            Take me there
-            <ArrowRight className="w-4 h-4 ml-1" />
+        {/* Header */}
+        <header className="gs-header">
+          <h1>{getGreeting()}, {firstName}</h1>
+          <p>{todayLabel()} — here's where things stand</p>
+        </header>
+
+        {/* Maya bar */}
+        {mayaContext && (
+          <MayaBar context={mayaContext} onSuggestion={handleNavigate} />
+        )}
+
+        {/* Resume */}
+        {resumeItem && (
+          <>
+            <p className="gs-section-label">Pick up where you left off</p>
+            <ResumeCard item={resumeItem} onGo={handleNavigate} />
+          </>
+        )}
+
+        {/* Finder */}
+        <p className="gs-section-label" id="gs-finder">
+          What do you want to do today?
+        </p>
+        <FinderGrid cards={FINDER_CARDS} onNavigate={handleNavigate} />
+
+        {/* Stats */}
+        {stats && (
+          <>
+            <p className="gs-section-label">Your position</p>
+            <StatsRow stats={stats} />
+          </>
+        )}
+
+        {/* Quick links */}
+        <p className="gs-section-label">Quick links</p>
+        <div className="gs-quick-row">
+          {raydyoLive && (
+            <button
+              className="gs-quick-link gs-quick-link--live"
+              onClick={() => navigate('/raydyo')}
+            >
+              <span className="gs-live-dot" aria-hidden="true" />
+              Live on Rayd-yo now
+            </button>
+          )}
+          <button className="gs-quick-link" onClick={() => navigate('/panel')}>
+            My Panel
+          </button>
+          <button className="gs-quick-link" onClick={() => navigate('/workshops')}>
+            Upcoming workshops
+          </button>
+          <button className="gs-quick-link" onClick={() => navigate('/cyberstore')}>
+            Cyberstore
+          </button>
+          <button className="gs-quick-link" onClick={() => navigate('/joystick')}>
+            Joystick
           </button>
         </div>
-      )}
 
-      {/* Main Pathways */}
-      <section className="pathways-section">
-        <h2>What brings you here?</h2>
-        <p className="section-intro">
-          Everyone starts somewhere different. Pick what brought you to Wembley Wonders.
-        </p>
-        
-        <div className="entry-pathways-grid">
-          {primaryPathways.map((pathway) => (
-            <div key={pathway.id} className="entry-pathway-card">
-              <div className="pathway-icon-header">
-                <pathway.icon size={40} className="pathway-icon-large" />
-              </div>
-              <h3>{pathway.title}</h3>
-              <p className="pathway-subtitle">{pathway.subtitle}</p>
-              <p className="pathway-description">{pathway.description}</p>
-              <div className="pathway-actions">
-                <button 
-                  className="pathway-primary-btn"
-                  onClick={pathway.primaryAction}
-                >
-                  {pathway.primaryText}
-                </button>
-                {pathway.secondaryAction && (
-                  <button 
-                    className="pathway-secondary-btn"
-                    onClick={pathway.secondaryAction}
-                  >
-                    {pathway.secondaryText}
-                  </button>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      </div>
 
-      {/* What Happens After You Join */}
-      <section className="content-section">
-        <h2>What Happens After You Sign Up</h2>
-        <p className="section-intro">
-          No complicated onboarding. No waiting for approval. Start immediately.
-        </p>
-
-        <div className="post-signup-flow">
-          <div className="flow-step">
-            <div className="flow-number">1</div>
-            <div className="flow-content">
-              <h3>Create your account (2 minutes)</h3>
-              <p>Email, password, and tell us what you're interested in. That's it.</p>
-            </div>
-          </div>
-
-          <div className="flow-arrow">→</div>
-
-          <div className="flow-step">
-            <div className="flow-number">2</div>
-            <div className="flow-content">
-              <h3>Access your workspace immediately</h3>
-              <p>Personal dashboard with all creator tools, workshops, and community spaces.</p>
-            </div>
-          </div>
-
-          <div className="flow-arrow">→</div>
-
-          <div className="flow-step">
-            <div className="flow-number">3</div>
-            <div className="flow-content">
-              <h3>Start creating (or learning)</h3>
-              <p>Use templates, record audio, make tutorials. Or take a workshop first. Your choice.</p>
-            </div>
-          </div>
-
-          <div className="flow-arrow">→</div>
-
-          <div className="flow-step">
-            <div className="flow-number">4</div>
-            <div className="flow-content">
-              <h3>Earn when you're ready</h3>
-              <p>Get your work peer-reviewed, publish to Cyberstore, keep 55% forever.</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="signup-cta">
-          <Link to="/auth/signup" className="cta-button cta-primary cta-large">
-            Create Free Account
-          </Link>
-          <p className="signup-note">
-            ✓ No credit card required  ✓ Cancel anytime  ✓ Keep everything you create
-          </p>
-        </div>
-      </section>
-
-      {/* Quick Links Section */}
-      <section className="content-section">
-        <h2>Not sure yet? Explore first.</h2>
-        
-        <div className="quick-links-grid">
-          <div className="quick-link-card">
-            <Sparkles size={32} />
-            <h3>View Programmes</h3>
-            <p>See all our youth and adult programmes, workshops, and seasonal activities.</p>
-            <Link to="/programmes" className="quick-link-btn">Browse Programmes →</Link>
-          </div>
-
-          <div className="quick-link-card">
-            <BookOpen size={32} />
-            <h3>Success Stories</h3>
-            <p>Read how other creators have built skills and earned income in our community.</p>
-            <Link to="/success-stories" className="quick-link-btn">Read Stories →</Link>
-          </div>
-
-          <div className="quick-link-card">
-            <Heart size={32} />
-            <h3>About Us</h3>
-            <p>Learn about our Community Interest Company structure and how we share power.</p>
-            <Link to="/about" className="quick-link-btn">Learn More →</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Maya Integration */}
       {mayaStore && (
-        <DraggableMaya 
-          membershipTier="visitor"
+        <DraggableMaya
+          membershipTier={
+            user?.role === 'ADMIN' ? 'ADMIN'
+            : user?.member ? 'MEMBER'
+            : 'GUEST'
+          }
         />
       )}
     </PageTemplate>

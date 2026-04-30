@@ -20,7 +20,7 @@ const FAQPage: React.FC = () => {
     general: [
       { q: 'What is Wembley Wonders?', a: 'We\'re a 50+ year youth organization providing skills development, creative programmes, and employment pathways in North West London.' },
       { q: 'What age groups do you serve?', a: 'Programmes for ages 8-24, with some all-ages community events. Most programmes are for 12-20 year olds.' },
-      { q: 'Where are you located?', a: 'Wembley Community Centre, 123 High Road, Wembley, HA9 6AA. Easily accessible by public transport.' },
+      { q: 'Where are you located?', a: 'Wembley Wonders CIC, 452 High Road, Wembley, HA9 7AY. Easily accessible by public transport.' },
       { q: 'What makes you different?', a: 'Foundation Before Skills approach - we build emotional safety, social connection, and cultural relevance BEFORE teaching technical skills. Result: 80% completion vs 30% industry average.' }
     ],
     enrollment: [

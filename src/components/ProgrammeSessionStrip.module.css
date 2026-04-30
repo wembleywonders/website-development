@@ -1,0 +1,32 @@
+.strip { background: rgba(15,23,42,0.7); backdrop-filter: blur(20px); border: 1px solid rgba(148,163,184,0.12); border-radius: 1rem; overflow: hidden; margin: 2rem 0; }
+.header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid rgba(148,163,184,0.08); }
+.headerLeft { display: flex; align-items: center; gap: 8px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; }
+.viewAll { font-size: 0.75rem; font-weight: 600; text-decoration: none; transition: opacity 0.2s; }
+.viewAll:hover { opacity: 0.75; }
+.sessions { display: flex; flex-direction: column; gap: 1px; background: rgba(148,163,184,0.06); }
+.session { display: grid; grid-template-columns: 140px 1fr auto; gap: 1rem; align-items: center; padding: 0.875rem 1.25rem; background: rgba(15,23,42,0.6); transition: background 0.2s; }
+.session:hover { background: rgba(255,255,255,0.02); }
+.sessionSpecial { background: rgba(255,255,255,0.03); border-left: 2px solid var(--prog-colour); }
+.sessionDate { display: flex; flex-direction: column; gap: 2px; }
+.sessionDay { font-size: 0.85rem; font-weight: 700; color: #f8fafc; }
+.sessionTime { font-size: 0.75rem; color: #64748b; }
+.sessionInfo { display: flex; flex-direction: column; gap: 3px; }
+.sessionTitle { font-size: 0.825rem; font-weight: 600; color: #cbd5e1; }
+.sessionNote { font-size: 0.75rem; color: #64748b; font-style: italic; }
+.specialBadge { display: inline-block; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid; border-radius: 100px; padding: 1px 8px; width: fit-content; }
+.sessionActions { display: flex; align-items: center; gap: 6px; }
+.addBtn { font-size: 0.72rem; font-weight: 600; background: transparent; border: 1px solid; border-radius: 6px; padding: 4px 10px; cursor: pointer; transition: opacity 0.2s; white-space: nowrap; }
+.addBtn:hover { opacity: 0.75; }
+.joinBtn { font-size: 0.72rem; font-weight: 700; color: white; border-radius: 6px; padding: 4px 12px; text-decoration: none; transition: opacity 0.2s; white-space: nowrap; }
+.joinBtn:hover { opacity: 0.85; }
+.empty { padding: 2rem 1.25rem; text-align: center; }
+.empty p { font-size: 0.875rem; color: #64748b; margin: 0 0 0.75rem; }
+.emptyLink { font-size: 0.8rem; font-weight: 600; color: #94a3b8; text-decoration: none; }
+.emptyLink:hover { color: #cbd5e1; }
+.footer { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; border-top: 1px solid rgba(148,163,184,0.08); flex-wrap: wrap; gap: 0.5rem; }
+.footerNote { font-size: 0.72rem; color: #64748b; font-style: italic; }
+.footerCta { font-size: 0.72rem; font-weight: 600; color: #94a3b8; text-decoration: none; transition: color 0.2s; }
+.footerCta:hover { color: #f8fafc; }
+@media (max-width: 640px) { .session { grid-template-columns: 1fr; gap: 0.5rem; } .sessionActions { justify-content: flex-start; } .header { flex-direction: column; align-items: flex-start; gap: 4px; } }

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before You Sign — Creator's Checklist · Trubble n Bass · Wembley Wonders CIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+/* ── RESET ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── TOKENS ────────────────────────────────────────────────────────────── */
+:root {
+  --bg:        #0C0C10;
+  --surface:   #141418;
+  --border:    #252530;
+  --gold:      #C9A84C;
+  --gold-dim:  #7A6228;
+  --gold-pale: #E8D49A;
+  --red:       #B83232;
+  --teal:      #2A7A6A;
+  --body:      #C8C4BC;
+  --muted:     #6A6878;
+  --head:      #F0EDE6;
+  --white:     #FFFFFF;
+  --mono:      'DM Mono', monospace;
+  --serif:     'DM Serif Display', serif;
+  --text:      'Newsreader', Georgia, serif;
+}
+
+/* ── PAGE ──────────────────────────────────────────────────────────────── */
+html, body {
+  width: 210mm;
+  min-height: 297mm;
+  background: var(--bg);
+  color: var(--body);
+  font-family: var(--text);
+  font-size: 13px;
+  line-height: 1.55;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: var(--bg);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── GRAIN OVERLAY ─────────────────────────────────────────────────────── */
+.page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── GOLD SPINE ────────────────────────────────────────────────────────── */
+.spine {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dim) 60%, var(--red) 100%);
+  z-index: 2;
+}
+
+/* ── CONTENT WRAPPER ───────────────────────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 22px 24px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 297mm;
+}
+
+/* ── MASTHEAD ──────────────────────────────────────────────────────────── */
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+.masthead-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.programme-tag {
+  font-family: var(--mono);
+  font-size: 7.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.programme-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--head);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.masthead-right {
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 7px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+}
+.masthead-right strong {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* ── TITLE BLOCK ───────────────────────────────────────────────────────── */
+.title-block {
+  margin-bottom: 12px;
+}
+.doc-title {
+  font-family: var(--serif);
+  font-size: 36px;
+  color: var(--head);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.doc-title span {
+  color: var(--gold);
+}
+.doc-subtitle {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── ANCHOR STORY ──────────────────────────────────────────────────────── */
+.anchor {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  position: relative;
+}
+.anchor::before {
+  content: 'WHY THIS EXISTS';
+  font-family: var(--mono);
+  font-size: 6.5px;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 5px;
+}
+.anchor-text {
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--body);
+}
+.anchor-text strong {
+  color: var(--head);
+  font-weight: 600;
+}
+.anchor-name {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--muted);
+  margin-top: 5px;
+  letter-spacing: 0.04em;
+}
+.anchor-name strong { color: var(--gold-pale); }
+
+/* ── SECTION LABEL ─────────────────────────────────────────────────────── */
+.section-intro {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── QUESTIONS GRID ────────────────────────────────────────────────────── */
+.questions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.question {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 10px 11px 11px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.question::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+.question--sign::before   { background: var(--gold); }
+.question--upload::before { background: var(--teal); }
+.question--perform::before { background: #5A7FBF; }
+.question--people::before { background: var(--red); }
+
+.question-num {
+  font-family: var(--serif);
+  font-size: 28px;
+  color: var(--border);
+  line-height: 1;
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  letter-spacing: -0.03em;
+}
+.question--sign   .question-num { color: #2A2510; }
+.question--upload .question-num { color: #0F2020; }
+.question--perform .question-num { color: #111825; }
+.question--people .question-num { color: #200E0E; }
+
+.question-tag {
+  font-family: var(--mono);
+  font-size: 6.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.question--sign   .question-tag { color: var(--gold); }
+.question--upload .question-tag { color: #4CAF9A; }
+.question--perform .question-tag { color: #7BA3D4; }
+.question--people .question-tag { color: #D46A6A; }
+
+.question-head {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--head);
+  line-height: 1.25;
+  max-width: 80%;
+  letter-spacing: -0.01em;
+}
+
+.checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 2px;
+}
+.checklist li {
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--body);
+}
+.checklist li::before {
+  content: '□';
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--muted);
+  flex-shrink: 0;
+  margin-top: 0.5px;
+}
+.checklist li strong {
+  color: var(--head);
+  font-weight: 600;
+}
+.checklist li em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* ── WARNING BOX ───────────────────────────────────────────────────────── */
+.warning {
+  background: #160A0A;
+  border: 1px solid #3A1515;
+  border-left: 3px solid var(--red);
+  padding: 9px 12px;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.warning-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 1px;
+}
+.warning-body { flex: 1; }
+.warning-head {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+.warning-text {
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: #C09090;
+}
+.warning-text strong { color: #F0C0C0; font-weight: 600; }
+
+/* ── FOUR MECHANISMS ───────────────────────────────────────────────────── */
+.mechanisms {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.mechanism {
+  border-top: 2px solid;
+  padding-top: 6px;
+}
+.mechanism:nth-child(1) { border-color: var(--gold); }
+.mechanism:nth-child(2) { border-color: var(--red); }
+.mechanism:nth-child(3) { border-color: #4CAF9A; }
+.mechanism:nth-child(4) { border-color: #7BA3D4; }
+
+.mechanism-label {
+  font-family: var(--mono);
+  font-size: 6.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+.mechanism:nth-child(1) .mechanism-label { color: var(--gold); }
+.mechanism:nth-child(2) .mechanism-label { color: #D46A6A; }
+.mechanism:nth-child(3) .mechanism-label { color: #4CAF9A; }
+.mechanism:nth-child(4) .mechanism-label { color: #7BA3D4; }
+
+.mechanism-name {
+  font-family: var(--serif);
+  font-size: 10px;
+  color: var(--head);
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+.mechanism-eg {
+  font-size: 9px;
+  color: var(--muted);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* ── FOOTER ────────────────────────────────────────────────────────────── */
+.footer {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.footer-cic {
+  font-family: var(--mono);
+  font-size: 7px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+.footer-cic strong { color: var(--gold-pale); }
+.footer-cta {
+  font-size: 9.5px;
+  color: var(--body);
+  font-style: italic;
+}
+.footer-cta strong { color: var(--head); font-weight: 600; font-style: normal; }
+
+.footer-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-end;
+}
+.footer-contact {
+  font-family: var(--mono);
+  font-size: 7px;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+.footer-web {
+  font-family: var(--mono);
+  font-size: 7px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.footer-credit {
+  font-family: var(--mono);
+  font-size: 6.5px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+.footer-credit a {
+  color: var(--gold-dim);
+  text-decoration: none;
+}
+
+/* ── PRINT ─────────────────────────────────────────────────────────────── */
+@media print {
+  html, body { width: 210mm; height: 297mm; }
+  .page { page-break-after: always; }
+  @page { size: A4; margin: 0; }
+}
+
+/* ── SCREEN PREVIEW ────────────────────────────────────────────────────── */
+@media screen {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 24px;
+    background: #06060A;
+  }
+  .page {
+    box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- GOLD SPINE -->
+  <div class="spine"></div>
+
+  <div class="content">
+
+    <!-- MASTHEAD -->
+    <div class="masthead">
+      <div class="masthead-left">
+        <span class="programme-tag">Wembley Wonders CIC · Trubble n Bass</span>
+        <span class="programme-name">Creator Protection</span>
+      </div>
+      <div class="masthead-right">
+        <strong>wembleywonders.org</strong><br>
+        Trubble n Bass Programme<br>
+        April 2026 · v1.0
+      </div>
+    </div>
+
+    <!-- TITLE BLOCK -->
+    <div class="title-block">
+      <h1 class="doc-title">Before You <span>Sign</span>.<br>Before You <span>Upload</span>.<br>Before You <span>Perform</span>.</h1>
+      <p class="doc-subtitle">The four questions every creator must be able to answer — before anything leaves this room</p>
+    </div>
+
+    <!-- ANCHOR STORY -->
+    <div class="anchor">
+      <p class="anchor-text">
+        In 1969, a drummer named <strong>Gregory Coleman</strong> played a four-bar break lasting seven seconds on a B-side nobody cared about.
+        That seven seconds became the <strong>Amen Break</strong> — the most sampled drum recording in history, foundational to hip-hop, drum and bass, and jungle.
+        Used in over 4,000 tracks. <strong>Coleman received nothing.</strong> The copyright window closed before he knew what he had made.
+        He died in 2006, homeless and broke. <strong>Not because he lacked talent. Because nobody told him what he had made was an asset that needed protecting.</strong>
+      </p>
+      <p class="anchor-name">
+        Source: <strong>RnB Vinyl</strong> · youtube.com/@RnBVinyl · Nigerian music history channel, 132K subscribers ·
+        We credit our sources because we cannot argue for creator rights and then ignore the creators who taught us.
+      </p>
+    </div>
+
+    <!-- SECTION INTRO -->
+    <p class="section-intro">The checklist — four questions, three moments, one rule</p>
+
+    <!-- QUESTIONS -->
+    <div class="questions">
+
+      <!-- Q1: SIGN -->
+      <div class="question question--sign">
+        <span class="question-num">1</span>
+        <span class="question-tag">Before you sign anything</span>
+        <h2 class="question-head">Who is legally on your side right now?</h2>
+        <ul class="checklist">
+          <li><strong>Do you have independent legal advice?</strong> Not the label's lawyer. Not the manager's lawyer. Yours. If no — <em>do not sign today.</em></li>
+          <li><strong>Do you know who owns the master recording?</strong> The master is the original file. Whoever owns it controls what happens to your music forever.</li>
+          <li><strong>Do you know who owns the publishing?</strong> Publishing is the song itself — the melody, the lyrics. Separate from the master. Both matter.</li>
+          <li><strong>What happens to your rights if this company folds?</strong> Ask. Get the answer in writing.</li>
+          <li><strong>What are the recoupable costs?</strong> Production, videos, marketing, advances — if they come out of your share first, find out exactly how much before you sign.</li>
+        </ul>
+      </div>
+
+      <!-- Q2: UPLOAD -->
+      <div class="question question--upload">
+        <span class="question-num">2</span>
+        <span class="question-tag">Before you upload anything</span>
+        <h2 class="question-head">Is this documented in your name?</h2>
+        <ul class="checklist">
+          <li><strong>Is the recording registered with PRS for Music?</strong> prsformusic.com — free to join. Every time your music is played publicly, you are owed money. Registration is how you collect it.</li>
+          <li><strong>Is it registered with PPL?</strong> ppluk.com — separate from PRS. PPL collects for the recording. PRS collects for the song. You need both.</li>
+          <li><strong>Have you documented who created what?</strong> Producer, songwriter, featured artist — write it down before you upload. Disputes about this later are expensive and painful.</li>
+          <li><strong>Do you own the samples you used?</strong> If you used a sample without clearance, the track is not safe to monetise. Find out before it goes live.</li>
+          <li><strong>Do you have a copy of everything in a place you control?</strong> Not just the cloud. A hard drive you own. Your masters. Your contracts. Your session files.</li>
+        </ul>
+      </div>
+
+      <!-- Q3: PERFORM -->
+      <div class="question question--perform">
+        <span class="question-num">3</span>
+        <span class="question-tag">Before you perform for anyone offering something</span>
+        <h2 class="question-head">What exactly is being offered and what does it cost?</h2>
+        <ul class="checklist">
+          <li><strong>Is there a written agreement?</strong> Not a promise. Not a handshake. A document you can read, keep a copy of, and show to someone else.</li>
+          <li><strong>What are you giving up in exchange?</strong> Exclusivity? Future releases? Rights to recordings made that day? Ask specifically. Get the answer in writing.</li>
+          <li><strong>Is there a time limit on the agreement?</strong> A deal with no end date is a deal that lasts forever. Make sure there is an exit.</li>
+          <li><strong>Who owns recordings made at this performance?</strong> If someone is recording — with any device — find out who owns that footage and what they can do with it.</li>
+          <li><strong>What happens if they don't deliver what they promised?</strong> Every agreement should state what happens if either side breaks it.</li>
+        </ul>
+      </div>
+
+      <!-- Q4: PEOPLE -->
+      <div class="question question--people">
+        <span class="question-num">4</span>
+        <span class="question-tag">Before you trust anyone with your career</span>
+        <h2 class="question-head">Who will notice if something is going wrong?</h2>
+        <ul class="checklist">
+          <li><strong>Does someone you trust know what deals you have made?</strong> Not just in general. Specifically. Which label, which manager, which terms. Someone who can check up on it.</li>
+          <li><strong>Do you have community around you — not just followers?</strong> People who know your actual life, not your public profile. People who will say something when something needs to be said.</li>
+          <li><strong>Are you being isolated from people who care about you?</strong> Isolation is a warning sign. Managers and labels who want to separate you from your community are managing their interests, not yours.</li>
+          <li><strong>Do you know where to go if something goes wrong?</strong> Musicians' Union: musiciansunion.org.uk · Intellectual Property Office: ipo.gov.uk · Citizens Advice: citizensadvice.org.uk</li>
+          <li><strong>Is Wembley Wonders in the loop?</strong> We are not your manager or your label. We are your community. Talk to us. admin@wembleywonders.org</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- WARNING -->
+    <div class="warning">
+      <div class="warning-icon">⚠</div>
+      <div class="warning-body">
+        <div class="warning-head">The one rule that overrides everything else</div>
+        <p class="warning-text">
+          <strong>If you feel pressure to sign or agree to something today, right now, before you've had time to think —
+          that pressure is the warning sign.</strong> Legitimate offers survive 48 hours. Anything that requires your
+          signature before you can get independent advice is not an opportunity. It is a trap dressed as one.
+          Florence Ballard signed away her rights at 24. TLC signed for 7 cents per album point as teenagers.
+          New Edition's first manager took millions while the boys received almost nothing.
+          <strong>The industry's oldest move is urgency. Time is always on your side. Take it.</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- FOUR MECHANISMS -->
+    <p class="section-intro">The four ways exploitation actually happens — know them by name</p>
+    <div class="mechanisms">
+      <div class="mechanism">
+        <div class="mechanism-label">Mechanism 1</div>
+        <div class="mechanism-name">The contract signed before you have a self</div>
+        <div class="mechanism-eg">TLC. New Edition. Children signing documents they cannot understand, without independent advice.</div>
+      </div>
+      <div class="mechanism">
+        <div class="mechanism-label">Mechanism 2</div>
+        <div class="mechanism-name">One voice made more valuable than the group</div>
+        <div class="mechanism-eg">The industry isolates the extractable asset. The collective that made it possible is left behind.</div>
+      </div>
+      <div class="mechanism">
+        <div class="mechanism-label">Mechanism 3</div>
+        <div class="mechanism-name">Publishing rights taken in the confusion</div>
+        <div class="mechanism-eg">Gregory Coleman. The Amen Break. You don't know what you have until the window has already closed.</div>
+      </div>
+      <div class="mechanism">
+        <div class="mechanism-label">Mechanism 4</div>
+        <div class="mechanism-name">Fame without infrastructure</div>
+        <div class="mechanism-eg">Charlie Wilson. David Ruffin. Extreme pressure arriving without the support systems to manage it.</div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-left">
+        <span class="footer-cic">
+          <strong>Wembley Wonders CIC</strong> · Co. No. 12960817 · Trubble n Bass Programme · April 2026
+        </span>
+        <p class="footer-cta">
+          <strong>This checklist is free to share, print, and distribute.</strong>
+          Pass it on. Hand it to someone who needs it. Pin it somewhere it will be read.
+          The industry never gave anyone a checklist. We are giving you one now.
+        </p>
+        <span class="footer-credit">
+          Research framework: RnB Vinyl · <a href="https://youtube.com/@RnBVinyl">youtube.com/@RnBVinyl</a> · credited with thanks
+        </span>
+      </div>
+      <div class="footer-right">
+        <span class="footer-contact">admin@wembleywonders.org</span>
+        <span class="footer-web">wembleywonders.org</span>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /page -->
+</body>
+</html>

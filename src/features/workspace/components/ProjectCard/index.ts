@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/features/workspace/components/ProjectCard/index.ts;
+// Stub — pending implementation
+export {};

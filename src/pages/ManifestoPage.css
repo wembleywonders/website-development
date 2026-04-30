@@ -1,0 +1,486 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   ManifestoPage.css — Wembley Wonders CIC
+   Editorial long-form. Dark gold platform palette.
+   Sticky declaration nav on desktop. Full-width scroll on mobile.
+   Playfair Display for declarations. Georgia for body text.
+   The manifesto should feel like a printed document that happens to be on screen.
+───────────────────────────────────────────────────────────────────────────── */
+
+.mf-page {
+  --gold:           #d4a853;
+  --gold-dim:       rgba(212, 168, 83, 0.15);
+  --gold-border:    rgba(212, 168, 83, 0.2);
+  --bg:             #0a0f1e;
+  --bg-mid:         #0f172a;
+  --text-primary:   #f0e6d0;
+  --text-secondary: #cbd5e1;
+  --text-muted:     #7a8a9a;
+  --border:         rgba(255,255,255,0.07);
+  --numeral-size:   clamp(4rem, 8vw, 7rem);
+
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ── Atmosphere ─────────────────────────────────────────────── */
+
+.mf-atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mf-atm-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+}
+
+.mf-atm-orb--1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #d4a853, transparent 70%);
+  top: -100px;
+  right: -200px;
+}
+
+.mf-atm-orb--2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #7b2d8b, transparent 70%);
+  bottom: 20%;
+  left: -150px;
+}
+
+.mf-atm-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+
+.mf-header {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 2rem 0;
+}
+
+.mf-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4rem;
+}
+.mf-breadcrumb a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.mf-breadcrumb a:hover { color: var(--gold); }
+
+.mf-title-block {
+  max-width: 680px;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--gold-border);
+}
+
+.mf-eyebrow {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 1.5rem;
+}
+
+.mf-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0 0 1.25rem;
+}
+
+.mf-subtitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem;
+  font-style: normal;
+}
+
+.mf-subtitle em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.mf-meta {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* ── Body layout: sticky nav + content ─────────────────────── */
+
+.mf-body {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 0 5rem;
+  align-items: start;
+}
+
+/* ── Sticky nav ─────────────────────────────────────────────── */
+
+.mf-nav {
+  position: sticky;
+  top: 5rem;
+  padding-top: 4rem;
+}
+
+.mf-nav-label {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+}
+
+.mf-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mf-nav-link {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 12px 8px 0;
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  padding-left: 12px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.mf-nav-link--active {
+  border-left-color: var(--gold);
+}
+
+.mf-nav-numeral {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color 0.2s;
+  min-width: 14px;
+}
+
+.mf-nav-title {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.mf-nav-link--active .mf-nav-numeral,
+.mf-nav-link--active .mf-nav-title {
+  color: var(--gold);
+}
+
+.mf-nav-link:hover .mf-nav-title,
+.mf-nav-link:hover .mf-nav-numeral {
+  color: var(--text-secondary);
+}
+
+/* ── Content ────────────────────────────────────────────────── */
+
+.mf-content {
+  padding-top: 4rem;
+}
+
+/* ── Declarations ───────────────────────────────────────────── */
+
+.mf-declaration {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 5rem;
+}
+
+.mf-declaration:last-of-type {
+  border-bottom: none;
+}
+
+.mf-declaration-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.mf-numeral {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: var(--numeral-size);
+  font-weight: 400;
+  line-height: 0.85;
+  color: var(--gold-border);
+  flex-shrink: 0;
+  letter-spacing: -0.03em;
+  /* Large decorative numeral — sits to the left */
+  width: 1.1ch;
+  text-align: center;
+  margin-top: 0.1em;
+  transition: color 0.3s;
+}
+
+.mf-declaration:hover .mf-numeral {
+  color: rgba(212, 168, 83, 0.35);
+}
+
+.mf-declaration-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin: 0;
+  padding-top: 0.15em;
+}
+
+.mf-declaration-body {
+  /* Indent to align with title, past the numeral */
+  padding-left: calc(var(--numeral-size) * 1.1 + 1.5rem);
+}
+
+.mf-para {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem;
+  max-width: 62ch;
+}
+
+.mf-para:last-child { margin-bottom: 0; }
+
+/* Short paragraphs get emphasis treatment */
+.mf-para--emphasis {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* ── Closing mark ───────────────────────────────────────────── */
+
+.mf-closing {
+  padding: 5rem 0 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.mf-closing-mark {
+  font-size: 1.5rem;
+  color: var(--gold);
+  display: block;
+}
+
+.mf-closing-text {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.mf-closing-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.mf-cta {
+  padding: 13px 28px;
+  border-radius: 6px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.mf-cta--primary {
+  background: var(--gold);
+  color: #0a0f1e;
+}
+.mf-cta--primary:hover {
+  background: #e0b96a;
+  transform: translateY(-1px);
+}
+
+.mf-cta--outline {
+  background: transparent;
+  border: 1.5px solid var(--gold-border);
+  color: var(--gold);
+}
+.mf-cta--outline:hover {
+  border-color: var(--gold);
+  background: var(--gold-dim);
+}
+
+.mf-cta--ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
+}
+.mf-cta--ghost:hover {
+  color: var(--text-secondary);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 860px) {
+  .mf-body {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .mf-nav {
+    position: static;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+    overflow-x: auto;
+  }
+
+  .mf-nav-list {
+    flex-direction: row;
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+
+  .mf-nav-link {
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 8px 12px;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+
+  .mf-nav-link--active {
+    border-left-color: transparent;
+    border-bottom-color: var(--gold);
+  }
+
+  .mf-nav-title {
+    display: none;
+  }
+
+  .mf-numeral {
+    font-size: 3.5rem;
+    width: auto;
+  }
+
+  .mf-declaration-body {
+    padding-left: 0;
+  }
+
+  .mf-declaration-header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mf-header,
+  .mf-body {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .mf-declaration {
+    padding: 3rem 0;
+  }
+
+  .mf-para {
+    font-size: 0.97rem;
+  }
+
+  .mf-closing-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mf-cta {
+    text-align: center;
+  }
+}
+
+/* ── Entry animation ────────────────────────────────────────── */
+
+.mf-title-block,
+.mf-declaration {
+  animation: mf-fade-up 0.6s ease both;
+}
+
+.mf-declaration:nth-child(1) { animation-delay: 0.05s; }
+.mf-declaration:nth-child(2) { animation-delay: 0.1s; }
+.mf-declaration:nth-child(3) { animation-delay: 0.15s; }
+.mf-declaration:nth-child(4) { animation-delay: 0.2s; }
+.mf-declaration:nth-child(5) { animation-delay: 0.25s; }
+.mf-declaration:nth-child(6) { animation-delay: 0.3s; }
+.mf-declaration:nth-child(7) { animation-delay: 0.35s; }
+
+@keyframes mf-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

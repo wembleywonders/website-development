@@ -44,7 +44,7 @@ const ResourceCoordination: React.FC = () => {
    {
      id: 'community-centre',
      category: 'venues',
-     name: 'Wembley Community Centre Meeting Room',
+     name: 'Wembley Wonders CIC Meeting Room',
      description: 'Accessible meeting space for 20 people with basic AV equipment',
      availability: 'Weekend availability subject to existing bookings, requires advance scheduling',
      coordination: 'Direct booking with centre management, key collection arrangements needed',

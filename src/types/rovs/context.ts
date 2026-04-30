@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/types/rovs/context.ts;
+// Stub — pending implementation
+export {};

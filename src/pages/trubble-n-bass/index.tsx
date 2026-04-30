@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ProgrammePageTemplate from '../programmes/_shared/ProgrammePageTemplate';
 import TrubbleNBassBuilder from '../../components/sandboxes/trubble-n-bass/TrubbleNBassBuilder';
 import { getProgramme } from '../programmes/config';
+import CreatorProtectionCard from '../../components/CreatorProtectionCard';
 
 const TrubbleNBassPage: React.FC = () => {
   const config = getProgramme('trubble-n-bass');
@@ -17,7 +18,7 @@ const TrubbleNBassPage: React.FC = () => {
       interactiveTool={
         <div style={{ padding: '2rem', textAlign: 'center', background: 'rgba(168, 85, 247, 0.1)', borderRadius: '12px', border: '2px solid rgba(168, 85, 247, 0.3)' }}>
           <h3 style={{ fontSize: '1.8rem', color: '#a855f7', marginBottom: '1rem' }}>
-            🎹 Complete Beat Maker Studio
+            🎹 Trubble n Bass Creator's Room
           </h3>
           <p style={{ fontSize: '1.1rem', color: '#cbd5e1', marginBottom: '1.5rem', lineHeight: '1.6' }}>
             Professional music production with playable keyboard, MPC drum pads, 
@@ -46,13 +47,14 @@ const TrubbleNBassPage: React.FC = () => {
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
-            Launch Beat Maker Studio →
+            What have you got? Start here →
           </Link>
           <div style={{ marginTop: '1.5rem', fontSize: '0.95rem', color: '#94a3b8' }}>
             <p>🎹 Playable Keyboard • 🥁 16 Drum Pads • ⏱️ Metronome • 🎚️ 8-Track Sequencer</p>
           </div>
         </div>
       }
+      creatorResources={<CreatorProtectionCard />}
       communityShowcase={
         <div className="showcase-grid">
           <div className="showcase-item">

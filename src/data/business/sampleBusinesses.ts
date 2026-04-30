@@ -10,7 +10,7 @@ export const sampleBusinesses: CommunityBusiness[] = [
     communityCommitment: 'Providing scholarship places for Wembley Wonders participants and mentoring support for STEMgineers developing educational apps.',
     supportedProgrammes: ['Bright Sparks', 'Trubble n Bass'],
     yearsInCommunity: 8,
-    address: '123 High Road, Wembley HA9 6AA',
+    address: '452 High Road, Wembley HA9 7AY',
     phone: '020 8900 1234',
     website: 'https://kumon.co.uk/wembley',
     partnershipTier: 'silver',

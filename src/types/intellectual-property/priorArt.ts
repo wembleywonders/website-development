@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/types/intellectual-property/priorArt.ts;
+// Stub — pending implementation
+export {};

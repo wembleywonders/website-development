@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/studio/constants/studioROVMapping.ts;
+// Stub — pending implementation
+export {};

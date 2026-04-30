@@ -1,0 +1,33 @@
+
+.ppp-page{max-width:700px;margin:0 auto;padding:2rem 1.5rem 4rem;font-family:var(--font-sans,sans-serif)}
+.ppp-header{margin-bottom:1.5rem}
+.ppp-title{font-size:1.5rem;font-weight:600;color:var(--color-text-primary,#111);margin:0 0 .25rem}
+.ppp-subtitle{font-size:.9375rem;color:var(--color-text-secondary,#6b7280);margin:0;line-height:1.6}
+.ppp-stats{display:flex;gap:1.5rem;padding:1rem 0;border-top:.5px solid var(--color-border-tertiary,#e5e7eb);border-bottom:.5px solid var(--color-border-tertiary,#e5e7eb);margin-bottom:1.5rem}
+.ppp-stat{display:flex;flex-direction:column;align-items:center;flex:1}
+.ppp-stat-val{font-size:1.375rem;font-weight:600;color:var(--color-text-primary,#111)}
+.ppp-stat-label{font-size:11px;color:var(--color-text-secondary,#6b7280);text-transform:uppercase;letter-spacing:.05em}
+.ppp-saved{background:rgba(29,158,117,.1);border:.5px solid #1D9E75;border-radius:6px;color:#1D9E75;font-size:.875rem;padding:.5rem 1rem;margin-bottom:1rem;text-align:center}
+.ppp-programmes{display:flex;flex-direction:column;gap:8px;margin-bottom:2rem}
+.ppp-prog{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1rem;background:var(--color-background-secondary,#f9fafb);border:.5px solid var(--color-border-tertiary,#e5e7eb);border-radius:8px;gap:12px}
+.ppp-prog.active{border-color:#1D9E75;background:rgba(29,158,117,.04)}
+.ppp-prog-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.ppp-prog-rov{font-size:18px;flex-shrink:0}
+.ppp-prog-info{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ppp-prog-name{font-size:.9375rem;font-weight:500;color:var(--color-text-primary,#111);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ppp-prog-time{font-size:11px;color:#1D9E75}
+.ppp-prog-right{flex-shrink:0}
+.ppp-btn-log{background:transparent;border:.5px solid var(--color-border-tertiary,#e5e7eb);border-radius:4px;color:var(--color-text-secondary,#6b7280);cursor:pointer;font-size:.8125rem;padding:4px 10px;white-space:nowrap;transition:border-color .15s,color .15s}
+.ppp-btn-log:hover{border-color:#1D9E75;color:#1D9E75}
+.ppp-log-form{display:flex;align-items:center;gap:6px}
+.ppp-log-form select{border:.5px solid var(--color-border-tertiary,#e5e7eb);border-radius:4px;background:var(--color-background-primary,#fff);color:var(--color-text-primary,#111);font-size:.8125rem;padding:4px 6px}
+.ppp-btn-save{background:#1D9E75;border:none;border-radius:4px;color:white;cursor:pointer;font-size:.8125rem;padding:4px 10px}
+.ppp-btn-cancel{background:transparent;border:none;color:var(--color-text-secondary,#6b7280);cursor:pointer;font-size:.875rem;padding:4px}
+.ppp-badge-section{margin-bottom:2rem;padding:1.25rem;background:var(--color-background-secondary,#f9fafb);border-radius:10px}
+.ppp-section-title{font-size:1rem;font-weight:500;color:var(--color-text-primary,#111);margin:0 0 1rem}
+.ppp-link{display:inline-block;font-size:.875rem;color:#1D9E75;text-decoration:none;margin-top:.75rem}
+.ppp-fortnightly{padding:1.25rem;border:.5px solid var(--color-border-tertiary,#e5e7eb);border-radius:10px}
+.ppp-fortnightly h3{font-size:.875rem;font-weight:500;color:var(--color-text-secondary,#6b7280);text-transform:uppercase;letter-spacing:.05em;margin:0 0 .75rem}
+.ppp-commitment-bar{height:6px;background:var(--color-border-tertiary,#e5e7eb);border-radius:3px;overflow:hidden;margin-bottom:.5rem}
+.ppp-commitment-fill{height:100%;background:#1D9E75;border-radius:3px;transition:width .3s ease}
+.ppp-commitment-label{font-size:.875rem;color:var(--color-text-secondary,#6b7280);margin:0}

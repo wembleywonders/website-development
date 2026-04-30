@@ -1215,3 +1215,227 @@
     transition: none !important;
   }
 }
+/* ── WhatsApp header button ── */
+.whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  border-radius: 50%;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.whatsapp-button:hover {
+  background: rgba(37, 211, 102, 0.25);
+  border-color: rgba(37, 211, 102, 0.5);
+}
+/* ============================================================
+   WEMBLEY WONDERS — Header Badge Logo
+   CSS patch for src/components/layout/Header.css
+   
+   Add these rules to Header.css, replacing any existing
+   .logo-img rules. The badge is ww-badge.png — a square
+   PNG with transparent background, black removed.
+   Deploy badge to: /public/images/ww-badge.png
+   ============================================================ */
+
+
+/* ── LOGO LINK CONTAINER ──────────────────────────────────── */
+
+.logo-link {
+  display:         flex;
+  align-items:     center;
+  gap:             10px;
+  text-decoration: none;
+  flex-shrink:     0;
+}
+
+
+/* ── BADGE IMAGE ──────────────────────────────────────────── */
+
+.logo-img {
+  /* Fixed dimensions — badge is square so equal w/h gives circle */
+  width:           44px;
+  height:          44px;
+
+  /* Circular crop */
+  border-radius:   50%;
+  overflow:        hidden;    /* belt-and-braces alongside border-radius */
+
+  /* Rendering quality */
+  object-fit:      cover;
+  object-position: center;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+
+  /* Subtle ring — the badge has its own red/green border
+     so we use a thin dark ring to lift it off any background */
+  box-shadow:
+    0 0 0 1.5px rgba(212, 168, 83, 0.6),   /* gold halo */
+    0 2px 6px rgba(0, 0, 0, 0.25);          /* depth shadow */
+
+  /* Smooth transition for state changes */
+  transition:
+    box-shadow 0.25s ease,
+    transform  0.2s ease,
+    filter     0.25s ease;
+
+  /* Prevent layout shift while image loads */
+  display:        block;
+  flex-shrink:    0;
+}
+
+
+/* ── BADGE — HOVER ────────────────────────────────────────── */
+
+.logo-link:hover .logo-img {
+  transform:  scale(1.06);
+  box-shadow:
+    0 0 0 2px rgba(212, 168, 83, 0.9),
+    0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ── BADGE — DEFAULT (light) HEADER STATE ────────────────── */
+/* top-bar before scrolling — typically lighter background   */
+
+.top-bar:not(.scrolled) .logo-img {
+  /* On a light/white header the red/green badge reads well.
+     No additional filter needed — transparent PNG sits cleanly. */
+  filter: none;
+}
+
+
+/* ── BADGE — SCROLLED (dark) HEADER STATE ────────────────── */
+/* top-bar.scrolled — typically dark/solid background        */
+
+.top-bar.scrolled .logo-img {
+  /* Slightly brighten on dark background so badge pops */
+  filter: brightness(1.08) contrast(1.05);
+  box-shadow:
+    0 0 0 2px rgba(212, 168, 83, 0.7),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ── FALLBACK EMOJI (shown if image fails to load) ────────── */
+
+.logo-fallback {
+  display:          none;         /* hidden by default, shown via JS onError */
+  align-items:      center;
+  justify-content:  center;
+  width:            44px;
+  height:           44px;
+  border-radius:    50%;
+  background:       #0F172A;
+  border:           2px solid #D4A853;
+  font-size:        22px;
+  flex-shrink:      0;
+  box-shadow:       0 0 0 1.5px rgba(212, 168, 83, 0.5);
+}
+
+
+/* ── LOGO TEXT BLOCK ──────────────────────────────────────── */
+
+.logo-text {
+  display:        flex;
+  flex-direction: column;
+  line-height:    1.2;
+}
+
+.logo-name {
+  font-size:   1rem;
+  font-weight: 700;
+  color:       var(--color-dark, #0F172A);
+  white-space: nowrap;
+  transition:  color 0.25s ease;
+}
+
+.logo-tagline {
+  font-size:   0.68rem;
+  font-weight: 400;
+  color:       var(--color-mid, #94A3B8);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  transition:  color 0.25s ease;
+}
+
+/* On scrolled dark header — flip text colours if needed     */
+.top-bar.scrolled .logo-name {
+  color: var(--color-logo-name-scrolled, #FFFFFF);
+}
+
+.top-bar.scrolled .logo-tagline {
+  color: var(--color-logo-tagline-scrolled, rgba(255,255,255,0.6));
+}
+
+
+/* ── RESPONSIVE — TABLET (≤ 900px) ───────────────────────── */
+
+@media (max-width: 900px) {
+  .logo-img,
+  .logo-fallback {
+    width:  40px;
+    height: 40px;
+  }
+
+  .logo-name {
+    font-size: 0.9rem;
+  }
+
+  .logo-tagline {
+    font-size: 0.62rem;
+  }
+}
+
+
+/* ── RESPONSIVE — MOBILE (≤ 640px) ───────────────────────── */
+
+@media (max-width: 640px) {
+  .logo-img,
+  .logo-fallback {
+    width:  38px;
+    height: 38px;
+  }
+
+  /* Tagline hidden on small screens — badge + name is enough */
+  .logo-tagline {
+    display: none;
+  }
+
+  .logo-name {
+    font-size: 0.92rem;
+  }
+}
+
+
+/* ── RESPONSIVE — VERY SMALL (≤ 380px) ───────────────────── */
+
+@media (max-width: 380px) {
+  .logo-img,
+  .logo-fallback {
+    width:  34px;
+    height: 34px;
+  }
+}
+
+
+/* ── CSS CUSTOM PROPERTIES (add to :root if not present) ─── */
+/*
+  These are used above. If your existing :root already defines
+  these tokens with different names, replace the var() references
+  above to match your token names.
+
+  :root {
+    --color-dark:                    #0F172A;
+    --color-mid:                     #94A3B8;
+    --color-gold:                    #D4A853;
+    --color-logo-name-scrolled:      #FFFFFF;
+    --color-logo-tagline-scrolled:   rgba(255,255,255,0.6);
+  }
+*/

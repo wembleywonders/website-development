@@ -352,7 +352,7 @@ const AssessmentGuidePage: React.FC = () => {
               <h3>Support</h3>
               <ul>
                 <li>Email: assessments@wembleywonders.org</li>
-                <li>Phone: 020 8123 4567</li>
+                <li>Phone: 0208 902 9991</li>
               </ul>
             </div>
           </div>

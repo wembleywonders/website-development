@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/types/backstage-skills.ts;
+// Stub — pending implementation
+export {};

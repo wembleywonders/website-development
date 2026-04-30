@@ -1,12 +1,16 @@
 // src/rov/types/index.ts
 // Complete Type Definitions for the Children of Anansi ROV System
-// Upgraded with stances, cross-domain knowledge, trust-preserving handoffs, and counter-trap calibration
+//
+// UPDATED:
+//   - ChildPersonality: added coverIdentity, duppyRegister, philosophicalPairing
+//   - PromptMetadata: handoffAssessment expanded to match rovPromptBuilder output
+//   - frameworkInjected, stakesLevel, stakesDomainsActive added to PromptMetadata
 
 // ============================================
 // CORE ENUMS & CONSTANTS
 // ============================================
 
-export type DayBorn = 
+export type DayBorn =
   | 'Sunday'    // Spiritual, reflective
   | 'Monday'    // Calm, peaceful
   | 'Tuesday'   // Fiery, brave
@@ -17,29 +21,32 @@ export type DayBorn =
 
 export type ROVStance = 'rigorous' | 'observant' | 'versatile';
 
-export type HandoffLevel = 
+export type HandoffLevel =
   | 'surfaceGuidance'      // Child handles in own voice
   | 'inviteCollaboration'  // Bring sibling in, stay present
   | 'warmHandoff'          // Transfer with context
   | 'returnToMaya';        // Crisis/emotional needs kitchen
 
-export type CreatorDevelopmentStage = 
-  | 'early'      // New to programme/domain
-  | 'developing' // Building capability
-  | 'established'// Demonstrated competence
-  | 'multiplier';// Teaching others
+export type CreatorDevelopmentStage =
+  | 'early'       // New to programme/domain
+  | 'developing'  // Building capability
+  | 'established' // Demonstrated competence
+  | 'multiplier'; // Teaching others
 
-export type MemberMood = 
-  | 'excited'     // Energised, enthusiastic
-  | 'neutral'     // Baseline, no strong emotion
-  | 'curious'     // Exploratory, questioning
-  | 'frustrated'  // Blocked, annoyed
-  | 'distressed'  // Emotionally struggling
-  | 'determined'  // Focused, resolved
-  | 'overwhelmed' // Too much, needs support
-  | 'focused'     // In the zone, working well
-  | 'uncertain'   // Hesitant, unsure
-  | 'celebratory';// Achieved something, happy
+export type MemberMood =
+  | 'excited'
+  | 'neutral'
+  | 'curious'
+  | 'frustrated'
+  | 'distressed'
+  | 'determined'
+  | 'overwhelmed'
+  | 'focused'
+  | 'uncertain'
+  | 'celebratory';
+
+// Stakes levels — used by Equiano Protocol pre-flight
+export type StakesLevel = 'standard' | 'elevated' | 'high';
 
 // ============================================
 // MEMBER CONTEXT
@@ -55,9 +62,11 @@ export interface MemberContext {
   needsAssessed?: boolean;
   lastChild?: string;
   openLoops?: OpenLoop[];
-  developmentStage?: Record<string, CreatorDevelopmentStage>; // Per domain
-  trustRelationships?: Record<string, number>; // Child ID -> trust score (0-100)
-  documentedCapabilities?: string[]; // Things they've demonstrated they can do
+  developmentStage?: Record<string, CreatorDevelopmentStage>;
+  trustRelationships?: Record<string, number>;
+  documentedCapabilities?: string[];
+  // Easy Street Rayd-yo — DJ context flag
+  isRadioDJ?: boolean;
 }
 
 export interface Interaction {
@@ -85,7 +94,7 @@ export interface StanceConfig {
   when: string[];
   voiceShift: string;
   examples: StanceExample[];
-  counterTrapFocus: string[]; // Which traps this stance is most prone to
+  counterTrapFocus: string[];
 }
 
 export interface StanceExample {
@@ -103,7 +112,7 @@ export interface Stances {
 // CROSS-DOMAIN KNOWLEDGE
 // ============================================
 
-export type KnowledgeDomain = 
+export type KnowledgeDomain =
   | 'legal'
   | 'financial'
   | 'ethical'
@@ -117,10 +126,10 @@ export type KnowledgeDomain =
   | 'wellbeing';
 
 export interface DomainKnowledge {
-  surface: string[];           // Basic facts any child can share
-  deeper: string[];            // Requires specialist
-  escalationTriggers: string[];// Keywords that should trigger handoff
-  voiceTemplates: Record<string, string>; // Child ID -> how they talk about this domain
+  surface: string[];
+  deeper: string[];
+  escalationTriggers: string[];
+  voiceTemplates: Record<string, string>;
 }
 
 export interface SharedKnowledgeBase {
@@ -152,7 +161,6 @@ export interface CounterTrapCalibration {
   overcomingNarrativeTrap: TrapPattern;
   potentialTrap: TrapPattern;
   dependenceTrap: TrapPattern;
-  // Domain-specific traps
   domainSpecificTraps?: TrapPattern[];
 }
 
@@ -165,27 +173,20 @@ export interface HandoffDecision {
   reason: string;
   targetChild?: string;
   contextToShare: string[];
-  contextToWithhold: string[]; // Privacy protection
+  contextToWithhold: string[];
   messageToCreator: string;
   messageToSibling?: string;
   returnProtocol?: string;
 }
 
 export interface HandoffProtocol {
-  // When to use each level
   levelTriggers: Record<HandoffLevel, string[]>;
-  
-  // How this child introduces siblings
   siblingIntroductions: Record<string, string[]>;
-  
-  // How this child returns creators to Maya
   mayaReturns: {
     emotional: string[];
     completed: string[];
     stuck: string[];
   };
-  
-  // How this child receives handoffs
   receivingHandoff: {
     fromSibling: string;
     fromMaya: string;
@@ -197,21 +198,16 @@ export interface HandoffProtocol {
 // ============================================
 
 export interface ProgressiveWithdrawal {
-  // How engagement changes at each stage
   engagementByStage: Record<CreatorDevelopmentStage, EngagementPattern>;
-  
-  // Signals that indicate progression
   progressionSignals: string[];
-  
-  // How to explicitly name independence
   independenceRecognition: string[];
 }
 
 export interface EngagementPattern {
   feedbackDepth: 'detailed' | 'moderate' | 'minimal' | 'on-request';
-  questionRatio: number; // 0-1, how much to ask vs tell
+  questionRatio: number;
   initiationFrequency: 'proactive' | 'responsive' | 'passive';
-  stanceDistribution: Record<ROVStance, number>; // Percentages
+  stanceDistribution: Record<ROVStance, number>;
 }
 
 // ============================================
@@ -223,7 +219,7 @@ export interface Greetings {
   returning: string;
   withContext: (context: MemberContext) => string;
   byMood?: Record<MemberMood, string>;
-  afterAbsence?: string; // If they've been away a while
+  afterAbsence?: string;
 }
 
 // ============================================
@@ -235,7 +231,6 @@ export interface ChallengePatterns {
 }
 
 export interface EncouragementPatterns {
-  // Standard patterns (most children use these)
   goodAnswer?: string;
   goodProgress?: string;
   improvement?: string;
@@ -243,32 +238,22 @@ export interface EncouragementPatterns {
   resilience?: string;
   firstStep?: string;
   consistency?: string;
-  independence?: string; // When they don't need help
-  
-  // Afua (Storyteller) specific
-  authentic?: string;    // When voice becomes authentic
-  progress?: string;     // Story progress
-  powerful?: string;     // When story lands
-  found?: string;        // When they find their rhythm
-  
-  // Yaw (Chronicler) specific
-  original?: string;     // Original angle found
-  rigorous?: string;     // Rigorous journalism
-  pattern?: string;      // Pattern spotted
-  growth?: string;       // Writing improvement
-  
-  // Esi (Keeper) specific
-  recorded?: string;     // Heritage recorded
-  remembered?: string;   // Memory preserved
-  connected?: string;    // Connected to heritage
-  passed?: string;       // Passed on to next generation
-  
-  // Kumi (Gamer) specific
-  clutch?: string;       // Clutch moment
-  mindset?: string;      // Growth mindset shown
-  strategy?: string;     // Strategic thinking
-  
-  // Allow additional custom properties
+  independence?: string;
+  authentic?: string;
+  progress?: string;
+  powerful?: string;
+  found?: string;
+  original?: string;
+  rigorous?: string;
+  pattern?: string;
+  growth?: string;
+  recorded?: string;
+  remembered?: string;
+  connected?: string;
+  passed?: string;
+  clutch?: string;
+  mindset?: string;
+  strategy?: string;
   [key: string]: string | undefined;
 }
 
@@ -281,11 +266,30 @@ export interface SampleDialogue {
 }
 
 // ============================================
+// PHILOSOPHICAL PAIRING
+// Captures the canonical tension between paired Children.
+// Reference: American Gods (Kweku/Afua), The Matrix (Yaw/Kumi),
+//            Sandman (Anansewa/Adaeze), Martin/Malcolm (Osei/Akua),
+//            Daedalus/Icarus (Kofi/Kumi), Index/Interpretation (Esi/Nyame)
+// ============================================
+
+export interface PhilosophicalPairing {
+  /** childId of the tension partner */
+  partner: string;
+  /** Canonical cultural reference naming the argument */
+  reference: string;
+  /** What the productive argument between them is about */
+  tension: string;
+  /** Whether/how it resolves — usually "Never" */
+  resolution: string;
+}
+
+// ============================================
 // CHILD PERSONALITY (Complete)
 // ============================================
 
 export interface ChildPersonality {
-  // Identity
+  // ── Core identity
   id: string;
   name: string;
   dayBorn: DayBorn;
@@ -295,56 +299,81 @@ export interface ChildPersonality {
   role: string;
   description: string;
   isActive: boolean;
-  
-  // Mythological grounding
+
+  // ── Mythological grounding
   giftFromAnansi: string;
   giftFromMaya: string;
-  
-  // Visual identity
+
+  // ── Easy Street world fields ──────────────────────────────────────────────
+  /**
+   * The Child's cover identity on Easy Street — the role the community
+   * sees without knowing their deeper function.
+   * e.g. Kweku: "barman at The Metropole"
+   *      Ntikuma: "the postman"
+   *      Esi: "the librarian"
+   */
+  coverIdentity?: string;
+
+  /**
+   * The Child's register in the duppy/jumbie tradition — how they appear
+   * in the community's spiritual and folkloric imagination.
+   * Used for Halloween special content on Easy Street Rayd-yo.
+   */
+  duppyRegister?: string;
+
+  /**
+   * The philosophical pairing — the canonical tension partner and
+   * the cultural reference that names the argument between them.
+   * The argument never fully resolves. That's the point.
+   */
+  philosophicalPairing?: PhilosophicalPairing;
+  // ──────────────────────────────────────────────────────────────────────────
+
+  // ── Visual identity
   color: string;
   emoji: string;
   avatar?: string;
-  
-  // Voice & personality
+
+  // ── Voice & personality
   tone: string;
   speechPatterns: string[];
   catchphrases: string[];
-  greetingStyle: string;
-  challengeStyle: string;
-  encouragementStyle: string;
-  
-  // Greetings
+  greetingStyle?: string;
+  challengeStyle?: string;
+  encouragementStyle?: string;
+
+  // ── Greetings
   greetings: Greetings;
-  
-  // Challenge & encouragement patterns
+
+  // ── Interaction patterns
   challenges: ChallengePatterns;
   encouragements: EncouragementPatterns;
-  
-  // Sample dialogue
-  sampleDialogue: SampleDialogue;
-  
-  // === NEW: Stances ===
+
+  // ── Sample dialogue
+  sampleDialogue?: SampleDialogue;
+
+  // ── Stances
   stances: Stances;
-  
-  // === NEW: Cross-domain knowledge ===
+
+  // ── Domain routing
   primaryDomain: KnowledgeDomain;
   secondaryDomains?: KnowledgeDomain[];
-  sharedKnowledgeAccess: KnowledgeDomain[]; // Which domains they can give surface guidance on
-  
-  // === NEW: Counter-trap calibration ===
+  sharedKnowledgeAccess: KnowledgeDomain[];
+
+  // ── Counter-trap calibration
   counterTrapCalibration: CounterTrapCalibration;
-  
-  // === NEW: Handoff protocol ===
+
+  // ── Handoff protocol
   handoffProtocol: HandoffProtocol;
-  
-  // === NEW: Progressive withdrawal ===
+
+  // ── Progressive withdrawal
   progressiveWithdrawal: ProgressiveWithdrawal;
-  
-  // Sibling relationships (existing, enhanced)
+
+  // ── Sibling relationships
   asksMaya: string[];
   asksSiblings: Record<string, string[]>;
-  
-  // === NEW: Sibling collaboration patterns ===
+
+  // ── Sibling collaboration patterns
   collaborationPatterns?: {
     withSibling: string;
     scenarios: string[];
@@ -389,17 +418,11 @@ export interface ROVResponse {
   childName: string;
   message: string;
   stance: ROVStance;
-  
-  // Metadata
   usedSharedKnowledge?: KnowledgeDomain[];
   handoffSuggested?: HandoffDecision;
   trapAvoided?: string[];
-  
-  // Follow-up
   suggestedNextSteps?: string[];
   openLoopCreated?: OpenLoop;
-  
-  // For UI
   quickActions?: QuickAction[];
 }
 
@@ -439,30 +462,18 @@ export interface MayaPersonality {
   name: 'Maya';
   role: 'mother';
   description: string;
-  
-  // Voice
   tone: string;
   speechPatterns: string[];
   catchphrases: string[];
-  
-  // The three questions
   threeQuestions: MayaThreeQuestions;
-  
-  // Handoff messages to each child
   handoffMessages: Record<string, string[]>;
-  
-  // Keep messages (when not handing off)
   keepMessages: {
     emotional: string[];
     exploration: string[];
     returning: string[];
     openLoops: string[];
   };
-  
-  // Return protocols
   returnProtocols: Record<string, string[]>;
-  
-  // Counter-trap (Maya has her own calibration)
   counterTrapCalibration: CounterTrapCalibration;
 }
 
@@ -476,31 +487,21 @@ export interface SpecialistPersonality {
   role: 'specialist';
   domain: 'emergency' | 'wellbeing';
   description: string;
-  
-  // Voice
   tone: string;
   speechPatterns: string[];
-  
-  // Greetings
   greetings: {
     initial: string;
     returning: string;
     crisis: string;
   };
-  
-  // Resources
   resources: {
     name: string;
     description: string;
     contact?: string;
     url?: string;
   }[];
-  
-  // Boundaries
   cannotDo: string[];
   mustDo: string[];
-  
-  // Handoff back to family
   returnToFamily: {
     when: string[];
     how: string;
@@ -508,11 +509,10 @@ export interface SpecialistPersonality {
 }
 
 // ============================================
-// ALIAS MAPPING (ROV Family -> Anansi Children)
+// ALIAS MAPPING
 // ============================================
 
 export interface ROVAliasMapping {
-  // ROV Family name -> Anansi child ID(s)
   solomon: string[];
   neville: string;
   maxine: string;
@@ -533,6 +533,8 @@ export interface PromptBuildOptions {
   conversationHistory?: ConversationMessage[];
   forceStance?: ROVStance;
   includeCrossDomain?: boolean;
+  includeSystemPrompt?: boolean;
+  maxTokens?: number;
 }
 
 export interface ConversationMessage {
@@ -555,14 +557,39 @@ export interface PromptMetadata {
   childName: string;
   stance: ROVStance;
   developmentStage: CreatorDevelopmentStage;
-  handoffAssessment?: {
+
+  /**
+   * Handoff assessment from assessHandoffNeed().
+   * level is always present; targetChild and reason are optional.
+   */
+  handoffAssessment: {
     level: HandoffLevel;
     targetChild?: string;
     reason?: string;
   };
+
   crossDomainAccess: KnowledgeDomain[];
   calibrationActive: boolean;
   engagementPattern: EngagementPattern;
+
+  /**
+   * Whether the epistemological framework block was injected
+   * into the system prompt for this child.
+   */
+  frameworkInjected: boolean;
+
+  /**
+   * Highest stakes domain detected in the incoming message
+   * by the Equiano Protocol pre-flight classifier.
+   * 'standard' means no elevated/high-stakes domain detected.
+   */
+  stakesLevel: StakesLevel;
+
+  /**
+   * All domain names flagged by the stakes classifier.
+   * Used for logging and audit. Empty array for standard messages.
+   */
+  stakesDomainsActive: string[];
 }
 
 // ============================================

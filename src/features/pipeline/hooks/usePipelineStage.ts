@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/features/pipeline/hooks/usePipelineStage.ts;
+// Stub — pending implementation
+export {};

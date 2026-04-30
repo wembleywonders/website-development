@@ -84,7 +84,7 @@ const CHALLENGES: Challenge[] = [
     description: 'Outline a podcast intro that hooks listeners.',
     duration: '5 min',
     task: 'Write your hook, main point, and call-to-action. What makes people want to keep listening?',
-    sandboxPath: '/programmes/gtechcasters/sandbox',
+    sandboxPath: '/pathways/gtechcasters/planner',
     skills: ['Communication', 'Structure', 'Audience awareness']
   },
   {

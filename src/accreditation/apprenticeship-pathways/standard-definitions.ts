@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/accreditation/apprenticeship-pathways/standard-definitions.ts;
+// Stub — pending implementation
+export {};

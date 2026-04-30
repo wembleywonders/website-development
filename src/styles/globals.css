@@ -1,8 +1,27 @@
+@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Great+Vibes&family=Raleway:wght@300;400;600;700;800&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+ * Root font-size — platform-wide zoom correctness.
+ *
+ * Scales the base rem unit between 15px (small mobile)
+ * and 18px (large desktop). Every rem value across all
+ * 220+ instances in the codebase scales proportionally.
+ *
+ * This is the Facebook viewport principle applied at the
+ * CSS level: pinch-zoom works (viewport meta is correct),
+ * and text is never unreadably small at any viewport width.
+ *
+ * Tailwind v4 note: @tailwind base/components/utilities
+ * directives do not exist in v4. @import "tailwindcss"
+ * above replaces all three. Do not add them back.
+ *
+ * Do not add maximum-scale or user-scalable to the viewport
+ * meta tag. The index.html is already correct.
+ */
+html {
+  font-size: clamp(15px, 1.1vw + 0.5rem, 18px);
+}
 
 body {
   margin: 0;
@@ -25,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
 }
 
-/* Subtle background image overlay - adds depth without interfering with content */
+/* Subtle background image overlay */
 body::before {
   content: '';
   position: fixed;

@@ -1,0 +1,26 @@
+
+.rovs-page{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem;font-family:var(--font-sans,sans-serif)}
+.rovs-header{margin-bottom:2rem}
+.rovs-title{font-size:1.75rem;font-weight:600;color:var(--color-text-primary,#111);margin:0 0 .5rem}
+.rovs-subtitle{font-size:1rem;color:var(--color-text-secondary,#6b7280);margin:0;line-height:1.7;max-width:560px}
+.rovs-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:2rem}
+.rovs-card{background:var(--color-background-secondary,#f9fafb);border:.5px solid var(--color-border-tertiary,#e5e7eb);border-radius:10px;cursor:pointer;transition:border-color .15s;overflow:hidden}
+.rovs-card:hover,.rovs-card.expanded{border-color:var(--rc)}
+.rovs-card.expanded{background:color-mix(in srgb, var(--rc) 4%, var(--color-background-secondary,#f9fafb))}
+.rovs-card-header{display:flex;align-items:center;gap:12px;padding:1rem 1.25rem}
+.rovs-icon{font-size:22px;flex-shrink:0;width:28px;text-align:center;color:var(--rc)}
+.rovs-card-meta{flex:1;display:flex;flex-direction:column;gap:2px}
+.rovs-name{font-size:.9375rem;font-weight:500;color:var(--color-text-primary,#111)}
+.rovs-role{font-size:.8125rem;color:var(--color-text-secondary,#6b7280)}
+.rovs-expand{font-size:1.25rem;color:var(--color-text-secondary,#6b7280);flex-shrink:0}
+.rovs-card-body{padding:0 1.25rem 1.25rem;border-top:.5px solid var(--color-border-tertiary,#e5e7eb)}
+.rovs-desc{font-size:.9375rem;color:var(--color-text-primary,#111);line-height:1.7;margin:.75rem 0}
+.rovs-persona{background:var(--color-background-primary,#fff);border-radius:6px;padding:.75rem 1rem;margin-bottom:.75rem}
+.rovs-persona-label,.rovs-programmes-label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--rc);margin-bottom:.375rem}
+.rovs-persona p{font-size:.875rem;color:var(--color-text-secondary,#6b7280);margin:0;line-height:1.6;font-style:italic}
+.rovs-programmes{margin-top:.5rem}
+.rovs-programme-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.rovs-programme-tag{font-size:.8125rem;background:color-mix(in srgb, var(--rc) 12%, transparent);color:var(--rc);border-radius:4px;padding:3px 10px}
+.rovs-footer{padding-top:1.5rem;border-top:.5px solid var(--color-border-tertiary,#e5e7eb)}
+.rovs-footer-note{font-size:.875rem;color:var(--color-text-secondary,#6b7280);line-height:1.7;margin:0 0 1rem;max-width:560px}
+.rovs-cta{display:inline-block;color:#1D9E75;font-size:.9375rem;text-decoration:none;font-weight:500}

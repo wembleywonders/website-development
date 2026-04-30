@@ -11,7 +11,7 @@ const ConnectPage: React.FC = () => {
       title: 'Big Local Partnership Sessions',
       description: 'Monthly resident consultation meetings where community priorities are identified and discussed.',
       when: 'Second Tuesday of each month, 7pm',
-      where: 'Wembley Central Community Centre',
+      where: 'Wembley Wonders CIC, 452 High Road, Wembley HA9 7AY',
       commitment: 'Drop-in, no long-term commitment required',
       currentFocus: 'Winter 2024: Community space improvements and digital inclusion priorities'
     },

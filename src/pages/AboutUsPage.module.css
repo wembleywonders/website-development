@@ -1,0 +1,578 @@
+/* ============================================================
+   AboutUsPage.module.css
+   Editorial flow — dark glass system
+   Playfair Display for all display text
+   One room. Same voice as the homepage.
+   Updated March 2026: taller founder photos, manifesto links,
+   editorial standard card, improved mobile.
+   ============================================================ */
+
+.about {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+/* ── Rule ── */
+.rule {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212,168,83,0.3), transparent);
+  margin: 4rem 0;
+}
+
+/* ── Section labels ── */
+.sectionLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #64748b;
+  margin-bottom: 1rem;
+}
+
+/* ── Section titles ── */
+.sectionTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 900;
+  color: #f8fafc;
+  margin: 0 0 2rem;
+  line-height: 1.2;
+}
+
+.sectionTitle em {
+  font-style: italic;
+  color: #d4a853;
+}
+
+/* ── DECLARATION ── */
+.declaration {
+  padding: 3rem 0 2rem;
+}
+
+.declarationInner {
+  max-width: 680px;
+}
+
+.declarationLead {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 900;
+  font-style: italic;
+  color: #f8fafc;
+  margin: 0 0 1.5rem;
+  line-height: 1.3;
+}
+
+.declarationBody {
+  font-size: 1rem;
+  color: #94a3b8;
+  line-height: 1.85;
+  margin: 0 0 1.25rem;
+}
+
+.declarationEmphasis {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: #d4a853;
+  margin: 0 0 1.75rem;
+  line-height: 1.5;
+}
+
+/* ── MANIFESTO LINK — used in declaration and invitation ── */
+.declarationManifesto {
+  margin-top: 1.5rem;
+}
+
+.manifestoLink,
+.invitationManifestoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.75rem 1.25rem;
+  background: rgba(212,168,83,0.06);
+  border: 1px solid rgba(212,168,83,0.25);
+  border-radius: 0.625rem;
+  color: #d4a853;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+
+.manifestoLink:hover,
+.invitationManifestoLink:hover {
+  background: rgba(212,168,83,0.12);
+  border-color: rgba(212,168,83,0.45);
+}
+
+.manifestoMark {
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.manifestoArrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* ── FOUNDERS ── */
+.foundersGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.founderCard {
+  background: rgba(15,23,42,0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(148,163,184,0.1);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.founderPhoto {
+  /* Taller — gives the portrait room to breathe */
+  height: 280px;
+  background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(30,41,59,0.8));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.founderImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Face centred — works for both portrait and landscape crops */
+  object-position: center 15%;
+  transition: transform 0.4s ease;
+}
+
+.founderCard:hover .founderImg {
+  transform: scale(1.02);
+}
+
+.founderInitial {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(212,168,83,0.15);
+  border: 2px solid rgba(212,168,83,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #d4a853;
+}
+
+.founderContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  flex: 1;
+}
+
+.founderMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.founderName {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.founderRole {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.founderHandle {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.founderVoice {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.founderActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.whatsappBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.5rem 1rem;
+  background: rgba(37,211,102,0.1);
+  border: 1px solid rgba(37,211,102,0.25);
+  border-radius: 0.5rem;
+  color: #25d366;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.whatsappBtn:hover {
+  background: rgba(37,211,102,0.18);
+  border-color: rgba(37,211,102,0.4);
+}
+
+.founderLink {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #d4a853;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.founderLink:hover { opacity: 0.75; }
+
+/* ── WOUND ── */
+.woundGrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.woundText p {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.85;
+  margin: 0 0 1.25rem;
+}
+
+.woundEmphasis {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #f8fafc !important;
+  font-style: italic;
+}
+
+.woundPull {
+  position: sticky;
+  top: 2rem;
+}
+
+.pullQuote {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #d4a853;
+  border-left: 3px solid #d4a853;
+  padding-left: 1.25rem;
+  margin: 0 0 1.25rem;
+  line-height: 1.4;
+}
+
+.pullContext {
+  font-size: 0.825rem;
+  color: #64748b;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ── PLATFORM ── */
+.platformIntro {
+  font-size: 1rem;
+  color: #94a3b8;
+  line-height: 1.85;
+  margin: 0 0 2rem;
+  max-width: 680px;
+}
+
+.platformGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.platformCard {
+  background: rgba(15,23,42,0.6);
+  border: 1px solid rgba(148,163,184,0.08);
+  border-left: 3px solid var(--item-colour);
+  border-radius: 0.875rem;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.platformCardOpen {
+  border-color: var(--item-colour);
+  background: rgba(15,23,42,0.85);
+}
+
+.platformCardHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.platformCardHeader:hover { background: rgba(255,255,255,0.02); }
+
+.platformIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  /* The ◆ mark for the standard card */
+  color: var(--item-colour);
+  line-height: 1;
+}
+
+.platformCardMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.platformCardTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  transition: color 0.2s;
+}
+
+.platformCardOpen .platformCardTitle { color: var(--item-colour); }
+
+.platformCardSummary {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.platformChevron {
+  font-size: 0.875rem;
+  color: var(--item-colour);
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+}
+
+.platformCardBody {
+  padding: 0 1.25rem 1.25rem 4rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.platformCardBody p {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  line-height: 1.8;
+  margin: 0 0 0.875rem;
+}
+
+.platformCardLink {
+  font-size: 0.825rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.platformCardLink:hover { opacity: 0.75; }
+
+/* ── GOVERNANCE ── */
+.governanceGrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.governanceText p {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.85;
+  margin: 0 0 1.25rem;
+}
+
+.governanceFacts {
+  background: rgba(15,23,42,0.7);
+  border: 1px solid rgba(148,163,184,0.1);
+  border-radius: 0.875rem;
+  overflow: hidden;
+  position: sticky;
+  top: 2rem;
+}
+
+.governanceFact {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 0.78rem;
+  border-bottom: 1px solid rgba(148,163,184,0.06);
+}
+
+.governanceFact:last-child { border-bottom: none; }
+
+.governanceKey { color: #64748b; font-weight: 500; }
+.governanceVal { color: #cbd5e1; }
+
+/* ── INVITATION ── */
+.invitation {
+  text-align: center;
+  padding: 2rem 0;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.invitationTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 900;
+  font-style: italic;
+  color: #f8fafc;
+  margin: 0 0 1.5rem;
+}
+
+.invitationBody {
+  font-size: 0.975rem;
+  color: #94a3b8;
+  line-height: 1.85;
+  margin: 0 0 1.25rem;
+}
+
+/* Manifesto link in invitation — centred */
+.invitationManifesto {
+  display: flex;
+  justify-content: center;
+  margin: 1.75rem 0;
+}
+
+.invitationManifestoLink {
+  /* Inherits from .manifestoLink above */
+  max-width: 460px;
+}
+
+.invitationActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.invitationWhatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.75rem 1.5rem;
+  background: rgba(37,211,102,0.1);
+  border: 1px solid rgba(37,211,102,0.25);
+  border-radius: 0.5rem;
+  color: #25d366;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.invitationWhatsapp:hover { background: rgba(37,211,102,0.18); }
+
+.invitationEmail {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(212,168,83,0.25);
+  border-radius: 0.5rem;
+  color: #d4a853;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.invitationEmail:hover { background: rgba(212,168,83,0.08); }
+
+.invitationJoin {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: #d4a853;
+  border-radius: 0.5rem;
+  color: #0f172a;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.invitationJoin:hover { opacity: 0.85; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .about { padding: 0 1.25rem 4rem; }
+
+  .foundersGrid { grid-template-columns: 1fr; }
+
+  /* On mobile the photo can be slightly shorter — still generous */
+  .founderPhoto { height: 240px; }
+
+  .woundGrid { grid-template-columns: 1fr; }
+  .woundPull { position: static; }
+
+  .governanceGrid { grid-template-columns: 1fr; }
+  .governanceFacts { position: static; }
+
+  .platformCardBody { padding-left: 1.25rem; }
+
+  .manifestoLink,
+  .invitationManifestoLink {
+    font-size: 0.82rem;
+    padding: 0.65rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .founderPhoto { height: 200px; }
+
+  .invitationActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .invitationWhatsapp,
+  .invitationEmail,
+  .invitationJoin {
+    justify-content: center;
+  }
+}

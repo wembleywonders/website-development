@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/data/volunteers/volunteerRoles.ts;
+// Stub — pending implementation
+export {};

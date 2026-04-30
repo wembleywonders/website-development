@@ -1,7 +1,7 @@
 /* ===================== */
 /* TECHreneurs Page      */
-/* Economic Literacy &   */
-/* Credit Protection     */
+/* Ecosystem Economics & */
+/* Collective Wealth     */
 /* ===================== */
 
 .techreneurs-page {
@@ -9,7 +9,7 @@
   margin: 0 auto;
 }
 
-/* Hero */
+/* ---- Hero ---- */
 .techreneurs-hero {
   text-align: center;
   padding: 3rem 2rem;
@@ -54,7 +54,7 @@
   font-style: italic;
 }
 
-/* Why Section */
+/* ---- Why Section ---- */
 .why-section {
   margin-bottom: 2rem;
 }
@@ -74,7 +74,304 @@
   margin: 0;
 }
 
-/* Pattern Grid - Why Mandatory */
+/* ---- Narratives Grid — 4 column ---- */
+.narratives-grid.four-column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.narrative-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 2px solid #475569;
+  position: relative;
+}
+
+/* NEW TRAP card — amber accent */
+.narrative-card--new {
+  border-color: #f59e0b;
+  background: linear-gradient(135deg, #1a1400 0%, #2d2200 50%, #1e293b 100%);
+}
+
+.narrative-new-badge {
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #0f172a;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.narrative-card h3 {
+  color: #f8fafc;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.narrative-promise {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.narrative-reality {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.narrative-reality ul {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+}
+
+.narrative-reality li {
+  margin-bottom: 0.35rem;
+  color: #fca5a5;
+}
+
+.narrative-wound {
+  color: #64748b;
+  font-size: 0.85rem;
+  font-style: italic;
+  border-top: 1px solid #334155;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.narrative-card--new .narrative-wound {
+  color: #92400e;
+  border-top-color: #451a03;
+}
+
+.narratives-bridge {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border-left: 4px solid #10b981;
+}
+
+.narratives-bridge p {
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ---- Creator Economy Trap Section — NEW ---- */
+.creator-trap-section {
+  background: linear-gradient(135deg, #0f0a00 0%, #1a1100 50%, #0f172a 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 2px solid #f59e0b;
+  margin-bottom: 2rem;
+}
+
+.creator-trap-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.creator-trap-header svg {
+  color: #fbbf24;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.creator-trap-header h2 {
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
+}
+
+.creator-trap-header .section-intro {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.creator-trap-quote {
+  background: rgba(245, 158, 11, 0.07);
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 12px 12px 0;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.creator-trap-quote blockquote {
+  color: #e2e8f0;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin: 0 0 0.75rem 0;
+}
+
+.creator-trap-quote cite {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.red-flags-heading {
+  color: #f8fafc;
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.red-flags-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.red-flag-card {
+  background: rgba(239, 68, 68, 0.07);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.red-flag-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.red-flag-header svg {
+  color: #ef4444;
+  flex-shrink: 0;
+}
+
+.red-flag-header h4 {
+  color: #fca5a5;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.red-flag-card p {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Wild West vs WW Rails contrast */
+.creator-trap-contrast {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.trap-side {
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.trap-side.wild-west {
+  background: linear-gradient(135deg, #1e0a0a 0%, #2d1010 100%);
+  border: 2px solid rgba(239, 68, 68, 0.3);
+}
+
+.trap-side.ww-rails {
+  background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+  border: 2px solid rgba(16, 185, 129, 0.4);
+}
+
+.trap-side h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.trap-side.wild-west h3 {
+  color: #fca5a5;
+}
+
+.trap-side.wild-west h3 svg {
+  color: #ef4444;
+}
+
+.trap-side.ww-rails h3 {
+  color: #6ee7b7;
+}
+
+.trap-side.ww-rails h3 svg {
+  color: #10b981;
+}
+
+.trap-side ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.trap-side ul li {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  padding: 0.4rem 0;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.trap-side.wild-west ul li {
+  color: #94a3b8;
+}
+
+.trap-side.wild-west ul li::before {
+  content: "✗";
+  position: absolute;
+  left: 0;
+  color: #ef4444;
+}
+
+.trap-side.ww-rails ul li {
+  color: #a7f3d0;
+}
+
+.trap-side.ww-rails ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: bold;
+}
+
+.creator-trap-cta {
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.creator-trap-cta p {
+  color: #fef3c7;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ---- Infrastructure grid — highlight camera card ---- */
+.infra-card--highlight {
+  border-color: #f59e0b !important;
+  background: linear-gradient(135deg, #1a1200 0%, #1e293b 100%) !important;
+}
+
+/* ---- Pattern Grid ---- */
 .pattern-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -151,7 +448,7 @@
   margin: 0;
 }
 
-/* Core Modules */
+/* ---- Core Modules ---- */
 .modules-grid.core-modules {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -210,7 +507,7 @@
   margin: 0;
 }
 
-/* UC Section */
+/* ---- UC Section ---- */
 .uc-section {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   border-radius: 20px;
@@ -316,7 +613,44 @@
   margin: 0;
 }
 
-/* Building Modules */
+/* ---- Messaging Section — 3 voice ---- */
+.messaging-grid.three-voice {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.messaging-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 2px solid #475569;
+}
+
+.messaging-card h3 {
+  color: #f8fafc;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.messaging-card p {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  margin: 0;
+  font-style: italic;
+}
+
+.messaging-card.creator-workers {
+  border-color: #f59e0b;
+  background: linear-gradient(135deg, #1a1200 0%, #1e293b 100%);
+}
+
+.messaging-card.creator-workers p {
+  color: #fef3c7;
+}
+
+/* ---- Building Modules ---- */
 .modules-grid.building-modules {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -375,7 +709,7 @@
   margin: 0;
 }
 
-/* Structure Timeline */
+/* ---- Structure Timeline ---- */
 .structure-section {
   margin-bottom: 2rem;
 }
@@ -471,7 +805,7 @@
   margin: 0;
 }
 
-/* Outcomes */
+/* ---- Outcomes ---- */
 .outcomes-section .outcomes-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -501,7 +835,7 @@
   margin: 0;
 }
 
-/* Certification */
+/* ---- Certification ---- */
 .certification-section {
   margin-bottom: 2rem;
 }
@@ -565,156 +899,7 @@
   margin: 0 auto;
 }
 
-/* Integration Flow */
-.integration-section {
-  margin-bottom: 2rem;
-}
-
-.integration-flow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  border-radius: 16px;
-}
-
-.flow-item {
-  flex: 1;
-  text-align: center;
-  padding: 1.5rem 1rem;
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  border-radius: 12px;
-  border: 2px solid #475569;
-}
-
-.flow-item.mandatory-step {
-  border-color: #f59e0b;
-  background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
-}
-
-.flow-label {
-  display: block;
-  color: #f8fafc;
-  font-weight: 700;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-}
-
-.flow-item p {
-  color: #94a3b8;
-  font-size: 0.8rem;
-  line-height: 1.4;
-  margin: 0;
-}
-
-.flow-item.mandatory-step p {
-  color: #fef3c7;
-}
-
-.flow-arrow {
-  color: #f59e0b;
-  flex-shrink: 0;
-}
-
-.integration-note {
-  background: #f3f4f6;
-  border-radius: 12px;
-  padding: 1.25rem;
-}
-
-.integration-note p {
-  color: #4b5563;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.integration-note strong {
-  color: #111827;
-}
-
-/* Comparison */
-.comparison-section {
-  margin-bottom: 2rem;
-}
-
-.comparison-table {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-
-.comparison-column {
-  border-radius: 12px;
-  padding: 1.5rem;
-}
-
-.comparison-column.typical {
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  border: 2px solid #475569;
-}
-
-.comparison-column.ours {
-  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
-  border: 2px solid #10b981;
-}
-
-.comparison-column h3 {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.comparison-column.typical h3 {
-  color: #94a3b8;
-}
-
-.comparison-column.ours h3 {
-  color: #6ee7b7;
-}
-
-.comparison-column ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.comparison-column li {
-  padding: 0.5rem 0;
-  padding-left: 1.5rem;
-  position: relative;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.comparison-column.typical li {
-  color: #94a3b8;
-}
-
-.comparison-column.typical li::before {
-  content: "✗";
-  position: absolute;
-  left: 0;
-  color: #6b7280;
-}
-
-.comparison-column.ours li {
-  color: #d1fae5;
-}
-
-.comparison-column.ours li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #6ee7b7;
-  font-weight: bold;
-}
-
-/* CTA */
+/* ---- CTA ---- */
 .techreneurs-cta {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   border-radius: 20px;
@@ -780,7 +965,7 @@
   border-color: #f8fafc;
 }
 
-/* Closing */
+/* ---- Closing ---- */
 .closing-section {
   text-align: center;
 }
@@ -805,6 +990,10 @@
 @media (max-width: 1024px) {
   .pattern-grid {
     grid-template-columns: 1fr;
+  }
+
+  .narratives-grid.four-column {
+    grid-template-columns: 1fr 1fr;
   }
   
   .uc-modules-grid {
@@ -835,6 +1024,18 @@
   .flow-arrow {
     transform: rotate(90deg);
   }
+
+  .messaging-grid.three-voice {
+    grid-template-columns: 1fr;
+  }
+
+  .creator-trap-contrast {
+    grid-template-columns: 1fr;
+  }
+
+  .red-flags-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
@@ -848,6 +1049,18 @@
   
   .why-quote {
     font-size: 1.1rem;
+  }
+
+  .narratives-grid.four-column {
+    grid-template-columns: 1fr;
+  }
+
+  .creator-trap-section {
+    padding: 1.5rem;
+  }
+
+  .creator-trap-header {
+    flex-direction: column;
   }
   
   .uc-section {

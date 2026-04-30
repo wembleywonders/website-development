@@ -1,0 +1,391 @@
+/* ═══════════════════════════════════════════════════════
+   KNOWLEDGE COMMONS — Shared Stylesheet
+   src/components/knowledge-commons/knowledge-commons.css
+
+   Imported once by KnowledgeCommonsShell.tsx.
+   All six components use these tokens and base classes.
+   Visual register: editorial counter-archive —
+   aged parchment, navy authority, gold significance.
+   Body text: Source Serif 4 (warmth, readability).
+   Display: Playfair Display (inherited from homepage).
+   Mono: JetBrains Mono (dates, IDs, metadata).
+   ═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+
+/* ── TOKENS ─────────────────────────────────────────── */
+:root {
+  /* Ground */
+  --kc-bg:          #0f0e0c;
+  --kc-surface:     #161410;
+  --kc-surface-2:   #1e1b16;
+  --kc-border:      #2e2c26;
+  --kc-border-soft: rgba(46,44,38,0.6);
+
+  /* Type */
+  --kc-text:        #e8e4dc;
+  --kc-text-2:      #b8b4a8;
+  --kc-muted:       #6e6a60;
+  --kc-faint:       #3e3c36;
+
+  /* Accent — gold for significance */
+  --kc-gold:        #c8a84b;
+  --kc-gold-dim:    rgba(200,168,75,0.12);
+  --kc-gold-border: rgba(200,168,75,0.25);
+
+  /* Navy — authority, plaque ground */
+  --kc-navy:        #0d1a2e;
+  --kc-navy-2:      #162340;
+
+  /* Thread colours — each thread has a distinct accent */
+  --kc-thread-1:    #c8a84b; /* gold  — Same Rule, Different Arenas */
+  --kc-thread-2:    #7eb3c8; /* slate — Who Owns the Culture? */
+  --kc-thread-3:    #8fa86e; /* sage  — Landscape Under Your Feet */
+  --kc-thread-4:    #b87c6e; /* terra — Kingston to the Grid */
+  --kc-thread-5:    #9b87c8; /* lilac — Distance: Embassy & Community */
+  --kc-thread-6:    #c87e8e; /* rose  — Joy as Politics */
+
+  /* Era colours */
+  --kc-era-empire:  #8a6a3e;
+  --kc-era-windrush:#5a8a6e;
+  --kc-era-struggle:#8a5a5a;
+  --kc-era-now:     #5a7a8a;
+
+  /* Typography */
+  --kc-font-disp:   'Playfair Display', Georgia, serif;
+  --kc-font-body:   'Source Serif 4', Georgia, serif;
+  --kc-font-mono:   'JetBrains Mono', 'Courier New', monospace;
+  --kc-font-ui:     'DM Sans', system-ui, sans-serif;
+
+  /* Layout */
+  --kc-radius:      12px;
+  --kc-radius-sm:   6px;
+  --kc-sidebar:     260px;
+  --kc-nav-h:       60px;
+}
+
+/* ── RESET / BASE ────────────────────────────────────── */
+.kc-root {
+  min-height: 100vh;
+  background: var(--kc-bg);
+  color: var(--kc-text);
+  font-family: var(--kc-font-body);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.kc-root *,
+.kc-root *::before,
+.kc-root *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── LAYOUT PRIMITIVES ───────────────────────────────── */
+.kc-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.kc-container--narrow { max-width: 780px; }
+.kc-container--wide   { max-width: 1320px; }
+
+/* ── TYPOGRAPHY ──────────────────────────────────────── */
+.kc-display {
+  font-family: var(--kc-font-disp);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--kc-text);
+}
+
+.kc-heading {
+  font-family: var(--kc-font-disp);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--kc-text);
+}
+
+.kc-body {
+  font-family: var(--kc-font-body);
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--kc-text-2);
+}
+
+.kc-label {
+  font-family: var(--kc-font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--kc-muted);
+}
+
+.kc-mono {
+  font-family: var(--kc-font-mono);
+  font-size: 0.8em;
+  color: var(--kc-muted);
+}
+
+/* ── SECTION LABEL (pill, same pattern as homepage) ─── */
+.kc-section-label {
+  display: inline-block;
+  font-family: var(--kc-font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--kc-gold);
+  padding: 3px 10px;
+  border: 1px solid var(--kc-gold-border);
+  border-radius: 100px;
+  margin-bottom: 1rem;
+}
+
+/* ── BUTTONS ─────────────────────────────────────────── */
+.kc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--kc-radius-sm);
+  font-family: var(--kc-font-ui);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.kc-btn--primary {
+  background: var(--kc-gold);
+  color: #0f0e0c;
+}
+.kc-btn--primary:hover {
+  background: #e8c46a;
+  transform: translateY(-1px);
+}
+
+.kc-btn--outline {
+  background: transparent;
+  color: var(--kc-text-2);
+  border: 1px solid var(--kc-border);
+}
+.kc-btn--outline:hover {
+  border-color: var(--kc-gold-border);
+  color: var(--kc-text);
+}
+
+.kc-btn--ghost {
+  background: transparent;
+  color: var(--kc-muted);
+  padding: 0.4rem 0.6rem;
+}
+.kc-btn--ghost:hover { color: var(--kc-text-2); }
+
+.kc-btn--active {
+  background: var(--kc-gold-dim);
+  color: var(--kc-gold);
+  border-color: var(--kc-gold-border) !important;
+}
+
+/* ── CARDS ───────────────────────────────────────────── */
+.kc-card {
+  background: var(--kc-surface);
+  border: 1px solid var(--kc-border);
+  border-radius: var(--kc-radius);
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.kc-card:hover {
+  border-color: var(--kc-gold-border);
+  transform: translateY(-2px);
+}
+
+.kc-card--flat { transform: none !important; }
+.kc-card--flat:hover { transform: none !important; }
+
+/* ── PLAQUE — Counter-archive circular marker ────────── */
+.kc-plaque {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--kc-navy);
+  border: 5px solid rgba(200,168,75,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  gap: 3px;
+  box-shadow:
+    inset 0 0 0 1px rgba(200,168,75,0.15),
+    0 6px 24px rgba(0,0,0,0.5);
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+  position: relative;
+}
+.kc-plaque:hover {
+  transform: scale(1.05);
+  border-color: var(--kc-gold);
+  box-shadow:
+    inset 0 0 0 1px rgba(200,168,75,0.3),
+    0 8px 32px rgba(0,0,0,0.6);
+}
+
+.kc-plaque--sm {
+  width: 88px;
+  height: 88px;
+  border-width: 4px;
+  padding: 8px;
+}
+
+.kc-plaque--lg {
+  width: 160px;
+  height: 160px;
+  border-width: 6px;
+  padding: 16px;
+}
+
+/* Wembley Wonders Counter-Archive mark */
+.kc-plaque::after {
+  content: 'WEMBLEY WONDERS\ACOUNTER-ARCHIVE';
+  white-space: pre;
+  position: absolute;
+  bottom: 8px;
+  left: 0; right: 0;
+  text-align: center;
+  font-family: var(--kc-font-ui);
+  font-size: 4.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(200,168,75,0.4);
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.kc-plaque-org {
+  font-family: var(--kc-font-ui);
+  font-size: 7px;
+  font-weight: 700;
+  color: rgba(200,168,75,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+
+.kc-plaque-name {
+  font-family: var(--kc-font-disp);
+  font-size: 10px;
+  font-weight: 900;
+  color: var(--kc-gold);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+.kc-plaque--sm .kc-plaque-name { font-size: 7.5px; }
+.kc-plaque--lg .kc-plaque-name { font-size: 14px; }
+
+.kc-plaque-dates {
+  font-family: var(--kc-font-mono);
+  font-size: 7px;
+  color: rgba(200,168,75,0.6);
+  margin-top: 1px;
+}
+
+.kc-plaque-field {
+  font-family: var(--kc-font-body);
+  font-size: 7px;
+  font-style: italic;
+  color: var(--kc-text-2);
+  line-height: 1.3;
+  margin-top: 2px;
+}
+
+/* ── THREAD CHIP ─────────────────────────────────────── */
+.kc-thread-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-family: var(--kc-font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+/* ── DIVIDER ─────────────────────────────────────────── */
+.kc-rule {
+  border: none;
+  border-top: 1px solid var(--kc-border);
+  margin: 2rem 0;
+}
+
+/* ── PARCHMENT TEXTURE (applies to backgrounds) ──────── */
+.kc-texture {
+  position: relative;
+}
+.kc-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.6;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 160px;
+  mix-blend-mode: overlay;
+}
+
+/* ── GOLD TOP RULE (card decoration) ─────────────────── */
+.kc-gold-rule {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--kc-gold) 0%, transparent 65%);
+}
+
+/* ── FADE-IN ANIMATION ───────────────────────────────── */
+@keyframes kcFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.kc-fade-in {
+  animation: kcFadeUp 0.4s ease both;
+}
+
+/* ── EMPTY STATE ─────────────────────────────────────── */
+.kc-empty {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--kc-muted);
+  font-family: var(--kc-font-ui);
+  font-size: 0.9rem;
+}
+
+/* ── SCROLLBAR (webkit) ──────────────────────────────── */
+.kc-root ::-webkit-scrollbar { width: 6px; height: 6px; }
+.kc-root ::-webkit-scrollbar-track { background: transparent; }
+.kc-root ::-webkit-scrollbar-thumb {
+  background: var(--kc-border);
+  border-radius: 3px;
+}
+.kc-root ::-webkit-scrollbar-thumb:hover { background: var(--kc-faint); }
+
+/* ── REDUCED MOTION ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .kc-card:hover         { transform: none !important; }
+  .kc-plaque:hover       { transform: none !important; }
+  .kc-btn--primary:hover { transform: none !important; }
+  .kc-fade-in            { animation: none !important; }
+}

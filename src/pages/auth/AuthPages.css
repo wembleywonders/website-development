@@ -523,3 +523,27 @@
 .auth-container {
   animation: slideDown 0.5s ease-out;
 }
+
+
+/* Submit button ready state */
+.submit-button--ready {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.submit-button--ready:hover {
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  transform: translateY(-1px);
+}
+
+
+/* Submit button ready state */
+.submit-button--ready {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.submit-button--ready:hover {
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  transform: translateY(-1px);
+}

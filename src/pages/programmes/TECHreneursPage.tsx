@@ -8,7 +8,8 @@ import {
   ArrowRight, Shield, Lock, AlertTriangle, FileText, Building, 
   PoundSterling, BookOpen, Landmark, Scale, Database, Clock, Home,
   Banknote, Heart, HandHeart, Coins, CircleDollarSign, Layers,
-  MapPin, Key, Network, Handshake, Store, Truck, Wrench
+  MapPin, Key, Network, Handshake, Store, Truck, Wrench, Radio,
+  Camera, Mic, Video, UserX, FileWarning
 } from 'lucide-react';
 import './ProgrammePage.css';
 import './TECHreneursPage.css';
@@ -25,6 +26,12 @@ import './TECHreneursPage.css';
  * This programme addresses the 0.17% reality differently: instead of teaching 
  * people to start businesses from scratch (90% failure rate), we connect them 
  * to existing infrastructure that needs strengthening.
+ * 
+ * UPDATE: Creator economy employment trap added as 4th failing path.
+ * The Wild West of handshake agreements, delayed payments, and no contracts
+ * that the mainstream creator economy runs on is precisely what Wembley Wonders
+ * is architected to prevent. TECHreneurs teaches people to recognise the trap
+ * before they walk into it — and to build on proper rails instead.
  */
 
 const TECHreneursPage: React.FC = () => {
@@ -100,10 +107,16 @@ const TECHreneursPage: React.FC = () => {
       reality: "Wembley Stadium brings 90,000 people for major events",
       needs: "Staffing, equipment, catering coordination, tech support",
       icon: Users
+    },
+    {
+      sector: "Creator & Content Economy",
+      reality: "Editors, camera operators, managers working for growing channels",
+      needs: "Contracts, payment structures, professional rails — not handshake deals",
+      icon: Camera
     }
   ];
 
-  // The three failing approaches
+  // The four failing approaches — creator economy added as 4th
   const failingApproaches = [
     {
       name: "Get Educated, Get a Job",
@@ -137,6 +150,52 @@ const TECHreneursPage: React.FC = () => {
         "Competes with businesses that already have all three"
       ],
       wound: "I tried. Spent my savings. Nobody knew I existed. Back to zero."
+    },
+    {
+      name: "Work in the Creator Economy",
+      promise: "Edit videos → Build skills → Get paid → Grow together",
+      reality: [
+        "No contracts — verbal agreements only, nothing in writing",
+        "Payment chased for weeks: Cash App, Chime, personal accounts",
+        "Creator blows up, stakes rise, professionalism never does",
+        "Wild West employment: you absorb all the risk, they hold all the power"
+      ],
+      wound: "I built their channel from nothing. They ghosted me when I asked to be paid.",
+      isNew: true
+    }
+  ];
+
+  // Creator economy warning signs — new section
+  const creatorEconomyRedFlags = [
+    {
+      flag: "No contract offered",
+      detail: "\"We'll work it out\" is not a payment structure. If there's no paper, there's no protection.",
+      icon: FileWarning
+    },
+    {
+      flag: "Payment tied to future revenue",
+      detail: "\"Once the channel monetises\" means you work now and hope later. That's not how employment works.",
+      icon: Clock
+    },
+    {
+      flag: "Friend or family relationship used as leverage",
+      detail: "\"We're fam\" replaces professionalism. When money enters, the relationship is business — treat it that way.",
+      icon: UserX
+    },
+    {
+      flag: "No separate business account",
+      detail: "If they're paying you from a personal Cash App, they have no business infrastructure. You'll chase every penny.",
+      icon: Banknote
+    },
+    {
+      flag: "Your income depends on one person's mood",
+      detail: "If a creator stops uploading tomorrow, everyone on their team loses income with zero legal recourse.",
+      icon: AlertTriangle
+    },
+    {
+      flag: "Public humiliation normalised",
+      detail: "Being berated on stream, throwing drinks, demanding impossible things — this is abuse dressed as \"content pressure.\"",
+      icon: Shield
     }
   ];
 
@@ -184,7 +243,7 @@ const TECHreneursPage: React.FC = () => {
     "Owner talks about 'the old days' more than future plans"
   ];
 
-  // Pardner explanation (preserved)
+  // Pardner explanation
   const pardnerHow = [
     "Group of trusted people (often 10-12) form a circle",
     "Each contributes fixed amount weekly/monthly (e.g., £50/week)",
@@ -193,7 +252,7 @@ const TECHreneursPage: React.FC = () => {
     "No interest. No bank. No credit check. Pure community trust."
   ];
 
-  // Heritage finance traditions (preserved)
+  // Heritage finance traditions
   const heritageFinance = [
     { name: "Pardner", origin: "Jamaica / Caribbean", icon: "🇯🇲" },
     { name: "Susu", origin: "Ghana / West Africa", icon: "🇬🇭" },
@@ -203,7 +262,7 @@ const TECHreneursPage: React.FC = () => {
     { name: "Chit Fund", origin: "South Asia", icon: "🌏" }
   ];
 
-  // Core modules - updated for ecosystem
+  // Core modules — updated to include creator economy literacy
   const coreModules = [
     { 
       title: "The 0.17% Reality", 
@@ -240,10 +299,16 @@ const TECHreneursPage: React.FC = () => {
       description: "How earnings work: your share, community fund, platform costs — complete transparency.",
       icon: Scale,
       critical: true
+    },
+    {
+      title: "Creator Economy Literacy",
+      description: "Know the red flags before you sign on. Contracts, payment structures, what to demand. Don't be the unpaid editor.",
+      icon: FileText,
+      critical: true
     }
   ];
 
-  // Practical modules (preserved with ecosystem additions)
+  // Practical modules
   const practicalModules = [
     { 
       title: "B2B vs B2C Economics", 
@@ -267,7 +332,7 @@ const TECHreneursPage: React.FC = () => {
     }
   ];
 
-  // UC Module (preserved)
+  // UC Module
   const ucModule = {
     title: "Navigating Universal Credit",
     sections: [
@@ -304,7 +369,7 @@ const TECHreneursPage: React.FC = () => {
     ]
   };
 
-  // Example ecosystem journey (updated)
+  // Example ecosystem journey
   const exampleJourney = {
     year1: {
       title: "Year 1: Learn & Connect",
@@ -347,6 +412,7 @@ const TECHreneursPage: React.FC = () => {
     "Understand exactly how your 55% works and where every pound goes",
     "Navigate UC reporting if applicable — clean, documented, legitimate",
     "Connect with collective (pardner, equipment-sharing, bulk-buying)",
+    "Recognise creator economy red flags before you walk into them",
     "TECHreneurs Certification — blockchain verified, portable, permanent"
   ];
 
@@ -423,7 +489,7 @@ const TECHreneursPage: React.FC = () => {
             {brentInfrastructure.map((sector, index) => {
               const Icon = sector.icon;
               return (
-                <div key={index} className="infrastructure-card">
+                <div key={index} className={`infrastructure-card${sector.icon === Camera ? ' infra-card--highlight' : ''}`}>
                   <div className="infra-header">
                     <Icon size={28} />
                     <h3>{sector.sector}</h3>
@@ -448,17 +514,20 @@ const TECHreneursPage: React.FC = () => {
           </div>
         </section>
 
-        {/* The Three Failing Approaches */}
+        {/* The Four Failing Approaches */}
         <section className="programme-section narratives-section">
-          <h2>Three Paths That Don't Work</h2>
+          <h2>Four Paths That Don't Work</h2>
           <p className="section-intro">
-            Caribbean families inherit two narratives about success. But there's a third failing 
-            path that entrepreneurship culture promotes. All three share the same flaw.
+            Caribbean families inherit three familiar narratives about success. And then there's a 
+            fourth one the internet sold us. All four share the same flaw.
           </p>
           
-          <div className="narratives-grid three-column">
+          <div className="narratives-grid four-column">
             {failingApproaches.map((approach, index) => (
-              <div key={index} className="narrative-card">
+              <div key={index} className={`narrative-card${approach.isNew ? ' narrative-card--new' : ''}`}>
+                {approach.isNew && (
+                  <div className="narrative-new-badge">New Trap</div>
+                )}
                 <h3>{approach.name}</h3>
                 <div className="narrative-promise">
                   <strong>The promise:</strong> {approach.promise}
@@ -480,9 +549,92 @@ const TECHreneursPage: React.FC = () => {
 
           <div className="narratives-bridge">
             <p>
-              <strong>All three paths share the same assumption:</strong> you have to build from 
-              scratch, find your own customers, and compete against everyone else. But what if 
-              there's infrastructure that already works — and just needs strengthening?
+              <strong>All four paths share the same assumption:</strong> you have to build from 
+              scratch, find your own customers, and absorb all the risk yourself — whether that's 
+              a startup, a creator channel, or a career. But what if there's infrastructure that 
+              already works — and just needs strengthening?
+            </p>
+          </div>
+        </section>
+
+        {/* Creator Economy Employment Trap — NEW SECTION */}
+        <section className="programme-section creator-trap-section">
+          <div className="creator-trap-header">
+            <Camera size={32} />
+            <div>
+              <h2>The Creator Economy Employment Trap</h2>
+              <p className="section-intro">
+                The creator economy grew fast. The professionalism never caught up. 
+                Editors, camera operators, channel managers — the people who build the show — 
+                routinely work under verbal agreements with no contracts, no payment systems, 
+                and no legal protection. When the creator blows up, the stakes rise. 
+                But the workers still have nothing in writing.
+              </p>
+            </div>
+          </div>
+
+          <div className="creator-trap-quote">
+            <blockquote>
+              "Content creators can be some of the worst people to work with. Most of these 
+              people are young people employing their friends, family members, or some Discord 
+              mod to do some sort of big project — and then one day they blow up and the stakes 
+              raise. But that doesn't mean anybody knows a lick about professionalism."
+            </blockquote>
+            <cite>— documented pattern across the creator economy, 2024–25</cite>
+          </div>
+
+          <h3 className="red-flags-heading">Know the Red Flags Before You Sign On</h3>
+          <div className="red-flags-grid">
+            {creatorEconomyRedFlags.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div key={index} className="red-flag-card">
+                  <div className="red-flag-header">
+                    <Icon size={22} />
+                    <h4>{item.flag}</h4>
+                  </div>
+                  <p>{item.detail}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="creator-trap-contrast">
+            <div className="trap-side wild-west">
+              <h3>
+                <AlertTriangle size={20} />
+                The Wild West (Mainstream Creator Economy)
+              </h3>
+              <ul>
+                <li>Verbal agreement. "We'll sort the money later."</li>
+                <li>Payment via personal Cash App, Chime, Venmo</li>
+                <li>No contract. No invoice. No paper trail.</li>
+                <li>Creator ghosts you when you ask to be paid</li>
+                <li>You chase money publicly. They ignore you publicly.</li>
+                <li>One person's success, everyone else's precarity</li>
+              </ul>
+            </div>
+            <div className="trap-side ww-rails">
+              <h3>
+                <CheckCircle size={20} />
+                On Wembley Wonders Rails
+              </h3>
+              <ul>
+                <li>Revenue split documented from day one: 55/25/20</li>
+                <li>Payment via Stripe — not someone's personal account</li>
+                <li>Blockchain-verified earnings record, exportable</li>
+                <li>CIC accountability structure — not one person's ego</li>
+                <li>Community fund absorbs platform costs, not workers</li>
+                <li>You built something — and you can prove it</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="creator-trap-cta">
+            <p>
+              <strong>TECHreneurs teaches you to recognise this trap before you walk into it.</strong>{' '}
+              If you're already in it — or have been — this programme gives you the framework 
+              to build on proper rails next time.
             </p>
           </div>
         </section>
@@ -835,7 +987,7 @@ const TECHreneursPage: React.FC = () => {
           </div>
         </section>
 
-        {/* For Parents / For Young People */}
+        {/* For Parents / For Young People / For Creator Economy Workers */}
         <section className="programme-section messaging-section">
           <h2>Having the Conversation</h2>
           <p className="section-intro">
@@ -843,7 +995,7 @@ const TECHreneursPage: React.FC = () => {
             but now with a path that actually works.
           </p>
 
-          <div className="messaging-grid">
+          <div className="messaging-grid three-voice">
             <div className="messaging-card parents">
               <h3>👵 For Parents</h3>
               <p>
@@ -860,6 +1012,16 @@ const TECHreneursPage: React.FC = () => {
                 or gambling on a startup. There's infrastructure here that works — it just needs 
                 people to strengthen it. Fill gaps. Serve businesses. Position for inheritance. 
                 Build real wealth, not just income."
+              </p>
+            </div>
+            <div className="messaging-card creator-workers">
+              <h3>🎬 For Creator Economy Workers</h3>
+              <p>
+                "You built their channel. You edited the videos, ran the stream, managed the 
+                community. And then you chased payment for three months and got a thumbs up on 
+                WhatsApp. That's not a career. TECHreneurs teaches you to build on proper rails — 
+                where your contribution is documented, your earnings are guaranteed, and the 
+                platform is a registered CIC, not someone's ego."
               </p>
             </div>
           </div>
@@ -899,7 +1061,7 @@ const TECHreneursPage: React.FC = () => {
               <div className="timeline-week">Week 1-2</div>
               <div className="timeline-content">
                 <h4>Reality & Ecosystem Mapping</h4>
-                <p>The 0.17% data, why starting from scratch fails, mapping Brent's infrastructure</p>
+                <p>The 0.17% data, the four failing paths (including the creator economy trap), mapping Brent's infrastructure</p>
               </div>
             </div>
             <div className="timeline-item">
@@ -912,8 +1074,8 @@ const TECHreneursPage: React.FC = () => {
             <div className="timeline-item">
               <div className="timeline-week">Week 5-6</div>
               <div className="timeline-content">
-                <h4>B2B Skills & Protection</h4>
-                <p>Pricing, relationship building, succession signals, UC navigation (if applicable)</p>
+                <h4>B2B Skills, Contracts & Protection</h4>
+                <p>Pricing, relationship building, succession signals, creator economy red flags, UC navigation (if applicable)</p>
               </div>
             </div>
             <div className="timeline-item completion">
@@ -970,7 +1132,7 @@ const TECHreneursPage: React.FC = () => {
             <h2>Ready to Connect?</h2>
             <p>
               TECHreneurs runs in rolling cohorts. Join the next one and start connecting 
-              to Brent's business ecosystem.
+              to Brent's business ecosystem — on proper rails, with proper protection.
             </p>
             <div className="cta-buttons">
               <Link to="/programmes/techreneurs/sandbox" className="cta-button primary">
@@ -986,10 +1148,11 @@ const TECHreneursPage: React.FC = () => {
         {/* Closing */}
         <section className="programme-section closing-section">
           <blockquote className="closing-quote">
-            "Brent's wealth wasn't built by individuals competing with each other. It was 
-            built by networks that circulated capital, shared opportunities, and invested 
-            in the next generation. We're not teaching you to start from scratch — we're 
-            reconnecting you to infrastructure that already works."
+            "Brent's wealth wasn't built by individuals competing with each other — or by people 
+            working for free under handshake agreements with no contracts. It was built by networks 
+            that circulated capital, protected their own, and invested in the next generation. 
+            We're not teaching you to start from scratch. We're reconnecting you to infrastructure 
+            that already works — and making sure you arrive with your eyes open."
           </blockquote>
         </section>
 

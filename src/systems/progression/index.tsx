@@ -1,1 +1,2 @@
-# PASTE CONTENT FROM: progression-system/index.tsx
+// Stub — pending implementation
+export {};

@@ -1,0 +1,175 @@
+/* FeelSelector.css */
+
+.feel-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.feel-selector__title {
+  font-size: 1.1rem;
+  color: #d4a853;
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+}
+.feel-selector__subtitle {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Selected profile display */
+.feel-selector__selected {
+  background: rgba(212, 168, 83, 0.08);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.feel-selector__selected-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #d4a853;
+}
+.feel-selector__selected-meta {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-family: monospace;
+  letter-spacing: 0.05em;
+}
+.feel-selector__lesson {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  font-style: italic;
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-top: 0.25rem;
+  line-height: 1.5;
+}
+.feel-selector__lesson-icon {
+  color: #d4a853;
+  flex-shrink: 0;
+  font-style: normal;
+}
+
+/* Card grid */
+.feel-selector__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.feel-selector__card {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(30, 41, 59, 0.4);
+  transition: border-color 0.15s;
+}
+.feel-selector__card--selected {
+  border-color: rgba(212, 168, 83, 0.5);
+  background: rgba(212, 168, 83, 0.06);
+}
+.feel-selector__card--expanded {
+  border-color: rgba(212, 168, 83, 0.3);
+}
+
+.feel-selector__card-main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 0 0.75rem;
+  padding: 0.6rem 0.9rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+}
+.feel-selector__card-main:hover {
+  background: rgba(148, 163, 184, 0.05);
+}
+
+.feel-selector__card-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f0e6d0;
+  grid-column: 1;
+  grid-row: 1;
+}
+.feel-selector__card-bpm {
+  font-size: 0.72rem;
+  color: #d4a853;
+  font-family: monospace;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+}
+.feel-selector__card-feel {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-style: italic;
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+/* Expanded detail */
+.feel-selector__card-detail {
+  padding: 0.75rem 0.9rem 0.9rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.feel-selector__card-heritage {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+}
+.feel-selector__card-artists {
+  font-size: 0.78rem;
+  color: #64748b;
+  font-style: italic;
+  margin: 0;
+}
+.feel-selector__card-feel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+.feel-selector__feel-tag {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 20px;
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+.feel-selector__card-lesson {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.5;
+  border-left: 2px solid rgba(212, 168, 83, 0.3);
+  padding-left: 0.6rem;
+}
+.feel-selector__card-choose {
+  align-self: flex-start;
+  padding: 0.4rem 1rem;
+  background: #d4a853;
+  color: #0f172a;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: Georgia, serif;
+  transition: background 0.15s;
+}
+.feel-selector__card-choose:hover { background: #c49943; }

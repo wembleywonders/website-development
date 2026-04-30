@@ -1,236 +1,289 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { authService, AuthResponse, UserProfile, LoginRequest, RegisterRequest } from '../services/authService';
 
-interface User {
-  // avatar may be absent for some responses, make it optional
-  avatar?: any;
+// src/contexts/AuthContext.tsx
+// ─────────────────────────────────────────────────────────────────────────────
+// Wembley Wonders CIC — Authentication Context
+//
+// Provides platform-wide auth state derived from the Spring Boot JWT backend.
+// Token stored in localStorage under 'ww_token'.
+// On app load, if a token exists, /api/auth/me is called to hydrate the user.
+// If /me returns 401 (expired/invalid), token is cleared and user is logged out.
+//
+// User shape matches AuthResponse / UserProfileResponse from backend:
+//   { id, email, username, role, status, canVote, canEnrollInProgrammes, member }
+//
+// Exposed via useAuth() hook — import anywhere in the tree.
+//
+// Connected to:
+//   Header.tsx          — isLoggedIn, user, logout()
+//   Your Panel pages    — user.id for API calls, user.role for admin views
+//   Maya               — user.member for ROV context
+//   Activity tracker   — user.id for POST /api/panel/activity
+// ─────────────────────────────────────────────────────────────────────────────
+
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  ReactNode,
+} from 'react';
+
+// ── Types ────────────────────────────────────────────────────────────────────
+
+export interface WembleyUser {
+  createdAt: string | number | Date;
   id: number;
   email: string;
+  username: string;
+  role: 'USER' | 'ADMIN' | 'MODERATOR';
+  status: 'ACTIVE' | 'SUSPENDED' | 'PENDING';
+  canVote: boolean;
+  canEnrollInProgrammes: boolean;
+  member: boolean;
+  // Derived display fields — computed from email until profile endpoint
+  // returns firstName/lastName separately
+  displayName?: string;
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface RegisterCredentials {
+  email: string;
+  password: string;
   firstName: string;
   lastName: string;
-  role: string;
-  membershipStatus: string;
+  displayName?: string;
 }
 
-interface AuthContextType {
-  user: User | null;
-  isAuthenticated: boolean;
-  isLoading: boolean;
-  login: (loginData: LoginRequest) => Promise<AuthResponse>;
-  register: (registerData: RegisterRequest) => Promise<AuthResponse>;
+export interface AuthResponse {
+  token: string;
+  tokenType: string;
+  userId: number;
+  email: string;
+  username: string;
+  role: 'USER' | 'ADMIN' | 'MODERATOR';
+  canVote: boolean;
+  member: boolean;
+}
+
+interface AuthContextShape {
+  // State
+  user: WembleyUser | null;
+  token: string | null;
+  isLoggedIn: boolean;
+  isLoading: boolean;         // true while /me is being called on startup
+  authError: string | null;   // last login/register error message
+
+  // Actions
+  login: (credentials: LoginCredentials) => Promise<boolean>;
+  register: (credentials: RegisterCredentials) => Promise<boolean>;
   logout: () => void;
-  refreshUser: () => Promise<void>;
-  // ✨ NEW: exposes the raw JWT Bearer token for direct API calls
-  // Used by ClaimPage and any other component that calls the backend directly
-  getToken: () => string | null;
-  // Permission helpers
-  canVote: () => boolean;
-  canEnrollInProgrammes: () => boolean;
-  isAdmin: () => boolean;
-  isOrganizer: () => boolean;
-  isMember: () => boolean;
+  clearAuthError: () => void;
+  refreshUser: () => Promise<void>; // re-fetches /me, use after role changes
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+// ── Constants ────────────────────────────────────────────────────────────────
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
+const TOKEN_KEY    = 'ww_token';
+const API_BASE     = '/api';  // proxied via Vite or Nginx to :8080
 
-export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User | null>(null);
+// ── Context ──────────────────────────────────────────────────────────────────
+
+const AuthContext = createContext<AuthContextShape | null>(null);
+
+// ── Provider ─────────────────────────────────────────────────────────────────
+
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [user, setUser]           = useState<WembleyUser | null>(null);
+  const [token, setToken]         = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [authError, setAuthError] = useState<string | null>(null);
 
-  // Check authentication status on mount
-  useEffect(() => {
-    initializeAuth();
+  // ── Derive display name from email until profile returns full name ─────────
+  const deriveDisplayName = (email: string): string => {
+    const local = email.split('@')[0];
+    return local.replace(/[._-]/g, ' ')
+      .split(' ')
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
+  };
+
+  // ── Fetch /me and hydrate user state ──────────────────────────────────────
+  const fetchMe = useCallback(async (jwt: string): Promise<boolean> => {
+    try {
+      const res = await fetch(`${API_BASE}/auth/me`, {
+        headers: { Authorization: `Bearer ${jwt}` },
+      });
+
+      if (res.status === 401 || res.status === 403) {
+        // Token expired or invalid — clear everything
+        localStorage.removeItem(TOKEN_KEY);
+        setToken(null);
+        setUser(null);
+        return false;
+      }
+
+      if (!res.ok) throw new Error(`/me returned ${res.status}`);
+
+      const data: WembleyUser = await res.json();
+      setUser({
+        ...data,
+        displayName: deriveDisplayName(data.email),
+      });
+      setToken(jwt);
+      return true;
+    } catch (err) {
+      console.error('[AuthContext] fetchMe failed:', err);
+      localStorage.removeItem(TOKEN_KEY);
+      setToken(null);
+      setUser(null);
+      return false;
+    }
   }, []);
 
-  const initializeAuth = async () => {
-    setIsLoading(true);
-    
+  // ── On mount: hydrate from stored token ───────────────────────────────────
+  useEffect(() => {
+    const stored = localStorage.getItem(TOKEN_KEY);
+    if (stored) {
+      fetchMe(stored).finally(() => setIsLoading(false));
+    } else {
+      setIsLoading(false);
+    }
+  }, [fetchMe]);
+
+  // ── Login ─────────────────────────────────────────────────────────────────
+  const login = useCallback(async (credentials: LoginCredentials): Promise<boolean> => {
+    setAuthError(null);
     try {
-      if (authService.isAuthenticated()) {
-        // Validate token and get current user
-        const isValid = await authService.validateToken();
-        
-        if (isValid) {
-          const currentUser = authService.getCurrentUser();
-          setUser(currentUser);
-        } else {
-          // Token is invalid, clear auth data
-          authService.logout();
-          setUser(null);
-        }
+      const res = await fetch(`${API_BASE}/auth/login`, {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify(credentials),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setAuthError(data.message || 'Login failed. Please check your details.');
+        return false;
       }
-    } catch (error) {
-      console.error('Auth initialization error:', error);
-      authService.logout();
-      setUser(null);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
-  const login = async (loginData: LoginRequest): Promise<AuthResponse> => {
-    setIsLoading(true);
-    
+      const authData = data as AuthResponse;
+      localStorage.setItem(TOKEN_KEY, authData.token);
+
+      // Hydrate full user from /me so role/status are always current
+      const ok = await fetchMe(authData.token);
+      if (!ok) {
+        setAuthError('Login succeeded but profile could not be loaded.');
+        return false;
+      }
+
+      // Dispatch event so Maya and activity tracker can respond
+      window.dispatchEvent(new CustomEvent('ww:auth:login', {
+        detail: { userId: authData.userId, role: authData.role }
+      }));
+
+      return true;
+    } catch (err) {
+      setAuthError('Connection error. Please try again.');
+      return false;
+    }
+  }, [fetchMe]);
+
+  // ── Register ──────────────────────────────────────────────────────────────
+  const register = useCallback(async (credentials: RegisterCredentials): Promise<boolean> => {
+    setAuthError(null);
     try {
-      const authResponse = await authService.login(loginData);
-      
-      // Set user from response
-      setUser({
-        id: authResponse.userId,
-        email: authResponse.email,
-        firstName: authResponse.firstName,
-        lastName: authResponse.lastName,
-        role: authResponse.role,
-        membershipStatus: authResponse.membershipStatus,
+      const res = await fetch(`${API_BASE}/auth/register`, {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify(credentials),
       });
 
-      return authResponse;
-    } catch (error) {
-      setUser(null);
-      throw error;
-    } finally {
-      setIsLoading(false);
+      const data = await res.json();
+
+      if (!res.ok) {
+        setAuthError(data.message || 'Registration failed.');
+        return false;
+      }
+
+      const authData = data as AuthResponse;
+      localStorage.setItem(TOKEN_KEY, authData.token);
+      await fetchMe(authData.token);
+
+      window.dispatchEvent(new CustomEvent('ww:auth:register', {
+        detail: { userId: authData.userId }
+      }));
+
+      return true;
+    } catch (err) {
+      setAuthError('Connection error. Please try again.');
+      return false;
     }
-  };
+  }, [fetchMe]);
 
-  const register = async (registerData: RegisterRequest): Promise<AuthResponse> => {
-    setIsLoading(true);
-    
-    try {
-      const authResponse = await authService.register(registerData);
-      
-      // Set user from response
-      setUser({
-        id: authResponse.userId,
-        email: authResponse.email,
-        firstName: authResponse.firstName,
-        lastName: authResponse.lastName,
-        role: authResponse.role,
-        membershipStatus: authResponse.membershipStatus,
-      });
-
-      return authResponse;
-    } catch (error) {
-      setUser(null);
-      throw error;
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const logout = () => {
-    authService.logout();
+  // ── Logout ────────────────────────────────────────────────────────────────
+  const logout = useCallback(() => {
+    localStorage.removeItem(TOKEN_KEY);
+    setToken(null);
     setUser(null);
-  };
+    setAuthError(null);
 
-  const refreshUser = async () => {
-    if (!authService.isAuthenticated()) return;
+    // Clear activity tracking localStorage on logout
+    Object.keys(localStorage)
+      .filter(k => k.startsWith('ww_activity_'))
+      .forEach(k => localStorage.removeItem(k));
 
-    try {
-      const profile = await authService.getProfile();
-      setUser({
-        id: profile.id,
-        email: profile.email,
-        firstName: profile.firstName,
-        lastName: profile.lastName,
-        role: profile.role,
-        membershipStatus: profile.membershipStatus,
-      });
-    } catch (error) {
-      console.error('Error refreshing user:', error);
-      // If refresh fails, might be due to expired token
-      logout();
-    }
-  };
+    window.dispatchEvent(new CustomEvent('ww:auth:logout'));
 
-  // ✨ NEW: returns the raw JWT stored by authService, or null if not authenticated.
-  // Delegates to authService so there is one source of truth for token storage.
-  const getToken = (): string | null => authService.getToken?.() ?? null;
+    // Redirect to home — don't use navigate() here to avoid
+    // circular dependency with router; let components handle redirect
+    window.location.href = '/';
+  }, []);
 
-  // Permission helper functions
-  const canVote = () => authService.canVote();
-  const canEnrollInProgrammes = () => authService.canEnrollInProgrammes();
-  const isAdmin = () => authService.isAdmin();
-  const isOrganizer = () => authService.isOrganizer();
-  const isMember = () => authService.isMember();
+  // ── Refresh user (call after admin promotes role etc.) ────────────────────
+  const refreshUser = useCallback(async () => {
+    const stored = localStorage.getItem(TOKEN_KEY);
+    if (stored) await fetchMe(stored);
+  }, [fetchMe]);
 
-  const contextValue: AuthContextType = {
+  const clearAuthError = useCallback(() => setAuthError(null), []);
+
+  // ── Value ─────────────────────────────────────────────────────────────────
+  const value: AuthContextShape = {
     user,
-    isAuthenticated: !!user,
+    token,
+    isLoggedIn: !!user,
     isLoading,
+    authError,
     login,
     register,
     logout,
+    clearAuthError,
     refreshUser,
-    getToken,
-    canVote,
-    canEnrollInProgrammes,
-    isAdmin,
-    isOrganizer,
-    isMember,
   };
 
   return (
-    <AuthContext.Provider value={contextValue}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
-// Custom hook to use auth context
-export function useAuth(): AuthContextType {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-}
+// ── Hook ─────────────────────────────────────────────────────────────────────
 
-// HOC for protected routes
-interface ProtectedRouteProps {
-  children: ReactNode;
-  requiredRole?: 'VISITOR' | 'MEMBER' | 'ORGANIZER' | 'ADMIN';
-  fallback?: ReactNode;
-}
+export const useAuth = (): AuthContextShape => {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error('useAuth must be used within AuthProvider');
+  return ctx;
+};
 
-export function ProtectedRoute({ 
-  children, 
-  requiredRole, 
-  fallback = <div className="text-center py-8">Please log in to access this page.</div> 
-}: ProtectedRouteProps) {
-  const { isAuthenticated, user, isLoading } = useAuth();
+// ── Utility: get token for direct API calls outside React ─────────────────
+// Use in activity tracker POSTs, Maya API calls etc.
+export const getStoredToken = (): string | null =>
+  localStorage.getItem(TOKEN_KEY);
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center py-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return <>{fallback}</>;
-  }
-
-  // Check role requirement
-  if (requiredRole && user) {
-    const roleHierarchy = { 'VISITOR': 0, 'MEMBER': 1, 'ORGANIZER': 2, 'ADMIN': 3 };
-    const userRoleLevel = roleHierarchy[user.role as keyof typeof roleHierarchy] ?? 0;
-    const requiredRoleLevel = roleHierarchy[requiredRole];
-
-    if (userRoleLevel < requiredRoleLevel) {
-      return (
-        <div className="text-center py-8">
-          <p>You don't have permission to access this page.</p>
-          <p>Required role: {requiredRole}</p>
-        </div>
-      );
-    }
-  }
-
-  return <>{children}</>;
-}

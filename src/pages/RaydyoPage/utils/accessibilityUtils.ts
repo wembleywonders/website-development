@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/pages/RaydyoPage/utils/accessibilityUtils.ts;
+// Stub — pending implementation
+export {};

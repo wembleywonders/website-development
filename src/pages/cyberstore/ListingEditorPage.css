@@ -1,0 +1,281 @@
+/**
+ * ListingEditorPage.css
+ * Wembley Wonders CIC
+ */
+
+.listing-editor {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  font-family: 'Georgia', serif;
+  color: var(--store-ink);
+}
+
+.listing-editor--loading,
+.listing-editor--error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  gap: 1rem;
+  color: var(--store-muted);
+}
+
+.listing-editor__spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--store-border);
+  border-top-color: var(--store-gold);
+  border-radius: 50%;
+  animation: store-spin 0.8s linear infinite;
+}
+
+.listing-editor__header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--store-border);
+}
+
+.listing-editor__breadcrumb {
+  font-size: 0.8125rem;
+  color: var(--store-muted);
+  margin-bottom: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.listing-editor__breadcrumb a { color: var(--store-gold); text-decoration: none; }
+.listing-editor__breadcrumb a:hover { text-decoration: underline; }
+
+.listing-editor__header-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.875rem;
+}
+
+.listing-editor__title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.save-status--saving { color: var(--store-muted); font-size: 0.8125rem; }
+.save-status--saved  { color: var(--store-green); font-size: 0.8125rem; }
+.save-status--error  { color: var(--store-red);   font-size: 0.8125rem; }
+
+.listing-provenance {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.4rem 0.875rem;
+  background: var(--store-warm);
+  border: 1px solid var(--store-border);
+  border-radius: 2rem;
+}
+
+.listing-provenance__icon  { color: var(--store-gold); font-size: 0.875rem; }
+.listing-provenance__label { font-size: 0.8125rem; font-weight: 700; color: var(--store-ink); }
+.listing-provenance__detail { font-size: 0.75rem; color: var(--store-muted); margin-left: 0.5rem; }
+
+.listing-editor__errors {
+  background: color-mix(in srgb, var(--store-red) 8%, white);
+  border: 1px solid color-mix(in srgb, var(--store-red) 30%, transparent);
+  border-radius: var(--store-radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--store-red);
+  font-size: 0.875rem;
+}
+
+.listing-editor__errors ul { margin: 0.5rem 0 0; padding-left: 1.25rem; }
+
+.listing-editor__body {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .listing-editor__body { grid-template-columns: 1fr; }
+}
+
+.listing-section { margin-bottom: 2rem; }
+
+.listing-section--card {
+  background: white;
+  border: 1px solid var(--store-border);
+  border-radius: var(--store-radius-lg);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.listing-section--publish {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.listing-section__title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  color: var(--store-ink);
+}
+
+.listing-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--store-ink);
+  margin-bottom: 0.5rem;
+}
+
+.listing-label__required { font-size: 0.75rem; color: var(--store-muted); font-weight: 400; font-style: italic; }
+.listing-label__hint { font-size: 0.8125rem; color: var(--store-muted); margin: -0.25rem 0 0.5rem; font-style: italic; }
+
+.listing-input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1.5px solid var(--store-border);
+  border-radius: var(--store-radius);
+  font-size: 0.9375rem;
+  font-family: 'Georgia', serif;
+  color: var(--store-ink);
+  background: white;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.listing-input:focus {
+  outline: none;
+  border-color: var(--store-gold);
+  box-shadow: 0 0 0 3px rgba(201, 150, 10, 0.12);
+}
+
+.listing-input--price { padding-left: 0.5rem; font-size: 1.25rem; font-weight: 700; width: 120px; }
+.listing-input--small { width: 120px; }
+
+.listing-textarea {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1.5px solid var(--store-border);
+  border-radius: var(--store-radius);
+  font-size: 0.9375rem;
+  font-family: 'Georgia', serif;
+  color: var(--store-ink);
+  background: white;
+  resize: vertical;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+
+.listing-textarea:focus {
+  outline: none;
+  border-color: var(--store-gold);
+  box-shadow: 0 0 0 3px rgba(201, 150, 10, 0.12);
+}
+
+.listing-char-count { font-size: 0.75rem; color: var(--store-muted); text-align: right; margin-top: 0.25rem; }
+.listing-field-error { font-size: 0.8125rem; color: var(--store-red); margin: 0.25rem 0 0; }
+
+.listing-tags-preview { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.5rem; }
+
+.listing-tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.625rem;
+  background: var(--store-warm);
+  border: 1px solid var(--store-border);
+  border-radius: 2rem;
+  color: var(--store-muted);
+}
+
+.listing-price-options { display: flex; gap: 1.5rem; margin-bottom: 1rem; }
+.listing-radio { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer; }
+.listing-price-input { display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.5rem; }
+.listing-price-input__symbol { font-size: 1.25rem; font-weight: 700; color: var(--store-muted); }
+.listing-pricing-hint { font-size: 0.8125rem; color: var(--store-muted); font-style: italic; margin: 0 0 1rem; line-height: 1.5; }
+
+.listing-split { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--store-border); }
+.listing-split__title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--store-muted); margin: 0 0 0.625rem; }
+.listing-split__rows { display: flex; flex-direction: column; gap: 0.375rem; }
+.listing-split__row { display: flex; justify-content: space-between; font-size: 0.875rem; }
+.listing-split__row--creator { font-weight: 700; color: var(--store-gold); }
+.listing-split__row--reserve { color: var(--store-green); }
+.listing-split__row--ops     { color: var(--store-muted); }
+.listing-split__note { font-size: 0.75rem; color: var(--store-muted); margin: 0.5rem 0 0; font-style: italic; }
+
+.listing-toggle { display: flex; align-items: flex-start; gap: 0.625rem; cursor: pointer; }
+.listing-toggle__label { font-size: 0.875rem; font-weight: 600; }
+.listing-toggle__sub { display: block; font-size: 0.8125rem; font-weight: 400; color: var(--store-muted); margin-top: 0.1rem; }
+.listing-edition-size { margin-top: 0.875rem; }
+
+.listing-publish-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--store-gold);
+  color: var(--store-ink);
+  border: none;
+  border-radius: var(--store-radius);
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(201, 150, 10, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.listing-publish-btn:hover:not(:disabled) {
+  background: var(--store-gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(201, 150, 10, 0.4);
+}
+
+.listing-publish-btn:disabled { opacity: 0.8; cursor: default; }
+
+.listing-publish-btn__spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(26, 23, 20, 0.25);
+  border-top-color: var(--store-ink);
+  border-radius: 50%;
+  animation: store-spin 0.7s linear infinite;
+}
+
+.listing-publish-note {
+  font-size: 0.8125rem;
+  color: var(--store-muted);
+  margin: 0;
+  text-align: center;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.listing-save-draft-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  color: var(--store-muted);
+  border: 1px solid var(--store-border);
+  border-radius: var(--store-radius);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.listing-save-draft-btn:hover { background: var(--store-warm); color: var(--store-ink); }

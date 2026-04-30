@@ -1,0 +1,366 @@
+/**
+ * AskMaya.css
+ * Wembley Wonders CIC
+ *
+ * Aesthetic: editorial warmth.
+ * The conversation space feels like a letters page, not a comments section.
+ * Maya's presence is marked — the ✦ glyph — but never domineering.
+ * The reader's contribution is given equal visual weight.
+ */
+
+:root {
+  --maya-gold:      #C9960A;
+  --maya-ink:       #1A1714;
+  --maya-cream:     #FAF7F2;
+  --maya-warm:      #F5F0E8;
+  --maya-border:    #E8E2D8;
+  --maya-muted:     #7A7264;
+  --maya-green:     #2A7A4B;
+  --maya-radius:    10px;
+  --maya-radius-sm: 6px;
+}
+
+/* ─── Container ────────────────────────────────────────────────────────────── */
+
+.ask-maya {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--maya-border);
+  font-family: 'Georgia', serif;
+  color: var(--maya-ink);
+}
+
+.ask-maya--loading {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.ask-maya__loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--maya-border);
+  border-top-color: var(--maya-gold);
+  border-radius: 50%;
+  animation: maya-spin 0.8s linear infinite;
+}
+
+@keyframes maya-spin { to { transform: rotate(360deg); } }
+
+/* ─── Header ───────────────────────────────────────────────────────────────── */
+
+.ask-maya__header {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 1.25rem;
+}
+
+.ask-maya__header-mark {
+  color: var(--maya-gold);
+  font-size: 0.875rem;
+}
+
+.ask-maya__header-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--maya-muted);
+  font-family: sans-serif;
+  flex: 1;
+}
+
+.ask-maya__collapse-btn {
+  background: none;
+  border: none;
+  color: var(--maya-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  line-height: 1;
+}
+
+.ask-maya__collapse-btn:hover { color: var(--maya-ink); }
+
+/* ─── Collapsed state ──────────────────────────────────────────────────────── */
+
+.ask-maya--collapsed .ask-maya__collapsed-question {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--maya-ink);
+  margin: 0 0 1.25rem;
+  font-style: italic;
+  max-width: 680px;
+}
+
+.ask-maya__expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: transparent;
+  border: 1.5px solid var(--maya-gold);
+  border-radius: var(--maya-radius-sm);
+  color: var(--maya-gold);
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-bottom: 1.5rem;
+}
+
+.ask-maya__expand-btn:hover {
+  background: var(--maya-gold);
+  color: var(--maya-ink);
+}
+
+/* ─── Thread ───────────────────────────────────────────────────────────────── */
+
+.ask-maya__thread {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+  margin-bottom: 1.5rem;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+/* ─── Bubbles ──────────────────────────────────────────────────────────────── */
+
+.ask-maya__bubble {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  max-width: 85%;
+}
+
+.ask-maya__bubble--maya {
+  align-self: flex-start;
+}
+
+.ask-maya__bubble--reader {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.ask-maya__bubble--opening .ask-maya__bubble-content {
+  background: var(--maya-warm);
+  border: 1.5px solid var(--maya-border);
+}
+
+.ask-maya__avatar {
+  width: 32px;
+  height: 32px;
+  background: var(--maya-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.ask-maya__avatar-mark {
+  color: var(--maya-ink);
+  font-size: 0.75rem;
+}
+
+.ask-maya__bubble-content {
+  background: white;
+  border: 1px solid var(--maya-border);
+  border-radius: var(--maya-radius);
+  padding: 0.875rem 1.125rem;
+  min-width: 120px;
+}
+
+.ask-maya__bubble-content--reader {
+  background: var(--maya-ink);
+  border-color: var(--maya-ink);
+}
+
+.ask-maya__bubble-content--reader .ask-maya__speaker {
+  color: rgba(255,255,255,0.6);
+}
+
+.ask-maya__bubble-content--reader .ask-maya__text {
+  color: white;
+}
+
+.ask-maya__speaker {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--maya-muted);
+  font-family: sans-serif;
+  margin-bottom: 0.375rem;
+}
+
+.ask-maya__text {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ─── Typing indicator ─────────────────────────────────────────────────────── */
+
+.ask-maya__bubble--typing {
+  align-items: center;
+}
+
+.ask-maya__typing {
+  background: white;
+  border: 1px solid var(--maya-border);
+  border-radius: var(--maya-radius);
+  padding: 0.875rem 1.125rem;
+  display: flex;
+  gap: 0.375rem;
+  align-items: center;
+}
+
+.ask-maya__typing span {
+  width: 6px;
+  height: 6px;
+  background: var(--maya-gold);
+  border-radius: 50%;
+  animation: maya-pulse 1.2s ease-in-out infinite;
+}
+
+.ask-maya__typing span:nth-child(2) { animation-delay: 0.2s; }
+.ask-maya__typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes maya-pulse {
+  0%, 60%, 100% { opacity: 0.3; transform: scale(1); }
+  30%            { opacity: 1;   transform: scale(1.2); }
+}
+
+/* ─── Archive connections ──────────────────────────────────────────────────── */
+
+.ask-maya__archive {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--maya-cream);
+  border-radius: var(--maya-radius-sm);
+  border: 1px solid var(--maya-border);
+}
+
+.ask-maya__archive-title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--maya-muted);
+  font-family: sans-serif;
+  margin: 0 0 0.625rem;
+}
+
+.ask-maya__archive-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.ask-maya__archive-item {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.ask-maya__archive-link {
+  color: var(--maya-gold);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.ask-maya__archive-link:hover { text-decoration: underline; }
+
+.ask-maya__archive-name {
+  font-weight: 600;
+  color: var(--maya-ink);
+}
+
+.ask-maya__archive-note {
+  color: var(--maya-muted);
+  font-style: italic;
+}
+
+/* ─── Input area ───────────────────────────────────────────────────────────── */
+
+.ask-maya__input-area {
+  border-top: 1px solid var(--maya-border);
+  padding-top: 1.25rem;
+}
+
+.ask-maya__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--maya-border);
+  border-radius: var(--maya-radius-sm);
+  font-size: 0.9375rem;
+  font-family: 'Georgia', serif;
+  color: var(--maya-ink);
+  background: white;
+  resize: vertical;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  line-height: 1.6;
+  min-height: 80px;
+}
+
+.ask-maya__input:focus {
+  outline: none;
+  border-color: var(--maya-gold);
+  box-shadow: 0 0 0 3px rgba(201, 150, 10, 0.1);
+}
+
+.ask-maya__input:disabled {
+  background: var(--maya-warm);
+  cursor: not-allowed;
+}
+
+.ask-maya__input-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 0.625rem;
+}
+
+.ask-maya__input-note {
+  font-size: 0.75rem;
+  color: var(--maya-muted);
+  margin: 0;
+  font-style: italic;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.ask-maya__send-btn {
+  padding: 0.5rem 1.25rem;
+  background: var(--maya-gold);
+  color: var(--maya-ink);
+  border: none;
+  border-radius: var(--maya-radius-sm);
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ask-maya__send-btn:hover:not(:disabled) {
+  background: #F0C84A;
+}
+
+.ask-maya__send-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

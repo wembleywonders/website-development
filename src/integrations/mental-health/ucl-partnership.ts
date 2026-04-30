@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/integrations/mental-health/ucl-partnership.ts;
+// Stub — pending implementation
+export {};

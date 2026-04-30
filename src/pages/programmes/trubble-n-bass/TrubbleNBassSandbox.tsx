@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PageTemplate from '../../../components/PageTemplate';
 import TrubbleNBassBuilder from '../../../components/sandboxes/trubble-n-bass/TrubbleNBassBuilder';
-import TrubbleNBassPro from '../../../components/sandboxes/trubble-n-bass/TrubbleNBassPro';
 import SampleExplorer from '../../../components/sandboxes/trubble-n-bass/SampleExplorer';
 import SongwritingWorkshop from '../../../components/sandboxes/trubble-n-bass/SongwritingWorkshop';
 import styles from './TrubbleNBassSandbox.module.css';
@@ -15,10 +14,6 @@ type ActivityType = 'beat-maker' | 'songwriting' | 'sample-explorer' | null;
 const TrubbleNBassSandbox: React.FC = () => {
   const [activeActivity, setActiveActivity] = useState<ActivityType>(null);
   const location = useLocation();
-
-const TrubbleNBassSandbox = () => {
-  return <TrubbleNBassPro />;
-};
 
   // Auto-launch from URL
   useEffect(() => {
@@ -132,6 +127,7 @@ const TrubbleNBassSandbox = () => {
                 <li>✍️ <strong>Lyric Lab</strong> - Rhyme finder, prompts, syllable counter</li>
               </ul>
               <button 
+                type="button"
                 className={styles.toolBtn}
                 onClick={() => handleStartActivity('songwriting')}
               >
@@ -159,6 +155,7 @@ const TrubbleNBassSandbox = () => {
                 <li>📻 Rayd-yo broadcast templates</li>
               </ul>
               <button 
+                type="button"
                 className={styles.toolBtn}
                 onClick={() => handleStartActivity('beat-maker')}
               >
@@ -183,6 +180,7 @@ const TrubbleNBassSandbox = () => {
                 <li>📻 Rayd-yo jingles & soundbeds</li>
               </ul>
               <button 
+                type="button"
                 className={styles.toolBtn}
                 onClick={() => handleStartActivity('sample-explorer')}
               >
@@ -274,13 +272,13 @@ const TrubbleNBassSandbox = () => {
         <section className={styles.quickAccess}>
           <h2>Jump Straight In</h2>
           <div className={styles.quickGrid}>
-            <button onClick={() => handleStartActivity('songwriting')}>
+            <button type="button" onClick={() => handleStartActivity('songwriting')}>
               🎤 Write a Song
             </button>
-            <button onClick={() => handleStartActivity('beat-maker')}>
+            <button type="button" onClick={() => handleStartActivity('beat-maker')}>
               🥁 Make a Beat
             </button>
-            <button onClick={() => handleStartActivity('sample-explorer')}>
+            <button type="button" onClick={() => handleStartActivity('sample-explorer')}>
               🎧 Find Sounds
             </button>
           </div>
@@ -295,6 +293,7 @@ const TrubbleNBassSandbox = () => {
           </p>
           <div className={styles.ctaButtons}>
             <button
+              type="button"
               className={styles.ctaPrimary}
               onClick={() => handleStartActivity('songwriting')}
             >

@@ -1,0 +1,441 @@
+/**
+ * CultivationPardnerTab.css
+ * Wembley Wonders CIC
+ *
+ * Aesthetic: warm editorial — not clinical, not charity-poster.
+ * Consistent with Playfair Display typographic system.
+ * Inherits platform CSS variables where possible.
+ */
+
+/* ─── Pardner-specific tokens ──────────────────────────────────────────────── */
+
+:root {
+  --pardner-gold:       #C9960A;
+  --pardner-amber:      #D4740A;
+  --pardner-green:      #2A7A4B;
+  --pardner-muted:      #7A7264;
+  --pardner-cream:      #FAF7F2;
+  --pardner-ink:        #1A1714;
+  --pardner-border:     #E8E2D8;
+  --pardner-warm-bg:    #F5F0E8;
+  --pardner-radius:     6px;
+  --pardner-radius-lg:  12px;
+}
+
+/* ─── Tab wrapper ──────────────────────────────────────────────────────────── */
+
+.pardner-tab {
+  max-width: 680px;
+  padding: 2rem 0;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: var(--pardner-ink);
+}
+
+/* ─── Philosophy block ─────────────────────────────────────────────────────── */
+
+.pardner-philosophy {
+  background: var(--pardner-warm-bg);
+  border-left: 3px solid var(--pardner-gold);
+  border-radius: 0 var(--pardner-radius) var(--pardner-radius) 0;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.pardner-philosophy__mark {
+  font-size: 1.25rem;
+  color: var(--pardner-gold);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.pardner-philosophy__text {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin: 0 0 0.5rem;
+  color: var(--pardner-ink);
+}
+
+.pardner-philosophy__sub {
+  font-size: 0.8125rem;
+  color: var(--pardner-muted);
+  margin: 0;
+  font-style: italic;
+}
+
+/* ─── Sections ─────────────────────────────────────────────────────────────── */
+
+.pardner-section {
+  margin-bottom: 2.25rem;
+}
+
+.pardner-section__title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pardner-muted);
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--pardner-border);
+}
+
+.pardner-section__intro {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--pardner-muted);
+  margin: 0 0 1.25rem;
+}
+
+/* ─── Status badge ─────────────────────────────────────────────────────────── */
+
+.pardner-status-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pardner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.875rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1.5px solid var(--badge-colour, var(--pardner-muted));
+  color: var(--badge-colour, var(--pardner-muted));
+  background: transparent;
+}
+
+.pardner-badge--positive {
+  background: color-mix(in srgb, var(--badge-colour) 10%, transparent);
+}
+
+.pardner-badge--warm {
+  background: color-mix(in srgb, var(--badge-colour) 8%, transparent);
+}
+
+.pardner-badge__icon {
+  font-size: 0.75rem;
+}
+
+.pardner-quarters-pill {
+  font-size: 0.8125rem;
+  color: var(--pardner-muted);
+  background: var(--pardner-warm-bg);
+  padding: 0.3rem 0.75rem;
+  border-radius: 2rem;
+  border: 1px solid var(--pardner-border);
+}
+
+/* ─── Alert boxes ──────────────────────────────────────────────────────────── */
+
+.pardner-alert {
+  margin-top: 1rem;
+  padding: 0.875rem 1.125rem;
+  border-radius: var(--pardner-radius);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.pardner-alert strong {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.pardner-alert--approved {
+  background: color-mix(in srgb, var(--pardner-green) 8%, white);
+  border: 1px solid color-mix(in srgb, var(--pardner-green) 30%, transparent);
+  color: var(--pardner-green);
+}
+
+.pardner-alert--graduated {
+  background: color-mix(in srgb, var(--pardner-green) 6%, white);
+  border: 1px solid color-mix(in srgb, var(--pardner-green) 20%, transparent);
+  color: var(--pardner-green);
+}
+
+.pardner-alert--review {
+  background: color-mix(in srgb, var(--pardner-amber) 8%, white);
+  border: 1px solid color-mix(in srgb, var(--pardner-amber) 30%, transparent);
+  color: var(--pardner-amber);
+}
+
+.pardner-alert--info {
+  background: var(--pardner-warm-bg);
+  border: 1px solid var(--pardner-border);
+  color: var(--pardner-ink);
+}
+
+.pardner-alert--nudge {
+  background: color-mix(in srgb, var(--pardner-gold) 6%, white);
+  border: 1px solid color-mix(in srgb, var(--pardner-gold) 20%, transparent);
+  color: var(--pardner-amber);
+}
+
+/* ─── Eligibility meters ───────────────────────────────────────────────────── */
+
+.pardner-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pardner-checklist__note {
+  font-size: 0.8125rem;
+  color: var(--pardner-green);
+  margin: -0.75rem 0 0;
+  font-style: italic;
+}
+
+.pardner-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pardner-meter__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.pardner-meter__label {
+  font-size: 0.875rem;
+  color: var(--pardner-ink);
+}
+
+.pardner-meter__value {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.pardner-meter__value.met   { color: var(--pardner-green); }
+.pardner-meter__value.unmet { color: var(--pardner-amber); }
+
+.pardner-meter__track {
+  height: 5px;
+  background: var(--pardner-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.pardner-meter__fill {
+  height: 100%;
+  background: var(--pardner-amber);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.pardner-meter__fill--met {
+  background: var(--pardner-green);
+}
+
+.pardner-quarters-note {
+  font-size: 0.8125rem;
+  color: var(--pardner-muted);
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* ─── Above floor state ────────────────────────────────────────────────────── */
+
+.pardner-above-floor {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--pardner-cream);
+  border-radius: var(--pardner-radius-lg);
+  border: 1px solid var(--pardner-border);
+}
+
+.pardner-above-floor__icon {
+  font-size: 1.5rem;
+  color: var(--pardner-green);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pardner-above-floor__headline {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.pardner-above-floor__sub {
+  font-size: 0.875rem;
+  color: var(--pardner-muted);
+  margin: 0;
+}
+
+/* ─── Quarter history ──────────────────────────────────────────────────────── */
+
+.pardner-history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pardner-history__entry {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  align-items: start;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  border-radius: var(--pardner-radius);
+  border: 1px solid var(--pardner-border);
+  background: white;
+}
+
+.pardner-history__entry--approved {
+  border-left: 3px solid var(--pardner-green);
+}
+
+.pardner-history__entry--declined {
+  border-left: 3px solid var(--pardner-muted);
+  opacity: 0.75;
+}
+
+.pardner-history__entry--graduated {
+  border-left: 3px solid var(--pardner-gold);
+}
+
+.pardner-history__quarter {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--pardner-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-top: 0.1rem;
+}
+
+.pardner-history__status {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  display: block;
+}
+
+.pardner-history__amount {
+  font-size: 0.8125rem;
+  color: var(--pardner-green);
+  display: block;
+  margin-top: 0.2rem;
+}
+
+.pardner-history__notes {
+  font-size: 0.8125rem;
+  color: var(--pardner-muted);
+  margin: 0.4rem 0 0;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.pardner-history__score {
+  font-size: 0.75rem;
+  color: var(--pardner-muted);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.pardner-empty {
+  font-size: 0.875rem;
+  color: var(--pardner-muted);
+  font-style: italic;
+}
+
+/* ─── Reserve transparency ─────────────────────────────────────────────────── */
+
+.pardner-reserve {
+  background: var(--pardner-warm-bg);
+  border-radius: var(--pardner-radius-lg);
+  padding: 1.25rem 1.5rem;
+}
+
+.pardner-reserve__title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+}
+
+.pardner-reserve__note {
+  font-size: 0.8125rem;
+  color: var(--pardner-muted);
+  margin: 0 0 1.25rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.pardner-reserve__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .pardner-reserve__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pardner-reserve__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.pardner-reserve__stat-label {
+  font-size: 0.75rem;
+  color: var(--pardner-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pardner-reserve__stat-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  color: var(--pardner-ink);
+}
+
+.pardner-reserve__stat-value--healthy    { color: var(--pardner-green); }
+.pardner-reserve__stat-value--strained   { color: var(--pardner-amber); }
+.pardner-reserve__stat-value--committed  { color: var(--pardner-muted); }
+
+.pardner-reserve__warning {
+  margin-top: 1rem;
+  font-size: 0.8125rem;
+  color: var(--pardner-amber);
+  line-height: 1.5;
+}
+
+/* ─── Loading state ────────────────────────────────────────────────────────── */
+
+.pardner-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem;
+  color: var(--pardner-muted);
+  font-size: 0.875rem;
+}
+
+.pardner-loading__spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--pardner-border);
+  border-top-color: var(--pardner-gold);
+  border-radius: 50%;
+  animation: pardner-spin 0.8s linear infinite;
+}
+
+@keyframes pardner-spin {
+  to { transform: rotate(360deg); }
+}

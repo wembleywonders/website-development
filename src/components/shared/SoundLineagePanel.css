@@ -1,0 +1,473 @@
+/*
+ * SoundLineagePanel.css
+ * Wembley Wonders CIC © 2024-2026
+ *
+ * Aesthetic: London Transport map meets dark studio.
+ * Compact, expandable, never interrupts the music-making.
+ * Tube line colours are the visual language throughout.
+ */
+
+/* ============================================
+   BASE
+   ============================================ */
+
+.slp {
+  --slp-bg: #1a1a1a;
+  --slp-bg-raised: #242424;
+  --slp-bg-hover: #2e2e2e;
+  --slp-border: #333;
+  --slp-text: #e0e0e0;
+  --slp-text-muted: #888;
+  --slp-text-dim: #555;
+  --slp-accent: #c8a84b;       /* warm gold — heritage tone */
+  --slp-quote-bg: #1e1a10;
+  --slp-radius: 8px;
+  --slp-font-body: 'Georgia', 'Times New Roman', serif;
+  --slp-font-ui: system-ui, -apple-system, sans-serif;
+  --slp-transition: 200ms ease;
+
+  background: var(--slp-bg);
+  border: 1px solid var(--slp-border);
+  border-radius: var(--slp-radius);
+  overflow: hidden;
+  margin-top: 12px;
+  font-family: var(--slp-font-ui);
+}
+
+/* ============================================
+   TRIGGER BUTTON
+   ============================================ */
+
+.slp__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--slp-text);
+  text-align: left;
+  transition: background var(--slp-transition);
+}
+
+.slp__trigger:hover {
+  background: var(--slp-bg-hover);
+}
+
+.slp__trigger-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.slp__trigger-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.slp__trigger-text strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slp-accent);
+  letter-spacing: 0.02em;
+}
+
+.slp__trigger-text em {
+  font-size: 11px;
+  font-style: normal;
+  color: var(--slp-text-muted);
+  line-height: 1.3;
+}
+
+.slp__chevron {
+  font-size: 14px;
+  color: var(--slp-text-dim);
+  transition: transform var(--slp-transition);
+  flex-shrink: 0;
+}
+
+.slp__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* ============================================
+   BODY (expanded)
+   ============================================ */
+
+.slp__body {
+  padding: 0 12px 14px;
+  border-top: 1px solid var(--slp-border);
+  animation: slp-reveal 200ms ease forwards;
+}
+
+@keyframes slp-reveal {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   TIMELINE — KIT MODE
+   ============================================ */
+
+.slp__timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 14px 0 10px;
+  position: relative;
+}
+
+.slp__stop {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  row-gap: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--slp-text);
+  padding: 4px 0;
+  position: relative;
+  transition: background var(--slp-transition);
+  border-radius: 4px;
+}
+
+.slp__stop:hover {
+  background: var(--slp-bg-hover);
+}
+
+.slp__stop--active {
+  background: var(--slp-bg-raised);
+}
+
+/* Vertical connector line between stops */
+.slp__connector {
+  position: absolute;
+  left: 8px;
+  top: 20px;
+  width: 3px;
+  height: calc(100% + 8px);
+  opacity: 0.6;
+  border-radius: 2px;
+  z-index: 0;
+}
+
+/* Station dot */
+.slp__dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  z-index: 1;
+  border: 2px solid var(--slp-bg);
+}
+
+.slp__dot-icon {
+  font-size: 8px;
+  color: white;
+  opacity: 0;
+}
+
+.slp__stop-label {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.slp__year {
+  font-size: 10px;
+  color: var(--slp-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.slp__genre {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slp-text);
+}
+
+.slp__station {
+  display: inline-block;
+  font-size: 9px;
+  padding: 1px 5px;
+  border: 1px solid;
+  border-radius: 3px;
+  color: var(--slp-text-muted);
+  margin-top: 2px;
+  width: fit-content;
+  font-family: var(--slp-font-ui);
+  letter-spacing: 0.03em;
+}
+
+/* Expanded stop detail */
+.slp__stop-detail {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 6px 0 8px;
+  animation: slp-reveal 150ms ease forwards;
+}
+
+.slp__stop-location {
+  font-size: 11px;
+  color: var(--slp-accent);
+  margin: 0 0 4px;
+}
+
+.slp__stop-note {
+  font-size: 11px;
+  color: var(--slp-text-muted);
+  line-height: 1.5;
+  margin: 0;
+  font-family: var(--slp-font-body);
+}
+
+/* ============================================
+   QUOTE
+   ============================================ */
+
+.slp__quote {
+  background: var(--slp-quote-bg);
+  border-left: 3px solid var(--slp-accent);
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 0 4px 4px 0;
+}
+
+.slp__quote p {
+  font-size: 12px;
+  font-family: var(--slp-font-body);
+  font-style: italic;
+  color: var(--slp-text);
+  margin: 0 0 4px;
+  line-height: 1.5;
+}
+
+.slp__quote cite {
+  font-size: 10px;
+  color: var(--slp-accent);
+  font-style: normal;
+}
+
+/* ============================================
+   FOOTER — casters prompt
+   ============================================ */
+
+.slp__footer {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 8px;
+  background: var(--slp-bg-raised);
+  border-radius: 4px;
+}
+
+.slp__footer-label {
+  font-size: 10px;
+  color: var(--slp-accent);
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.slp__footer-text {
+  font-size: 10px;
+  color: var(--slp-text-muted);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ============================================
+   SOUND MODE
+   ============================================ */
+
+.slp__sound-meta {
+  padding: 10px 0 6px;
+}
+
+.slp__badge {
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px 8px;
+  background: var(--slp-bg-raised);
+  border: 1px solid var(--slp-border);
+  border-radius: 20px;
+  color: var(--slp-accent);
+  letter-spacing: 0.04em;
+}
+
+.slp__sound-note {
+  font-size: 12px;
+  font-family: var(--slp-font-body);
+  color: var(--slp-text-muted);
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+
+/* ============================================
+   JOURNEY MODE — mode select screen
+   ============================================ */
+
+.slp--journey {
+  background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+  border-color: #2a2a2a;
+  padding: 20px;
+  margin: 16px 0;
+}
+
+.slp__journey-header {
+  margin-bottom: 20px;
+}
+
+.slp__journey-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--slp-accent);
+  margin: 0 0 4px;
+  letter-spacing: 0.02em;
+}
+
+.slp__journey-subtitle {
+  font-size: 12px;
+  color: var(--slp-text-muted);
+  margin: 0;
+  font-family: var(--slp-font-body);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.slp__journey-map {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 10px;
+}
+
+.slp__journey-stop {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  column-gap: 14px;
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.slp__journey-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--slp-bg);
+  flex-shrink: 0;
+  margin-top: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.slp__journey-line {
+  position: absolute;
+  left: 5px;
+  top: 16px;
+  width: 3px;
+  height: calc(100% - 8px);
+  opacity: 0.5;
+  border-radius: 2px;
+}
+
+.slp__journey-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.slp__journey-year {
+  font-size: 10px;
+  color: var(--slp-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.slp__journey-genre {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slp-text);
+  line-height: 1.3;
+}
+
+.slp__journey-loc {
+  font-size: 10px;
+  color: var(--slp-text-dim);
+  margin-top: 1px;
+}
+
+.slp__journey-coda {
+  margin: 16px 0 0;
+  font-size: 12px;
+  font-family: var(--slp-font-body);
+  font-style: italic;
+  color: var(--slp-accent);
+  text-align: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--slp-border);
+}
+
+/* ============================================
+   COMPACT VARIANT
+   ============================================ */
+
+.slp--compact .slp__trigger {
+  padding: 8px 10px;
+}
+
+.slp--compact .slp__trigger-text strong {
+  font-size: 11px;
+}
+
+.slp--compact .slp__trigger-text em {
+  display: none;
+}
+
+/* ============================================
+   LIGHT MODE OVERRIDE
+   (if platform uses light theme in some contexts)
+   ============================================ */
+
+@media (prefers-color-scheme: light) {
+  .slp {
+    --slp-bg: #f5f3ee;
+    --slp-bg-raised: #eeebe3;
+    --slp-bg-hover: #e8e4da;
+    --slp-border: #d4cfc4;
+    --slp-text: #1a1a1a;
+    --slp-text-muted: #555;
+    --slp-text-dim: #999;
+    --slp-quote-bg: #faf7ef;
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 480px) {
+  .slp--journey {
+    padding: 14px;
+  }
+
+  .slp__journey-title {
+    font-size: 14px;
+  }
+
+  .slp__journey-genre {
+    font-size: 12px;
+  }
+}

@@ -425,53 +425,6 @@ export const useQuickActions = (projectId: string) => {
         setMayaPersonality
     };
 };
-};
-
-/**
- * Initialize all stores on app start
- * (Consolidated implementation exists later in this file; use that single exported `initializeStores`.)
- */
-
-/**
- * Global store subscriptions for side effects
- * Call this once in your app initialization
- */
-// Duplicate setupStoreSubscriptions removed here; see the consolidated `export const setupStoreSubscriptions = () => { ... }` implementation later in this file.
-
-/**
- * Development helper - log all store states
- *
- * Consolidated implementation exists later in this file; this earlier duplicate was removed
- * to avoid redeclaration of `logStoreStates`.
- */
-
-// Duplicate exports removed here; consolidated `stores` and `StoreStates` are defined later in this file.
-  const rawSuggestions = useQuickActionStore(state => state.suggestions) as QuickAction[];
-  const suggestions: QuickActionSuggestion[] = rawSuggestions.map(s => {
-    const { id, content, title, ...rest } = s as any;
-    const finalContent: string = content ?? title ?? '';
-    return {
-      ...rest,
-      id: String(id),
-      content: finalContent
-    } as QuickActionSuggestion;
-  });
-  const loadQuickActions = useQuickActionStore(state => state.loadQuickActions);
-  const completeAction = useQuickActionStore(state => state.completeAction);
-  const dismissAction = useQuickActionStore(state => state.dismissAction);
-  const mayaPersonality = useQuickActionStore(state => state.mayaPersonality);
-  const setMayaPersonality = useQuickActionStore(state => state.setMayaPersonality);
-  
-  return {
-    actions,
-    suggestions,
-    loadQuickActions,
-    completeAction,
-    dismissAction,
-    mayaPersonality,
-    setMayaPersonality
-  };
-};
 
 /**
  * Initialize all stores on app start

@@ -21,8 +21,10 @@ export type Programme =
   | 'pageturners'
   | 'raydyo'
   | 'joystick'
-  | 'scrap-cat'      // NEW: Device/bike repair programme (Neville)
-  | 'money-reset';   // NEW: Financial bootcamp (Solomon)
+  | 'scrap-cat'      // Device/bike repair programme (Neville)
+  | 'money-reset'    // Financial bootcamp (Solomon)
+  | 'bright-sparks'  // Discovery & onboarding (Maya)
+  | 'roots';         // Body sovereignty & heritage (Aya)
 
 export type ROVGuide = 
   | 'ROV-T'   // Tech guide (Neville)

@@ -5,345 +5,258 @@
  * All rights reserved.
  */
 
-/**
- * Trubble n Bass Sandbox - Music Production Space
- * 
- * A creative sandbox where community members learn music production,
- * from beats to tracks to releases.
- * 
- * Pathways to income:
- * - Beat sales and licensing
- * - Production services for artists
- * - Mixing and mastering services
- * - Music for media (games, videos, ads)
- */
-
-import React, { useState, useEffect } from 'react';
-import {
-  MayaCompanion,
-  MayaWelcome,
-  MayaEncouragement,
-  MayaCommunityMirror,
-  MayaGatekeeperBypass,
-  MayaIgnition,
-  MayaPush,
-  MayaPathwayReminder,
-  MayaSuccessStory,
-  useMayaStore,
-  useMayaTracking,
-} from '../../../maya';
+import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import ConceptRoom, { ConceptRoomState } from '../../../components/sandboxes/trubble-n-bass/rooms/concept/ConceptRoom';
+import Keyboard80 from '../../../components/sandboxes/trubble-n-bass/rooms/production/Keyboard80';
+import MayaMusicToolbar from '../../../components/sandboxes/trubble-n-bass/maya-toolbar/MayaMusicToolbar';
+import { MayaWelcome, useMayaStore } from '../../../maya';
 import './sandbox.css';
 
-// Music genre interests
-const MUSIC_GENRES = [
-  { id: 'uk-drill', label: 'UK Drill', icon: '🔥', description: 'Dark beats, sliding bass' },
-  { id: 'afrobeats', label: 'Afrobeats', icon: '🌍', description: 'Rhythms from the continent' },
-  { id: 'grime', label: 'Grime', icon: '⚡', description: 'Raw UK energy' },
-  { id: 'dancehall', label: 'Dancehall/Reggae', icon: '🇯🇲', description: 'Caribbean vibes' },
-  { id: 'rnb', label: 'R&B/Soul', icon: '💜', description: 'Smooth and soulful' },
-  { id: 'house', label: 'House/Garage', icon: '🎧', description: 'Four to the floor' },
+type SandboxStage = 'concept' | 'production';
+
+type RoomState = 'locked' | 'current' | 'complete';
+
+const BRING_ITEMS = [
+  { icon: '♩', input: 'A rhythm you tap on the desk', outcome: 'Becomes your beat — BPM locked, 16-step pattern ready' },
+  { icon: '♪', input: 'A melody you hum or sing', outcome: 'Caught by the mic, played back in your chosen scale' },
+  { icon: '✦', input: 'A line, a title, a feeling in words', outcome: 'The rhythm of your words becomes the musical rhythm' },
+  { icon: '◈', input: 'A tradition you grew up hearing', outcome: 'Nine cultural feels — Afrobeats to Gospel to Grime' },
+  { icon: '♫', input: 'Notes you find on a keyboard', outcome: 'Scale-locked — every key you press sounds right' },
+  { icon: '◉', input: 'Nothing but a feeling', outcome: 'Describe it. Maya will suggest where to start' },
 ];
 
-// Production skills to develop
-const PRODUCTION_SKILLS = [
-  { id: 'beatmaking', label: 'Beatmaking', description: 'Creating the foundation' },
-  { id: 'sampling', label: 'Sampling & Chopping', description: 'Finding and flipping sounds' },
-  { id: 'mixing', label: 'Mixing', description: 'Balancing the elements' },
-  { id: 'mastering', label: 'Mastering', description: 'Final polish for release' },
-  { id: 'sound-design', label: 'Sound Design', description: 'Creating unique sounds' },
-  { id: 'arrangement', label: 'Arrangement', description: 'Structuring the track' },
-];
-
-// Income pathways
-const MUSIC_PATHWAYS = [
-  { 
-    id: 'beat-sales', 
-    label: 'Beat Sales & Licensing',
-    description: 'Sell beats to artists through the Cyberstore',
-    skills: ['Beatmaking', 'Marketing', 'Licensing knowledge'],
-    earningPotential: '£25-500/beat'
-  },
-  { 
-    id: 'production-services', 
-    label: 'Production Services',
-    description: 'Produce tracks for other artists',
-    skills: ['Full production', 'Client communication', 'Arrangement'],
-    earningPotential: '£100-1000/track'
-  },
-  { 
-    id: 'mixing-mastering', 
-    label: 'Mixing & Mastering',
-    description: 'Polish tracks for release quality',
-    skills: ['Technical mixing', 'Mastering', 'Critical listening'],
-    earningPotential: '£30-150/track'
-  },
-  { 
-    id: 'sync-licensing', 
-    label: 'Sync & Media',
-    description: 'Create music for games, videos, and ads',
-    skills: ['Versatility', 'Brief interpretation', 'Quick turnaround'],
-    earningPotential: '£50-2000/placement'
-  },
+const DESTINATION_ITEMS = [
+  { icon: '🎵', line: 'A complete track — your name on it, your sound in it' },
+  { icon: '💰', line: '55% of every sale. Yours. Directly. Always.' },
+  { icon: '🛒', line: 'Listed on the Wembley Wonders Cyberstore — your music as a product' },
+  { icon: '📻', line: 'Broadcast on Rayd-yo — community radio, Brent\'s own station' },
+  { icon: '📜', line: 'Provenance recorded — your name attached to what you made' },
+  { icon: '🎓', line: 'ILP milestone earned — evidence of creative and commercial skill' },
 ];
 
 const TrubbleNBassSandbox: React.FC = () => {
-  const [step, setStep] = useState(1);
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-  const [selectedPathways, setSelectedPathways] = useState<string[]>([]);
-  const [projectIdea, setProjectIdea] = useState('');
-  const [showMayaCommunity, setShowMayaCommunity] = useState(false);
-  
-  const { trackAction, trackProjectNamed } = useMayaTracking();
-  const startSession = useMayaStore((s) => s.startSession);
+  const [searchParams] = useSearchParams();
+  const [stage, setStage] = useState<SandboxStage>(
+    (searchParams.get('room') as SandboxStage) || 'concept'
+  );
+  const [conceptState, setConceptState] = useState<ConceptRoomState | null>(null);
+  const [conceptComplete, setConceptComplete] = useState(false);
+  const [productionComplete, setProductionComplete] = useState(false);
+  const [advancedMode, setAdvancedMode] = useState(false);
+  const { trackEvent } = useMayaStore();
 
-  useEffect(() => {
-    startSession();
-    const timer = setTimeout(() => setShowMayaCommunity(true), 2000);
-    return () => clearTimeout(timer);
-  }, [startSession]);
+  const handleConceptReady = (state: ConceptRoomState) => {
+    setConceptState(state);
+    setConceptComplete(true);
+    setStage('production');
+    trackEvent?.('tnb_concept_complete', {
+      bpm: state.rhythm?.bpm,
+      style: state.style?.id,
+    });
+  };
 
-  const handleGenreSelect = (genreId: string) => {
-    trackAction('tool_use');
-    setSelectedGenres(prev => 
-      prev.includes(genreId) 
-        ? prev.filter(g => g !== genreId)
-        : [...prev, genreId]
+  // Room state logic
+  const getRoomState = (room: SandboxStage): RoomState => {
+    if (room === 'concept') {
+      if (conceptComplete) return 'complete';
+      return stage === 'concept' ? 'current' : 'locked';
+    }
+    if (room === 'production') {
+      if (!conceptComplete) return 'locked';
+      if (productionComplete) return 'complete';
+      return stage === 'production' ? 'current' : 'locked';
+    }
+    return 'locked';
+  };
+
+  const advancedReady = conceptComplete && productionComplete;
+
+  const ProStudio = advancedMode
+    ? React.lazy(() => import('../../../components/sandboxes/trubble-n-bass/TrubbleNBassPro.jsx' as any))
+    : null;
+
+  if (advancedMode && ProStudio) {
+    return (
+      <div className="tnb-sandbox">
+        <div className="tnb-sandbox__advanced-bar">
+          <span className="tnb-sandbox__advanced-label">Advanced Mode — Pro Studio</span>
+          <button className="tnb-sandbox__back-btn" onClick={() => setAdvancedMode(false)}>
+            ← Back
+          </button>
+        </div>
+        <React.Suspense fallback={<div className="tnb-sandbox__loading">Loading studio...</div>}>
+          <ProStudio />
+        </React.Suspense>
+      </div>
     );
-  };
+  }
 
-  const handleSkillSelect = (skillId: string) => {
-    trackAction('tool_use');
-    setSelectedSkills(prev => 
-      prev.includes(skillId)
-        ? prev.filter(s => s !== skillId)
-        : [...prev, skillId]
-    );
-  };
-
-  const handlePathwaySelect = (pathwayId: string) => {
-    trackAction('direction_action');
-    setSelectedPathways(prev => 
-      prev.includes(pathwayId)
-        ? prev.filter(p => p !== pathwayId)
-        : [...prev, pathwayId]
-    );
-  };
-
-  const handleGeneratePlan = () => {
-    trackProjectNamed();
-    setStep(4);
-  };
+  const rooms: { id: SandboxStage; label: string }[] = [
+    { id: 'concept', label: 'Concept' },
+    { id: 'production', label: 'Production' },
+  ];
 
   return (
-    <div className="trubblenbass-sandbox">
-      <MayaCompanion />
-      
-      <header className="sandbox-header">
-        <h1>🎵 Trubble n Bass</h1>
-        <p className="sandbox-subtitle">Your sound. Your vision. Your studio.</p>
-      </header>
+    <div className="tnb-sandbox">
 
-      {step === 1 && (
-        <section className="sandbox-step">
-          <div className="maya-welcome-container">
-            <MayaWelcome sandboxId="trubble-n-bass" />
-          </div>
-          
-          <div className="maya-bypass-container">
-            <MayaGatekeeperBypass sandboxId="trubble-n-bass" />
-          </div>
+      {/* Room navigation — red/amber/green */}
+      <div className="tnb-sandbox__nav">
+        <div className="tnb-sandbox__nav-rooms">
+          {rooms.map((room, i) => {
+            const state = getRoomState(room.id);
+            const isActive = stage === room.id;
+            const canClick = state !== 'locked';
+            const prevComplete = i === 0 || getRoomState(rooms[i-1].id) === 'complete';
 
-          <h2>What sounds move you?</h2>
-          <p className="step-description">Select the genres you want to produce</p>
+            return (
+              <React.Fragment key={room.id}>
+                <button
+                  className={[
+                    'tnb-sandbox__nav-room',
+                    `tnb-sandbox__nav-room--${state}`,
+                    isActive ? 'tnb-sandbox__nav-room--active' : '',
+                  ].filter(Boolean).join(' ')}
+                  onClick={() => canClick && setStage(room.id)}
+                  disabled={!canClick}
+                  title={state === 'locked' ? 'Complete the previous room first' : ''}
+                >
+                  <span className="tnb-sandbox__nav-dot" />
+                  <span className="tnb-sandbox__nav-label">{i + 1}. {room.label}</span>
+                  {state === 'complete' && <span className="tnb-sandbox__nav-check">✓</span>}
+                </button>
+                {/* Progression arrow between rooms */}
+                {i < rooms.length - 1 && (
+                  <span className={`tnb-sandbox__nav-arrow${prevComplete ? ' tnb-sandbox__nav-arrow--lit' : ''}`}>
+                    →
+                  </span>
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
 
-          <div className="genres-grid">
-            {MUSIC_GENRES.map(genre => (
-              <button
-                key={genre.id}
-                className={`genre-card ${selectedGenres.includes(genre.id) ? 'selected' : ''}`}
-                onClick={() => handleGenreSelect(genre.id)}
-              >
-                <span className="genre-icon">{genre.icon}</span>
-                <span className="genre-label">{genre.label}</span>
-                <span className="genre-description">{genre.description}</span>
-              </button>
-            ))}
-          </div>
+        {/* Advanced mode — only amber when both rooms complete */}
+        <button
+          className={[
+            'tnb-sandbox__advanced-link',
+            advancedReady ? 'tnb-sandbox__advanced-link--ready' : '',
+          ].filter(Boolean).join(' ')}
+          onClick={() => advancedReady && setAdvancedMode(true)}
+          disabled={!advancedReady}
+          title={advancedReady ? 'Open the full pro studio' : 'Complete Concept and Production rooms first'}
+        >
+          {advancedReady ? 'Advanced mode →' : 'Advanced mode'}
+        </button>
+      </div>
 
-          {selectedGenres.length > 0 && (
-            <button className="next-button" onClick={() => setStep(2)}>
-              Choose Your Skills →
-            </button>
-          )}
-        </section>
-      )}
-
-      {step === 2 && (
-        <section className="sandbox-step">
-          <h2>What skills do you want to develop?</h2>
-          <p className="step-description">Pick the areas you want to focus on</p>
-
-          <div className="skills-grid">
-            {PRODUCTION_SKILLS.map(skill => (
-              <button
-                key={skill.id}
-                className={`skill-card ${selectedSkills.includes(skill.id) ? 'selected' : ''}`}
-                onClick={() => handleSkillSelect(skill.id)}
-              >
-                <h3>{skill.label}</h3>
-                <p>{skill.description}</p>
-              </button>
-            ))}
-          </div>
-
-          {selectedSkills.length > 0 && (
-            <button className="next-button" onClick={() => setStep(3)}>
-              Explore Income Pathways →
-            </button>
-          )}
-        </section>
-      )}
-
-      {step === 3 && (
-        <section className="sandbox-step">
-          {showMayaCommunity && (
-            <div className="maya-community-container">
-              <MayaCommunityMirror sandboxId="trubble-n-bass" />
-            </div>
-          )}
-
-          <div className="maya-success-container">
-            <MayaSuccessStory 
-              story={{
-                creatorFirstName: 'Jayden',
-                area: 'Alperton',
-                achievement: 'started selling beats, now produces for local artists full-time',
-                timeAgo: '7 months ago',
-                quote: "I was making beats in my bedroom. Now artists are paying me for my sound."
-              }}
-            />
-          </div>
-
-          <h2>How would you like to earn?</h2>
-          <p className="step-description">Select your income pathways</p>
-
-          <div className="pathways-grid">
-            {MUSIC_PATHWAYS.map(pathway => (
-              <button
-                key={pathway.id}
-                className={`pathway-card ${selectedPathways.includes(pathway.id) ? 'selected' : ''}`}
-                onClick={() => handlePathwaySelect(pathway.id)}
-              >
-                <h3>{pathway.label}</h3>
-                <p className="pathway-description">{pathway.description}</p>
-                <div className="pathway-skills">
-                  {pathway.skills.map(skill => (
-                    <span key={skill} className="skill-tag">{skill}</span>
-                  ))}
+      {/* Panel A — What can you bring in? */}
+      {stage === 'concept' && !conceptComplete && (
+        <div className="tnb-panel tnb-panel--bring">
+          <h3 className="tnb-panel__title">What can you bring in?</h3>
+          <p className="tnb-panel__lead">Everyone has something. The room is built to receive it.</p>
+          <div className="tnb-panel__grid">
+            {BRING_ITEMS.map((item, i) => (
+              <div key={i} className="tnb-panel__item">
+                <span className="tnb-panel__item-icon">{item.icon}</span>
+                <div className="tnb-panel__item-body">
+                  <div className="tnb-panel__item-input">{item.input}</div>
+                  <div className="tnb-panel__item-outcome">{item.outcome}</div>
                 </div>
-                <span className="earning-potential">{pathway.earningPotential}</span>
-              </button>
+              </div>
             ))}
           </div>
-
-          {selectedPathways.length === 1 && (
-            <div className="maya-push-container">
-              <MayaPush sandboxId="trubble-n-bass" />
-            </div>
-          )}
-
-          {selectedPathways.length >= 1 && (
-            <div className="project-section">
-              <h3>What's your first production goal?</h3>
-              <textarea
-                value={projectIdea}
-                onChange={(e) => setProjectIdea(e.target.value)}
-                placeholder="A beat pack? A track for an artist? A demo reel?"
-                className="project-input"
-              />
-              <button className="next-button" onClick={handleGeneratePlan}>
-                Create My Producer Plan →
-              </button>
-            </div>
-          )}
-        </section>
+        </div>
       )}
 
-      {step === 4 && (
-        <section className="sandbox-step">
-          <div className="maya-ignition-container">
-            <MayaIgnition sandboxId="trubble-n-bass" />
+      {/* Panel B — Where this goes */}
+      {stage === 'concept' && !conceptComplete && (
+        <div className="tnb-panel tnb-panel--destination">
+          <h3 className="tnb-panel__title">Where this goes</h3>
+          <p className="tnb-panel__lead">The creative act and the economic outcome are the same thing here.</p>
+          <div className="tnb-panel__dest-list">
+            {DESTINATION_ITEMS.map((item, i) => (
+              <div key={i} className="tnb-panel__dest-item">
+                <span className="tnb-panel__dest-icon">{item.icon}</span>
+                <span className="tnb-panel__dest-line">{item.line}</span>
+              </div>
+            ))}
           </div>
+          <div className="tnb-panel__dest-footer">
+            <span className="tnb-panel__dest-split">55%</span>
+            <span className="tnb-panel__dest-split-label">of every sale goes to you. Always. Non-negotiable.</span>
+          </div>
+        </div>
+      )}
 
-          <h2>Your Production Journey</h2>
-          
-          <div className="plan-summary">
-            <div className="plan-section">
-              <h3>Your Genres</h3>
-              <div className="selected-items">
-                {selectedGenres.map(id => {
-                  const genre = MUSIC_GENRES.find(g => g.id === id);
-                  return genre ? (
-                    <span key={id} className="selected-tag">{genre.icon} {genre.label}</span>
-                  ) : null;
-                })}
+      {/* Active room */}
+      <div className="tnb-sandbox__room">
+        {stage === 'concept' && (
+          <ConceptRoom
+            onReadyForProduction={handleConceptReady}
+            initialLyric={searchParams.get('lyric') || ''}
+          />
+        )}
+
+        {stage === 'production' && conceptState && (
+          <div className="tnb-sandbox__production">
+            <div className="tnb-sandbox__production-header">
+              <h2 className="tnb-sandbox__room-title">Production Room</h2>
+              <div className="tnb-sandbox__session-context">
+                {conceptState.rhythm && (
+                  <span className="tnb-sandbox__ctx-tag">♩ {conceptState.rhythm.bpm} BPM</span>
+                )}
+                {conceptState.style && (
+                  <span className="tnb-sandbox__ctx-tag">◈ {conceptState.style.name}</span>
+                )}
               </div>
             </div>
-
-            <div className="plan-section">
-              <h3>Your Focus Skills</h3>
-              <div className="selected-items">
-                {selectedSkills.map(id => {
-                  const skill = PRODUCTION_SKILLS.find(s => s.id === id);
-                  return skill ? (
-                    <span key={id} className="selected-tag">{skill.label}</span>
-                  ) : null;
-                })}
+            <Keyboard80
+              rootNote={conceptState.style?.key || 'C'}
+              scaleName={conceptState.style?.scale || 'pentatonic'}
+            />
+            {!productionComplete && (
+              <div className="tnb-sandbox__production-proceed">
+                <button
+                  className="tnb-sandbox__proceed-btn"
+                  onClick={() => setProductionComplete(true)}
+                >
+                  ✓ Save this production
+                </button>
+                <p className="tnb-sandbox__proceed-hint">
+                  Save your production to unlock Advanced mode and the full release pipeline.
+                </p>
               </div>
-            </div>
-
-            <div className="plan-section">
-              <h3>Your Income Pathways</h3>
-              <div className="selected-items">
-                {selectedPathways.map(id => {
-                  const pathway = MUSIC_PATHWAYS.find(p => p.id === id);
-                  return pathway ? (
-                    <div key={id} className="pathway-summary">
-                      <strong>{pathway.label}</strong>
-                      <span className="earning-potential">{pathway.earningPotential}</span>
-                    </div>
-                  ) : null;
-                })}
-              </div>
-            </div>
-
-            {projectIdea && (
-              <div className="plan-section">
-                <h3>Your First Project</h3>
-                <p className="project-display">{projectIdea}</p>
+            )}
+            {productionComplete && (
+              <div className="tnb-sandbox__complete-banner">
+                <span className="tnb-sandbox__complete-icon">✓</span>
+                <span>Production saved. Advanced mode is now available.</span>
               </div>
             )}
           </div>
+        )}
 
-          <div className="maya-pathway-container">
-            <MayaPathwayReminder sandboxId="trubble-n-bass" />
+        {stage === 'production' && !conceptState && (
+          <div className="tnb-sandbox__gate">
+            <p className="tnb-sandbox__gate-text">
+              Start in the Concept Room — tap a rhythm or pick a feel first.
+            </p>
+            <button className="tnb-sandbox__gate-btn" onClick={() => setStage('concept')}>
+              Go to Concept Room
+            </button>
           </div>
+        )}
+      </div>
 
-          <div className="next-steps">
-            <h3>Ready to Produce?</h3>
-            <div className="action-buttons">
-              <button className="action-button primary">Book Studio Session</button>
-              <button className="action-button secondary">Join Beat Battle</button>
-              <button className="action-button secondary">Find Producer Mentor</button>
-            </div>
-          </div>
-
-          <div className="maya-final-container">
-            <MayaEncouragement />
-          </div>
-        </section>
-      )}
+      {/* Maya floating toolbar with avatar */}
+      <MayaMusicToolbar
+        currentStyle={conceptState?.style?.id}
+        hasRhythm={!!conceptState?.rhythm}
+        hasStyle={!!conceptState?.style}
+        keyboardActive={stage === 'production'}
+        roomComplete={conceptComplete || productionComplete}
+      />
     </div>
   );
 };

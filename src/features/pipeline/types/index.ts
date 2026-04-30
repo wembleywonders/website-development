@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/features/pipeline/types/index.ts;
+// Stub — pending implementation
+export {};

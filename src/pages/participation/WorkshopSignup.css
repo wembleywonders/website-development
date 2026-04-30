@@ -1,0 +1,519 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   WorkshopSignup.css — Wembley Wonders CIC
+   Route: /workshops/signup
+   
+   DESIGN DECISION: Warm editorial register — deliberately distinct from the
+   dark platform theme. This is a commitment page. Cream + serif + gold
+   creates the right temperature for someone choosing a role and signing up.
+   
+   The platform nav sits above in dark (#0f172a). The page bridges from dark
+   to warm via a gradient transition at the top. All other platform pages are
+   dark — this page is the exception that makes the decision feel different.
+───────────────────────────────────────────────────────────────────────────── */
+
+.ws-page {
+  --gold:              #C9A84C;
+  --gold-dim:          rgba(201, 168, 76, 0.15);
+  --warm-bg:           #FAFAF7;
+  --warm-mid:          #F2F2ED;
+  --selected-border:   #2C3E50;
+  --selected-bg:       #EAF0F6;
+  --operator-bg:       #EAF0F6;
+  --operator-color:    #1A4A7A;
+  --contributor-bg:    #FFF8E6;
+  --contributor-color: #7A5800;
+  --text-primary:      #1A1A18;
+  --text-secondary:    #5A5A52;
+  --text-muted:        #8A8A82;
+  --border:            rgba(0,0,0,0.08);
+  --radius:            10px;
+  --radius-sm:         6px;
+
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: var(--warm-bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+
+  /* Bridge from dark nav to warm page */
+  padding-top: 80px;
+  background-image: linear-gradient(
+    to bottom,
+    #0f172a 0px,
+    #1e293b 60px,
+    #3a3a30 100px,
+    var(--warm-bg) 160px
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 160px;
+}
+
+/* ── Breadcrumb ── */
+.ws-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 40px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.ws-breadcrumb a {
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ws-breadcrumb a:hover { color: #fff; }
+
+/* ── Header ── */
+.ws-header {
+  padding: 48px 40px 40px;
+  background: transparent;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+
+.ws-header-inner { max-width: 600px; }
+
+.ws-overline {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 16px;
+}
+
+.ws-headline {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  line-height: 1.2;
+  color: var(--warm-bg);
+}
+
+.ws-strapline {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ── Layout ── */
+.ws-layout {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  background: var(--warm-bg);
+}
+
+/* ── Section titles ── */
+.ws-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 20px;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.ws-step {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Session cards ── */
+.ws-sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ws-session-card {
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ws-session-card:hover {
+  border-color: rgba(44,62,80,0.3);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.ws-session-card.selected {
+  border-color: var(--gold);
+  background: var(--gold-dim);
+}
+
+.ws-session-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.ws-session-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--text-primary);
+}
+
+.ws-session-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.ws-spots {
+  font-size: 12px;
+  font-weight: 700;
+  background: #EBF5F0;
+  color: #1A6B4A;
+  padding: 3px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ws-spots--low { background: #FFF3E0; color: #7A4400; }
+
+.ws-session-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 0 12px;
+}
+
+.ws-session-fill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ws-fill-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ws-fill-inner {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.ws-fill-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── Role chips ── */
+.ws-roles-note {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: -8px 0 16px;
+}
+
+.ws-role-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.ws-role-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 120px;
+  font-family: inherit;
+}
+
+.ws-role-chip:hover:not(:disabled):not(.selected) {
+  border-color: rgba(0,0,0,0.2);
+  transform: translateY(-1px);
+}
+
+.ws-role-chip.selected {
+  border-color: var(--gold);
+  background: var(--gold-dim);
+}
+
+.ws-role-chip.taken {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.role-chip--contributor.selected { border-color: var(--contributor-color); background: var(--contributor-bg); }
+.role-chip--operator.selected    { border-color: var(--operator-color);    background: var(--operator-bg); }
+.role-chip--participant.selected  { border-color: var(--gold);              background: var(--gold-dim); }
+
+.role-chip-title {
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.role-chip-level {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.role-chip--contributor .role-chip-level { color: var(--contributor-color); }
+.role-chip--operator    .role-chip-level { color: var(--operator-color); }
+
+/* ── Role description ── */
+.ws-role-desc {
+  padding: 14px 16px;
+  background: var(--warm-mid);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+}
+
+.ws-role-desc strong {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.ws-role-desc p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ── Form ── */
+.ws-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ws-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ws-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.ws-input {
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  background: #fff;
+  color: var(--text-primary);
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.ws-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
+
+/* ── House options ── */
+.ws-house-options {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ws-house-option {
+  padding: 9px 16px;
+  border-radius: 100px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.ws-house-option:hover { border-color: var(--gold); }
+
+.ws-house-option.selected {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+
+/* ── Submit ── */
+.ws-submit-btn {
+  padding: 15px 28px;
+  background: var(--text-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+  letter-spacing: -0.01em;
+}
+
+.ws-submit-btn:hover:not(:disabled) {
+  background: var(--gold);
+}
+
+.ws-submit-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ws-submit-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Confirmation ── */
+.ws-confirmation {
+  max-width: 520px;
+  margin: 80px auto;
+  padding: 48px 40px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.ws-confirm-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gold-dim);
+  color: var(--gold);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.ws-confirm-title {
+  font-family: 'Georgia', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0 0 8px;
+  color: var(--text-primary);
+}
+
+.ws-confirm-session {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--text-primary);
+}
+
+.ws-confirm-detail {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0 0 16px;
+}
+
+.ws-confirm-role {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0 0 20px;
+}
+
+.ws-confirm-note {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0 0 28px;
+  padding: 16px;
+  background: var(--warm-bg);
+  border-radius: var(--radius-sm);
+}
+
+.ws-confirm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ws-confirm-btn {
+  padding: 12px 24px;
+  background: var(--gold);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+  display: block;
+}
+
+.ws-confirm-btn:hover { background: #b8923d; }
+
+.ws-confirm-link {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.ws-confirm-link:hover { color: var(--text-primary); }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .ws-page { padding-top: 70px; }
+  .ws-layout { padding: 24px 20px 60px; }
+  .ws-header { padding: 32px 20px 28px; }
+  .ws-breadcrumb { padding-left: 20px; padding-right: 20px; }
+  .ws-confirmation { margin: 40px 20px; padding: 32px 24px; }
+}

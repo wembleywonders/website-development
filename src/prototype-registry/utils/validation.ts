@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/prototype-registry/utils/validation.ts;
+// Stub — pending implementation
+export {};

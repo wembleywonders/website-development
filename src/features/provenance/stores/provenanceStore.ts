@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/features/provenance/stores/provenanceStore.ts;
+// Stub — pending implementation
+export {};

@@ -115,7 +115,7 @@ const Q1DigitalBasicsRegistration: React.FC = () => {
        
        <div className="mt-6">
          <p className="text-gray-300 mb-4">
-           Questions? Contact us: workshops@wembley-digital.org.uk or 020 8123 4567
+           Questions? Contact us: workshops@wembley-digital.org.uk or 0208 902 9991
          </p>
          <button 
            onClick={() => window.location.href = '/workshops'}

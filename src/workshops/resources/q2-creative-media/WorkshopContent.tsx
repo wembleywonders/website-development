@@ -19,7 +19,7 @@ const Q2CreativeMediaWorkshop: React.FC = () => {
    duration: '2 hours (2pm-4pm)',
    maxParticipants: 15,
    leaders: ['Local DJs', 'Community Radio Presenters', 'Marketing Specialist'],
-   venue: 'Wembley Community Centre (audio equipment available)',
+   venue: 'Wembley Wonders CIC (audio equipment available)',
    cost: '£50 per participant',
    prerequisites: 'Basic computer navigation helpful but not essential. Q1 Digital Basics recommended but not required.'
  };

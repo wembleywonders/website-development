@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/automation/rovs/CommsROV.ts;
+// Stub — pending implementation
+export {};

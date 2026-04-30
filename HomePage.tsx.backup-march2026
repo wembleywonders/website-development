@@ -1,0 +1,1104 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import './HomePage.css';
+
+// ============================================
+// HOMEPAGE — The Honest Mirror
+// ============================================
+// Entry principle: You arrived rich. We help
+// you know what you're worth.
+//
+// Narrative sequence:
+//  1. REVALUATION — stop them mid-scroll
+//  2. EXCAVATION — name what they carry
+//     + UNTOLD — name what they were never given
+//  3. STRUCTURAL TRUTH — name the broken system
+//  4. PROPOSITION — what we do together
+//  5. HONEST TIMELINE — realistic earnings arc
+//  6. PROGRAMMES — the refinery, not the source
+//  7. THE PHILOSOPHY — 55/25/20 explained properly
+//  8. PATHWAYS — age-appropriate entry
+//  9. PROOF — testimonials
+// 10. SCHEDULE — when we meet
+// 11. CONNOISSEURS CLUB — belonging
+// 12. MEDIA — where your work lives
+// 13. KNOWLEDGE COMMONS — the counter-archive    ← NEW
+// 14. FOOTER CTA
+// ============================================
+
+const PROGRAMMES = [
+  { id: 'stemgeneers',            name: 'STEMgeneers',             icon: '⚡',  tag: 'Build & Repair',        outcome: 'Device repair (earn £15-40/job)',               day: 'Mon 7pm',       season: 'Spring',     color: '#10b981' },
+  { id: 'techreneurs',            name: 'TECHreneurs',              icon: '💻',  tag: 'Launch & Sell',         outcome: 'Launch a product, first real sale',             day: 'Thu 7pm',       season: 'Autumn',     color: '#3b82f6' },
+  { id: 'pageturners',            name: 'Pageturners',              icon: '✍️', tag: 'Write & Publish',       outcome: 'Published in Joystick e-zine',                  day: 'Tue 7pm',       season: 'Year-round', color: '#8b5cf6' },
+  { id: 'gtechcasters',           name: 'G-Tech Casters',           icon: '🎙️', tag: 'Record & Broadcast',    outcome: 'Your show on Rayd-yo Radio',                    day: 'Wed 7pm',       season: 'Year-round', color: '#06b6d4' },
+  { id: 'kaywanas-court',         name: "Kaywana's Court",          icon: '🎭',  tag: 'Debate & Lead',         outcome: 'Win a courtroom debate',                       day: 'Thu 7pm',       season: 'Summer',     color: '#f97316' },
+  { id: 'silk-stilettos',         name: 'Silk Stilettos',           icon: '👠',  tag: 'Design & Influence',    outcome: 'Portfolio of original pieces',                  day: 'Mon 7pm',       season: 'Summer',     color: '#ec4899' },
+  { id: 'trubble-n-bass',         name: 'Trubble n Bass',           icon: '🎵',  tag: 'Produce & Release',     outcome: 'Release a track, listening party',              day: 'Thu 7pm',       season: 'Spring',     color: '#a855f7' },
+  { id: 'auntie-anansis-kitchen', name: "Auntie Anansi's Kitchen",  icon: '🍲',  tag: 'Cook & Preserve',       outcome: 'Heritage recipes documented',                   day: 'Sat 11am',      season: 'Summer',     color: '#f59e0b' },
+  { id: 'impact-labs',            name: 'Impact Labs',              icon: '🔬',  tag: 'Research & Propose',    outcome: 'Real proposal to directors',                   day: 'Mon 7pm',       season: 'Autumn',     color: '#14b8a6' },
+  { id: 'creator-factory',        name: 'Creator Factory',          icon: '🏭',  tag: 'Create Under Pressure', outcome: 'Portfolio of timed challenges',                  day: 'Wed 6pm',       season: 'Autumn',     color: '#ef4444' },
+  { id: 'bright-sparks',          name: 'Bright Sparks',            icon: '✨',  tag: 'Discover Your Path',    outcome: 'Personalised pathway recommendation',           day: 'Sat 10am',      season: 'Year-round', color: '#fbbf24' },
+  { id: 'easy-street',            name: 'Easy Street',              icon: '🎬',  tag: 'Drama & Storytelling',  outcome: 'Radio drama on Rayd-yo',                       day: 'Fri 7pm',       season: 'Year-round', color: '#84cc16' },
+  // ✨ Roots — Body Sovereignty Resource
+  // Women-led · Women-directed · Women-managed
+  // Leads: Judith Fontanelle · Flora Agba · Natalie | ROV: Aya
+  // Status: coming soon → active IWD 8 March 2026
+  { id: 'roots',                  name: 'Roots',                    icon: '🌿',  tag: 'Know & Reclaim',        outcome: 'Hair science, body sovereignty, legal rights',  day: 'Launching Mar 8', season: 'Year-round', color: '#4A6741', isComingSoon: true },
+];
+
+const TESTIMONIALS = [
+  {
+    name: 'Mrs. Patel',
+    detail: 'Parent, Wembley Park',
+    quote: 'My son learned phone repair in STEMgeneers. He now earns £200 a month fixing screens for neighbours. He has purpose.',
+    asset: 'Inherited mechanical patience. Nobody taught him that.'
+  },
+  {
+    name: 'Winston',
+    detail: '58, retired engineer',
+    quote: "I podcast Caribbean history on Rayd-yo every Wednesday. Forty years of stories — now they're preserved for my grandchildren.",
+    asset: "Forty years of lived knowledge the internet doesn't have."
+  },
+  {
+    name: 'Aaliyah',
+    detail: '19, music producer',
+    quote: "55% is mine, not Spotify's 30%. I released my first EP through Trubble n Bass and kept more than I'd earn anywhere else.",
+    asset: 'A sonic vocabulary built in Wembley, not LA.'
+  },
+];
+
+const SCHEDULE = [
+  { day: 'Monday',    items: [{ time: '7:00 PM',  name: 'STEMgeneers / Silk Stilettos / Impact Labs', note: 'Seasonal rotation' }] },
+  { day: 'Tuesday',   items: [{ time: '7:00 PM',  name: 'Pageturners',                                 note: 'Year-round' }] },
+  { day: 'Wednesday', items: [
+    { time: '12:00 PM', name: 'Drop-in Help Desk',  note: 'Open to all' },
+    { time: '6:00 PM',  name: 'Creator Factory',    note: 'Autumn' },
+    { time: '7:00 PM',  name: 'G-Tech Casters',     note: 'Year-round' },
+  ]},
+  { day: 'Thursday',  items: [{ time: '7:00 PM',  name: "TECHreneurs / Trubble n Bass / Kaywana's Court", note: 'Seasonal rotation' }] },
+  { day: 'Friday',    items: [
+    { time: '5:00 PM',  name: 'Friday Feedback Circle', note: 'Open to all' },
+    { time: '7:00 PM',  name: 'Easy Street',             note: 'Year-round' },
+  ]},
+  { day: 'Saturday',  items: [
+    { time: '10:00 AM', name: 'Bright Sparks',                  note: 'Year-round' },
+    { time: '11:00 AM', name: "Auntie Anansi's Kitchen",        note: 'Summer' },
+    { time: '2:00 PM',  name: 'Saturday Skills Swap',           note: 'Open to all' },
+  ]},
+  // ✨ Roots launches IWD 8 March 2026 — full schedule TBC after founding team session
+  { day: 'Coming Mar 8', items: [{ time: 'IWD Launch', name: 'Roots — Body Sovereignty', note: 'Women-led · Judith · Flora · Natalie' }] },
+];
+
+const EXCAVATION_PROMPTS = [
+  "Your grandmother's recipe that exists in no cookbook.",
+  "The pattern you've been drawing since you were seven.",
+  "The way your family explains something no one else can.",
+  "The story only your ends knows.",
+  "Your Nigerian roots filtered through Wembley endz.",
+  "Forty years of Caribbean history living in your memory.",
+  "The technique you inherited without being taught.",
+  "The rhythm you tap without thinking.",
+  "The hair knowledge that never made it into any salon training.",
+  "The thing you know about people that you've never said out loud.",
+];
+
+const UNTOLD_PROMPTS = [
+  "That your town was a node in an empire before it was a postcode.",
+  "That the road your dad drove to work was built by Romans to move colonial goods.",
+  "That the factory that closed wasn't bad luck — it was a decision made elsewhere.",
+  "That the community you resented was doing what your community used to do.",
+  "That the Windrush generation came because the empire invited them — then forgot.",
+  "That your grandfather's trade and their grandfather's trade fed the same machine.",
+  "That decline isn't destiny. It was designed.",
+  "That the knowledge your family carries survived everything they were told to forget.",
+  "That 148 cultures in one borough isn't a problem to manage. It's an archive to open.",
+];
+
+// ── KNOWLEDGE COMMONS THREAD SAMPLE ─────────────────────────────────────────
+// One question from each thread, shown in rotation on the homepage.
+// Purpose: make the Knowledge Commons feel like a place you need to visit,
+// not a page you'll browse. Each question should feel personal and unfinished.
+// ─────────────────────────────────────────────────────────────────────────────
+const COMMONS_THREAD_SAMPLES = [
+  {
+    question: "Why don't we know Arthur Wharton?",
+    context: "World's first Black professional footballer. Sprint world record holder. Died in an unmarked grave.",
+    thread: "The Same Rule, Different Arenas",
+    threadId: "same-rule-different-arenas",
+  },
+  {
+    question: "What happened to the Commonwealth Institute?",
+    context: "Built to represent 50 nations. Converted into a design museum. No community consultation.",
+    thread: "The Distance Between the Embassy and the Community",
+    threadId: "distance-embassy-community",
+  },
+  {
+    question: "Why did Michaela Coel turn down $1 million?",
+    context: "Netflix offered her everything. She walked away to keep her copyright. Here's what that means.",
+    thread: "Who Owns the Culture?",
+    threadId: "who-owns-the-culture",
+  },
+  {
+    question: "What was on this land before Wembley Stadium?",
+    context: "1924. The British Empire Exhibition. The same Empire whose subjects' descendants now live here.",
+    thread: "The Landscape Under Your Feet",
+    threadId: "landscape-under-your-feet",
+  },
+];
+
+function useTypewriter(strings: string[], speed = 45, pause = 2200) {
+  const [display, setDisplay] = useState('');
+  const [idx, setIdx] = useState(0);
+  const [charIdx, setCharIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = strings[idx];
+    if (!deleting && charIdx < current.length) {
+      const t = setTimeout(() => setCharIdx(c => c + 1), speed);
+      return () => clearTimeout(t);
+    }
+    if (!deleting && charIdx === current.length) {
+      const t = setTimeout(() => setDeleting(true), pause);
+      return () => clearTimeout(t);
+    }
+    if (deleting && charIdx > 0) {
+      const t = setTimeout(() => setCharIdx(c => c - 1), speed / 2);
+      return () => clearTimeout(t);
+    }
+    if (deleting && charIdx === 0) {
+      setDeleting(false);
+      setIdx(i => (i + 1) % strings.length);
+    }
+  }, [charIdx, deleting, idx, strings, speed, pause]);
+
+  useEffect(() => {
+    setDisplay(strings[idx].slice(0, charIdx));
+  }, [charIdx, idx, strings]);
+
+  return display;
+}
+
+const HomePage: React.FC = () => {
+  const [activeSeason, setActiveSeason] = useState<string>('all');
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+  const [activeThreadSample, setActiveThreadSample] = useState(0);
+  const excavationText = useTypewriter(EXCAVATION_PROMPTS);
+  const untoldText = useTypewriter(UNTOLD_PROMPTS, 42, 2600);
+
+  // Rotate thread sample every 5 seconds
+  useEffect(() => {
+    const t = setInterval(() => {
+      setActiveThreadSample(i => (i + 1) % COMMONS_THREAD_SAMPLES.length);
+    }, 5000);
+    return () => clearInterval(t);
+  }, []);
+
+  // Intersection observer for scroll reveals
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setVisibleSections(prev => new Set([...prev, entry.target.id]));
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const filteredProgrammes = activeSeason === 'all'
+    ? PROGRAMMES
+    : PROGRAMMES.filter(p => p.season === activeSeason || p.season === 'Year-round');
+
+  const currentThread = COMMONS_THREAD_SAMPLES[activeThreadSample];
+
+  return (
+    <div className="hp">
+
+      {/* ══════════════════════════════════════
+          BEAT 1 — THE REVALUATION
+          Stop them. Name the inversion.
+      ══════════════════════════════════════ */}
+      <section className="hp-hero">
+        <div className="hp-hero-atmosphere">
+          <div className="hp-atm-orb hp-atm-orb--1" />
+          <div className="hp-atm-orb hp-atm-orb--2" />
+          <div className="hp-atm-orb hp-atm-orb--3" />
+          <div className="hp-atm-grain" />
+        </div>
+
+        <div className="hp-hero-content">
+          <div className="hp-hero-eyebrow">
+            <span className="hp-eyebrow-dot" />
+            <span>Wembley Wonders CIC · Est. 2020 · 148 cultures, one borough</span>
+          </div>
+
+          <h1 className="hp-hero-title">
+            You walked in here<br />
+            <span className="hp-title-rich">rich.</span>
+          </h1>
+
+          <p className="hp-hero-declaration">
+            You just didn't know it yet.
+          </p>
+
+          <p className="hp-hero-sub">
+            Not rich in money. Rich in what you carry — the knowledge, the story,
+            the technique, the taste, the memory that nobody else on earth holds
+            in exactly your combination. In a world of infinite bland replicas,
+            that's the scarcest thing there is.
+          </p>
+
+          <p className="hp-hero-sub hp-hero-sub--untold">
+            You think this is their story. It's yours too.
+            You just weren't told your part.
+          </p>
+
+          <div className="hp-hero-ctas">
+            <Link to="/programmes/bright-sparks" className="hp-cta hp-cta--primary">
+              Find what you carry →
+            </Link>
+            <Link to="/sandbox" className="hp-cta hp-cta--outline">
+              Try a sandbox first
+            </Link>
+          </div>
+
+          <div className="hp-hero-meta">
+            <Link to="/join" className="hp-meta-join">Join free</Link>
+            <span className="hp-meta-sep">·</span>
+            <Link to="/login" className="hp-meta-login">Already a member</Link>
+          </div>
+        </div>
+
+        <div className="hp-hero-scroll-hint">
+          <span>scroll</span>
+          <div className="hp-scroll-line" />
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 1b — THE SECOND DOOR
+          ─────────────────────────────────────
+          For the person who looked at this page
+          and said "you want me to read all that."
+
+          She's not wrong. The page is long.
+          She has opinions. She's been around.
+          She doesn't need the argument —
+          she needs the room.
+
+          This door doesn't explain the platform.
+          It makes an offer. Immediate. Personal.
+          Bypasses every section below it.
+
+          Design: full-width dark band, teal accent.
+          Visually distinct from the hero above
+          and the excavation below. A room of its own.
+          ══════════════════════════════════════ */}
+      <section className="hp-second-door">
+        <div className="hp-second-door__inner">
+
+          <div className="hp-second-door__left">
+            <span className="hp-second-door__label">
+              Don't want to read all this?
+            </span>
+            <h2 className="hp-second-door__heading">
+              You've got something to say.
+            </h2>
+            <p className="hp-second-door__sub">
+              Say it here. People will hear it within two weeks.
+              No account. No reading required. No performance.
+              Just you and whatever is sitting in your head
+              that hasn't had anywhere to go yet.
+            </p>
+            <Link
+              to="/programmes/pageturners/sandbox?fasttrack=true"
+              className="hp-second-door__cta"
+            >
+              Say it now →
+            </Link>
+          </div>
+
+          <div className="hp-second-door__right">
+            {/* The seed of the day — the actual prompt
+                Rotating through Fast Track formats.
+                One specific question, not a menu.
+                She doesn't want to choose.
+                She wants to be asked something. */}
+            <div className="hp-second-door__prompt">
+              <span className="hp-second-door__prompt-label">
+                Today's prompt
+              </span>
+              <p className="hp-second-door__prompt-text">
+                Write about the person in your life who knows things
+                that never got written down. Twenty minutes.
+                Nobody has to read it unless you want them to.
+              </p>
+              <div className="hp-second-door__prompt-footer">
+                <span className="hp-second-door__format">
+                  Personal response · 200–500 words
+                </span>
+                <span className="hp-second-door__dest">
+                  → Joystick or Rayd-yo in 14 days
+                </span>
+              </div>
+            </div>
+
+            {/* What happens next — three steps.
+                Concrete. No jargon. No promises
+                they've heard before and don't believe. */}
+            <div className="hp-second-door__steps">
+              <div className="hp-second-door__step">
+                <span className="hp-second-door__step-n">1</span>
+                <span className="hp-second-door__step-text">
+                  You write. Someone who was there writes one sentence about you.
+                </span>
+              </div>
+              <div className="hp-second-door__step">
+                <span className="hp-second-door__step-n">2</span>
+                <span className="hp-second-door__step-text">
+                  We work on it together. One technique. One pass.
+                  Your voice stays yours.
+                </span>
+              </div>
+              <div className="hp-second-door__step">
+                <span className="hp-second-door__step-n">3</span>
+                <span className="hp-second-door__step-text">
+                  It goes on Rayd-yo or into Joystick.
+                  Your name on it. Nobody can take that.
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 2 — THE EXCAVATION
+          Name what they carry specifically
+          + THE UNTOLD — name what they were never given
+      ══════════════════════════════════════ */}
+      <section className="hp-excavation" id="excavation" data-reveal>
+        <div className="hp-container">
+
+          {/* Original panel — inward facing */}
+          <div className="hp-exc-layout">
+            <div className="hp-exc-left">
+              <span className="hp-section-label">The question</span>
+              <h2 className="hp-exc-heading">
+                What do you know that<br />nobody taught you?
+              </h2>
+              <p className="hp-exc-body">
+                Sit with that. Because whatever just came to mind — that specific
+                thing, that perspective shaped by every street, every kitchen,
+                every conversation that made you who you are — nobody else holds
+                exactly that combination.
+              </p>
+              <p className="hp-exc-body">
+                Wembley alone holds 148 distinct cultures. Each one a map of
+                knowledge the mainstream market has spent fifty years diluting,
+                homogenising, and selling back to us at a discount. The original
+                is still here. In you.
+              </p>
+              {/* ── Connection to Knowledge Commons ─────────────────────────
+                  One sentence. Not a pitch. A pointer.
+                  "The counter-archive" is named here so that when the visitor
+                  reaches Beat 13 it feels like arrival, not introduction.
+              ─────────────────────────────────────────────────────────────── */}
+              <p className="hp-exc-body hp-exc-body--commons-link">
+                Some of what you carry belongs in the record.{' '}
+                <Link to="/heritage" className="hp-inline-link">
+                  The counter-archive is where it goes.
+                </Link>
+              </p>
+            </div>
+            <div className="hp-exc-right">
+              <div className="hp-typewriter-frame">
+                <span className="hp-tw-label">It might be —</span>
+                <p className="hp-typewriter-text">
+                  {excavationText}
+                  <span className="hp-tw-cursor">|</span>
+                </p>
+              </div>
+              <p className="hp-exc-aside">
+                That's not nostalgia. That's not background.
+                <strong> That's your primary economic asset.</strong>
+              </p>
+            </div>
+          </div>
+
+          <div className="hp-exc-divider">
+            <span className="hp-exc-divider-label">The other question</span>
+          </div>
+
+          <div className="hp-exc-layout hp-exc-layout--untold">
+            <div className="hp-exc-right">
+              <div className="hp-typewriter-frame hp-typewriter-frame--untold">
+                <span className="hp-tw-label">Nobody told you —</span>
+                <p className="hp-typewriter-text">
+                  {untoldText}
+                  <span className="hp-tw-cursor">|</span>
+                </p>
+              </div>
+              <p className="hp-exc-aside">
+                That's not politics. That's not guilt.
+                <strong> That's the part of your story that was edited out.</strong>
+              </p>
+            </div>
+            <div className="hp-exc-left">
+              <span className="hp-section-label">The other question</span>
+              <h2 className="hp-exc-heading">
+                What were you never taught<br />that would change everything<br />
+                you think you know?
+              </h2>
+              <p className="hp-exc-body">
+                The knowledge you carry didn't arrive from nowhere. It came through
+                families, streets, trades, migrations — through a history that most
+                of us were handed in fragments, with the connective tissue removed.
+              </p>
+              <p className="hp-exc-body">
+                Wembley is where those fragments meet. Where the story of a town
+                on a Roman road and the story of a family on a Windrush ship and
+                the story of a workshop on the High Road turn out to be
+                the same story, told from different ends.
+              </p>
+              <p className="hp-exc-body">
+                The sandbox is where you start finding your end of it.
+              </p>
+              <Link to="/sandbox" className="hp-pathway-cta">
+                Find your part of the story →
+              </Link>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 3 — THE STRUCTURAL TRUTH
+      ══════════════════════════════════════ */}
+      <section className="hp-truth" id="truth" data-reveal>
+        <div className="hp-container">
+          <span className="hp-section-label">Why now</span>
+          <h2 className="hp-truth-heading">
+            The old deal is broken.<br />
+            <span className="hp-truth-accent">Both of them.</span>
+          </h2>
+
+          <div className="hp-truth-columns">
+            <div className="hp-truth-col">
+              <div className="hp-truth-col-marker hp-truth-col-marker--red" />
+              <h3>The employment promise</h3>
+              <p>
+                Real wages haven't grown since 2008 but employers still act like
+                they have a captive market. The graduate queue gets longer.
+                The entry-level role gets automated. The door stays shut.
+                16.1% of under-25s can't find work — not because they lack
+                ability, but because the system was never designed to reward it.
+              </p>
+            </div>
+            <div className="hp-truth-col">
+              <div className="hp-truth-col-marker hp-truth-col-marker--amber" />
+              <h3>The creator economy promise</h3>
+              <p>
+                Build a following. Monetise your life. Be your own boss. What
+                they don't tell you: TikTok won't pay unless your video is over
+                a minute long. YouTube demonetises your channel overnight because
+                of a sample in your intro. Twitch's algorithm shifts and six
+                figures becomes two grand a month. Platform dependency isn't freedom.
+                It's a different cage.
+              </p>
+            </div>
+            <div className="hp-truth-col">
+              <div className="hp-truth-col-marker hp-truth-col-marker--green" />
+              <h3>The third way</h3>
+              <p>
+                It starts with what you already own. Not a platform, not an
+                employer, not a follower count. Your provenance — documented,
+                protected, and priced to sustain a real life. That's not a
+                new idea. The Windrush generation built it when the doors
+                were closed. We're making it legible for the generation
+                the current system has decided is surplus.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 4 — THE PROPOSITION
+      ══════════════════════════════════════ */}
+      <section className="hp-proposition" id="proposition" data-reveal>
+        <div className="hp-container">
+          <div className="hp-prop-frame">
+            <span className="hp-section-label">What we do</span>
+            <h2 className="hp-prop-heading">
+              We don't give you skills.<br />
+              We help you know what<br />
+              you already own.
+            </h2>
+            <p className="hp-prop-body">
+              The workshops aren't where your value comes from.
+              They're where you learn to articulate it, refine it,
+              document it, protect it legally, and sell it at a price
+              that sustains a real life — not for a month, for a lifetime.
+            </p>
+
+            <div className="hp-prop-pillars">
+              <div className="hp-pillar">
+                <span className="hp-pillar-num">01</span>
+                <h4>Excavate</h4>
+                <p>Session one isn't an induction. It's a valuation. We identify what you carry that nobody else does.</p>
+              </div>
+              <div className="hp-pillar">
+                <span className="hp-pillar-num">02</span>
+                <h4>Document</h4>
+                <p>Provenance is the asset. Pageturners embeds the story into every product. That's what commands premium pricing.</p>
+              </div>
+              <div className="hp-pillar">
+                <span className="hp-pillar-num">03</span>
+                <h4>Protect</h4>
+                <p>Your IP is legally yours from day one. We don't extract — we authenticate and defend what you created.</p>
+              </div>
+              <div className="hp-pillar">
+                <span className="hp-pillar-num">04</span>
+                <h4>Earn</h4>
+                <p>55% of what you create stays with you. Not Spotify's 30%. Not a platform's terms. Yours, documented, verifiable.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 5 — THE HONEST TIMELINE
+      ══════════════════════════════════════ */}
+      <section className="hp-timeline" id="timeline" data-reveal>
+        <div className="hp-container">
+          <span className="hp-section-label">The honest picture</span>
+          <h2 className="hp-tl-heading">
+            What earning actualisation<br />actually looks like
+          </h2>
+          <p className="hp-tl-sub">
+            We won't tell you everything you make is worth premium money.
+            We will tell you exactly what it takes to get there.
+          </p>
+
+          <div className="hp-tl-arc">
+            <div className="hp-tl-stage hp-tl-stage--1">
+              <div className="hp-tl-marker"><span>Months 1–6</span></div>
+              <div className="hp-tl-content">
+                <h4>Excavation & first product</h4>
+                <p>Skill development, first products in marketplace, earnings supplementary. £500–1,500/month possible while other income bridges.</p>
+                <span className="hp-tl-tag">The refinery opens</span>
+              </div>
+            </div>
+            <div className="hp-tl-stage hp-tl-stage--2">
+              <div className="hp-tl-marker"><span>Months 6–18</span></div>
+              <div className="hp-tl-content">
+                <h4>Portfolio building</h4>
+                <p>Cross-programme combinations activate. Collaborations generate compound value. £2,000–4,000/month becoming realistic.</p>
+                <span className="hp-tl-tag">Multiple streams open</span>
+              </div>
+            </div>
+            <div className="hp-tl-stage hp-tl-stage--3">
+              <div className="hp-tl-marker"><span>Months 18–36</span></div>
+              <div className="hp-tl-content">
+                <h4>Reputation established</h4>
+                <p>Provenance commands premium. Mentoring newer creators adds income. £5,000–8,000/month within reach for committed creators.</p>
+                <span className="hp-tl-tag">Provenance commands price</span>
+              </div>
+            </div>
+            <div className="hp-tl-stage hp-tl-stage--4">
+              <div className="hp-tl-marker"><span>Year 3+</span></div>
+              <div className="hp-tl-content">
+                <h4>Earning actualisation</h4>
+                <p>Documented cultural assets generating recurring revenue. The rare one-off that sells for silly money has a provenance trail that began in session one.</p>
+                <span className="hp-tl-tag">Full sovereignty</span>
+              </div>
+            </div>
+          </div>
+
+          <p className="hp-tl-caveat">
+            This is honest, not discouraging. The employment market offers no such
+            roadmap at all — just a door that doesn't open.
+          </p>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 6 — THE PROGRAMMES
+      ══════════════════════════════════════ */}
+      <section className="hp-programmes" id="programmes" data-reveal>
+        <div className="hp-container">
+          <span className="hp-section-label">The refinery</span>
+          <h2 className="hp-section-heading">13 programmes. Each one a different lens on what you already carry.</h2>
+          <p className="hp-section-sub-text">
+            Cross-programme combinations are the real wealth engine.
+            A Trubble n Bass creator who also moves through G-Tech Casters
+            isn't just a musician — they're a media production unit.
+          </p>
+
+          <div className="hp-season-filter">
+            {['all', 'Year-round', 'Spring', 'Summer', 'Autumn'].map(s => (
+              <button key={s}
+                className={`hp-season-btn ${activeSeason === s ? 'active' : ''}`}
+                onClick={() => setActiveSeason(s)}>
+                {s === 'all' ? 'All seasons' : s}
+              </button>
+            ))}
+          </div>
+
+          <div className="hp-programme-grid">
+            {filteredProgrammes.map(p => (
+              <Link key={p.id} to={`/programmes/${p.id}`}
+                className={`hp-programme-card${(p as any).isComingSoon ? ' hp-programme-card--coming-soon' : ''}`}
+                style={{ '--prog-color': p.color } as React.CSSProperties}>
+                <div className="hp-prog-top">
+                  <span className="hp-prog-icon">{p.icon}</span>
+                  <div>
+                    <div className="hp-prog-name">
+                      {p.name}
+                      {(p as any).isComingSoon && (
+                        <span className="hp-prog-cs-badge">Mar 8</span>
+                      )}
+                    </div>
+                    <div className="hp-prog-tag">{p.tag}</div>
+                  </div>
+                </div>
+                <div className="hp-prog-outcome">{p.outcome}</div>
+                <div className="hp-prog-footer">
+                  <span>{p.day}</span>
+                  <span className="hp-prog-season">{p.season}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="hp-programmes-footer">
+            <Link to="/programmes" className="hp-cta hp-cta--ghost">
+              View all programmes →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 7 — THE 55/25/20 PHILOSOPHY
+      ══════════════════════════════════════ */}
+      <section className="hp-philosophy" id="philosophy" data-reveal>
+        <div className="hp-container">
+          <div className="hp-phil-layout">
+            <div className="hp-phil-left">
+              <span className="hp-section-label">The split</span>
+              <h2 className="hp-phil-heading">
+                55/25/20 isn't a revenue model.<br />
+                It's a philosophy.
+              </h2>
+              <p className="hp-phil-body">
+                55% is yours because your knowledge, your provenance, your
+                authenticity is the asset. We don't create that. You brought it.
+              </p>
+              <p className="hp-phil-body">
+                25% builds something that outlasts you — for your children, for
+                the next person sitting where you're sitting now. That's not
+                charity. That's optionality. The capital pool that means when
+                an opportunity arrives, it's there.
+              </p>
+              <p className="hp-phil-body">
+                20% keeps the infrastructure that protects and authenticates
+                what you create. The legal structures, the documentation,
+                the platform that means nobody can strip-mine your
+                culture without acknowledgement or payment.
+              </p>
+              <p className="hp-phil-body hp-phil-body--accent">
+                The Windrush generation built parallel economies when the
+                doors were closed. We're making that intelligence
+                legible and transmissible.
+              </p>
+            </div>
+            <div className="hp-phil-right">
+              <div className="hp-split-visual">
+                <div className="hp-split-ring">
+                  <div className="hp-split-segment hp-split-55">
+                    <span className="hp-split-pct">55%</span>
+                    <span className="hp-split-lbl">Yours</span>
+                  </div>
+                  <div className="hp-split-segment hp-split-25">
+                    <span className="hp-split-pct">25%</span>
+                    <span className="hp-split-lbl">Community future</span>
+                  </div>
+                  <div className="hp-split-segment hp-split-20">
+                    <span className="hp-split-pct">20%</span>
+                    <span className="hp-split-lbl">Platform protection</span>
+                  </div>
+                </div>
+              </div>
+              <div className="hp-pricing-row">
+                <div className="hp-price-pill">
+                  <span className="hp-price-amt">FREE</span>
+                  <span>All workshops</span>
+                </div>
+                <div className="hp-price-pill">
+                  <span className="hp-price-amt">£3</span>
+                  <span>Auntie Anansi's only (ingredients)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 8 — PATHWAYS
+      ══════════════════════════════════════ */}
+      <section className="hp-pathways-section" id="pathways" data-reveal>
+        <div className="hp-container">
+          <span className="hp-section-label">Where you start</span>
+          <h2 className="hp-section-heading">The door opens wherever you are.</h2>
+
+          <div className="hp-pathways">
+            <div className="hp-pathway" style={{ '--path-color': '#fbbf24' } as React.CSSProperties}>
+              <span className="hp-pathway-age">Age 13–19</span>
+              <h3>Young Creators</h3>
+              <p>
+                Start with <strong>Bright Sparks</strong> on Saturday mornings.
+                Before you choose a programme, we help you name what you
+                already carry. The session one valuation isn't a test.
+                It's a conversation.
+              </p>
+              <Link to="/programmes/bright-sparks" className="hp-pathway-cta">Start with Bright Sparks →</Link>
+            </div>
+            <div className="hp-pathway" style={{ '--path-color': '#06b6d4' } as React.CSSProperties}>
+              <span className="hp-pathway-age">Age 20–39</span>
+              <h3>Working Creators</h3>
+              <p>
+                Evening sessions fit around your job — the one that isn't paying
+                real wages. <strong>TECHreneurs</strong> if you want to sell.
+                <strong> G-Tech Casters</strong> if you want an audience.
+                <strong> Trubble n Bass</strong> if the rhythm is already there.
+              </p>
+              <Link to="/programmes" className="hp-pathway-cta">Browse programmes →</Link>
+            </div>
+            <div className="hp-pathway" style={{ '--path-color': '#a855f7' } as React.CSSProperties}>
+              <span className="hp-pathway-age">Age 40+</span>
+              <h3>Heritage Creators</h3>
+              <p>
+                You are sitting on the rarest asset in the room.
+                <strong> Pageturners</strong> documents it.
+                <strong> Auntie Anansi's Kitchen</strong> preserves it.
+                <strong> Rayd-yo</strong> broadcasts it.
+                Forty years of knowledge doesn't retire.
+              </p>
+              <Link to="/programmes/pageturners" className="hp-pathway-cta">Start with Pageturners →</Link>
+            </div>
+            <div className="hp-pathway hp-pathway--roots" style={{ '--path-color': '#4A6741' } as React.CSSProperties}>
+              <span className="hp-pathway-age">Women</span>
+              <h3>
+                Body Sovereignty
+                <span className="hp-pathway-badge">IWD Mar 8</span>
+              </h3>
+              <p>
+                <strong>Roots</strong> is the knowledge that should have been handed down.
+                Hair science. Chemical literacy. Legal rights. The Apothecary
+                creator pathway. Led by <strong>Judith Fontanelle, Flora Agba,
+                and Natalie</strong>. Women-led, women-directed, women-managed.
+              </p>
+              <Link to="/programmes/roots" className="hp-pathway-cta">Find out more →</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 9 — PROOF
+      ══════════════════════════════════════ */}
+      <section className="hp-proof" id="proof" data-reveal>
+        <div className="hp-container">
+          <span className="hp-section-label">It works</span>
+          <h2 className="hp-section-heading">Real people. Real assets. Real earnings.</h2>
+
+          <div className="hp-testimonials">
+            {TESTIMONIALS.map((t, i) => (
+              <div key={i} className="hp-testimonial">
+                <div className="hp-testimonial-asset">{t.asset}</div>
+                <blockquote className="hp-testimonial-quote">"{t.quote}"</blockquote>
+                <div className="hp-testimonial-author">
+                  <strong>{t.name}</strong>
+                  <span>{t.detail}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 10 — SCHEDULE
+      ══════════════════════════════════════ */}
+      <section className="hp-schedule-section" id="schedule" data-reveal>
+        <div className="hp-container">
+          <span className="hp-section-label">This week</span>
+          <h2 className="hp-section-heading">When we meet</h2>
+          <p className="hp-section-sub-text">All sessions on Zoom · Free · Open to members</p>
+
+          <div className="hp-schedule">
+            {SCHEDULE.map((day, di) => (
+              <div key={di} className={`hp-schedule-day${day.day === 'Coming Mar 8' ? ' hp-schedule-day--roots' : ''}`}>
+                <div className="hp-schedule-day-name">{day.day}</div>
+                <div className="hp-schedule-items">
+                  {day.items.map((item, ii) => (
+                    <div key={ii} className="hp-schedule-item">
+                      <span className="hp-schedule-time">{item.time}</span>
+                      <span className="hp-schedule-name">{item.name}</span>
+                      <span className="hp-schedule-note">{item.note}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="hp-schedule-links">
+            <Link to="/sessions" className="hp-cta hp-cta--outline">Full schedule →</Link>
+            <Link to="/calendar" className="hp-cta hp-cta--ghost">View calendar</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 11 — CONNOISSEURS CLUB
+      ══════════════════════════════════════ */}
+      <section className="hp-cc" id="cc" data-reveal>
+        <div className="hp-container">
+          <div className="hp-cc-frame">
+            <span className="hp-cc-badge">Cultural recognition</span>
+            <h2 className="hp-cc-title">The Connoisseurs Club</h2>
+            <p className="hp-cc-text">
+              Beyond earnings — a rites of passage framework celebrating African
+              and Diasporan culture. Five stages from Seedling to Elder, marked
+              by community ceremonies that witness your growth.
+            </p>
+            <p className="hp-cc-line">People come for the earnings. They stay for the belonging.</p>
+            <Link to="/connoisseurs-club" className="hp-cta hp-cta--outline">
+              Discover the five stages →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 12 — MEDIA CHANNELS
+      ══════════════════════════════════════ */}
+      <section className="hp-media" id="media" data-reveal>
+        <div className="hp-container">
+          <span className="hp-section-label">Where your work lives</span>
+          <h2 className="hp-section-heading">Community media. Real audiences.</h2>
+          <div className="hp-media-grid">
+            <Link to="/raydyo" className="hp-media-card hp-media-card--raydyo">
+              <span className="hp-media-icon">📻</span>
+              <div>
+                <h3>Rayd-yo Radio</h3>
+                <p>Community radio made by members. Podcasts, interviews, music, heritage storytelling. Your voice, your audience.</p>
+              </div>
+              <span className="hp-media-cta">Listen now →</span>
+            </Link>
+            <Link to="/joystick" className="hp-media-card hp-media-card--joystick">
+              <span className="hp-media-icon">📰</span>
+              <div>
+                <h3>Joystick E-zine</h3>
+                <p>Digital magazine written, designed, and published by the community. Your words, documented, attributed, yours.</p>
+              </div>
+              <span className="hp-media-cta">Read now →</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 12b — FAST TRACK STRIP
+          ─────────────────────────────────────
+          Persistent reminder between media
+          and the Knowledge Commons.
+
+          For the person who scrolled past
+          the second door and read everything.
+          For the person who skipped straight
+          to the bottom.
+          For the person who almost left twice.
+
+          One line. One button. No argument.
+          The offer is still open.
+          ══════════════════════════════════════ */}
+      <div className="hp-ft-strip">
+        <div className="hp-ft-strip__inner">
+          <div className="hp-ft-strip__left">
+            <span className="hp-ft-strip__badge">Fast Track</span>
+            <span className="hp-ft-strip__text">
+              Say something today. On air in 14 days.
+              Your name on it. Nobody takes that.
+            </span>
+          </div>
+          <div className="hp-ft-strip__right">
+            <span className="hp-ft-strip__formats">
+              Story · Poem · Broadcast minute · Character sketch · Personal response
+            </span>
+            <Link
+              to="/programmes/pageturners/sandbox?fasttrack=true"
+              className="hp-ft-strip__cta"
+            >
+              Start now →
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* ══════════════════════════════════════
+          BEAT 13 — THE KNOWLEDGE COMMONS
+          The counter-archive entry point.
+          Positioned after media — the third
+          community output alongside Rayd-yo
+          and Joystick. Before the footer CTA
+          so the last thing before joining is
+          the reminder that this is a knowledge
+          organisation, not just a workshop hub.
+      ══════════════════════════════════════ */}
+      <section className="hp-commons" id="commons" data-reveal>
+        <div className="hp-container">
+          <div className="hp-commons-inner">
+
+            <div className="hp-commons-left">
+              <span className="hp-section-label">The counter-archive</span>
+              <h2 className="hp-commons-heading">
+                The history they<br />
+                didn't teach you.<br />
+                <em>Documented here.</em>
+              </h2>
+              <p className="hp-commons-body">
+                English Heritage has issued 950+ blue plaques in London.
+                Here are five people who deserve one more than many who have one.
+                Here is the building that was built to represent fifty nations
+                and was quietly turned into a design museum.
+                Here is the ground under Wembley Stadium and what it remembers.
+              </p>
+              <p className="hp-commons-body">
+                The Wembley Wonders Knowledge Commons is a publicly accessible
+                counter-archive — pioneer profiles, deep-dive threads, an
+                institutional map of post-colonial London, and a living oral history
+                contributed by this community.
+                Free. No login required to read.
+              </p>
+              <div className="hp-commons-ctas">
+                <Link to="/heritage" className="hp-cta hp-cta--commons">
+                  Enter the Knowledge Commons →
+                </Link>
+                <Link to="/oral-history" className="hp-cta hp-cta--ghost">
+                  Contribute your story
+                </Link>
+              </div>
+            </div>
+
+            <div className="hp-commons-right">
+              {/* Rotating thread question card */}
+              <div className="hp-commons-thread-card">
+                <div className="hp-commons-thread-kicker">
+                  <span className="hp-commons-thread-dot" />
+                  Deep-dive thread
+                </div>
+                <div
+                  key={activeThreadSample}
+                  className="hp-commons-thread-question"
+                >
+                  {currentThread.question}
+                </div>
+                <p className="hp-commons-thread-context">
+                  {currentThread.context}
+                </p>
+                <div className="hp-commons-thread-name">
+                  {currentThread.thread}
+                </div>
+                <Link
+                  to="/heritage"
+                  className="hp-commons-thread-link"
+                >
+                  Read the thread →
+                </Link>
+              </div>
+
+              {/* Thread pagination dots */}
+              <div className="hp-commons-thread-dots">
+                {COMMONS_THREAD_SAMPLES.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`hp-commons-dot ${i === activeThreadSample ? 'active' : ''}`}
+                    onClick={() => setActiveThreadSample(i)}
+                    aria-label={`Thread ${i + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Plaque preview — three mini counter-plaques */}
+              <div className="hp-commons-plaques">
+                <div className="hp-commons-plaque-label">Missing plaques</div>
+                <div className="hp-commons-plaque-row">
+                  {[
+                    { name: 'ARTHUR WHARTON', dates: '1865–1930', field: 'Footballer' },
+                    { name: 'CLAUDIA JONES', dates: '1915–1964', field: 'Activist & Founder' },
+                    { name: 'LEN JOHNSON', dates: '1902–1974', field: 'Boxer & Organiser' },
+                  ].map((p, i) => (
+                    <div key={i} className="hp-commons-plaque">
+                      <span className="hp-commons-plaque-name">{p.name}</span>
+                      <span className="hp-commons-plaque-dates">{p.dates}</span>
+                      <span className="hp-commons-plaque-field">{p.field}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BEAT 14 — FOOTER CTA
+      ══════════════════════════════════════ */}
+      <section className="hp-footer-cta">
+        <div className="hp-container">
+          <div className="hp-footer-inner">
+            <h2 className="hp-footer-title">
+              Let's find it.<br />
+              Refine it.<br />
+              Make it yours to own.
+            </h2>
+            <p className="hp-footer-sub">
+              Not a course. Not a qualification. Not another door to knock on.
+              A process that starts with what you already carry.
+            </p>
+            <div className="hp-footer-ctas">
+              <Link to="/join" className="hp-cta hp-cta--primary">
+                Join free — takes 2 minutes
+              </Link>
+              <Link to="/sandbox" className="hp-cta hp-cta--outline">
+                Try the sandbox first
+              </Link>
+            </div>
+            <div className="hp-footer-org">
+              Wembley Wonders CIC · Company No. 12960817<br />
+              Flat 2, 452 High Road, Wembley HA9 7AY · 0208 902 9991<br />
+              <span>All volunteers DBS-checked · Activity logs viewable by parents</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+};
+
+export default HomePage;

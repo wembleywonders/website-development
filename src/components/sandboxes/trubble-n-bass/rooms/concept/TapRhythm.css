@@ -1,0 +1,223 @@
+/* TapRhythm.css — dark theme, palette: #0f172a bg, #f0e6d0 text, #d4a853 gold */
+
+.tap-rhythm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(212, 168, 83, 0.2);
+  border-radius: 12px;
+  max-width: 560px;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.tap-rhythm__header {}
+.tap-rhythm__title {
+  font-size: 1.1rem;
+  color: #d4a853;
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+}
+.tap-rhythm__subtitle {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0;
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+/* Tap target — the main interaction */
+.tap-rhythm__target {
+  width: 100%;
+  min-height: 120px;
+  background: rgba(212, 168, 83, 0.08);
+  border: 2px dashed rgba(212, 168, 83, 0.4);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.05s, border-color 0.05s, transform 0.05s;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.tap-rhythm__target:hover {
+  background: rgba(212, 168, 83, 0.12);
+  border-color: rgba(212, 168, 83, 0.6);
+}
+.tap-rhythm__target:active,
+.tap-rhythm__target--flash {
+  background: rgba(212, 168, 83, 0.25);
+  border-color: #d4a853;
+  transform: scale(0.98);
+}
+
+.tap-rhythm__target-icon {
+  font-size: 2.5rem;
+  color: #d4a853;
+  line-height: 1;
+}
+.tap-rhythm__target-label {
+  font-size: 0.8rem;
+  font-family: monospace;
+  letter-spacing: 0.12em;
+  color: #d4a853;
+  font-weight: 600;
+}
+
+/* BPM row */
+.tap-rhythm__bpm-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.tap-rhythm__bpm {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+.tap-rhythm__bpm-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #f0e6d0;
+  line-height: 1;
+}
+.tap-rhythm__bpm-label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  letter-spacing: 0.1em;
+}
+.tap-rhythm__confidence {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.tap-rhythm__confidence-bar {
+  height: 4px;
+  background: rgba(148, 163, 184, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.tap-rhythm__confidence-fill {
+  height: 100%;
+  background: #d4a853;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.tap-rhythm__confidence-label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* 16-step grid */
+.tap-rhythm__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.tap-rhythm__grid-label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tap-rhythm__steps {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 3px;
+}
+.tap-rhythm__step {
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  cursor: pointer;
+  transition: background 0.1s, border-color 0.1s;
+  padding: 0;
+  min-height: 24px;
+}
+.tap-rhythm__step--beat {
+  border-left: 1px solid rgba(212, 168, 83, 0.3);
+}
+.tap-rhythm__step--active {
+  background: rgba(212, 168, 83, 0.5);
+  border-color: #d4a853;
+}
+.tap-rhythm__step--current {
+  background: #d4a853 !important;
+  border-color: #f0e6d0 !important;
+}
+.tap-rhythm__step:hover {
+  border-color: rgba(212, 168, 83, 0.5);
+}
+.tap-rhythm__beat-labels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+}
+.tap-rhythm__beat-label {
+  font-size: 0.65rem;
+  color: rgba(148, 163, 184, 0.5);
+  text-align: left;
+  padding-left: 2px;
+}
+
+/* Controls */
+.tap-rhythm__controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.tap-rhythm__btn {
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  border: 1px solid;
+  transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.03em;
+}
+.tap-rhythm__btn--play {
+  background: rgba(212, 168, 83, 0.15);
+  border-color: #d4a853;
+  color: #d4a853;
+}
+.tap-rhythm__btn--play:hover { background: rgba(212, 168, 83, 0.25); }
+
+.tap-rhythm__btn--confirm {
+  background: #d4a853;
+  border-color: #d4a853;
+  color: #0f172a;
+  font-weight: 600;
+}
+.tap-rhythm__btn--confirm:hover { background: #c49943; }
+
+.tap-rhythm__btn--stop {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+}
+.tap-rhythm__btn--stop:hover { background: rgba(239, 68, 68, 0.25); }
+
+.tap-rhythm__btn--reset {
+  background: transparent;
+  border-color: rgba(148, 163, 184, 0.3);
+  color: #94a3b8;
+}
+.tap-rhythm__btn--reset:hover {
+  border-color: rgba(148, 163, 184, 0.5);
+  color: #cbd5e1;
+}
+
+@media (max-width: 480px) {
+  .tap-rhythm__steps { gap: 2px; }
+  .tap-rhythm__step { min-height: 18px; }
+  .tap-rhythm__bpm-value { font-size: 1.8rem; }
+}

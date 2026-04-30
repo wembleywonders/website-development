@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/systems/rovs/personalities/justice/index.ts;
+// Stub — pending implementation
+export {};

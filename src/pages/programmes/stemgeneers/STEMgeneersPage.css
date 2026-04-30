@@ -1058,4 +1058,541 @@
     min-width: 80px;
     padding: 8px 12px;
   }
+}/* ============================================================================
+   STEMgeneers Curriculum Sections — APPEND TO EXISTING STEMgeneersPage.css
+   Same palette: #0f172a base, #e2e8f0 body, #94a3b8 muted,
+   #10b981 green, #fbbf24 yellow, #8b5cf6 purple, #f87171 red.
+   Semi-transparent overlays throughout. No solid white.
+   ============================================================================ */
+
+/* ── Curriculum hero ──────────────────────────────────────────────────────── */
+
+.sgc-curriculum-hero {
+  background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(139,92,246,0.08) 100%);
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.sgc-ch-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #10b981;
+  background: rgba(16,185,129,0.12);
+  border: 1px solid rgba(16,185,129,0.25);
+  border-radius: 4px;
+  padding: 3px 10px;
+  margin-bottom: 16px;
+}
+
+.sgc-ch-title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: #f1f5f9;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+
+.sgc-ch-accent {
+  color: #6ee7b7;
+}
+
+.sgc-ch-sub {
+  font-size: 0.97rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 24px;
+}
+
+.sgc-ch-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(16,185,129,0.15);
+}
+
+.sgc-ch-ctas {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Session tabs ─────────────────────────────────────────────────────────── */
+
+.sgc-session-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.sgc-session-tab {
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(148,163,184,0.15);
+  border-radius: 8px;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.sgc-session-tab:hover {
+  border-color: rgba(16,185,129,0.3);
+  color: #94a3b8;
+}
+
+.sgc-session-tab.active {
+  background: rgba(16,185,129,0.12);
+  border-color: rgba(16,185,129,0.35);
+  color: #10b981;
+}
+
+/* ── Session detail ───────────────────────────────────────────────────────── */
+
+.sgc-session-detail {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(148,163,184,0.1);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.sgc-session-meta {
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(148,163,184,0.08);
+  background: rgba(0,0,0,0.15);
+}
+
+.sgc-session-sub {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #10b981;
+  margin: 0 0 6px;
+}
+
+.sgc-session-objective {
+  font-size: 0.93rem;
+  color: #94a3b8;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.sgc-module-timeline {
+  padding: 20px 24px;
+}
+
+.sgc-session-outputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px 24px;
+  border-top: 1px solid rgba(148,163,184,0.08);
+  background: rgba(0,0,0,0.1);
+}
+
+.sgc-outputs-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #475569;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.sgc-outputs-list {
+  margin: 0;
+  padding-left: 16px;
+  color: #64748b;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+/* ── Module cards ─────────────────────────────────────────────────────────── */
+
+.sgc-module-card {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 0 16px;
+  margin-bottom: 0;
+}
+
+.sgc-module-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.sgc-module-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.sgc-module-line {
+  width: 1px;
+  flex: 1;
+  background: rgba(148,163,184,0.12);
+  margin: 4px 0;
+  min-height: 16px;
+}
+
+.sgc-module-body {
+  padding-bottom: 20px;
+}
+
+.sgc-module-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.sgc-module-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.sgc-module-duration {
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: #475569;
+}
+
+.sgc-subject-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 3px;
+  border: 1px solid;
+}
+
+.sgc-5c {
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sgc-5c-connect   { background: rgba(16,185,129,0.1);  color: #6ee7b7; }
+.sgc-5c-create    { background: rgba(139,92,246,0.1);  color: #a78bfa; }
+.sgc-5c-change    { background: rgba(251,191,36,0.1);  color: #fbbf24; }
+.sgc-5c-challenge { background: rgba(248,113,113,0.1); color: #f87171; }
+.sgc-5c-control   { background: rgba(59,130,246,0.1);  color: #93c5fd; }
+
+.sgc-expand-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(148,163,184,0.2);
+  background: transparent;
+  color: #475569;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.15s;
+}
+
+.sgc-expand-btn:hover {
+  border-color: rgba(16,185,129,0.4);
+  color: #10b981;
+}
+
+.sgc-module-title {
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0 0 3px;
+}
+
+.sgc-module-tagline {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ── Module detail (expanded) ─────────────────────────────────────────────── */
+
+.sgc-module-detail {
+  margin-top: 12px;
+  border-top: 1px solid rgba(148,163,184,0.08);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sgc-detail-block {
+  background: rgba(0,0,0,0.2);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.sgc-wrong {
+  background: rgba(239,68,68,0.06);
+  border-left: 3px solid rgba(248,113,113,0.4);
+  border-radius: 0 8px 8px 0;
+}
+
+.sgc-answer {
+  background: rgba(16,185,129,0.06);
+  border-left: 3px solid rgba(16,185,129,0.4);
+  border-radius: 0 8px 8px 0;
+}
+
+.sgc-detail-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+.sgc-detail-block p {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.65;
+}
+
+.sgc-wrong p  { color: #fca5a5; }
+.sgc-answer p { color: #6ee7b7; }
+
+/* ── Periodic elements ────────────────────────────────────────────────────── */
+
+.sgc-elements-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.sgc-element {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(148,163,184,0.15);
+  border-radius: 6px;
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 52px;
+}
+
+.sgc-el-symbol { font-size: 1.1rem; font-weight: 700; color: #10b981; line-height: 1; }
+.sgc-el-name   { font-size: 0.65rem; color: #64748b; margin-top: 2px; }
+.sgc-el-pos    { font-size: 0.6rem; font-family: monospace; color: #475569; margin-top: 1px; }
+
+/* ── Community knowledge ──────────────────────────────────────────────────── */
+
+.sgc-ck-item {
+  margin-bottom: 4px;
+  font-size: 0.83rem;
+}
+
+.sgc-ck-tradition {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #10b981;
+  margin-right: 8px;
+  font-family: monospace;
+}
+
+.sgc-ck-practice { color: #94a3b8; }
+
+/* ── Materials ────────────────────────────────────────────────────────────── */
+
+.sgc-materials {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.sgc-material {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(148,163,184,0.12);
+  border-radius: 10px;
+  color: #64748b;
+}
+
+/* ── Maya quote ───────────────────────────────────────────────────────────── */
+
+.sgc-maya-block { background: rgba(16,185,129,0.04); }
+
+.sgc-maya-quote {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  border-left: 3px solid rgba(16,185,129,0.35);
+  padding-left: 12px;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ── Retrieval ────────────────────────────────────────────────────────────── */
+
+.sgc-retrieval {
+  background: rgba(139,92,246,0.06);
+  border-left: 3px solid rgba(139,92,246,0.3);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+}
+
+.sgc-retrieval p {
+  font-size: 0.85rem;
+  color: #a78bfa;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Progression ──────────────────────────────────────────────────────────── */
+
+.sgc-progression-track {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.sgc-level-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(148,163,184,0.1);
+  border-left: 3px solid;
+  border-radius: 0 12px 12px 0;
+  padding: 16px;
+}
+
+.sgc-level-header {
+  margin-bottom: 10px;
+}
+
+.sgc-level-num {
+  display: block;
+  font-size: 0.65rem;
+  font-family: monospace;
+  color: #475569;
+  margin-bottom: 2px;
+}
+
+.sgc-level-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 2px;
+}
+
+.sgc-level-range {
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: #475569;
+}
+
+.sgc-level-descriptor {
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+
+.sgc-criteria {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.sgc-criterion {
+  background: rgba(0,0,0,0.2);
+  border-radius: 5px;
+  padding: 6px 8px;
+}
+
+.sgc-band {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1px 5px;
+  border-radius: 2px;
+  margin-bottom: 3px;
+}
+
+.sgc-band-f { background: rgba(16,185,129,0.12);  color: #6ee7b7; }
+.sgc-band-c { background: rgba(139,92,246,0.12);  color: #a78bfa; }
+.sgc-band-e { background: rgba(251,191,36,0.12);  color: #fbbf24; }
+
+.sgc-criterion p {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sgc-output-format {
+  font-size: 0.75rem;
+  color: #475569;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.5;
+  border-top: 1px solid rgba(148,163,184,0.08);
+  padding-top: 8px;
+}
+
+/* ── Guides ───────────────────────────────────────────────────────────────── */
+
+.sgc-guides-section {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(148,163,184,0.08);
+}
+
+.sgc-guides-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0 0 16px;
+}
+
+/* ── Responsive additions ─────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .sgc-progression-track { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .sgc-curriculum-hero { padding: 28px 20px; }
+  .sgc-session-outputs { grid-template-columns: 1fr; }
+  .sgc-progression-track { grid-template-columns: 1fr; }
 }

@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/types/prototype/contributors.ts;
+// Stub — pending implementation
+export {};

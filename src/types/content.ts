@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/types/content.ts;
+// Stub — pending implementation
+export {};

@@ -354,7 +354,7 @@ const ContactPage = () => {
             <div className="address">
               <strong>Wembley Wonders CIC</strong><br />
               Community Hub Building<br />
-              123 High Road<br />
+              452 High Road<br />
               Wembley, London HA0 1XX
             </div>
             

@@ -1,0 +1,579 @@
+/**
+ * ContentJourneyBadge.module.css
+ * Wembley Wonders CIC · Shared Component
+ *
+ * The visual language of the connective tissue.
+ * Programme colours are the key — they make
+ * cross-programme journeys legible at a glance.
+ *
+ * Tokens extend the platform's --hp- vocabulary.
+ * Works on both dark (Knowledge Commons, HomePage)
+ * and light (Pageturners, Joystick) backgrounds.
+ */
+
+/* ─────────────────────────────────────────
+   ROOT
+   ───────────────────────────────────────── */
+
+.badge {
+  --cjb-text:     #e8e4dc;
+  --cjb-muted:    rgba(232, 228, 220, 0.5);
+  --cjb-faint:    rgba(232, 228, 220, 0.25);
+  --cjb-surface:  rgba(255, 255, 255, 0.04);
+  --cjb-border:   rgba(255, 255, 255, 0.08);
+  --cjb-radius:   6px;
+  --cjb-radius-sm: 3px;
+  --cjb-font-body: 'DM Sans', 'Source Serif 4', system-ui, sans-serif;
+  --cjb-font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  font-family: var(--cjb-font-body);
+}
+
+/* Light background override — used when badge
+   appears on Pageturners or Joystick pages */
+:global(.pt) .badge,
+:global(.joystick) .badge {
+  --cjb-text:     #2c2520;
+  --cjb-muted:    rgba(44, 37, 32, 0.55);
+  --cjb-faint:    rgba(44, 37, 32, 0.25);
+  --cjb-surface:  rgba(44, 37, 32, 0.04);
+  --cjb-border:   rgba(44, 37, 32, 0.12);
+}
+
+/* ─────────────────────────────────────────
+   MICRO BADGE
+   ─────────────────────────────────────────
+   Inline. Single line. Tooltip carries the story.
+   ───────────────────────────────────────── */
+
+.micro {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  line-height: 1;
+  cursor: default;
+}
+
+.micro__icon {
+  font-size: 0.7rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.micro__name {
+  color: var(--cjb-text);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.micro__age {
+  color: var(--cjb-muted);
+  font-weight: 400;
+}
+
+.micro__prog {
+  background: none;
+  border: 1px solid;
+  border-radius: var(--cjb-radius-sm);
+  font-family: var(--cjb-font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 5px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.micro__prog:hover { opacity: 0.7; }
+
+.micro__status {
+  font-family: var(--cjb-font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cjb-muted);
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────
+   COMPACT BADGE
+   ─────────────────────────────────────────
+   Sidebar / below-title.
+   The human story is prominent.
+   Journey is condensed to a visual flow.
+   ───────────────────────────────────────── */
+
+.compact {
+  display: flex;
+  gap: 0;
+  background: var(--cjb-surface);
+  border: 1px solid var(--cjb-border);
+  border-radius: var(--cjb-radius);
+  overflow: hidden;
+}
+
+.compact__stripe {
+  width: 3px;
+  flex-shrink: 0;
+}
+
+.compact__body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.compact__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.compact__icon {
+  font-size: 0.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.compact__prog {
+  background: none;
+  border: none;
+  font-family: var(--cjb-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.15s ease;
+}
+
+.compact__prog:hover { opacity: 0.7; }
+
+.compact__status {
+  font-family: var(--cjb-font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: var(--cjb-radius-sm);
+  border: 1px solid;
+  margin-left: auto;
+}
+
+/* The human story — always first, always specific */
+.compact__story {
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--cjb-text);
+  margin: 0;
+  font-style: italic;
+}
+
+.compact__creator {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.compact__creator__name {
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: var(--cjb-text);
+}
+
+.compact__creator__age,
+.compact__creator__cohort,
+.compact__creator__heritage {
+  font-size: 0.65rem;
+  color: var(--cjb-muted);
+  background: var(--cjb-surface);
+  border: 1px solid var(--cjb-border);
+  border-radius: var(--cjb-radius-sm);
+  padding: 1px 5px;
+}
+
+/* Journey flow */
+.compact__journey {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-top: 6px;
+  border-top: 1px solid var(--cjb-border);
+}
+
+.compact__stop {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.compact__stop__icon {
+  font-size: 0.6rem;
+  opacity: 0.7;
+}
+
+.compact__stop__label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.compact__arrow {
+  font-size: 0.6rem;
+  color: var(--cjb-faint);
+}
+
+/* ─────────────────────────────────────────
+   FULL BADGE
+   ─────────────────────────────────────────
+   Feature articles, broadcast listings.
+   The complete human story. Full journey.
+   ───────────────────────────────────────── */
+
+.full {
+  background: var(--cjb-surface);
+  border: 1px solid var(--cjb-border);
+  border-radius: var(--cjb-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.full__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--cjb-border);
+  border-left: 3px solid;
+  gap: 12px;
+}
+
+.full__header__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.full__icon {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.full__prog {
+  background: none;
+  border: none;
+  font-family: var(--cjb-font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  display: block;
+  transition: opacity 0.15s ease;
+}
+
+.full__prog:hover { opacity: 0.7; }
+
+.full__date {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--cjb-muted);
+  margin-top: 1px;
+  font-family: var(--cjb-font-mono);
+}
+
+.full__status {
+  font-family: var(--cjb-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--cjb-radius-sm);
+  border: 1px solid;
+  flex-shrink: 0;
+}
+
+/* The human story — the blockquote is intentional.
+   This is a citation. A testimony. A record. */
+.full__story {
+  font-size: 0.925rem;
+  line-height: 1.65;
+  color: var(--cjb-text);
+  font-style: italic;
+  margin: 0;
+  padding: 16px 16px 12px;
+  border-left: none;
+
+  /* The quote marks */
+  position: relative;
+}
+
+.full__story::before {
+  content: '"';
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 2.5rem;
+  color: var(--cjb-faint);
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.full__creator {
+  padding: 0 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.full__creator__name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--cjb-text);
+}
+
+.full__creator__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.full__creator__tag {
+  font-size: 0.65rem;
+  color: var(--cjb-muted);
+  background: var(--cjb-surface);
+  border: 1px solid var(--cjb-border);
+  border-radius: var(--cjb-radius-sm);
+  padding: 2px 7px;
+}
+
+/* Journey — expandable section */
+.full__journey {
+  border-top: 1px solid var(--cjb-border);
+}
+
+.full__journey__toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--cjb-font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cjb-muted);
+  text-align: left;
+  transition: color 0.15s ease;
+}
+
+.full__journey__toggle:hover { color: var(--cjb-text); }
+
+.full__journey__count {
+  background: var(--cjb-surface);
+  border: 1px solid var(--cjb-border);
+  border-radius: var(--cjb-radius-sm);
+  padding: 1px 5px;
+}
+
+.full__journey__chevron {
+  margin-left: auto;
+  font-size: 0.6rem;
+}
+
+.full__journey__steps {
+  padding: 0 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.full__step {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--cjb-border);
+  position: relative;
+}
+
+.full__step:last-child {
+  border-bottom: none;
+}
+
+/* Vertical thread connecting steps */
+.full__step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 24px;
+  bottom: -8px;
+  width: 1px;
+  background: var(--cjb-border);
+}
+
+.full__step__marker {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.full__step__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.full__step__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.full__step__prog {
+  background: none;
+  border: none;
+  font-size: 0.775rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.15s ease;
+}
+
+.full__step__prog:hover { opacity: 0.7; }
+
+.full__step__action {
+  font-family: var(--cjb-font-mono);
+  font-size: 0.6rem;
+  color: var(--cjb-muted);
+  letter-spacing: 0.06em;
+}
+
+.full__step__date {
+  font-family: var(--cjb-font-mono);
+  font-size: 0.6rem;
+  color: var(--cjb-faint);
+  margin-left: auto;
+}
+
+.full__step__note {
+  font-size: 0.775rem;
+  line-height: 1.5;
+  color: var(--cjb-muted);
+  margin: 4px 0 0;
+  font-style: italic;
+}
+
+/* Cross-programme connections */
+.full__connections {
+  border-top: 1px solid var(--cjb-border);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.full__connections__label {
+  font-family: var(--cjb-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cjb-muted);
+}
+
+.full__connections__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.full__connection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1px solid;
+  border-radius: var(--cjb-radius-sm);
+  padding: 6px 10px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--cjb-font-body);
+  transition: opacity 0.15s ease;
+  flex-wrap: wrap;
+}
+
+.full__connection:hover { opacity: 0.75; }
+
+.full__connection__type {
+  font-family: var(--cjb-font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.full__connection__label {
+  font-size: 0.775rem;
+  font-weight: 500;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.full__connection__prog {
+  font-family: var(--cjb-font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .compact__journey {
+    display: none;
+  }
+
+  .full__story::before {
+    display: none;
+  }
+
+  .full__step__date {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .micro__prog:hover,
+  .compact__prog:hover,
+  .full__prog:hover,
+  .full__step__prog:hover,
+  .full__connection:hover {
+    opacity: 1;
+  }
+}

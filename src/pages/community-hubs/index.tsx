@@ -51,7 +51,7 @@ const CommunityHubsPage: React.FC = () => {
    },
    {
      id: 'wembley-community-centre',
-     name: 'Wembley Community Centre',
+     name: 'Wembley Wonders CIC',
      role: 'Alternative venue and community coordination',
      activities: [
        'Backup workshop venue',

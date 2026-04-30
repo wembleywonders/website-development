@@ -1,0 +1,525 @@
+/**
+ * ListingCard.css + ImpactLabPage.css
+ * Wembley Wonders CIC
+ *
+ * Aesthetic: editorial confidence.
+ * Numbers that mean something deserve to look like they mean something.
+ * Warm ink on cream. Gold for performance. No decoration for its own sake.
+ */
+
+/* ─── ROCE colour tokens ────────────────────────────────────────────────────── */
+
+:root {
+  --roce-exceptional: #C9960A;   /* gold — outstanding */
+  --roce-strong:      #2A7A4B;   /* green — above average */
+  --roce-developing:  #7A7264;   /* muted — growing */
+  --roce-early:       #B0A898;   /* light muted — insufficient data */
+
+  --card-bg:          #FFFFFF;
+  --card-border:      #E8E2D8;
+  --card-radius:      10px;
+  --card-ink:         #1A1714;
+  --card-muted:       #7A7264;
+  --card-warm:        #F5F0E8;
+  --card-gold:        #C9960A;
+  --card-green:       #2A7A4B;
+  --card-amber:       #D4740A;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LISTING CARD
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.listing-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: 1.25rem 1.375rem;
+  font-family: 'Georgia', serif;
+  color: var(--card-ink);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.listing-card:hover {
+  box-shadow: 0 2px 12px rgba(26, 23, 20, 0.08);
+}
+
+.listing-card--impact-lab {
+  border-left: 3px solid var(--card-gold);
+}
+
+/* ─── Header ───────────────────────────────────────────────────────────────── */
+
+.listing-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.listing-card__title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.listing-card__title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.listing-card__meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.listing-card__programme {
+  font-size: 0.75rem;
+  color: var(--card-muted);
+  text-transform: capitalize;
+  letter-spacing: 0.03em;
+}
+
+.listing-card__price {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--card-gold);
+}
+
+/* ─── Status badge ─────────────────────────────────────────────────────────── */
+
+.listing-card__status {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.625rem;
+  border-radius: 2rem;
+  white-space: nowrap;
+}
+
+.status--live     { background: #E8F5EE; color: var(--card-green); }
+.status--draft    { background: var(--card-warm); color: var(--card-muted); }
+.status--paused   { background: #FFF3E0; color: var(--card-amber); }
+.status--sold-out { background: #F3F0EC; color: var(--card-muted); }
+
+/* ─── The four metrics ─────────────────────────────────────────────────────── */
+
+.listing-card__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  padding: 0.875rem 0;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+
+@media (max-width: 480px) {
+  .listing-card__metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+.listing-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.listing-metric--highlight .listing-metric__value {
+  color: var(--metric-colour, var(--card-gold));
+}
+
+.listing-metric__value {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: var(--card-ink);
+  line-height: 1.2;
+}
+
+.listing-metric__label {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--card-muted);
+  font-family: sans-serif;
+}
+
+.listing-metric__sub {
+  font-size: 0.6875rem;
+  color: var(--card-muted);
+  font-style: italic;
+}
+
+/* ─── Maya insight ─────────────────────────────────────────────────────────── */
+
+.listing-card__insight {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background: var(--card-warm);
+  border-radius: 6px;
+  padding: 0.625rem 0.875rem;
+}
+
+.listing-card__insight-icon {
+  color: var(--card-gold);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.listing-card__insight-text {
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--card-ink);
+  margin: 0;
+  flex: 1;
+  font-style: italic;
+}
+
+.listing-card__insight-dismiss {
+  background: none;
+  border: none;
+  color: var(--card-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* ─── Actions ──────────────────────────────────────────────────────────────── */
+
+.listing-card__actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.listing-card__action {
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.875rem;
+  border-radius: 4px;
+  border: 1px solid var(--card-border);
+  background: white;
+  color: var(--card-ink);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.listing-card__action:hover {
+  background: var(--card-warm);
+  border-color: var(--card-gold);
+}
+
+.listing-card__action--secondary {
+  color: var(--card-muted);
+}
+
+.listing-card__draft-note {
+  font-size: 0.8125rem;
+  color: var(--card-muted);
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   IMPACT LAB PAGE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.impact-lab {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Georgia', serif;
+  color: var(--card-ink);
+}
+
+.impact-lab--loading,
+.impact-lab--error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 1rem;
+  color: var(--card-muted);
+  font-style: italic;
+}
+
+.impact-lab__spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--card-border);
+  border-top-color: var(--card-gold);
+  border-radius: 50%;
+  animation: impact-spin 0.8s linear infinite;
+}
+
+@keyframes impact-spin { to { transform: rotate(360deg); } }
+
+/* ─── Header ───────────────────────────────────────────────────────────────── */
+
+.impact-lab__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.impact-lab__title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.375rem;
+  line-height: 1.2;
+}
+
+.impact-lab__subtitle {
+  font-size: 0.9375rem;
+  color: var(--card-muted);
+  margin: 0;
+  line-height: 1.6;
+  font-style: italic;
+  max-width: 420px;
+}
+
+/* ─── Period selector ──────────────────────────────────────────────────────── */
+
+.impact-period-selector {
+  display: flex;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
+.impact-period-btn {
+  font-size: 0.8125rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 2rem;
+  border: 1px solid var(--card-border);
+  background: white;
+  color: var(--card-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: sans-serif;
+}
+
+.impact-period-btn:hover {
+  border-color: var(--card-gold);
+  color: var(--card-ink);
+}
+
+.impact-period-btn--active {
+  background: var(--card-gold);
+  border-color: var(--card-gold);
+  color: #1A1714;
+  font-weight: 700;
+}
+
+/* ─── Summary stats ────────────────────────────────────────────────────────── */
+
+.impact-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--card-border);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 600px) {
+  .impact-summary { grid-template-columns: repeat(2, 1fr); }
+}
+
+.impact-stat {
+  background: white;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.impact-stat--emphasis {
+  background: var(--card-warm);
+}
+
+.impact-stat__value {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--card-ink);
+  line-height: 1.1;
+}
+
+.impact-stat--emphasis .impact-stat__value {
+  color: var(--card-gold);
+}
+
+.impact-stat__label {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--card-muted);
+  font-family: sans-serif;
+}
+
+.impact-stat__sub {
+  font-size: 0.75rem;
+  color: var(--card-muted);
+  font-style: italic;
+}
+
+/* ─── Community reserve note ───────────────────────────────────────────────── */
+
+.impact-reserve {
+  display: flex;
+  gap: 0.875rem;
+  align-items: flex-start;
+  background: #E8F5EE;
+  border: 1px solid #BDE0CC;
+  border-radius: var(--card-radius);
+  padding: 1.125rem 1.375rem;
+  margin-bottom: 2rem;
+}
+
+.impact-reserve__icon {
+  color: var(--card-green);
+  font-size: 1.125rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.impact-reserve__headline {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--card-green);
+  margin: 0 0 0.25rem;
+}
+
+.impact-reserve__sub {
+  font-size: 0.8125rem;
+  color: #2A7A4B;
+  margin: 0;
+  line-height: 1.55;
+  opacity: 0.85;
+}
+
+/* ─── Section titles ───────────────────────────────────────────────────────── */
+
+.impact-section-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--card-muted);
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+/* ─── Spotlights ───────────────────────────────────────────────────────────── */
+
+.impact-spotlights {
+  margin-bottom: 2.5rem;
+}
+
+.impact-spotlights__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.impact-spotlight {
+  background: var(--card-warm);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: 1.125rem 1.25rem;
+}
+
+.impact-spotlight__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.625rem;
+}
+
+.impact-spotlight__icon {
+  color: var(--card-gold);
+  font-size: 0.875rem;
+}
+
+.impact-spotlight__title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--card-muted);
+  font-family: sans-serif;
+}
+
+.impact-spotlight__listing {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.375rem;
+  color: var(--card-ink);
+}
+
+.impact-spotlight__context {
+  font-size: 0.8125rem;
+  color: var(--card-muted);
+  margin: 0;
+  line-height: 1.55;
+  font-style: italic;
+}
+
+/* ─── Listings grid ────────────────────────────────────────────────────────── */
+
+.impact-listings {
+  margin-top: 1rem;
+}
+
+.impact-listings__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* ─── Empty state ──────────────────────────────────────────────────────────── */
+
+.impact-lab__empty {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.impact-lab__empty-headline {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--card-ink);
+  margin: 0 0 0.5rem;
+}
+
+.impact-lab__empty-sub {
+  font-size: 0.9375rem;
+  color: var(--card-muted);
+  margin: 0;
+  line-height: 1.65;
+  font-style: italic;
+  max-width: 460px;
+  margin: 0 auto;
+}

@@ -16,7 +16,8 @@ export type ROVFamilyMember =
   | 'adaeze'    // Creative encourager
   | 'maxine'    // Performance coach
   | 'esther'    // Heritage keeper
-  | 'tariq';    // Media guide
+  | 'tariq'     // Media guide
+  | 'aya';      // Body sovereignty knowledge keeper
 
 /**
  * Specialist ROVs (protocol-based, not personality)
@@ -66,7 +67,8 @@ export type CreatorSpace =
   | 'raydyo'             // NEW
   | 'joystick'           // NEW
   | 'scrap-cat'          // NEW
-  | 'money-reset';       // NEW
+  | 'money-reset'         // NEW
+  | 'roots';             // NEW: Body sovereignty
 
 // Alias for backward compatibility
 export type Programme = CreatorSpace;
@@ -106,7 +108,13 @@ export type ProjectType =
   | 'device-revival'   // NEW: Scrap Cat
   | 'financial-plan'   // NEW: Money Reset
   | 'stream'           // NEW: G-Tech/Joystick
-  | 'ezine-article';   // NEW: Joystick
+  | 'ezine-article'        // NEW: Joystick
+  | 'hair-diagnostic'      // NEW: Aya/Roots
+  | 'remedy-research'      // NEW: Aya/Roots
+  | 'apothecary-formulation' // NEW: Aya/Roots
+  | 'mixed-heritage-guidance' // NEW: Aya/Roots
+  | 'legal-rights-query'   // NEW: Aya/Roots
+  | 'creator-product-pathway'; // NEW: Aya/Roots
 
 // ============================================
 // ROV PERSONALITY & VOICE
@@ -121,7 +129,8 @@ export type VoiceStyle =
   | 'authoritative'    // NEW: Solomon
   | 'nurturing'        // NEW: Esther
   | 'energetic'        // NEW: Maxine
-  | 'contemporary';    // NEW: Tariq
+  | 'contemporary'      // NEW: Tariq
+  | 'warm-authoritative'; // NEW: Aya
 
 export type GreetingStyle = 
   | 'casual' 
@@ -131,7 +140,8 @@ export type GreetingStyle =
   | 'warm-authority'   // NEW: Solomon
   | 'patient'          // NEW: Neville
   | 'affirming'        // NEW: Adaeze
-  | 'direct';          // NEW: Maxine
+  | 'direct'            // NEW: Maxine
+  | 'community-elder';  // NEW: Aya
 
 export interface ROVPersonality {
   tone: string;

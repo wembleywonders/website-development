@@ -193,7 +193,7 @@ export const CommunityProblemMapper: React.FC<{ onComplete?: (result: any) => vo
           1. The complaint (what people say)
         </label>
         <input type="text" value={complaint} onChange={e => setComplaint(e.target.value)}
-          placeholder='e.g. "There\'s too much litter near the stadium"'
+          placeholder="e.g. There's too much litter near the stadium"
           style={{ width: '100%', padding: 10, borderRadius: 8, border: '1.5px solid #e5e7eb', fontSize: '0.85rem' }}
         />
       </div>

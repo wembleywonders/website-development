@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/prototype-registry/hooks/useDisclosure.ts;
+// Stub — pending implementation
+export {};

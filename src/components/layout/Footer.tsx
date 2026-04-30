@@ -6,25 +6,25 @@ const Footer: React.FC = () => {
   return (
     <footer>
       <div className="footer-content">
-        
-        {/* Volunteer CTA Section - Above panels */}
+
+        {/* Volunteer CTA Section */}
         <div className="volunteer-cta-panel">
           <div className="volunteer-cta-content">
             <div className="volunteer-info">
-              <h3>Share Your Skills, Build Community</h3>
+              <h3>Rooted in Wembley. Built for the diaspora.</h3>
               <p>
-                Help address the backstage skills shortage. Your expertise creates opportunities 
-                for others and strengthens our local creative economy.
+                What you carry — the knowledge, the technique, the story — belongs in the record.
+                Find your programme and start building something that's yours.
               </p>
             </div>
             <div className="volunteer-actions">
-              <Link to="/volunteers" className="volunteer-btn">
-                Volunteer with Us
+              <Link to="/auth/signup" className="volunteer-btn">
+                Join free
               </Link>
               <div className="volunteer-stats">
-                <span className="stat">12 active roles</span>
-                <span className="stat">30+ volunteers</span>
-                <span className="stat">200+ trained annually</span>
+                <span className="stat">13 programmes</span>
+                <span className="stat">55% to creators</span>
+                <span className="stat">148 cultures, one borough</span>
               </div>
             </div>
           </div>
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
 
         {/* Footer Panels */}
         <div className="footer-panels">
-          
+
           {/* About Panel */}
           <div className="footer-panel">
             <div className="panel-header">
@@ -43,13 +43,20 @@ const Footer: React.FC = () => {
             </div>
             <div className="panel-content">
               <p className="panel-description">
-                Building community through skills development, creative expression, 
-                and employment pathways in North West London.
+                A community creator economy platform on Wembley High Road.
+                Family Knowledge = Family Investment.
               </p>
               <div className="social-info">
-                <p className="social-text">
-                  Connect with us: WhatsApp • Instagram • Facebook • YouTube
-                </p>
+                <div className="social-links">
+                  <a
+                    href="https://wa.me/447932198468?text=Hello%20Judith%2C%20I%27d%20like%20to%20find%20out%20more%20about%20Wembley%20Wonders"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-link whatsapp-link"
+                  >
+                    💬 WhatsApp Judith
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -61,56 +68,56 @@ const Footer: React.FC = () => {
             </div>
             <div className="panel-content">
               <div className="footer-links">
+                <Link to="/auth/signup" className="footer-link">
+                  <span className="link-icon">🚪</span>
+                  Join free
+                </Link>
                 <Link to="/programmes" className="footer-link">
                   <span className="link-icon">🎓</span>
                   Our Programmes
                 </Link>
-                <Link to="/workshops" className="footer-link">
-                  <span className="link-icon">🔨</span>
-                  Workshops
+                <Link to="/heritage" className="footer-link">
+                  <span className="link-icon">🗃️</span>
+                  Knowledge Commons
                 </Link>
-                <Link to="/membership" className="footer-link">
-                  <span className="link-icon">🤝</span>
-                  Become a Member
+                <Link to="/shop" className="footer-link">
+                  <span className="link-icon">🛍️</span>
+                  The Cyberstore
                 </Link>
                 <Link to="/volunteers" className="footer-link">
                   <span className="link-icon">👥</span>
-                  Volunteer with Us
-                </Link>
-                <Link to="/partnerships" className="footer-link">
-                  <span className="link-icon">🤝</span>
-                  Partner with Us
+                  Volunteer with us
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* Programs Panel */}
+          {/* Programmes Panel */}
           <div className="footer-panel">
             <div className="panel-header">
-              <h3 className="panel-title">Programs & Services</h3>
+              <h3 className="panel-title">Programmes</h3>
             </div>
             <div className="panel-content">
               <div className="footer-links">
-                <Link to="/programmes/trubble-n-bass" className="footer-link">
-                  <span className="link-icon">🎵</span>
-                  Trubble n Bass
+                <Link to="/programmes/bright-sparks" className="footer-link">
+                  <span className="link-icon">✨</span>
+                  Bright Sparks
+                </Link>
+                <Link to="/programmes/techreneurs" className="footer-link">
+                  <span className="link-icon">💻</span>
+                  TECHreneurs
                 </Link>
                 <Link to="/programmes/kaywanas-court" className="footer-link">
                   <span className="link-icon">🎭</span>
                   Kaywana's Court
                 </Link>
-                <Link to="/programmes/bright-sparks" className="footer-link">
-                  <span className="link-icon">⚡</span>
-                  Bright Sparks
-                </Link>
-                <Link to="/connoisseurs-club" className="footer-link">
-                  <span className="link-icon">👑</span>
-                  Connoisseurs Club
+                <Link to="/programmes/roots" className="footer-link">
+                  <span className="link-icon">🌿</span>
+                  Roots
                 </Link>
                 <Link to="/programmes" className="footer-link">
-                  <span className="link-icon">🎬</span>
-                  Backstage Skills Training
+                  <span className="link-icon">→</span>
+                  All 13 programmes
                 </Link>
               </div>
             </div>
@@ -126,31 +133,31 @@ const Footer: React.FC = () => {
                 <div className="contact-item">
                   <span className="contact-icon">📍</span>
                   <address>
-                    Wembley Community Centre<br />
-                    123 High Road, Wembley, HA9 6AA
+                    Wembley Wonders CIC<br />
+                    452 High Road, Wembley, HA9 7AY
                   </address>
                 </div>
                 <div className="contact-item">
                   <span className="contact-icon">📞</span>
-                  <a href="tel:02081234567">020 8123 4567</a>
+                  <a href="tel:02089029991">0208 902 9991</a>
+                </div>
+                <div className="contact-item">
+                  <span className="contact-icon">💬</span>
+                  <a
+                    href="https://wa.me/447932198468"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >WhatsApp Judith</a>
                 </div>
                 <div className="contact-item">
                   <span className="contact-icon">✉️</span>
                   <a href="mailto:hello@wembleywonders.org">hello@wembleywonders.org</a>
                 </div>
-                <div className="contact-item">
-                  <span className="contact-icon">🤝</span>
-                  <a href="mailto:volunteers@wembleywonders.org">volunteers@wembleywonders.org</a>
-                </div>
               </div>
               <div className="footer-links">
-                <Link to="/complaints" className="footer-link">
-                  <span className="link-icon">📞</span>
-                  Contact Us
-                </Link>
-                <Link to="/accessibility" className="footer-link">
+                <Link to="/about" className="footer-link">
                   <span className="link-icon">ℹ️</span>
-                  About Us
+                  About us
                 </Link>
                 <Link to="/safeguarding" className="footer-link">
                   <span className="link-icon">🛡️</span>
@@ -170,13 +177,13 @@ const Footer: React.FC = () => {
           <div className="footer-bottom-content">
             <div className="footer-left">
               <p className="copyright">
-                © 2025 Wembley Wonders CIC. All rights reserved.
+                © 2026 Wembley Wonders CIC. All rights reserved.
               </p>
               <p className="legal-info">
-                Regulated CIC • Company No. 12960817 • Incorporated 19 October 2020
+                Community Interest Company · No. 12960817 · Incorporated 19 October 2020
               </p>
               <p className="registration">
-                Registered in England and Wales.
+                Registered in England and Wales. All volunteers DBS-checked.
               </p>
             </div>
             <div className="footer-right">
@@ -189,6 +196,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
+
       </div>
     </footer>
   );

@@ -132,19 +132,19 @@ const SignupPage: React.FC = () => {
 
     try {
       // Call register function from AuthContext
-            const result = await register({
-              firstName: formData.firstName,
-              lastName: formData.lastName,
-              email: formData.email,
-              password: formData.password
-            });
+      const result = await register({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password
+      });
 
-      // Store token
-      localStorage.setItem('ww-token', result.token);
-
-      // Redirect to workspace with intent
-      const workspaceUrl = import.meta.env.VITE_WORKSPACE_URL || 'http://localhost:5174';
-      window.location.href = `${workspaceUrl}/onboarding?intent=${intent}`;
+      // Check if registration was successful
+      if (result) {
+        // Redirect to workspace with intent
+        const workspaceUrl = import.meta.env.VITE_WORKSPACE_URL || 'http://localhost:5174';
+        window.location.href = `${workspaceUrl}/onboarding?intent=${intent}`;
+      }
 
     } catch (error: any) {
       setErrors({ 

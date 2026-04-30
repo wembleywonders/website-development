@@ -154,7 +154,7 @@ const CommunityPage: React.FC = () => {
 
   return (
     <PageTemplate
-      pageTitle="Community"
+      pageTitle="Passionistas"
       pageStrapline="See what Passionistas are creating — projects, gallery, and inspiration"
       pageType="community"
     >

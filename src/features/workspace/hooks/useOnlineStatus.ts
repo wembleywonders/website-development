@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/features/workspace/hooks/useOnlineStatus.ts;
+// Stub — pending implementation
+export {};

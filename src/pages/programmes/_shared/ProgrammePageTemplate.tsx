@@ -8,12 +8,14 @@ import './ProgrammePageTemplate.css';
 interface ProgrammePageTemplateProps {
   config: ProgrammeConfig;
   interactiveTool: React.ReactNode;
+  creatorResources?: React.ReactNode;
   communityShowcase?: React.ReactNode;
 }
 
 const ProgrammePageTemplate: React.FC<ProgrammePageTemplateProps> = ({ 
   config, 
   interactiveTool,
+  creatorResources,
   communityShowcase 
 }) => {
   const [activeTab, setActiveTab] = useState<'builder' | 'journey'>('builder');
@@ -264,6 +266,18 @@ const ProgrammePageTemplate: React.FC<ProgrammePageTemplateProps> = ({
               </div>
             </div>
 
+          </section>
+        )}
+
+        {/* ── PROTECT YOUR WORK ─────────────────────────────────────────
+            Rendered outside the tabs so it's always visible regardless
+            of which tab the user is on. Sits between the tab content
+            and the community showcase — visible on first landing without
+            requiring any tab interaction.
+        ──────────────────────────────────────────────────────────────── */}
+        {creatorResources && (
+          <section className="creator-resources-section">
+            {creatorResources}
           </section>
         )}
 

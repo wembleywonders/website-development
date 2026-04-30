@@ -1,0 +1,291 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   CommunityDashboard.css — Wembley Wonders CIC
+   Platform dark theme. Governance tool aesthetic retained —
+   clean, institutional, data-forward — but on the dark gold palette.
+───────────────────────────────────────────────────────────────────────────── */
+
+.community-dashboard {
+  --fund-green:     #4ade80;
+  --fund-green-bg:  rgba(74, 222, 128, 0.1);
+  --proposal-blue:  #7EB5CC;
+  --approved-green: #4ade80;
+  --gold:           #d4a853;
+  --gold-dim:       rgba(212, 168, 83, 0.12);
+  --gold-border:    rgba(212, 168, 83, 0.2);
+  --warm-bg:        #0f172a;
+  --card-bg:        rgba(255, 255, 255, 0.03);
+  --card-bg-alt:    rgba(255, 255, 255, 0.05);
+  --text-primary:   #f0e6d0;
+  --text-secondary: #cbd5e1;
+  --text-muted:     #94a3b8;
+  --border:         rgba(255, 255, 255, 0.07);
+  --border-strong:  rgba(212, 168, 83, 0.18);
+  --radius:         10px;
+  --radius-sm:      6px;
+
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* ── Breadcrumb ─────────────────────────────────────────────── */
+
+.cd-breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  padding: 20px 40px; font-size: 13px; color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+.cd-breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.cd-breadcrumb a:hover { color: var(--gold); }
+.cd-breadcrumb span { color: var(--text-muted); opacity: 0.5; }
+.cd-breadcrumb [aria-current] { color: var(--text-secondary); }
+
+/* ── Header ─────────────────────────────────────────────────── */
+
+.cd-header {
+  padding: 60px 40px 48px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(212, 168, 83, 0.04);
+}
+.cd-header-inner { max-width: 640px; }
+.cd-overline {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); margin: 0 0 16px;
+}
+.cd-headline {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 400; letter-spacing: -0.02em;
+  margin: 0 0 16px; line-height: 1.2;
+  color: var(--text-primary);
+}
+.cd-strapline {
+  font-size: 1rem; line-height: 1.7;
+  color: var(--text-secondary); margin: 0; max-width: 540px;
+}
+
+/* ── Layout ─────────────────────────────────────────────────── */
+
+.cd-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+  padding: 32px 40px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (max-width: 960px) { .cd-layout { grid-template-columns: 1fr; padding: 20px; } }
+@media (max-width: 600px) {
+  .cd-header { padding: 40px 20px 32px; }
+  .cd-breadcrumb { padding-left: 20px; padding-right: 20px; }
+}
+
+/* ── Cards ──────────────────────────────────────────────────── */
+
+.cd-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+.cd-card:last-child { margin-bottom: 0; }
+.cd-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.cd-card-title {
+  font-size: 1rem; font-weight: 700;
+  letter-spacing: -0.01em; margin: 0; flex: 1;
+  color: var(--text-primary);
+}
+.cd-card-intro {
+  font-size: 0.85rem; color: var(--text-muted);
+  margin: 0 0 20px; line-height: 1.6;
+}
+.cd-card-footer {
+  display: flex; align-items: center; gap: 20px;
+  padding-top: 16px; border-top: 1px solid var(--border); margin-top: 16px;
+}
+
+/* ── Badges ─────────────────────────────────────────────────── */
+
+.cd-live-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--fund-green-bg); color: var(--fund-green);
+  padding: 3px 8px; border-radius: 100px;
+}
+.cd-count-badge {
+  font-size: 11px; font-weight: 600;
+  background: rgba(255,255,255,0.05); color: var(--text-secondary);
+  padding: 3px 10px; border-radius: 100px; border: 1px solid var(--border);
+}
+
+/* ── Fund figures ───────────────────────────────────────────── */
+
+.cd-fund-figures {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-bottom: 20px;
+}
+@media (max-width: 500px) { .cd-fund-figures { grid-template-columns: 1fr 1fr; } }
+
+.cd-figure { display: flex; flex-direction: column; gap: 4px; }
+.cd-figure-label {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-muted); font-weight: 600;
+}
+.cd-figure-value {
+  font-family: 'Georgia', serif; font-size: 1.5rem;
+  font-weight: 400; color: var(--text-primary); letter-spacing: -0.02em;
+}
+.cd-figure-value.allocated { color: var(--proposal-blue); }
+.cd-figure-value.available { color: var(--fund-green); }
+
+/* ── Progress ───────────────────────────────────────────────── */
+
+.cd-progress-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.cd-progress-bar {
+  flex: 1; height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.cd-progress-fill {
+  height: 100%; background: var(--proposal-blue);
+  border-radius: 3px; transition: width 0.6s ease;
+}
+.cd-progress-label { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+.cd-fund-note {
+  font-size: 0.825rem; line-height: 1.6; color: var(--text-muted);
+  margin: 0; padding: 12px 14px;
+  background: var(--gold-dim);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--gold);
+}
+
+/* ── Proposals ──────────────────────────────────────────────── */
+
+.cd-proposals-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 4px; }
+.cd-proposal {
+  padding: 16px;
+  background: var(--card-bg-alt);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.cd-proposal-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 12px; margin-bottom: 6px;
+}
+.cd-proposal-title {
+  font-size: 0.9rem; font-weight: 600;
+  margin: 0; line-height: 1.4; flex: 1;
+  color: var(--text-primary);
+}
+.cd-proposal-amount {
+  font-family: 'Georgia', serif; font-size: 1rem;
+  font-weight: 400; color: var(--proposal-blue); white-space: nowrap;
+}
+.cd-proposal-meta {
+  font-size: 12px; color: var(--text-muted);
+  display: flex; flex-wrap: wrap; gap: 6px;
+  align-items: center; margin-bottom: 12px;
+}
+.cd-dot { opacity: 0.4; }
+.cd-proposal-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.cd-signal-btn {
+  font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 100px;
+  border: 1.5px solid var(--border);
+  background: transparent; color: var(--text-secondary);
+  cursor: pointer; transition: all 0.2s;
+}
+.cd-signal-btn:hover { border-color: var(--proposal-blue); color: var(--proposal-blue); }
+.cd-signal-btn.signalled { background: var(--proposal-blue); border-color: var(--proposal-blue); color: #0f172a; }
+.cd-view-link { font-size: 12px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.cd-view-link:hover { color: var(--text-secondary); }
+.cd-propose-link { font-size: 13px; font-weight: 600; color: var(--gold); text-decoration: none; }
+.cd-view-all-link { font-size: 13px; color: var(--text-muted); text-decoration: none; margin-left: auto; }
+.cd-view-all-link:hover { color: var(--text-secondary); }
+
+/* ── Decisions ──────────────────────────────────────────────── */
+
+.cd-decisions-list { display: flex; flex-direction: column; gap: 14px; }
+.cd-decision { padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.cd-decision:last-child { border-bottom: none; padding-bottom: 0; }
+.cd-decision-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+.cd-outcome-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 3px 8px;
+  border-radius: 100px; flex-shrink: 0; margin-top: 2px;
+}
+.cd-outcome--approved { background: var(--fund-green-bg); color: var(--fund-green); }
+.cd-decision-title {
+  font-size: 0.875rem; font-weight: 600;
+  margin: 0; line-height: 1.4; color: var(--text-primary);
+}
+.cd-decision-meta {
+  font-size: 12px; color: var(--text-muted);
+  display: flex; flex-wrap: wrap; gap: 6px;
+  align-items: center; padding-left: 58px;
+}
+
+/* ── Roles ──────────────────────────────────────────────────── */
+
+.cd-roles-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 4px; }
+.cd-role {
+  padding: 16px;
+  background: var(--card-bg-alt);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.cd-role-header {
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 8px; margin-bottom: 6px;
+}
+.cd-role-title { font-size: 0.875rem; font-weight: 700; margin: 0; color: var(--text-primary); }
+.cd-level-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+  padding: 3px 8px; border-radius: 100px; white-space: nowrap; flex-shrink: 0;
+}
+.level--contributor { background: rgba(212, 168, 83, 0.15); color: var(--gold); }
+.level--operator    { background: rgba(126, 181, 204, 0.15); color: var(--proposal-blue); }
+.level--steward     { background: rgba(176, 110, 192, 0.15); color: #C084D4; }
+.cd-role-tags { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+.cd-role-house, .cd-role-commitment {
+  font-size: 11px; color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  padding: 2px 8px; border-radius: 100px;
+}
+.cd-role-description {
+  font-size: 0.825rem; line-height: 1.55;
+  color: var(--text-secondary); margin: 0 0 12px;
+}
+.cd-apply-btn {
+  font-size: 12px; font-weight: 600; padding: 6px 14px;
+  border-radius: 100px; border: 1.5px solid var(--border);
+  background: transparent; color: var(--text-secondary);
+  cursor: pointer; transition: all 0.2s; width: 100%; font-family: inherit;
+}
+.cd-apply-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+.cd-apply-btn.applied {
+  background: var(--fund-green-bg);
+  border-color: var(--fund-green); color: var(--fund-green); cursor: default;
+}
+
+/* ── Progression ────────────────────────────────────────────── */
+
+.cd-progression-card { margin-top: 20px; }
+.cd-levels { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.cd-level-row { display: flex; align-items: flex-start; gap: 12px; }
+.cd-level-number {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--text-muted); margin-top: 1px;
+}
+.cd-level-row strong { display: block; font-size: 0.825rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1px; }
+.cd-level-row span { font-size: 0.775rem; color: var(--text-muted); }
+.cd-progression-link { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+.cd-progression-link:hover { color: var(--gold); }

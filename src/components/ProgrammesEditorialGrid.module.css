@@ -1,0 +1,341 @@
+/* ============================================================
+   ProgrammesEditorialGrid.module.css
+   The Independent editorial grid model
+   Five sections · Lead / Feature / Standard hierarchy
+   Dark glass system matching PageTemplate
+   ============================================================ */
+
+.editorial {
+  padding: 3rem 2rem 5rem;
+  background: transparent;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Page header ── */
+.pageHeader {
+  margin-bottom: 3rem;
+  max-width: 680px;
+}
+
+.pageLabel {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #94a3b8;
+  border: 1px solid rgba(148,163,184,0.2);
+  border-radius: 100px;
+  padding: 3px 12px;
+  margin-bottom: 1rem;
+}
+
+.pageTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #f8fafc;
+  margin: 0 0 0.75rem;
+  line-height: 1.15;
+}
+
+.pageTitleAccent {
+  font-style: italic;
+  color: #d4a853;
+}
+
+.pageSub {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ── Section ── */
+.section {
+  margin-bottom: 3.5rem;
+}
+
+/* Section header — the Independent-style divider */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--section-colour);
+}
+
+.sectionIcon {
+  font-size: 1.1rem;
+}
+
+.sectionC {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--section-colour);
+}
+
+.sectionLabel {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-style: italic;
+}
+
+.sectionRule {
+  flex: 1;
+  height: 1px;
+  background: rgba(148,163,184,0.08);
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+/* ── Shared slot styles ── */
+.lead, .feature, .standard {
+  text-decoration: none;
+  display: block;
+  background: rgba(15,23,42,0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(148,163,184,0.1);
+  border-top: 3px solid var(--prog-colour);
+  border-radius: 0.875rem;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.lead:hover, .feature:hover, .standard:hover {
+  border-color: var(--prog-colour);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.slotTag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ── LEAD slot — full width ── */
+.lead {
+  grid-column: span 4;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 0;
+  min-height: 200px;
+}
+
+.leadImg {
+  background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(30,41,59,0.8));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Colour wash on lead image */
+.leadImg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--prog-colour);
+  opacity: 0.06;
+}
+
+.leadIcon {
+  font-size: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.leadContent {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.leadTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.75rem;
+  line-height: 1.25;
+}
+
+.standfirst {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin: 0 0 0.875rem;
+  font-style: italic;
+  flex: 1;
+}
+
+.leadMeta {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.leadCta {
+  font-size: 0.825rem;
+  font-weight: 700;
+  margin-top: 0.75rem;
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+
+.lead:hover .leadCta { opacity: 0.75; }
+
+/* ── FEATURE slot — half width ── */
+.feature {
+  grid-column: span 2;
+  padding: 0;
+}
+
+.featureImg {
+  background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(30,41,59,0.8));
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.featureImg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--prog-colour);
+  opacity: 0.08;
+}
+
+.featureIcon { font-size: 2.5rem; position: relative; z-index: 1; }
+
+.feature .slotTag,
+.featureTitle,
+.featureBody,
+.featureMeta,
+.featureCta {
+  padding: 0 1.25rem;
+}
+
+.feature .slotTag { padding-top: 1rem; }
+
+.featureTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+}
+
+.featureBody {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin: 0 0 0.5rem;
+}
+
+.featureMeta {
+  font-size: 0.7rem;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.featureCta {
+  font-size: 0.775rem;
+  font-weight: 700;
+  display: inline-block;
+  padding-bottom: 1.25rem;
+  margin-top: 4px;
+  transition: opacity 0.2s;
+}
+
+.feature:hover .featureCta { opacity: 0.75; }
+
+/* ── STANDARD slot — quarter width ── */
+.standard {
+  grid-column: span 1;
+  padding: 1rem;
+}
+
+.standardTop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.standardIcon { font-size: 1.1rem; }
+
+.standard .slotTag {
+  font-size: 0.6rem;
+  margin: 0;
+}
+
+.standardTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 5px;
+  line-height: 1.3;
+}
+
+.standardBody {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.55;
+  margin: 0 0 6px;
+}
+
+.standardMeta {
+  font-size: 0.65rem;
+  color: #475569;
+}
+
+/* ── Responsive ── */
+@media (max-width: 968px) {
+  .editorial { padding: 2rem 1.25rem 4rem; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .lead { grid-column: span 2; grid-template-columns: 1fr; }
+  .leadImg { height: 120px; }
+  .feature { grid-column: span 1; }
+  .standard { grid-column: span 1; }
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+  .lead, .feature, .standard { grid-column: span 1; }
+  .lead { grid-template-columns: 1fr; }
+  .pageTitle { font-size: 1.75rem; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .lead:hover, .feature:hover, .standard:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,187 @@
+/* Keyboard80.css */
+
+.keyboard80 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Controls row */
+.keyboard80__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.keyboard80__scale-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.keyboard80__root {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #d4a853;
+}
+.keyboard80__scale {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  text-transform: capitalize;
+}
+.keyboard80__hint {
+  font-size: 0.72rem;
+  color: #475569;
+  font-style: italic;
+}
+.keyboard80__octave-shift {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.keyboard80__oct-btn {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.72rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 4px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-family: monospace;
+  transition: all 0.1s;
+}
+.keyboard80__oct-btn:hover {
+  border-color: rgba(212, 168, 83, 0.4);
+  color: #d4a853;
+}
+.keyboard80__oct-val {
+  font-size: 0.75rem;
+  color: #64748b;
+  min-width: 3rem;
+  text-align: center;
+  font-family: monospace;
+}
+
+/* Keyboard wrapper — horizontal scroll on small screens */
+.keyboard80__wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Key dimensions as CSS vars */
+.keyboard80__keys {
+  --key-w: 28px;
+  --key-h: 100px;
+  --black-w: 18px;
+  --black-h: 62px;
+  position: relative;
+  display: flex;
+  height: var(--key-h);
+  width: calc(35 * var(--key-w)); /* 35 white keys visible */
+}
+
+/* White keys */
+.keyboard80__white {
+  width: var(--key-w);
+  height: var(--key-h);
+  flex-shrink: 0;
+  background: rgba(240, 230, 208, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.4);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  transition: background 0.05s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 4px;
+}
+.keyboard80__white--off-scale {
+  background: rgba(180, 170, 150, 0.5);
+  border-color: rgba(15, 23, 42, 0.25);
+}
+.keyboard80__white--scale {
+  background: rgba(240, 230, 208, 0.92);
+}
+.keyboard80__white--active,
+.keyboard80__white:active {
+  background: rgba(212, 168, 83, 0.7) !important;
+}
+.keyboard80__white--highlight {
+  background: rgba(96, 165, 250, 0.5) !important;
+}
+
+/* Black keys — absolutely positioned */
+.keyboard80__black {
+  position: absolute;
+  top: 0;
+  width: var(--black-w);
+  height: var(--black-h);
+  background: #1e293b;
+  border: 1px solid #0f172a;
+  border-top: none;
+  border-radius: 0 0 3px 3px;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0;
+  transition: background 0.05s;
+}
+.keyboard80__black--off-scale {
+  background: #334155;
+  border-color: #1e293b;
+}
+.keyboard80__black--scale {
+  background: #1e293b;
+}
+.keyboard80__black--active,
+.keyboard80__black:active {
+  background: #d4a853 !important;
+}
+.keyboard80__black--highlight {
+  background: #2563eb !important;
+}
+
+/* Note labels */
+.keyboard80__note-label {
+  font-size: 8px;
+  color: rgba(15, 23, 42, 0.4);
+  line-height: 1;
+  font-family: monospace;
+  pointer-events: none;
+}
+.keyboard80__off-scale .keyboard80__note-label {
+  opacity: 0.3;
+}
+.keyboard80__oct-label {
+  font-size: 7px;
+  vertical-align: sub;
+}
+
+/* Footer */
+.keyboard80__footer {
+  padding: 0.25rem 0;
+}
+.keyboard80__footer-hint {
+  font-size: 0.68rem;
+  color: #475569;
+  font-family: monospace;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 600px) {
+  .keyboard80__keys {
+    --key-w: 22px;
+    --key-h: 80px;
+    --black-w: 14px;
+    --black-h: 50px;
+  }
+  .keyboard80__hint { display: none; }
+}

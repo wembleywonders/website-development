@@ -41,14 +41,13 @@ export default defineConfig(({ mode }) => {
       strictPort: false,
       open: true,
       cors: true,
-      // Proxy API calls if needed (uncomment when you have backend)
-      // proxy: {
-      //   '/api': {
-      //     target: 'http://localhost:3000',
-      //     changeOrigin: true,
-      //     rewrite: (path) => path.replace(/^\/api/, '')
-      //   }
-      // }
+      // Proxy API calls to Spring Boot backend on :8080
+      proxy: {
+        '/api': {
+          target: 'http://localhost:8080',
+          changeOrigin: true,
+        }
+      }
     },
 
     // Build optimizations

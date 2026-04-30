@@ -24,7 +24,7 @@ const GTechCastersPage: React.FC = () => {
           the Brent ecosystem that needs you now.
         </p>
         <div className="gtc-hero-cta">
-          <Link to="/pathways/gtechcasters/sandbox" className="gtc-cta-primary">
+          <Link to="/pathways/gtechcasters/planner" className="gtc-cta-primary">
             Plan Your Media Pathway →
           </Link>
           <Link to="/pathways/rayd-yo" className="gtc-cta-secondary">
@@ -199,7 +199,7 @@ const GTechCastersPage: React.FC = () => {
             income — with ecosystem opportunities, internal WW options, and a
             personalised plan to take away.
           </p>
-          <Link to="/pathways/gtechcasters/sandbox" className="gtc-cta-primary gtc-cta-large">
+          <Link to="/pathways/gtechcasters/planner" className="gtc-cta-primary gtc-cta-large">
             Open the Media Pathways Planner →
           </Link>
           <p className="gtc-cta-sub">

@@ -159,7 +159,7 @@ export const contactPoints = {
     email: 'contact@wembleywonders.org',
     phone: '0208 902 9991',
     mobile: '07932 198 468',
-    address: '123 High Road, Wembley HA9 6AA',
+    address: '452 High Road, Wembley HA9 7AY',
     hours: 'Mon-Fri, 9am-5pm'
   },
   'partnerships': {

@@ -68,7 +68,7 @@ const EasyStreetPage: React.FC = () => {
       name: 'Pearl & Aubrey',
       years: 'Separated. Sort of.',
       detail: 'Pearl put Aubrey out years ago. They only meet at Bible class. The whole church knows.',
-      colour: '#f59e0b'
+      colour: '#0ea5e9'
     },
     {
       name: 'Brenda',

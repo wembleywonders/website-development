@@ -30,7 +30,18 @@
           "border-color: color-mix(in srgb, var(--card-color) 30%, transparent)",
           "border: 1px solid color-mix(in srgb, var(--combo-colour) 25%, transparent)",
           "border: 1.5px solid color-mix(in srgb, var(--combo-colour) 15%, transparent)",
-          "border: 1.5px solid color-mix(in srgb, var(--pipe-colour) 35%, transparent)"
+          "border: 1.5px solid color-mix(in srgb, var(--pipe-colour) 35%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--q-colour, var(--hp-gold)) 25%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--event-colour, var(--hp-gold)) 25%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--era-colour, var(--hp-gold)) 30%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--marker-colour, var(--hp-gold)) 30%, transparent)",
+          "border-color: color-mix(in srgb, var(--filter-colour, var(--hp-gold)) 40%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--path-color) 30%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--pardner-gold) 20%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--pardner-green) 20%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--pardner-green) 30%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--pardner-amber) 30%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--store-red) 30%, transparent)"
         ]
       }
     ],

@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/types/volunteers/recruitment.ts;
+// Stub — pending implementation
+export {};

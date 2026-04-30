@@ -90,7 +90,7 @@ const CreatorsStudioPage: React.FC = () => {
       thunderbirdAnalogue: "Thunderbird 3's Launch Tower",
       icon: '💫',
       status: 'standby',
-      description: 'Event and exhibition hub. The Studio's vertical showcase.',
+      description: "Event and exhibition hub. The Studio's vertical showcase.",
       activeMissions: 0,
       color: '#fbbf24',
       route: '/programmes/kaywanas-court'

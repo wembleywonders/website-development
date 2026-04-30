@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PageTemplate.module.css';
+import PageSEO from './PageSEO';
 
 interface PageTemplateProps {
   pageTitle: string;
@@ -345,7 +346,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
               <h3 className={styles.sidebarTitle}>Quick Actions</h3>
               <div className={styles.sidebarCta}>
                 <Link to="/about" className={`${styles.ctaButton} ${styles.ctaButtonPrimary}`}>
-                  Building Community Wealth
+                  About Wembley Wonders
                 </Link>
                 <Link to="/get-started" className={`${styles.ctaButton} ${styles.ctaButtonSecondary}`}>
                   Start Your Journey
@@ -365,16 +366,12 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
   return (
     <div className={getPageTypeClass()}>
       {/* Main Page Header */}
+      <PageSEO title={pageTitle} description={pageStrapline} />
       <div className={styles.pageHeader}>
         <section className={styles.heroSection}>
           <div className={styles.heroContent}>            
             <h1 className={styles.heroTitle}>{pageTitle}</h1>
             <p className={styles.heroSubtitle}>{pageStrapline}</p>
-
-            <div className={styles.heroBadge}>
-              <span>🏡</span>
-              <span>Building Community Wealth in Wembley</span>
-            </div>
 
             {pageGuide && (
               <div className={styles.pageGuide}>

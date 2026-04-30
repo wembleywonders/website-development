@@ -1,2 +1,2 @@
-// TODO: Implement
-export src/features/workspace/context/index.ts;
+// Stub — pending implementation
+export {};

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://wembleywonders.org/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://wembleywonders.org/programmes</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://wembleywonders.org/heritage</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://wembleywonders.org/shop</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://wembleywonders.org/about</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://wembleywonders.org/join</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://wembleywonders.org/programmes/bright-sparks</loc><priority>0.7</priority></url>
+  <url><loc>https://wembleywonders.org/programmes/techreneurs</loc><priority>0.7</priority></url>
+  <url><loc>https://wembleywonders.org/programmes/stemgeneers</loc><priority>0.7</priority></url>
+  <url><loc>https://wembleywonders.org/programmes/pageturners</loc><priority>0.7</priority></url>
+  <url><loc>https://wembleywonders.org/programmes/gtechcasters</loc><priority>0.7</priority></url>
+  <url><loc>https://wembleywonders.org/programmes/kaywanas-court</loc><priority>0.7</priority></url>
+  <url><loc>https://wembleywonders.org/programmes/trubble-n-bass</loc><priority>0.7</priority></url>
+  <url><loc>https://wembleywonders.org/programmes/roots</loc><priority>0.7</priority></url>
+  <url><loc>https://wembleywonders.org/programmes/silk-stilettos</loc><priority>0.7</priority></url>
+  <url><loc>https://wembleywonders.org/programmes/auntie-anansis-kitchen</loc><priority>0.7</priority></url>
+  <url><loc>https://wembleywonders.org/programmes/easy-street</loc><priority>0.7</priority></url>
+  <url><loc>https://wembleywonders.org/calendar</loc><priority>0.6</priority><changefreq>daily</changefreq></url>
+</urlset>

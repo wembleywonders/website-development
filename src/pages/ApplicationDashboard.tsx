@@ -271,7 +271,7 @@ const ApplicationDashboard: React.FC = () => {
             <div className="support-options">
               <div className="support-option">
                 <h3>📞 Phone Support</h3>
-                <p>020 8123 4567</p>
+                <p>0208 902 9991</p>
                 <p>Monday-Friday, 9 AM - 5 PM</p>
               </div>
               
