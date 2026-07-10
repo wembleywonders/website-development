@@ -124,6 +124,24 @@ import { SparkGeneratorPage } from './workshops/spark-generator'
 import { FacilitationEngine } from './workshops/facilitation'
 import KnowledgeCommonsShell from './components/knowledge-commons/KnowledgeCommonsShell'
 import OralHistoryPage from './pages/OralHistoryPage'
+
+// ── PORTED FROM src/router/index.tsx (unmounted ghost router) — July 2026 ──
+// Legal & policy pages: these routes existed only in the unmounted router,
+// so /terms, /privacy, /safeguarding etc. were 404ing in production.
+import TermsOfServicePage from './pages/TermsOfServicePage'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
+import SafeguardingPolicyPage from './pages/SafeguardingPolicyPage'
+import CookiePolicyPage from './pages/CookiePolicyPage'
+import ComplaintsPage from './pages/ComplaintsPage'
+import AccessibilityPage from './pages/AccessibilityPage'
+// NOTE: RuleBookPage NOT ported — src/pages/RuleBookPage.tsx is a 14-line stub.
+// Member & media pages (same port):
+import MemberDashboard from './pages/member/dashboard/MemberDashboard'
+import MeetMayaPage from './pages/MeetMayaPage'
+import SimulatorsPage from './pages/SimulatorsPage'
+import JoystickArticlePage from './pages/JoystickArticlePage'
+// ───────────────────────────────────────────────────────────────────────────
+
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import { useEffect } from 'react'
@@ -476,6 +494,37 @@ function App() {
                 {/* WHO WE ARE */}
                 <Route path="/who-we-are/how-we-share-power" element={<HowWeSharePower />} />
                 <Route path="/who-we-are/directors-pathway"  element={<DirectorsPathway />} />
+
+                {/* ════════════════════════════════════════════════════════
+                    LEGAL & POLICY — ported from unmounted src/router/index.tsx
+                    July 2026. These were 404ing in production; the signup
+                    Terms/Privacy links and safeguarding policy now resolve.
+                    /rulebook deliberately NOT ported (page is a stub).
+                    ════════════════════════════════════════════════════════ */}
+                <Route path="/terms"                 element={<TermsOfServicePage />} />
+                <Route path="/terms-of-service"      element={<Navigate to="/terms" replace />} />
+                <Route path="/privacy"               element={<PrivacyPolicyPage />} />
+                <Route path="/privacy-policy"        element={<Navigate to="/privacy" replace />} />
+                <Route path="/safeguarding"          element={<SafeguardingPolicyPage />} />
+                <Route path="/policies/safeguarding" element={<Navigate to="/safeguarding" replace />} />
+                <Route path="/cookies"               element={<CookiePolicyPage />} />
+                <Route path="/complaints"            element={<ComplaintsPage />} />
+                <Route path="/accessibility"         element={<AccessibilityPage />} />
+
+                {/* ════════════════════════════════════════════════════════
+                    MEMBER & MEDIA — same port, July 2026.
+                    /onboarding is the interim post-signup landing
+                    (SignupPage navigates here); swap element for the real
+                    orientation flow when built. /dashboard's existing
+                    redirect to /creators-journal is left untouched.
+                    ════════════════════════════════════════════════════════ */}
+                <Route path="/member/dashboard" element={<MemberDashboard />} />
+                <Route path="/onboarding"       element={<MemberDashboard />} />
+                <Route path="/maya"             element={<MeetMayaPage />} />
+                <Route path="/meet-maya"        element={<Navigate to="/maya" replace />} />
+                <Route path="/simulators"       element={<SimulatorsPage />} />
+                <Route path="/joystick/:slug"   element={<JoystickArticlePage />} />
+                <Route path="/reset-password"   element={<Navigate to="/auth/login" replace />} />
 
                 {/* NAV CONFIG REDIRECTS */}
                 {Object.entries(REDIRECT_MAP).map(([from, to]) => (

@@ -3,14 +3,41 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import './AuthPages.css';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// src/pages/auth/SignupPage.tsx
+//
+// PATCH NOTES (July 2026 — immediate corrections only):
+//  1. REMOVED unverified public-facing numbers ("30+ Active Creators",
+//     "£14k+ Earned by Community", "100% Community-Owned"). Standing rule:
+//     public-facing numbers must be live-computed or explicitly labelled
+//     illustrative. Reinstate only when wired to a verified endpoint.
+//  2. REMOVED "Sarah, Creator since 2024" testimonial pending confirmation
+//     that Sarah is a real member who consented to the quote.
+//  3. FIXED post-registration redirect: was a cross-origin
+//     window.location.href to VITE_WORKSPACE_URL (fallback localhost:5174),
+//     which contradicts the three-shell model (WW-SPEC-ADAPTIVE-UI-001) and
+//     dropped the JWT across origins. Now an in-app navigate().
+//  4. Creator-intent copy softened to match the approval-based
+//     Visitor→Regular→Originator journey (no "immediately" / "today").
+//  5. Removed dead print-style block.
+//
+// NOT in this patch (goes to WW-SPEC-SIGNUP-001, backend work required):
+//  - Age / DOB capture at the gate (Online Safety Act; Flora Agba gate for
+//    under-18 pathway)
+//  - Email verification step before member shell opens
+//
+// TODO-JUDITH: All intentMessages copy and the benefits panel below are
+// public-facing voice and need editorial sign-off before next deploy.
+// ─────────────────────────────────────────────────────────────────────────────
+
 const SignupPage: React.FC = () => {
   const navigate = useNavigate();
   const { register } = useAuth();
   const [searchParams] = useSearchParams();
-  
+
   // Capture intent from URL (?intent=creator, ?intent=learner, etc.)
   const intent = searchParams.get('intent') || 'general';
-  
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -24,56 +51,58 @@ const SignupPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // Intent-specific messaging
+  // TODO-JUDITH: editorial review of all titles, subtitles, and benefits.
   const intentMessages = {
     creator: {
-      title: "Join as Creator",
-      subtitle: "Start earning from your work",
+      title: 'Join as a Creator',
+      subtitle: 'Start your creator pathway',
       benefits: [
-        "Access creator tools immediately",
-        "Keep 55% of every sale",
-        "Publish your first product today",
-        "Join community of 30+ creators"
-      ]
+        'Begin the pathway from member to approved Originator',
+        'Keep 55% of every sale once you are selling — the pardner-hand split',
+        'Learn the craft and the business side in our workshops',
+        'Build alongside a community of creators',
+      ],
     },
     learner: {
-      title: "Start Learning",
-      subtitle: "Free workshops and skill-building",
+      title: 'Start Learning',
+      subtitle: 'Free workshops and skill-building',
       benefits: [
-        "Access all workshop recordings",
-        "Join live learning sessions",
-        "Track your progress",
-        "Build your portfolio"
-      ]
+        'Access workshop recordings',
+        'Join live learning sessions',
+        'Track your progress',
+        'Build your portfolio',
+      ],
     },
     volunteer: {
-      title: "Join Our Community",
-      subtitle: "Become a Champion, Connector, or Curator",
+      title: 'Join Our Community',
+      subtitle: 'Become a Champion, Connector, or Curator',
       benefits: [
-        "Make real community impact",
-        "Develop new skills",
-        "Meet like-minded people",
-        "Shape our future together"
-      ]
+        'Make real community impact',
+        'Develop new skills',
+        'Meet like-minded people',
+        'Shape our future together',
+      ],
     },
     general: {
-      title: "Create Your Account",
-      subtitle: "Join Wembley Wonders CIC",
+      title: 'Create Your Account',
+      subtitle: 'Join Wembley Wonders CIC',
       benefits: [
-        "Access all community resources",
-        "Join workshops and events",
-        "Connect with creators",
-        "Start building your portfolio"
-      ]
-    }
+        'Access community resources',
+        'Join workshops and events',
+        'Connect with creators',
+        'Start building your portfolio',
+      ],
+    },
   };
 
-  const currentIntent = intentMessages[intent as keyof typeof intentMessages] || intentMessages.general;
+  const currentIntent =
+    intentMessages[intent as keyof typeof intentMessages] || intentMessages.general;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : value,
     }));
     // Clear error when user starts typing
     if (errors[name]) {
@@ -123,7 +152,7 @@ const SignupPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -136,19 +165,18 @@ const SignupPage: React.FC = () => {
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
-        password: formData.password
+        password: formData.password,
       });
 
       // Check if registration was successful
       if (result) {
-        // Redirect to workspace with intent
-        const workspaceUrl = import.meta.env.VITE_WORKSPACE_URL || 'http://localhost:5174';
-        window.location.href = `${workspaceUrl}/onboarding?intent=${intent}`;
+        // In-app navigation within the single three-shell application
+        // (WW-SPEC-ADAPTIVE-UI-001). JWT stays in this origin's storage.
+        navigate(`/onboarding?intent=${intent}`);
       }
-
     } catch (error: any) {
-      setErrors({ 
-        submit: error.message || 'Registration failed. Please try again.' 
+      setErrors({
+        submit: error.message || 'Registration failed. Please try again.',
       });
     } finally {
       setIsLoading(false);
@@ -279,7 +307,7 @@ const SignupPage: React.FC = () => {
                 />
                 <span>
                   I accept the{' '}
-                  <Link to="/terms" target="_blank">Terms & Conditions</Link>
+                  <Link to="/terms" target="_blank">Terms &amp; Conditions</Link>
                   {' '}and{' '}
                   <Link to="/privacy" target="_blank">Privacy Policy</Link>
                 </span>
@@ -297,8 +325,8 @@ const SignupPage: React.FC = () => {
             )}
 
             {/* Submit Button */}
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="auth-submit-btn"
               disabled={isLoading}
             >
@@ -325,6 +353,8 @@ const SignupPage: React.FC = () => {
         </div>
 
         {/* Right Side - Benefits */}
+        {/* TODO-JUDITH: interim principled copy below — replace stats panel
+            only with live-computed figures from a verified endpoint. */}
         <div className="auth-benefits-section">
           <div className="benefits-content">
             <h3>What You'll Get</h3>
@@ -337,45 +367,17 @@ const SignupPage: React.FC = () => {
               ))}
             </ul>
 
-            <div className="benefits-stats">
-              <div className="stat-item">
-                <span className="stat-number">30+</span>
-                <span className="stat-label">Active Creators</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">£14k+</span>
-                <span className="stat-label">Earned by Community</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">100%</span>
-                <span className="stat-label">Community-Owned</span>
-              </div>
-            </div>
-
             <div className="benefits-quote">
               <p>
-                "This isn't just another platform. It's a community that actually 
-                shares power and profit with its members."
+                Wembley Wonders is a Community Interest Company built on the
+                pardner-hand tradition: creators keep the majority share of
+                every sale, and the platform's purpose is written into its
+                constitution.
               </p>
-              <cite>— Sarah, Creator since 2024</cite>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Print Styles */}
-      <style>{`
-        @media print {
-          .auth-background,
-          .auth-benefits-section {
-            display: none;
-          }
-          .auth-form-section {
-            max-width: 100%;
-            padding: 1rem;
-          }
-        }
-      `}</style>
     </div>
   );
 };
