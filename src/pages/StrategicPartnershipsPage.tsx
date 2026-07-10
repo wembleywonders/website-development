@@ -1,13 +1,46 @@
 // src/pages/StrategicPartnershipsPage.tsx
+//
+// ─────────────────────────────────────────────────────────────────────────────
+// PATCH NOTES (July 2026 — surgical corrections, funder-facing page):
+//  1. REMOVED the impactStats strip entirely ("500+", "£14k+", "80%", "50+
+//     Years"). Standing rule: public-facing numbers must be live-computed or
+//     explicitly labelled illustrative — extra weight on funder-facing pages.
+//     Reinstate only with verified figures (Judith editorial + CJ verification).
+//  2. FIXED phone number: was placeholder 020 1234 5678; now 0208 902 9991.
+//  3. EMAIL: partnerships@wembleywonders.org is NOT in the Cloudflare alias
+//     architecture (catch-all is Drop — mail to it vanishes). Swapped to
+//     admin@wembleywonders.org. If partnerships@ is wanted, create the alias
+//     in Cloudflare FIRST, then swap back.
+//  4. FORM DEFANGED: previous handleSubmit simulated an API call and wrote
+//     inquiries to the VISITOR'S OWN localStorage — no inquiry ever reached
+//     WW. Interim honest behaviour: submit composes a real email to admin@
+//     in the visitor's mail client. Replace with a real backend endpoint
+//     when built (candidate: Spring Boot inquiry endpoint + editorial
+//     routing per WW email architecture).
+//  5. HELD: currentPartners list ("UCL", "Brent Council", "Community Halls
+//     Network", "Local Press Consortium") and the named "UCL Mental Health
+//     Partnership" example — removed pending verification that these are
+//     real, current partnerships with consent to be named publicly.
+//     Governance question (CJ/Judith; Blake on naming consent if needed).
+//  6. NEUTRALISED two false claims pending Judith replacement copy:
+//     "50+ years in Wembley" (CIC incorporated 19 Oct 2020) and
+//     "80% completion vs 30% industry average" (unverified comparative).
+//
+// TODO-JUDITH: all remaining marketing copy on this page needs editorial
+// review as part of the platform-wide stats/claims sweep.
+// ─────────────────────────────────────────────────────────────────────────────
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Building2, Users, GraduationCap, Megaphone, Heart, 
+import {
+  Building2, Users, GraduationCap, Megaphone, Heart,
   Target, TrendingUp, Award, Handshake, ArrowRight,
   CheckCircle, Mail, Phone, MapPin, Send, Calendar,
-  Briefcase, Globe, Shield, Sparkles
+  Briefcase, Shield
 } from 'lucide-react';
 import './StrategicPartnershipsPage.css';
+
+const PARTNERSHIP_EMAIL = 'admin@wembleywonders.org'; // see patch note 3
 
 const StrategicPartnershipsPage: React.FC = () => {
   const [activePartnership, setActivePartnership] = useState<string | null>(null);
@@ -19,7 +52,6 @@ const StrategicPartnershipsPage: React.FC = () => {
     partnershipType: '',
     message: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const partnershipTypes = [
@@ -53,7 +85,9 @@ const StrategicPartnershipsPage: React.FC = () => {
         'Access to diverse community perspectives'
       ],
       investment: 'Varies by programme',
-      examples: ['UCL Mental Health Partnership', 'Media studies placements', 'Business degree projects']
+      // TODO-JUDITH: previously named "UCL Mental Health Partnership" —
+      // held pending verification/consent (patch note 5).
+      examples: ['Student placements', 'Media studies placements', 'Business degree projects']
     },
     {
       id: 'venue',
@@ -121,41 +155,37 @@ const StrategicPartnershipsPage: React.FC = () => {
     }
   ];
 
-  const currentPartners = [
-    { name: 'UCL', type: 'Educational', since: '2023' },
-    { name: 'Brent Council', type: 'Strategic', since: '2020' },
-    { name: 'Community Halls Network', type: 'Venue', since: '2021' },
-    { name: 'Local Press Consortium', type: 'Media', since: '2022' },
-  ];
-
-  const impactStats = [
-    { number: '500+', label: 'Young people served annually' },
-    { number: '£14k+', label: 'Earned by community creators' },
-    { number: '80%', label: 'Programme completion rate' },
-    { number: '50+', label: 'Years serving Wembley' },
-  ];
+  // currentPartners list REMOVED — held pending verification (patch note 5).
+  // impactStats strip REMOVED — unverified figures (patch note 1).
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Store for demo
-    const inquiries = JSON.parse(localStorage.getItem('ww_partnership_inquiries') || '[]');
-    inquiries.push({
-      ...formData,
-      submittedAt: new Date().toISOString()
-    });
-    localStorage.setItem('ww_partnership_inquiries', JSON.stringify(inquiries));
-    
-    setIsSubmitting(false);
+
+    // Interim honest behaviour (patch note 4): compose a real email in the
+    // visitor's mail client. No fake API, no localStorage dead-drop.
+    const typeTitle =
+      partnershipTypes.find(t => t.id === formData.partnershipType)?.title ||
+      formData.partnershipType ||
+      'Not specified';
+
+    const subject = encodeURIComponent(
+      `Partnership inquiry: ${formData.organizationName || 'New organisation'}`
+    );
+    const body = encodeURIComponent(
+      `Organisation: ${formData.organizationName}\n` +
+      `Contact name: ${formData.contactName}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone || 'Not provided'}\n` +
+      `Partnership interest: ${typeTitle}\n\n` +
+      `${formData.message}`
+    );
+
+    window.location.href = `mailto:${PARTNERSHIP_EMAIL}?subject=${subject}&body=${body}`;
     setIsSubmitted(true);
   };
 
@@ -170,8 +200,8 @@ const StrategicPartnershipsPage: React.FC = () => {
           </div>
           <h1>Partner With Purpose</h1>
           <p>
-            Join organizations investing in Wembley's future. Our partnerships 
-            create measurable community impact while delivering real value for 
+            Join organizations investing in Wembley's future. Our partnerships
+            create measurable community impact while delivering real value for
             your organization.
           </p>
           <div className="hero-cta">
@@ -186,17 +216,8 @@ const StrategicPartnershipsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Impact Stats */}
-      <section className="impact-strip">
-        <div className="impact-container">
-          {impactStats.map((stat, index) => (
-            <div key={index} className="impact-stat">
-              <span className="stat-number">{stat.number}</span>
-              <span className="stat-label">{stat.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Impact stats strip removed (patch note 1). Reinstate only with
+          live-computed or verified, Judith-approved figures. */}
 
       {/* Why Partner Section */}
       <section className="why-partner">
@@ -207,32 +228,38 @@ const StrategicPartnershipsPage: React.FC = () => {
               <Target size={28} />
               <h3>Measurable Impact</h3>
               <p>
-                Every partnership includes detailed impact reporting. Know exactly 
+                Every partnership includes detailed impact reporting. Know exactly
                 how your investment changes lives.
               </p>
             </div>
             <div className="why-card">
               <Users size={28} />
               <h3>Community Roots</h3>
+              {/* TODO-JUDITH: was "50+ years in Wembley" — false (CIC
+                  incorporated 19 Oct 2020). Interim copy reflects the
+                  founders' organising history without attributing it to
+                  the company. */}
               <p>
-                50+ years in Wembley means deep community trust. Your partnership 
-                benefits from authentic local connection.
+                Built by organisers with decades of community work in Brent.
+                Your partnership benefits from authentic local connection.
               </p>
             </div>
             <div className="why-card">
               <Shield size={28} />
               <h3>CIC Structure</h3>
               <p>
-                As a Community Interest Company, profits are reinvested in the 
+                As a Community Interest Company, profits are reinvested in the
                 community. Your support has lasting impact.
               </p>
             </div>
             <div className="why-card">
               <TrendingUp size={28} />
-              <h3>Proven Results</h3>
+              <h3>Outcomes, Not Outputs</h3>
+              {/* TODO-JUDITH: was "80% completion vs 30% industry average" —
+                  unverified comparative removed. */}
               <p>
-                80% programme completion vs 30% industry average. We deliver 
-                outcomes, not just outputs.
+                We design programmes around completion and progression, and we
+                report honestly on both.
               </p>
             </div>
           </div>
@@ -244,13 +271,13 @@ const StrategicPartnershipsPage: React.FC = () => {
         <div className="section-content">
           <h2>Partnership Opportunities</h2>
           <p className="section-intro">
-            Every organization is different. We tailor partnerships to align with 
+            Every organization is different. We tailor partnerships to align with
             your goals while maximizing community benefit.
           </p>
 
           <div className="types-grid">
             {partnershipTypes.map(type => (
-              <div 
+              <div
                 key={type.id}
                 className={`type-card ${activePartnership === type.id ? 'expanded' : ''}`}
                 onClick={() => setActivePartnership(activePartnership === type.id ? null : type.id)}
@@ -262,10 +289,10 @@ const StrategicPartnershipsPage: React.FC = () => {
                     <p className="type-tagline">{type.tagline}</p>
                   </div>
                 </div>
-                
+
                 <div className="type-body">
                   <p className="type-description">{type.description}</p>
-                  
+
                   <div className="type-benefits">
                     <h4>What You Get</h4>
                     <ul>
@@ -298,35 +325,9 @@ const StrategicPartnershipsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Current Partners */}
-      <section className="current-partners">
-        <div className="section-content">
-          <h2>Organizations We Work With</h2>
-          <p className="section-intro">
-            Join these forward-thinking organizations already partnering with us.
-          </p>
-          <div className="partners-grid">
-            {currentPartners.map((partner, index) => (
-              <div key={index} className="partner-card">
-                <div className="partner-logo">
-                  <Globe size={24} />
-                </div>
-                <div className="partner-info">
-                  <h4>{partner.name}</h4>
-                  <span className="partner-type">{partner.type} Partner</span>
-                  <span className="partner-since">Since {partner.since}</span>
-                </div>
-              </div>
-            ))}
-            <div className="partner-card cta-card">
-              <Sparkles size={32} />
-              <h4>Your Organization?</h4>
-              <p>Join our growing network of partners</p>
-              <a href="#contact">Get in touch →</a>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* "Organizations We Work With" section removed — held pending
+          verification of named partners and consent to name them publicly
+          (patch note 5). Reinstate with a verified list only. */}
 
       {/* Partnership Process */}
       <section className="partnership-process">
@@ -364,8 +365,8 @@ const StrategicPartnershipsPage: React.FC = () => {
             <div className="contact-info">
               <h2>Let's Talk Partnership</h2>
               <p>
-                Ready to explore how we can work together? Our partnerships team 
-                would love to hear from you.
+                Ready to explore how we can work together? We would love to
+                hear from you.
               </p>
 
               <div className="contact-methods">
@@ -373,14 +374,14 @@ const StrategicPartnershipsPage: React.FC = () => {
                   <Mail size={20} />
                   <div>
                     <strong>Email</strong>
-                    <span>partnerships@wembleywonders.org</span>
+                    <span>{PARTNERSHIP_EMAIL}</span>
                   </div>
                 </div>
                 <div className="contact-method">
                   <Phone size={20} />
                   <div>
                     <strong>Phone</strong>
-                    <span>020 1234 5678</span>
+                    <span>0208 902 9991</span>
                   </div>
                 </div>
                 <div className="contact-method">
@@ -394,7 +395,7 @@ const StrategicPartnershipsPage: React.FC = () => {
                   <Calendar size={20} />
                   <div>
                     <strong>Response Time</strong>
-                    <span>Within 2 working days</span>
+                    <span>We aim to respond within a few working days</span>
                   </div>
                 </div>
               </div>
@@ -404,12 +405,13 @@ const StrategicPartnershipsPage: React.FC = () => {
               {isSubmitted ? (
                 <div className="form-success">
                   <CheckCircle size={48} />
-                  <h3>Thank You!</h3>
+                  <h3>Almost There</h3>
                   <p>
-                    We've received your inquiry and will be in touch within 
-                    2 working days to discuss partnership opportunities.
+                    Your email app should have opened with your inquiry ready
+                    to send — press send there to reach us. If nothing opened,
+                    email us directly at {PARTNERSHIP_EMAIL}.
                   </p>
-                  <button 
+                  <button
                     className="btn-secondary"
                     onClick={() => {
                       setIsSubmitted(false);
@@ -423,7 +425,7 @@ const StrategicPartnershipsPage: React.FC = () => {
                       });
                     }}
                   >
-                    Submit Another Inquiry
+                    Start Another Inquiry
                   </button>
                 </div>
               ) : (
@@ -507,22 +509,17 @@ const StrategicPartnershipsPage: React.FC = () => {
                     />
                   </div>
 
-                  <button 
-                    type="submit" 
+                  <p className="form-note">
+                    Submitting opens your email app with this inquiry addressed
+                    to {PARTNERSHIP_EMAIL}.
+                  </p>
+
+                  <button
+                    type="submit"
                     className="btn-submit"
-                    disabled={isSubmitting}
                   >
-                    {isSubmitting ? (
-                      <>
-                        <span className="spinner"></span>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send size={18} />
-                        Send Partnership Inquiry
-                      </>
-                    )}
+                    <Send size={18} />
+                    Send Partnership Inquiry
                   </button>
                 </form>
               )}
