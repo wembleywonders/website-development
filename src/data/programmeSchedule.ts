@@ -11,6 +11,13 @@ export interface Session {
   id: string; programmeId: string; date: string; time: string;
   durationMins: number; title?: string; note?: string;
   isSpecial?: boolean; zoomLink?: string;
+  // Child id(s) (e.g. 'ntikuma') from rov/personalities/children.ts's
+  // ProgrammeCoordination coordinating broadcast for this specific dated
+  // session — distinct from that programme's owning Child. Added 22 Aug
+  // 2026, Phase 3.2 of the WW cleanup & structure plan, as the calendar
+  // tie-in point CJ specified. Optional and only meaningful for sessions on
+  // a programme that actually has a coordinator assigned.
+  coordinatedBy?: string[];
 }
 
 export const PROGRAMMES: Programme[] = [
@@ -38,10 +45,10 @@ export const SESSIONS: Session[] = [
   { id:'pageturners-2026-03-24', programmeId:'pageturners', date:'2026-03-24', time:'19:00', durationMins:90 },
   { id:'pageturners-2026-03-31', programmeId:'pageturners', date:'2026-03-31', time:'19:00', durationMins:90 },
   { id:'pageturners-2026-04-07', programmeId:'pageturners', date:'2026-04-07', time:'19:00', durationMins:90 },
-  { id:'gtechcasters-2026-03-18', programmeId:'gtechcasters', date:'2026-03-18', time:'19:00', durationMins:90 },
-  { id:'gtechcasters-2026-03-25', programmeId:'gtechcasters', date:'2026-03-25', time:'19:00', durationMins:90 },
-  { id:'gtechcasters-2026-04-01', programmeId:'gtechcasters', date:'2026-04-01', time:'19:00', durationMins:90 },
-  { id:'gtechcasters-2026-04-08', programmeId:'gtechcasters', date:'2026-04-08', time:'19:00', durationMins:90 },
+  { id:'gtechcasters-2026-03-18', programmeId:'gtechcasters', date:'2026-03-18', time:'19:00', durationMins:90, coordinatedBy:['ntikuma'] },
+  { id:'gtechcasters-2026-03-25', programmeId:'gtechcasters', date:'2026-03-25', time:'19:00', durationMins:90, coordinatedBy:['ntikuma'] },
+  { id:'gtechcasters-2026-04-01', programmeId:'gtechcasters', date:'2026-04-01', time:'19:00', durationMins:90, coordinatedBy:['ntikuma'] },
+  { id:'gtechcasters-2026-04-08', programmeId:'gtechcasters', date:'2026-04-08', time:'19:00', durationMins:90, coordinatedBy:['ntikuma'] },
   { id:'easy-street-2026-03-20', programmeId:'easy-street', date:'2026-03-20', time:'19:00', durationMins:90 },
   { id:'easy-street-2026-03-27', programmeId:'easy-street', date:'2026-03-27', time:'19:00', durationMins:90 },
   { id:'easy-street-2026-04-03', programmeId:'easy-street', date:'2026-04-03', time:'19:00', durationMins:90 },

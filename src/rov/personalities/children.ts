@@ -1597,7 +1597,95 @@ export const ChildByProgramme: Record<string, ChildPersonality> = {
   'aunties-kitchen':    Esi,        // also The Keeper — cultural memory
   'techreneurs':        Kumi,       // The Gamer — systems thinking
   'casting-table':      Kumi,       // The Gamer — Casting Table architect
+  'money-reset':        Kumi,       // paired with techreneurs under the business track
+  'roots':              Esi,        // body sovereignty / heritage knowledge — Keeper domain
+  // 'silk-stilettos' removed 22 Aug 2026 (Phase 2.3 reconciliation): this
+  // used to read `Anansewa` — a thematic guess flagged at the time as "the
+  // weakest of these three, unconfirmed." Checked directly against Adaeze's
+  // own file (newChildren.ts): her file header, block comment, and
+  // `programme` field all independently state `'Silk Stilettos'` — and
+  // newChildren.ts's own `NewChildByProgramme` already has
+  // `'silk-stilettos': Adaeze` correctly. Since rov/index.ts's merged
+  // `CHILD_BY_PROGRAMME` spreads NewChildByProgramme last (it wins on
+  // conflict), the actually-consumed routing was already correct — this
+  // file's own copy was just stale and misleading. Removed here rather than
+  // reassigned, so this file has no unsupported claim on a programme
+  // Adaeze's own file already owns; the real mapping lives in
+  // newChildren.ts's NewChildByProgramme.
+  // 'bright-sparks' intentionally left unmapped — it's a cross-programme summer
+  // sampler by design, not owned by a single domain; forcing an assignment here
+  // would misrepresent it more than the open gap does (audit-sync, 22 Aug 2026).
+  //
+  // 'gtechcasters' intentionally left unmapped, 22 Aug 2026: originally assigned
+  // to Ntikuma on a thin thematic match ("broadcast media — closest to Watcher's
+  // journalism domain"), but Ntikuma's own character block (above) explicitly
+  // states `programme: 'Joystick'` and is already correctly mapped there —
+  // gtechcasters was a second, unsupported assignment reusing him. CJ's own
+  // account: G-Tech Casters was folded internally to become Kaywana's Court's
+  // broadcast division, coordinated by Ntikuma across G-Tech Casters/Kaywana's
+  // Court/Rayd-yo/Joystick reporting to Maya as "conductor" — a cross-programme
+  // coordination role this table's one-key-one-Child shape can't represent as
+  // "ownership." That relationship is now captured in CoordinatorsByProgramme
+  // below instead, which allows a Child to coordinate across programmes he
+  // doesn't own. What the coordination function actually does day-to-day is
+  // still an open design question (see WW-OUTSTANDING-TASKS.md ROV-collision
+  // entry) — this table only records the relationship, not its mechanics.
 };
+
+// Coordination routing — distinct from ChildByProgramme's "owns" relationship.
+// A Child can coordinate across programmes he doesn't own. Added 22 Aug 2026
+// for Ntikuma's coordinator role; upgraded to this richer shape the same day
+// (Phase 3.2 of the WW cleanup & structure plan) once CJ confirmed three
+// design questions:
+//
+// 1. Role is per-PERSON, not per-programme — a coordinator carries one
+//    standing role across every programme they coordinate, rather than the
+//    role being determined by which programme they're working on. `role`
+//    is therefore a field on the CoordinatorAssignment, not derived from
+//    `programme`.
+// 2. Calendar tie-in extends the existing data/programmeSchedule.ts rather
+//    than a separate broadcast schedule — see Session.coordinatedBy there.
+// 3. The end goal is WW-owned broadcast infrastructure, not permanently
+//    routing through external platforms (YouTube/Spotify/etc. as currently
+//    used). Nothing here builds that infrastructure — this shape just
+//    avoids baking in an external-platform assumption that would need
+//    undoing later.
+//
+// `role` is intentionally left unset below: CJ specified how the role
+// mechanic works (per-person), not which role Ntikuma actually holds.
+// Guessing passionista vs. connoisseur for him without a real source would
+// be exactly the kind of invented answer this project's discipline exists
+// to catch. Fill it in when there's an actual source for it.
+//
+// `programme` values match PROGRAMMES[].id in data/programmeSchedule.ts
+// where a matching entry exists. As of 22 Aug 2026, 'gtechcasters' and
+// 'kaywanas-court' do; 'rayd-yo' and 'joystick' have no Programme entry
+// there at all yet (checked directly), so calendar tie-in for those two is
+// blocked on that gap existing independently of this coordination work —
+// not something to fabricate a Programme entry for here.
+export type CoordinatorRole = 'passionista' | 'connoisseur';
+
+export interface CoordinatorAssignment {
+  child: ChildPersonality;
+  programme: string;
+  role?: CoordinatorRole;
+}
+
+export const ProgrammeCoordination: CoordinatorAssignment[] = [
+  { child: Ntikuma, programme: 'gtechcasters' },
+  { child: Ntikuma, programme: 'kaywanas-court' },
+  { child: Ntikuma, programme: 'rayd-yo' },
+  { child: Ntikuma, programme: 'joystick' },
+];
+
+// Derived view, kept for any lookup that just needs "who coordinates this
+// programme" without the role/assignment detail. Generated from
+// ProgrammeCoordination above — change the source array, not this.
+export const CoordinatorsByProgramme: Record<string, ChildPersonality[]> =
+  ProgrammeCoordination.reduce((acc, { child, programme }) => {
+    (acc[programme] ??= []).push(child);
+    return acc;
+  }, {} as Record<string, ChildPersonality[]>);
 
 // Domain routing
 export const ChildByDomain: Record<string, ChildPersonality> = {
