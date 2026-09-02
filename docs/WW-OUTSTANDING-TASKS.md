@@ -16,6 +16,291 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🔴 Master build order (2026-08-28) — Phase 0.1 pre-build audit contradicts the plan's premises
+
+`WW-MASTER-BUILD-ORDER-2026-08-28-CREATOR-JOURNEY-FOUNDATIONS` locks four
+builds and sequences them. Before starting Phase 0.1 (Cyberstore
+reconciliation), the actual repo state was checked (28 Aug 2026, Claude
+Code). Three of Phase 0.1's premises are wrong, and one is a hard
+architectural blocker:
+
+1. **"Build a real listing-creation flow (none exists today)" — one
+   exists.** `src/services/sandboxToStoreService.ts` (443 lines:
+   `StoreListing` type, `buildListingDraft`, `validateListingDraft`,
+   `saveListingDraft` → POST `/api/store/listings/draft`, `publishListing`,
+   `getMyListings`) + `src/components/store/AddToStoreButton.tsx` (the
+   entry point) + `src/pages/cyberstore/ListingEditorPage.tsx` (routed at
+   `/cyberstore/listings/:listingId/edit` — a full working editor: title,
+   description, tags, pricing, free-download, limited-edition, publish,
+   55/25/20 split display, autosave). **The gap is not "build it" — it is
+   that `AddToStoreButton` is rendered in no sandbox, so the flow has no
+   live entry point, and it is entirely backend-dependent (see #4).**
+
+2. **"Retire the other three, do not leave four live in parallel" —
+   already done.** Only `CommunityShopPage` + `ListingEditorPage` are
+   routed. `production-hub/CyberstoreListingWizard.tsx` (767L),
+   `studio/CyberstoreStorefront.tsx` (183L),
+   `marketplace/integrations/creatorJourneyIntegration.ts` (287L), and
+   `components/cyberstore/CreatorJourneySection.tsx` (588L) are all
+   unrouted / unimported. Also unrouted: `src/cyberstore/pricing/*`
+   (a 6th cluster the build order doesn't name). "Retirement" here is
+   deprecation headers + deletion, not untangling live parallel systems.
+
+3. **"Reconcile the fifth incompatible product shape" — the real split is
+   `CyberstoreProduct` (`src/data/cyberstoreData.ts`, what the live browse
+   page reads — static catalogue) vs. `StoreListing`
+   (`sandboxToStoreService.ts`, what the live editor writes — creator
+   listings). These are browse-model vs. create-model, and neither
+   currently talks to the other.**
+
+4. **"Build a real cart/checkout backend" (0.1) and "new ILPService
+   backend" (0.2) — both backends already exist.** This is the frontend
+   repo (`website-development.git`); the backend is a separate Spring Boot
+   repo at `~/projects/wembley-wonders/backend` (`org.wembleywonders:
+   wembley-wonders-api`, actively maintained — recent commit "Fix
+   publish/pause/resume endpoints"). Checked directly 28 Aug 2026:
+   - **Store/purchase/payout backend exists.** `StoreListingController`
+     (`/api/store/listings`: `POST /draft`, `GET /{id}`, `PATCH /{id}`,
+     `POST /{id}/publish`, `GET` list, `POST /{id}/pause`, `POST
+     /{id}/resume`) — matches `sandboxToStoreService.ts`'s contract
+     exactly. `StorePurchase` entity (buyer email, amount, `creator/
+     reserve/ops` split columns, `stripePaymentIntentId`,
+     `stripeTransferId`, download count). `PaymentController`
+     (`/api/payments`: earnings, transactions, payouts, `payout/request`,
+     `payout/full`, balance, admin metrics). `StripeWebhookController`,
+     `PaymentIntent`. Checkout is Stripe-based.
+   - **ILP backend exists.** `ILPController` + a full `Ilp*` domain-enum
+     family (`IlpMilestoneType`, `IlpGoalDomain`, `IlpGoalStatus`,
+     `IlpRovOwner`, `IlpSignalSource`, `IlpSignalType`, `IlpSalience`,
+     `IlpRevisionType`, `IlpTruthCheckOutcome`, `IlpSyncType`) +
+     `CreatorJourneyController` `GET /api/creators/{id}/journey`.
+   - **Not in the backend:** Rayd-yo / broadcast service-arm (the only
+     "broadcast" class is `CommunityPoolBroadcaster`, unrelated);
+     TECHreneurs nexus gate / case-study capture.
+
+**Corrected scope for the master build order (28 Aug 2026, Claude Code —
+pending CJ, because this changes the plan's sequencing):**
+
+| Build-order item | Backend | Frontend | Real remaining work |
+|---|---|---|---|
+| 0.1 Cyberstore | ✅ StoreListing CRUD + Stripe purchases + payouts | ✅ `ListingEditorPage` (routed) + `sandboxToStoreService` + `AddToStoreButton` (built, **unmounted**) | Wire `AddToStoreButton` into sandboxes + a "sell" entry on `CommunityShopPage`; a cart store + checkout page (frontend) against the existing Stripe endpoints; **wall-rental mode** (front + a backend `pricingMode` on `StoreListing`); retire the 3–4 orphan impls; reconcile `CyberstoreProduct` (static browse) ⇄ `StoreListing` (creator listings). |
+| 0.2 ILP page | ✅ `ILPController` + `Ilp*` model + `/journey` | ❌ no route, no page, no client | Frontend route + page + `ilpService.ts` client. Audit `ILPController`'s actual endpoint surface first. **Not** "build a backend." |
+| 1.3 Rayd-yo | ❌ nothing | ❌ near-nothing | Genuine from-scratch, **both repos**. Heaviest, as the order says. |
+| 1.4 TECHreneurs nexus ROV | n/a (frontend pattern) | ❌ | Frontend component matching the 3 real ones. As written. |
+| 1.2 Silk Stilettos accreditation | n/a | partial (`SILK_STILETTOS_BADGES` exist) | Frontend content/data. As written. |
+| 1.1 Kitchen wiring | n/a | tools exist, wiring doesn't | Frontend. As written. |
+
+**Not started.** The build order was written without backend access; two
+of its four decisions ("build new backend") rest on things that already
+exist. It needs re-issuing against the corrected picture before Phase 0
+code is written — most importantly, whether cross-repo work (this repo +
+`~/projects/wembley-wonders/backend`, a separate git repo) is in scope for
+these sessions.
+
+### Backend audit (28 Aug 2026, Claude Code — per WW-SESSION-HANDOFF-2026-08-28-BACKEND-AUDIT)
+
+Repo: `~/projects/wembley-wonders/backend` — `org.wembleywonders:wembley-wonders-api`,
+Spring Boot, its own git (no remote configured on this checkout; latest commit
+"Fix publish/pause/resume endpoints all calling getListing by mistake"). **The
+backend repo has no `WW-OUTSTANDING-TASKS.md` or any markdown docs/tracker of
+its own** — this audit lands here, in the frontend canonical tracker, because
+that is where the master build order lives. Same confirmed-real / confirmed-stub
+/ confirmed-absent format as the frontend audit.
+
+**1. ILP / Creator-Journey — three distinct things, only the wrong-named one works**
+
+- **`LearnerJourney` / ILP scaffold — CONFIRMED SCAFFOLD (built as file skeletons,
+  no logic).** `entity/ilp/LearnerJourney.java` (17.7 KB — real, rich: `current_stage`
+  1–4 "Seeking Help", `ilp_narrative` + version + `edited_by` maya/learner/facilitator,
+  `problem_*`, `ignition_*`, `solution_*` (tools/skills/collaborators/timeline),
+  `deployment_*`) and `entity/ilp/IlpGoal.java` (8 KB — real) exist. So do 11 `Ilp*`
+  enums, 3 `model/ilp/*Summary` DTOs, and **`V49__Create_ilp_schema.sql` (689 lines —
+  a full schema: `learner_journeys` + more)**. **But `ILPController.java`,
+  `ILPService.java`, `repository/ilp/ILPRepositories.java`, and 8 of the 9
+  `entity/ilp/` files are 0-byte empty files.** No repository → nothing reads or
+  writes `learner_journeys`. No service → no logic. No controller → no endpoints.
+  The `V49` header says its purpose is to "promote `transformationStore.ts` to a
+  persistent backend layer" — i.e. this ILP models the **transformation journey**
+  (problem → solution → deployment → teaching others), *not* the earnings-milestone
+  pathway the master build order's hero copy describes. Confirms the frontend audit:
+  `transformationStore` is the ILP's basis, and it is a different concept from
+  "free ILP that takes you where you want your earnings to go".
+- **`CreatorJourneyController` — CONFIRMED REAL and functional.**
+  `GET /api/creators/{id}/journey` and `GET /api/creators` →
+  `CreatorJourneyResponse`: real per-member **economics** (lifetime earnings,
+  current monthly income, product counts, total sales, CIC advance
+  outstanding/repaid), **journey meta** (`stage` = `CreatorStage` enum, joined
+  date, first-sale date, `hadPriorIncome`, `isLocalBrent`, Stripe Connect
+  onboarded, archive sections live/planned), and a chronological list of
+  **provenance events** (from `ProvenanceRecord`, mapped to calendar-event
+  types incl. `raydyo-drop`). Persists real data. Its own docstring: "Used by the
+  frontend CreatorRegistry to hydrate static seed data with live backend state."
+  **This is the closest thing to what `/creator-pathways` would need if wired to
+  real data** — real earnings + a stage — but it carries no milestone /
+  earnings-target / pathway-step concept, and it is framed as a
+  provenance/economics timeline, not an ILP.
+- **`PanelController` — CONFIRMED REAL.** `GET /api/panel/story|programmes|position`
+  → `PanelSummaryResponse`, plus `GET /api/panel/badge-progress/{learnerId}` →
+  `BadgeProgressResponse` (what the frontend `BadgeProgress.tsx` already calls).
+  Serves the frontend `/panel/*` routes.
+
+**2. Cyberstore — cart/checkout/order model**
+
+- **Listing entity — CONFIRMED REAL.** `entity/StoreListing.java`: `creatorId`,
+  `provenanceId`, `programmeSlug`, `title`, `description`, `productType` (enum,
+  default `DIGITAL_DOWNLOAD`), `fileUrl`, `priceGbp`, `freeDownload`,
+  `limitedEdition`, `editionSize`, `copiesSold`, `tags`, `wardTag`, `creator/reserve/ops`
+  share pcts (55/25/20), `status` (`ListingStatus` enum, default `DRAFT`),
+  timestamps.
+- **Listing-CREATE endpoint — CONFIRMED REAL.** `POST /api/store/listings/draft`
+  (`StoreListingController.createDraft` → `StoreListingServiceImpl.createDraft`,
+  which does `new StoreListing()` → `storeListingRepository.save()`). Also
+  `PATCH /{id}`, `POST /{id}/publish`, `GET` list, `POST /{id}/pause|resume` —
+  all persist. **The frontend audit's "zero listing-creation flow client-side" was
+  because `AddToStoreButton` is unmounted, NOT because the endpoint is missing.**
+  The endpoint matches `sandboxToStoreService.ts` exactly.
+- **Cart / Order / Checkout entity — CONFIRMED ABSENT.** No `Cart`, `Order`,
+  `Checkout`, or `Basket` entity or controller. What exists post-transaction:
+  `entity/StorePurchase.java` (buyer email, amount, `creator/reserve/ops`
+  amounts, `stripePaymentIntentId`, `stripeTransferId`, download count) and
+  `entity/cyberstore/SaleRecord.java`. Checkout is **Stripe-driven**:
+  `StripeWebhookController` (`/api/webhooks/stripe`, `/stripe/v2`) handles
+  `payment_intent.succeeded/failed`, `checkout.session.completed`,
+  `charge.refunded`, `payout.*`; `PaymentController` imports
+  `CreatePaymentIntentRequest`. So a buyer purchase is: create a Stripe
+  PaymentIntent / Checkout Session → webhook → `StoreListingServiceImpl` saves a
+  `StorePurchase`. There is no server-side multi-item cart.
+
+**3. Wall-rental `pricingMode` field — CONFIRMED ABSENT (needs adding from scratch, both sides)**
+
+- `enums/PricingMode.java` exists with **exactly three values: `LIVE_AUCTION`,
+  `BUY_NOW`, `COMMUNITY_PRICE`** (its comment: "Direct port from the confirmed
+  frontend type pricing.types.ts"). No `WALL_RENTAL` / `RENTAL` / `RENT`.
+- `entity/cyberstore/ListingPricingConfig.java` — real, rich (a per-listing config
+  with `activeModes: List<PricingMode>`, auction start/reserve price, buy-now
+  price, community price + eligibility, stock counts). **But it has no REST
+  controller** (`grep` for `ListingPricingConfig` / `PricingService` /
+  `activeModes` across `controller/` returns nothing except
+  `AuctionWebSocketController` for live bidding). So even the three modes that
+  *do* exist are not exposed to the frontend over HTTP.
+- `StoreListing` itself has **no `pricingMode` / `rentalType` field** — just
+  `priceGbp` + `freeDownload`.
+- V67 (`Rebuild_pricing_config_tables`) constraint: `mode IN ('LIVE_AUCTION',
+  'BUY_NOW', 'COMMUNITY_PRICE')`.
+- **So 0.1's wall-rental is "add a new mode to the backend (enum value + a config
+  shape for flat weekly rent + a REST surface for pricing config, which doesn't
+  exist yet), then wire the frontend" — the larger of the two options the handoff
+  named.** The frontend already has the model (`WallRentModel` /
+  `SILK_STILETTOS_WALL_RENT` in `revenueModels.ts`).
+
+**4. Rayd-yo — accreditation and service-arm — CONFIRMED ABSENT on both sides**
+
+- No file matching `rayd*` / `raydyo` / `broadcast` / `airtime` / `coverage` in
+  the backend. `service/cyberstore/CommunityPoolBroadcaster.java` is a WebSocket
+  broadcaster for the community-pool ticker — unrelated.
+- The only Rayd-yo trace: `RegistrationType` values `PODCAST_EPISODE` / `BROADCAST`
+  map to a `raydyo-drop` calendar-event type in `CreatorJourneyController`, so a
+  provenance record can be *tagged* as a broadcast. There is no Rayd-yo
+  accreditation entity and no cross-programme broadcast/coverage ("service-arm")
+  concept.
+- Matches the frontend finding. **Confirmed absent on both sides — genuine
+  from-scratch, both repos.**
+
+**5a. Silk Stilettos accreditation data — CONFIRMED ABSENT in the backend**
+
+- No `accreditation` / `progression` / `pathway` / `curriculum` package or entity
+  anywhere. No `/api/accreditation`, `/api/progression`, `/api/pathway`. No
+  `ProgressionPathway` / `ProgressionStep` / `AccreditationUnit` /
+  `AssessmentCriteria` / `EvidenceRequirement` type.
+- `V40__Create_badge_progress_table.sql` — a `badge_progress` table exists, but
+  it tracks **membership tiers** (NONE / CONNECTOR / CURATOR / CHAMPION) and
+  cross-programme diversity counts, "recalculated on each session event" — *not*
+  the Explorer/Builder/Innovator/Leader accreditation badges, and it holds badge
+  *progress*, never badge *definitions* or unit/assessment content.
+- So the backend has nothing behind the stub `accreditation/programmes/silk-stilettos/`
+  directories. That content is frontend-only work (badge-definitions.ts +
+  progression-map.ts + the markdown), as the build order assumed.
+
+**5b. TECHreneurs nexus-gate-equivalent persistence — CONFIRMED ABSENT**
+
+- No `techreneur` / `nexus` / `valuation` / `pricing-review` / `sign-off` file in
+  the backend. No pricing-review or curator-sign-off entity. The
+  `ValuationArchitectureRecord` and the new `pricingCaseStudy.ts` types are
+  frontend-only. 1.4's nexus-gate ROV is a frontend component (matching the three
+  real ones) with no backend dependency; the case-study *capture* in
+  `WW-SPEC-TECHRENEURS-CASE-STUDY-PIPELINE-001` Phase 2 would need new backend
+  entities.
+
+**Master build order — re-issue inputs (do not act until re-issued):**
+
+- 0.2 "ILP page + new ILPService backend" → the ILP the build order describes
+  (earnings pathway) has **no backend**; the ILP that has a backend scaffold is a
+  different concept (transformation journey) and its scaffold is non-functional
+  (empty service/controller/repository). The real live per-member data closest to
+  the build order's intent is `CreatorJourneyController` / `PanelController`.
+  **CJ decision needed: is 0.2 "build the frontend against `/api/creators/{id}/journey`
+  + `/api/panel/*`", "finish the LearnerJourney ILP scaffold (backend work) then
+  build the frontend", or "these are two different products"?**
+- 0.1 cart/checkout → no server cart; checkout is Stripe. "Build a cart/checkout
+  backend" is really "build a Stripe checkout flow (frontend) + possibly a
+  server cart entity if multi-item baskets are wanted".
+- 0.1 wall-rental → new backend enum value + pricing-config REST surface (neither
+  exists) + frontend.
+- 1.3 Rayd-yo, 1.4 TECHreneurs nexus, 1.2 Silk Stilettos, 1.1 Kitchen → backend
+  adds nothing; frontend scope stands as previously corrected.
+
+---
+
+## 🔴 Creator-journey pilot (Silk Stilettos + Rayd-yo) — blocked, needs CJ scope decision
+
+Audited 28 Aug 2026 (Claude Code). Full write-up:
+`docs/accreditation/WW-SESSION-HANDOFF-2026-08-28-CREATOR-JOURNEY-PILOT.md`.
+The pilot picked Silk Stilettos + Rayd-yo because they were believed to
+avoid every known blocker. On a live check, all four load-bearing pieces
+are built-but-orphaned or absent:
+
+- **Priority 0 — ILP / Creator-Journey page: does not exist as a real
+  routed public page.** `WhatYouBuildPage.tsx` (the only real ILP explainer)
+  is orphaned — no route, no importers. `/creator-pathways`
+  (`CreatorPathwaysPage.tsx`) is routed and public and is the closest
+  structural match, but the word "ILP" never appears in it and 100% of its
+  data is hardcoded literals (no store/service). `/creators-journal` is
+  login-gated. No `ILPService` / ILP backend exists anywhere. This is a
+  hard blocker — there is no page to wire the pilot's pathway into. Same
+  question was raised and left unresolved in the 27 Aug career-first
+  redesign handoff; this closes it: **absent, needs building or a redefined
+  endpoint.**
+- **Silk Stilettos accreditation: stub.** All three
+  `accreditation/programmes/silk-stilettos/` files are "To be completed"
+  placeholders. No `SILK_STILETTOS_PATHWAY` in either progression-map.ts.
+  Badges (`SILK_STILETTOS_BADGES`) do exist in `badge-definitions.ts`. But
+  the **entire `src/accreditation/badge-system/` tree is orphaned** —
+  `grep -rln "accreditation/badge-system" src/` (minus the dir itself)
+  returns nothing; `badge-system/index.ts` is a `// Stub` + `export {}`.
+  A Silk Stilettos pathway can't be "ported from real units" the way
+  Trubble n Bass was — there are no real units to port.
+- **Rayd-yo: no accreditation dir, no syllabus doc, no service-arm code.**
+  `accreditation/programmes/rayd-yo/` and `WW-SPEC-RAYD-YO-SYLLABUS-001.md`
+  both absent. `RaydyoPage/` is a radio-station website;
+  `RaydyoPage/types/integration.ts` is a `// Stub`. The nearest thing to a
+  "coverage trigger" is the `tnb-to-raydyo` bridge in
+  `src/components/programme-journeys/journeyConfig.ts` — but the whole
+  `programme-journeys/` tree has zero live consumers. Broadcast-coordination
+  exists only as design docs + a `CoordinatorsByProgramme` lookup constant.
+- **Cyberstore: no listing-creation, no wall-rental mode live.** See the
+  extended Cyberstore entry under Technical build gaps below.
+- **Joystick portfolio-gallery auto-surface hook: does not exist for any
+  programme.** The claim that it's "confirmed for Kitchen and Pageturners"
+  is not backed by code — Pageturners only has static per-genre
+  `joystickOutput` description strings and "submit to Joystick" prompts.
+  `src/systems/rovs/publication-pipeline/` is a designed-but-unwired
+  story-flagging pipeline (not a portfolio gallery).
+
+**Net:** the full loop has no wired segment today. Priority 2 ("wire the
+confirmed-real pieces") has almost nothing confirmed-real to wire.
+Not started — needs an explicit CJ decision, first on what the pilot's
+pathway page actually is.
+
 ## 🔴 Decisions made, not yet recorded in the actual spec
 
 STEMgeneers Layer 1 public-AI-tool age condition. Judith resolved this:
@@ -135,6 +420,140 @@ Atelier commission settlement — split ratio (75/20/5) resolved via industry
 comparison, no longer open. What remains: settlement mechanics only —
 payment timing, gross-vs-net-of-fees/VAT basis, escrow/release timing.
 
+## Creator Margin Banding (WW-SPEC-CREATOR-MARGIN-BANDING-001) — Section 1 verification, 2026-09-02
+
+Verification pass run before building the advisory margin-banding calculator
+(Claude Code). The standalone calculator was built:
+`src/features/margin-banding/` (`marginBandingConfig.ts`, `MarginBandingEngine.ts`,
+`MarginBandingCalculator.tsx` + `.css`, `index.ts`). Five corrections came out
+of the pass; three spec-interpretation calls were made to unblock the build
+(recorded under "Interpretation calls" below — two approved, one still open):
+
+1. **🟢 `revenueModels.ts` STANDARD split corrected.** `src/blockchain/config/revenueModels.ts`
+   `STANDARD` was `{ maker: 55, platform: 25, community: 20 }` — platform and
+   community reversed against every WW-REVENUE-GOVERNANCE discussion and the
+   board-level revenue model (creator 55 / platform 20 / community 25). Corrected
+   in place (CJ ruling, 2026-09-02) with a REVISION note in the file header. The
+   two `ATELIER_*` splits already had platform at 20 and were not touched. The
+   file stores **integer percentages, not decimals** (spec Section 3 assumed
+   `0.55`); the new engine reads the constant and divides by 100 in one place
+   (`creatorShareFraction()`).
+
+   **File-history finding (2026-09-02):** the correction was committed
+   (`ed8569af`) as the file's *first ever* git commit — but the file itself
+   is not new. `revenueModels.ts` in its current shape (the
+   `maker`/`platform`/`community` interface, the three splits, the
+   `SILK_STILETTOS_WALL_RENT` block, the sum-to-100 check) has existed on
+   disk, untracked, since **at least 27 July 2026** — a byte-identical copy
+   sits in `~/Downloads/revenueModels (2).ts` dated 2026-07-27 13:42, and
+   the wall-rent block was merged in from `~/Downloads/revenueModels.patch.ts`
+   the same day. An earlier, structurally different version (decimal
+   fractions, `originator`/`community`/`operations`, ~11 programme models,
+   WW-SPEC-CITATION-001 helpers) goes back to early June 2026
+   (`~/Downloads/revenueModels.ts`, 2026-06-01). The reversed STANDARD
+   field order was present in the 27 July copy, so the wrong split sat in
+   the "single source of truth" for roughly five weeks. No git history,
+   reflog entry, or stash held it in that window; only Claude's local
+   file-history captured the pre-edit state (this morning, 08:27).
+   **Process gap worth watching:** governance-critical config
+   (`revenueModels.ts` names itself "SINGLE SOURCE OF TRUTH" and requires a
+   directors' decision for any change) went un-backed-up in git for over a
+   month. Every current consumer of it is also still untracked
+   (`MarginBandingCalculator.tsx`, `AtelierROV.tsx`, `CyberstoreStorefront.tsx`,
+   `citationStore.ts`, `marginBandingConfig.ts`, `RosemaryWeaverROV.tsx`,
+   `useRosemaryWeaverTracking.ts`). Config files that carry a governance
+   rule in their own header should be committed the moment they are
+   created, not left in the working tree.
+
+2. **🔴 Backend `PricingMode.java` follows the wrong split model — needs its own
+   migration decision.** `~/projects/wembley-wonders/backend`
+   `enums/PricingMode.java` = `LIVE_AUCTION, BUY_NOW, COMMUNITY_PRICE` (the
+   mode-based `pricing.types.ts` model, "direct port from the 55 Calculator
+   spec"), consumed by `entity/cyberstore/ListingPricingConfig.java`,
+   `SaleRecord.java` (hardcodes `communityPoolRate = 0.2500`, derives creator/
+   platform rates per mode: 55/60/65 creator), `AuctionSession.java`. This is the
+   code that computes real payout splits, so it is a live financial-integrity
+   mismatch with the now-authoritative `revenueModels.ts` (which has no
+   BUY_NOW/COMMUNITY_PRICE tiering — just STANDARD + the two ATELIER variants).
+   Bringing the backend into line means deciding whether BUY_NOW / COMMUNITY_PRICE
+   survive at all → enum change + entity changes + data migration. **Its own
+   task, not part of the margin-banding build**, and it should not block it.
+
+3. **🔵 `pricing.types.ts` + `FiftyFiveCalculator.tsx` archived, not deleted.**
+   Moved `src/cyberstore/pricing/{types/pricing.types.ts, components/FiftyFiveCalculator.tsx, .css}`
+   → `archive/parked-pricing-2026-09/` (+ a README). Both were unreferenced by
+   routed code. Parked pending: (a) a **directors' product conversation** on
+   whether the mode-based split concept (different % for auction/buy-now/
+   community-price) should be adopted — if so, reconciled *into* `revenueModels.ts`,
+   not run in parallel; (b) **Judith's editorial sign-off** before
+   `FiftyFiveCalculator` is deleted or repurposed — it is bound to Easy Street's
+   fiction (Gloria / the Counting House / "Session 3: The Numbers"). `src/cyberstore/`
+   is now empty and removed.
+
+4. **🟡 Badge-tier casing mismatch (noted, not fixed here).**
+   `src/accreditation/badge-system/progression-map.ts` uses capitalised levels
+   (`'Explorer' | 'Builder' | 'Innovator' | 'Leader'`);
+   `src/accreditation/badge-system/badge-definitions.ts` declares
+   `export type BadgeLevel = 'explorer' | 'builder' | 'innovator' | 'leader'`
+   (lower-case). The margin-banding config takes the **capitalised** form as
+   canonical (`CreatorTier`) and normalises input via `normalizeTier()`.
+   `badge-definitions.ts` was deliberately **not** changed as a side effect of
+   this task — reconciling the two is its own small cleanup.
+
+5. **🔴 No health/dietary/fitness content-accuracy gate exists anywhere.**
+   Spec Section 5 assumes an existing "Track 1/2 rubric or equivalent" to route
+   health-adjacent listings through — there is none in code. The three
+   `src/rovs/nexus-gates/*` ROVs are craft self-checks (manuscript / audio /
+   staging), not clinical review; `Roots` is a heritage/oral-archive sandbox.
+   The calculator ships with a **blocking `healthContentCleared` prop defaulting
+   to not-cleared** (`healthAdjacent && !healthContentCleared` → results hidden,
+   `HealthGate` shown), with the real gate as a TODO. **Health/dietary content is
+   currently shipping platform-wide with no accuracy gate at all** — a bigger gap
+   than this spec should try to close. Owner for clinical-accuracy sign-off is
+   unassigned (spec guesses Roots or a dedicated reviewer, not TECHreneurs).
+
+### Interpretation calls (spec pseudocode was silent or ambiguous)
+
+**IC-1 — Materials netted out before RAG banding. ✅ APPROVED (CJ,
+2026-09-02).** The written spec's pseudocode does not actually say whether
+the RAG band is computed on the creator's gross take or on take-minus-
+materials. The engine nets materials out first (`netTakePerUnit =
+creatorTakePerUnit - materialsCostPerUnitGbp`, `MarginBandingEngine.ts:86`)
+and bands on the net figure — net-of-materials is the correct reading.
+**Action:** a one-line clarification to that effect belongs in
+WW-SPEC-CREATOR-MARGIN-BANDING-001 itself (Section 3 pseudocode). That spec
+is **not a file in this repo** — it lives in CJ's notes system (pasted into
+the 2026-09-02 session, `[[wikilink]]` / Obsidian style). The line needs to
+be added there by CJ, or the spec brought into `docs/finance/` and
+maintained here. Flagged rather than silently assumed.
+
+**IC-2 — 55% (STANDARD) split applied to time-billed service fees.
+🟠 OPEN GOVERNANCE QUESTION — same weight as the `PricingMode.java`
+migration item above, NOT folded in as decided (CJ, 2026-09-02).** The
+calculator's job-mode path applies the STANDARD creator share to
+time-billed service work (e.g. a TECHreneurs / G-Tech Casters hourly
+engagement), on the same "everything defaults to STANDARD absent other
+guidance" basis as the rest of the tool. **Nobody has actually confirmed
+whether service / time-billed work should use STANDARD or a different
+split.** This is kept as the working default only so the tool functions;
+it is not a directors' decision and must not be cited as one. Needs a
+governance ruling: does creator-55 / platform-20 / community-25 apply to
+service fees, or does time-billed work sit outside the sale-split model
+entirely? Owner: directors (CJ / Judith), with Blake on the finance
+implication.
+
+**IC-3 — Break-even-IP three-points logic. ✅ APPROVED as built (CJ,
+2026-09-02).**
+
+Also confirmed absent (spec Section 1 asked): `ROVCapabilities.ts` /
+`WW-ARCHITECTURE-INVENTORY.md` — neither exists (`docs/rovs/*.md` are 0-byte
+stubs). Calculator ships as a plain component with no ROV-capability
+registration; that's a deferred task for whenever a real inventory exists, not a
+blocker. Wage figures in `marginBandingConfig.ts` (£12.71 NLW 21+, £14.80 Real
+Living Wage London) were web-verified against GOV.UK and the Living Wage
+Foundation on 2026-09-02 — they change annually and the config carries
+`verifiedOn` / `effectiveFrom` metadata plus an annual-review note.
+
 ## 🔴 Technical build gaps
 
 CultivationPardnerTab.tsx — reserve snapshot honestly stubbed (backend
@@ -165,9 +584,41 @@ Judith adapter — `buildJudithJourneyThread()`, and its own comment says
 Still not reconciled; still a product decision (which becomes canonical),
 not something to fix unprompted.
 
+*Extended 28 Aug 2026 (Claude Code, creator-journey pilot audit) — which
+one is actually LIVE, and none of them does wall-rental:* only
+`CommunityShopPage` is routed (`/shop`, `/cyberstore`) and it is a
+**browse-only, fixed-price catalogue** — no listing-creation flow, no
+rent-vs-price mode, and its "Add to basket" only increments a local UI
+counter (its own audit comment: no cart/order/checkout/backend). It reads
+a **fifth** incompatible product shape from `src/data/cyberstoreData.ts`.
+The other three are dead: the production-hub wizard and studio storefront
+import each other but nothing renders either; the Judith adapter's real
+`CartItem`/`Order` pipeline is imported only by `CreatorJourneySection.tsx`,
+which has zero renderers. `CyberstoreDock.tsx` (both copies) is currently
+deleted in the working tree. **The "Steps" wall-rental mechanism is not in
+any Cyberstore implementation** — it lives in
+`src/blockchain/config/revenueModels.ts` (`WallRentModel` +
+`SILK_STILETTOS_WALL_RENT`) and an orphaned curator-ROV
+(`RosemaryWeaverROV.tsx`, zero consumers). Full detail:
+`docs/accreditation/WW-SESSION-HANDOFF-2026-08-28-CREATOR-JOURNEY-PILOT.md`.
+
 Three nexus-gate tools designed but never built: Manuscript Analysis ROV
 (Pageturners), Audio Quality-Check ROV (Trubble n Bass), Staging/
-Production-Readiness ROV (Kaywana's Court). Confirmed via full src-tree
+Production-Readiness ROV (Kaywana's Court).
+
+⚠️ **Update 28 Aug 2026 (Claude Code) — "never built" is now stale.** All
+three exist at `src/rovs/nexus-gates/` (`ManuscriptAnalysisROV.tsx`,
+`AudioQualityCheckROV.tsx`, `StagingReadinessROV.tsx`, dated 23 Aug) and
+each is imported into its programme sandbox — `PageturnersSandbox.tsx`,
+`TrubbleNBassSandbox.tsx`, `KaywanasCourtSandbox.tsx` respectively. Not
+audited beyond "file exists and is imported" — whether they actually gate
+(block progression / require sign-off) versus render as an advisory panel
+was not checked this pass. Note for the TECHreneurs case-study spec
+(`WW-SPEC-TECHRENEURS-CASE-STUDY-PIPELINE-001`, filed 28 Aug): that spec
+calls TECHreneurs "a Nexus gate," but **there is no TECHreneurs nexus-gate
+ROV** — the set is these three only.
+
+Original finding, still accurate:
 read: AudioBay.tsx does NOT satisfy the Trubble n Bass gate — it's a
 pipeline-stage component (Impact Lab/Technician stage of the universal
 Five-Cs pipeline), not a cross-programme nexus gate. No wiring routes other
@@ -216,6 +667,54 @@ directory — zero hits). Looks like orphaned CSS left over from a copy/move
 rather than a genuine second implementation, but flagging rather than
 deleting since I haven't traced every possible importer across the repo.
 
+⚠️ **Re-audited 28 Aug 2026 (Claude Code) — full write-up:
+`docs/accreditation/WW-SESSION-HANDOFF-2026-08-28-KITCHEN-SANDBOX-FIX.md`.
+The live/orphaned split is the opposite of what the Priority 2 plan
+assumed.**
+
+- The "3 files, 2 tools" mapping still holds structurally, but they are
+  two *different tools*, not two versions of one:
+  - **Tool A — `RecipeHeritageKeeper.tsx`** (1595 lines): "Identity
+    Restoration Platform + Heritage Language Preservation + Immigrant
+    Journey Documentation." 4 journey paths, 14 islands/countries,
+    multi-part story capture, `HeritageLanguage`/`ImmigrantJourney`
+    structs, localStorage persistence, a "Maya" guide persona. **Wrapped by
+    two files — `components/.../AuntieAnansisSandbox.tsx` (persuasion
+    landing) and `pages/programmes/.../sandbox.tsx` (bare "TOOL FIRST"
+    wrapper) — and BOTH are orphaned** (no route, no importer; both
+    coincidentally export a component named `AuntieAnansisSandbox`).
+  - **Tool B — `AuntieAnansisKitchenSandbox.tsx`** (721 lines): a
+    self-contained recipe-documentation 5-tab wizard (Basics → Ingredients
+    → Method → Heritage → Preview), `SAMPLE_RECIPE` "Granny's Curry Goat",
+    no persona voice, no persistence, no external deps. **THIS is the only
+    routed Kitchen sandbox** — `/programmes/auntie-anansis-kitchen/sandbox`
+    + two `/pathways/` aliases; the programme page CTA points here.
+- **Answer to "which RecipeHeritageKeeper wrapper is live": neither.** The
+  richer tool (RecipeHeritageKeeper) renders nowhere live.
+- **Cyberstore recurring/booking/subscription listing type: none in any of
+  the 4.** All one-off shapes (fixed-price via `cyberstoreData.ts`;
+  licence-tier via the orphaned wizard; `RevenueSplit`% + flat
+  `WallRentModel` in `revenueModels.ts`). Separate subsystem `src/marketplace/`
+  has a `Service` model with `bookingType: 'instant'|'request'|'consultation-first'`
+  and a sample "monthly subscription" — not routed, not one of the 4, and
+  it's consultation-booking not recurring-order. **CJ's dinner-service /
+  meals-to-order direction needs a genuinely new listing mode** (as the
+  handoff predicted) — possible base is `src/marketplace/`'s Service layer,
+  not Cyberstore's product model. Out of scope for the consolidation pass.
+- Drift corrections: the "second `RecipeHeritageKeeper.module.css`" noted
+  above is actually `AuntieAnansisSandbox.module.css` (byte-identical dup,
+  8293 bytes, in both `components/.../` and `pages/programmes/.../`; only
+  the `components/` copy is imported). Also orphaned and Kitchen-adjacent:
+  the whole `src/systems/rovs/personalities/auntie-anansi/` Archivist ROV
+  (+ `hooks/useAuntieAnansiArchivist.ts`, `hooks/useAuntieAnansiData.tsx`,
+  `components/MayaAssistant/ArchivistROVChat.tsx`) — none wired.
+- **Priority 2 is blocked on a CJ decision:** is the intended Kitchen
+  sandbox the rich RecipeHeritageKeeper (identity/heritage-language/
+  immigrant-journey) or the simple recipe wizard? They serve different
+  purposes. The consolidation can't proceed until that's settled.
+  `ww-programme-architecture.md` (which this handoff asks to update) does
+  not exist in the repo.
+
 useROVCapabilities.ts — 🟢 RESOLVED, see history section below.
 
 WW-AUDIT-SRC-STATE-001.md (Jul 2026) — found ~249 empty files and 60
@@ -259,7 +758,8 @@ without asking.
 
 - Cassava — still missing from the Tree Council/Fruit Grove roster
 - TECHreneurs — flagged as a likely "one-way port" under the triangular-
-  trade return-to-origin test, never actually checked
+  trade return-to-origin test. **Checked 28 Aug 2026 — verdict: confirmed
+  one-way port** (see below).
 
 *Checked 21 Aug 2026 (Claude Code):* neither "Fruit Grove" nor "Tree
 Council" appears anywhere in this repo (other than this tracker file
@@ -268,6 +768,51 @@ to check against. Same chat-memory-only situation as several items above.
 The TECHreneurs "one-way port" check is a content/historical-analysis
 question, not something resolvable by grepping code — genuinely still open,
 nothing to correct or confirm from this session's pass.
+
+*Resolved 28 Aug 2026 (Claude Code):* CJ supplied the check as
+`WW-SPEC-TECHRENEURS-CASE-STUDY-PIPELINE-001` (filed at
+`docs/accreditation/`). Verdict: **confirmed one-way port.** The diagnosis
+holds — TECHreneurs teaches pricing but has no loop that turns its own
+members' resolved pricing outcomes into case-study teaching material, the
+way Roots turns member research into citable Knowledge Commons entries. The
+spec proposes a fix (post-listing outcome capture → human-curated
+comparative case study → TECHreneurs' missing Leader-tier badge
+definition).
+**Caveat, per the standing "provided ≠ verified" rule — the spec's
+mechanism assumes infrastructure that is not built** (verified directly,
+recorded in the spec's own "Repo reality-check" section): there is no
+TECHreneurs nexus-gate ROV (`src/rovs/nexus-gates/` holds only the
+Pageturners/TNB/Kaywana's Court three); no "Sourcing Brief" or "Module 2"
+in the repo; no nightclub/cinema pricing case studies in TECHreneurs
+content; no TECHreneurs "Keeper custodian" / ROV sign-off chain; and the
+ILP "return leg" it references doesn't exist (see the creator-journey-pilot
+handoff). The real Valuation Worksheet
+(`src/components/valuation/ValuationWorksheetForm.tsx` +
+`src/prototype-registry/types/valuation.ts`) is a personal workspace, not a
+cross-programme gate. Build is blocked not just on the Cyberstore
+fragmentation audit but on those upstream gaps — and that audit (done 28
+Aug, see the creator-journey-pilot handoff) found the live Cyberstore
+tracks **no** sale/price/time-to-sale or view/interest data at all, so the
+capture source has to be built from nothing.
+
+- `WW-SPEC-TECHRENEURS-SYLLABUS-001` (the doc the case-study spec is an
+  "Addition to") does not exist in the repo — chat-memory-only, add to the
+  list of specs referenced-as-real that aren't here.
+
+*Draft/scope/build pass, 28 Aug 2026 (Claude Code):* the spec now carries
+three appendices — (A) draft artefacts: the TECHreneurs domain-specific
+Leader-tier badge ("Pricing Reference-Setter", drop-in for `te-leader`),
+the comparative-pairing case-study format, and the two-layer consent model
+mapped to fields; (B) a 6-step build-gap breakdown with sequencing (step 0
+= Cyberstore reconciliation, then instrumentation → consent policy →
+Keeper ROV → Module 2 teaching surface → badge-system wiring); (C) the one
+thing actually built: `src/prototype-registry/types/pricingCaseStudy.ts` —
+the dependency-free data model (`ListingOutcome`, `PricingErrorKind`,
+`CaseStudyConsent`, `assessEligibility`, `PricingCaseStudyRecord`,
+`projectedVsActual`), sibling to `valuation.ts`, scoped tsc-strict clean,
+full-project tsc unchanged at 167 errors. **Not wired** — landed ahead of
+wiring like `progression-map.ts`. Everything past build-gap step 0 stays
+blocked.
 
 ## 🟢 ROV naming collision — FULLY RESOLVED (final state)
 
@@ -420,13 +965,29 @@ authoritative source — "not contradicted" is not the same claim as
 "correct" — but none was disproven either, so all three remain in the
 table pending anything that actually checks them.
 
-## 🟢 Esi-vs-Maya in Kitchen — RESOLVED
+## 🟢 Esi-vs-Maya in Kitchen — RESOLVED (voice fix still pending)
 
 ww-cast-roster.md (25 Jul, dated after the correction that moved Esi to
 Knowledge Commons) confirms Esi returned to Kitchen — she is Kitchen's
-host. Live RecipeHeritageKeeper.tsx code (still uses Maya's voice) is the
-outdated piece — separate follow-up task to update it, not blocking
+host (`ww-cast-roster.md:110`: "Esi — Auntie Anansi's Kitchen, heritage
+and recipes"). Live RecipeHeritageKeeper.tsx code (still uses Maya's voice)
+is the outdated piece — separate follow-up task to update it, not blocking
 KitchenROV.tsx.
+
+*Checked 28 Aug 2026 (Claude Code):* Maya's voice in Kitchen-scoped code is
+confined to **`RecipeHeritageKeeper.tsx`** — `getMayaMessage()`,
+`styles.mayaShepherd`/`mayaIcon`/`mayaMessage`, the `// MAYA MESSAGES
+(Soul-Guided)` block, and two `{/* Maya Guide */}` render sites (lines
+~367, ~765, ~1532). The two wrapper files only pass `showMaya={false}`
+(not a voice issue). `src/systems/rovs/personalities/auntie-anansi/`
+mentions Maya only in comments as a handoff target; its persona is "Auntie
+Anansi." **Important caveat for whoever does the fix:** `RecipeHeritageKeeper.tsx`
+is currently **orphaned** (rendered by no live route — see the Kitchen
+fragmentation entry above). If CJ's Priority 2 decision is that the simple
+recipe wizard (`AuntieAnansisKitchenSandbox.tsx`, which has no persona
+voice at all) is the intended Kitchen sandbox, this voice fix becomes moot.
+Don't do the Maya→Esi pass until the "which tool is the Kitchen sandbox"
+decision is made.
 
 ## 🟢 citationStore.ts — RESOLVED
 
@@ -467,6 +1028,28 @@ for craft-based technique (Fasséké) doesn't transfer to relationship-based
 technique (Dodd) — no private-practice equivalent exists for "recognising
 raw talent." Needs an observation-log/structured-reflection format instead,
 bridging to the same written-account evidence method used in Dodd's lesson.
+
+⚠️ **CORRECTION — 23 Aug 2026 (Claude Code).** Both files cited above,
+`ww-programme-curators-roster.md` and `ww-curator-tutoring-focus.md`,
+were searched for directly and confirmed **absent from the repo** —
+chat-memory-only references, same class of finding as several others in
+this tracker. "RESOLVED, all 14 programmes locked" describes a decision
+made in chat, not a file anyone (human or Claude Code) can currently open
+and check.
+
+A real file now exists at `docs/curator-content/WW-PROGRAMME-CURATORS-ROSTER.md`
+(created 23 Aug 2026, landing the seven-curator Diversity Initiative
+additions from 21 Aug 2026) — but it is an honestly partial start, not
+the full 14-programme roster this heading claims: it covers 6 programmes'
+new co-tutor additions plus one new Trubble n Bass genre slot, names the
+pre-existing locked curator each sits beside, but does not contain those
+pre-existing curators' own full entries (not supplied, not found
+elsewhere in the repo except Balla Fasséké and Demodocus, both
+independently corroborated by real content/handoff-doc references — see
+that file's own "Repo cross-check" notes per entry for exactly what could
+and couldn't be verified). If/when the fuller roster content is
+available, merge it into that file rather than creating a third,
+separately-authoritative one.
 
 ## 🟡 TNB-2.4 mentorship/development evidence mechanism
 
@@ -522,6 +1105,18 @@ on the same shape, separately pull in the markdown file's still-useful
 🟢 Resolved 21 Aug (Claude Code): progression-map.ts landed for real, 662
 lines, scoped tsc clean, not yet imported anywhere live (safe to land
 without disturbing anything else).
+
+*Still true 28 Aug 2026, and wider than just this file:* nothing in `src/`
+imports anything from `src/accreditation/badge-system/` at all —
+`progression-map.ts`, `badge-definitions.ts` (which does contain real
+`SILK_STILETTOS_BADGES`), and `verification-system.ts` are all orphaned;
+`index.ts` is a `// Stub — pending implementation` / `export {}`. Building
+a `SILK_STILETTOS_PATHWAY` on the same interface is straightforward, but it
+would land in a module tree that renders nowhere — the missing piece is a
+consumer (a real badge/pathway UI), not more pathway constants. Note also:
+Silk Stilettos has no real accredited units to build the pathway *from*
+(its `accreditation/programmes/silk-stilettos/` is a stub), unlike Trubble
+n Bass which was ported from real units.
 
 Still confirmed false, needs re-checking against any newer claims: the 19
 Aug "10 programmes reformatted" zip never actually landed — only the
