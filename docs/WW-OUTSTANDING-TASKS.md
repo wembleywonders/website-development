@@ -800,6 +800,39 @@ were repointed at the canonical doc. Outstanding:
    mid-restructure and uncommitted (`git status`: `balla-fasseke-explorer-lesson-01.md`
    + `-workbook-01.md` deleted, merged into `-explorer-lesson-and-workbook-01.md`).
 
+### Held pending CJ decision (flagged 3 Sept 2026)
+
+Five items that need a call from CJ rather than a Claude Code action.
+
+**Three files — repoint edits made, held uncommitted.** Each carries the
+`ww-source-vetting-pipeline` → `WW-SPEC-SOURCE-VETTING-RUBRIC-001` repoint in
+the working tree, but sits on top of substantial uncommitted or untracked
+prior-session content that isn't part of this task. Decision needed on each:
+commit in full (bringing the prior content in with it), or handle in a
+separate pass.
+
+1. `docs/research/ww-creators-code.md` — tracked; ~85 lines of uncommitted
+   additions predate the ~8-line repoint.
+2. `docs/research/WW-REF-SCREENWRITING-CRAFT-WILDER-001.md` — entirely
+   untracked.
+3. `docs/research/KC-GUIANA-SHIELD-DIASPORIC-ECONOMY-001.md` — entirely
+   untracked; its own changelog states it was "filed into the repo 28 Aug
+   2026" but it never was.
+
+**Two reconciliation questions — directors' call, not a Claude Code task.**
+
+4. **"Conditional pass" — which definition is canonical?** `WW-SPEC-SOURCE-VETTING-RUBRIC-001`
+   §3 (the lineage-claim-tagging bucket) vs. `docs/research/WW-RESEARCH-VESSEL-PRINCIPLE.md`
+   and the shipped `'conditional-pass'` status value in
+   `src/knowledge-commons/lesson-modules/lessonModuleStore.ts` (the
+   usable-but-uncorroborated bucket). Live code is keyed to the older meaning;
+   once the canonical definition is set, the loser gets updated in lockstep.
+   (Same as item 1 above, surfaced here as the decision it needs.)
+5. **Fact Producer vs. Ntikuma broadcast coordinator — same person, adjacent,
+   or folded in?** TATF §3's Fact Producer role overlaps the broadcast-
+   governance layer in `WW-NTIKUMA-BROADCAST-COORDINATION-DESIGN.md` (+
+   addendum) and `src/safeguarding/WatershedGate.ts`. (Same as item 6 above.)
+
 ## 🔴 Named research left incomplete
 
 - Cassava — still missing from the Tree Council/Fruit Grove roster
