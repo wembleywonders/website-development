@@ -124,7 +124,7 @@ CJ's closing correction to the old proverb stands as this document's final word:
 
 1. Confirm the DSL deputy (Flora, or another named person).
 2. Build the Pass It On pattern-tracking field/threshold for relational conduct (currently unbuilt, same gap flagged for the original missed-deadline use case).
-3. Write the fifth source-vetting lens (domination-as-aspirational) into ww-source-vetting-pipeline proper.
+3. Write the fifth source-vetting lens (domination-as-aspirational) into `docs/research/WW-SPEC-SOURCE-VETTING-RUBRIC-001.md` proper. **Still open as of 3 Sept 2026** — that rubric's first formal write-up covers the original four tests only; the fifth lens is not in it yet and this action item stands.
 4. Draft the tutor-facing plain-language confidentiality-override script for actual delivery to members (this document states the principle; a shorter practitioner-facing version is still needed).
 5. Audit existing platform mechanics (leaderboards, comparisons, visibility counts) against the Worth Principle.
 6. Decide whether Article IV of the Creator's Code is written as a full standalone article or references this document directly rather than duplicating it.

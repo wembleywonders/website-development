@@ -754,6 +754,52 @@ without asking.
 - Deputy sign-off authority when CJ and Judith are both unavailable
 - Retroactive review scope for existing external advisors/partners
 
+## 🔴 Source-vetting rubric + TATF — filed 3 Sept 2026, open items
+
+`docs/research/WW-SPEC-SOURCE-VETTING-RUBRIC-001.md` (the four-test rubric,
+CJ's canonical write-up) and `docs/research/WW-SPEC-THESE-ARE-THE-FACTS-001.md`
+(the live/on-air correction mechanism, revised on filing) were committed.
+Seven stale references to the previously-unwritten `ww-source-vetting-pipeline`
+were repointed at the canonical doc. Outstanding:
+
+1. **"Conditional pass" is defined two ways.** The rubric's §3 defines it as
+   the *lineage-claim-tagging* bucket. `docs/research/WW-RESEARCH-VESSEL-PRINCIPLE.md`
+   and the **shipped** `'conditional-pass'` status value in
+   `src/knowledge-commons/lesson-modules/lessonModuleStore.ts` define it as the
+   *usable-but-not-yet-corroborated* bucket — and that file's header says it was
+   deliberately named to match the doc's wording. There is live code keyed to
+   the older meaning. Needs a directors' call on which definition is canonical,
+   then the loser updated in lockstep. Not resolved on filing — CJ's canonical
+   text was filed verbatim.
+2. **The proposed fifth source-vetting lens is not in the rubric write-up.**
+   `WW-SPEC-SAFEGUARDING-STRATEGY-001.md` §9 + action item 3 and
+   `src/safeguarding/SafeguardingFocus.ts:96` establish a pending fifth lens
+   (domination-as-aspirational). The first formal write-up covers the original
+   four tests only. Action item 3 in the safeguarding spec has been re-flagged
+   as still open.
+3. **Rayd-yo has no constitution document.** TATF leans on three Rayd-yo
+   "constitutional" principles that exist nowhere in the repo: "the room pushes
+   back" *as a live-conversation restraint standard* (distinct from its use as
+   the name of rubric Test 2), the "no pay for airtime" clause, and a "formal
+   right of reply" clause. TATF §3 step 4 now establishes right-of-reply itself
+   rather than citing a non-existent clause. A Rayd-yo constitution doc should
+   be written and all three stated in it.
+4. **`ww-rights-adaptation-governance`** (referenced by TATF §5 for
+   external-advisor verification standards) does not exist.
+5. **Live-broadcast preconditions unverified.** TATF Track A assumes live
+   Rayd-yo host+guest broadcast; §6 assumes live G-Tech Casters casting.
+   Neither is confirmed as a current product in code (Rayd-yo `/raydyo` is a
+   player + schedule + volunteer tools; G-Tech Casters is a teaching programme).
+   Both callouts added to the spec.
+6. **Fact Producer vs. Ntikuma broadcast coordinator** — overlap with
+   `WW-NTIKUMA-BROADCAST-COORDINATION-DESIGN.md` / `WatershedGate.ts` not
+   reconciled (TATF §7).
+7. **The Pageturners "structural-parallel-vs-lineage-claim tagging template"**
+   (rubric §3, §6) is a real discipline in the Balla Fasséké griot content but
+   is not codified as a named standalone template. Those curator files are also
+   mid-restructure and uncommitted (`git status`: `balla-fasseke-explorer-lesson-01.md`
+   + `-workbook-01.md` deleted, merged into `-explorer-lesson-and-workbook-01.md`).
+
 ## 🔴 Named research left incomplete
 
 - Cassava — still missing from the Tree Council/Fruit Grove roster
