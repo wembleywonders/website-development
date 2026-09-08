@@ -591,6 +591,18 @@ of the pass; three spec-interpretation calls were made to unblock the build
    survive at all → enum change + entity changes + data migration. **Its own
    task, not part of the margin-banding build**, and it should not block it.
 
+   **Update 3 Sep 2026 — deliberately frozen, do not build out yet.** This
+   question is now being held open on purpose until
+   `docs/finance/WW-DISCOVERY-PROVENANCE-RESALE-ROYALTY-001.md` (resale /
+   provenance royalty — a possible second-sale revenue model) is reviewed
+   by CJ + Judith and, if pursued, answered by Blake. Reason: a resale
+   mechanism would likely need its own `revenueModels.ts` entry and its
+   own backend record type, and settling `PricingMode` / `SaleRecord.java`
+   before that is scoped risks building the wrong backend money-shape
+   twice. Phase 2 of the trading-readiness spec does not touch this — its
+   pilot Order is a frontend-pipeline `Order`, manually reconciled, not a
+   `SaleRecord`.
+
 3. **🔵 `pricing.types.ts` + `FiftyFiveCalculator.tsx` archived, not deleted.**
    Moved `src/cyberstore/pricing/{types/pricing.types.ts, components/FiftyFiveCalculator.tsx, .css}`
    → `archive/parked-pricing-2026-09/` (+ a README). Both were unreferenced by
@@ -666,6 +678,325 @@ Living Wage London) were web-verified against GOV.UK and the Living Wage
 Foundation on 2026-09-02 — they change annually and the config carries
 `verifiedOn` / `effectiveFrom` metadata plus an annual-review note.
 
+## Cyberstore Trading-Ready (WW-SPEC-CYBERSTORE-TRADING-READY-001) — Phase 1 frontend done, backend blocked, 2026-09-03
+
+Phase 1 is "consolidate the revenue split so a live sale can't pay out a
+figure different from what's displayed." Frontend transaction pipeline +
+the routed `/shop` `/cyberstore` page + the `cyberstoreData.ts` seed
+catalogue: **done this session (Claude Code).** Backend consolidation
+(spec v2 folded it into Phase 1): **not done — blocked on the open
+`PricingMode.java` decision, see "Backend" below.** Not touched either:
+the ~100 marketing "55%" strings elsewhere, and the orphaned parallel
+`src/marketplace/` subsystem (see below).
+
+Spec history worth noting: v1 said "six hardcoded copies," v2 said eight.
+The real frontend live-pipeline count is **eight touched + one orphaned
+dup left alone** (list below). The v2 spec's own note — "assume more may
+exist until grep confirms otherwise" — held: `cyberstoreIntegration.ts`
+was believed clean and wasn't (the service branch still produced the
+pre-decision 60/20/20), and a full-tree grep then turned up the
+`src/marketplace/` duplicate.
+
+**Directors' decisions taken to unblock it (CJ + Judith, 3 Sep 2026),
+recorded in `revenueModels.ts` per that file's own header rule:**
+
+1. **New `SERVICE` revenue model — creator 60 / platform 15 / community
+   25.** The split for a creator selling their labour/time (workshops,
+   consultations, live sessions) rather than a reproducible digital good.
+   Replaces the ad-hoc `0.60 / 0.20 / 0.20` that `calculateRevenueSplit`
+   applied to `type === 'service'` cart items with no named source. Sums
+   to 100; the file's runtime sanity check passes.
+2. **`SILK_STILETTOS_WALL_RENT.weeklyRate` set to £7** — a confirmed
+   *starting* figure, to be reviewed after real pilot usage. No longer a
+   placeholder; the "pending directors' sign-off" language is removed.
+
+**Consolidation — eight frontend instances → read from `REVENUE_MODELS`:**
+
+| File | Was | Now |
+|------|-----|-----|
+| `marketplace/integrations/cyberstoreIntegration.ts` `calculateRevenueSplit` | `0.55/0.25/0.20` goods, `0.60/0.20/0.20` services | `REVENUE_MODELS.STANDARD` / `.SERVICE`, `/100` |
+| `types/creatorJourney.ts` `formatRevenueSplit` | `0.55/0.25/0.20` | reads model (STANDARD default, SERVICE param) |
+| `types/creatorJourney.ts` `getCostRecoveryStatus` | `price * 0.55` | `revenueModelFor(category)` → model.maker |
+| `types/creatorJourney.ts` `RevenueSplit` interface | literal types `creatorPct: 55` etc. | `number`; new `makeRevenueSplit()` builder |
+| `types/creatorJourney.ts` `JUDITH_PRODUCTS` seed (7×) | inline `{ creatorPct: 55, … }` | `makeRevenueSplit('judith-fontanelle'[, 'SERVICE'])` |
+| `marketplace/integrations/creatorJourneyIntegration.ts` `journeyProductToShopProduct` / `journeyProductToCartItem` / `getJourneyProductSplit` | `p.price * 0.25`; `category === 'workshop'` string check; forced-to-STANDARD comment | `formatRevenueSplit(price, revenueModelFor(category))`; `isServiceCategory()` |
+| `production-hub/CyberstoreListingWizard.tsx` | `p * 0.55`; "Keep 55%", "55/25/20 split", "55% creator · 25% community · 20% platform" display strings | `SPLIT = REVENUE_MODELS.STANDARD`, interpolated |
+| `pages/CommunityShopPage.tsx` | `'55% to maker'`; hardcoded 4-item philosophy strip; "55% yours" prose | `SPLIT.maker` / `.community` / `.platform` |
+| `data/cyberstoreData.ts` — 8× `creatorShare: 55` product fields | undocumented literal, "always 55" comment | kept (per spec option), now explicitly commented as a static display snapshot of `REVENUE_MODELS.STANDARD.maker`, not computed and not read by any payout logic; Phase 2 migrates this data onto the canonical shape |
+
+`calculateRevenueSplit` was runtime-tested: a `type: 'service'` £100 item
+now returns creator 60 / community 25 / operations 15 (= SERVICE 60/15/25),
+not the old 60/20/20.
+
+**Left alone — orphaned parallel marketplace subsystem:**
+`src/marketplace/integrations/userJourneyIntegration.ts` is a full copy of
+`cyberstoreIntegration.ts` (same buggy `isService ? 0.60 : 0.55` split at
+its line 127) with a "PROGRAMME JOURNEY INTEGRATION" section bolted on
+(the `MarketplaceReadiness` gate the spec flags for Phase 3). It — and
+`src/marketplace/data/sampleData.ts` (~30 `creatorShare: 0.55/0.60/0.70`),
+`marketplace/stores/marketplaceStore.ts` (0.55/0.58/0.60 tier ladder),
+`marketplace/components/ProductListingForm.tsx` — are reachable only
+through `src/marketplace/index.ts`, which **nothing outside
+`src/marketplace/` imports.** This is a dead parallel system, not the live
+pipeline; consolidating or deleting it is its own cleanup, out of scope
+here. Flagged so a future session doesn't mistake it for live.
+
+New helpers in `creatorJourney.ts`: `makeRevenueSplit(creatorId, model?)`,
+`SERVICE_CATEGORIES` (`['workshop', 'consultation']`), `isServiceCategory()`,
+`revenueModelFor(category)`. Consultation is now billed on SERVICE too (it
+was previously mapped to `'product'` in `journeyProductToCartItem` — an
+inconsistency, since it's a service). This slightly widens what routes to
+the SERVICE split; flagged rather than assumed silent.
+
+**Type-check:** `npx tsc --noEmit -p tsconfig.json` — 167 errors before and
+after (baseline established by stashing the tracked edits and re-running).
+Zero new errors; zero errors in any touched file. `revenueModels.ts` was
+also import-checked at runtime (SERVICE sums to 100, sanity check clean).
+
+**Relationship to IC-2 (open governance question above):** IC-2 asks
+whether the *margin-banding calculator's* time-billed / hourly-engagement
+path should use STANDARD or something else. The new `SERVICE` model
+answers the adjacent question for **productised services/workshops sold
+through Cyberstore**, but IC-2's hourly-TECHreneurs-engagement case is a
+different surface and is **not** automatically resolved by this — the
+directors should confirm whether SERVICE (60/15/25) is also the answer
+there, or whether hourly work sits outside the sale-split model entirely.
+
+**Backend — spec v2 folded this into Phase 1; NOT done, blocked. Needs a decision.**
+
+Three files in `~/projects/wembley-wonders/backend` carry the split:
+
+- `service/impl/StoreListingServiceImpl.java` — `CREATOR_SHARE = 0.55` /
+  `RESERVE_SHARE = 0.25` / `OPS_SHARE = 0.20` constants, plus
+  `listing.setCreatorSharePct(55)` / `setReserveSharePct(25)` /
+  `setOpsSharePct(20)` stamped onto every new `StoreListing`.
+- `controller/PaymentController.java` — `totalRevenue * 0.55`,
+  `totalGross * 0.55 / * 0.25 / * 0.20` in the admin metrics and
+  payout-summary endpoints.
+- `service/impl/CreatorMetricsServiceImpl.java` — `CREATOR_SHARE_PCT = 0.55`
+  / `COMMUNITY_SHARE_PCT = 0.25` / `OPERATIONS_SHARE_PCT = 0.20` constants
+  (projection maths only, not real payouts).
+
+**Why it's blocked, not just "not done yet":** the spec wants "a single
+`RevenueSplitConfig` reading the same source of truth as the frontend,
+matching STANDARD/SERVICE/ATELIER_* by category." But the entity that
+records real sale money — `entity/cyberstore/SaleRecord.java` — does not
+split by category. It carries `creatorRate` / `communityPoolRate` (hard
+default `new BigDecimal("0.2500")`) / `platformRate`, and those rates are
+derived per `PricingMode` (`LIVE_AUCTION` / `BUY_NOW` / `COMMUNITY_PRICE`
+— creator 55/60/65 by mode). That mode-based model and the
+category-based `revenueModels.ts` model are **mutually exclusive**, and
+which one survives is the still-🔴 `PricingMode.java` migration decision
+(item 2 in the margin-banding section above — "deciding whether BUY_NOW /
+COMMUNITY_PRICE survive at all → enum change + entity changes + data
+migration"). A backend `RevenueSplitConfig` can't be built to "match by
+category" until that's resolved, or it just becomes a third split model
+running in parallel — the exact thing this whole task exists to stop.
+
+**Recommended sequence:** (a) directors settle the `PricingMode` question
+(do auction / buy-now / community-price tiers exist, or is it just
+STANDARD + SERVICE + ATELIER_*?); (b) then a backend session builds the
+Java config + migrates `SaleRecord` / `StoreListing` / `PricingMode`
+onto it. Phase 2's pilot does **not** need this — its payout is manual
+director reconciliation off a correctly-split `Order`, and `Order` is a
+frontend-pipeline type, not `SaleRecord`.
+
+**Also not touched:** `src/blockchain/components/CheckoutImpact.tsx` has
+its own local `calculateRevenueSplit(total, productType)`. Not routed, no
+checkout exists yet (Phase 2). Left for the Phase 2 checkout build to
+fold in or delete.
+
+### Phase 2 — verification pass done 3 Sep 2026, build shape revised
+
+File-by-file verification before building turned up a contradiction the
+spec's own sequencing note predicted ("assume more may exist until grep
+confirms otherwise"):
+
+- **Directors' decision #6** (in the spec's own decisions block): "manual
+  reconciliation by a director… **no new payment-rail code.**"
+- **Task 5 / Done-when:** "hits Stripe (confirmed already live) for real
+  payment."
+
+**"Stripe confirmed already live" is false for the sale path.** Verified:
+frontend `createPaymentIntent` (`cyberstoreIntegration.ts:407`) is an
+explicit stub; **no `@stripe/stripe-js` in `package.json` or
+`node_modules`**; `createOrder` builds an in-memory object with no
+persistence and there is no `/api/orders` endpoint; backend has
+`StripeConfig` + an inbound-only `StripeWebhookController` + a **routeless**
+`StoreListingServiceImpl.recordPurchase(...)`, and **nothing in either
+repo calls Stripe `Session.create` / `PaymentIntent.create`** — neither
+repo can initiate a payment. A real card charge = new payment-rail code,
+which decision #6 forbids.
+
+**Resolution (dated directors' decision outranks stale task prose):**
+decision #6 governs. The pilot's checkout drawer builds a correctly-split
+`Order` via the existing `calculateRevenueSplit` → `createOrder` pipeline;
+a director reconciles the actual payment by hand. No Stripe charge in this
+build.
+
+**Revised Phase 2 build — frontend only, no backend Java** (backend
+money-shapes are frozen anyway pending the resale-royalty discovery, see
+margin-banding item 2 update above):
+
+1. `cyberstoreProductAdapter.ts` — the 8 `cyberstoreData` products mapped
+   onto the canonical `creatorJourney.CyberstoreProduct` shape (migration
+   via adapter, data not hand-rewritten); `JUDITH_PRODUCTS` alongside.
+2. `CommunityShopPage.tsx` — `cartCount`/`lastAdded` → real `CartItem[]`
+   via `journeyProductToCartItem`.
+3. `CheckoutDrawer.tsx` (+css) — drawer, gated on `useAuth().user?.member`;
+   shows the computed 55/20/25 split; "Place order" → `createOrder`;
+   persists the Order **client-side** (localStorage, keyed) and offers a
+   "download order record (JSON)" action so a director can be handed it.
+4. `CyberstoreListingWizard.tsx` `handleSubmit` — `setTimeout` mock →
+   real `saveListingDraft` + `publishListing` (`sandboxToStoreService`,
+   endpoints already live against `VITE_API_URL`).
+
+**Deferred, documented:** a real `POST /api/store/orders` backend table so
+a director queries orders rather than being handed a JSON file. Not built
+this session — backend money-record shapes are held pending the
+resale-royalty scoping. Also still deferred: real Stripe, guest checkout,
+payout automation, the backend split consolidation, the other two
+Cyberstore impls, `CheckoutImpact.tsx`'s local `calculateRevenueSplit`.
+
+---
+
+### Phase 2 — BUILT 3 Sep 2026 (Option B), Claude Code
+
+**Update the section above:** CJ chose **Option B** — the pilot gets **one
+minimal backend table + endpoint** so a director reconciles against real
+persisted rows, not a client-side JSON file. No payment rail — decision #6
+still governs; no Stripe charge, no `SaleRecord`, backend money-shapes
+otherwise still frozen. Full write-up:
+`docs/accreditation/WW-SESSION-HANDOFF-2026-09-03-CYBERSTORE-PHASE-2.md`.
+
+- **Backend** (`~/projects/wembley-wonders/backend`, branch
+  `feat/cyberstore-phase-2-orders`, commit `3d7f118`): `V69` migration
+  (`store_orders` + `store_order_items`, record-only, `status` RECORDED →
+  RECONCILED/CANCELLED, **no Stripe columns**, distinct from
+  `store_purchases`); `StoreOrder`/`StoreOrderItem` entities, repository,
+  DTOs, `StoreOrderService(+Impl)`, `StoreOrderController`
+  (`/api/store/orders`). Split **re-derived server-side** from STANDARD
+  (55/20/25) / SERVICE (60/15/25) — never trusted from the client; the
+  three shares always sum to the order total. `SecurityConfig`: POST =
+  MEMBER+, GET/`{id}`/`reconcile` = ADMIN. `StoreOrderServiceImplTest` — 6
+  unit tests green.
+- **Frontend** (branch `feat/cyberstore-phase-2-orders`): items 1–4 above,
+  with item 3 revised — `CheckoutDrawer.tsx` "Place order" → `placeOrder`
+  (`src/services/storeOrdersApi.ts` → `POST /api/store/orders`, bearer token
+  from `useAuth`) → confirmation shows the returned `WW-…` number; **no
+  localStorage order, no JSON download**. New: `src/stores/cyberstoreCartStore.ts`
+  (zustand + persist, `ww_cyberstore_cart`).
+- **Deviation from the plan:** the drawer does not call the marketplace
+  `createOrder` / build a `CheckoutState` — Option B removed the reason to,
+  and it drags in the shaky orphaned-marketplace `Order` type. Request is
+  built directly from `CartItem[]`; split *display* still uses the Phase 1
+  `calculateRevenueSplit`.
+- **Verification:** `npx tsc` 167 before/after, 0 in touched files;
+  `npm run build` green. Live end-to-end (member → order → ADMIN `GET` →
+  `reconcile`) needs the backend up against a DB — not run this session.
+- **Not committed:** this tracker file already carried ~290 lines of
+  uncommitted prior-session content when the session started, so the Phase 2
+  code was committed on its own branch and this note was added in place but
+  the tracker was **not** committed — CJ to land the whole file.
+- **Still deferred:** real Stripe, guest checkout, payout automation, the
+  backend split consolidation (`PricingMode`/`SaleRecord`, frozen), the
+  other Cyberstore impls, `CheckoutImpact.tsx`'s local split, mounting
+  `CyberstoreListingWizard` on a live route.
+
+**Phase 3** must not share a session with Phase 1/2. Phase 3 note: verify
+`marketplace/integrations/userJourneyIntegration.ts`'s `MarketplaceReadiness`
+gate file-by-file before assuming a clean slate for certification gating.
+
+---
+
+### Gap analysis — "Cyberstore Consolidation" handoff brief vs. what already exists, 6 Sept 2026 (Claude Code)
+
+CJ supplied a "Cyberstore Consolidation — Claude Code Handoff Brief" (4
+disconnected impls, 3 `CyberstoreProduct` types, "six-plus" hardcoded splits;
+5 numbered steps ending in a walked-through end-to-end verification). The
+brief does not mention `feat/cyberstore-phase-2-orders`, which already
+implements most of steps 1–3. **Decision taken: gap analysis only, no build,
+no code touched** (CJ, 6 Sept). This is the diff between the brief and the
+current tree. Nothing here is actioned — it needs a directors' call on scope
+and on which branch this lands.
+
+**First, factual corrections to the brief's premises:**
+
+- **`CyberstoreListingWizard.tsx` does not exist on `master` / this branch.**
+  Only `CyberstoreListingWizard.css` remains (untracked). The real 842-line
+  component (with a *real* `saveListingDraft`/`publishListing` submission, not
+  `setTimeout`) lives only on `feat/cyberstore-phase-2-orders`.
+- **`studio/CyberstoreStorefront.tsx` + `.css` are untracked on every
+  branch** — uncommitted WIP, never landed anywhere. It is imported by
+  nothing and routed nowhere. Its `CyberstoreProduct` shape (`programmeId` /
+  `priceGBP` / `revenueModelKey: RevenueModelKey`) is arguably the *cleanest*
+  canonical candidate of the four, but it is not on disk in any commit.
+- **There are four independent `CyberstoreProduct` interfaces, not three:**
+  `studio/CyberstoreStorefront.tsx:28`, `types/creatorJourney.ts:366` (deeply
+  nested `creatorJourney.*`), `data/cyberstoreData.ts:29` (the seed catalogue
+  the live page reads), plus `studio/`'s. `types/creatorRegistry.ts` already
+  imports the `creatorJourney` one, so it is not a fifth.
+- **"Six-plus hardcoded 55/25/20 instances" is a large undercount.** ~669
+  string/number matches across `src/` in the frontend alone; ~a dozen sit in
+  actual calc paths (`ProductionBudgetPlanner`, `EarningsInstrument`,
+  `admin/CreatorFactoryDashboard`, `pages/cyberstore/ListingEditorPage`,
+  `services/MetricsService`, `services/MayaMetricsIntegration`,
+  `marketplace/components/ProductListingForm`), the rest are teaching UI,
+  progress bars, and marketing copy that a prior session deliberately left
+  alone. The **backend** has at least five independent hardcoded copies of
+  the split: `AccountantMarketplaceServiceImpl` (inline BigDecimal),
+  `CreatorMetricsServiceImpl` (double constants), `StoreListingServiceImpl`
+  (BigDecimal constants), `entity/Transaction.java` (inline), and Phase 2's
+  new `StoreOrderServiceImpl` (a hand-typed mirror of `revenueModels.ts`).
+- **The brief's named backend files all exist** —
+  `controller/PaymentController.java`,
+  `service/impl/StoreListingServiceImpl.java`,
+  `service/impl/CreatorMetricsServiceImpl.java` — in the **backend repo**
+  (`~/projects/wembley-wonders/backend`), not this one.
+- **Confirmed correct in the brief:** `/shop` and `/cyberstore` both route to
+  `CommunityShopPage` (`src/App.tsx:456–457`); it is the only routed store
+  surface. `creatorJourneyIntegration.ts` holds the only real seed data
+  (`JUDITH_PRODUCTS` etc.) and is a clean additive adapter.
+
+**Step-by-step gap against `feat/cyberstore-phase-2-orders`:**
+
+| Brief step | On the branch | Gap |
+|---|---|---|
+| **1. Canonical type = `creatorJourney` shape; write the decision + "what changes as a result" into this file before coding** | `cyberstoreProductAdapter.ts` maps seed → canonical *at add-to-cart time only*. Decision recorded only in that file's header comment. | **Partial.** Three of the four `CyberstoreProduct` shapes still live. The browse UI (`ProductCard`/`ProvenancePanel`/`Shelf`/`Department` in `CommunityShopPage`) is still entirely typed to `cyberstoreData.CyberstoreProduct`. The adapter is a runtime bridge, not a consolidation. No "what changes as a result" written into the tracker. |
+| **2. Wire `CommunityShopPage` — replace the `data/cyberstoreData` import; real `CartItem`/`Order`** | Real persisted cart (`cyberstoreCartStore.ts`, zustand+persist) and a real `POST /api/store/orders` via `CheckoutDrawer` → `storeOrdersApi.placeOrder`. `cartCount` useState gone. | **Mostly done.** But the `data/cyberstoreData` import is *not* replaced — the whole browse surface still reads `PRODUCTS`/`getFeaturedProducts()`/`getProductsByCategory()` from it. And `JUDITH_PRODUCTS` — the real seed-journey data that is the entire stated reason for choosing that canonical type — is re-exported by the adapter but **never rendered on the page**. |
+| **3a. `CyberstoreListingWizard` — real endpoint or mark non-live** | Rebuilt with real `saveListingDraft`/`publishListing`; programme slug inferred from product type; `provenanceId` empty. | **Minor gap.** It is route-absent (only imported by the unrouted Storefront) but carries no in-component "non-live / not mounted" banner or comment, which the brief asked for as the alternative to a real route. |
+| **3b. `CyberstoreStorefront` — port its `REVENUE_MODELS`-correct fetch into `CommunityShopPage` once a real endpoint exists** | Not touched. No product-fetch endpoint was built — Phase 2 built an *orders* endpoint; `/shop` still reads static `cyberstoreData.ts`. | **Not done.** Storefront remains untracked; there is still no real product-fetch path on the live page. |
+| **4. Kill every hardcoded split in one pass; replace with a `REVENUE_MODELS` import; one place, not six** | Phase 1 consolidated the *frontend Cyberstore checkout path* onto `REVENUE_MODELS`. Phase 2 backend re-derives the split from **hand-typed fractions mirroring `revenueModels.ts`** — no shared FE↔BE source. | **Largely not done, and not safely doable "in one pass."** The ~dozen frontend estimator hardcodes and the 5+ backend copies are untouched. The backend's hand-mirror of the fractions *is* the exact drift risk the brief names. Needs (a) a decision on which non-checkout hardcodes are bugs vs. legitimate teaching illustrations, and (b) a shared split-constant source across the two repos — a real design task, not a grep-and-replace. |
+| **5. Walk the full path in a running instance; recheck the tsc baseline; do not write "resolved" until done** | Not done. Phase 2 handoff: "the headless browser harness would not mount the SPA on any route… a live click-through was not possible." Backend end-to-end (member → order → ADMIN GET → reconcile) listed as "needs a running backend + DB" — not executed. | **Unmet — this is the part the brief cares most about.** Also: the tsc baseline is quoted as **403** in the Phase 1 / margin-banding notes and **167** in the Phase 2 note. Unreconciled; must be re-measured on a clean branch before it is a usable comparison point. |
+
+**Found mid-analysis, not anticipated by the brief (logged, not fixed):**
+
+1. **The backend repo also has a `feat/exhibition-readiness-calendar` branch**
+   (`62a582d1`) — parallel FE+BE work beyond both the brief and the Phase 2
+   handoff. Backend `master` (`39d2c519`) is behind both feature branches.
+2. **The live cart now depends on the "orphaned" `src/marketplace/`
+   subsystem.** `cyberstoreCartStore.ts` imports `CartItem` from
+   `marketplace/types` and `journeyProductToCartItem` from
+   `marketplace/integrations/creatorJourneyIntegration.ts`. The Phase 1 note
+   said "nothing outside `src/marketplace/` imports it" and called it a dead
+   parallel system — part of it is now load-bearing for `/shop`.
+3. **Both working trees are far too dirty for the brief's "one pass" edit.**
+   Frontend: ~150 modified tracked files + ~60 untracked across many unlanded
+   sessions, including uncommitted Phase 1 changes to `revenueModels.ts`,
+   `cyberstoreData.ts`, `creatorJourney.ts`, both `marketplace/integrations/*`
+   and `App.tsx`. Backend: large uncommitted ILP (V49) body — the Phase 2
+   handoff explicitly says "Do not `git add -A` in that repo."
+4. **`CheckoutDrawer` builds `creatorNames` as an identity map**
+   (`[i.creatorId, i.creatorId]`) — the per-maker split display shows the raw
+   creator-id slug, not a display name. Cosmetic, pilot-acceptable, noted.
+
+**Recommendation:** review and land `feat/cyberstore-phase-2-orders`
+(frontend + backend) as the base, then take the genuine remaining gaps —
+browse-surface type consolidation, showing `JUDITH_PRODUCTS`, a real
+product-fetch endpoint, a shared split-constant source, and an actual
+end-to-end walk-through — as scoped follow-ups on top of it. Do not start a
+third parallel implementation on `feat/exhibition-readiness-calendar`.
+
 ## 🔴 Technical build gaps
 
 CultivationPardnerTab.tsx — reserve snapshot honestly stubbed (backend
@@ -729,6 +1060,54 @@ was not checked this pass. Note for the TECHreneurs case-study spec
 (`WW-SPEC-TECHRENEURS-CASE-STUDY-PIPELINE-001`, filed 28 Aug): that spec
 calls TECHreneurs "a Nexus gate," but **there is no TECHreneurs nexus-gate
 ROV** — the set is these three only.
+
+✅ **Full audit done 3 Sep 2026 (Claude Code), against
+`WW-SPEC-NEXUS-GATE-TOOLS-001`.** The spec asked for these to be built —
+they already were (23 Aug), and this session's verification found nothing
+left to build. Per-tool outcome:
+
+| Tool | Built & honest? | Criteria source | No-auto-approve? | Wired? |
+|------|-----------------|-----------------|------------------|--------|
+| `AudioQualityCheckROV` (TNB) | Yes — 4 real criteria (levels/format/clearance/mix), coaching content per criterion, attempt log | **TNB-1 Criterion 1.4 verbatim** — the one locked rubric of the three | Yes — no Approve/Certify action; `readyForAudioBay` only changes help text, triggers nothing | Yes — imported + visible tool card + button on `TrubbleNBassSandbox` landing; `?activity=quality-check`; sandbox routed at `/programmes/trubble-n-bass/sandbox` + `/pathways/...` |
+| `ManuscriptAnalysisROV` (Pageturners) | Yes — 4 real criteria (structure/sourcing/voice/mechanics) | **General editorial practice** — file header flags plainly that no `accreditation/programmes/pageturners/` rubric exists to ground them | Yes — same pattern | Yes — imported + visible "Manuscript Self-Check" card + "Check Your Manuscript" button on `PageturnersSandbox` landing; `?activity=manuscript-check` |
+| `StagingReadinessROV` (Kaywana's Court) | Yes — 4 real criteria (cast-crew/venue-technical/safety-logistics/audience-ready) | **General staging practice, grounded in `KaywanasAtrium.tsx`'s draft→rehearsing→ready progression** — header flags no locked rubric | Yes — same pattern | Yes — imported + visible "Staging & Production Readiness Self-Check" section + button on `KaywanasCourtSandbox` landing (`activeTool` state) |
+
+**Architecture** matches the `AudioBay.tsx` / `SimulationChamber.tsx`
+template, correctly adapted: AudioBay is a *reviewer console* (queue of
+other people's submissions); these three are *member self-checks* — which
+is what the spec's own "important distinction" section asks for. All three
+share `AudioQualityCheckROV.css`.
+
+**Honesty:** all three state in-file and in-UI that no real
+analysis/inspection capability exists anywhere in the codebase — they are
+structured self-assessments, not automated analysers pretending otherwise.
+Same standard as AudioBay's "local mock state, clearly marked."
+
+**The one caveat (answers the 28 Aug open question):** these are
+**advisory self-check tools reachable from the sandbox, not hard technical
+gates.** Nothing blocks a member from proceeding without passing one —
+there is no submission-pipeline backend to enforce a checkpoint against
+(same "no real backend" reality as AudioBay's mock queue). This is
+consistent with the coaching-layer design and the no-auto-approve
+constraint; a hard "cannot submit until passed" block does not exist and
+can't be built without a submission backend. If a hard gate is wanted,
+that's a new task dependent on that backend.
+
+**Constraint doc:** `WW-SPEC-ROV-SUBMISSION-PIPELINE-001` still does not
+exist in the repo (chat-memory only); all three ROV headers note this and
+follow the Section 0 constraint by the same convention `AudioBay.tsx` /
+`SimulationChamber.tsx` use.
+
+**Type-check:** 167 errors, unchanged baseline — no code changed this
+session, the three ROVs already compiled clean.
+
+**TNB duplication check (spec asked):** `src/trubble-n-bass/` does not
+exist; `src/pages/trubble-n-bass/` (the `TrubbleNBassPage`) vs
+`src/pages/programmes/trubble-n-bass/` (the sandbox) is a page/sandbox
+split, both routed, not a duplicate (confirmed 21 Aug, still true).
+`AudioQualityCheckROV` is wired into the sandbox one — correct.
+`BeatMakerROV.tsx` is still duplicated (`production-hub/` + `rovs/studio/`,
+byte-identical) but that is unrelated to the nexus gates.
 
 Original finding, still accurate:
 read: AudioBay.tsx does NOT satisfy the Trubble n Bass gate — it's a
