@@ -8,15 +8,16 @@
  * Company No. 12960817
  */
 
-import type { 
-  Product, 
-  Service, 
-  CartItem, 
-  Order, 
+import type {
+  Product,
+  Service,
+  CartItem,
+  Order,
   OrderItem,
   Address,
-  CheckoutState 
+  CheckoutState
 } from '../types';
+import { REVENUE_MODELS } from '../../blockchain/config/revenueModels';
 
 // ============================================
 // TYPES
@@ -122,11 +123,13 @@ export function calculateRevenueSplit(
   let operationsTotal = 0;
   
   items.forEach(item => {
-    // Different splits for products vs services
-    const isService = item.type === 'service';
-    const creatorShare = isService ? 0.60 : 0.55;
-    const communityShare = isService ? 0.20 : 0.25;
-    const operationsShare = 0.20;
+    // Split model depends on item type: services (a creator's labour/time)
+    // use the creator-weighted SERVICE model; everything else uses STANDARD.
+    // The percentages are the single source of truth in revenueModels.ts.
+    const model = item.type === 'service' ? REVENUE_MODELS.SERVICE : REVENUE_MODELS.STANDARD;
+    const creatorShare = model.maker / 100;
+    const communityShare = model.community / 100;
+    const operationsShare = model.platform / 100;
     
     const creatorAmount = item.totalPrice * creatorShare;
     const communityAmount = item.totalPrice * communityShare;

@@ -21,6 +21,8 @@ import {
   getProductProvenance,
   getCostRecoveryStatus,
   formatRevenueSplit,
+  isServiceCategory,
+  revenueModelFor,
 } from '../../types/creatorJourney';
 
 // Re-export data so CommunityShopPage has a single import point
@@ -44,7 +46,7 @@ export function journeyProductToCartItem(
 ): CartItem {
   return {
     id: `cart-${product.id}-${Date.now()}`,
-    type: product.category === 'workshop' ? 'service' : 'product',
+    type: isServiceCategory(product.category) ? 'service' : 'product',
     itemId: product.id,
     creatorId: product.creatorJourney.creatorId,
     title: product.title,
@@ -222,6 +224,7 @@ const FORMAT_MAP: Record<string, ShopProduct['format']> = {
 
 export function journeyProductToShopProduct(p: CyberstoreProduct): ShopProduct {
   const { creatorEarningPerSale } = getCostRecoveryStatus(p);
+  const split = formatRevenueSplit(p.price, revenueModelFor(p.category));
   return {
     id: p.id,
     title: p.title,
@@ -231,7 +234,7 @@ export function journeyProductToShopProduct(p: CyberstoreProduct): ShopProduct {
     format: FORMAT_MAP[p.category] ?? 'pdf',
     creatorName: p.creatorJourney.creatorName,
     creatorEarnings: creatorEarningPerSale,
-    communityContribution: parseFloat((p.price * 0.25).toFixed(2)),
+    communityContribution: split.community,
     totalSales: 0,
     rating: 5.0,
     reviewCount: 0,
@@ -274,15 +277,14 @@ export function mintJourneyToken(
 }
 
 // ─── Revenue split reconciliation ─────────────────────────────────────────────
-// Note: cyberstoreIntegration.ts uses 55/25/20 for products, 60/20/20 for
-// services. Our creator-journey products are always 55/25/20 (non-service).
-// Workshops are typed as 'service' in CartItem but we keep them at 55/25/20
-// because Judith's labour rate is the whole point. Override here.
+// Split model is read from revenueModels.ts (single source of truth):
+// STANDARD (55/20/25) for goods, SERVICE (60/15/25) for workshops and
+// consultations, where the creator's labour rate is the point. This lines
+// up with cyberstoreIntegration.ts's calculateRevenueSplit, which keys the
+// same two models off CartItem.type.
 
 export function getJourneyProductSplit(product: CyberstoreProduct): {
   creator: number; community: number; platform: number
 } {
-  // All journey products honour the founding 55/25/20 model regardless of
-  // whether they map to 'service' type in CartItem.
-  return formatRevenueSplit(product.price);
+  return formatRevenueSplit(product.price, revenueModelFor(product.category));
 }

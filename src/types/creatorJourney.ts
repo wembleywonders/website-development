@@ -13,6 +13,8 @@
 // episode drop, archive update, product listing. Judith's contribution is
 // permanently recorded from the first appointment.
 
+import { REVENUE_MODELS } from '../blockchain/config/revenueModels';
+
 // ─── Revenue split ────────────────────────────────────────────────────────────
 
 
@@ -214,12 +216,36 @@ export const checkRotationBadgeEligibility = (
 
 
 export interface RevenueSplit {
-  creatorPct: 55;          // always 55 — non-negotiable
-  communityPct: 25;        // always 25
-  platformPct: 20;         // always 20
+  // Percentages mirror revenueModels.ts — STANDARD (55/20/25) for goods,
+  // SERVICE (60/15/25) for workshops. Never hardcode; build with makeRevenueSplit().
+  creatorPct: number;
+  communityPct: number;
+  platformPct: number;
   creatorId: string;       // 'judith-fontanelle'
   advanceBalance?: number; // outstanding CIC advance in £, reduces as income arrives
 }
+
+/** Build a RevenueSplit record from the single source of truth in revenueModels.ts. */
+export const makeRevenueSplit = (
+  creatorId: string,
+  model: 'STANDARD' | 'SERVICE' = 'STANDARD'
+): RevenueSplit => ({
+  creatorPct: REVENUE_MODELS[model].maker,
+  communityPct: REVENUE_MODELS[model].community,
+  platformPct: REVENUE_MODELS[model].platform,
+  creatorId,
+});
+
+/**
+ * Categories billed as a creator's labour/time — priced on the SERVICE
+ * split (60/15/25) rather than STANDARD (55/20/25). Directors' decision
+ * (CJ + Judith), 3 Sep 2026.
+ */
+export const SERVICE_CATEGORIES = ['workshop', 'consultation'] as const;
+export const isServiceCategory = (c: string): boolean =>
+  (SERVICE_CATEGORIES as readonly string[]).includes(c);
+export const revenueModelFor = (category: string): 'STANDARD' | 'SERVICE' =>
+  isServiceCategory(category) ? 'SERVICE' : 'STANDARD';
 
 // ─── Counter-archive token ────────────────────────────────────────────────────
 
@@ -601,7 +627,7 @@ export const JUDITH_PRODUCTS: CyberstoreProduct[] = [
           amount: 85,
         },
       ],
-      revenueSplit: { creatorPct: 55, communityPct: 25, platformPct: 20, creatorId: 'judith-fontanelle' },
+      revenueSplit: makeRevenueSplit('judith-fontanelle'),
       evidenceGrade: 'documented',
       clinicalBasis: 'Informed by trichologist consultation, Healthy Hair Studio Ealing',
       lastReviewed: '2026-03-01',
@@ -636,7 +662,7 @@ export const JUDITH_PRODUCTS: CyberstoreProduct[] = [
           amount: 45,
         },
       ],
-      revenueSplit: { creatorPct: 55, communityPct: 25, platformPct: 20, creatorId: 'judith-fontanelle' },
+      revenueSplit: makeRevenueSplit('judith-fontanelle'),
       evidenceGrade: 'documented',
       clinicalBasis: 'Informed by trichologist consultation, Healthy Hair Studio Ealing',
       lastReviewed: '2026-03-22',
@@ -670,7 +696,7 @@ export const JUDITH_PRODUCTS: CyberstoreProduct[] = [
           amount: 85,
         },
       ],
-      revenueSplit: { creatorPct: 55, communityPct: 25, platformPct: 20, creatorId: 'judith-fontanelle' },
+      revenueSplit: makeRevenueSplit('judith-fontanelle'),
       evidenceGrade: 'documented',
       clinicalBasis: 'Informed by trichologist follow-up, Healthy Hair Studio Ealing',
       lastReviewed: '2026-04-12',
@@ -704,7 +730,7 @@ export const JUDITH_PRODUCTS: CyberstoreProduct[] = [
           amount: 85,
         },
       ],
-      revenueSplit: { creatorPct: 55, communityPct: 25, platformPct: 20, creatorId: 'judith-fontanelle' },
+      revenueSplit: makeRevenueSplit('judith-fontanelle'),
       lastReviewed: '2026-04-01',
       reviewedBy: 'Judith Fontanelle',
     },
@@ -737,7 +763,7 @@ export const JUDITH_PRODUCTS: CyberstoreProduct[] = [
       sourcingEvents: ['evt-jf-001'],
       archiveSectionId: 'hair-science',
       costsRecovered: [],
-      revenueSplit: { creatorPct: 55, communityPct: 25, platformPct: 20, creatorId: 'judith-fontanelle' },
+      revenueSplit: makeRevenueSplit('judith-fontanelle'),
       evidenceGrade: 'documented',
       clinicalBasis: 'Framework derived from trichologist documentation practice',
       lastReviewed: '2026-03-01',
@@ -770,7 +796,7 @@ export const JUDITH_PRODUCTS: CyberstoreProduct[] = [
           amount: 130,
         },
       ],
-      revenueSplit: { creatorPct: 55, communityPct: 25, platformPct: 20, creatorId: 'judith-fontanelle' },
+      revenueSplit: makeRevenueSplit('judith-fontanelle'),
       evidenceGrade: 'documented',
       clinicalBasis: 'Informed by ongoing trichologist consultations, Healthy Hair Studio Ealing',
       lastReviewed: '2026-04-01',
@@ -808,7 +834,7 @@ export const JUDITH_PRODUCTS: CyberstoreProduct[] = [
           amount: 85,
         },
       ],
-      revenueSplit: { creatorPct: 55, communityPct: 25, platformPct: 20, creatorId: 'judith-fontanelle' },
+      revenueSplit: makeRevenueSplit('judith-fontanelle', 'SERVICE'),
       evidenceGrade: 'documented',
       clinicalBasis: 'Content derived from trichologist consultations and child development practice',
     },
@@ -850,22 +876,30 @@ export const getCostRecoveryStatus = (product: CyberstoreProduct): {
 } => {
   const costsToRecover = product.creatorJourney.costsRecovered
     .reduce((sum, c) => sum + c.amount, 0);
-  const creatorEarningPerSale = product.price * 0.55;
+  const model = REVENUE_MODELS[revenueModelFor(product.category)];
+  const creatorEarningPerSale = product.price * (model.maker / 100);
   const salesNeeded = Math.ceil(costsToRecover / creatorEarningPerSale);
   return { costsToRecover, salesNeeded, creatorEarningPerSale };
 };
 
 // ─── Helper: format revenue split display ────────────────────────────────────
+// Splits read from revenueModels.ts: STANDARD for goods, SERVICE for workshops.
 
-export const formatRevenueSplit = (price: number): {
+export const formatRevenueSplit = (
+  price: number,
+  model: 'STANDARD' | 'SERVICE' = 'STANDARD'
+): {
   creator: number;
   community: number;
   platform: number;
-} => ({
-  creator:   parseFloat((price * 0.55).toFixed(2)),
-  community: parseFloat((price * 0.25).toFixed(2)),
-  platform:  parseFloat((price * 0.20).toFixed(2)),
-});
+} => {
+  const split = REVENUE_MODELS[model];
+  return {
+    creator:   parseFloat((price * (split.maker / 100)).toFixed(2)),
+    community: parseFloat((price * (split.community / 100)).toFixed(2)),
+    platform:  parseFloat((price * (split.platform / 100)).toFixed(2)),
+  };
+};
 // ── ROV badge custodians ──────────────────────────────────────────────────────
 
 export type ROVName =

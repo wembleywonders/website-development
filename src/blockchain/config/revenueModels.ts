@@ -19,8 +19,7 @@
  * is never picked up by the sum-to-100 sanity check below. It covers
  * display-space rent only; ATELIER_COMMISSION / ATELIER_AUCTION still
  * apply on top of it for anything actually sold (Option C: layered, not
- * either/or). The weeklyRate is a PLACEHOLDER pending directors'
- * sign-off — do not treat it as a confirmed figure.
+ * either/or).
  *
  * REVISION (2026-09-02, CJ): STANDARD was { maker: 55, platform: 25,
  * community: 20 } — platform and community were reversed relative to
@@ -30,6 +29,18 @@
  * STANDARD split correction"). The two ATELIER_* splits were already
  * correct (platform 20 in both) and are unchanged. Values are integer
  * percentages, not decimals; consumers divide by 100.
+ *
+ * REVISION (2026-09-03, CJ + Judith): Added SERVICE (creator 60 /
+ * platform 15 / community 25) — the split for a creator selling their
+ * labour/time (workshops, consultations, live sessions) rather than a
+ * reproducible digital good. Creator-weighted above STANDARD because the
+ * labour rate is the point. Consolidates the ad-hoc "60/20/20 for
+ * services" that was hardcoded in cyberstoreIntegration.ts. Directors'
+ * decision, recorded before the code change per this file's own rule.
+ *
+ * REVISION (2026-09-03, CJ + Judith): SILK_STILETTOS_WALL_RENT.weeklyRate
+ * set to £7 — a confirmed starting figure, to be reviewed after real
+ * pilot usage (no longer a placeholder).
  */
 
 export interface RevenueSplit {
@@ -62,11 +73,30 @@ export const STANDARD: RevenueSplit = {
   community: 25,
 };
 
+/**
+ * Service / workshop split — applies when a creator sells their labour or
+ * time (workshops, consultations, live sessions) rather than a
+ * reproducible digital good.
+ *
+ * Directors' decision (CJ + Judith), 3 Sep 2026: creator 60 / platform
+ * 15 / community 25. The 5-point uplift for the creator vs STANDARD comes
+ * out of the PLATFORM share, not the community reserve — service
+ * delivery carries less platform overhead than goods do (no provenance
+ * tracking, no inventory, no listing infrastructure), so the community
+ * reserve holds at 25 while the platform take drops to 15.
+ */
+export const SERVICE: RevenueSplit = {
+  maker: 60,
+  platform: 15,
+  community: 25,
+};
+
 /** All models by key, for iteration or lookup by string id */
 export const REVENUE_MODELS = {
   ATELIER_COMMISSION,
   ATELIER_AUCTION,
   STANDARD,
+  SERVICE,
 } as const;
 
 export type RevenueModelKey = keyof typeof REVENUE_MODELS;
@@ -90,13 +120,12 @@ export interface WallRentModel {
 /**
  * Silk Stilettos wall-space rent (Option C — layered model).
  *
- * weeklyRate is a PLACEHOLDER. It has NOT had directors' sign-off and
- * must not be treated as a real figure — confirm with Blake/finance and
- * record the decision here, per this file's own header rule, before
- * this ships to a live sandbox.
+ * weeklyRate: £7 — confirmed by directors (CJ + Judith), 3 Sep 2026, as a
+ * starting figure. To be reviewed after real pilot usage; update here and
+ * record the decision, per this file's own header rule, if it changes.
  */
 export const SILK_STILETTOS_WALL_RENT: WallRentModel = {
-  weeklyRate: 15, // PLACEHOLDER — pending directors' decision
+  weeklyRate: 7, // Directors' decision (CJ + Judith), 3 Sep 2026 — starting figure, review after pilot
   currency: 'GBP',
   billingUnit: 'week',
   vacatesOnNonPayment: true,

@@ -6,7 +6,15 @@
 //   - maker's story
 //   - cultural lineage
 //   - programme provenance
-//   - 55/25/20 split visible per product
+//   - a display snapshot of the applicable split (see creatorShare below)
+//
+// NOTE (2026-09-03): the `creatorShare` field on each product is a STATIC
+// DISPLAY SNAPSHOT, not a computed value. The single source of truth for
+// every revenue split is src/blockchain/config/revenueModels.ts
+// (REVENUE_MODELS.STANDARD for these goods). Any code that actually
+// computes a payout must read from there, never from this field. This
+// field is kept only so the data shape is stable ahead of the Phase 2
+// migration onto the canonical product type; it is not wired to anything.
 // ============================================================
 
 export interface ProvenanceRecord {
@@ -28,7 +36,10 @@ export interface CyberstoreProduct {
   unit:        string;          // 'download', 'pack', 'item', 'bundle'
   tags:        string[];
   provenance:  ProvenanceRecord;
-  creatorShare: number;         // always 55
+  /** Static display snapshot of REVENUE_MODELS.STANDARD.maker — NOT a
+   *  computed value and NOT read by any payout logic. Source of truth:
+   *  src/blockchain/config/revenueModels.ts. */
+  creatorShare: number;
   status:      'available' | 'coming-soon' | 'limited';
   featured?:   boolean;
 }
