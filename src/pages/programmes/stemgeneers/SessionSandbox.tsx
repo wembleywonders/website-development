@@ -20,6 +20,8 @@ import PageTemplate from '../../../components/PageTemplate';
 import PageMeta from '../../../components/PageMeta';
 import { MODULES, SESSION_PLANS, PROGRESSION_LEVELS } from './curriculum/curriculumData';
 import type { ProgressionLevel } from './curriculum/curriculumData';
+import { useGateRequirements, useSTEMgeneersStats } from '../../../stores/journalStore';
+import type { RepairLayer } from '../../../types/creators-journal';
 import './SessionSandbox.css';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -123,7 +125,7 @@ function useMaya() {
   const [orientingAnswer, setOrientingAnswer] = useState<OrientingAnswer>(null);
   const [narrowingAnswer, setNarrowingAnswer] = useState('');
   const [activeStage, setActiveStage] = useState<WorkspaceStage | null>(null);
-  const [gatesPassed] = useState(0); // would come from journalStore
+  const { layersPassed: gatesPassed } = useSTEMgeneersStats();
 
   const addMaya = (text: string, options?: { label: string; value: string }[]) => {
     setMessages(prev => [...prev, {
@@ -583,6 +585,38 @@ function LearnWorkspace() {
 
 // ─── REPAIR workspace ─────────────────────────────────────────────────────────
 
+const GATE_STATUS_LABEL: Record<string, string> = {
+  'locked': 'Not started',
+  'in-progress': 'In progress',
+  'passed': 'Passed',
+  'passed-with-distinction': 'Passed with distinction',
+};
+
+function LayerGateCard({ layerKey, name, icon, desc }: { layerKey: RepairLayer; name: string; icon: string; desc: string }) {
+  const gate = useGateRequirements(layerKey);
+  return (
+    <div className="ss-gate-card">
+      <span className="ss-gate-icon">{icon}</span>
+      <div>
+        <h4>{name}</h4>
+        <p>{desc}</p>
+      </div>
+      <span className="ss-gate-status" title={gate.nextAction}>
+        {GATE_STATUS_LABEL[gate.status] ?? gate.status} · {gate.overallProgress}%
+      </span>
+    </div>
+  );
+}
+
+const REPAIR_LAYERS: Array<{ layerKey: RepairLayer; name: string; icon: string; desc: string }> = [
+  { layerKey: 'precision', name: 'Precision Layer',  icon: '⌚', desc: 'Watches, phones, locks, small mechanisms' },
+  { layerKey: 'appliance', name: 'Appliance Layer',  icon: '🫧', desc: 'Washing machines, sewing machines, vacuums' },
+  { layerKey: 'home',      name: 'Home Layer',       icon: '🏠', desc: 'Plumbing, decorating, basic electrical' },
+  { layerKey: 'furniture', name: 'Furniture Layer',  icon: '🪑', desc: 'Joinery, upholstery, wooden repairs' },
+  { layerKey: 'making',    name: 'Making Layer',     icon: '🖨️', desc: '3D printing, fabrication, custom parts' },
+  { layerKey: 'trades',    name: 'Trades Layer',     icon: '⚡', desc: 'Electrical, plumbing, HVAC understanding' },
+];
+
 function RepairWorkspace() {
   return (
     <div className="ss-workspace">
@@ -620,22 +654,8 @@ function RepairWorkspace() {
         <h3>Layer gates</h3>
         <p className="ss-gates-sub">Each layer requires: three diagnostic sessions at 80%+ accuracy, two real-world repair logs, one physics explanation, and a Neville verification conversation.</p>
         <div className="ss-gates-grid">
-          {[
-            { name: 'Precision Layer',  icon: '⌚', desc: 'Watches, phones, locks, small mechanisms' },
-            { name: 'Appliance Layer',  icon: '🫧', desc: 'Washing machines, sewing machines, vacuums' },
-            { name: 'Home Layer',       icon: '🏠', desc: 'Plumbing, decorating, basic electrical' },
-            { name: 'Furniture Layer',  icon: '🪑', desc: 'Joinery, upholstery, wooden repairs' },
-            { name: 'Making Layer',     icon: '🖨️', desc: '3D printing, fabrication, custom parts' },
-            { name: 'Trades Layer',     icon: '⚡', desc: 'Electrical, plumbing, HVAC understanding' },
-          ].map(layer => (
-            <div key={layer.name} className="ss-gate-card">
-              <span className="ss-gate-icon">{layer.icon}</span>
-              <div>
-                <h4>{layer.name}</h4>
-                <p>{layer.desc}</p>
-              </div>
-              <span className="ss-gate-status">Not started</span>
-            </div>
+          {REPAIR_LAYERS.map(layer => (
+            <LayerGateCard key={layer.layerKey} {...layer} />
           ))}
         </div>
       </div>

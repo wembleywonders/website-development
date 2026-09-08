@@ -332,6 +332,13 @@ export function getProgrammeLabel(programmeSlug: ProgrammeSlug): string {
 }
 
 /**
+ * Formats a number as a GBP price string, e.g. 4.5 -> "£4.50".
+ */
+export function formatGBP(amount: number): string {
+  return `£${amount.toFixed(2)}`;
+}
+
+/**
  * Validates a listing draft before submission.
  * Returns array of error messages — empty means valid.
  */

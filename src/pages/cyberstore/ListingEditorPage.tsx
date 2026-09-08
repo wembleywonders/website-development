@@ -21,7 +21,7 @@ import {
   getPricingHint,
   getProgrammeLabel,
   formatGBP,
-} from './sandboxToStoreService';
+} from '../../services/sandboxToStoreService';
 import './ListingEditorPage.css';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

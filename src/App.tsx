@@ -87,6 +87,7 @@ import IWDEditorialPage from './pages/editorial/IWDEditorialPage'
 import KaywanasCourtSandbox from './pages/programmes/kaywanas-court/KaywanasCourtSandbox'
 import PageturnersSandbox from './pages/programmes/pageturners/PageturnersSandbox'
 import STEMgeneersSandbox from './pages/programmes/stemgeneers/sandbox'
+import STEMgeneersSession from './pages/programmes/stemgeneers/SessionSandbox'
 import TECHreneursSandbox from './pages/programmes/techreneurs/TECHreneursSandbox'
 import GTechCastersSandbox from './pages/programmes/gtechcasters/GTechCastersSandbox'
 import TrubbleNBassSandbox from './pages/programmes/trubble-n-bass/TrubbleNBassSandbox'
@@ -107,6 +108,9 @@ import TeamPage from './pages/team/TeamPage'
 import LoginPage from './pages/auth/LoginPage'
 import SignupPage from './pages/auth/SignupPage'
 import CreatorMetricsDashboard from './pages/admin/CreatorMetricsDashboard'
+import AudioBay from './production-hub/AudioBay'
+import SimulationChamber from './production-hub/SimulationChamber'
+import ListingEditorPage from './pages/cyberstore/ListingEditorPage'
 import MembershipPage from './pages/MembershipPage'
 import ConnectorApplicationGatewayPage from './pages/ConnectorApplicationGatewayPage'
 import ApplicationSuccessPage from './pages/ApplicationSuccessPage'
@@ -123,6 +127,7 @@ import ScheduleAssessmentPage from './pages/ScheduleAssessmentPage'
 import { SparkGeneratorPage } from './workshops/spark-generator'
 import { FacilitationEngine } from './workshops/facilitation'
 import KnowledgeCommonsShell from './components/knowledge-commons/KnowledgeCommonsShell'
+import ActiveInvestigations from './components/investigations/ActiveInvestigations'
 import OralHistoryPage from './pages/OralHistoryPage'
 
 // ── PORTED FROM src/router/index.tsx (unmounted ghost router) — July 2026 ──
@@ -268,6 +273,11 @@ function App() {
                 <Route path="/admin/metrics"         element={<CreatorMetricsDashboard />} />
                 <Route path="/admin/creator-factory" element={<CreatorMetricsDashboard />} />
                 <Route path="/admin/dashboard"       element={<CreatorMetricsDashboard />} />
+                <Route path="/admin/impact-lab/audio"      element={<AudioBay />} />
+                <Route path="/admin/impact-lab/simulation" element={<SimulationChamber />} />
+
+                {/* CYBERSTORE — listing draft editor (creator lands here via AddToStoreButton) */}
+                <Route path="/cyberstore/listings/:listingId/edit" element={<ListingEditorPage />} />
 
                 {/* PANEL — Your Story · Your Programmes · Your Position */}
                 <Route path="/panel/story"      element={<PanelStoryPage />} />
@@ -310,6 +320,12 @@ function App() {
                 {/* KNOWLEDGE COMMONS */}
                 <Route path="/heritage"          element={<KnowledgeCommonsShell />} />
                 <Route path="/oral-history"      element={<OralHistoryPage />} />
+
+                {/* ACTIVE INVESTIGATIONS — the research-vessel principle, member-facing */}
+                <Route path="/investigations"       element={<ActiveInvestigations />} />
+                <Route path="/investigations/:slug" element={<ActiveInvestigations />} />
+                <Route path="/research-vessel"   element={<Navigate to="/investigations" replace />} />
+                <Route path="/open-investigations" element={<Navigate to="/investigations" replace />} />
                 <Route path="/knowledge-commons" element={<Navigate to="/heritage"             replace />} />
                 <Route path="/counter-archive"   element={<Navigate to="/heritage"             replace />} />
                 <Route path="/pioneers"          element={<Navigate to="/heritage"             replace />} />
@@ -346,6 +362,7 @@ function App() {
                 <Route path="/programmes/pageturners/sandbox"            element={<PageturnersSandbox />} />
                 <Route path="/programmes/stemgeneers/sandbox"            element={<STEMgeneersSandbox />} />
                 <Route path="/programmes/stemgeneers/prototype-lab"      element={<STEMgeneersSandbox />} />
+                <Route path="/programmes/stemgeneers/session"            element={<STEMgeneersSession />} />
                 <Route path="/programmes/techreneurs/sandbox"            element={<TECHreneursSandbox />} />
                 <Route path="/programmes/gtechcasters/sandbox"           element={<GTechCastersSandbox />} />
                 <Route path="/programmes/trubble-n-bass/sandbox"         element={<TrubbleNBassSandbox />} />
@@ -360,6 +377,7 @@ function App() {
                 <Route path="/pathways/pageturners/sandbox"             element={<PageturnersSandbox />} />
                 <Route path="/pathways/stemgeneers/sandbox"             element={<STEMgeneersSandbox />} />
                 <Route path="/pathways/stemgeneers/prototype-lab"       element={<STEMgeneersSandbox />} />
+                <Route path="/pathways/stemgeneers/session"             element={<STEMgeneersSession />} />
                 <Route path="/pathways/techreneurs/sandbox"             element={<TECHreneursSandbox />} />
                 <Route path="/pathways/gtech-casters/sandbox"          element={<GTechCastersSandbox />} />
                 <Route path="/pathways/trubble-n-bass/sandbox"         element={<TrubbleNBassSandbox />} />
