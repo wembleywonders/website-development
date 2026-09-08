@@ -10,9 +10,10 @@ import GameDesign from '../../../components/sandboxes/pageturners/GameDesign';
 import PublishingPathways from '../../../components/sandboxes/pageturners/PublishingPathways';
 import DiasporaNarratives from '../../../components/sandboxes/pageturners/DiasporaNarratives';
 import WellbeingWriting from '../../../components/sandboxes/pageturners/WellbeingWriting';
+import ManuscriptAnalysisROV from '../../../rovs/nexus-gates/ManuscriptAnalysisROV';
 import styles from './PageturnersSandbox.module.css';
 
-type ActivityType = 'story-starter' | 'creative-writing' | 'script-writing' | 'game-design' | 'publishing' | 'diaspora-narratives' | 'wellbeing-writing' | null;
+type ActivityType = 'story-starter' | 'creative-writing' | 'script-writing' | 'game-design' | 'publishing' | 'diaspora-narratives' | 'wellbeing-writing' | 'manuscript-check' | null;
 
 const PageturnersSandbox: React.FC = () => {
   const [activeActivity, setActiveActivity] = useState<ActivityType>(null);
@@ -30,7 +31,8 @@ const PageturnersSandbox: React.FC = () => {
       'game-design',
       'publishing',
       'diaspora-narratives',
-      'wellbeing-writing'
+      'wellbeing-writing',
+      'manuscript-check'
     ];
     
     if (activity && validActivities.includes(activity)) {
@@ -69,6 +71,10 @@ const PageturnersSandbox: React.FC = () => {
 
   if (activeActivity === 'diaspora-narratives') {
     return <DiasporaNarratives onComplete={handleCloseActivity} />;
+  }
+
+  if (activeActivity === 'manuscript-check') {
+    return <ManuscriptAnalysisROV onClose={handleCloseActivity} />;
   }
 
   if (activeActivity === 'wellbeing-writing') {
@@ -203,6 +209,15 @@ const PageturnersSandbox: React.FC = () => {
               <p>Submit to Joystick and community press</p>
               <button onClick={() => handleStartActivity('publishing')}>
                 Explore Publishing
+              </button>
+            </div>
+
+            <div className={styles.activityCard}>
+              <span className={styles.activityIcon}>🔍</span>
+              <h3>Manuscript Self-Check</h3>
+              <p>Structure, sourcing, voice, mechanics — before you submit</p>
+              <button onClick={() => handleStartActivity('manuscript-check')}>
+                Check Your Manuscript
               </button>
             </div>
 

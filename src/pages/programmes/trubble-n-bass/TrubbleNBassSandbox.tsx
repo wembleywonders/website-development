@@ -7,9 +7,10 @@ import PageTemplate from '../../../components/PageTemplate';
 import TrubbleNBassBuilder from '../../../components/sandboxes/trubble-n-bass/TrubbleNBassBuilder';
 import SampleExplorer from '../../../components/sandboxes/trubble-n-bass/SampleExplorer';
 import SongwritingWorkshop from '../../../components/sandboxes/trubble-n-bass/SongwritingWorkshop';
+import AudioQualityCheckROV from '../../../rovs/nexus-gates/AudioQualityCheckROV';
 import styles from './TrubbleNBassSandbox.module.css';
 
-type ActivityType = 'beat-maker' | 'songwriting' | 'sample-explorer' | null;
+type ActivityType = 'beat-maker' | 'songwriting' | 'sample-explorer' | 'quality-check' | null;
 
 const TrubbleNBassSandbox: React.FC = () => {
   const [activeActivity, setActiveActivity] = useState<ActivityType>(null);
@@ -20,7 +21,7 @@ const TrubbleNBassSandbox: React.FC = () => {
     const params = new URLSearchParams(location.search);
     const activity = params.get('activity') as ActivityType;
 
-    const validActivities: ActivityType[] = ['beat-maker', 'songwriting', 'sample-explorer'];
+    const validActivities: ActivityType[] = ['beat-maker', 'songwriting', 'sample-explorer', 'quality-check'];
 
     if (activity && validActivities.includes(activity)) {
       setActiveActivity(activity);
@@ -79,6 +80,10 @@ const TrubbleNBassSandbox: React.FC = () => {
 
   if (activeActivity === 'songwriting') {
     return <SongwritingWorkshop onClose={handleCloseActivity} />;
+  }
+
+  if (activeActivity === 'quality-check') {
+    return <AudioQualityCheckROV onClose={handleCloseActivity} />;
   }
 
   // LANDING PAGE - CREATOR'S WORKSHOP
@@ -179,12 +184,37 @@ const TrubbleNBassSandbox: React.FC = () => {
                 <li>🎵 Genre picker with BPM guides</li>
                 <li>📻 Rayd-yo jingles & soundbeds</li>
               </ul>
-              <button 
+              <button
                 type="button"
                 className={styles.toolBtn}
                 onClick={() => handleStartActivity('sample-explorer')}
               >
                 Explore Sounds →
+              </button>
+            </div>
+
+            {/* Audio Quality Self-Check — nexus-gate reference build, 23 Aug 2026 */}
+            <div className={styles.toolCard}>
+              <div className={styles.toolHeader}>
+                <span className={styles.toolIcon}>🎚️</span>
+              </div>
+              <h3>Audio Quality Self-Check</h3>
+              <p className={styles.toolDesc}>
+                Check your track against the same four things AudioBay's human
+                reviewer checks — before you use a real review cycle.
+              </p>
+              <ul className={styles.toolFeatures}>
+                <li>🔊 Levels & clipping</li>
+                <li>🏷️ Format & metadata</li>
+                <li>📋 Sample / sound clearance</li>
+                <li>🎛️ Mix balance</li>
+              </ul>
+              <button
+                type="button"
+                className={styles.toolBtn}
+                onClick={() => handleStartActivity('quality-check')}
+              >
+                Check Your Track →
               </button>
             </div>
           </div>
@@ -241,6 +271,12 @@ const TrubbleNBassSandbox: React.FC = () => {
             <div className={styles.stepArrow}>→</div>
             <div className={styles.step}>
               <span className={styles.stepNum}>4</span>
+              <h4>Check</h4>
+              <p>Run the <strong>Audio Quality Self-Check</strong> before you submit — catch what's missing before AudioBay's human review does.</p>
+            </div>
+            <div className={styles.stepArrow}>→</div>
+            <div className={styles.step}>
+              <span className={styles.stepNum}>5</span>
               <h4>Release</h4>
               <p>Export your track. Share on <strong>Rayd-yo</strong>. Sell on the <strong>Cyberstore</strong>. 55% is yours.</p>
             </div>
@@ -280,6 +316,9 @@ const TrubbleNBassSandbox: React.FC = () => {
             </button>
             <button type="button" onClick={() => handleStartActivity('sample-explorer')}>
               🎧 Find Sounds
+            </button>
+            <button type="button" onClick={() => handleStartActivity('quality-check')}>
+              🎚️ Check Your Track
             </button>
           </div>
         </section>

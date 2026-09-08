@@ -7,6 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ProductionPlannerV2 from '../../../components/sandboxes/kaywanas-court/ProductionPlannerV2';
+import StagingReadinessROV from '../../../rovs/nexus-gates/StagingReadinessROV';
 
 // ─── Colour tokens ────────────────────────────────────────────
 const T = {
@@ -349,15 +350,16 @@ const ConnectTab: React.FC = () => (
 );
 
 const CreateTab: React.FC = () => {
-  const [activeTool, setActiveTool] = useState<'none' | 'heritage' | 'anansi'>('none');
+  const [activeTool, setActiveTool] = useState<'none' | 'heritage' | 'anansi' | 'staging-check'>('none');
 
   if (activeTool === 'heritage') return <HeritagePerformanceBuilder onClose={() => setActiveTool('none')} />;
   if (activeTool === 'anansi')   return <OralTraditionAdapter onClose={() => setActiveTool('none')} />;
+  if (activeTool === 'staging-check') return <StagingReadinessROV onClose={() => setActiveTool('none')} />;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       <p style={{ margin: 0, fontSize: '1rem', color: T.mid, lineHeight: 1.7 }}>
-        Two working tools — ready to use now. Pick the one that matches where you are.
+        Three working tools — ready to use now. Pick the one that matches where you are.
       </p>
 
       <Grid cols="repeat(auto-fit, minmax(280px, 1fr))">
@@ -390,6 +392,22 @@ const CreateTab: React.FC = () => {
           </div>
           <button onClick={() => setActiveTool('anansi')} style={{ alignSelf: 'flex-start', padding: '0.75rem 1.5rem', background: T.gold, border: 'none', borderRadius: 10, color: '#0f172a', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', fontSize: '0.9rem' }}>
             Adapt Anansi Story →
+          </button>
+        </Card>
+
+        <Card accent="#3b82f6" style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
+          <div style={{ fontSize: '2rem' }}>🎭</div>
+          <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 800, color: T.bright }}>Staging & Production Readiness Self-Check</h3>
+          <p style={{ margin: 0, fontSize: '0.875rem', color: T.mid, lineHeight: 1.6 }}>
+            Before you move a production from Rehearsing to Ready — cast &amp; crew, venue &amp; technical, safety &amp; logistics, audience-facing readiness.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.375rem' }}>
+            {['Cast & crew', 'Venue & technical', 'Safety & logistics', 'Audience-ready'].map(f => (
+              <span key={f} style={{ fontSize: '0.72rem', padding: '2px 8px', background: T.cardBgDeep, border: `1px solid ${T.cardBorder}`, borderRadius: 100, color: T.muted }}>{f}</span>
+            ))}
+          </div>
+          <button onClick={() => setActiveTool('staging-check')} style={{ alignSelf: 'flex-start', padding: '0.75rem 1.5rem', background: '#3b82f6', border: 'none', borderRadius: 10, color: '#fff', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', fontSize: '0.9rem' }}>
+            Check Your Production →
           </button>
         </Card>
       </Grid>
