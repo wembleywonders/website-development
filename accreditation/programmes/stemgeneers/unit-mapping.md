@@ -139,4 +139,3 @@ These are **not settled** by this file:
    apprenticeship target (mapping above is written to ST0457 as intent).
 4. **RQF level of the maths content** — L2 is assumed; some of the Explorer
    spine (proof, calculus intro) reaches toward L2/L3 boundary.
-</content>

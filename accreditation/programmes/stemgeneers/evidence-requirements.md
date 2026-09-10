@@ -58,4 +58,3 @@ Member signs an authenticity declaration for each submission confirming:
 - AI-assisted work is declared and the method and interpretation were theirs
 - For criterion 1.2: the member has represented the scholarly dispute
   accurately and has not resolved it beyond what the evidence supports
-</content>

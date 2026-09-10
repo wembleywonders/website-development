@@ -142,4 +142,3 @@ programme unit codes (`GTC-*`, `TNB-*`, `AAK-*`): no collision. `ROOTS-2P` is
 the paired variant, not a fifth unit — a learner takes either `ROOTS-2` or
 `ROOTS-2P` for a given body of work. Kept distinct so cross-programme rotation
 credit references (especially the Scrap Cat dual-sign) stay unambiguous.
-</content>

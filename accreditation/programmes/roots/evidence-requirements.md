@@ -73,4 +73,3 @@ Member signs an authenticity declaration for each unit submission confirming:
   omitted;
 - For the capstone: the standing of the research is stated honestly, and a wall
   is presented as a wall.
-</content>
