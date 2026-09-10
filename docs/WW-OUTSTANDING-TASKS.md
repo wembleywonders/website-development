@@ -16,6 +16,118 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🟡 Session 9 Sep 2026 — Roots split, JERG structure, STEMgeneers content, RPL mapping
+
+DECISIONS MADE (CJ), not yet built:
+- Roots splits into two named programmes: archival-research keeps "Roots" and
+  becomes the platform's trunk (not counted among the 13 branches); a new,
+  not-yet-named personal-care/body-sovereignty programme takes the vacated
+  branch slot. Host/ROV assignment for the new programme undecided.
+- Joystick gaming wing: two desks (Connoisseurs/Passionistas) cover the same
+  story, never split coverage. "Coverage guarantee" constitutional clause
+  proposed, not drafted.
+- JERG-derived command structure: Directors (CJ/Judith) sit above two
+  departments — Operations (Merchant/Spark/Maker ROVs) and Communications
+  (Narrator ROV, plus Maya's visitor-intake routing). Elder gate = existing
+  human-endorsement badge role, reused as the escalation trigger. Guardian
+  sits independent of both departments per the existing safeguarding
+  independence-of-review principle. Keeper and Weaver are floating,
+  task-assigned ROVs, not department-resident. Conceptual only — no code
+  changes made.
+- "Tickets" (real external vocational credentials) scoped to STEMgeneers,
+  Scrap Cat, Kitchen; TECHreneurs/Silk Stilettos undecided; creative/
+  portfolio branches excluded.
+- CJ builds general H&S content personally; specialist H&S stays partial,
+  per-branch, not comprehensive.
+- Bright Sparks and Easy Street confirmed correct with no GCSE/NVQ
+  equivalent (streaming-avoidance and destination-not-discipline reasons).
+
+NEEDS A DECISION (not yet made):
+- 🔴 Safeguarding deputy DSL with real decision authority — principle
+  exists (CJ/Judith review each other), mechanism doesn't. Highest priority
+  flagged this session, still open.
+- Deputy sign-off when both founders unavailable; partner-vetting sign-off
+  owner; retroactive advisor review scope — all previously drafted, never
+  closed.
+- Curator vetting covers craft, not relational conduct — flagged gap,
+  no fix scoped yet.
+- Name for the new personal-care programme.
+
+SOURCED AND CONFIRMED THIS SESSION (ready to write into real content):
+- Mark Dean (IBM, ISA bus, IBM Fellow) — Hardware Lab flagship. Source:
+  ibm.com/history/mark-dean.
+- Marc Hannah (SGI, Geometry Engine) — 3D Design Lab flagship. Source:
+  Wikipedia/Computer History Museum/BlackPast.
+- Katherine Johnson (NASA/NACA, orbital trajectory verification) — Maths-
+  in-community, paired with Ifá on the verification-principle. Source:
+  nasa.gov, Space Center Houston.
+- Ishango bone — number-systems anchor, flagged CONTESTED not settled
+  (function debated: tally/lunar calendar/intentional arithmetic).
+- Pythagoras/Euclid/Archimedes/Al-Khwarizmi/Newton — settled history of
+  mathematics, no sourcing pass needed, sequenced as the Explorer-tier
+  numeracy foundation.
+- C&G 2357 (NVQ L3 Electrotechnical) checked and found MISMATCHED to
+  Hardware Lab's actual scope (mains installation vs IoT/embedded).
+- ST0457 Engineering Technician (L3 apprenticeship standard) confirmed as
+  the better-fitting framework — Technical Support Technician / Product
+  Design and Development Technician pathways match Hardware Lab; may also
+  cover parts of Scrap Cat (needs checking, not yet confirmed).
+
+REAL BUILD STATE (confirmed via direct filesystem check, supersedes any
+earlier "likely missing" flags):
+- Kitchen accreditation: real, complete, on master. Missing only from the
+  feat/exhibition-readiness-calendar working tree.
+- Roots archival accreditation: real, complete, on unmerged branch
+  feat/roots-accreditation (d6dacd53). Not merged.
+- Trubble n Bass accreditation: real content, on disk, committed to NO
+  branch.
+- Pageturners, Rayd-yo accreditation: MISSING everywhere. Genuine build
+  gap, not a git-hygiene issue.
+- BadgeRecommender.ts (src/systems/rovs/badge-integration/): real badge-
+  history-driven scoring logic, covers only 5 programmes, imported
+  nowhere (dead code). Best foundation for the segmentation/routing work —
+  extend, don't replace.
+- ROTATION_BADGE_REQUIREMENTS (src/types/creatorJourney.ts): real 8-way
+  cross-programme grouping, includes Trubble n Bass. Nearest existing
+  thing to the chat-drafted "motivation-profile" segmentation scheme,
+  which does not itself exist in the repo.
+
+QUEUED, NOT YET WRITTEN AS REAL FILES:
+- Applied Mathematics & Physics module restructure (Explorer numeracy
+  foundation, chronological, then Ifá+Johnson as the Builder-tier pair).
+- Bright Sparks universal-literacy content (colour wheel, °C/°F, volume/
+  density, circle of fifths → Giant Steps, E numbers, fire safety/
+  extinguisher classes, ergonomics, business maths basics), each tagged
+  with its destination branch/ILP milestone.
+- Innovator-tier "Unsupervised Responsibility" cross-programme criterion
+  (pricing, scheduling, problem-correction, peer accountability, financial
+  responsibility evidence categories) — designed to close the real-world
+  NVQ L2→L3 freeze point.
+
+Still unresolved from prior sessions, unaffected by tonight:
+- Frontend uncommitted blob + stash (Phase 3, blocked on CJ's call).
+- LIBRETIME secret rotation (Phase 5, unaddressed).
+- Email deliverability — SPF/DKIM/DMARC gap between Cloudflare Email
+  Routing and Mailchimp, not yet checked.
+
+**Claude Code update (9 Sep 2026, after this entry was filed — git hygiene brief 1):**
+- `feat/roots-accreditation` **merged to master** (fast-forward, `c5472a3c` →
+  `d6dacd53`). "Roots archival accreditation… not merged" above is now
+  superseded — it is on master.
+- Trubble n Bass accreditation **committed** to branch
+  `fix/trubble-n-bass-accreditation-commit` (`11dcfccf`, off master), with
+  `unit-mapping.md` / `evidence-requirements.md` reformatted from
+  tab-separated to the g-tech-casters markdown template. Not merged to master.
+- Kitchen accreditation **confirmed reachable from master** (3 files under
+  `accreditation/programmes/auntie-anansis-kitchen/`).
+- Pageturners / Rayd-yo remain MISSING (brief 2). **Blocker:** the narrative
+  syllabi `WW-SPEC-PAGETURNERS-SYLLABUS-001` / `WW-SPEC-RAYD-YO-SYLLABUS-001`
+  do **not exist as files** in any branch, and no module lists were found in
+  session-handoff docs — cannot "compress" a syllabus that isn't there.
+  Needs CJ to paste the 8-module structures (as was done for Roots), or to
+  authorise drafting the syllabi fresh from `tutorials.{pageturners,raydyo}.ts`
+  + curator content.
+
 ## 🔴 Master build order (2026-08-28) — Phase 0.1 pre-build audit contradicts the plan's premises
 
 `WW-MASTER-BUILD-ORDER-2026-08-28-CREATOR-JOURNEY-FOUNDATIONS` locks four
