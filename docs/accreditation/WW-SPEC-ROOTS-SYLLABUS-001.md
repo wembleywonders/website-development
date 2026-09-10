@@ -454,4 +454,3 @@ honest wall — written in Module 6 form if it is a wall.
 - **2026-09-10** — file created (Claude Code) from `WW-TASK-ROOTS-SYLLABUS-SIGNED-OFF`.
   7 modules + capstone. Compressed to `accreditation/programmes/roots/` the same
   day. Connective-layer tracker item added to `docs/WW-OUTSTANDING-TASKS.md`.
-</content>
