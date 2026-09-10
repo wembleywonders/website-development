@@ -16,6 +16,121 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🟡 Frontend consolidation blob — partial resolution 10 Sep 2026 (Claude Code)
+
+**What this is.** The `feat/exhibition-readiness-calendar` working tree had
+carried a large uncommitted "Sept-8 full consolidation" blob for weeks
+(~214 non-node_modules files: 138 modified, 64 new, 6 deleted), tangled with
+`fix/wip-consolidation-sept8` and a stale stash. A minimal, safe subset has
+now been landed; the rest is deferred and lives on a backup branch. **This
+entry is the record of the deferred set — it is not implicit anywhere else.**
+
+### Landed on `master` (10 Sep, commits `aeec8079`..`df4774e3`)
+
+- The five reviewed `fix/wip-consolidation-sept8` commits, rebased onto
+  current master and fast-forwarded (linear history):
+  `aeec8079` REVENUE_MODELS consolidation + SERVICE model ·
+  `44b504f2` three nexus-gate self-check ROVs (`src/rovs/nexus-gates/`) ·
+  `18c937f0` route mounts (AudioBay, SimulationChamber, ListingEditor,
+  ActiveInvestigations, STEMgeneers session) ·
+  `bd55d8fb` curator lesson+workbook merges (Balla Fasséké, Coxsone Dodd) ·
+  `a3ba62df` tracker Inserts A/B/C.
+  Every one of these files was **byte-identical** between the branch and the
+  blob (App.tsx differed only by the exhibition-route line, which is
+  committed exhibition work, not consolidation). tsc baseline unchanged
+  (~325 errors, same as before).
+- `df4774e3` — the 662-line `src/accreditation/badge-system/progression-map.ts`
+  port. **NOT a `fix/wip-consolidation-sept8` file** (that branch carried the
+  2-line stub); blob-only new work, verified standalone before landing:
+  zero imports, 17 exports, pure TS interfaces + pathway-data constants,
+  nothing in `src/` imports it, adds 0 tsc errors. This makes
+  `src/accreditation/badge-system/progression-map.ts` the canonical committed
+  version — **directly relevant to the pending Brief 5 (Innovator-tier
+  criterion) "which file to edit" question, which is now answered: this one.**
+  Still unwired (no consumer imports it — a badge/pathway UI is the missing
+  piece).
+- `fix/wip-consolidation-sept8` **deleted** (fully merged).
+
+### Category (c) genuine conflicts
+
+**None.** The blob-vs-branch analysis found zero files with conflicting
+changes to the same lines — the branch was a strict subset of the blob.
+Nothing here needs hand-resolution by a director.
+
+### Deferred — lives on branch `backup/frontend-blob-2026-09-10` (`1d786cbe`)
+
+A full snapshot of the working tree as of 10 Sep (node_modules excluded).
+Also still present as the older, now-secondary stash
+`wip-sept8-full-consolidation-backup` (predates this session's Phase-1 KC
+edits — the backup branch is the current one). Recover any file with
+`git checkout backup/frontend-blob-2026-09-10 -- <path>`.
+
+**~185 files still deferred**, needing a chunked review pass:
+
+1. **Broad consolidation — real, coherent, unreviewed** (~150 files):
+   - `src/components/sandboxes/…` (29 files — TnB rooms, Roots, Rayd-yo)
+   - `src/components/rov-toolbar/…` (5) + `src/systems/rovs/…` (7) + `src/rov/index.ts`
+   - `src/components/programme-journeys/…` (7)
+   - `src/pages/programmes/…` (9) + `src/pages/activities/…` (3) + assorted single pages
+   - type refactors: `src/types/creators-journal/index.ts` (`RepairVerification`
+     → `EvidenceVerification` rename), the `applicant` membership tier across
+     `src/components/membership/…` / `src/types/skills/…` / `src/types/metrics.ts`,
+     `src/types/volunteers/…` (3), `src/types/{booking,backstage-skills,rovs}.ts`
+   - `src/stores/journalStore.ts`, `src/features/workspace/…` (3),
+     `src/hooks/useSmartRouting.ts` (2-line strict-mode fix), `tsconfig.json`,
+     `src/vite-env.d.ts`, `package.json`/`package-lock.json` (`@types/node` +
+     `finance:extract` script)
+   - `docs/research/…` (15 — WW-NTIKUMA-BROADCAST-*, WW-PRINCIPLE-ILP-KC-*,
+     WW-REF-SCREENWRITING-*, WW-REVENUE-SPLIT-*, WW-SELF-MONITORING-*,
+     WW-SPEC-RAYD-YO-HOST-DOCTRINE-001, ww-cast-roster, the pre-existing
+     `KC-{GUIANA-SHIELD,HIDDEN-COSTS,STEAK-TECHNIQUE}` — **not** Claude Code's,
+     these are Sept-8 work), `docs/accreditation/…` (9 session handoffs + specs),
+     `docs/finance/…` (4), `docs/curator-content/…` (7)
+   - tooling: `scripts/finance/extract-transaction-data.mjs`, `.claude/commands/`,
+     `archive/parked-pricing-2026-09/`, `drift-audit-2026-08-21.md`,
+     `ww-drift-audit.sh`, `recovery-*.txt` — **gitignore candidates, not
+     commit material**
+
+2. **New-work untracked dirs — still need the real-vs-orphan check + wiring**
+   (my prior analysis: each is genuinely new — no name collision with an
+   existing real file — but **fully unwired**, no `src/` consumer imports them):
+   - `src/knowledge-commons/` — `citation/citationStore.ts`,
+     `lesson-modules/lessonModuleStore.ts` (2 files). **Note: earlier session
+     tracker entries treated `lessonModuleStore.ts` as "shipped" — it was
+     never committed; it's blob work.**
+   - `src/safeguarding/` — `WatershedGate.ts`, `SafeguardingFocus.ts` (2)
+   - `src/features/margin-banding/` — 5 files. `index.ts` **is** imported, but
+     only by other blob-only files (`src/prototype-registry/types/pricingCaseStudy.ts`,
+     `src/data/tutorials/tutorials.{stemgeneers,techreneurs}.ts`) — fold in as a
+     cluster or not at all.
+   - `src/community/rovs/…` — `AtelierROV.tsx`, silk-stilettos `RosemaryWeaverROV.tsx`
+     + `useRosemaryWeaverTracking.ts` (3)
+
+3. **Claude Code's Phase-1 (this session) KC work — different provenance,
+   should land as its own commit, NOT folded into Sept-8 consolidation:**
+   - `docs/research/KC-DIASPORA-TRADE-ARCHIVE.md` (719 lines — the 4 DRAFT KC
+     entries from `WW-TASK-KC-DIASPORA-TRADE-ENTRIES`)
+   - the "🔴 KC Diaspora-Trade entries — filed 9 Sept 2026" section added to
+     this file (`WW-OUTSTANDING-TASKS.md`) — reverted out of the working tree
+     by the backup move; recover from the backup branch
+   - the "Africa–Caribbean economic realignment cluster" section added to
+     `docs/research/WW-OPEN-INVESTIGATIONS.md` — same
+
+4. **Superseded by this session's own work — do NOT re-land from the blob:**
+   - `accreditation/programmes/trubble-n-bass/{unit-mapping,assessment-criteria,evidence-requirements}.md`
+     — the blob has the OLD malformed (tab-table) versions; the fixed ones are
+     on `fix/trubble-n-bass-accreditation-commit` (`5ec3ff64`).
+   - Any `accreditation/programmes/{roots,auntie-anansis-kitchen}/…` or
+     `WW-SPEC-{ROOTS,AUNTIE-ANANSIS-KITCHEN}-SYLLABUS-001.md` diffs the backup
+     branch shows — artefacts of the backup's base (`c9470a96`) predating this
+     session's roots/kitchen merges; master's versions are current.
+
+### Main working tree state
+
+`feat/exhibition-readiness-calendar` is now **clean** (the blob is safely on
+the backup branch). node_modules changes (caniuse-lite / vite cache) remain
+uncommitted — build noise, not tracked-worthy.
+
 ## 🟡 Session 9 Sep 2026 — Roots split, JERG structure, STEMgeneers content, RPL mapping
 
 DECISIONS MADE (CJ), not yet built:
