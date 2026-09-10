@@ -252,10 +252,14 @@ a structural question CJ needs to settle:
   the base's badge structure kept, or replaced with Explorer/Builder/Innovator/
   Leader to match g-tech-casters / kitchen / roots?
 
-Recommendation: **do not compress until CJ confirms the target module list**,
-or explicitly accepts a best-effort rework of the conflicting base with these
-calls made and flagged. The module content above is stable regardless of which
-way that goes.
+**Update (2026-09-10, "continue"):** CJ said "continue" after this was flagged.
+Taken as acceptance of a best-effort partial compression: the
+`accreditation/programmes/stemgeneers/` stub is now filled with the
+**`STEM-APM` unit only**, on the g-tech-casters template, with the other units
+left as an explicit "pending rework" pointer and every structural call logged
+as an open question (`unit-mapping.md` "Open structural questions", and
+`docs/WW-OUTSTANDING-TASKS.md`). The wider STEMgeneers structure is **not**
+settled by this.
 
 ## Changelog
 
@@ -263,6 +267,8 @@ way that goes.
   the Applied Mathematics & Physics module only. Ishango contested status
   written into member-facing copy per the brief. Ifá cross-reference and the
   "Computing & Programming Fundamentals" bridge both flagged as pointing at
-  specs/modules not yet filed in the repo. Scaffold compression held pending a
-  CJ decision on the STEMgeneers module structure.
-</content>
+  specs/modules not yet filed in the repo.
+- **2026-09-10 (later)** — partial compression into
+  `accreditation/programmes/stemgeneers/{unit-mapping,assessment-criteria,evidence-requirements}.md`:
+  `STEM-APM` unit populated; rest of the programme flagged pending; structural
+  interpretation calls logged as open questions.
