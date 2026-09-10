@@ -137,4 +137,3 @@ Maps to:
 - Candidate Knowledge Commons deposit (from ROOTS-3 — the capstone deposit *is*
   a Knowledge Commons entry, whether resolved or an honest wall)
 - Scrap Cat Heritage Craft Revival rotation credit (ROOTS-2P route only)
-</content>

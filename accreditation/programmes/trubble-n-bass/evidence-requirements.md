@@ -50,4 +50,3 @@ confirming:
   2.4, where collaboration is the point of the criterion, not an exception to
   declare against)
 - AI-assisted content is declared and the creative decisions were theirs
-</content>
