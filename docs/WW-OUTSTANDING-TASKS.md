@@ -893,6 +893,40 @@ full-project tsc unchanged at 167 errors. **Not wired** — landed ahead of
 wiring like `progression-map.ts`. Everything past build-gap step 0 stays
 blocked.
 
+## 🔴 Roots↔Globe↔Rayd-yo connective layer — scoped, not started
+
+**Trigger condition:** Roots accreditation scaffold verified built (this task,
+`WW-TASK-ROOTS-SYLLABUS-SIGNED-OFF`, 2026-09-10 — **DONE**) AND first KC
+diaspora globe entries published (companion brief,
+`WW-TASK-KC-DIASPORA-TRADE-ENTRIES` — **still open**: that brief reported back
+with DRAFT-status entries only, not published; the no-auto-approve
+constitutional rule means they need a directors' review before publication).
+
+Added now with the KC-side condition still open, per the reporting instruction
+(the item exists in the tracker the moment either half lands).
+
+**Covers:**
+- `cross_links` wiring from Roots deposits to relevant globe entries
+  (`kc_live_entries.cross_links UUID[]`, V71 — PEER / THEMATIC relations);
+- the demand-signal mechanism feeding the globe's sub-national creation
+  criterion from clustered Roots member research activity — V73 gives the
+  *structure* (`kc_live_entries.parent_entry_id`, the `locked` seismic-gap
+  flag) but not the demand-signal rule itself (what volume of clustered
+  activity proposes a new sub-national entry); until that is mechanised, the
+  Roots capstone (ROOTS-3 criterion 3.3) hands the flag to Documenter /
+  Archivist review by hand;
+- a Rayd-yo intake point pulling from both Roots deposits and globe entries as
+  raw material for produced broadcast content.
+
+**Roots-side status:** `docs/accreditation/WW-SPEC-ROOTS-SYLLABUS-001.md` +
+`accreditation/programmes/roots/{unit-mapping,assessment-criteria,evidence-requirements}.md`
+built on branch `feat/roots-accreditation` (2026-09-10). Flag carried in that
+work: the signed-off syllabus is the *archival-research* strand of Roots
+(Walker / Schomburg, `WW-RESEARCH-ELEMENT-BY-PROGRAMME.md` DEMONSTRATED); the
+live Roots codebase is Judith Fontanelle's *body-sovereignty / hair-science*
+strand — how the two share one badge / host / tier ladder is unresolved and
+needs CJ.
+
 ## 🟢 ROV naming collision — FULLY RESOLVED (final state)
 
 Independently flagged 4+ sessions before being properly resolved 15 Aug
