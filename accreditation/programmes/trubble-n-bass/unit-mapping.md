@@ -47,7 +47,8 @@ gatekeeper role, direct Rayd-yo pairing), Module 8 (Original Track/Set
 Production — capstone, portfolio via Joystick). Curator grounding: Bernard
 Edwards (groove/bassline architecture as a foundational-element case study),
 Jam Master Jay (reciprocal skill exchange + structured teaching institution),
-Terror Danjah (broadcast/media platforming).
+Terror Danjah (broadcast/media platforming — UK Garage AND Grime; no
+separate grime curator, per WW-SPEC-CURATOR-DATA-UPDATE-001, 2026-09-11).
 
 ### Apprenticeship Standard Mapping
 
@@ -77,10 +78,22 @@ Completion of Trubble n Bass units contributes to:
 ## Curator Roster Cross-Reference
 
 Full curator vetting, sourcing, and tutoring-focus detail: see
-`/areas/ww-programme-curators-roster.md` and `/areas/ww-curator-tutoring-focus.md`.
-This unit-mapping compresses those 19 genre curators' techniques into the 3
-RQF units above, grouped by which unit their real documented craft actually
-fits — not assigned generically.
+`/areas/ww-programme-curators-roster.md` and `/areas/ww-curator-tutoring-focus.md`
+(neither reachable from this repository — confirmed absent from git history
+on every branch checked, 2026-09-11). This unit-mapping compresses those
+genre curators' techniques into the 3 RQF units above, grouped by which
+unit their real documented craft actually fits — not assigned generically.
+
+**Structured data, added 2026-09-11 (WW-SPEC-CURATOR-DATA-UPDATE-001):**
+`curators.ts` in this same directory is the first structured (typed,
+multi-genre-capable) representation of this roster inside the repo —
+previously every curator here existed only as the prose name-drops above.
+Most entries there are flagged `biographyIncomplete: true`, since this
+repo's own prose is all that currently backs them; reconcile against
+`/areas/ww-programme-curators-roster.md` when it's reachable, rather than
+treating this file as the final word. Programme genre count updated from
+19 to 20 in `assessment-criteria.md` in the same change (Grime added,
+Terror Danjah's entry above).
 
 ## Unit Code Register
 

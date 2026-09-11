@@ -1,7 +1,7 @@
 # Trubble n Bass — Assessment Criteria
 
 ## Programme Overview
-Trubble n Bass develops music composition, production, artist development, and distribution skills across 19 genre traditions (jazz, blues, dub/reggae, classical, gospel, soul, calypso, soca, funk, disco, rock/rock and roll, R&B, hip-hop, lovers rock, jungle/drum & bass, UK garage, highlife, afrobeat, afrobeats), each with a named real historical curator. Assessment is competence-based — creators demonstrate skills through real outputs, not examinations.
+Trubble n Bass develops music composition, production, artist development, and distribution skills across 20 genre traditions (jazz, blues, dub/reggae, classical, gospel, soul, calypso, soca, funk, disco, rock/rock and roll, R&B, hip-hop, lovers rock, jungle/drum & bass, UK garage, grime, highlife, afrobeat, afrobeats), each with a named real historical curator — Grime added 2026-09-11 (WW-SPEC-CURATOR-DATA-UPDATE-001), covered by Terror Danjah's existing UK Garage entry rather than a separate curator. Assessment is competence-based — creators demonstrate skills through real outputs, not examinations.
 
 ## Assessment Areas
 
@@ -82,4 +82,4 @@ Successful completion of all three units = 11 credits at Level 2. Maps to:
 
 ## Curator Cross-Reference
 
-Full curator vetting, sourcing, and tutoring-focus detail: see /areas/ww-programme-curators-roster.md and /areas/ww-curator-tutoring-focus.md.
+Full curator vetting, sourcing, and tutoring-focus detail: see /areas/ww-programme-curators-roster.md and /areas/ww-curator-tutoring-focus.md (neither reachable from this repository — confirmed absent from git history, 2026-09-11). `curators.ts` in this same directory holds this repo's own structured (partial, flagged-incomplete) copy of that roster, added 2026-09-11.
