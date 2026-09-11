@@ -404,11 +404,45 @@ clearly has:
 
 ## 6. Recommended dispositions
 
+**Decision log (updates this table as calls are actually made — dated,
+not silently folded into the rows below):**
+
+- **11 Sep 2026 — `rov-system-complete/` + root-level `systems/`,
+  `components/rov-widgets/`, `docs/rovs/` (121 files): DELETED**
+  (`dff3c935`), confirmed by CJ. A related, unaudited duplicate found
+  while scoping this — root-level `components/creators-journal/` — was
+  independently verified (not assumed) and **also DELETED** (`ed37e6a1`)
+  as its own separate, scoped pass, per CJ's explicit instruction to
+  treat it separately since it fell outside this audit's original search
+  pattern.
+- **11 Sep 2026 — `src/services/rovs/index.ts`'s `ROV_REGISTRY` export:
+  superseded.** The original recommendation below (delete just the
+  export, keep the file) rested on an unchecked assumption that
+  `rovBridgeService`/`rovCapabilitiesService` were live. Checked before
+  acting: they weren't — zero importers anywhere in `src/`, same as
+  `ROV_REGISTRY`. **All three files in that barrel (`index.ts`,
+  `ROVBridge.ts`, `ROVCapabilities.ts`) DELETED** (`19aac771`) as a
+  fully-verified orphan, not a partial edit on an unverified premise.
+- **11 Sep 2026 — `src/services/rovs/ROVRegistry.ts` + its dependent
+  chain: KEEP, decided by CJ.** Not deleted, not re-integrated — stays
+  in the repo exactly as found, dormant. This is a deliberate decision to
+  retain, not a deferral; a future spec that wants to wire it into a live
+  route should treat that as new integration work, not "finishing" this
+  audit. `greetingService.ts`, both unreachable `useROVContext.ts`
+  variants, and `CreatorSpaceTemplate.tsx` all stay too, since they only
+  exist to serve `ROVRegistry.ts`. Known pre-existing issues that come
+  along with keeping it, for whoever picks this up next: a real `tsc`
+  error at `ROVRegistry.ts:618` (`'evidenceGrades' does not exist in
+  type 'ROVProfile'`) and three in `greetingService.ts` (`'gtechcasters'`
+  / `'bright-sparks'` / `'auntie-anansis-kitchen'` not assignable to
+  `CreatorSpace` — likely the same kebab-case-vs-not drift already fixed
+  elsewhere in this codebase's programme-slug handling, not fixed here).
+
 | System / file(s) | Status | Recommended disposition |
 |---|---|---|
-| `rov-system-complete/`, root `systems/`, root `components/rov-widgets/`, `docs/rovs/` (123 files) | Dead — outside build root | **Delete**, pending CJ confirmation nothing external references it |
-| `src/services/rovs/ROVRegistry.ts` + its dependent chain (`greetingService.ts`, both unreachable `useROVContext.ts` variants, `CreatorSpaceTemplate.tsx`) | Orphaned | **Delete or consciously re-integrate** — currently dead weight; 17 fully-written personas is a lot to leave inert |
-| `src/services/rovs/index.ts`'s `ROV_REGISTRY` export | Orphaned, dormant collision with the above | **Delete this export specifically** (keep the file — `rovBridgeService`/`rovCapabilitiesService` exports are unrelated and untouched by this audit) |
+| `rov-system-complete/`, root `systems/`, root `components/rov-widgets/`, `docs/rovs/` (123 files) | Dead — outside build root | ~~Delete, pending CJ confirmation~~ **DONE, see decision log** |
+| `src/services/rovs/ROVRegistry.ts` + its dependent chain (`greetingService.ts`, both unreachable `useROVContext.ts` variants, `CreatorSpaceTemplate.tsx`) | Orphaned | ~~Delete or consciously re-integrate~~ **KEPT, see decision log** |
+| `src/services/rovs/index.ts`'s `ROV_REGISTRY` export | Orphaned, dormant collision with the above | ~~Delete this export specifically (keep the file)~~ **Superseded — whole file + ROVBridge.ts + ROVCapabilities.ts deleted, see decision log** |
 | `src/rovs/` (26-file island, §2e) | Orphaned | **Delete or re-integrate** — same call as `ROVRegistry.ts`, a real design decision, not a cleanup afterthought |
 | `src/systems/rovs/personalities/{factory-fleet,merchant,spark,smith,business,emergency,justice,kaywana,mindful,pathfinder}` | Orphaned | **Delete or re-integrate**; `PathfinderROV.tsx` ("Neville") in particular represents real, substantial work sitting disconnected from the STEMgeneers pages that already use the same underlying store — worth a deliberate decision, not silent removal |
 | `src/systems/rovs/personalities/helper/HelperSupportROV.tsx` | **Active** | Keep, no action |
