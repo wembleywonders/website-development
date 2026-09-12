@@ -239,7 +239,7 @@ export interface RepairPhoto {
   takenAt: Date;
 }
 
-export interface RepairVerification {
+export interface EvidenceVerification {
   status: VerificationStatus;
   // Witness fields
   witnessUserId?: string;
@@ -313,11 +313,65 @@ export interface RepairEvidence {
 
   photos: RepairPhoto[];
 
-  verification: RepairVerification;
+  verification: EvidenceVerification;
 
   claimTokenRef?: string;
   incomeEarned?: number;
   incomeSource?: IncomeSource;
+}
+
+// ============================================================================
+// DEVELOPMENT EVIDENCE
+// The generic "I developed/mentored someone else" credential — same
+// witness/verification mechanism as RepairEvidence (EvidenceVerification is
+// shared, not duplicated), but with fields shaped for a development
+// relationship rather than a repair. Introduced 21 Aug 2026 to close the
+// gap flagged in docs/accreditation/WW-SESSION-HANDOFF-2026-08-21.md: no
+// generic mentorship/development-log mechanism existed anywhere platform-
+// wide, despite accreditation docs (e.g. Trubble n Bass's TNB-2.4, Coxsone
+// Dodd's Artist Development & A&R criterion) assuming one did.
+//
+// developedMemberConfirmation is the one genuinely new field family with
+// no RepairEvidence equivalent — repairs don't have a "person who was
+// worked on" who can confirm the claim themselves. Evidence-requirements.md
+// treats that confirmation as the PRIMARY evidence for this criterion type,
+// distinct from third-party witnessing (which still applies via the shared
+// `verification` field, same as a repair being witnessed by a bystander).
+// ============================================================================
+
+export interface DevelopmentEvidence {
+  id: string;
+  journalEntryId: string;
+  createdAt: Date;
+  createdBy: string;
+
+  programme: string;             // e.g. 'trubble-n-bass', 'stemgeneers', 'bright-sparks'
+
+  developing: {
+    description: string;         // what/who was developed, raw starting point
+  };
+
+  process: {
+    methodDescription: string;
+    sessionsCount: number;
+    totalTimeSpent: number;      // minutes
+  };
+
+  outcome: {
+    outcomeDescription: string;
+  };
+
+  // Primary evidence for criteria like TNB-2.4: the developed member's own
+  // confirmation, not the developing member's say-so alone.
+  developedMemberConfirmation?: {
+    memberId: string;
+    memberName: string;
+    statement: string;
+    confirmedAt: Date;
+  };
+
+  // Secondary/optional: a third-party witness, same mechanism as repairs.
+  verification: EvidenceVerification;
 }
 
 // ============================================================================

@@ -1,0 +1,130 @@
+/* DevelopmentWitnessForm.css
+   Evidence-strengthening UI for DevelopmentEvidence records.
+   Follows BadgeProgress.css conventions: dark slate backgrounds,
+   platform purple #a855f7 accent.
+*/
+
+.dwf-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.dwf-prompt {
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 12px;
+  padding: 1rem;
+  color: #e2e8f0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.dwf-prompt p {
+  margin: 0.5rem 0 0.75rem;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.dwf-promptIcon {
+  font-size: 1.1rem;
+}
+
+.dwf-strengthened {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+  color: #6ee7b7;
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+}
+
+.dwf-strengthenedIcon {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.dwf-openBtn {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 8px;
+  color: #d8b4fe;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.dwf-openBtn:hover {
+  background: rgba(168, 85, 247, 0.25);
+}
+
+.dwf-formInline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.dwf-input,
+.dwf-select,
+.dwf-textarea {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.dwf-input:focus,
+.dwf-select:focus,
+.dwf-textarea:focus {
+  outline: none;
+  border-color: rgba(168, 85, 247, 0.6);
+}
+
+.dwf-textarea {
+  resize: vertical;
+}
+
+.dwf-formActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dwf-primaryBtn {
+  background: #a855f7;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dwf-primaryBtn:hover {
+  background: #9333ea;
+}
+
+.dwf-ghostBtn {
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  color: #94a3b8;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.dwf-ghostBtn:hover {
+  border-color: rgba(148, 163, 184, 0.5);
+  color: #cbd5e1;
+}

@@ -23,6 +23,7 @@ import type {
   MayaVerificationSession,
   RepairLayer,
   TradesPathway,
+  DevelopmentEvidence,
 } from '@/types/creators-journal';
 
 // ===================================
@@ -149,6 +150,35 @@ interface JournalState {
       name: string;
       statement: string;
       relationship: RepairEvidence['verification']['witnessRelationship'];
+    }
+  ) => void;
+
+  // NEW: generic development/mentorship evidence — see DevelopmentEvidence
+  // in src/types/creators-journal for why this exists alongside repairs
+  // rather than repairs being stretched to cover it.
+  developmentEvidence: Record<string, DevelopmentEvidence>;
+
+  submitDevelopmentEvidence: (
+    evidence: Omit<DevelopmentEvidence, 'id' | 'createdAt'>,
+    linkedJournalEntryId?: string
+  ) => { developmentEvidenceId: string };
+  getDevelopmentEvidenceById: (id: string) => DevelopmentEvidence | null;
+  getDevelopmentEvidenceByProgramme: (programme: string) => DevelopmentEvidence[];
+  witnessDevelopment: (
+    developmentEvidenceId: string,
+    witness: {
+      userId: string;
+      name: string;
+      statement: string;
+      relationship: DevelopmentEvidence['verification']['witnessRelationship'];
+    }
+  ) => void;
+  confirmByDevelopedMember: (
+    developmentEvidenceId: string,
+    confirmation: {
+      memberId: string;
+      memberName: string;
+      statement: string;
     }
   ) => void;
 
@@ -298,6 +328,7 @@ export const useJournalStore = create<JournalState>()(
 
       // ── NEW STATE ───────────────────────────────────────────────────────
       repairEvidence: {},
+      developmentEvidence: {},
       diagnosticSessions: {},
       skillGates: initialSkillGates(),
       portfolio: null,
@@ -634,6 +665,101 @@ export const useJournalStore = create<JournalState>()(
 
         const repair = get().repairEvidence[repairEvidenceId];
         if (repair) get().recalculateGate(repair.item.layer);
+      },
+
+      submitDevelopmentEvidence: (evidence, linkedJournalEntryId) => {
+        const developmentEvidenceId = `development-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        const newEvidence: DevelopmentEvidence = {
+          ...evidence,
+          id: developmentEvidenceId,
+          createdAt: new Date(),
+        };
+
+        let journalEntryId = linkedJournalEntryId;
+        if (!journalEntryId) {
+          journalEntryId = get().addEntry({
+            stage: 4,
+            cPhase: 'connect',
+            entryType: 'milestone',
+            title: `Development: ${evidence.developing.description}`,
+            content: `${evidence.process.methodDescription}\n\nOutcome: ${evidence.outcome.outcomeDescription}`,
+            isPrivate: false,
+            verificationStatus: 'self-reported',
+          });
+        } else {
+          get().updateEntry(journalEntryId, {
+            verificationStatus: 'self-reported',
+          });
+        }
+
+        set((state) => ({
+          developmentEvidence: { ...state.developmentEvidence, [developmentEvidenceId]: newEvidence },
+        }));
+
+        return { developmentEvidenceId };
+      },
+
+      getDevelopmentEvidenceById: (id) =>
+        get().developmentEvidence[id] ?? null,
+
+      getDevelopmentEvidenceByProgramme: (programme) =>
+        Object.values(get().developmentEvidence).filter(d => d.programme === programme),
+
+      witnessDevelopment: (developmentEvidenceId, witness) => {
+        set((state) => {
+          const existing = state.developmentEvidence[developmentEvidenceId];
+          if (!existing) return state;
+          return {
+            developmentEvidence: {
+              ...state.developmentEvidence,
+              [developmentEvidenceId]: {
+                ...existing,
+                verification: {
+                  ...existing.verification,
+                  status: 'peer-witnessed' as const,
+                  witnessUserId: witness.userId,
+                  witnessName: witness.name,
+                  witnessStatement: witness.statement,
+                  witnessRelationship: witness.relationship,
+                  witnessedAt: new Date(),
+                }
+              }
+            }
+          };
+        });
+      },
+
+      confirmByDevelopedMember: (developmentEvidenceId, confirmation) => {
+        set((state) => {
+          const existing = state.developmentEvidence[developmentEvidenceId];
+          if (!existing) return state;
+          return {
+            developmentEvidence: {
+              ...state.developmentEvidence,
+              [developmentEvidenceId]: {
+                ...existing,
+                developedMemberConfirmation: {
+                  memberId: confirmation.memberId,
+                  memberName: confirmation.memberName,
+                  statement: confirmation.statement,
+                  confirmedAt: new Date(),
+                },
+                verification: {
+                  ...existing.verification,
+                  // The developed member's own confirmation is the primary
+                  // evidence for this criterion type — treat it as at least
+                  // as strong as a third-party witness statement, without
+                  // overwriting a stronger status (e.g. mentor-approved)
+                  // already set by a separate witnessDevelopment() call.
+                  status: existing.verification.status === 'unverified' ||
+                          existing.verification.status === 'self-reported'
+                    ? ('peer-witnessed' as const)
+                    : existing.verification.status,
+                }
+              }
+            }
+          };
+        });
       },
 
       // ===================================
@@ -1206,6 +1332,7 @@ export const useJournalStore = create<JournalState>()(
       partialize: (state) => ({
         entries: state.entries,
         repairEvidence: state.repairEvidence,
+        developmentEvidence: state.developmentEvidence,
         diagnosticSessions: state.diagnosticSessions,
         skillGates: state.skillGates,
         portfolio: state.portfolio,
@@ -1380,5 +1507,8 @@ export const useDismissPendingVerification = () =>
 
 export const useRepairEvidenceByLayer = (layer: RepairLayer) =>
   useJournalStore((state) => state.getRepairEvidenceByLayer(layer));
+
+export const useDevelopmentEvidenceByProgramme = (programme: string) =>
+  useJournalStore((state) => state.getDevelopmentEvidenceByProgramme(programme));
 
 export default useJournalStore;
