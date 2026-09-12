@@ -1499,6 +1499,70 @@ full-project tsc unchanged at 167 errors. **Not wired** — landed ahead of
 wiring like `progression-map.ts`. Everything past build-gap step 0 stays
 blocked.
 
+## 🔴 KC Diaspora-Trade entries — filed 9 Sept 2026, open items
+
+**Recovered 12 Sep 2026 (Claude Code)** from `backup/frontend-blob-2026-09-10`
+— this section and its companion file
+(`docs/research/KC-DIASPORA-TRADE-ARCHIVE.md`) existed only on that backup
+branch; the working-tree revert during the 10 Sep frontend-consolidation
+cleanup dropped them from the active tree without a trace, exactly the class
+of loss this file's own process notes exist to catch. Content below is
+unchanged from the original 9 Sept filing.
+
+`docs/research/KC-DIASPORA-TRADE-ARCHIVE.md` created from
+WW-TASK-KC-DIASPORA-TRADE-ENTRIES. Four DRAFT-status KC entries (Ghana–Caribbean
+AfCFTA proposal; AU–CARICOM 19-point reparatory justice framework; EU CBI
+ultimatum to five Caribbean states; Guyana maritime/offshore-oil — partial).
+Part A primary-source verification done; the source YouTube compilation was not
+used as evidence. Outstanding:
+
+1. **Schema gap — cannot be closed by Claude Code.** The task specified drafting
+   against "the real V71/V72 schema and API" with a six-value `tectonic_tags`
+   enum, a `cross_links` field, a DRAFT/PUBLISHED status, a "live tier," and a
+   deferred `CONTESTED_DIMENSION` field. **None of that exists in this repo** —
+   full-repo grep returns zero hits, and there are no `.sql` migrations at all.
+   Same external-notes situation as the Creator Margin Banding spec (see the
+   `spec-interpretation-calls` memory) and the KC tectonic taxonomy itself. The
+   entries are drafted as markdown following the `KC-*.md` convention and carry
+   every named field so they port field-for-field once the real schema is
+   available. **Directors' call:** is the KC-entry schema meant to be built in
+   this repo, or do these entries live permanently as research docs?
+
+2. **Interpretation calls made to unblock drafting** (working defaults, not
+   directors' decisions — logged with the same weight per standing discipline):
+   - `tectonic_tags` mapped to the six-value enum **as described in the task**,
+     since the enum's own definition is external. Entry 1 → `GLACIER`/`STABILITY`;
+     Entry 2 → `FLASHPOINT`/`GLACIER`; Entry 3 → `FRACTURE`/`FLASHPOINT`;
+     Entry 4 → `HOTSPOT`/`FLASHPOINT`. A reviewer with the real enum definition
+     should re-check these.
+   - Entry 2's taxonomy candidate: `TRANSFORM` chosen over `CONVERGENT_COLLISION`
+     on the reasoning that the framework has **no enforcement mechanism** — nobody
+     has confirmed which the taxonomy intends for a demand-without-teeth.
+   - The four entries were filed as **one archive file** (like
+     `KC-HIDDEN-COSTS-ARCHIVE.md`) rather than four separate files — reversible,
+     but nobody confirmed the preferred granularity for a DB port.
+
+3. **Entry 2 — the exact "19 points" text was not found** in an official
+   AU/CARICOM primary document within reasonable search effort. The entry states
+   the demands by category and grades that sub-claim SINGLE_SOURCE/UNVERIFIED. If
+   CJ can supply the enumerated framework text, the entry should be upgraded.
+
+4. **Entry 3 letter text not directly read** — the 1 June 2028 deadline and
+   24-month transition come from consistent multi-outlet reporting of the Brunner
+   letter (25 June 2026), not the letter itself. The EU's *rationale* is confirmed
+   against an actual EU primary document (Council doc WK 9011/2025 INIT).
+
+5. **Fuller dedicated Guyana KC entry — scoped as its own follow-up task, NOT
+   done.** CJ has flagged more than once that Guyana (CJ's family's country)
+   lacks a general KC "home" entry despite full sessions on South Africa and the
+   Sahel. Entry 4 covers only the maritime/offshore-oil angle deliberately, to
+   avoid duplicating `KC-GUIANA-SHIELD-DIASPORIC-ECONOMY-001` (which itself is
+   still untracked — see "Held pending CJ decision", item 3). The fuller entry
+   needs: a decision on how it relates to `KC-GUIANA-SHIELD` (parent + sub-
+   investigation, or merge); the Windrush-testimony dependency (Judith/CJ call);
+   and whether CJ's own family knowledge is a primary-source thread to handle
+   under the personal-testimony safeguarding rules.
+
 ## 🔴 Roots↔Globe↔Rayd-yo connective layer — scoped, not started
 
 **Trigger condition:** Roots accreditation scaffold verified built (this task,

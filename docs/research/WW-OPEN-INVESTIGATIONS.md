@@ -46,3 +46,45 @@ founding/defence) actually belongs to. Neither has been done. Do not mark
 this LOCKED or resolved until both are addressed — and if further research
 surfaces a genuinely STEM-specific Afro-Mexican figure instead, that's a
 separate lead, not a reason to force this one to fit.
+
+## Africa–Caribbean economic realignment cluster — opened 9 Sept 2026, active
+
+*Recovered 12 Sep 2026 (Claude Code) from `backup/frontend-blob-2026-09-10`
+— dropped from the active tree during the 10 Sep frontend-consolidation
+cleanup without a trace. Content unchanged from the original 9 Sept entry.
+Note found while recovering this: the "Guiana Shield as one diasporic
+economic system" investigation (opened 28 Aug 2026, also present on that
+backup branch) is likewise absent from this file's current version —
+flagged here as a separate gap, not recovered as part of this task.*
+
+**The subject, verified:** three connected moves in an Africa–Caribbean
+economic realignment, all drafted as DRAFT KC entries in
+`docs/research/KC-DIASPORA-TRADE-ARCHIVE.md` — (1) Ghana's President Mahama
+pledged on 3 Aug 2026 to champion Caribbean inclusion in the AfCFTA once he
+takes the AU chair (~Feb 2027); (2) an AU–CARICOM reparatory-justice
+framework ("19-point") adopted in Accra 17–19 Jun 2026; (3) the EU's 25 Jun
+2026 demand that five Eastern Caribbean states phase out citizenship-by-
+investment by 1 Jun 2028 or face Schengen visa-suspension. Part A
+verification used primary/reliable sources, not the source video (an EU
+primary Council document was obtained for (3)).
+
+**Held open rather than locked because:**
+- (1) is a **stated future intent from an office not yet held** — no
+  proposal tabled, no working group, legal form undefined. Revisit when
+  Mahama holds the chair and again if anything is actually tabled.
+- (2) the **exact enumerated 19-point text was not found** in an official
+  AU/CARICOM channel — the entry states demands by category only. Close
+  this sub-thread if CJ can supply the primary document. The framework also
+  has no enforcement mechanism and names no debtor states; whether it
+  produces anything at the UNGA is open.
+- (3) contains a **live contested dimension** — whether an unstated
+  racial/double-standard motive sits behind the EU's stated security
+  rationale. The entry names the dispute and adjudicates neither side;
+  "disputed, not resolvable from the public record" is the settled
+  position, not a gap to close.
+
+**What would move this forward:** the AfCFTA proposal actually being
+tabled; the enumerated reparations text; whether any of the five CBI states
+closes a programme or a suspension is triggered; and the fuller dedicated
+Guyana KC entry (scoped as a follow-up in `WW-OUTSTANDING-TASKS.md`, not
+done).
