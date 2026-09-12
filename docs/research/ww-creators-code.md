@@ -44,6 +44,12 @@ platform mechanics... against the Worth Principle") and a
 `ww-source-vetting-pipeline` document, referenced but not yet checked
 against this repo.
 
+**Update, 3 Sept 2026:** the source-vetting rubric now has a canonical
+write-up — `docs/research/WW-SPEC-SOURCE-VETTING-RUBRIC-001.md` (the four
+tests, the per-piece verdict categories, and a growing worked-example
+set). `ww-source-vetting-pipeline` is now the chat-memory pointer to that
+document, not a separate unverified concept.
+
 ## Pass It On — the base mechanic (Article II)
 
 **[not yet supplied as a standalone document]** — confirmed real via
@@ -55,12 +61,88 @@ treated as data, not a verdict; a sustained pattern is the actual signal.
 Add the full article when supplied; don't reconstruct it beyond what's
 independently confirmed above.
 
-## Provenance principle — the base principle
+## Provenance Principle — Article I
 
-**[not yet supplied]** — referenced by this addition as existing
-alongside Pass It On; no independent confirmation found elsewhere in this
-repo (unlike Pass It On, which the safeguarding doc corroborates). Add
-when supplied.
+**Base article text: [not yet supplied].** Referenced by the Honestum/
+Utile addition above as existing, and by the addition below as already
+containing a first worked example ("the sickle-cell-tool/'stinking toe'
+example already grounding the principle," plus a Sarah Baartman
+reference). **Checked directly before adding the new example below:
+neither exists in this file.** No independent confirmation of Article I's
+base text found elsewhere in this repo either (unlike Pass It On/Article
+II, which `WW-SPEC-SAFEGUARDING-STRATEGY-001.md` corroborates
+independently). What follows is a second worked example arriving before
+the first one it's meant to sit alongside — kept anyway, since it's real
+and complete on its own terms, with this gap flagged rather than hidden.
+
+### Worked Example — The Register With No Surnames
+
+Article I's principle, as described by this addition (the base article
+text itself is still unsupplied — see above): absence from the colonial
+or official record is evidence of the record's gap, not evidence the
+person wasn't there. Most of the time that has to be argued from
+reasoning. There's a real, filmed instance of it happening exactly as
+described, worth keeping as a worked example precisely because nothing
+about it needs to be constructed or extrapolated — it simply shows the
+gap operating.
+
+**The case.** A broadcaster researching her own family history traced her
+line back to a great-great-grandfather in Antigua, a formerly enslaved
+man's descendant who became, remarkably for the period, an educated
+teacher within a generation of emancipation. Trying to go one generation
+further — to find his own enslaved parents by name — she went to
+Antigua's national archive and opened the actual slave registers kept by
+plantation owners in the early 1800s.
+
+The registers gave first names only. Billy. John. Prudence. An
+approximate age attached to each. No surname recorded for any of them,
+because an enslaved person wasn't considered to need one in the record
+the way their owner's transactions did. Faced with a page of first names
+with no way to connect any single one conclusively to her own line, she
+said it plainly herself: impossible to know which Billy, John, or
+Prudence was actually her ancestor, sitting among "many, many names of
+many, many people who are my ancestors, my family" — unable to narrow the
+search further, not because the people weren't there, but because the
+record was never built to let them be found individually.
+
+**Why this is the cleaner worked example.** A search example built around
+the wrong search term teaches the principle from one angle. This one
+teaches it from the harder angle: a search using the only term the record
+ever gave, which was itself incomplete by design. There's no better
+search query that solves this — the gap isn't a naming mismatch to
+correct, it's a structural absence built into how the record was kept in
+the first place. That's the sharper, more uncomfortable version of the
+principle Article I is actually trying to hold: sometimes "not found"
+doesn't mean "look harder with different words," it means the record
+itself was never going to contain what you're looking for, and the gap
+has to be named as a gap rather than quietly treated as an answer.
+
+**What this should govern in practice.** Anywhere `citationStore` or a
+`PriorArtSearchROV`-type tool hits this exact wall — a name search into a
+slavery-era or colonial-era record returning only a first name, a number,
+or no result at all — the platform's own output should say so honestly:
+the record's limitation, named as such, not a quiet "no results found"
+that reads the same as if the person had never existed. This is the same
+discipline Article I already commits to for Sarah Baartman-type collector
+documentation (not independently confirmed in this repo — see above),
+extended to the much more common case of ordinary family-history research
+hitting the same wall. **Checked before adding this section:** `citationStore.ts`
+is real but infrastructure-only (confirmed earlier this session, no live
+UI). `PriorArtSearchROV` is a real, defined component
+(`src/rovs/prototype/InventionDocROV.tsx`) but has zero consumers anywhere
+in the app — unwired, prototype-only. So this governs tools that don't
+yet do any live searching at all; this is forward-looking policy for when
+they do, not a description of current behaviour.
+
+**Honest note on sourcing and sensitivity (from the source material):**
+this is real, filmed, consented broadcast material — a real person's own
+family history, including her own visible emotional response to the
+search (she described feeling both privileged to read the names at all
+and confronted by what the register represented). Use this strictly as a
+worked example of the mechanism Article I addresses, credited plainly to
+its real source, not repurposed as a dramatic beat or excerpted for its
+emotional content beyond what's needed to establish why the example
+matters.
 
 ---
 
@@ -123,6 +205,15 @@ ever challenged as arbitrary or overly harsh.
 
 ## Changelog
 
+- **23 Aug 2026** — added "The Register With No Surnames" as a worked
+  example under Article I/Provenance Principle. Source material assumed a
+  first worked example (sickle-cell-tool/"stinking toe") already existed
+  in this file — checked, it doesn't; flagged rather than fabricated.
+  Also checked `citationStore.ts` (infrastructure-only, confirmed earlier
+  this session) and `PriorArtSearchROV` (real component, zero consumers,
+  unwired prototype) before writing the "what this should govern in
+  practice" section, so it reads as forward-looking policy rather than a
+  claim either tool does this today.
 - **22 Aug 2026** — file created. Honestum/Utile/Grain Ship added as the
   first entry. Cross-referenced against `WW-SPEC-SAFEGUARDING-STRATEGY-001.md`,
   which independently confirms Pass It On (Article II) and its

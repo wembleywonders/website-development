@@ -1,0 +1,118 @@
+{
+  "runDate": "2026-08-23",
+  "runTimestamp": "2026-08-23T11:02:26.954Z",
+  "findings": [
+    {
+      "id": "atelierCommissionFlag",
+      "label": "ATELIER_COMMISSION backend settlement flag",
+      "status": "OFF",
+      "detail": "Confirmed off — directors’ decision, per the code’s own comment. Settlement not automated; no real ATELIER_COMMISSION transactions can exist while this is off.",
+      "source": "src/blockchain/config/revenueModels.ts (header comment)",
+      "caveat": null
+    },
+    {
+      "id": "split-STANDARD",
+      "label": "STANDARD split (config only, not a transaction total)",
+      "status": "CONFIG-CONFIRMED",
+      "detail": "maker 55% / platform 25% / community 20%",
+      "source": "src/blockchain/config/revenueModels.ts",
+      "caveat": null
+    },
+    {
+      "id": "split-ATELIER_COMMISSION",
+      "label": "ATELIER_COMMISSION split (config only, not a transaction total)",
+      "status": "CONFIG-CONFIRMED",
+      "detail": "maker 75% / platform 20% / community 5%",
+      "source": "src/blockchain/config/revenueModels.ts",
+      "caveat": null
+    },
+    {
+      "id": "split-ATELIER_AUCTION",
+      "label": "ATELIER_AUCTION split (config only, not a transaction total)",
+      "status": "CONFIG-CONFIRMED",
+      "detail": "maker 70% / platform 20% / community 10%",
+      "source": "src/blockchain/config/revenueModels.ts",
+      "caveat": null
+    },
+    {
+      "id": "communityShopPageCart",
+      "label": "CommunityShopPage cart/checkout reality",
+      "status": "CONFIRMED-NOT-REAL",
+      "detail": "Page’s own comment still confirms: \"Add to basket\" is local UI state only, no persistence, no real cart/order/checkout, no backend connection.",
+      "source": "src/pages/CommunityShopPage.tsx (header comment)",
+      "caveat": null
+    },
+    {
+      "id": "communityShopPageRouting",
+      "label": "CommunityShopPage routing",
+      "status": "ROUTED-LIVE",
+      "detail": "Routed at both /shop and /cyberstore in src/App.tsx.",
+      "source": "src/App.tsx",
+      "caveat": null
+    },
+    {
+      "id": "cyberstoreStorefrontData",
+      "label": "CyberstoreStorefront listing data",
+      "status": "CONFIRMED-EMPTY-MOCK",
+      "detail": "fetchProductsMock() still hardcoded to return an empty array — zero real listings, by design, unchanged since 23 Aug 2026.",
+      "source": "src/studio/CyberstoreStorefront.tsx",
+      "caveat": null
+    },
+    {
+      "id": "cyberstoreStorefrontRouting",
+      "label": "CyberstoreStorefront routing",
+      "status": "STILL-NOT-ROUTED",
+      "detail": "No reference to CyberstoreStorefront in src/App.tsx — still unreachable via any live route, unchanged.",
+      "source": "src/App.tsx",
+      "caveat": null
+    },
+    {
+      "id": "cyberstoreListingWizardSubmit",
+      "label": "CyberstoreListingWizard submit behaviour",
+      "status": "CONFIRMED-SIMULATED",
+      "detail": "handleSubmit() still a simulated delay + fake id, no real API call — nothing it \"submits\" is stored anywhere. Unchanged since 23 Aug 2026.",
+      "source": "src/production-hub/CyberstoreListingWizard.tsx",
+      "caveat": null
+    },
+    {
+      "id": "cyberstoreListingWizardRouting",
+      "label": "CyberstoreListingWizard routing",
+      "status": "STILL-NOT-ROUTED",
+      "detail": "No reference in src/App.tsx — still unreachable via any live route, unchanged.",
+      "source": "src/App.tsx",
+      "caveat": null
+    },
+    {
+      "id": "pardnerReserveSnapshot",
+      "label": "Pardner reserve snapshot",
+      "status": "CONFIRMED-STUBBED-HARDCODED",
+      "detail": "Still a hardcoded literal with isEstimate: true. Values: totalReserveGBP=4200, pardnerAllocationGBP=630, committedThisQuarterGBP=175, availableForNewPaymentsGBP=455, estimatedCreatorsEligibleThisQuarter=5. THESE ARE NOT REAL FIGURES — fictional placeholders, not usable in any form.",
+      "source": "src/features/pardner/CultivationPardnerTab.tsx (setReserve literal)",
+      "caveat": null
+    },
+    {
+      "id": "pardnerRecordEndpoint",
+      "label": "Pardner individual record endpoint (/api/pardner/record/{id})",
+      "status": "CODE-CALLS-REAL-ENDPOINT-LIVENESS-UNKNOWN",
+      "detail": "This script can only confirm the frontend code shape (a genuine fetch() call exists), not whether a live backend actually answers it or what it returns. That requires checking outside this repository — cannot be automated from here.",
+      "source": "src/features/pardner/CultivationPardnerTab.tsx",
+      "caveat": "UNKNOWN — not verifiable from static source alone, every run."
+    },
+    {
+      "id": "marketplaceOrderLiveness",
+      "label": "src/marketplace (Order type / MarketplaceMayaROV) reachability",
+      "status": "CONFIRMED-UNREACHABLE",
+      "detail": "Zero files outside src/marketplace/ import from it — still dead code, unchanged since 23 Aug 2026.",
+      "source": "full src/ import scan (this script)",
+      "caveat": null
+    },
+    {
+      "id": "referenceDocs",
+      "label": "ww-accounts.md / ww-revenue-models.md existence",
+      "status": "CONFIRMED-ABSENT",
+      "detail": "Neither file exists anywhere in the repo — unchanged since 23 Aug 2026. The ATELIER_COMMISSION flag check above is authoritative regardless (checked directly in code).",
+      "source": "full repo file scan (this script)",
+      "caveat": null
+    }
+  ]
+}
