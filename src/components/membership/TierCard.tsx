@@ -20,6 +20,7 @@ const TierCard: React.FC<TierCardProps> = ({
 }) => {
   const getTierIcon = (tier: MembershipTier) => {
     const icons = {
+      applicant: '📝',
       connector: '🤝',
       curator: '🎨',
       champion: '🏆'
@@ -29,6 +30,7 @@ const TierCard: React.FC<TierCardProps> = ({
 
   const getTierColor = (tier: MembershipTier) => {
     const colors = {
+      applicant: '#718096',
       connector: '#3498db',
       curator: '#9b59b6',
       champion: '#f39c12'

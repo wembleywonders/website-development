@@ -116,14 +116,32 @@ edits — the backup branch is the current one). Recover any file with
    - `src/components/rov-toolbar/…` (5) + `src/systems/rovs/…` (7) + `src/rov/index.ts`
    - `src/components/programme-journeys/…` (7)
    - `src/pages/programmes/…` (9) + `src/pages/activities/…` (3) + assorted single pages
-   - type refactors: `src/types/creators-journal/index.ts` (`RepairVerification`
-     → `EvidenceVerification` rename), the `applicant` membership tier across
-     `src/components/membership/…` / `src/types/skills/…` / `src/types/metrics.ts`,
-     `src/types/volunteers/…` (3), `src/types/{booking,backstage-skills,rovs}.ts`
-   - `src/stores/journalStore.ts`, `src/features/workspace/…` (3),
-     `src/hooks/useSmartRouting.ts` (2-line strict-mode fix), `tsconfig.json`,
-     `src/vite-env.d.ts`, `package.json`/`package-lock.json` (`@types/node` +
-     `finance:extract` script)
+   - **Type refactors + tooling landed 12 Sep 2026 (Claude Code, branch
+     `feat/blob-category-1-types-tooling`).** `RepairVerification` →
+     `EvidenceVerification` (`src/types/creators-journal/index.ts`) and
+     `src/stores/journalStore.ts` were already handled on the earlier
+     TNB-2.4 branch (`fix/tnb24-development-evidence-integration`) — not
+     redone here, avoiding duplicate/conflicting branch work. Everything
+     else: the `applicant` membership tier across
+     `src/components/membership/…` / `src/types/skills/…` /
+     `src/types/metrics.ts`, `src/types/volunteers/…` (3),
+     `src/types/backstage-skills.ts`, `src/features/workspace/…` (3 —
+     this bucket's "(3)" turned out to mean 3 *differing* files inside an
+     already-live, pre-existing `src/features/workspace/` tree, not 3 new
+     files — the directory itself was never blob-only), `useSmartRouting.ts`,
+     `tsconfig.json`, `vite-env.d.ts`, `package.json`'s `@types/node` +
+     `finance:extract` script (closing the gap flagged in the docs-cluster
+     commit below), and `scripts/finance/extract-transaction-data.mjs` itself.
+     `src/types/rovs.ts` in this bucket's original listing was a wrong
+     path — the real `src/types/rovs/` directory already existed
+     identically on both sides bar one missing Record key, now fixed.
+     Every fix here is a *verified, real, pre-existing tsc error*, not a
+     blind file copy — scoped tsc went from 280 to 254 errors. Full
+     rationale, including two genuinely deferred items
+     (`useROVCapabilities.ts`'s cross-bucket dependency and a real
+     two-way fork in `booking.ts`) and two newly-*surfaced* (not
+     newly-caused) type errors in `quickActionStore.ts`, is in that
+     commit's message.
    - `docs/research/…` (15), `docs/accreditation/…` (9 session handoffs +
      specs), `docs/finance/…` (4), `docs/curator-content/…` (7) — **the
      full 35-file docs sub-bucket landed 12 Sep 2026 (Claude Code, branch
@@ -140,10 +158,10 @@ edits — the backup branch is the current one). Recover any file with
      blob's later 23 Aug rebuild didn't account for; took the blob's
      rebuilt structure and appended master's paragraph as a labelled
      preserved addendum rather than dropping it or guessing a re-merge.
-     **Known gap left open:** `docs/finance/README.md` now documents
-     `npm run finance:extract` / `scripts/finance/extract-transaction-data.mjs`,
-     neither of which exist yet — that script + its `package.json` entry
-     are in the "types + tooling" sub-bucket below, not yet recovered.
+     `docs/finance/README.md` documented `npm run finance:extract` /
+     `scripts/finance/extract-transaction-data.mjs` before either
+     existed — resolved by the type/tooling bucket above landing in the
+     same session.
    - tooling: `scripts/finance/extract-transaction-data.mjs`, `.claude/commands/`,
      `archive/parked-pricing-2026-09/`, `drift-audit-2026-08-21.md`,
      `ww-drift-audit.sh`, `recovery-*.txt` — **gitignore candidates, not

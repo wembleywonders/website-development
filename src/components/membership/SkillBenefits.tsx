@@ -192,6 +192,7 @@ const SkillBenefits: React.FC<SkillBenefitsProps> = ({
   
   const getTierColor = (tier: MembershipTier) => {
     const colors = {
+      applicant: '#718096',
       connector: '#3498db',
       curator: '#9b59b6',
       champion: '#f39c12'
@@ -201,6 +202,7 @@ const SkillBenefits: React.FC<SkillBenefitsProps> = ({
 
   const getTierIcon = (tier: MembershipTier) => {
     const icons = {
+      applicant: '📝',
       connector: '🤝',
       curator: '🎨',
       champion: '🏆'

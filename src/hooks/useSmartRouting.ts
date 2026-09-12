@@ -159,7 +159,7 @@ export const useSmartSearch = () => {
   const [isSearching, setIsSearching] = useState(false);
   
   // Debounce timer ref
-  const debounceTimer = useRef<NodeJS.Timeout>();
+  const debounceTimer = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const searchMappings = {
     // Programs

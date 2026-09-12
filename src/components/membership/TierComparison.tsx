@@ -53,6 +53,7 @@ const TierComparison: React.FC<TierComparisonProps> = ({
 
   const getTierColor = (tier: MembershipTier) => {
     const colors = {
+      applicant: '#718096',
       connector: '#3498db',
       curator: '#9b59b6',
       champion: '#f39c12'

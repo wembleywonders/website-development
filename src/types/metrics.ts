@@ -47,7 +47,7 @@ export type CreatorSource =
 
 export type ProgrammeId = 
   | 'bright-sparks'
-  | 'stemgineers'
+  | 'stemgeneers'
   | 'silk-stilettos'
   | 'trubble-n-bass'
   | 'pageturners'
@@ -311,7 +311,7 @@ export const STAGE_ORDER: CreatorStage[] = [
 
 export const PROGRAMME_NAMES: Record<ProgrammeId, string> = {
   'bright-sparks': 'Bright Sparks',
-  'stemgineers': 'STEMgineers',
+  'stemgeneers': 'STEMgeneers',
   'silk-stilettos': 'Silk Stilettos',
   'trubble-n-bass': 'Trubble n Bass',
   'pageturners': 'Pageturners',

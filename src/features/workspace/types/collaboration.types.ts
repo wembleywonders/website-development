@@ -17,7 +17,7 @@
 // ============================================
 
 export type ProgrammeId = 
-  | 'stemgineers'
+  | 'stemgeneers'
   | 'techreneurs'
   | 'trubble-n-bass'
   | 'pageturners'
