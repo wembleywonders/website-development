@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeComponent } from '../wrapper/SafeReact';
+import { SafeComponent } from '../../wrapper/SafeReact';
 // src/pages/activities/index.tsx
 
 const ActivitiesPage = () => {

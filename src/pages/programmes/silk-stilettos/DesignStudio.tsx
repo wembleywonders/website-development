@@ -17,8 +17,8 @@ import type {
   IPStatus,
   Creator,
   Iteration
-} from '../../prototype-registry/types';
-import { prototypeRegistry } from '../../prototype-registry/services/prototypeRegistry';
+} from '../../../prototype-registry/types';
+import { prototypeRegistry } from '../../../prototype-registry/services/prototypeRegistry';
 import styles from './DesignStudio.module.scss';
 
 // ============================================================================

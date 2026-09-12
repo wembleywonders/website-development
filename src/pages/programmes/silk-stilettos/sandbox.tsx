@@ -224,7 +224,7 @@ const SilkStilettossandbox: React.FC = () => {
   const pathway = pathwayKey ? pathwayMap[pathwayKey] : null;
 
   return (
-    <PageTemplate pageTitle="Silk Stilettos Sandbox" pageType="sandbox">
+    <PageTemplate pageTitle="Silk Stilettos Sandbox" pageStrapline="Creative Pathways Planner" pageType="sandbox">
       <PageMeta pageKey="silk-stilettos-sandbox" />
 
       <div className="sandbox-container silk-stilettos-sandbox">

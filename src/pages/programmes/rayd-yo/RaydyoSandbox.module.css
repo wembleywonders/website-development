@@ -1,0 +1,52 @@
+/* src/pages/programmes/rayd-yo/RaydyoSandbox.module.css */
+
+.sandbox {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  color: var(--hp-red, #dc2626);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 4px 0;
+}
+
+.title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--text-primary, #f8fafc);
+  margin: 0 0 8px 0;
+  font-family: var(--font-serif, Georgia, serif);
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary, #64748b);
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.panel {
+  background: var(--surface-2, rgba(15, 23, 42, 0.4));
+  border: 1px solid var(--border-subtle, rgba(100, 116, 139, 0.15));
+  border-radius: 10px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

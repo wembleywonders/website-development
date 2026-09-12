@@ -1,7 +1,7 @@
 import React from 'react';
-import { SafeComponent } from '../wrapper/SafeReact';
+import { SafeComponent } from '../../wrapper/SafeReact';
 import { Cloud, Wind, Sun, CloudRain, AlertTriangle } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 
 interface WeatherCondition {
   type: 'sunny' | 'cloudy' | 'rainy' | 'windy';

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { CastingTable } from '../../../components/easy-street/CastingTable';
 import './EasyStreetPage.css';
 
 const EasyStreetPage: React.FC = () => {
@@ -196,6 +197,18 @@ const EasyStreetPage: React.FC = () => {
             + The one auntie who can't sing but decorates a cake <em>just so</em>.
             + Your character, when you join the writing room.
           </p>
+        </div>
+      </section>
+
+      {/* ── CASTING TABLE ── */}
+      <section className="es-section es-casting" id="casting">
+        <div className="es-section__inner">
+          <h2 className="es-section__heading">Cast Your Scene</h2>
+          <p className="es-section__intro">
+            Drag characters onto the street and set the scene yourself —
+            before you write a single line.
+          </p>
+          <CastingTable />
         </div>
       </section>
 

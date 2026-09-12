@@ -1,0 +1,88 @@
+/* src/components/programme-journeys/JourneyBridge.css
+ * Matches JourneyBridge.tsx — Maya's cross-programme suggestion card.
+ * Dark slate palette, existing CSS variables only, no hardcoded hex outside fallbacks.
+ */
+
+.journey-bridge {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 24px;
+  margin: 16px 0;
+  background: var(--surface-2, #22262e);
+  border: 1px solid var(--hp-blue, #5c9eec);
+  border-radius: 10px;
+  animation: journey-bridge-in 0.25s ease-out;
+}
+
+@keyframes journey-bridge-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.journey-bridge__dismiss {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-secondary, #a0a5ad);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.journey-bridge__dismiss:hover {
+  color: var(--text-primary, #f0f0f0);
+  background: var(--surface-1, #1a1d23);
+}
+
+.journey-bridge__prompt {
+  margin: 0;
+  padding-right: 20px; /* clears the dismiss button */
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-primary, #f0f0f0);
+}
+
+.journey-bridge__cta {
+  align-self: flex-start;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  background: var(--hp-blue, #5c9eec);
+  color: var(--surface-1, #1a1d23);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.journey-bridge__cta:hover {
+  opacity: 0.88;
+}
+
+.journey-bridge__cta:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 640px) {
+  .journey-bridge {
+    padding: 16px 20px;
+  }
+
+  .journey-bridge__cta {
+    width: 100%;
+    text-align: center;
+  }
+}
