@@ -126,6 +126,7 @@ export const SKILL_LEVEL_THRESHOLDS: Record<SkillLevel, number> = {
 };
 
 export const WEEKLY_GOAL_DEFAULTS: Record<MembershipTier, number> = {
+  applicant: 50,
   connector: 100,
   curator: 150,
   champion: 200
@@ -135,6 +136,10 @@ export const ENDORSEMENT_REQUIREMENTS: Record<MembershipTier, {
   minimumForCertification: number;
   requiredTierLevel: MembershipTier;
 }> = {
+  applicant: {
+    minimumForCertification: 0,
+    requiredTierLevel: 'applicant'
+  },
   connector: {
     minimumForCertification: 3,
     requiredTierLevel: 'connector'

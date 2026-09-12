@@ -8,12 +8,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-/* Module types for the quickActionService have been moved to:
-   src/features/workspace/services/quickActionService.d.ts
-   This avoids declaring the module inside a regular source file which can
-   conflict when the implementation file is not a module (no exports). */
-
-import * as quickActionService from '../services/quickActionService';
+import { quickActionService } from '../services/quickActionService';
 import type {
   QuickAction,
   QuickActionType,

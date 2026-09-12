@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "finance:extract": "node scripts/finance/extract-transaction-data.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^22.20.1",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.21",
     "babel-plugin-transform-remove-console": "^6.9.4",
