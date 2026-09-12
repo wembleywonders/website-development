@@ -16,6 +16,50 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🟢 Skunkworks/Crew Log frontend↔backend alignment — verified 12 Sep 2026 (Claude Code)
+
+WW-SPEC-DEVIATION-TOUCHPOINT-001's frontend build (this repo's branch
+`feat/deviation-touchpoint-crew-log`, `3e4aeba7`..`40447915`) claims to
+mirror a backend branch of the same name (schema V78, not yet merged to
+backend `master`). Checked directly rather than trusting the claim, per
+this file's standing rule.
+
+**Repo-location correction:** the real backend lives at
+`/home/reachup20/projects/wembley-wonders/backend` (a real git repo,
+currently checked out on `feat/deviation-touchpoint-crew-log`) — NOT
+`~/projects/wembley-wonders-api`, which is an empty, non-git stub (no
+`.git`, zero `.java` files under its `src/`) that could mislead a future
+session searching for "the backend."
+
+**Verified matching, field-for-field, endpoint-for-endpoint:**
+- Branch genuinely unmerged to backend `master`; backend commits
+  (`5300d043`..`e76f4569`) match what the frontend's fix commits cite
+  (e.g. `5f058f58`'s `@Size` limits).
+- `SkunkworksProject`/`SkunkworksProjectResponse` fields,
+  `SkunkworksProjectStatus` (ACTIVE/CERTIFIED/DOCUMENTED_FAILURE/REOPENED)
+  and `ReviewQueueStatus` (PENDING/NO_REUSE_CASE/REUSE_CASE_FLAGGED)
+  enums, and the nullable-until-submitted `crewLogEntry` field all match
+  `src/types/skunkworks.ts` exactly.
+- All 6 `SkunkworksController` endpoints (paths, methods, request/response
+  shapes) match `src/services/skunkworks/skunkworksApi.ts` exactly.
+- `SubmitCrewLogEntryRequest`/`ResolveReviewQueueEntryRequest` match the
+  frontend equivalents, including which fields are conditionally required
+  (`newProjectTitle`/`newProjectDiscipline` only for REUSE_CASE_FLAGGED).
+- V78's `VARCHAR(300)`/`VARCHAR(150)` columns match the `maxLength` values
+  added to `CultivateSection.tsx` in commit `40447915`.
+- `WembleyUserRole`'s 8-value union (`AuthContext.tsx`) matches the live
+  `users_role_check` constraint exactly (V72 added REVIEWER; V78 confirms
+  it reused that role rather than adding a new one).
+- Authorization enforced twice, consistently: `SecurityConfig.java` has
+  explicit URL rules (`/api/skunkworks/reviewer/**` → REVIEWER, correctly
+  ordered before the broader `/api/skunkworks/**` → MEMBER+ rule) *and*
+  `@PreAuthorize` is live via `@EnableMethodSecurity(prePostEnabled =
+  true)` on the controller's own annotations.
+
+No gaps or stale frontend assumptions found. The only remaining
+dependency is the backend branch itself merging to `master` — timing
+outside this repo's control. Frontend branch is otherwise ready.
+
 ## 🟡 Frontend consolidation blob — partial resolution 10 Sep 2026 (Claude Code)
 
 **What this is.** The `feat/exhibition-readiness-calendar` working tree had
@@ -1770,7 +1814,81 @@ and couldn't be verified). If/when the fuller roster content is
 available, merge it into that file rather than creating a third,
 separately-authoritative one.
 
-## 🟡 TNB-2.4 mentorship/development evidence mechanism
+## 🟢 TNB-2.4 mentorship/development evidence mechanism — integration built 12 Sep 2026
+
+**Update, 12 Sep 2026 (Claude Code), branch `fix/tnb24-development-evidence-integration`.**
+Following the correction below (the 21 Aug work never actually landed
+anywhere active), the three backup-branch files were recovered forward
+onto a real branch off `master`, and the missing integration was built:
+
+- `src/types/creators-journal/index.ts`: `RepairVerification` renamed to
+  `EvidenceVerification`, `DevelopmentEvidence` type added. Confirmed via
+  full-repo grep that `RepairVerification` had no importers outside its
+  own file, so the rename is safe.
+- `src/stores/journalStore.ts`: `developmentEvidence` state,
+  `submitDevelopmentEvidence`/`getDevelopmentEvidenceById`/
+  `getDevelopmentEvidenceByProgramme`/`witnessDevelopment`/
+  `confirmByDevelopedMember`, `useDevelopmentEvidenceByProgramme` hook,
+  and the `partialize` persistence entry — brought forward from commit
+  `1d786cbe`, deliberately **excluding** that same file's unrelated
+  "coverage tracking" feature (`CoverageCategory`/`getCoverageSummary`),
+  which was bundled into the same blob commit but is a separate,
+  unapproved feature.
+- `src/components/creators-journal/DevelopmentWitnessForm.tsx`/`.css`:
+  recovered as-is (self-contained, no dependency on the excluded coverage
+  feature).
+- **The actual missing piece**: `CultivateSection.tsx` (previously a
+  30-line placeholder on `master`) now has a real Development Log —
+  a creation form calling `submitDevelopmentEvidence`, and a list of
+  logged entries each rendering `DevelopmentWitnessForm` underneath for
+  strengthening. This is the first place in the live app that ever calls
+  `submitDevelopmentEvidence()`.
+
+**RepairEvidence's own wiring gap, fixed in the same pass:** the
+`/programmes/stemgeneers/prototype-lab` and `/pathways/stemgeneers/prototype-lab`
+routes in `App.tsx` were pointing at `STEMgeneersSandbox` — the real
+`PrototypeLab.tsx` (the component the route's own name promised, and the
+only caller of `submitRepairEvidence`/`witnessRepair`) was never rendered
+by anything. Both routes now render `PrototypeLab`; a link to it was also
+added from `CreatorsJournalPage.tsx`'s STEMgeneers portfolio section
+(previously the only exit was to the sandbox, never to the repair/witness
+flow). `PrototypeLab.tsx`'s Prototype-mode tab still calls a stubbed
+`prototypeRegistry` (commented-out real import, pre-existing, out of
+scope here) — it degrades to an empty list rather than crashing; Repair
+mode is fully functional.
+
+**Two more pre-existing, unrelated bugs found and fixed while making
+this reachable at all:**
+1. `sass` was not installed as a dependency anywhere in the repo, so
+   **every** `.module.scss` import (21 files, including the common
+   `LoadingSpinner.tsx`) 500'd at runtime — confirmed via direct request
+   to the dev server before and after. Added `sass` as a devDependency
+   (Vite's own error message suggests exactly this fix).
+2. `src/pages/programmes/techreneurs/index.tsx` re-exported
+   `TECHreneursSandboxAlt` from a `./sandbox` file that doesn't exist
+   (confirmed unused anywhere — dead export, removed), and
+   `src/pages/programmes/scrap-cat/ScrapCatSandbox.tsx` imported
+   `./sandbox.css`, a file deleted in commit `d6af9b31` whose import was
+   never cleaned up (removed). Both traced to commit `da68111e` ("Route
+   audit complete — 89 broken links fixed, all routes clean") — an
+   example of the same claimed-vs-verified gap this file exists to catch,
+   in the very commit that claimed to have fixed broken routes.
+
+**Verification: scoped tsc clean** — 279 errors project-wide (down from
+280 pre-existing; zero of either count are in any file touched this
+session), confirmed against a pre/post diff, not just a raw count.
+**Honest gap: browser-level visual verification could not be completed
+in this sandbox** — the dev server's SPA root never mounted visible
+content for *any* route, including the bare `/`, with zero console
+errors or failed requests reported; this reproduces before my changes
+too and is not something this session introduced or could root-cause
+further within scope. Static verification (clean Vite module transforms
+for every touched/new file, scoped tsc, direct code review against the
+live `RepairEvidence` pattern) stands in its place — flagging this
+honestly rather than claiming a browser check that didn't actually
+complete.
+
+---
 
 Root cause (found 21 Aug): no generic cross-programme mentorship/
 development-log mechanism existed — the 20 Aug claim that this was
@@ -1799,6 +1917,46 @@ exists for a member to log a development record on any programme. Do not
 mark Dodd/Vaughan/Pointer's Builder+ tiers as closed until that integration
 UI is built and re-verified — this is the exact mistake the original false
 "closed" claim made.
+
+🔴 **CORRECTION, 12 Sep 2026 (Claude Code).** The paragraph above
+undersells the actual gap. Checked directly against the currently
+checked-out branch (`feat/deviation-touchpoint-crew-log`, HEAD
+`40447915`) rather than trusting "built, type-checked clean" as still
+true: **none of the 21 Aug work exists on this branch, or on `master`.**
+`src/types/creators-journal/index.ts` here still has `RepairVerification`
+(not renamed to `EvidenceVerification`), has no `DevelopmentEvidence`
+type at all, `src/stores/journalStore.ts` has none of the four
+development-evidence actions/getters, and
+`src/components/creators-journal/DevelopmentWitnessForm.tsx`/`.css`
+don't exist in this working tree. The real content only lives in commit
+`1d786cbe` (`backup/frontend-blob-2026-09-10`, see that entry above) and
+branch `fix/nora-blob-anthea-rename` — i.e. it's part of the same
+deferred consolidation blob, not separately landed. "Infrastructure
+only, no integration" should have read "infrastructure exists only on a
+backup branch, not on any active line" — a materially bigger gap than
+"just needs a page built."
+
+Also found while checking for a wiring template: **the RepairEvidence
+witness flow it was meant to mirror is itself not live.** The only
+callers of `submitRepairEvidence`/`witnessRepair` are
+`src/pages/programmes/stemgeneers/PrototypeLab.tsx` (inline `WitnessForm`)
+and `src/systems/rovs/personalities/pathfinder/STEMSageWithTracking.tsx`
+— neither is imported anywhere (`PrototypeLab.tsx` has zero outside
+references; `STEMSageWithTracking` isn't even re-exported from
+`pathfinder/index.ts`). The routed `/programmes/stemgeneers/prototype-lab`
+page is actually `STEMgeneersSandbox`, which only calls
+`recordDiagnosticSession`, not repair-evidence submission. So the
+"sibling" this was built to match is a well-built but equally orphaned
+template, not a working precedent to copy verification against.
+
+Scoped, not yet approved: (1) recover the three backup-branch files
+forward onto a real branch, (2) build an actual page/route — none
+exists today for either Repair or Development evidence — with
+`src/pages/creators-journal/CreatorsJournalPage.tsx`'s Cultivate tab as
+the most plausible entry point (it's the genuinely live, routed hub;
+none of its section components currently reference either evidence
+type). Per this file's Core Discipline #5, this fix is scoped but not
+built pending explicit go-ahead.
 
 ## 🟡 accreditation/ vs accreditation-full/ vs src/accreditation/
 
