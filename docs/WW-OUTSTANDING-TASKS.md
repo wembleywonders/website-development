@@ -67,11 +67,42 @@ edits — the backup branch is the current one). Recover any file with
 
 **~185 files still deferred**, needing a chunked review pass:
 
-1. **Broad consolidation — real, coherent, unreviewed** (~150 files):
+1. **Broad consolidation — 🟢 ALL FOUR SUB-BUCKETS LANDED, 12 Sep 2026
+   (Claude Code).** Landed across four branches (docs cluster, types +
+   tooling, sandboxes/rov-toolbar/systems-rovs/rov-index, and this final
+   one) rather than one giant commit — each file individually checked
+   for real-vs-stale/orphan status and verified against the actual tsc
+   baseline, not copied wholesale. Full rationale for every file, every
+   deferred item, and every newly-surfaced (not newly-caused) error is
+   in each branch's own commit messages; short version below.
    - `src/components/sandboxes/…` (29 files — TnB rooms, Roots, Rayd-yo)
    - `src/components/rov-toolbar/…` (5) + `src/systems/rovs/…` (7) + `src/rov/index.ts`
    - `src/components/programme-journeys/…` (7)
    - `src/pages/programmes/…` (9) + `src/pages/activities/…` (3) + assorted single pages
+   - **Landed on `feat/blob-category-1-pages-journeys`:**
+     programme-journeys (6 of 7 — journeyConfig.ts was identical),
+     pages/activities (3, fixing real wrong-relative-depth import
+     errors), `src/services/rovs/ROVCapabilities.ts` (new — closes the
+     `useROVCapabilities.ts` gap deferred from the type/tooling commit;
+     both landed together). `pages/programmes/rayd-yo/*` needed the
+     sandboxes/rayd-yo rebuild from the earlier component-cluster
+     branch, reapplied here since this branch forked independently.
+   - **Deliberately NOT recovered** — reaches into a separate,
+     already-tracked feature branch: `scrap-cat/ScrapCatSandbox.tsx`,
+     `techreneurs/TECHreneursSandbox.tsx`, `stemgeneers/sandbox.tsx` all
+     had their entire diff consist of adding an `ExhibitionReadinessGate`
+     feature (`src/rovs/exhibition-readiness/`, not present on any
+     branch touched this session) that belongs to
+     `feat/exhibition-readiness-calendar` and its own backend branch —
+     landing it here would be reaching into that branch's own merge,
+     not a blob-salvage fix. One separable real fix
+     (`silk-stilettos/sandbox.tsx`'s missing `pageStrapline` prop) was
+     extracted surgically rather than left broken or dragging in the
+     whole entangled file.
+   - Also found and left alone, confirmed pre-existing in both master
+     and blob equally: `silk-stilettos/sandbox.tsx`'s `@components/PageMeta`
+     import (component doesn't exist), `src/data/tutorials/index.ts`'s
+     `Record<Programme,…>` missing 4 programme keys.
    - type refactors: `src/types/creators-journal/index.ts` (`RepairVerification`
      → `EvidenceVerification` rename), the `applicant` membership tier across
      `src/components/membership/…` / `src/types/skills/…` / `src/types/metrics.ts`,
