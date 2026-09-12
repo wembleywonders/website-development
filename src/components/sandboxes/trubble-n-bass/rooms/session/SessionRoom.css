@@ -1,0 +1,143 @@
+/* SessionRoom.css */
+.session-room {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  border-radius: 12px;
+}
+
+.session-room__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.session-room__header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.session-room__subtitle {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.session-room__ensemble-tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+}
+
+.session-room__ensemble-tab {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.session-room__ensemble-tab:hover {
+  color: var(--text-primary);
+}
+
+.session-room__ensemble-tab--active {
+  background: var(--text-primary);
+  color: var(--surface-1);
+  border-color: var(--text-primary);
+}
+
+.session-room__stage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  min-height: 120px;
+}
+
+.session-room__input-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.session-room__input-target {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.session-room__input-kind-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.session-room__input-kind-btn {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.session-room__input-kind-btn--active {
+  background: var(--text-primary);
+  color: var(--surface-1);
+  border-color: var(--text-primary);
+}
+
+.session-room__input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.session-room__input-row input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-1);
+  color: var(--text-primary);
+}
+
+.session-room__input-row button {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--text-primary);
+  color: var(--surface-1);
+  cursor: pointer;
+}
+
+.session-room__input-row button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.session-room__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.session-room__continue {
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--text-primary);
+  color: var(--surface-1);
+  font-weight: 600;
+  cursor: pointer;
+}

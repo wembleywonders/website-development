@@ -1,0 +1,239 @@
+/* src/components/sandboxes/rayd-yo/BroadcastStudio.css */
+
+.broadcast-studio {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+  color: var(--text-primary, #f0f0f0);
+}
+
+.broadcast-studio--preflight {
+  max-width: 500px;
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.broadcast-studio__explain {
+  font-size: 0.9rem;
+  color: var(--text-secondary, #a0a5ad);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.broadcast-studio__show-name-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #a0a5ad);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+
+.broadcast-studio__show-name-label input {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  background: var(--surface-2, #22262e);
+  border: 1px solid var(--border-subtle, rgba(100, 116, 139, 0.3));
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  color: var(--text-primary, #f0f0f0);
+}
+
+.broadcast-studio__permission-btn,
+.broadcast-studio__enter-btn {
+  background: var(--hp-blue, #5c9eec);
+  color: var(--surface-1, #1a1d23);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.broadcast-studio__error {
+  color: var(--hp-red, #e57373);
+  font-size: 0.85rem;
+  margin-top: 16px;
+}
+
+.broadcast-studio__header {
+  margin-bottom: 20px;
+}
+
+.broadcast-studio__strips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.broadcast-studio__strip {
+  background: var(--surface-2, #22262e);
+  border: 1px solid var(--border-subtle, rgba(100, 116, 139, 0.2));
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.broadcast-studio__strip h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #a0a5ad);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.broadcast-studio__meter {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
+  height: 100px;
+}
+
+.broadcast-studio__meter-seg {
+  width: 40px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--surface-1, #1a1d23);
+}
+
+.broadcast-studio__meter-seg--lit-mic {
+  background: var(--hp-green, #4caf7d);
+}
+
+.broadcast-studio__meter-seg--lit-music {
+  background: #a78bfa; /* purple, matches the confirmed session/vocal palette */
+}
+
+.broadcast-studio__meter-seg--lit-master {
+  background: var(--hp-red, #e57373);
+}
+
+/* Vertical range sliders — orient="vertical" alone only works in Firefox.
+   This gives Chrome/Safari/Edge a vertical slider via rotation. */
+.broadcast-studio__strip input[type='range'] {
+  width: 120px;
+  height: 24px;
+  transform: rotate(-90deg);
+  margin: 48px 0;
+}
+
+.broadcast-studio__strip input[type='range'][orient='vertical'] {
+  writing-mode: bt-lr;
+  -webkit-appearance: slider-vertical;
+}
+
+.broadcast-studio__strip button {
+  background: var(--surface-1, #1a1d23);
+  border: 1px solid var(--border-subtle, rgba(100, 116, 139, 0.3));
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: var(--text-primary, #f0f0f0);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.broadcast-studio__load-track {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--hp-blue, #5c9eec);
+  cursor: pointer;
+}
+
+.broadcast-studio__load-track input {
+  display: none;
+}
+
+.broadcast-studio__track-name {
+  font-size: 0.7rem;
+  color: var(--text-secondary, #a0a5ad);
+  word-break: break-all;
+  text-align: center;
+}
+
+.broadcast-studio__master-status {
+  font-size: 0.8rem;
+  color: var(--hp-red, #e57373);
+  font-weight: 600;
+}
+
+.broadcast-studio__fx {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.broadcast-studio__fx button {
+  background: var(--surface-2, #22262e);
+  border: 1px solid var(--border-subtle, rgba(100, 116, 139, 0.3));
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: var(--text-primary, #f0f0f0);
+  cursor: pointer;
+}
+
+.broadcast-studio__record {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.broadcast-studio__record-btn {
+  background: var(--hp-red, #e57373);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.broadcast-studio__stop-btn {
+  background: var(--surface-2, #22262e);
+  border: 1px solid var(--hp-red, #e57373);
+  color: var(--hp-red, #e57373);
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.broadcast-studio__playback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.broadcast-studio__download-btn {
+  background: var(--hp-green, #4caf7d);
+  color: var(--surface-1, #1a1d23);
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.broadcast-studio__contact {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #a0a5ad);
+}
+
+.broadcast-studio__contact a {
+  color: var(--hp-red, #e57373);
+}
+
+@media (max-width: 700px) {
+  .broadcast-studio__strips {
+    grid-template-columns: 1fr;
+  }
+}

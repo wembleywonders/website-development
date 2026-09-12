@@ -86,7 +86,7 @@ export const FACTORY_ROV_FLEET = {
 
   // Discipline-specific Polish Bay ROVs
   disciplineROVs: {
-    stemgineers: { name: 'Circuit', status: 'PLANNED', specialty: 'Technical documentation' },
+    stemgeneers: { name: 'Circuit', status: 'PLANNED', specialty: 'Technical documentation' },
     silkStilettos: { name: 'Canvas', status: 'PLANNED', specialty: 'Design polish' },
     trubbleNBass: { name: 'Tempo', status: 'PLANNED', specialty: 'Audio mastering' },
     pageturners: { name: 'Quill', status: 'PLANNED', specialty: 'Writing polish' },

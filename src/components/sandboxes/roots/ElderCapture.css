@@ -1,0 +1,187 @@
+/* src/components/sandboxes/roots/ElderCapture.css
+ * Matches ElderCapture.tsx — dark slate palette, consistent with the other
+ * Roots and Trubble n Bass room stylesheets built tonight.
+ */
+
+.elder-capture {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px;
+  color: var(--text-primary, #f0f0f0);
+}
+
+.elder-capture__header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.elder-capture__header h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.elder-capture__subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #a0a5ad);
+  line-height: 1.5;
+}
+
+.elder-capture__provenance-lead {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #a0a5ad);
+  margin-bottom: 16px;
+}
+
+.elder-capture__permission-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: var(--hp-blue, #5c9eec);
+  color: var(--surface-1, #1a1d23);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.elder-capture__permission-btn:hover {
+  opacity: 0.88;
+}
+
+.elder-capture__error {
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--hp-red-muted, #3a1f1f);
+  border: 1px solid var(--hp-red, #e57373);
+  border-radius: 8px;
+  color: var(--hp-red, #e57373);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.elder-capture__mode-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.elder-capture__mode-btn {
+  padding: 18px;
+  border: 1px solid var(--border-subtle, #2c313a);
+  border-radius: 10px;
+  background: var(--surface-2, #22262e);
+  color: var(--text-primary, #f0f0f0);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.elder-capture__mode-btn:hover {
+  border-color: var(--hp-blue, #5c9eec);
+  background: var(--surface-3, #2a2f38);
+}
+
+.elder-capture__active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.elder-capture__recording-indicator {
+  color: var(--hp-red, #e57373);
+  font-weight: 600;
+  font-size: 0.9rem;
+  animation: elder-capture-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes elder-capture-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.elder-capture__contour {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  background: var(--surface-2, #22262e);
+  border: 1px solid var(--border-subtle, #2c313a);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.elder-capture__contour-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--hp-green, #4caf7d);
+  left: 0;
+  animation: elder-capture-scroll-in 0.1s ease-out;
+}
+
+.elder-capture__contour-dot:nth-child(n) {
+  left: calc(var(--dot-index, 0) * 2px);
+}
+
+@keyframes elder-capture-scroll-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.elder-capture__stop-btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 24px;
+  background: var(--hp-red, #e57373);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.elder-capture__audio {
+  width: 100%;
+}
+
+.elder-capture__actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.elder-capture__redo-btn {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid var(--border-subtle, #2c313a);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary, #a0a5ad);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.elder-capture__redo-btn:hover {
+  border-color: var(--text-secondary, #a0a5ad);
+}
+
+.elder-capture__proceed-btn {
+  flex: 2;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--hp-green, #4caf7d);
+  color: var(--surface-1, #1a1d23);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.elder-capture__proceed-btn:hover {
+  opacity: 0.88;
+}

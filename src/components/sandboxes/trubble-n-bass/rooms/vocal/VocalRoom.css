@@ -1,0 +1,135 @@
+/* VocalRoom.css */
+.vocal-room {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  border-radius: 12px;
+}
+
+.vocal-room__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.vocal-room__header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.vocal-room__subtitle {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.vocal-room__tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+}
+
+.vocal-room__tab {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.vocal-room__tab:hover {
+  color: var(--text-primary);
+}
+
+.vocal-room__tab--active {
+  background: var(--text-primary);
+  color: var(--surface-1);
+  border-color: var(--text-primary);
+}
+
+.vocal-room__panel {
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1.25rem;
+  min-height: 160px;
+}
+
+.vocal-room__sing {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vocal-room__voice-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.vocal-room__selection-note {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.vocal-room__selection-note strong {
+  color: var(--text-primary);
+}
+
+.vocal-room__record-button {
+  align-self: flex-start;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.vocal-room__recording-note {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.vocal-room__gate-note {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.vocal-room__concept-context {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.vocal-room__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.vocal-room__continue {
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--text-primary);
+  color: var(--surface-1);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.vocal-room__continue:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

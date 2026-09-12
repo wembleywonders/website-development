@@ -34,7 +34,26 @@ type CPhase = 'connect' | 'create' | 'cultivate' | 'compete' | 'celebrate';
 type EmotionalState =
   | 'excited' | 'anxious' | 'confident' | 'stuck'
   | 'breakthrough' | 'overwhelmed' | 'motivated' | 'proud' | 'uncertain';
-type EntryType = 'reflection' | 'milestone' | 'challenge' | 'learning' | 'gratitude' | 'plan';
+type EntryType = 'reflection' | 'milestone' | 'challenge' | 'learning' | 'gratitude' | 'plan' | 'coverage-touch';
+
+// ===================================
+// NEW: CROSS-SUITE COVERAGE TAXONOMY
+// ===================================
+// Shared across every suite's tracking hook (Rosemary Weaver, Esi, Kofi/Don,
+// Kumi, Anansewa). A suite's own hook should map its local station actions
+// onto these five categories rather than inventing its own — e.g.
+// AnansewaWithTracking's 'voice-coaching' -> 'craft', 'showcase-prep' ->
+// 'showcase', 'content' -> 'showcase'. That mapping still needs applying
+// there; this file just defines the canonical list.
+type CoverageCategory = 'craft' | 'pricing' | 'ip' | 'technical' | 'showcase';
+
+interface CoverageSummary {
+  touched: CoverageCategory[];
+  untouched: CoverageCategory[];
+  touchCountByCategory: Record<CoverageCategory, number>;
+  stations: string[];
+  overallCoverage: number; // 0-1, share of the five categories touched at least once
+}
 
 interface JournalEntry {
   id: string;
@@ -55,6 +74,9 @@ interface JournalEntry {
   repairEvidenceId?: string;
   diagnosticSessionId?: string;
   verificationStatus?: 'unverified' | 'self-reported' | 'witnessed' | 'claim-verified' | 'mentor-approved';
+  // NEW - populated by entryType: 'coverage-touch' entries only
+  coverageCategory?: CoverageCategory;
+  coverageStation?: string;
 }
 
 interface JournalPrompt {
@@ -93,6 +115,8 @@ const DIAGNOSTIC_GATE = {
   MAYA_GATE_THRESHOLD: 0.75,
 } as const;
 
+const COVERAGE_CATEGORIES: CoverageCategory[] = ['craft', 'pricing', 'ip', 'technical', 'showcase'];
+
 // ===================================
 // STORE STATE & ACTIONS
 // ===================================
@@ -120,6 +144,9 @@ interface JournalState {
   getEmotionalJourney: () => Array<{ date: Date; emotion: EmotionalState; stage: TransformationStage }>;
   exportJournal: (format: 'json' | 'markdown') => string;
   exportStageJournal: (stage: TransformationStage, format: 'json' | 'markdown') => string;
+
+  // NEW: COVERAGE
+  getCoverageSummary: () => CoverageSummary;
 
   // ── NEW: VERIFICATION STATE ──────────────────────────────────────────────
   repairEvidence: Record<string, RepairEvidence>;
@@ -511,6 +538,35 @@ export const useJournalStore = create<JournalState>()(
         return md;
       },
 
+      // NEW: coverage summary — soft-nudge only, never gates anything.
+      getCoverageSummary: (): CoverageSummary => {
+        const { entries } = get();
+        const touches = entries.filter(
+          (e): e is JournalEntry & { coverageCategory: CoverageCategory } =>
+            e.entryType === 'coverage-touch' && e.coverageCategory !== undefined
+        );
+
+        const touchCountByCategory = COVERAGE_CATEGORIES.reduce((acc, cat) => {
+          acc[cat] = touches.filter(t => t.coverageCategory === cat).length;
+          return acc;
+        }, {} as Record<CoverageCategory, number>);
+
+        const touched = COVERAGE_CATEGORIES.filter(cat => touchCountByCategory[cat] > 0);
+        const untouched = COVERAGE_CATEGORIES.filter(cat => touchCountByCategory[cat] === 0);
+
+        const stations = Array.from(
+          new Set(touches.map(t => t.coverageStation).filter((s): s is string => Boolean(s)))
+        );
+
+        return {
+          touched,
+          untouched,
+          touchCountByCategory,
+          stations,
+          overallCoverage: touched.length / COVERAGE_CATEGORIES.length,
+        };
+      },
+
       // ===================================
       // NEW: REPAIR EVIDENCE ACTIONS
       // ===================================
@@ -561,6 +617,18 @@ export const useJournalStore = create<JournalState>()(
         }));
 
         get().recalculateGate(evidence.item.layer);
+
+        // A repair logged in STEMgeneers is inherently a 'technical' coverage
+        // touch — this is the Workshop suite's contribution to the ledger.
+        get().addEntry({
+          stage: 2,
+          cPhase: 'cultivate',
+          entryType: 'coverage-touch',
+          content: `Logged a repair: ${evidence.item.description}`,
+          isPrivate: false,
+          coverageCategory: 'technical',
+          coverageStation: 'Workshop',
+        });
 
         return { repairEvidenceId, verificationSessionId, verificationSession };
       },
@@ -1380,5 +1448,9 @@ export const useDismissPendingVerification = () =>
 
 export const useRepairEvidenceByLayer = (layer: RepairLayer) =>
   useJournalStore((state) => state.getRepairEvidenceByLayer(layer));
+
+// NEW — coverage view for the Cultivate section
+export const useCoverageSummary = () =>
+  useJournalStore((state) => state.getCoverageSummary());
 
 export default useJournalStore;

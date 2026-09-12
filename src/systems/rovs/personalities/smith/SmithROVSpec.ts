@@ -684,7 +684,7 @@ export const SMITH_HANDOFFS = {
     
     // Route to correct Polish Bay ROV based on discipline
     routing: {
-      'stemgineers': 'Circuit',
+      'stemgeneers': 'Circuit',
       'silk-stilettos': 'Canvas',
       'trubble-n-bass': 'Tempo',
       'pageturners': 'Quill',
