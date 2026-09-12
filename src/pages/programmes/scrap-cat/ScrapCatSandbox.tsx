@@ -7,7 +7,6 @@ import {
   Laptop, Bike, Gamepad2, Coffee, ChevronDown, ChevronUp,
   Lightbulb, Target, Award, RotateCcw, FileText, Calendar
 } from 'lucide-react';
-import './sandbox.css';
 
 // ============================================
 // TYPE DEFINITIONS

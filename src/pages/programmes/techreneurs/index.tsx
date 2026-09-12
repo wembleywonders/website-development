@@ -9,7 +9,6 @@ import React from 'react';
 import TECHreneursSandbox from './TECHreneursSandbox';
 
 export { TECHreneursSandbox };
-export { default as TECHreneursSandboxAlt } from './sandbox';
 
 const TECHreneursPage: React.FC = () => {
   return <TECHreneursSandbox />;
