@@ -68,8 +68,31 @@ edits — the backup branch is the current one). Recover any file with
 **~185 files still deferred**, needing a chunked review pass:
 
 1. **Broad consolidation — real, coherent, unreviewed** (~150 files):
-   - `src/components/sandboxes/…` (29 files — TnB rooms, Roots, Rayd-yo)
-   - `src/components/rov-toolbar/…` (5) + `src/systems/rovs/…` (7) + `src/rov/index.ts`
+   - **Landed 12 Sep 2026 (Claude Code, branch `feat/blob-category-1-components`).**
+     `src/components/sandboxes/…` (29 files — TnB rooms, Roots, Rayd-yo),
+     `src/components/rov-toolbar/…` (5), `src/systems/rovs/…` (7), and
+     `src/rov/index.ts`. All of these directories already existed
+     identically on master except for the specific files listed —
+     confirmed via `comm` against the blob's file list, not assumed new.
+     **`src/rov/index.ts` was the significant one:** master hand-maintained
+     its own copy of CHILD_BY_PROGRAMME/CHILD_BY_DOMAIN, drifted into
+     direct contradiction with children.ts's real ones (techreneurs: Kumi
+     vs 'kweku'; joystick: Ntikuma vs 'yaw') — replaced with the blob's
+     rewrite, which makes this file a genuine re-export layer sourcing
+     from children.ts/newChildren.ts, matching how
+     `WW-CANONICAL-ROSTER.md` already describes its role. Also removed
+     this file's own dead `ROV_FAMILY_ALIASES`/`resolveROVAlias` —
+     re-verified fresh, right now, zero references anywhere else in
+     src/ — explicitly **not** a claim about
+     `src/services/rovs/ROVRegistry.ts`'s persona components sharing
+     those same five names, which stays a separate, still-open question
+     per this file's ROV-naming-collision entry below. Scoped tsc 280 →
+     274; full list of a handful of genuinely new (blob-inherent, not
+     introduced by this copy) type errors surfaced by landing larger,
+     more-complete files is in that commit's message. Still blocked:
+     `useROVCapabilities.ts` needs `services/rovs/ROVCapabilities.ts`,
+     not yet recovered (lives in the still-outstanding programme-journeys
+     / pages part of this sub-bucket).
    - `src/components/programme-journeys/…` (7)
    - `src/pages/programmes/…` (9) + `src/pages/activities/…` (3) + assorted single pages
    - type refactors: `src/types/creators-journal/index.ts` (`RepairVerification`
