@@ -80,12 +80,26 @@ edits — the backup branch is the current one). Recover any file with
      `src/hooks/useSmartRouting.ts` (2-line strict-mode fix), `tsconfig.json`,
      `src/vite-env.d.ts`, `package.json`/`package-lock.json` (`@types/node` +
      `finance:extract` script)
-   - `docs/research/…` (15 — WW-NTIKUMA-BROADCAST-*, WW-PRINCIPLE-ILP-KC-*,
-     WW-REF-SCREENWRITING-*, WW-REVENUE-SPLIT-*, WW-SELF-MONITORING-*,
-     WW-SPEC-RAYD-YO-HOST-DOCTRINE-001, ww-cast-roster, the pre-existing
-     `KC-{GUIANA-SHIELD,HIDDEN-COSTS,STEAK-TECHNIQUE}` — **not** Claude Code's,
-     these are Sept-8 work), `docs/accreditation/…` (9 session handoffs + specs),
-     `docs/finance/…` (4), `docs/curator-content/…` (7)
+   - `docs/research/…` (15), `docs/accreditation/…` (9 session handoffs +
+     specs), `docs/finance/…` (4), `docs/curator-content/…` (7) — **the
+     full 35-file docs sub-bucket landed 12 Sep 2026 (Claude Code, branch
+     `docs/blob-category-1-docs-cluster`).** Each file individually
+     classified before touching anything: 6 were byte-identical to master
+     already (left alone); 26 were genuinely new (spot-checked, then
+     added); 8 had a master version confirmed as a strict subset of the
+     blob's (an older draft predating a documented update/rebuild, zero
+     unique master content) and were replaced outright — including
+     `WW-OPEN-INVESTIGATIONS.md`, which also picks up the "Guiana Shield"
+     investigation flagged as a gap during the KC Diaspora-Trade recovery.
+     One file (`coxsone-dodd-builder-lesson-and-workbook-01.md`) was a
+     genuine two-way fork — master had an independent 22 Aug update the
+     blob's later 23 Aug rebuild didn't account for; took the blob's
+     rebuilt structure and appended master's paragraph as a labelled
+     preserved addendum rather than dropping it or guessing a re-merge.
+     **Known gap left open:** `docs/finance/README.md` now documents
+     `npm run finance:extract` / `scripts/finance/extract-transaction-data.mjs`,
+     neither of which exist yet — that script + its `package.json` entry
+     are in the "types + tooling" sub-bucket below, not yet recovered.
    - tooling: `scripts/finance/extract-transaction-data.mjs`, `.claude/commands/`,
      `archive/parked-pricing-2026-09/`, `drift-audit-2026-08-21.md`,
      `ww-drift-audit.sh`, `recovery-*.txt` — **gitignore candidates, not
