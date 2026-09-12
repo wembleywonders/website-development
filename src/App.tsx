@@ -88,6 +88,7 @@ import KaywanasCourtSandbox from './pages/programmes/kaywanas-court/KaywanasCour
 import PageturnersSandbox from './pages/programmes/pageturners/PageturnersSandbox'
 import STEMgeneersSandbox from './pages/programmes/stemgeneers/sandbox'
 import STEMgeneersSession from './pages/programmes/stemgeneers/SessionSandbox'
+import PrototypeLab from './pages/programmes/stemgeneers/PrototypeLab'
 import TECHreneursSandbox from './pages/programmes/techreneurs/TECHreneursSandbox'
 import GTechCastersSandbox from './pages/programmes/gtechcasters/GTechCastersSandbox'
 import TrubbleNBassSandbox from './pages/programmes/trubble-n-bass/TrubbleNBassSandbox'
@@ -361,7 +362,7 @@ function App() {
                 <Route path="/programmes/kaywanas-court/sandbox"         element={<KaywanasCourtSandbox />} />
                 <Route path="/programmes/pageturners/sandbox"            element={<PageturnersSandbox />} />
                 <Route path="/programmes/stemgeneers/sandbox"            element={<STEMgeneersSandbox />} />
-                <Route path="/programmes/stemgeneers/prototype-lab"      element={<STEMgeneersSandbox />} />
+                <Route path="/programmes/stemgeneers/prototype-lab"      element={<PrototypeLab />} />
                 <Route path="/programmes/stemgeneers/session"            element={<STEMgeneersSession />} />
                 <Route path="/programmes/techreneurs/sandbox"            element={<TECHreneursSandbox />} />
                 <Route path="/programmes/gtechcasters/sandbox"           element={<GTechCastersSandbox />} />
@@ -376,7 +377,7 @@ function App() {
                 <Route path="/pathways/kaywanas-court/sandbox"          element={<KaywanasCourtSandbox />} />
                 <Route path="/pathways/pageturners/sandbox"             element={<PageturnersSandbox />} />
                 <Route path="/pathways/stemgeneers/sandbox"             element={<STEMgeneersSandbox />} />
-                <Route path="/pathways/stemgeneers/prototype-lab"       element={<STEMgeneersSandbox />} />
+                <Route path="/pathways/stemgeneers/prototype-lab"       element={<PrototypeLab />} />
                 <Route path="/pathways/stemgeneers/session"             element={<STEMgeneersSession />} />
                 <Route path="/pathways/techreneurs/sandbox"             element={<TECHreneursSandbox />} />
                 <Route path="/pathways/gtech-casters/sandbox"          element={<GTechCastersSandbox />} />
