@@ -19,8 +19,8 @@ import type {
   LicenseType,
   IPStatus,
   IPStrategy
-} from '../../prototype-registry/types';
-import { prototypeRegistry } from '../../prototype-registry/services/prototypeRegistry';
+} from '../../../prototype-registry/types';
+import { prototypeRegistry } from '../../../prototype-registry/services/prototypeRegistry';
 import styles from './VentureBuilder.module.scss';
 
 // ============================================================================

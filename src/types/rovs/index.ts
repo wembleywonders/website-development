@@ -295,7 +295,8 @@ export const PROGRAMME_ROV_MAP: Record<CreatorSpace, ROVFamilyMember> = {
   'pageturners': 'esther',
   'gtech-casters': 'tariq',
   'raydyo': 'tariq',
-  'joystick': 'tariq'
+  'joystick': 'tariq',
+  'roots': 'esther'
 };
 
 // ============================================

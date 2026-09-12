@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar, MapPin, Video, Users, Cloud } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 
 interface ActivityCardProps {
   id: string;
