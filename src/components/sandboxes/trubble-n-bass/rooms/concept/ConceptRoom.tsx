@@ -36,6 +36,13 @@ const ConceptRoom: React.FC<ConceptRoomProps> = ({
   const [lyric, setLyric] = useState(initialLyric);
   const [activeTab, setActiveTab] = useState<ConceptInput>('tap');
 
+  // FIX: the hook was imported but never called — this is the missing
+  // line. activeHelp/dismissHelp/openTutorialAt below now have a real
+  // source, matching the confirmed useLearnerHelp(programme, sandbox)
+  // signature used elsewhere (e.g. STEMgeneers sandbox).
+  const { activeHelp, dismissHelp, openTutorialAt } =
+    useLearnerHelp('trubble-n-bass', 'concept-room');
+
   const hasRhythm = !!rhythm;
   const hasStyle = !!style;
   const hasLyric = lyric.trim().length > 3;
@@ -45,13 +52,11 @@ const ConceptRoom: React.FC<ConceptRoomProps> = ({
 
   const handlePatternReady = (pattern: boolean[], bpm: number) => {
     setRhythm({ pattern, bpm });
-    // Auto-advance to Feel if not already selected
     if (!hasStyle) setActiveTab('feel');
   };
 
   const handleStyleSelect = (profile: StyleProfile) => {
     setStyle(profile);
-    // Auto-advance to Arrange if rhythm is ready
     if (hasRhythm) setActiveTab('arrange');
   };
 
@@ -90,7 +95,6 @@ const ConceptRoom: React.FC<ConceptRoomProps> = ({
         </p>
       </div>
 
-      {/* Tab navigation */}
       <div className="concept-room__progress">
         {TABS.map(tab => (
           <button
@@ -111,7 +115,6 @@ const ConceptRoom: React.FC<ConceptRoomProps> = ({
         ))}
       </div>
 
-      {/* Tab panels */}
       <div className="concept-room__panel">
 
         {activeTab === 'tap' && (
@@ -164,7 +167,6 @@ const ConceptRoom: React.FC<ConceptRoomProps> = ({
         )}
       </div>
 
-      {/* What you have so far */}
       {(hasRhythm || hasStyle || hasLyric || hasMelody) && (
         <div className="concept-room__summary">
           <div className="concept-room__summary-label">What you have so far</div>
@@ -197,7 +199,6 @@ const ConceptRoom: React.FC<ConceptRoomProps> = ({
         </div>
       )}
 
-      {/* Arrange CTA — appears when both rhythm and feel are ready */}
       {canArrange && !hasMelody && activeTab !== 'arrange' && (
         <div className="concept-room__arrange-cta">
           <button
@@ -209,7 +210,6 @@ const ConceptRoom: React.FC<ConceptRoomProps> = ({
         </div>
       )}
 
-      {/* Proceed without arrangement */}
       {canProceed && !canArrange && (
         <div className="concept-room__proceed">
           <button className="concept-room__proceed-btn" onClick={handleManualProceed}>
@@ -221,7 +221,7 @@ const ConceptRoom: React.FC<ConceptRoomProps> = ({
           </p>
         </div>
       )}
-      {/* Contextual help panel */}
+
       {activeHelp && (
         <HelpPanel
           help={activeHelp}

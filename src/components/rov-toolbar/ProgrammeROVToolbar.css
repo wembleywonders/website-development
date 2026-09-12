@@ -1,0 +1,167 @@
+/* src/components/rov-toolbar/ProgrammeROVToolbar.css */
+
+.rov-toolbar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  background: var(--surface-2, #22262e);
+  border: 1px solid var(--hp-blue, #5c9eec);
+  border-radius: 12px;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.rov-toolbar__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+}
+
+.rov-toolbar__avatar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary, #f0f0f0);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+.rov-toolbar__avatar:hover {
+  background: var(--surface-1, #1a1d23);
+}
+
+.rov-toolbar__avatar-icon {
+  color: var(--hp-blue, #5c9eec);
+  font-size: 1rem;
+}
+
+.rov-toolbar__modes {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.rov-toolbar__mode {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-secondary, #a0a5ad);
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.rov-toolbar__mode--active {
+  background: var(--surface-1, #1a1d23);
+  border-color: var(--hp-blue, #5c9eec);
+  color: var(--text-primary, #f0f0f0);
+}
+
+.rov-toolbar__dismiss {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #a0a5ad);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.rov-toolbar__dismiss:hover {
+  color: var(--text-primary, #f0f0f0);
+  background: var(--surface-1, #1a1d23);
+}
+
+.rov-toolbar__content {
+  padding: 12px;
+  border-top: 1px solid var(--border-subtle, rgba(100, 116, 139, 0.15));
+}
+
+.rov-toolbar__message {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary, #a0a5ad);
+  line-height: 1.5;
+}
+
+.rov-toolbar__suggest {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rov-toolbar__suggestion {
+  text-align: left;
+  background: var(--surface-1, #1a1d23);
+  border: 1px solid var(--border-subtle, rgba(100, 116, 139, 0.15));
+  border-radius: 6px;
+  padding: 8px 10px;
+  color: var(--text-primary, #f0f0f0);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.rov-toolbar__suggestion:hover {
+  border-color: var(--hp-blue, #5c9eec);
+}
+
+.rov-toolbar__teach-title {
+  font-weight: 600;
+  color: var(--text-primary, #f0f0f0);
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.rov-toolbar__teach-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #a0a5ad);
+  line-height: 1.5;
+  margin: 0 0 8px 0;
+}
+
+.rov-toolbar__tradition {
+  font-size: 0.75rem;
+  color: var(--hp-green, #4caf7d);
+  font-style: italic;
+}
+
+.rov-toolbar__teach-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.rov-toolbar__teach-item {
+  text-align: left;
+  background: none;
+  border: 1px solid var(--border-subtle, rgba(100, 116, 139, 0.15));
+  border-radius: 6px;
+  padding: 6px 10px;
+  color: var(--text-secondary, #a0a5ad);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.rov-toolbar__revive {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  background: var(--surface-2, #22262e);
+  border: 1px solid var(--hp-blue, #5c9eec);
+  border-radius: 20px;
+  padding: 8px 14px;
+  color: var(--text-primary, #f0f0f0);
+  font-size: 0.8rem;
+  cursor: pointer;
+}

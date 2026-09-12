@@ -64,8 +64,8 @@ const challenges: Challenge[] = [
   },
   {
     id: 'code-solve',
-    programmeId: 'stemgineers',
-    programmeName: 'STEMgineers',
+    programmeId: 'stemgeneers',
+    programmeName: 'STEMgeneers',
     icon: '🤖',
     color: '#10b981',
     title: 'Spot the Problem',
@@ -131,7 +131,7 @@ const challenges: Challenge[] = [
 
 const programmes: ProgrammeMatch[] = [
   { id: 'trubble-n-bass', name: 'Trubble n Bass', icon: '🎵', color: '#f59e0b', score: 0, tagline: 'Make beats that sell', products: ['Beat packs', 'Loop kits', 'SFX'], incomeRange: '£100-350/mo' },
-  { id: 'stemgineers', name: 'STEMgineers', icon: '🤖', color: '#10b981', score: 0, tagline: 'Build things that work', products: ['Tutorials', 'Tools', 'Guides'], incomeRange: '£100-400/mo' },
+  { id: 'stemgeneers', name: 'STEMgeneers', icon: '🤖', color: '#10b981', score: 0, tagline: 'Build things that work', products: ['Tutorials', 'Tools', 'Guides'], incomeRange: '£100-400/mo' },
   { id: 'pageturners', name: 'Pageturners', icon: '📖', color: '#06b6d4', score: 0, tagline: 'Words that earn', products: ['E-books', 'Guides', 'Templates'], incomeRange: '£75-300/mo' },
   { id: 'silk-stilettos', name: 'Silk Stilettos', icon: '👗', color: '#ec4899', score: 0, tagline: 'Women building in tech', products: ['Templates', 'Planners', 'Assets'], incomeRange: '£150-450/mo' },
   { id: 'gtechcasters', name: 'G-Tech Casters', icon: '🎙️', color: '#ef4444', score: 0, tagline: 'Stories through sound', products: ['Podcasts', 'Audio assets'], incomeRange: '£100-500/mo' },

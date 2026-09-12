@@ -1,0 +1,131 @@
+/* src/components/sandboxes/trubble-n-bass/rooms/production/ProductionRoom.css
+ * Matches ProductionRoom.tsx exactly — dark slate palette, consistent
+ * with the other room stylesheets built tonight.
+ */
+
+.production-room {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px;
+  color: var(--text-primary, #f0f0f0);
+}
+
+.production-room__header {
+  margin-bottom: 20px;
+}
+
+.production-room__header h2 {
+  margin: 0 0 6px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.production-room__subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #a0a5ad);
+}
+
+.production-room__context-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.production-room__context-tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface-2, #22262e);
+  border: 1px solid var(--border-subtle, #2c313a);
+  color: var(--text-secondary, #a0a5ad);
+  font-size: 0.75rem;
+}
+
+.production-room__context-tag--highlight {
+  background: var(--hp-blue-muted, rgba(92, 158, 236, 0.15));
+  border-color: var(--hp-blue, #5c9eec);
+  color: var(--hp-blue, #5c9eec);
+}
+
+.production-room__tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-subtle, #2c313a);
+}
+
+.production-room__tab {
+  padding: 10px 18px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--text-secondary, #a0a5ad);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.production-room__tab:hover {
+  color: var(--text-primary, #f0f0f0);
+}
+
+.production-room__tab--active {
+  color: var(--hp-blue, #5c9eec);
+  border-bottom-color: var(--hp-blue, #5c9eec);
+}
+
+.production-room__panel {
+  min-height: 240px;
+  margin-bottom: 20px;
+}
+
+.production-room__not-built {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 32px;
+  text-align: center;
+  border: 1px dashed var(--border-subtle, #2c313a);
+  border-radius: 10px;
+}
+
+.production-room__not-built p {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: var(--text-secondary, #a0a5ad);
+}
+
+.production-room__not-built-sub {
+  font-size: 0.85rem !important;
+  color: var(--text-tertiary, #6b7280) !important;
+  max-width: 320px;
+}
+
+.production-room__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.production-room__save-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: var(--hp-green, #4caf7d);
+  color: var(--surface-1, #1a1d23);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.production-room__save-btn:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.production-room__save-btn:disabled {
+  background: var(--surface-2, #22262e);
+  color: var(--text-secondary, #a0a5ad);
+  cursor: default;
+}
