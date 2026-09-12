@@ -91,20 +91,45 @@ edits — the backup branch is the current one). Recover any file with
      `ww-drift-audit.sh`, `recovery-*.txt` — **gitignore candidates, not
      commit material**
 
-2. **New-work untracked dirs — still need the real-vs-orphan check + wiring**
-   (my prior analysis: each is genuinely new — no name collision with an
-   existing real file — but **fully unwired**, no `src/` consumer imports them):
+2. **New-work untracked dirs — real-vs-orphan check done, 10 of 12 files
+   recovered 12 Sep 2026 (Claude Code, branch `feat/blob-category-2-new-work-dirs`).**
+   Each file individually checked for import safety before landing, not
+   copied wholesale — scoped tsc unchanged at 280 errors (master's own
+   baseline) after landing, zero in the new files.
    - `src/knowledge-commons/` — `citation/citationStore.ts`,
-     `lesson-modules/lessonModuleStore.ts` (2 files). **Note: earlier session
-     tracker entries treated `lessonModuleStore.ts` as "shipped" — it was
-     never committed; it's blob work.**
-   - `src/safeguarding/` — `WatershedGate.ts`, `SafeguardingFocus.ts` (2)
-   - `src/features/margin-banding/` — 5 files. `index.ts` **is** imported, but
-     only by other blob-only files (`src/prototype-registry/types/pricingCaseStudy.ts`,
-     `src/data/tutorials/tutorials.{stemgeneers,techreneurs}.ts`) — fold in as a
-     cluster or not at all.
-   - `src/community/rovs/…` — `AtelierROV.tsx`, silk-stilettos `RosemaryWeaverROV.tsx`
-     + `useRosemaryWeaverTracking.ts` (3)
+     `lesson-modules/lessonModuleStore.ts` (2 files). **Landed.** Note:
+     earlier session tracker entries treated `lessonModuleStore.ts` as
+     "shipped" — it was never committed until now; it was blob work.
+   - `src/safeguarding/` — `WatershedGate.ts`, `SafeguardingFocus.ts` (2).
+     **Landed.** Zero imports, pure functions/types, honestly STUBBED at
+     the real backend-dependency boundary (no dateOfBirth/guardianConsent
+     on WembleyUser yet).
+   - `src/features/margin-banding/` — 5 files. **Landed. Correction to
+     this entry's own prior claim:** `index.ts` was recorded above as
+     "imported... by other blob-only files
+     (`src/prototype-registry/types/pricingCaseStudy.ts`,
+     `src/data/tutorials/tutorials.{stemgeneers,techreneurs}.ts`)" — checked
+     directly, this is false. `pricingCaseStudy.ts` doesn't exist
+     anywhere; the two tutorials files are byte-identical to their
+     current master versions with zero reference to margin-banding.
+     `git grep -l margin-banding` across the **entire** blob tree returns
+     only `marginBandingConfig.ts` itself. margin-banding has no
+     consumers anywhere, inside or outside the blob.
+   - `src/community/rovs/…` — `AtelierROV.tsx` **landed** (presentational,
+     revenueModels only). silk-stilettos `RosemaryWeaverROV.tsx` +
+     `useRosemaryWeaverTracking.ts` (2 files) **NOT landed — genuinely
+     coupled, not just unwired.** `useRosemaryWeaverTracking.ts` calls
+     `addEntry()` with `entryType: 'coverage-touch'` and
+     `coverageCategory`/`coverageStation` fields — this is the same
+     "coverage tracking" journalStore.ts extension deliberately excluded
+     from the TNB-2.4 DevelopmentEvidence recovery (a separate, unapproved
+     feature bundled into the same blob commit). These two files will not
+     type-check against current master's `JournalEntry`/`EntryType` as-is.
+     **Needs a decision:** bring coverage-tracking in too (separate scope
+     question), rewrite the hook to use an existing entryType instead
+     (loses the craft/pricing coverage categorisation this was built for),
+     or leave this pair on the backup branch until coverage-tracking is
+     separately approved.
 
 3. **Claude Code's Phase-1 (this session) KC work — different provenance,
    should land as its own commit, NOT folded into Sept-8 consolidation:**
