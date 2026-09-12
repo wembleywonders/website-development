@@ -1,0 +1,230 @@
+/* MarginBandingCalculator.css
+ * WW-SPEC-CREATOR-MARGIN-BANDING-001
+ * Uses the app's CSS custom properties with plain fallbacks so the
+ * component still reads correctly if embedded outside a themed context.
+ */
+
+.mbc {
+  font-family: var(--font-sans, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
+  color: var(--color-text-primary, #1a1a1a);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 640px;
+}
+
+.mbc__header { display: flex; flex-direction: column; gap: 0.5rem; }
+.mbc__title { font-size: 1.25rem; margin: 0; }
+.mbc__strapline,
+.mbc__context {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary, #555);
+  line-height: 1.5;
+}
+.mbc__context { font-style: italic; }
+
+/* ── Mode selector ────────────────────────────────────────────────── */
+
+.mbc__modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.mbc__mode {
+  border: 1px solid var(--color-border, #d0d0d0);
+  background: var(--color-surface, #fff);
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+.mbc__mode--active {
+  background: var(--color-accent, #1a1a1a);
+  color: var(--color-accent-contrast, #fff);
+  border-color: var(--color-accent, #1a1a1a);
+}
+.mbc__mode-locked { margin: 0; font-size: 0.875rem; color: var(--color-text-secondary, #555); }
+
+/* ── Fields ───────────────────────────────────────────────────────── */
+
+.mbc__panel { display: flex; flex-direction: column; gap: 1.25rem; }
+.mbc__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 480px) { .mbc__fields { grid-template-columns: 1fr; } }
+
+.mbc__field { display: flex; flex-direction: column; gap: 0.35rem; }
+.mbc__label { font-size: 0.75rem; font-weight: 600; color: var(--color-text-secondary, #555); }
+.mbc__label--check {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.mbc__input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border, #d0d0d0);
+  border-radius: 8px;
+  background: var(--color-surface, #fff);
+  overflow: hidden;
+}
+.mbc__affix { padding: 0 0.5rem; color: var(--color-text-secondary, #777); font-size: 0.875rem; }
+.mbc__affix--suffix { border-left: 1px solid var(--color-border, #eee); }
+.mbc__input {
+  flex: 1;
+  border: 0;
+  padding: 0.5rem;
+  font: inherit;
+  background: transparent;
+  color: inherit;
+  min-width: 0;
+}
+.mbc__input:focus { outline: 2px solid var(--color-accent, #1a1a1a); outline-offset: -2px; }
+.mbc__hint { margin: 0; font-size: 0.75rem; color: var(--color-text-secondary, #777); line-height: 1.4; }
+
+/* ── Result ───────────────────────────────────────────────────────── */
+
+.mbc__result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--color-surface-sunken, #f6f6f4);
+}
+.mbc__headline { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.mbc__headline-num { font-size: 1.5rem; font-weight: 700; }
+
+.mbc__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+.mbc__pill--red { background: #fdecea; color: #8a1c12; border-color: #f5c6c0; }
+.mbc__pill--amber { background: #fdf3e0; color: #7a5312; border-color: #f0dcae; }
+.mbc__pill--green { background: #e7f4ec; color: #1b5e33; border-color: #bfe1cb; }
+
+.mbc__mirror-note,
+.mbc__band-meaning,
+.mbc__capacity,
+.mbc__beyond-green,
+.mbc__pardner-note {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.mbc__band-meaning { color: var(--color-text-secondary, #555); }
+.mbc__pardner-note {
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: var(--color-surface, #fff);
+  border: 1px dashed var(--color-border, #d0d0d0);
+}
+.mbc__beyond-green {
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: #e7f4ec;
+  color: #1b5e33;
+}
+
+.mbc__warning {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #8a1c12;
+}
+.mbc__warning--strong {
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: #fdecea;
+  border: 1px solid #f5c6c0;
+  font-weight: 500;
+}
+
+/* ── Volume curve ─────────────────────────────────────────────────── */
+
+.mbc__curve { display: flex; flex-direction: column; gap: 0.35rem; }
+.mbc__curve-title { font-size: 0.75rem; font-weight: 600; color: var(--color-text-secondary, #555); }
+.mbc__curve-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 72px;
+}
+.mbc__curve-bar { flex: 1; border-radius: 2px 2px 0 0; min-height: 3px; }
+.mbc__curve-bar--red { background: #e88b81; }
+.mbc__curve-bar--amber { background: #e6c47e; }
+.mbc__curve-bar--green { background: #7bbd93; }
+.mbc__curve-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6875rem;
+  color: var(--color-text-secondary, #777);
+}
+
+/* ── Break-even list ─────────────────────────────────────────────── */
+
+.mbc__breakeven-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+.mbc__breakeven {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: var(--color-surface, #fff);
+  border-left: 3px solid var(--color-border, #d0d0d0);
+}
+.mbc__breakeven--red { border-left-color: #d9534f; }
+.mbc__breakeven--green { border-left-color: #2e8b57; }
+.mbc__breakeven--own { border-left-color: #555; }
+.mbc__breakeven-copies { font-size: 1.125rem; font-weight: 700; }
+.mbc__breakeven-label { font-size: 0.8125rem; color: var(--color-text-secondary, #555); }
+
+/* ── Two-case (time-billed) ──────────────────────────────────────── */
+
+.mbc__two-case { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+@media (max-width: 480px) { .mbc__two-case { grid-template-columns: 1fr; } }
+.mbc__case {
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: var(--color-surface, #fff);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.mbc__case-label { font-size: 0.75rem; font-weight: 600; color: var(--color-text-secondary, #555); }
+
+/* ── Footer ──────────────────────────────────────────────────────── */
+
+.mbc__footer { font-size: 0.75rem; color: var(--color-text-secondary, #777); line-height: 1.5; }
+.mbc__footer p { margin: 0 0 0.35rem; }
+.mbc__footer-note { font-style: italic; }
+
+/* ── Health gate ─────────────────────────────────────────────────── */
+
+.mbc--gated { max-width: 640px; }
+.mbc__gate {
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: #fdf3e0;
+  border: 1px solid #f0dcae;
+  color: #5c4412;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+.mbc__gate-title { margin: 0 0 0.5rem; font-size: 1rem; }
+.mbc__gate p { margin: 0 0 0.5rem; }
+.mbc__gate-next { font-weight: 600; margin-bottom: 0 !important; }
