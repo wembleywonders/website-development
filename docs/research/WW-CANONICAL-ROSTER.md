@@ -88,7 +88,18 @@ coordination work and wasn't invented data to paper over here.
 
 What the coordination function actually does day-to-day beyond this data
 shape (UI, workflow, what "passionista" vs. "connoisseur" concretely means
-in practice) is still open — Phase 3.3 scoping, not started.
+in practice) is still open — Phase 3.3 scoping.
+
+**Update, 23 Aug 2026:** the "not started" line above is now stale — full Phase 3.3
+design scoping (broadcast mechanics, the passionista/connoisseur content-domain
+definition, calendar visibility, the 9pm watershed decision, and the pre-/post-watershed
+two-sided framework) exists as chat memory, exported into
+`docs/research/WW-NTIKUMA-BROADCAST-COORDINATION-DESIGN.md`. It remains **design only,
+not authorised to build**. That export also flags a real, unresolved concern: part of
+this scope (the post-9pm age-gate mechanism) already exists in code at
+`src/safeguarding/WatershedGate.ts`, built without the phased plan's Phase 1/2
+completion gate being satisfied — see that document's own flag section for detail, not
+resolved here.
 
 No code anywhere represents "passionistas and connoisseurs" as CJ describes
 them. That exact phrase exists in the codebase only as an unrelated naming

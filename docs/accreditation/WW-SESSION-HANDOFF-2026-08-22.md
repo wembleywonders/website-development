@@ -258,14 +258,161 @@ Innovator → Leader) — the first curators on the platform to reach that
 state. Both Template A (Fasséké) and Template B (Dodd single-technique,
 Cooke compound) now have a full worked arc future curators can reference.
 
+## NEW — George Washington Carver (Scrap Cat), first content for this curator
+
+CJ supplied Scrap Cat's first tier content of any kind:
+`scrap-cat/george-washington-carver-explorer-lesson-and-workbook-01.md`
+(new programme folder). Technique: resourceful material recovery
+(copper specifically), method modelled on Carver's own "look again at
+what's already there" teaching approach at Tuskegee.
+
+**Two corrections made before porting:**
+1. The source brief said "no dedicated Scrap Cat sandbox has been
+   confirmed yet." Checked directly: `ScrapCatSandbox.tsx` exists and is
+   live-routed (`/programmes/scrap-cat/sandbox`) — but it's a device-
+   repair diagnosis flow, not a match for this lesson's material-recovery
+   survey technique. Practical conclusion unchanged (no matching tool),
+   reason corrected. Also checked: `RepairEvidence`/`witnessRepair()`
+   (conceptually rooted in Scrap Cat, by its own field names) has zero
+   live callers in any actual Scrap Cat page — only STEMgeneers pages call
+   it. So Scrap Cat genuinely has no live evidence-logging path of its
+   own, same underlying situation as Bright Sparks.
+2. "The Kept Knowledge model (Bitter Cassava / Coca Leaf convention)" —
+   checked, does not exist anywhere in this repo. Flagged as an unsupplied
+   precedent rather than assumed real; the safety content itself (the
+   refrigerant-handling cap) stands on its own regardless and was
+   preserved prominently, unweakened by the missing precedent.
+
+**Standing rule established for this curator:** the refrigerant-handling
+safety cap applies at every future Scrap Cat tier, not just Explorer —
+noted in the lesson's own closing note for whoever builds Builder tier
+next.
+
+## REBUILT — Noel Pointer's Lesson 01, proving a new modular-decomposition rule (23 Aug 2026)
+
+CJ supplied a rebuild of Pointer's calculus-edition Explorer lesson,
+restructured into three ~20-minute units (mini-objective, mini-output,
+consolidation moment between units) rather than one continuous pass.
+**Same gap pattern as the roster docs, checked before applying:** the
+source material cites this as "the §2A modular-decomposition rule added
+to the session handoff brief on 22 Aug 2026" — no file anywhere in this
+repo, including this session's own handoff doc, names any such rule.
+Captured it for real in `WW-Curator-Course-Content-Templates.md` (item 7)
+instead of leaving it to live only in this one lesson's closing note.
+`noel-pointer-explorer-lesson-and-workbook-01.md` replaced in place (the
+single-pass original is superseded, not kept as a separate file); the
+`[REAL TOOL]` correction from the original version carried forward
+unchanged (re-checked, still accurate).
+
+**Confirmed by this rebuild:** Template A's method → worked-example →
+apply-it-yourself shape decomposes into three units cleanly, no new
+content needed. **Not yet tested:** Template B, flagged by the source
+material itself as the harder case (a real coaching attempt doesn't fit a
+fixed 20-minute window) — don't apply this to Dodd/Cooke's content until
+it's actually tried there. Pointer's Lesson 02 (money edition) has **not**
+been rebuilt to match — noting as an open item, not doing it unprompted.
+
+## §6A retrofit batch (23 Aug 2026) — Template A lessons retrofitted, Template B held, one gap flagged
+
+The build-out brief was re-supplied with its full §2A/§6A text (the rule I'd
+already captured secondhand from the Pointer rebuild's own note, now
+confirmed verbatim) plus a retrofit obligation covering seven lesson-
+instances: Fasséké, Dodd (Explorer + Builder), Cooke, Pointer ×2, Carver,
+and "Lewis/Auntie Anansi's Kitchen."
+
+**Gap found before touching anything:** no "Lewis" file, and no
+`auntie-anansis-kitchen` folder, exist anywhere in `docs/curator-content/`.
+Same pattern as every other "already exists" claim checked this session.
+Flagged, not invented — Auntie Anansi's Kitchen still has zero course
+content of any kind.
+
+**Retrofitted, since Template A was confirmed by Pointer's Lesson 1
+rebuild and §6A's own instruction was to proceed in original build order
+once confirmed:**
+- `pageturners/balla-fasseke-explorer-lesson-and-workbook-01.md` — first
+  retrofit of a lesson that originally existed as two separate files
+  (lesson + workbook). Merged into one combined file, since the unit
+  structure interleaves concept/output/consolidation in a way that
+  doesn't split cleanly along the old lesson/workbook boundary. Original
+  two-file pair deleted, superseded.
+- `bright-sparks/noel-pointer-explorer-lesson-and-workbook-02.md` (money
+  edition) — retrofitted to match Lesson 1's already-confirmed shape.
+- `scrap-cat/george-washington-carver-explorer-lesson-and-workbook-01.md`
+  — retrofitted. The safety flag (refrigerant-handling cap) was
+  deliberately kept outside and above all three units rather than folded
+  into one, since it has to be visible to a member doing any single unit
+  in isolation, not just whoever starts at Unit 1.
+
+**Deliberately NOT retrofitted:** Dodd's Explorer + Builder tier and
+Cooke's Explorer tier (all Template B). §6A and this project's own design
+rule (templates doc item 7) both flag Template B as unproven for §2A — a
+real coaching attempt doesn't fit a fixed 20-minute window the way a
+written exercise does. Held pending an explicit first test, not blocked
+indefinitely.
+
+## Template B §2A stress test — RESOLVED (23 Aug 2026)
+
+CJ supplied the deliberate stress-test rebuild: Dodd's Builder tier
+against the modular structure, specifically because it was flagged as the
+harder case (a real coaching attempt doesn't fit a 20-minute window).
+Replaced `trubble-n-bass/coxsone-dodd-builder-lesson-and-workbook-01.md`
+in place.
+
+**Finding, verified before accepting it:** the rule doesn't break, it
+needs one documented exception — Units 1–2 (reading/reflection/planning)
+decompose into standard 20-minute units exactly like Template A; the real
+coaching action becomes an untimed **between-session task**, with a short
+return unit for write-up once it's done. The source material's claimed
+precedent (STEMgeneers/homeschooling already uses between-session tasks)
+was checked directly, not taken on faith: `stemgeneers/curriculum/
+curriculumData.ts` has a real `duration: 20 | 7` module structure with
+real `repositoryTask` fields and `homeschoolingEvidence` arrays — the
+exact phrase "between-session task" isn't in the code, but the underlying
+pattern (real-world work between timed modules, return with evidence) is
+genuine, not invented for this lesson.
+
+**Captured centrally**, per its own stated scope ("worth adding... as a
+confirmed rule, not left as a one-off finding here"): templates doc item
+8. Template B's full lesson structure is now item 7's modular units +
+item 8's between-session exception — no longer a separately unproven
+pattern. Applies going forward to Kitchener, Kemistry, Vaughan, and every
+other Template B curator.
+
+## §6A retrofit batch, completed (23 Aug 2026) — Dodd Explorer + Cooke Explorer
+
+The two remaining Template B Explorer-tier lessons flagged by §6A's updated
+list were retrofitted, applying the between-session-task pattern (item 8)
+confirmed on Dodd's own Builder tier:
+
+- `trubble-n-bass/coxsone-dodd-explorer-lesson-and-workbook-01.md` — one
+  in-session unit (concept + Distinct-vs-Good solo training), then the
+  real-people observation task moved to an untimed between-session slot
+  (it needs two other members' real work with permission — the same
+  underlying reason Builder tier's coaching attempt doesn't fit a timed
+  window, just lighter-weight). Original two-file pair deleted, superseded.
+- `soul/sam-cooke-explorer-lesson-and-workbook-01.md` — **deliberately
+  kept its original shared structure**, not split into Cooke's Builder-tier
+  two-full-track shape. At Explorer tier a single instance of each skill
+  (one coaching note, one platform description) was always the design; the
+  full Part-One/Part-Two-per-skill split only became necessary once
+  Builder tier required sustained evidence. Retrofitting Explorer into two
+  full tracks would have been a content change wearing a structural
+  disguise — out of scope for §2A, which explicitly doesn't touch content.
+
+**§6A is now fully cleared.** All seven lesson-instances originally
+flagged (Fasséké, Dodd ×2, Cooke, Pointer ×2, Carver) are retrofitted.
+"Lewis/Auntie Anansi's Kitchen" remains the one unresolved item — still
+doesn't exist anywhere in this repo, flagged, not invented.
+
 ## CURRENT BUILD STATE (verify before extending, per this brief's own §1)
 
 3 of 26 curators (Fasséké, Dodd, Cooke) now have all 4 tiers complete
 (Explorer/Builder/Innovator/Leader) — the first curators on the platform
-to reach full tier completion. A 4th,
-Noel Pointer, now has 2 Explorer-tier pieces (calculus, then money) —
-still Explorer tier only, no Builder yet. The other 22 curators have no
-course content built at all. Plus one non-curator piece: a Son/Salsa
+to reach full tier completion. A 4th, Noel Pointer, has 2 Explorer-tier
+pieces (calculus, then money) — Explorer tier only, no Builder yet. A 5th,
+George Washington Carver (Scrap Cat), has 1 Explorer-tier piece — Scrap
+Cat's first content of any kind. The other 21 curators have no course
+content built at all. Plus one non-curator piece: a Son/Salsa
 cross-reference Explorer lesson (Bauzá/Machito/Pozo/López brothers),
 deliberately not counted against the 26-curator roster — see its own
 section above for the still-open placement decision. 9 of 14 programmes

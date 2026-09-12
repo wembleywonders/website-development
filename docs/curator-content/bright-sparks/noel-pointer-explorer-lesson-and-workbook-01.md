@@ -1,17 +1,25 @@
 # Bright Sparks — Foundational Teaching with Noel Pointer
 ## Explorer Tier: Ask What Question It Answers
 
+*(Rebuilt against the modular unit structure, 22 Aug 2026 — see the note at the bottom on why and what changed.)*
+
 *Curator: Noel Pointer — jazz-funk violinist whose belief that formal skill instruction could change a child's entire trajectory became the Noel Pointer Foundation, now teaching strings to thousands of underserved youth a year. His technique was never really about violin. It was about refusing to let the way something gets taught become the reason a kid never gets near it.*
 
 *Core technique for this lesson: foundational-skill instruction — not tied to any one subject, since Pointer's own legacy is posthumous and institutional rather than a single craft. This lesson teaches the method itself: how to make something that sounds intimidating actually land for someone starting from zero. Calculus is the worked example. It is not the point of the lesson.*
 
 ---
 
-**[REAL TOOL]:** Bright Sparks has no dedicated subject ROV — members work through Maya in her general orientation role, since this stage is deliberately pre-specialisation. **Checked directly before porting, correction made:** the generic Creators Journal mechanism (`addEntry` in `src/stores/journalStore.ts`) is real and genuinely live — not infrastructure-only, unlike some other evidence mechanisms referenced elsewhere in this build-out — and is actively called by several real components (`MayaHeritageAwareness.tsx`, a couple of ROV-tracking components). But nothing in Bright Sparks itself (`SparkDiscoveryJourney.tsx`, `BrightSparksSandbox.tsx`) calls it — there's no established Bright Sparks practice of logging through it yet, so "same as any other Bright Sparks evidence" describes an intended pattern, not a confirmed existing one. As of this lesson, there is no live in-app path specific to Bright Sparks for a member to log this activity through. Write and date your activities below as the evidence artifact itself in the meantime.
+**[REAL TOOL]:** Bright Sparks has no dedicated subject ROV — members work through Maya in her general orientation role. **Correction carried forward from this file's first version, re-checked, unchanged:** the generic Creators Journal mechanism (`addEntry` in `src/stores/journalStore.ts`) is real and genuinely live — not a stub — actively called by several real components (`MayaHeritageAwareness.tsx`, a couple of ROV-tracking components). But nothing in Bright Sparks itself calls it; there's no established Bright Sparks practice of logging through it yet. Write and date your unit outputs below as the evidence artifact itself in the meantime.
+
+**Total length if run as one session:** ~65 minutes (three ~20-minute units + two consolidation moments + a short close). Every unit below also works completely on its own — a member (or a homeschooling parent) can do Unit 1 today and Unit 2 in three days' time.
+
+**Topic tags:** teaching-method · explanation-before-formula · beginner-pedagogy · maths-foundations (cross-reference for ILP combination: pairs naturally with the Money Edition lesson under the same teaching-method/beginner-pedagogy tags — a member could combine one unit from each into a single custom session)
 
 ---
 
-## Part One: The Method
+## Unit 1 — The Method (≈20 min)
+
+**Mini-objective:** be able to state, in your own words, all three principles below and recognise them in an example you didn't write yourself.
 
 Most subjects get taught backwards for a beginner. You're handed the formula, the rule, the procedure — and told to practice it until it sticks. That works for passing a test. It falls apart the moment a problem looks even slightly different from the one you memorised, because you were never actually taught what the tool does. You were taught how to operate it.
 
@@ -23,7 +31,22 @@ Pointer's real method — teaching absolute beginners a skill previously gatekep
 
 3. **Name the mistakes before they happen.** Every subject has a small handful of near-universal beginner mistakes. Naming them in advance — "here's the thing almost everyone gets wrong at this stage" — does more to prevent confusion than any amount of extra practice after the fact.
 
-## Part Two: Worked Example — Calculus
+**Mini-output:** write one sentence per principle, in your own words, before moving on.
+
+Principle 1, my own words: ___________________________________
+Principle 2, my own words: ___________________________________
+Principle 3, my own words: ___________________________________
+
+**Consolidation moment (≈2 min, not a full self-check):** Without looking back at Unit 1, say out loud or write down all three principles from memory. If you can't get all three, re-read Unit 1 before continuing — don't push forward on a shaky base.
+
+Recalled from memory: ________________________________________
+All three present? YES / NO — if no, re-read before Unit 2.
+
+---
+
+## Unit 2 — Worked Example: Calculus (≈20 min)
+
+**Mini-objective:** be able to explain what calculus is for to someone who's never heard of it, using no calculus jargon, in under a minute.
 
 Here's the method applied to a subject with a genuine reputation for losing people: calculus.
 
@@ -33,23 +56,34 @@ Here's the method applied to a subject with a genuine reputation for losing peop
 
 The other half shows up just as naturally. Imagine a workout where you walk gently for ten minutes, jog harder for twenty, then sprint for five — burning calories at a different rate in each stretch. You can't just multiply one number by the total time, because the rate never held still. To get the real total, you'd have to add up what happened in every small slice of time along the way. That process — building a total out of constantly changing pieces — is what the other half of calculus, the integral, was built to calculate exactly, instead of just roughly.
 
-And the two halves aren't unrelated tools that happen to share a subject. They undo each other, the same way addition and subtraction do: work out a rate of change, then build back up from it, and you land exactly where you started. That relationship is the part that makes calculus feel like one coherent system instead of two separate tricks.
+And the two halves aren't unrelated tools that happen to share a subject. They undo each other, the same way addition and subtraction do: work out a rate of change, then build back up from it, and you land exactly where you started.
 
-**Naming the mistakes in advance.** Two things trip up almost everyone at this stage. First, people often treat an idea calculus depends on — a value something is heading toward — as if it's the same as the value actually being reached, when the whole point is that you can describe where something is heading without ever quite landing on it. Second, people reach for the formulas before they've understood what question those formulas are even answering, which is exactly the trap Part One of this lesson exists to prevent.
+**Naming the mistakes in advance.** Two things trip up almost everyone at this stage. First, people often treat an idea calculus depends on — a value something is heading toward — as if it's the same as the value actually being reached, when the whole point is that you can describe where something is heading without ever quite landing on it. Second, people reach for the formulas before they've understood what question those formulas are even answering.
 
-Notice what just happened across those three moves: nothing above required a single equation, and yet a genuinely accurate, ungated version of what calculus actually is came through anyway. That's the method working, not the subject being easy.
+**Mini-output:** in your own words, one paragraph — what is calculus for? No formulas allowed in your answer.
 
-### Activity 1 — Apply the Method Yourself
+_____________________________________________________
+_____________________________________________________
+
+**Consolidation moment (≈2 min):** Explain Unit 2's "phone battery" example to someone else out loud (or record yourself), without looking at the lesson. If you stumble on why it's a derivative example rather than what a derivative is, that's worth another pass before continuing.
+
+Did the explanation hold up out loud? YES / NO — if no, revisit before Unit 3.
+
+---
+
+## Unit 3 — Apply the Method Yourself (≈20 min)
+
+**Mini-objective:** produce a beginner-facing explanation of a subject of your own choosing, correctly applying all three Unit 1 principles, provably (via the self-check below).
 
 Pick a skill or subject you already know reasonably well — anything, doesn't have to be academic. Could be a game, a sport, a craft, an instrument, a piece of software.
 
-Write a short beginner-facing introduction to it (150–250 words) that follows all three principles from Part One:
+Write a short beginner-facing introduction to it (150–250 words) that follows all three principles from Unit 1:
 
 - States the core question or problem the skill/subject actually solves, in plain language, before naming any of its own jargon
 - Grounds it in something a total beginner would already have a feel for
 - Names one or two mistakes almost every beginner makes, before they make them
 
-This is harder than it sounds — it's easy to slip back into "here's how it works" instead of "here's what it's for." That slip is exactly what most gatekept teaching does by default.
+**Mini-output:** the 150–250 word write-up itself, submitted via Maya/Creators Journal.
 
 Your subject: ___________________________________________
 
@@ -61,39 +95,25 @@ _____________________________________________________
 _____________________________________________________
 _____________________________________________________
 
-### Activity 2 — Self-Check Against the Worked Example
-
-Go back through the calculus section in Part Two. For each of the three principles, point to the specific sentence or example that's doing that job. Then check your own Activity 1 write-up the same way — can you point to exactly where each principle shows up, or did one of them get skipped?
-
-In the worked example:
-
-1. Question-first sentence/example: ___________________________
-2. Grounding sentence/example: _______________________________
-3. Mistakes-named-in-advance sentence/example: ________________
-
-In your own Activity 1 write-up:
-
-1. Question-first — where? Or missing? _______________________
-2. Grounding — where? Or missing? ____________________________
-3. Mistakes named — where? Or missing? _______________________
-
 ---
 
-## Self-Check Before Submitting
+## Self-Check Before Submitting (covers all three units)
 
-- Does your Activity 1 write-up name the question before any jargon appears?
+- Does your Unit 3 write-up name the question before any jargon appears?
 - Is your grounding example something a genuine beginner would already recognise from ordinary life — not another piece of jargon in disguise?
 - Did you name a real, specific beginner mistake, not just "it can be confusing"?
 - Could someone with zero prior exposure to your chosen subject read your write-up and come away with an accurate (if incomplete) sense of what it's actually for?
 
 ## Submission Checklist
 
-- [ ] Activity 1 complete (beginner-facing intro, all three principles present)
-- [ ] Activity 2 complete (principles identified in both the worked example and your own write-up)
-- [ ] Written and dated as the evidence artifact — no live Bright Sparks logging path exists yet (see `[REAL TOOL]` note above)
+- [ ] Unit 1 mini-output complete (three principles, own words)
+- [ ] Unit 1→2 consolidation passed (recalled without looking back)
+- [ ] Unit 2 mini-output complete (calculus explained in one jargon-free paragraph)
+- [ ] Unit 2→3 consolidation passed (explained the battery example aloud)
+- [ ] Unit 3 complete and logged via Maya / Creators Journal (see `[REAL TOOL]` note above — no live Bright Sparks path exists yet, write and date it as the evidence artifact)
 
 ---
 
-*Note for future build sessions: this is Bright Sparks' and Noel Pointer's first Explorer-tier content — nothing existed for this curator before. Because his technique is explicitly pedagogical rather than genre-specific, this lesson's shape (method first, subject-matter example second) should be the template for any future Pointer content, regardless of what worked example gets used next time. Builder tier for Pointer requires a genuine first attempt teaching someone else — a natural next step would be having the member actually deliver their Activity 1 write-up to a real beginner and log what happened, matching the same organic/structured-pairing choice already built into Dodd's Builder tier.*
+*Note for future build sessions: this rebuild is the proof case for a modular-decomposition rule the source material says was "added to the session handoff brief on 22 Aug 2026." Checked directly before this rebuild was ported: no file anywhere in this repo names this rule — not this project's own `WW-SESSION-HANDOFF-2026-08-22.md`, not the templates doc, nothing. Same chat-memory-only pattern flagged repeatedly this session. Since the rule is explicitly meant to generalise across future lessons, it's captured for real in `docs/curator-content/WW-Curator-Course-Content-Templates.md` (item 7) rather than left to live only in this one lesson's own note.*
 
-*Correction made while porting, 22 Aug 2026: the original brief's `[REAL TOOL]` field described Creators Journal logging as "same as any other Bright Sparks evidence," implying an established practice. Checked directly against the code before porting: the underlying `addEntry` mechanism is real and live (not a stub), but nothing in Bright Sparks currently calls it — no other Bright Sparks evidence is actually logged this way yet. Corrected above to state that precisely, same discipline applied to every other evidence-mechanism claim this session.*
+*What the rebuild actually changed: the lesson's existing three-part shape (method → worked example → apply-it-yourself) mapped cleanly onto three ~20-minute units without needing new content, only restructuring — mini-objectives, mini-outputs, and consolidation prompts added between units, total-length and topic-tags stated up front. This is Bright Sparks' and Noel Pointer's first Explorer-tier content, now in its modular form — the original single-pass version is superseded by this file, not kept as a separate copy.*

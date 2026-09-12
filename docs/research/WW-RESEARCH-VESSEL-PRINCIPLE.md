@@ -41,7 +41,7 @@ built into this project were doing collectively:
   pioneering-without-named-protégé credential — all honestly flagged as
   thinner than the strongest entries, not hidden.
 
-## Real, undeveloped product implication (not designed, not scoped)
+## Real product implication — flagged 21 Aug 2026, built 28 Aug 2026
 
 Some content on the platform might not need to wait for full lock/
 resolution before members ever see it. An "active investigation" status,
@@ -50,10 +50,28 @@ not just internal working notes kept hidden until resolved — framed as
 "here's what we're still figuring out, want to help dig?" rather than a
 finished lesson. This is a genuinely different content shape from anything
 else on the platform (which otherwise ships as LOCKED, complete, vetted
-material) and needs its own proper design pass: what it looks like, where
-it lives, how a member would actually encounter and contribute to it, how
-it graduates into settled content once resolved. Flagged here so it isn't
-lost — not actioned, not built, no decision made on shape yet.
+material): what it looks like, where it lives, how a member would actually
+encounter and contribute to it, how it graduates into settled content once
+resolved.
+
+**Built 28 Aug 2026.** The surface now exists at route `/investigations`
+(`src/components/investigations/ActiveInvestigations.tsx`, with
+`investigationsData.ts` and `Investigations.css`), linked from the Header
+"Our Work" menu and the Knowledge Commons footer. Each investigation
+renders as: a one-paragraph summary, an explicit scope boundary, a "why
+this is held open" note, then four labelled blocks — Confirmed (verified,
+sourced), Uncorroborated/contested (competing claims kept visibly
+separate), Open questions (each with "why it matters" and "what would close
+it"), and Corrections made (the "provided ≠ verified" catches, shown as
+findings in their own right) — followed by a "want to help dig?" panel that
+routes contributions to admin@ via mailto (no localStorage dead-drop, per
+the standing rule). The first published investigation is the Guiana Shield
+diasporic-economy entry (`docs/research/KC-GUIANA-SHIELD-DIASPORIC-ECONOMY-001.md`
+is its full working file). "Graduates into settled content once resolved"
+is handled editorially for now — when a thread closes, its entry moves into
+a Knowledge Commons entry or a programme's course material, and the trail
+stays in `WW-OPEN-INVESTIGATIONS.md`. No automated graduation mechanism was
+built.
 
 ## Why this matters beyond internal discipline
 

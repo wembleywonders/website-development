@@ -47,15 +47,62 @@ this LOCKED or resolved until both are addressed — and if further research
 surfaces a genuinely STEM-specific Afro-Mexican figure instead, that's a
 separate lead, not a reason to force this one to fit.
 
-## Africa–Caribbean economic realignment cluster — opened 9 Sept 2026, active
+## The Guiana Shield as one diasporic economic system — opened 28 Aug 2026, active
 
 *Recovered 12 Sep 2026 (Claude Code) from `backup/frontend-blob-2026-09-10`
-— dropped from the active tree during the 10 Sep frontend-consolidation
-cleanup without a trace. Content unchanged from the original 9 Sept entry.
-Note found while recovering this: the "Guiana Shield as one diasporic
-economic system" investigation (opened 28 Aug 2026, also present on that
-backup branch) is likewise absent from this file's current version —
-flagged here as a separate gap, not recovered as part of this task.*
+— this investigation, and the Africa–Caribbean cluster below it, were both
+dropped from the active tree during the 10 Sep frontend-consolidation
+cleanup without a trace. Both recovered here, in their original
+chronological order; content unchanged from their original entries.*
+
+**The subject, confirmed:** Guyana's oil boom (43.6% GDP growth in 2024,
+first-ever HIPC participant to reach high-income status) is inverting a
+fifty-year regional wealth hierarchy across the three Guianas — pulling
+labour from Suriname and the wider CARICOM, and leaving French Guiana
+structurally exposed as an EU dependency next to two increasingly wealthy
+sovereign neighbours. France opened its first resident embassy in
+Georgetown in September 2025. The full verified fact base, sources, and a
+Category 6 sub-pass on Guyana's pre-oil collapse and two-generation
+emigration story are held in
+`docs/research/KC-GUIANA-SHIELD-DIASPORIC-ECONOMY-001.md`.
+
+**Why it's held open rather than locked:** the entry rests on several facts
+that are genuinely unresolved in real time — the ICJ merits ruling on the
+1899 border award is not due until 2027–2028; the post-Maduro Venezuelan
+transition under Delcy Rodríguez (installed after the 3 January 2026 US
+capture of Maduro) has an unknown endpoint and directly determines whether
+Essequibo annexation risk rises or falls; Essequibo tension is a moving
+snapshot; and whether Guyana's Natural Resource Fund resists elite capture
+is, in the IMF's own words, undecided (the 2024 CPI decline to 92/180 with
+Transparency International citing "state capture by elites" points the
+wrong way). Locking now would date the entry within months.
+
+**Corrections already folded in (28 Aug 2026):** the submitted draft's
+"TotalEnergies alone... $1.5 billion" for Suriname's GranMorgu was wrong —
+it is a ~$10.5bn project with APA Corporation as a 40% co-partner, FID
+October 2024. The corruption ranking "87th of 180" was the 2023 CPI, not
+current. "2025 growth 15.2%" was a superseded forecast (outturn ~19%+).
+
+**Now member-facing (28 Aug 2026):** this is the first published entry on
+the new Active Investigations surface at route `/investigations`
+(`src/components/investigations/`), the build-out of the "active
+investigation" content shape that WW-RESEARCH-VESSEL-PRINCIPLE.md had
+flagged as undesigned. The app entry is the distilled public face; this
+file and the KC working file remain the full record. When this thread
+closes, move it to a Knowledge Commons entry or programme course material
+and retire the `/investigations` entry — leave the trail here.
+
+**What would move this forward:** (1) the Windrush-generation
+Guyanese-British testimony angle — scoped in the KC entry, not gathered;
+needs a Judith/CJ decision on Roots-podcast scope and ethical sourcing —
+this is the piece that makes the entry WW-original rather than a
+current-affairs summary; (2) a decision on whether "the Worth Principle /
+port-hierarchy thesis" cross-linked from the entry should actually be
+written up in `ww-worth-principle.md`, where it does not currently exist;
+(3) periodic revisit as the ICJ ruling, the Venezuelan transition, and the
+CARICOM integration-vs-fracture question resolve.
+
+## Africa–Caribbean economic realignment cluster — opened 9 Sept 2026, active
 
 **The subject, verified:** three connected moves in an Africa–Caribbean
 economic realignment, all drafted as DRAFT KC entries in
