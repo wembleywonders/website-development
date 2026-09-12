@@ -117,19 +117,23 @@ edits — the backup branch is the current one). Recover any file with
      consumers anywhere, inside or outside the blob.
    - `src/community/rovs/…` — `AtelierROV.tsx` **landed** (presentational,
      revenueModels only). silk-stilettos `RosemaryWeaverROV.tsx` +
-     `useRosemaryWeaverTracking.ts` (2 files) **NOT landed — genuinely
-     coupled, not just unwired.** `useRosemaryWeaverTracking.ts` calls
-     `addEntry()` with `entryType: 'coverage-touch'` and
-     `coverageCategory`/`coverageStation` fields — this is the same
-     "coverage tracking" journalStore.ts extension deliberately excluded
-     from the TNB-2.4 DevelopmentEvidence recovery (a separate, unapproved
-     feature bundled into the same blob commit). These two files will not
-     type-check against current master's `JournalEntry`/`EntryType` as-is.
-     **Needs a decision:** bring coverage-tracking in too (separate scope
-     question), rewrite the hook to use an existing entryType instead
-     (loses the craft/pricing coverage categorisation this was built for),
-     or leave this pair on the backup branch until coverage-tracking is
-     separately approved.
+     `useRosemaryWeaverTracking.ts` — genuinely coupled, not just unwired:
+     `useRosemaryWeaverTracking.ts` calls `addEntry()` with
+     `entryType: 'coverage-touch'` and `coverageCategory`/`coverageStation`
+     fields, the same "coverage tracking" journalStore.ts extension
+     deliberately excluded from the TNB-2.4 DevelopmentEvidence recovery.
+     **CJ's call: bring coverage-tracking in too.** Landed same session
+     (`feat/blob-category-2-new-work-dirs`) — `EntryType` gains
+     `'coverage-touch'`; new `CoverageCategory`
+     (`'craft'|'pricing'|'ip'|'technical'|'showcase'`) and
+     `CoverageSummary` types; `JournalEntry` gains
+     `coverageCategory`/`coverageStation`; `getCoverageSummary()` +
+     `useCoverageSummary` hook; `submitRepairEvidence` now also logs a
+     `'technical'` coverage touch for the Workshop suite. Soft-nudge only,
+     never gates anything. Both RosemaryWeaverROV files now landed too.
+     Scoped tsc unchanged at 280 errors throughout.
+
+   **All 12 files in this category now landed.**
 
 3. **Claude Code's Phase-1 (this session) KC work — different provenance,
    should land as its own commit, NOT folded into Sept-8 consolidation:**
