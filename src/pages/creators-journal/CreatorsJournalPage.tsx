@@ -448,6 +448,9 @@ const STEMgeneersPortfolioSection: React.FC = () => {
           <Link to="/programmes/stemgeneers/sandbox" className="sps-sandbox-link">
             Open STEMgeneers Sandbox →
           </Link>
+          <Link to="/programmes/stemgeneers/prototype-lab" className="sps-sandbox-link">
+            Log a Repair in the Prototype Lab →
+          </Link>
         </div>
 
         {certCheck && (
