@@ -403,6 +403,38 @@ Still unresolved from prior sessions, unaffected by tonight:
   authorise drafting the syllabi fresh from `tutorials.{pageturners,raydyo}.ts`
   + curator content.
 
+**Claude Code update (10 Sep 2026 — brief 3, STEMgeneers Applied Maths & Physics):**
+- Module narrative drafted:
+  `docs/accreditation/WW-SPEC-STEMGENEERS-APPLIED-MATHS-PHYSICS-MODULE-001.md`
+  (Explorer spine: Ishango [contested, in the copy] → Euclid → Archimedes →
+  Al-Khwarizmi → Newton/Leibniz; Builder pair: Ifá ✕ Katherine Johnson,
+  verification-principle framing). Branch `feat/stemgeneers-applied-maths-module`.
+- Partial scaffold compression done into
+  `accreditation/programmes/stemgeneers/{unit-mapping,assessment-criteria,evidence-requirements}.md`
+  (was a stub): **only the `STEM-APM` unit is populated**; the rest of the
+  programme is flagged "pending rework".
+- **Open governance questions (interpretation calls made to keep moving after
+  CJ said "continue" — NOT decided, equal weight to any other open item):**
+  1. The whole STEMgeneers unit structure. CJ chose
+     `accreditation-full/programmes/stemgineers/` as the base — but it is a
+     Dec-2025 generic OCN digital-skills doc (4 badges: Digital Literacy
+     Explorer / Maker Engineer / AI Explorer / Eco Innovator) that conflicts
+     with the **live** page content (`curriculumData.ts`, a
+     Black-excellence-in-STEM + 5Cs sandbox) **and** CJ's own Sept-2026
+     vision (Hardware Lab / 3D Design Lab / Materials Science / Nutrition
+     Science). Three different STEMgeneers conceptions; none reconciled.
+  2. Applied Maths & Physics as its own unit (`STEM-APM`, as drafted) vs.
+     folded into a foundations/making split.
+  3. **Digital Support Technician vs ST0457 Engineering Technician** as the
+     apprenticeship target — `unit-mapping.md` is written to ST0457 as the
+     stated intent (per this session's tracker entry), but the base maps to
+     Digital Support Technician and nobody has confirmed the switch.
+  4. RQF level of the maths content (L2 assumed; proof + calculus intro reach
+     toward the L2/L3 boundary).
+- **Referenced but absent from the repo:** the Ifá cast-to-hex exercise spec
+  (chat-memory only), and a "Computing & Programming Fundamentals" module (the
+  Al-Khwarizmi topic bridges to it). Both flagged in the scaffold.
+
 ## 🔴 Master build order (2026-08-28) — Phase 0.1 pre-build audit contradicts the plan's premises
 
 `WW-MASTER-BUILD-ORDER-2026-08-28-CREATOR-JOURNEY-FOUNDATIONS` locks four
