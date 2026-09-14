@@ -64,6 +64,38 @@ Pageturners both honestly rather than only one.
   scholarship, not STEM content — see the outstanding-tasks tracker for that correction's
   history (not independently re-traced for this file).
 
+### Felix Dexter (26 July 1961 – 18 October 2013)
+
+Opens a comedy & characterisation craft thread — a second, distinct discipline alongside
+Fasséké's epic-composition line, per `WW-SPEC-PAGETURNERS-COMEDY-CRAFT-MODULE-001.md`.
+Full four-tier content now exists at `docs/curator-content/pageturners/felix-dexter-*`
+(Explorer/Builder/Innovator/Leader, 4 combined lesson-and-workbook files, added per the
+§2A modular format).
+
+- **Direct credential:** born St Kitts, moved to England at seven; trained as a barrister
+  before moving into comedy. Solo character-act performer on *The Real McCoy* (BBC Two,
+  1991–96); writer-performer on *Down the Line* (BBC Radio 4); also wrote/performed on
+  *The Fast Show*, *Citizen Khan*, *Knowing Me Knowing You with Alan Partridge*, and *Have
+  I Got News for You*; wrote his own sitcom pilot, *Douglas* (1996).
+- Corroborated across Wikipedia, Chortle, British Comedy Guide, and the Felix Dexter
+  Foundation — core biography and credits agree.
+- **Conduct caveats:** none found.
+- **Sign-off correction (checked directly against the live Fasséké content before this
+  entry was added):** the originating spec for this addition claimed a "Keeper + Judith"
+  sign-off chain "matching Pageturners' existing pattern," citing a "mythology-research-
+  to-fiction" precedent. Neither claim held up: "Keeper" is Esi's own title (Heritage
+  Preservation & Cultural Memory, host ROV for Auntie Anansi's Kitchen and Roots), not a
+  generic Pageturners role; the cited precedent does not exist anywhere in this repo; and
+  all seven real Fasséké files were grepped directly for any sign-off/ROV/Keeper/Judith
+  language — none found. The real, live pattern is pure self-assessment (a completed
+  checklist per tier **is** the tier submission). Dexter's content follows that real
+  pattern, not the spec's unverified claim.
+- **Provenance note:** researched and drafted per
+  `WW-SPEC-PAGETURNERS-COMEDY-CRAFT-MODULE-001.md`; `accreditation/programmes/pageturners/`
+  does not exist in this repo as of this addition (confirmed directly, not assumed) — this
+  module has no RQF unit-mapping/assessment-criteria/evidence-requirements scaffold yet,
+  same open gap the spec itself flagged.
+
 ---
 
 ## Kaywana's Court
