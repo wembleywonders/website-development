@@ -389,3 +389,151 @@
   .kc-btn--primary:hover { transform: none !important; }
   .kc-fade-in            { animation: none !important; }
 }
+
+/* ── GLOBE MAP (globe mode) ──────────────────────────── */
+.kc-map {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.kc-globe-svg {
+  width: 100%;
+  height: auto;
+  background: var(--kc-surface);
+  border: 1px solid var(--kc-border);
+  border-radius: var(--kc-radius);
+}
+
+.kc-globe-country {
+  stroke: var(--kc-border);
+  stroke-width: 0.5;
+  transition: fill-opacity 0.2s ease;
+}
+
+.kc-globe-country--data {
+  cursor: pointer;
+}
+
+.kc-globe-country--data:hover {
+  stroke: var(--kc-gold);
+  stroke-width: 1.2;
+}
+
+.kc-globe-pin {
+  stroke: var(--kc-bg);
+  stroke-width: 1;
+}
+
+.kc-globe-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  background: var(--kc-surface);
+  border: 1px solid var(--kc-border);
+  border-radius: var(--kc-radius-sm);
+  font-family: var(--kc-font-ui);
+  font-size: 0.8rem;
+  color: var(--kc-text-2);
+}
+
+.kc-globe-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.kc-globe-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.kc-filter-label {
+  color: var(--kc-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.7rem;
+}
+
+.kc-map-footnote {
+  color: var(--kc-muted);
+  font-family: var(--kc-font-ui);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.kc-marker-detail {
+  background: var(--kc-surface);
+  border: 1px solid var(--kc-border);
+  border-radius: var(--kc-radius);
+  padding: 1.5rem;
+}
+
+.kc-back-btn {
+  background: none;
+  border: none;
+  color: var(--kc-gold);
+  font-family: var(--kc-font-ui);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.kc-back-btn:hover {
+  text-decoration: underline;
+}
+
+.kc-marker-detail-header {
+  border-left: 3px solid var(--marker-colour, var(--kc-gold));
+  padding-left: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.kc-marker-type-badge {
+  display: inline-block;
+  color: var(--marker-colour, var(--kc-gold));
+  font-family: var(--kc-font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.kc-marker-detail-name {
+  font-family: var(--kc-font-disp);
+  font-size: 1.5rem;
+  color: var(--kc-text);
+}
+
+.kc-marker-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.kc-marker-section {
+  border-top: 1px solid var(--kc-border-soft);
+  padding-top: 0.85rem;
+}
+
+.kc-marker-section-label {
+  display: block;
+  font-family: var(--kc-font-mono);
+  font-size: 0.72rem;
+  color: var(--kc-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3rem;
+}
+
+.kc-marker-section-text {
+  color: var(--kc-text-2);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
