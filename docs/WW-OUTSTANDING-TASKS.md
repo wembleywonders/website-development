@@ -1767,16 +1767,29 @@ constitutional rule means they need a directors' review before publication).
 Added now with the KC-side condition still open, per the reporting instruction
 (the item exists in the tracker the moment either half lands).
 
-**Covers:**
+**Correction, 14 Sept 2026 (Claude Code):** the "V71"/"V73" field references
+below were written as if they name confirmed, existing schema — they don't.
+Checked directly, same as the "KC Diaspora-Trade entries" section above
+already found: full-repo grep for `kc_live_entries` returns zero hits, and
+there are no `.sql` migration files anywhere in this repo. "V71"/"V73" here
+describe the *external, chat-memory-only* spec's version labels for
+`kc_live_entries.cross_links`, `.parent_entry_id`, and the `locked` flag —
+not anything actually migrated into a live database. Read the bullets below
+as the intended design once that schema exists, not as a status report on
+work already done. This is the same schema gap item 1 above already flagged
+correctly; this section had drifted from that finding rather than citing it.
+
+**Covers (against the not-yet-built schema described above):**
 - `cross_links` wiring from Roots deposits to relevant globe entries
-  (`kc_live_entries.cross_links UUID[]`, V71 — PEER / THEMATIC relations);
+  (`kc_live_entries.cross_links UUID[]`, spec version label V71 — PEER /
+  THEMATIC relations);
 - the demand-signal mechanism feeding the globe's sub-national creation
-  criterion from clustered Roots member research activity — V73 gives the
-  *structure* (`kc_live_entries.parent_entry_id`, the `locked` seismic-gap
-  flag) but not the demand-signal rule itself (what volume of clustered
-  activity proposes a new sub-national entry); until that is mechanised, the
-  Roots capstone (ROOTS-3 criterion 3.3) hands the flag to Documenter /
-  Archivist review by hand;
+  criterion from clustered Roots member research activity — spec version V73
+  gives the *structure* (`kc_live_entries.parent_entry_id`, the `locked`
+  seismic-gap flag) but not the demand-signal rule itself (what volume of
+  clustered activity proposes a new sub-national entry); until that is
+  mechanised, the Roots capstone (ROOTS-3 criterion 3.3) hands the flag to
+  Documenter / Archivist review by hand;
 - a Rayd-yo intake point pulling from both Roots deposits and globe entries as
   raw material for produced broadcast content.
 
