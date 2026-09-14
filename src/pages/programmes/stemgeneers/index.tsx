@@ -62,6 +62,9 @@ function CurriculumHero() {
         <a href="#sgc-sessions" className="cta-secondary">
           Explore the curriculum
         </a>
+        <a href="/programmes/stemgeneers/modules/mount-stupid" className="cta-secondary">
+          Try: Check a Wild Claim (Applied Maths &amp; Physics)
+        </a>
       </div>
     </div>
   );

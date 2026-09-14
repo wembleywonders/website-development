@@ -52,6 +52,18 @@ const CHALLENGES: Challenge[] = [
     skills: ['Logic', 'Problem solving', 'Electronics basics']
   },
   {
+    id: 'ms',
+    programme: 'STEMgeneers',
+    emoji: '🪞',
+    color: '#cfa235',
+    title: 'Check a Wild Claim',
+    description: 'An actor once claimed a mirror could double a candle\'s light. Test it yourself.',
+    duration: '10 min',
+    task: 'Drag the sliders and see where a confident-sounding claim actually breaks.',
+    sandboxPath: '/programmes/bright-sparks/mount-stupid',
+    skills: ['Verification', 'Critical thinking', 'Applied maths']
+  },
+  {
     id: 'pt',
     programme: 'PageTurners',
     emoji: '📖',

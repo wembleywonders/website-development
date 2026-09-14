@@ -89,6 +89,7 @@ import PageturnersSandbox from './pages/programmes/pageturners/PageturnersSandbo
 import STEMgeneersSandbox from './pages/programmes/stemgeneers/sandbox'
 import STEMgeneersSession from './pages/programmes/stemgeneers/SessionSandbox'
 import PrototypeLab from './pages/programmes/stemgeneers/PrototypeLab'
+import MountStupidModule from './pages/programmes/stemgeneers/modules/mount-stupid/MountStupidModule'
 import TECHreneursSandbox from './pages/programmes/techreneurs/TECHreneursSandbox'
 import GTechCastersSandbox from './pages/programmes/gtechcasters/GTechCastersSandbox'
 import TrubbleNBassSandbox from './pages/programmes/trubble-n-bass/TrubbleNBassSandbox'
@@ -364,6 +365,8 @@ function App() {
                 <Route path="/programmes/stemgeneers/sandbox"            element={<STEMgeneersSandbox />} />
                 <Route path="/programmes/stemgeneers/prototype-lab"      element={<PrototypeLab />} />
                 <Route path="/programmes/stemgeneers/session"            element={<STEMgeneersSession />} />
+                <Route path="/programmes/stemgeneers/modules/mount-stupid" element={<MountStupidModule defaultTrack="stem" />} />
+                <Route path="/programmes/bright-sparks/mount-stupid"     element={<MountStupidModule defaultTrack="bright" />} />
                 <Route path="/programmes/techreneurs/sandbox"            element={<TECHreneursSandbox />} />
                 <Route path="/programmes/gtechcasters/sandbox"           element={<GTechCastersSandbox />} />
                 <Route path="/programmes/trubble-n-bass/sandbox"         element={<TrubbleNBassSandbox />} />
@@ -379,6 +382,8 @@ function App() {
                 <Route path="/pathways/stemgeneers/sandbox"             element={<STEMgeneersSandbox />} />
                 <Route path="/pathways/stemgeneers/prototype-lab"       element={<PrototypeLab />} />
                 <Route path="/pathways/stemgeneers/session"             element={<STEMgeneersSession />} />
+                <Route path="/pathways/stemgeneers/modules/mount-stupid" element={<MountStupidModule defaultTrack="stem" />} />
+                <Route path="/pathways/bright-sparks/mount-stupid"      element={<MountStupidModule defaultTrack="bright" />} />
                 <Route path="/pathways/techreneurs/sandbox"             element={<TECHreneursSandbox />} />
                 <Route path="/pathways/gtech-casters/sandbox"          element={<GTechCastersSandbox />} />
                 <Route path="/pathways/trubble-n-bass/sandbox"         element={<TrubbleNBassSandbox />} />
