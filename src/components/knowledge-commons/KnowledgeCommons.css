@@ -2103,6 +2103,69 @@
   .kc-plaque-seconds { justify-content: center; }
 }
 
+/* Globe map (globe mode) — kc-marker-detail-*, kc-back-btn, kc-marker-
+   section*, kc-filter-label, and kc-map-footnote already exist above
+   (built for InstitutionalMap); only the map-specific rules are new here. */
+.kc-map {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.kc-globe-svg {
+  width: 100%;
+  height: auto;
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius);
+}
+
+.kc-globe-country {
+  stroke: var(--hp-border);
+  stroke-width: 0.5;
+  transition: fill-opacity 0.2s ease;
+}
+
+.kc-globe-country--data {
+  cursor: pointer;
+}
+
+.kc-globe-country--data:hover {
+  stroke: var(--hp-gold);
+  stroke-width: 1.2;
+}
+
+.kc-globe-pin {
+  stroke: var(--hp-bg);
+  stroke-width: 1;
+}
+
+.kc-globe-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius-sm);
+  font-size: 0.8rem;
+  color: var(--hp-muted);
+}
+
+.kc-globe-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.kc-globe-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .kc-access-dot,

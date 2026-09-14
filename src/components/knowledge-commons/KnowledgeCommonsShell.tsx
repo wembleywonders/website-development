@@ -5,24 +5,42 @@ import InstitutionalMap from './InstitutionalMap';
 import EraTimeline from './EraTimeline';
 import QuestionGateway from './QuestionGateway';
 import PlaqueGenerator from './PlaqueGenerator';
+import GlobeMap from './GlobeMap';
+import worldTopology from '../../pages/heritage/world-110m.json';
+import type { Topology } from 'topojson-specification';
+import { kcTainoAncestryEntry } from '../../pages/heritage/kcTainoAncestryEntry.seed';
 import './KnowledgeCommons.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // KNOWLEDGE COMMONS SHELL
 // Navigation and browsing logic for the counter-archive.
 //
-// Five browsing modes, each a different entry into the same corpus:
+// Six browsing modes, each a different entry into the same corpus:
 //   thread   — narrative threads connecting pioneers across time
 //   place    — institutional map of post-colonial London
 //   era      — chronological sweep 1807–present
 //   question — curated entry questions for non-historians
 //   plaque   — community contribution: nominate missing plaques
+//   globe    — thematic overlay map (ethnographic concentration + citation
+//              pins); currently one seed entry (Taino ancestry), status
+//              DRAFT — see the footnote rendered in this mode
 //
 // URL state: ?mode=thread&id=same-rule-different-arenas
 // This means every view is linkable and shareable.
+//
+// GLOBE MODE, added 14 Sept 2026: ported into this live Shell (rather than
+// switching the live /heritage route to the pages/heritage/ fork that
+// GlobeMap was originally wired into) so this feature ships without
+// touching anything currently serving real traffic. Seed data
+// (kcTainoAncestryEntry, world-110m.json) is imported from
+// src/pages/heritage/ rather than duplicated — see GlobeMap.tsx's own
+// header for why the component itself couldn't be shared as-is (the two
+// Shell trees use different CSS token systems). There is still no live
+// backend for this layer (no kc_live_entries table, no migrations — see
+// WW-OUTSTANDING-TASKS.md) — this renders the one local seed entry only.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export type BrowseMode = 'thread' | 'place' | 'era' | 'question' | 'plaque';
+export type BrowseMode = 'thread' | 'place' | 'era' | 'question' | 'plaque' | 'globe';
 
 export interface CommonsContext {
   mode: BrowseMode;
@@ -37,6 +55,7 @@ const NAV_ITEMS: { id: BrowseMode; label: string; icon: string; description: str
   { id: 'era',      label: 'By Era',      icon: '│', description: 'Chronological sweep from 1807 to now' },
   { id: 'question', label: 'By Question', icon: '?', description: 'Start with a question, arrive at history' },
   { id: 'plaque',   label: 'Contribute',  icon: '+', description: 'Nominate a missing plaque' },
+  { id: 'globe',    label: 'By Region',   icon: '⊙', description: 'Thematic overlay map — one draft entry so far' },
 ];
 
 const ARCHIVE_STATS = [
@@ -244,6 +263,19 @@ const KnowledgeCommonsShell: React.FC = () => {
                   </p>
                 </div>
               )}
+              {mode === 'globe' && (
+                <div className="kc-intro-panel">
+                  <span className="kc-intro-label">Browsing by region</span>
+                  <p className="kc-intro-text">
+                    A thematic overlay map — shading shows ethnographic
+                    concentration data, dots mark citation anchors. One seed
+                    entry so far (Taino ancestry in the Caribbean diaspora),
+                    status <strong>DRAFT</strong> — not yet reviewed for
+                    publication. There is no live backend behind this yet;
+                    what you see is a local seed, not a content pipeline.
+                  </p>
+                </div>
+              )}
             </div>
           )}
 
@@ -253,6 +285,14 @@ const KnowledgeCommonsShell: React.FC = () => {
           {mode === 'era'      && <EraTimeline      ctx={ctx} />}
           {mode === 'question' && <QuestionGateway  ctx={ctx} />}
           {mode === 'plaque'   && <PlaqueGenerator  ctx={ctx} />}
+          {mode === 'globe'    && (
+            <GlobeMap
+              ctx={ctx}
+              concentration={kcTainoAncestryEntry.ethnographic_concentration}
+              pins={kcTainoAncestryEntry.geo_pins}
+              topology={worldTopology as unknown as Topology}
+            />
+          )}
 
         </div>
       </main>
