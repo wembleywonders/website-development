@@ -1,0 +1,321 @@
+/* TrainingFrameworksPage.css
+   Dark theme matching platform palette.
+   #0f172a bg, #f0e6d0 primary, #d4a853 gold, #94a3b8 muted, #cbd5e1 body
+
+   Deliberate distinction: "embedded" frameworks use the gold accent used
+   elsewhere on the platform for confirmed/real mechanisms. The pending
+   framework uses an amber/warning accent throughout — border, tag, and a
+   standalone caveat callout — so it cannot be mistaken for the same kind
+   of content at a glance.
+*/
+
+.tf-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+  font-family: Georgia, serif;
+}
+
+/* ---- Intro ---------------------------------------------------------------- */
+
+.tf-intro {
+  margin-bottom: 3rem;
+  max-width: 720px;
+}
+
+.tf-audience {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.tf-intro h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #f0e6d0;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.tf-outcomes {
+  color: #cbd5e1;
+  line-height: 1.7;
+  padding-left: 1.25rem;
+}
+
+.tf-outcomes li {
+  margin-bottom: 0.5rem;
+}
+
+/* ---- Sections --------------------------------------------------------------- */
+
+.tf-section {
+  margin-bottom: 3.5rem;
+}
+
+.tf-section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #f0e6d0;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.tf-section-intro {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 700px;
+  margin-bottom: 1.75rem;
+}
+
+.tf-section--pending {
+  border-top: 1px solid rgba(217, 119, 6, 0.35);
+  padding-top: 2.5rem;
+}
+
+.tf-card-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* ---- Framework card ----------------------------------------------------------- */
+
+.tf-card {
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  background: rgba(148, 163, 184, 0.04);
+}
+
+.tf-card--embedded {
+  border: 1px solid rgba(212, 168, 83, 0.25);
+}
+
+.tf-card--pending {
+  border: 1.5px solid rgba(217, 119, 6, 0.45);
+  background: rgba(217, 119, 6, 0.05);
+}
+
+.tf-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.tf-card-order {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  background: rgba(212, 168, 83, 0.15);
+  color: #d4a853;
+}
+
+.tf-card--pending .tf-card-order {
+  background: rgba(217, 119, 6, 0.18);
+  color: #f0a838;
+}
+
+.tf-card-title {
+  color: #f0e6d0;
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem;
+  line-height: 1.35;
+}
+
+.tf-card-originator {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.tf-status-tag {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.65rem;
+  border-radius: 2rem;
+  white-space: nowrap;
+}
+
+.tf-status-tag--embedded {
+  background: rgba(212, 168, 83, 0.15);
+  color: #d4a853;
+  border: 1px solid rgba(212, 168, 83, 0.35);
+}
+
+.tf-status-tag--pending {
+  background: rgba(217, 119, 6, 0.18);
+  color: #f0a838;
+  border: 1px solid rgba(217, 119, 6, 0.5);
+}
+
+/* ---- Caveat callout ----------------------------------------------------------- */
+
+.tf-caveat {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  background: rgba(217, 119, 6, 0.12);
+  border: 1.5px solid rgba(217, 119, 6, 0.5);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.tf-caveat-icon {
+  color: #f0a838;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.tf-caveat-label {
+  color: #f0a838;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.35rem;
+}
+
+.tf-caveat-body {
+  color: #f5d9b0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ---- Card body (definition list) ----------------------------------------------- */
+
+.tf-card-body dt {
+  color: #d4a853;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+
+.tf-card--pending .tf-card-body dt {
+  color: #f0a838;
+}
+
+.tf-card-body dd {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0 0 1.1rem;
+}
+
+.tf-card-body dd:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Pending decisions ----------------------------------------------------------- */
+
+.tf-pending-decisions {
+  margin-bottom: 3.5rem;
+  background: rgba(217, 119, 6, 0.08);
+  border: 1.5px solid rgba(217, 119, 6, 0.4);
+  border-radius: 10px;
+  padding: 1.75rem;
+}
+
+.tf-pending-decisions-note {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.tf-pending-decisions ul {
+  color: #f5d9b0;
+  line-height: 1.75;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+/* ---- Reflection prompts ----------------------------------------------------------- */
+
+.tf-prompt-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.tf-prompt {
+  border-left: 3px solid rgba(212, 168, 83, 0.4);
+  padding-left: 1rem;
+}
+
+.tf-prompt-framework {
+  display: block;
+  color: #d4a853;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3rem;
+}
+
+.tf-prompt p {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ---- Glossary ----------------------------------------------------------- */
+
+.tf-glossary dt {
+  color: #f0e6d0;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.tf-glossary dt:first-child {
+  margin-top: 0;
+}
+
+.tf-glossary dd {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  margin: 0.25rem 0 0;
+}
+
+/* ---- See also ----------------------------------------------------------- */
+
+.tf-see-also ul {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  padding-left: 1.25rem;
+}
+
+/* ---- Responsive ----------------------------------------------------------- */
+
+@media (min-width: 720px) {
+  .tf-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .tf-card-header {
+    flex-wrap: wrap;
+  }
+
+  .tf-status-tag {
+    margin-left: 0;
+  }
+}

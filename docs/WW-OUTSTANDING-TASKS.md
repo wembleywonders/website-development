@@ -16,6 +16,55 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🟡 WW-TRAINING-FRAMEWORKS-001 wired into the repo — 16 Sep 2026 (Claude Code)
+
+The chat-side tracker's 15 Sep entry said this was "wired for Claude Code,"
+integration point unconfirmed (flagged ❓ against `ROV_REGISTRY.ts`/
+`MentorDashboard.tsx`/`accreditation/`). Checked this repo directly, per
+this file's standing rule: neither `TrainingFrameworksData.ts` nor any
+`WW-SPEC-TRAINING-FRAMEWORKS-WIRING-001` spec existed anywhere in the repo
+or its git history — none of the three flagged integration points had it
+either. The "wired for Claude Code" framing had not actually reached this
+repo. Built fresh this session, with CJ supplying the real v1/v2 content
+directly (author, since the file didn't exist to read back).
+
+**Built:**
+- `src/data/TrainingFrameworksData.ts` — `FRAMEWORKS` (Bronfenbrenner,
+  PVEST, SROI, Bushell assessment-bias critique, Trauma-Informed
+  Co-Regulation), `PENDING_DECISIONS`, `REFLECTION_PROMPTS`, `GLOSSARY`,
+  `SEE_ALSO`. Each framework carries `status: "embedded" |
+  "framing-only-pending-consultancy"`; only the co-regulation entry has
+  the latter, plus a `caveat` field.
+- `src/pages/TrainingFrameworksPage.tsx` + `.css`, routed at
+  `/training/frameworks` (`App.tsx`). Embedded (1-4) and framing-only (5)
+  frameworks render in visually separate sections (gold vs. amber accent
+  throughout); the caveat renders as a standalone warning callout, not a
+  tooltip/footnote; a dedicated pending-decisions box surfaces
+  `PENDING_DECISIONS[0]` (the paid trauma-informed-care consultancy,
+  still CJ/Judith's call, not touched here).
+
+**Verified:** scoped full-project `npx tsc --noEmit -p tsconfig.json` —
+306 pre-existing errors, none touching either new file or the `App.tsx`
+route addition.
+
+**Not verified, flagged rather than claimed:** tried to confirm actual
+render via the browser-automation skill (`npm run dev` + headless
+check). The React root never mounted — zero children, zero console/page
+errors — at `/training/frameworks`. Before treating that as a bug in
+this work, checked whether the app's own `/` root behaves the same way
+in this harness: it does, identically (same empty root, same absence of
+errors). That points to a pre-existing environment limitation in this
+sandbox's headless-browser setup, not a defect in the new page — but it
+means the actual rendered UI (the embedded/pending visual split, the
+caveat callout) has not been eyeballed by anyone yet. Marked 🟡 rather
+than 🟢 for that reason, plus because the pending consultancy decision
+is — correctly — still open by design.
+
+**No access control on this route**, same as every other page in this
+app currently — noted in the file's own header comment as an
+infrastructure gap, not assumed to be a decision that staff-only content
+should be public.
+
 ## 🟢 Skunkworks/Crew Log frontend↔backend alignment — verified 12 Sep 2026 (Claude Code)
 
 WW-SPEC-DEVIATION-TOUCHPOINT-001's frontend build (this repo's branch

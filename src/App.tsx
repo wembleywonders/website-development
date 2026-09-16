@@ -57,6 +57,7 @@ import PanelPositionPage from './pages/panel/PanelPositionPage'
 // Platform identity pages
 import ManifestoPage from './pages/ManifestoPage'
 import GovernancePage from './pages/GovernancePage'
+import TrainingFrameworksPage from './pages/TrainingFrameworksPage'
 import HowItWorksPage from './pages/HowItWorksPage'
 import EditorialStandardPage from './pages/EditorialStandardPage'
 
@@ -291,6 +292,7 @@ function App() {
                 {/* PLATFORM IDENTITY */}
                 <Route path="/manifesto"          element={<ManifestoPage />} />
                 <Route path="/governance"         element={<GovernancePage />} />
+                <Route path="/training/frameworks" element={<TrainingFrameworksPage />} />
                 <Route path="/how-it-works"       element={<HowItWorksPage />} />
                 <Route path="/editorial-standard" element={<EditorialStandardPage />} />
                 <Route path="/the-manifesto" element={<Navigate to="/manifesto"    replace />} />
