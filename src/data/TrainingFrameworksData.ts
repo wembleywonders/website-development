@@ -47,7 +47,7 @@ export interface ReflectionPrompt {
 export const TRAINING_MODULE_ID = "WW-TRAINING-FRAMEWORKS-001";
 export const TRAINING_MODULE_TITLE = "Why We Frame It This Way";
 export const TRAINING_MODULE_SUBTITLE =
-  "The four frameworks behind Wembley Wonders' internal practice";
+  "The frameworks behind Wembley Wonders' internal practice";
 export const TRAINING_MODULE_AUDIENCE =
   "Directors, staff, curators, and every ROV custodian (Narrator, Maker, Merchant, Keeper, Weaver, Spark, Guardian, Elder) and ROV trainee.";
 
