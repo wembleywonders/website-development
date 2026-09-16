@@ -11,6 +11,12 @@ against presenting an inference as supplied content. This is general-purpose Kno
 Commons reference material, placement and cross-linking only — no lesson content has
 been built from it.
 
+**Update (17 Sep 2026, Claude Code):** the Auntie Anansi's Kitchen tag speculated about
+above has now actually been supplied, not inferred — see
+`docs/research/KC-AUNTIE-ANANSIS-SPOON-LICKIN-KITCHEN-REFERENCE.md`, whose Cookie
+(technique/safety) segment draws directly on the 16-of-20-confirmed methods below. This
+file remains the canonical per-method rating; that file summarises it for on-camera use.
+
 Source: a 20-method video from a self-described 31-year meat-counter professional,
 arguing home cooks can out-cook a $148 steakhouse steak on a cheaper cut using technique
 rather than premium beef. Each method below is rated against real food science, not
