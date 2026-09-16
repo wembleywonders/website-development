@@ -1949,6 +1949,22 @@ live Roots codebase is Judith Fontanelle's *body-sovereignty / hair-science*
 strand — how the two share one badge / host / tier ladder is unresolved and
 needs CJ.
 
+## 🔴 ROV naming collision — "FULLY RESOLVED" below is currently false against live code, 16 Sep 2026 (Claude Code)
+
+Found while auditing integration points for `WW-SPEC-TRAINING-FRAMEWORKS-WIRING-001` (unrelated task — this surfaced as collateral). The "FULLY RESOLVED (final state)" entry immediately below states `ROVsPage.tsx` was "rewritten to render the real 12 in their 3 clusters." **Checked the live file directly — that's not what it currently shows.**
+
+`src/pages/rovs/ROVsPage.tsx` (unrouted — not in `App.tsx`) is titled "The Children of Anansi," but its own subtitle reads *"**Nine** ROVs — Responsive Operational Voices"* and its `ROVS` array lists exactly: Maya, Narrator, Maker, Merchant, Keeper, Weaver, Spark, Guardian, Elder. That is **not** the canonical 12 (Anansewa/Kofi/Afua/Adaeze/Kumi, Kweku/Yaw/Esi/Ntikuma, Osei/Akua/Nyame — confirmed against `docs/research/WW-CANONICAL-ROSTER.md`, which is the designated single source of truth for this exact question per its own header). "Keeper" appears in both lists but as an unrelated coincidence — a cluster name in the canonical roster vs. an individual ROV in this one.
+
+**This is a fourth, undocumented ROV-naming system**, not three. This same 9-name vocabulary (Narrator/Maker/Merchant/Keeper/Guardian/Weaver/Spark/Elder + Maya) is independently and exactly defined in `src/utils/rovMapping.ts`'s `ROVName` type — a genuinely live, reachable file (imported by `DraggableMaya.tsx`, `KnowledgeCommonsShell.tsx`, `HelpResolver.ts`, `epistemologicalFramework.ts`), complete with `staff`/`ops` membership tiers and a `staffMode` description per role. `ROVsPage.tsx`'s array is a **separate hardcoded copy** of the same 9 names/roles, not imported from `rovMapping.ts` — so even within this fourth system, there are two disconnected copies of the same content, the same fragmentation pattern already seen elsewhere in this repo (Cyberstore, the frontend blob).
+
+So the actual count, as of this check, is **four** ROV-naming systems, not the two ("12 Children" + "ROVCapabilities.ts's 9 functional IDs") the entry below reconciles:
+1. 12 Children of Anansi — canonical, per `WW-CANONICAL-ROSTER.md`.
+2. `ROVRegistry.ts`'s `ROV_FAMILY` (Solomon/Neville/Maxine/Esther/Tariq/Aya) — legacy, mostly unreachable, per the correction further below in this same section.
+3. `ROVCapabilities.ts`'s 9 functional-capability IDs (marketing-coach/portfolio-builder/etc.) — already reconciled below as a deliberate, non-competing second layer.
+4. **`rovMapping.ts` / `ROVsPage.tsx`'s Narrator/Maker/Merchant/Keeper/Weaver/Spark/Guardian/Elder** — newly found this session, live and reachable (unlike #2), not accounted for anywhere in the reconciliation below.
+
+Not resolving this here — it's a real design decision (which system is actually canonical for staff-facing ROV roles, and what happens to the other three), same weight as the Ntikuma/G-Tech Casters conflict that produced `WW-CANONICAL-ROSTER.md` in the first place. Flagging per the standing rule rather than picking one. The "FULLY RESOLVED" heading immediately below is being left in place with this correction prepended, rather than rewritten, so the history of how the drift happened stays visible — same approach already used for the 21 Aug correction inside that entry.
+
 ## 🟢 ROV naming collision — FULLY RESOLVED (final state)
 
 Independently flagged 4+ sessions before being properly resolved 15 Aug
