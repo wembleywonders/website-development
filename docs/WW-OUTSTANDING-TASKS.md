@@ -16,6 +16,45 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🟢 WW-SPEC-KC-REGISTER-CROSSCHECK-001 — resolved, 16 Sep 2026 (Claude Code)
+
+Handoff (16 Sep 2026): is Pettigrew's "Register of British Slave Traders"
+(BBC Sep 2026, ~13,000 names, South Sea Company branding evidence) the
+same output as "The City of London and the Atlantic Slave Economy,
+1640–1807" (leaked ~280-name report; national database due Sep 2026), on
+which `kc-slavery-elites-archive.md`'s research was paused? Neither that
+spec nor `kc-slavery-elites-archive.md` existed anywhere in this repo
+before this session — both created fresh here (full detail and citations
+in `docs/research/WW-SPEC-KC-REGISTER-CROSSCHECK-001.md` and
+`docs/research/kc-slavery-elites-archive.md`).
+
+**Determination: same wider Pettigrew-led programme, three genuinely
+separate outputs**, not the two the question assumed:
+
+1. **Register of British Slave Traders** — AHRC-funded (~£1m), Pettigrew
+   (KCL, PI) + Radburn/Smith/Draper, started 2021, **publicly live since
+   14 Sep 2026** at britishslavetraders.org (confirmed via KCL's own
+   project page). Owns the South Sea Company evidence — the entry already
+   logged against this attribution is correct, no fix needed.
+2. **The leaked ~280-name report** — a separate £34,400 City of London
+   Corporation commission to the same person, dated 18 May 2026, scope
+   1640–1807. This is what the spec's "1640–1807" item actually was — not
+   a single "three-year study" that also produced the national database,
+   which was the original filing's error. Still only a leaked draft;
+   formal published version expected "later in 2026," no date yet.
+3. **A third report, found this session, tracked nowhere before now:**
+   a City Bridge Foundation (Bridge House Estates) commission, same
+   author, **already published** (foreword dated Nov 2025) — read
+   directly from the Foundation's own site.
+
+**Archive pause lifted:** the national database release the pause was
+waiting on has happened (14 Sep 2026). Substantive research itself
+wasn't resumed — that's explicitly a separate task — this only confirms
+the blocking condition is met. Two follow-ups logged as their own
+tracked items in the archive file: the Corporation's formal (vs. leaked)
+280-name report once published, and reading the newly-found Bridge House
+Estates report in full.
+
 ## 🟡 WW-SPEC-TAX-ADJUSTED-RAG-001 — Section 1 verification + tax-constant fix, 16 Sep 2026 (Claude Code)
 
 Handoff from CJ (raised during the 15 Sep Cyberstore consolidation review):
