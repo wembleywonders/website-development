@@ -15,7 +15,7 @@ export {
   default as MayaFinancialAdvisor,
   
   // Tax Rates & Constants
-  UK_TAX_RATES_2024_25,
+  UK_TAX_RATES_2026_27,
   
   // Programme Guides
   PROGRAMME_PRICING_GUIDES,

@@ -16,6 +16,65 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🟡 WW-SPEC-TAX-ADJUSTED-RAG-001 — Section 1 verification + tax-constant fix, 16 Sep 2026 (Claude Code)
+
+Handoff from CJ (raised during the 15 Sep Cyberstore consolidation review):
+compose the Creator Margin Banding tool's gross RAG bands with the
+Self-Employment Tax Estimator so a creator can see after-tax, not just
+gross, implied hourly rate. Spec required Section 1 verification before
+any composition code — three things checked, none were where the spec
+assumed:
+
+1. **`calculateSelfEmploymentTax` exists**, at
+   `src/maya/financial/MayaFinancialAdvisor.tsx:640` (exported via
+   `src/maya/financial/index.tsx`) — genuinely in this repo, not just
+   delivered separately as the spec worried. But **unrouted**: nothing
+   outside its own directory imports it, not in `App.tsx`.
+2. **RAG banding logic moved** since the 2 Sep session the spec was
+   written against: no longer at `revenueModels.ts`/`pricing.types.ts`
+   (archived to `archive/parked-pricing-2026-09/`), now at
+   `src/features/margin-banding/` (recovered 10 Sep, commit `f29cd515`,
+   "frontend consolidation blob" entry above). Also unrouted. Its wage
+   floors (`marginBandingConfig.ts` — £12.71 NLW, £14.80 Real Living
+   Wage London) are correctly dated and current — no issue there.
+3. **Tax rate constants were wrong, not just stale.** `UK_TAX_RATES_2024_25`
+   had two real correctness bugs found via web search against current
+   GOV.UK/HMRC-sourced guidance, both overstating a creator's tax burden:
+   Class 2 NI was charged as a mandatory flat £3.45/wk (Class 2 was
+   abolished as a mandatory charge from April 2024 — above the £7,105
+   Small Profits Threshold it's £0, "treated as paid"); Class 4 main rate
+   was coded at 9%, correct current rate is 6%. Example: £30,000 taxable
+   profit priced NI at £1,748.10 in the old code vs. the correct £1,045.80
+   — a £702 overstatement on that one figure alone. Income tax bands and
+   the postgrad student loan threshold were unaffected (genuinely frozen).
+   Student loan Plan 1/2/4 thresholds were also stale (now £26,900/
+   £29,385/£33,795). A duplicate, independently-stale minimum-wage lookup
+   inside the same constants object (`minimumWage['23+']: 11.44`, labelled
+   "April 2024") was also caught and fixed to £12.71, with a comment
+   pointing at `marginBandingConfig.ts` as the value to trust if the two
+   ever diverge again.
+
+**Fixed this session:** `UK_TAX_RATES_2024_25` → `UK_TAX_RATES_2026_27`,
+Class 2 removed from the NI calculation (was contributing a phantom
+charge), Class 4 rate corrected to 6%, student loan thresholds refreshed,
+minimum-wage lookup corrected, full source citations and an "ANNUAL REVIEW
+REQUIRED" note added matching `marginBandingConfig.ts`'s existing dating
+discipline. Verified: hand-checked £30,000/£10,000/£60,000 profit cases
+against the corrected formula (matches expected NI to the penny); scoped
+full-project `tsc --noEmit -p tsconfig.json` shows the same 306
+pre-existing baseline errors, none touching the changed files.
+
+**NOT done, correctly gated on a decision that isn't Claude Code's to
+make:** the actual gross/net RAG-band composition (Section 2 of the spec).
+Recommended Option B (flat-rate illustrative estimate, with a link out to
+the standalone estimator for Option A's personalised number) over Option A
+(ask for other self-employment income inline) — reasoning: both tools are
+currently unrouted, so a routing decision is needed either way; Option A
+would duplicate a field the standalone estimator already owns rather than
+sharing state with it. **Still needs CJ/Judith's explicit sign-off on A vs
+B before Section 2 is built** — per the spec's own Section 4, not to be
+inferred from silence.
+
 ## 🟡 WW-TRAINING-FRAMEWORKS-001 wired into the repo — 16 Sep 2026 (Claude Code)
 
 The chat-side tracker's 15 Sep entry said this was "wired for Claude Code,"

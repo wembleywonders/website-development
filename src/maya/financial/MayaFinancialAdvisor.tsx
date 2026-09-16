@@ -19,52 +19,93 @@
 import React, { useState, useMemo } from 'react';
 
 // ============================================
-// UK TAX RATES 2024/25
+// UK TAX RATES 2026/27
 // ============================================
+// Verified 2026-09-16 against GOV.UK / HMRC-sourced guidance (web search,
+// this repo has no live HMRC feed) as part of WW-SPEC-TAX-ADJUSTED-RAG-001
+// Section 1. Replaces the previous UK_TAX_RATES_2024_25 export, which had
+// two real correctness bugs, not just a stale label:
+//   - Class 2 NI was charged as a flat mandatory £3.45/wk whenever profit
+//     exceeded the personal allowance. Class 2 was abolished as a
+//     mandatory charge from April 2024 — see the Class 2 note below.
+//   - Class 4 NI main rate was coded at 9%; the correct current rate is 6%.
+// Both overstated a creator's tax burden (understated take-home), the
+// opposite direction from the gap this spec exists to close, but still
+// wrong. Income tax bands/rates and the postgrad student loan threshold
+// were unaffected — those figures are frozen and were already correct
+// despite the stale "2024/25" label.
+//
+// Sources: Wesleyan "Tax rates 2026/27"
+// (https://www.wesleyan.co.uk/financial-advice/tax-rates); Zmartly
+// "Self-Employed National Insurance in 2026/27 Explained"
+// (https://zmartly.co.uk/news-insights/self-employed-national-insurance-2026-27);
+// Cintra "Student Loan Repayment Thresholds for 2026/27"
+// (https://cintra.co.uk/blog/student-loan-repayments-26-27/).
+//
+// ANNUAL REVIEW REQUIRED, same discipline as
+// src/features/margin-banding/marginBandingConfig.ts: income tax bands are
+// frozen through 2031 but NI and student loan thresholds move most years.
+// Re-verify each April and note the change in docs/WW-OUTSTANDING-TASKS.md.
+//
+// NOT reverified in this pass (out of scope for the self-employment
+// composition this fix was for — flagged, not silently assumed current):
+// employerNI*/pension* (used only by calculateEmploymentCost, a hiring-cost
+// tool this spec didn't touch) and vatThreshold.
 
-export const UK_TAX_RATES_2024_25 = {
-  // Income Tax
+export const UK_TAX_RATES_2026_27 = {
+  // Income Tax — frozen since 2021/22, freeze extended to 2031
   personalAllowance: 12570,
   personalAllowanceTaperThreshold: 100000,
   basicRateLimit: 50270,
   higherRateLimit: 125140,
-  
+
   basicRate: 0.20,
   higherRate: 0.40,
   additionalRate: 0.45,
-  
+
   // National Insurance - Self Employed
-  class2Weekly: 3.45,
-  class2Threshold: 12570,
+  //
+  // Class 2 is no longer a mandatory flat charge (abolished for most
+  // self-employed people from April 2024). Above the Small Profits
+  // Threshold it is "treated as paid" — £0 owed, state pension record
+  // still protected. Below it, paying is voluntary. Because this
+  // calculator estimates actual take-home (not a recommendation to make a
+  // voluntary NI payment), Class 2 contributes £0 to nationalInsurance
+  // either side of the threshold — see calculateSelfEmploymentTax. These
+  // two constants are kept for reference/future UI (e.g. an "you could
+  // voluntarily protect your pension record for £X/yr" note), not because
+  // they're multiplied into the tax total.
+  class2SmallProfitsThresholdGbp: 7105,
+  class2VoluntaryWeeklyGbp: 3.65,
   class4LowerLimit: 12570,
   class4UpperLimit: 50270,
-  class4MainRate: 0.09,
+  class4MainRate: 0.06,
   class4AdditionalRate: 0.02,
-  
-  // National Insurance - Employed/Employer
+
+  // National Insurance - Employed/Employer (NOT reverified this pass)
   employeeNIThreshold: 12570,
   employeeNIUpperLimit: 50270,
   employeeNIMainRate: 0.12,
   employeeNIAdditionalRate: 0.02,
-  
+
   employerNIThreshold: 9100,
   employerNIRate: 0.138,
-  
-  // Pension Auto-Enrolment
+
+  // Pension Auto-Enrolment (NOT reverified this pass)
   pensionEmployeeMin: 0.05,
   pensionEmployerMin: 0.03,
   pensionQualifyingLower: 6240,
   pensionQualifyingUpper: 50270,
-  
+
   // Student Loans
-  studentLoanPlan1Threshold: 24990,
-  studentLoanPlan2Threshold: 27295,
-  studentLoanPlan4Threshold: 31395,
+  studentLoanPlan1Threshold: 26900,
+  studentLoanPlan2Threshold: 29385,
+  studentLoanPlan4Threshold: 33795,
   studentLoanPostgradThreshold: 21000,
   studentLoanRate: 0.09,
   postgradLoanRate: 0.06,
-  
-  // VAT
+
+  // VAT (NOT reverified this pass)
   vatThreshold: 90000,
   vatStandardRate: 0.20,
   vatReducedRate: 0.05,
@@ -86,13 +127,19 @@ export const UK_TAX_RATES_2024_25 = {
   sspWeekly: 116.75,
   smpWeekly: 184.03,
   
-  // Minimum Wage (April 2024)
+  // Minimum Wage, from 1 April 2026. Key names kept as-is for minimal diff;
+  // '23+' and '21-22' both equal the single National Living Wage rate
+  // because the 23+ and 21-22 age bands were merged into one 21+ NLW band
+  // in April 2024 — this is a duplicate-of-marginBandingConfig.ts value
+  // (NATIONAL_LIVING_WAGE there), not independently re-derived; if the two
+  // ever disagree, that file is the one to trust (it carries the source
+  // citation and verifiedOn date).
   minimumWage: {
-    '23+': 11.44,
-    '21-22': 11.44,
-    '18-20': 8.60,
-    'under18': 6.40,
-    'apprentice': 6.40
+    '23+': 12.71,
+    '21-22': 12.71,
+    '18-20': 10.85,
+    'under18': 8.00,
+    'apprentice': 8.00
   }
 };
 
@@ -608,8 +655,8 @@ export function calculatePricing(
   // Generate Maya's advice based on the numbers
   let mayaAdvice = '';
   
-  if (hourlyEquivalent < UK_TAX_RATES_2024_25.minimumWage['23+']) {
-    mayaAdvice = `At this price, you're earning less than minimum wage (£${UK_TAX_RATES_2024_25.minimumWage['23+']}/hr). Your skills deserve more. Consider the recommended price.`;
+  if (hourlyEquivalent < UK_TAX_RATES_2026_27.minimumWage['23+']) {
+    mayaAdvice = `At this price, you're earning less than minimum wage (£${UK_TAX_RATES_2026_27.minimumWage['23+']}/hr). Your skills deserve more. Consider the recommended price.`;
   } else if (hourlyEquivalent < 15) {
     mayaAdvice = `£${hourlyEquivalent}/hour is a start, but as you build your reputation, aim for £20-30+. Your expertise grows with every project.`;
   } else if (hourlyEquivalent >= 15 && hourlyEquivalent < 30) {
@@ -642,7 +689,7 @@ export function calculateSelfEmploymentTax(
   allowableExpenses: number,
   studentLoanPlan?: 'plan1' | 'plan2' | 'plan4' | 'postgrad' | 'none'
 ): TaxEstimate {
-  const rates = UK_TAX_RATES_2024_25;
+  const rates = UK_TAX_RATES_2026_27;
   const taxableProfit = Math.max(0, grossIncome - allowableExpenses);
   
   // Calculate Income Tax
@@ -681,20 +728,17 @@ export function calculateSelfEmploymentTax(
     }
   }
   
-  // Calculate National Insurance (Class 2 and Class 4)
+  // Calculate National Insurance (Class 4 only — Class 2 no longer owed,
+  // see rates.class2SmallProfitsThresholdGbp note above)
   let nationalInsurance = 0;
-  
-  if (taxableProfit > rates.class2Threshold) {
-    // Class 2: flat weekly rate
-    nationalInsurance += rates.class2Weekly * 52;
-    
-    // Class 4
+
+  if (taxableProfit > rates.class4LowerLimit) {
     const class4Band = Math.min(
       Math.max(0, taxableProfit - rates.class4LowerLimit),
       rates.class4UpperLimit - rates.class4LowerLimit
     );
     nationalInsurance += class4Band * rates.class4MainRate;
-    
+
     // Class 4 additional rate
     if (taxableProfit > rates.class4UpperLimit) {
       nationalInsurance += (taxableProfit - rates.class4UpperLimit) * rates.class4AdditionalRate;
@@ -769,9 +813,9 @@ export function calculateSelfEmploymentTax(
 export function calculateEmploymentCost(
   grossSalary: number,
   includePension: boolean = true,
-  pensionRate: number = UK_TAX_RATES_2024_25.pensionEmployerMin
+  pensionRate: number = UK_TAX_RATES_2026_27.pensionEmployerMin
 ): EmploymentCostResult {
-  const rates = UK_TAX_RATES_2024_25;
+  const rates = UK_TAX_RATES_2026_27;
   
   // Employer's National Insurance
   let employerNI = 0;
@@ -816,7 +860,7 @@ export function calculateMileageAllowance(
   miles: number,
   vehicleType: 'car' | 'motorcycle' | 'bicycle' = 'car'
 ): { allowance: number; explanation: string } {
-  const rates = UK_TAX_RATES_2024_25;
+  const rates = UK_TAX_RATES_2026_27;
   let allowance = 0;
   let explanation = '';
   
@@ -847,7 +891,7 @@ export function calculateMileageAllowance(
 export function checkVATThreshold(
   annualTurnover: number
 ): { mustRegister: boolean; shouldVoluntary: boolean; explanation: string } {
-  const threshold = UK_TAX_RATES_2024_25.vatThreshold;
+  const threshold = UK_TAX_RATES_2026_27.vatThreshold;
   const mustRegister = annualTurnover > threshold;
   
   // Voluntary registration might be beneficial if mostly B2B
