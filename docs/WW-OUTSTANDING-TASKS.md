@@ -16,6 +16,62 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🔴 ROV Custodian ↔ External Course matrix — withheld from repo, conflicts with canonical roster, 17 Sep 2026 (Claude Code)
+
+Handed off as `accreditation/external-mapping/rov-facilitation-matrix.md` —
+**not filed**, per explicit user decision, pending reconciliation against
+`docs/research/WW-CANONICAL-ROSTER.md`. Different treatment from the
+OCN/CVQ/RSL submission documents filed earlier today: those had uncertain
+*supporting* detail inside an otherwise-solid external document, handled
+with an internal-only caveat section. This document's entire subject is
+the internal custodian structure itself, and it conflicts with the
+canonical source of truth directly enough that filing it — as the
+cross-programme reference doc meant to be read "alongside `_index.md`" —
+would create exactly the second, unreconciled Child/ROV-mapping source
+`WW-CANONICAL-ROSTER.md`'s own header explicitly warns against.
+
+**What the matrix claims vs. what's already canonical, checked directly:**
+
+- **Joystick → "Narrator."** `WW-CANONICAL-ROSTER.md`: *"Ntikuma...owns
+  Joystick outright (his own file states `programme: 'Joystick'`, correctly
+  present in `ChildByProgramme`)."* Ntikuma isn't part of the
+  Narrator/Maker/Merchant/Keeper/Weaver/Spark/Guardian/Elder system at all —
+  he's a canonical Child with his own already-documented cross-programme
+  broadcast-coordinator role (G-Tech Casters, Kaywana's Court, Rayd-yo,
+  *and* Joystick), which the matrix doesn't reference.
+- **Trubble n Bass framed as "the one programme missing" a custodian**,
+  used to justify creating two new roles. `WW-CANONICAL-ROSTER.md`: *"Afua |
+  The Storyteller | Voice, Oral Tradition & Audio Drama | Rayd-yo (+ Easy
+  Street, Trubble n Bass)."* Afua already owns both Trubble n Bass and Easy
+  Street (which the matrix separately assigns to "Narrator + Elder"). The
+  claimed gap only exists inside the narrower `rovMapping.ts` persona set
+  (which genuinely has no TNB entry among its nine), not against the actual
+  canonical roster.
+- **"Mix-Master" and "Bandmaster"** — searched both repos directly: zero
+  hits anywhere, not even as a passing mention. Not "doesn't match an
+  established system" (the "Selector" or "Keeper" category, already flagged
+  elsewhere) — these two have no trace at all. The handoff presents their
+  creation as an already-resolved decision ("resolved 17 Sep 2026 — CJ and
+  Judith opted for a dedicated three-role team"), which can't be
+  independently corroborated from anything in either repo.
+- **"OU" (Open University) courses for STEMgeneers** — new in this
+  document, not present in the earlier STEMgeneers Engineering Ethics
+  submission filed today; zero hits anywhere. Lower stakes than the above
+  (not a Child/custodian conflict), flagged in passing.
+
+**Not resolved here — this is a real decision for CJ/Judith, same weight as
+the original Ntikuma/G-Tech Casters conflict that produced
+`WW-CANONICAL-ROSTER.md` in the first place:** is the
+Narrator/Maker/Merchant/Keeper/Weaver/Spark/Guardian/Elder system meant to
+supersede the 12-Children canonical mapping for accreditation-facilitation
+purposes specifically (in which case the canonical file needs updating to
+say so, and the Joystick/TNB/Easy Street conflicts need actually
+reconciling, not just noted), or is this matrix built on a system that
+was never meant to carry this much weight, and the real custodian
+assignments should follow the canonical roster's existing Children instead.
+Mix-Master/Bandmaster specifically need confirming as real before any
+document treats their creation as settled.
+
 ## 🔴 Roots' split identity — flagged once (10 Sep, WW-SPEC-ROOTS-SYLLABUS-001), never actioned, resurfaced 17 Sep 2026 (Claude Code)
 
 Filing `accreditation/programmes/roots/ocn-bespoke-submission.md` (an OCN

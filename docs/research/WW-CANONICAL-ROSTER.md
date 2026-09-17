@@ -142,6 +142,19 @@ belonging concept, not the broadcast-coordination roles CJ means.
   entries rather than keying off a single route param) — flagging the
   mismatch, not asserting it breaks anything.
 
+- **A proposed `accreditation/external-mapping/rov-facilitation-matrix.md`
+  document (handed off 17 Sep 2026, not filed) assigns "Joystick → Narrator"
+  and treats Trubble n Bass as "the one programme missing" a custodian.**
+  Both conflict with this file directly: Ntikuma "owns Joystick outright"
+  (see his coordinator entry above), and Afua already owns Trubble n Bass
+  (and Easy Street) per her row in The Storytellers above. The matrix also
+  introduces two new custodian names — "Mix-Master" and "Bandmaster" — with
+  zero trace anywhere in either repo, presented as an already-resolved
+  17 Sep 2026 decision. None of this has been reconciled into this file or
+  confirmed against it; the matrix document was withheld from the repo
+  pending that reconciliation, per this file's own standing practice. Full
+  detail in `docs/WW-OUTSTANDING-TASKS.md`.
+
 ## Fix log (part of this file's own creation, 22 Aug 2026)
 
 `'silk-stilettos': Anansewa` — previously in `children.ts`'s
