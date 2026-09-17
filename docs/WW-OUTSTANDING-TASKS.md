@@ -16,6 +16,54 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🟡 KcLiveEntry seed — Angola → Gullah Geechee migration, created DRAFT, 17 Sep 2026 (Claude Code)
+
+Handoff content (Cookie/Aso-adjacent KC seed, fully vetted, content and
+per-claim confidence locked) assumed the flat six-value `tectonic_tags`
+enum was still live and recommended leaving that field empty pending an
+"unshipped" REEF taxonomy. **Checked the backend repo (`ww-platform-backend`,
+`master`) directly before touching anything — that premise was already
+wrong.** `V73__Kc_live_entries_locked_tectonic_taxonomy.sql` has already
+shipped: `tectonic_tags` no longer exists as a column at all, replaced by a
+mandatory `boundary_type` + optional-multi `driving_force` +
+optional-multi `surface_feature` taxonomy. `REEF` is a real, live
+`KcSurfaceFeature` value, not unshipped. Since `boundary_type` is now
+`NOT NULL`, "leave it pending" isn't actually an option any entry can take.
+
+**Interpretation call made, not a confirmed decision — flag for review:**
+with the user's explicit go-ahead to proceed on this basis, classified the
+entry as `boundary_type: TRANSFORM`, `driving_force: [DIASPORA_FLOW]`,
+`surface_feature: [REEF]`. `DIASPORA_FLOW` and `REEF` both fit the entry's
+own content closely (movement of people as the motive force; a dense,
+long-built historical structure). `TRANSFORM` is the least certain of the
+three — chosen by analogy to the only existing precedent using it (the
+Guyana Interior entry: "lateral movement... not compression"), not from
+any documented rule that historical-demographic content defaults to
+TRANSFORM. Worth a second look once more entries exist to compare against.
+
+**Created directly via SQL against the dev Postgres instance** (row id
+`541ec11f-45dc-4912-855e-e21d12f582e7`, `status: DRAFT`) rather than
+through the admin API — the Spring Boot app wouldn't boot locally: Flyway
+validation failed on a `V76` migration already applied to this shared dev
+DB (`programme_cadence_typing`, from the unmerged
+`feat/programme-cadence-typing` branch) but not present in the currently
+checked-out branch's migration folder. Did not write that migration file
+into the tracked `db/migration/` directory to work around it — flagged
+here instead, since that's a genuine cross-branch dev-DB state issue
+independent of this task, matching the messy-migration-state entries
+already logged in this file's "branch/migration state" section above.
+
+**Also flagged, not fabricated:** the handoff's `cross_links`
+(`kc-west-africa-angola-naming-archive` etc.) are markdown-archive-style
+string slugs, but the live schema's `cross_links` column is
+`uuid[]` of other `KcLiveEntry` row IDs — no matching rows exist (the
+table was empty before this insert), so `cross_links` was left `{}`
+rather than invented. Same treatment for `sources`: the handoff's body
+cites Bateman and Dixon (2007) inline, but `KcSourceCitation` requires a
+real `url` + `publisher` per entry — none were supplied, so `sources` was
+left `[]` rather than fabricating citation URLs. Both are real gaps to
+fill later, not resolved here.
+
 ## 🟢 WW-SPEC-KC-REGISTER-CROSSCHECK-001 — resolved, 16 Sep 2026 (Claude Code)
 
 Handoff (16 Sep 2026): is Pettigrew's "Register of British Slave Traders"
