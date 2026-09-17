@@ -16,6 +16,37 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🟡 Brent diaspora globe pins — built, verified, one open question + one structural finding, 17 Sep 2026 (Claude Code)
+
+Six citation pins landed (`src/pages/heritage/kcBrentDiasporaEntry.seed.ts`,
+commit `1afb324f`) — see that file's own header for the full verification
+detail (pin shape mismatch fixed, country-ID map extended and
+re-verified, DIASPORA_FLOW/cross-link findings). Two things to carry
+forward:
+
+- **Open question from the handoff, not answered here, needs CJ:**
+  whether a cluster of diaspora pins hitting the same UK coordinates
+  should count as its own kind of demand signal for the sub-national
+  entry creation gate (`ww-kc-tectonic-taxonomy.md`), distinct from
+  Navigator-query volume. Not resolved — flagged per the handoff's own
+  instruction that no automation should act on this either way without
+  that decision.
+- **Structural finding, worth knowing before touching `/heritage`
+  again:** `src/pages/heritage/` and `src/components/knowledge-commons/`
+  are two deliberately unshared copies of `KnowledgeCommonsShell.tsx`
+  and `GlobeMap.tsx` — the live, routed `/heritage` page uses
+  `components/knowledge-commons/`; `pages/heritage/` is an unrouted
+  fork the globe feature was originally prototyped in (per that tree's
+  own 14 Sep 2026 header comments, already documenting this — it just
+  wasn't checked before starting this task). Shared seed data
+  (`kcTainoAncestryEntry.seed.ts`, now also `kcBrentDiasporaEntry.seed.ts`,
+  `world-110m.json`) lives in `pages/heritage/` and is imported by both
+  trees; the two `GlobeMap.tsx`/`KnowledgeCommonsShell.tsx` component
+  files themselves are not shared and have to be kept in sync by hand.
+  Caught mid-task after wiring the wrong (unrouted) copy first — both
+  are now in sync, but any future change to globe rendering needs to
+  touch both component trees, not just one.
+
 ## 🔴 ROV Custodian ↔ External Course matrix — withheld from repo, conflicts with canonical roster, 17 Sep 2026 (Claude Code)
 
 Handed off as `accreditation/external-mapping/rov-facilitation-matrix.md` —
