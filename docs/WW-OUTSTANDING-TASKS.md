@@ -16,6 +16,46 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🔴 Roots' split identity — flagged once (10 Sep, WW-SPEC-ROOTS-SYLLABUS-001), never actioned, resurfaced 17 Sep 2026 (Claude Code)
+
+Filing `accreditation/programmes/roots/ocn-bespoke-submission.md` (an OCN
+London bespoke-unit submission covering Roots' archival-research strand)
+surfaced that this exact question was already raised a week earlier and
+sat unactioned. Not a new finding — a re-flag, because the original one
+apparently didn't reach anywhere durable enough to prevent an external
+accreditation submission being drafted without addressing it.
+
+**The situation, from `docs/accreditation/WW-SPEC-ROOTS-SYLLABUS-001.md`'s
+own header:** Roots currently has two live, unreconciled identities under
+one programme badge —
+1. **Body-sovereignty / hair-science / safeguarding**, led by Judith
+   Fontanelle: `RootsArchive.tsx` ("The Knowledge Archive" — Hair Science
+   by Texture, Chemical Literacy, a Remedies Database, an Apothecary
+   workspace), `RootsPage.tsx`, `sandbox.tsx`. This is what a member
+   navigating to the live Roots programme today primarily encounters.
+2. **Ancestral-record / archival-research**, hosted by Esi/Keeper: the
+   syllabus the OCN submission above covers (archival method, record
+   linkage, oral history, DNA literacy, citation, Knowledge Commons
+   deposit). Marked DEMONSTRATED in `WW-RESEARCH-ELEMENT-BY-PROGRAMME.md`,
+   evidenced by the locked James Dent Walker / Arturo Schomburg curator
+   entries.
+
+The syllabus spec's own words: *"Unresolved, flagged for CJ — not forced
+here: how these two strands ... sit under one programme badge, one host
+ROV, and one set of Explorer→Leader tiers ... If CJ's intent was a single
+unified Roots syllabus covering both strands, stop and re-scope."* That
+flag was never actioned. The OCN submission was then drafted from the
+syllabus without addressing it, and — left unflagged a second time —
+would have gone to an external accreditation body describing "Roots" as
+solely the archival-research strand, with no disclosure that the live
+programme is currently something else to a member using it.
+
+**Not resolved here** — this needs CJ's actual decision (one unified
+badge covering both strands, two formally separate programmes sharing a
+name, or something else), the same as the first time it was flagged.
+Re-logged in the master tracker specifically so it doesn't require a
+third external-facing document to surface it again.
+
 ## 🟢 WW-SPEC-ILP-ROV-OWNER-002 — resolved, built, verified end-to-end, 17 Sep 2026 (Claude Code)
 
 Closes out **WW-SPEC-ILP-ROV-OWNER-001** (withdrawn same day — see below)
