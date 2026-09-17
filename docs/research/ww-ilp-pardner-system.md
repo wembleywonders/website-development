@@ -97,6 +97,21 @@ deeper justification than "this is how we've chosen to do it."
 
 ## Changelog
 
+- **17 Sep 2026** — WW-SPEC-ILP-ROV-OWNER-002, backend V79 (`ww-platform-backend`,
+  branch `feat/deviation-touchpoint-crew-log`, commit `bbbbb0dd`): programme-level
+  ownership + a team-assignment table for Skunkworks projects. Not a change to
+  this file's own subject matter (ILP/Pardner financial mechanics) — logged here
+  only because the spec that produced it named this file as one of its
+  post-build update targets. **Deliberate note, so a future session doesn't
+  read this as touching the already-resolved §7.3 decision:** `ilp_goals.rov_owner`
+  (the persona-based ILP goal-owner field decided in §7.3/§7.5, V74/V75) is
+  untouched by V79 — confirmed unchanged against the live DB constraint after
+  migrating. The two shared the word "owner" and nothing else; V79 is a
+  genuinely separate, additive concept (Skunkworks project → programme +
+  cross-programme team), not a reopening or correction of §7.3. Full detail:
+  `docs/WW-OUTSTANDING-TASKS.md`, and the backend repo's own
+  `docs/WW-OUTSTANDING-TASKS.md`.
+
 - **22 Aug 2026** — file created. Fiducia/Foundation of Trust added as the
   first entry, verified against real Pardner mechanics in code
   (`PardnerEngine.ts`, `roce.ts`, `revenueModels.ts`, `HowItWorksPage.tsx`)

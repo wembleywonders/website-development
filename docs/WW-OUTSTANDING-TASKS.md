@@ -16,6 +16,91 @@ was already written down once.
 resolved, has a known follow-up · 🟢 resolved, kept for history · 🔵 parked
 deliberately
 
+## 🟢 WW-SPEC-ILP-ROV-OWNER-002 — resolved, built, verified end-to-end, 17 Sep 2026 (Claude Code)
+
+Closes out **WW-SPEC-ILP-ROV-OWNER-001** (withdrawn same day — see below)
+and the "Decision made... ready to scope and build" handoff that followed
+it. **This is a deliberate reopening of a concept adjacent to §7.3, not a
+correction of it** — recorded explicitly so a future session doesn't
+mistake this for §7.3 being wrong or re-litigate an already-settled
+decision. `ilp_goals.rov_owner` (persona-based ILP goal ownership, §7.3/
+§7.5, V74/V75) is completely untouched by this work — confirmed against
+the live DB constraint after migrating, byte-identical to its post-V75
+state.
+
+**-001's premise was wrong, checked before building anything:** it
+described `rov_owner` as an open field and V69 as a reserved gap for it.
+Neither was true. V69 was already reassigned to Cyberstore's
+`store_orders` table (3 Sep, already merged to `master`). `ilp_goals.rov_owner`
+is a real, shipped column — `VARCHAR(20)`, CHECK-constrained to
+Child-of-Anansi personas, decided in §7.3 (8 Sep, not 17 Sep as -001
+stated) and built via V74+V75. Flagged back rather than built; CJ
+confirmed (-002) this was a genuine new decision about a different
+concept, not a stale rehash.
+
+**Scoping (per -002 §2, done before writing any migration) confirmed
+case (b) — new and additive, not a replacement:**
+- `ilp_goals.rov_owner` has no downstream consuming logic yet at all — no
+  `goal_domain → rov_owner` routing is built (confirmed via direct code
+  search of `IlpRovOwner.java`/`ILPService.java`).
+- `skunkworks_projects` (V78) had zero team-membership mechanism beyond a
+  single `creator_id` — its own entity javadoc said so explicitly. This
+  work fills exactly that gap.
+
+**Two things the spec didn't anticipate, found during scoping, presented
+back before proceeding:**
+- Migration slot: not simply "next after V75" — V76 and V78 were both
+  already claimed by unmerged work on this machine
+  (`feat/programme-cadence-typing`, and this branch's own Skunkworks
+  build respectively). **V79** confirmed clear of both.
+- No single canonical programme-reference pattern exists in this schema —
+  three coexist (`programme_id` FK, `programme_slug` varchar, free-text
+  `programme`/`programme_name`). CJ chose `programme_id` FK.
+
+**Built** (backend repo `ww-platform-backend`, branch
+`feat/deviation-touchpoint-crew-log`, commit `bbbbb0dd`):
+`V79__Add_programme_ownership_and_team_to_skunkworks_projects.sql` —
+`skunkworks_projects.programme_id` (nullable FK to `programmes`) +
+`skunkworks_team_members` join table (project/member/role/added_at,
+unique per project+member) — plus the full entity/repository/service/
+controller layer (`PUT /api/skunkworks/projects/{id}/programme`,
+ORGANIZER/ADMIN; `POST`+`GET /api/skunkworks/projects/{id}/team`,
+MEMBER+).
+
+**Verified end-to-end against the real merge target, not compiles-clean**
+(same standard as the KC V71/V72 work): applied via `flyway:migrate`
+(required an `mvn flyway:repair` first, for an unrelated pre-existing V76
+mismatch on this shared dev DB — a different branch's earlier work, not
+caused by this spec); booted the real app; drove it through actual REST
+calls over the real auth/security chain — created a project, confirmed
+an unknown `programmeId` is rejected (404) and a real one accepted (200),
+added two team members from different registered users, confirmed the
+round-trip via `GET`.
+
+**Found and fixed one real bug during that verification, not present in
+the original design plan:** the duplicate-team-member case returned a
+raw 500 instead of the intended 400. Hibernate defers the actual `INSERT`
+to transaction-commit time, which happens *after* the method's own
+try/catch had already returned — so the unique-constraint violation
+escaped uncaught. Fixed with `saveAndFlush()` to force the constraint
+check synchronously inside the try block; re-verified after the fix —
+correct 400 with a clear message.
+
+**No automated-approval interaction** — confirmed by direct grep, not
+assumption: `SkunkworksProjectStatus.CERTIFIED` is set in exactly one
+place (`submitCrewLogEntry`), untouched by either new method.
+`WW-SPEC-ROV-SUBMISSION-PIPELINE-001`, which the originating spec named
+as the document to cross-check this against, does not exist anywhere in
+either repo — checked directly rather than assumed present; flagged
+rather than fabricating the check.
+
+**WW-SPEC-ILP-ROV-OWNER-001 — withdrawn same day, kept for history:** the
+first version of this handoff would have written a migration numbered
+V69 that silently repointed the already-shipped `ilp_goals.rov_owner`
+persona field to mean "programme" instead — overwriting two already-
+merged, carefully audited migrations (V74, V75) without acknowledging
+they existed. Caught before any schema change was made; not built.
+
 ## 🟡 KcLiveEntry seed — Angola → Gullah Geechee migration, created DRAFT, 17 Sep 2026 (Claude Code)
 
 Handoff content (Cookie/Aso-adjacent KC seed, fully vetted, content and
