@@ -9,6 +9,7 @@ import GlobeMap from './GlobeMap';
 import worldTopology from '../../pages/heritage/world-110m.json';
 import type { Topology } from 'topojson-specification';
 import { kcTainoAncestryEntry } from '../../pages/heritage/kcTainoAncestryEntry.seed';
+import { kcBrentDiasporaEntry } from '../../pages/heritage/kcBrentDiasporaEntry.seed';
 import './KnowledgeCommons.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -22,8 +23,9 @@ import './KnowledgeCommons.css';
 //   question — curated entry questions for non-historians
 //   plaque   — community contribution: nominate missing plaques
 //   globe    — thematic overlay map (ethnographic concentration + citation
-//              pins); currently one seed entry (Taino ancestry), status
-//              DRAFT — see the footnote rendered in this mode
+//              pins); two seed entries as of 17 Sept 2026 (Taino ancestry,
+//              Brent diaspora citation threads), both status DRAFT — see
+//              the footnote rendered in this mode
 //
 // URL state: ?mode=thread&id=same-rule-different-arenas
 // This means every view is linkable and shareable.
@@ -55,7 +57,7 @@ const NAV_ITEMS: { id: BrowseMode; label: string; icon: string; description: str
   { id: 'era',      label: 'By Era',      icon: '│', description: 'Chronological sweep from 1807 to now' },
   { id: 'question', label: 'By Question', icon: '?', description: 'Start with a question, arrive at history' },
   { id: 'plaque',   label: 'Contribute',  icon: '+', description: 'Nominate a missing plaque' },
-  { id: 'globe',    label: 'By Region',   icon: '⊙', description: 'Thematic overlay map — one draft entry so far' },
+  { id: 'globe',    label: 'By Region',   icon: '⊙', description: 'Thematic overlay map — two draft entries so far' },
 ];
 
 const ARCHIVE_STATS = [
@@ -288,8 +290,17 @@ const KnowledgeCommonsShell: React.FC = () => {
           {mode === 'globe'    && (
             <GlobeMap
               ctx={ctx}
-              concentration={kcTainoAncestryEntry.ethnographic_concentration}
-              pins={kcTainoAncestryEntry.geo_pins}
+              // Two entries combined into GlobeMap's flat props — the
+              // component itself is entry-unaware (just concentration[]/
+              // pins[] arrays), so this is the minimal way to surface a
+              // second entry's pins without inventing an entry-switcher UI
+              // nothing asked for. Added 2026-09-17 for the Brent diaspora
+              // citation-pins entry, alongside the existing Taino entry.
+              concentration={[
+                ...kcTainoAncestryEntry.ethnographic_concentration,
+                ...kcBrentDiasporaEntry.ethnographic_concentration,
+              ]}
+              pins={[...kcTainoAncestryEntry.geo_pins, ...kcBrentDiasporaEntry.geo_pins]}
               topology={worldTopology as unknown as Topology}
             />
           )}

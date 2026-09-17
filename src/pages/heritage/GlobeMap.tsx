@@ -29,14 +29,24 @@ import type { CommonsContext } from './KnowledgeCommonsShell';
 // needs. Verified directly against the real vendored topology's `id` field
 // (see header note above) — extend this map before adding a country whose
 // code isn't already listed here.
+//
+// 2026-09-17: extended for the Brent diaspora pins entry. The five new
+// codes (356/706/372/620/826) were re-verified the same way as the
+// original five — read directly out of world-110m.json's geometries, not
+// assumed from memory — before being added here.
 const ISO_NUMERIC_TO_ALPHA2: Record<string, string> = {
   '630': 'PR', // Puerto Rico
   '192': 'CU', // Cuba
   '214': 'DO', // Dominican Republic
   '388': 'JM', // Jamaica
   '332': 'HT', // Haiti
+  '356': 'IN', // India
+  '706': 'SO', // Somalia
+  '372': 'IE', // Ireland
+  '620': 'PT', // Portugal
+  '826': 'GB', // United Kingdom
 };
- 
+
 export interface KcEthnographicConcentration {
   region: string;
   country_code: string; // alpha-2
@@ -45,7 +55,7 @@ export interface KcEthnographicConcentration {
   colonial_administration: 'Spanish' | 'English' | 'French' | 'Dutch';
   source_note: string;
 }
- 
+
 export interface KcGeoPin {
   location: string;
   lat: number;
@@ -53,6 +63,19 @@ export interface KcGeoPin {
   pin_type: 'high_signal' | 'contrast';
   finding: string;
   source_note: string;
+  /**
+   * Added 2026-09-17 for the Brent diaspora pins entry — both new fields
+   * optional so the existing Taino entry's pins (source_note only, no
+   * cross-link) need no migration. A pin is not required to cross-link;
+   * clicking a pin currently does nothing regardless (see header note —
+   * the pin and choropleth/country layers are deliberately separate), so
+   * cross_link_country is metadata for now, not a wired interaction.
+   */
+  sources?: string[];
+  /** ISO 3166-1 alpha-2 — must resolve via ISO_NUMERIC_TO_ALPHA2 above to
+   *  actually align with a rendered country polygon; not enforced at the
+   *  type level. */
+  cross_link_country?: string;
 }
  
 interface GlobeMapProps {

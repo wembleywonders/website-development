@@ -28,6 +28,21 @@
  * tectonic-taxonomy analytical layer, plus a separate ethnographic
  * concentration layer below), not the base map or its rendering —
  * those are a distinct, not-yet-started build.
+ *
+ * CORRECTION (2026-09-17): both paragraphs above are now stale, checked
+ * directly rather than left standing. (1) The taxonomy migration DID
+ * ship — V73 (backend `ww-platform-backend`, on `master`), a real
+ * Postgres CHECK + Java `KcDrivingForce`/`KcBoundaryType`/
+ * `KcSurfaceFeature` enum, including DIASPORA_FLOW. This frontend file
+ * is still not connected to that backend, though (no live
+ * `kc_live_entries` fetch anywhere in this repo) — the migration
+ * existing doesn't mean this seed data is backed by it. (2) The
+ * map/globe UI is no longer "not-yet-started" — GlobeMap.tsx was wired
+ * into KnowledgeCommonsShell.tsx's 'globe' mode on 14 Sept 2026 (see
+ * GlobeMap.tsx's own header). Leaving the original paragraphs in place
+ * rather than deleting them, so the history of what was true when is
+ * still visible — same practice already used elsewhere in this repo's
+ * docs.
  */
 
 export type KcConfidence = 'CORROBORATED' | 'SINGLE_SOURCE' | 'UNVERIFIED';
@@ -62,6 +77,18 @@ export type KcSurfaceFeature =
 
 // Point markers anchoring a specific citation/study — NOT population
 // distribution. Use KcEthnographicConcentration below for that.
+//
+// Declared independently here rather than imported from either GlobeMap.tsx
+// — this seed file is shared by BOTH the live components/knowledge-commons/
+// Shell and the unrouted pages/heritage/ fork (see KnowledgeCommonsShell.tsx
+// header comments in both trees), and those two Shells' GlobeMap.tsx copies
+// are themselves deliberately unshared (different CSS token systems). Tying
+// this type to either one specifically would be a hidden coupling to a
+// component this file has no real relationship with. Extended 2026-09-17
+// with two new optional fields for the Brent diaspora pins entry — kept in
+// sync by hand across all three declarations (here, and both GlobeMap.tsx
+// copies) since there's no shared-types module in this tree to import from
+// instead; a real follow-up would be creating one.
 export interface KcGeoPin {
   location: string;
   lat: number;
@@ -69,6 +96,11 @@ export interface KcGeoPin {
   pin_type: 'high_signal' | 'contrast';
   finding: string;
   source_note: string;
+  /** Optional — see GlobeMap.tsx's own KcGeoPin comment for what these do
+   *  and don't do (cross_link_country is metadata only, not wired to any
+   *  click interaction yet). */
+  sources?: string[];
+  cross_link_country?: string;
 }
 
 // Region/country-level population overlay — renders as a choropleth-style

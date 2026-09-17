@@ -10,6 +10,7 @@ import GlobeMap from './GlobeMap';
 import worldTopology from './world-110m.json';
 import type { Topology } from 'topojson-specification';
 import { kcTainoAncestryEntry } from './kcTainoAncestryEntry.seed';
+import { kcBrentDiasporaEntry } from './kcBrentDiasporaEntry.seed';
 import './KnowledgeCommons.css';
 
 // ── EPISTEMOLOGICAL FRAMEWORK ─────────────────────────────────────────────────
@@ -566,8 +567,17 @@ const KnowledgeCommonsShell: React.FC = () => {
           {mode === 'globe'     && (
             <GlobeMap
               ctx={ctx}
-              concentration={kcTainoAncestryEntry.ethnographic_concentration}
-              pins={kcTainoAncestryEntry.geo_pins}
+              // Two entries combined into GlobeMap's flat props — the
+              // component itself is entry-unaware (just concentration[]/
+              // pins[] arrays), so this is the minimal way to surface a
+              // second entry's pins without inventing an entry-switcher UI
+              // nothing asked for. Added 2026-09-17 for the Brent diaspora
+              // citation-pins entry, alongside the existing Taino entry.
+              concentration={[
+                ...kcTainoAncestryEntry.ethnographic_concentration,
+                ...kcBrentDiasporaEntry.ethnographic_concentration,
+              ]}
+              pins={[...kcTainoAncestryEntry.geo_pins, ...kcBrentDiasporaEntry.geo_pins]}
               topology={worldTopology as unknown as Topology}
             />
           )}

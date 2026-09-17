@@ -35,12 +35,24 @@ import type { CommonsContext } from './KnowledgeCommonsShell';
 // needs. Verified directly against the real vendored topology's `id` field —
 // extend this map before adding a country whose code isn't already listed
 // here.
+//
+// 2026-09-17: extended for the Brent diaspora pins entry, mirroring the
+// same extension made to src/pages/heritage/GlobeMap.tsx (the two trees
+// are unshared but kept structurally in sync by hand — see this file's
+// own header comment on why). The five new codes were re-verified the
+// same way as the original five, read directly out of world-110m.json's
+// geometries rather than assumed from memory.
 const ISO_NUMERIC_TO_ALPHA2: Record<string, string> = {
   '630': 'PR', // Puerto Rico
   '192': 'CU', // Cuba
   '214': 'DO', // Dominican Republic
   '388': 'JM', // Jamaica
   '332': 'HT', // Haiti
+  '356': 'IN', // India
+  '706': 'SO', // Somalia
+  '372': 'IE', // Ireland
+  '620': 'PT', // Portugal
+  '826': 'GB', // United Kingdom
 };
 
 export interface KcEthnographicConcentration {
@@ -59,6 +71,18 @@ export interface KcGeoPin {
   pin_type: 'high_signal' | 'contrast';
   finding: string;
   source_note: string;
+  /**
+   * Added 2026-09-17 for the Brent diaspora pins entry — both optional so
+   * the existing Taino entry's pins (source_note only) need no migration.
+   * cross_link_country is metadata for now: clicking a pin does nothing
+   * (see header note — pin and choropleth/country layers are deliberately
+   * separate), so this isn't wired to any navigation yet.
+   */
+  sources?: string[];
+  /** ISO 3166-1 alpha-2 — must resolve via ISO_NUMERIC_TO_ALPHA2 above to
+   *  actually align with a rendered country polygon; not enforced at the
+   *  type level. */
+  cross_link_country?: string;
 }
 
 interface GlobeMapProps {
