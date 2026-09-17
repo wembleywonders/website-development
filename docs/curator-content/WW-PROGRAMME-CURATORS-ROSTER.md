@@ -257,6 +257,80 @@ Americas and had no thread on this roster before this entry.
 
 - **Conduct caveats:** none. Deceased 2011.
 
+**Added here (17 Sep 2026, two further co-tutors alongside Durham, Holder, and
+Nascimento, filed independently of each other):**
+
+### Ira Aldridge (1807–1867)
+
+American-born, emigrated to England in 1824 after facing discrimination in US theatre
+(performed with the African Grove Theatre, New York's first resident African-American
+theatre, shut down by hostile competitors and a racist sheriff-authored parody). Became a
+celebrated Shakespearean tragedian across Britain and, from 1852, Continental Europe —
+praised by heads of state, honoured with the Prussian Gold Medal for Arts and Sciences and
+Russia's Golden Cross of Leopold.
+
+Real institution-building credential: in 1828 he became manager of Coventry's Theatre
+Royal — the first African American to manage a British theatre. Only actor of African
+descent honoured with a bronze plaque among the 33 actors at the Shakespeare Memorial
+Theatre, Stratford-upon-Avon.
+
+Honest caveat on teaching credential, matching the standard already applied to Holder's
+own entry: no documented direct protégé of his own — his influence on later Black
+Shakespearean actors (John A. Arneaux, and a performance lineage later traced to Paul
+Robeson's Othello) is inspirational-model/legacy-through-example, not named hands-on
+mentorship. One real closed-loop exception worth keeping on record: his daughter Amanda
+Ira Aldridge became a voice teacher, and one of her own students, actor Earl Cameron,
+personally helped unveil Ira's Coventry blue plaque in 2017 — a genuine multi-generational
+teaching thread, just running through his daughter rather than through Ira directly.
+
+- **Conduct caveats:** fabricated a fictional Fulani princely lineage early in his career
+  to build credibility with British audiences (self-mythologising, not misconduct toward
+  another person); found liable in *Stothard v. Aldridge* (1856) for adultery with Emma
+  Stothard (nominal damages of £2; did not damage his career) — a genuine personal-conduct
+  item, distinct in kind from this roster's political-persecution caveats (Garvey, Jones,
+  Ahmad Baba). The post-death "Ira Aldridge Troupe" (Philadelphia, founded 1863) performed
+  minstrelsy material, including blackface-on-Irish caricature — a company invoking his
+  name decades after he permanently left America, reflecting nothing Aldridge himself did;
+  noted only so it isn't conflated with his own record. Deceased 1867 (Łódź, Poland, while
+  on tour), no living-person complication.
+
+### Bonnie Greer (1948–2026)
+
+American-born (Chicago), moved to the UK in 1986, naturalised British citizen 1997. Real
+institution-building credential: director of Talawa Theatre Company, the UK's foremost
+Black-led theatre company — a direct modern parallel to Aldridge's Coventry management
+role above, though the two entries are filed independently rather than as a pair. Also
+served as Arts Council playwright-in-residence at the Soho Theatre and at Nitro (formerly
+the Black Theatre Co-operative).
+
+Broad, sourced body of produced work across script and staged production: plays, radio
+plays, a musical (*Marilyn and Ella*), and an opera (*Yes*, Royal Opera House, 2011, with
+composer Errollyn Wallen). Sat on the boards of the British Museum (Deputy Chairman from
+2009), the Royal Opera House, and the London Film School; Chancellor of Kingston
+University; OBE (2010); elected Fellow of the Royal Society of Literature (2022).
+
+Died 15 September 2026, aged 77, after a brief illness — living-public-figure restriction
+no longer applies.
+
+No documented named mentee found for Greer either — her credential is
+institution-directorship, not personal mentorship, the same gap as Aldridge's entry above.
+Flagged as a shared open research item across both, without that shared gap being read as
+grounds for a pairing.
+
+**Cross-connection note (not a lock):** Greer's writing/biography output (novelist,
+*Langston Hughes: The Value of Contradiction*, playwright-in-residence posts) makes her a
+candidate for a light cross-connection to Pageturners under the interchange-station
+principle, alongside McDuffie and Len Garrison — not locked there, since Talawa is the
+stronger, more concrete Easy Street fit.
+
+- **Conduct caveats:** in a 2023 TalkTV appearance she claimed Manchester United's and
+  Manchester City's club-crest ships were racist and glorified slavery; when shown that
+  both crests were adopted decades after UK abolition, she did not retract but said
+  "history is changing" and that historians should investigate — a documented instance of
+  maintaining a factually incorrect claim under direct correction, worth logging honestly
+  given WW's own editorial spine is fact-checking against a rubric. Not treated as
+  disqualifying, but not omitted either. Deceased 2026, no living-person complication.
+
 ---
 
 ## Trubble n Bass — new genre: Son/Salsa (genre 20)
@@ -313,3 +387,9 @@ Recorded honestly rather than implied complete:
   separate research pass.
 - A verifiable definition of the "Track 1/2" vetting standard this file's entries are
   described as checked against — not found anywhere in the repo as of this file's creation.
+- Ira Aldridge and Bonnie Greer (added 17 Sep 2026): neither has a named-mentee credential
+  as strong as Fasséké→Sundiata or Williams→Rufus Thomas — flagged for further research on
+  both, independently. Tutoring-focus tier mapping (core technique / badge tiers) not yet
+  drafted for either. No Easy Street `curators.ts` equivalent to Trubble n Bass's exists in
+  this repo, so there is no confirmed data-layer wiring target — do not guess one; ask or
+  check the actual structure first when that work comes up.
